@@ -40,9 +40,7 @@
     "jshint": "^2.11.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development",
-    "build": "NODE_ENV=production webpack --mode production"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
