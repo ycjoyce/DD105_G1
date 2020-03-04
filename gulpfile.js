@@ -101,7 +101,7 @@ gulp.task('default',function(){
     browserSync.init({
         server:{
             baseDir: "./dest/",
-            index: "index_mem.html"
+            index: "index.html"
         }
     });
     gulp.watch(web.js,['babel']).on('change',reload);
