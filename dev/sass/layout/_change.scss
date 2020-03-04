@@ -1,0 +1,24 @@
+@mixin changePage(){
+    div.changePage{
+        @content;
+        button{
+            width: 50px;
+            height: 20px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: relative;
+            top: 5px;
+            &.to_left{
+                background-image: url(../img/button_arrow_gray_left.svg);
+                background-position:right bottom;
+            }
+            &.to_right{
+                background-image: url(../img/button_arrow_gray_right.svg);
+                background-position:left bottom;
+            }
+        }
+    }
+}

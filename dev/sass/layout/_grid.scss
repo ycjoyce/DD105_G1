@@ -1,0 +1,9 @@
+@mixin grid($cols){
+    @for $i from 1 through $cols{
+        .col-#{$i}{
+            width: ( $i / $cols) * 100%;
+            // border: 1px solid blue;
+        }
+    }
+}
+@include grid(12);

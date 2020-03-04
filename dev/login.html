@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh_Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @@include('./layout/head.html',{
+        "title": "浪愛回家 ｜ 登入"
+    })
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/heightWithoutHeader.js"></script>
+</head>
+<body>
+    @@include('./layout/header.html')
+    <section>
+        <div class="signIn">
+            <div class="title">
+                <h2 class="before">登入</h2>
+                <h3 class="enSpecialFont">Sign in</h3>
+            </div>
+            <form action="" method="POST">
+                <h2>登入</h2>
+                <h3 class="enSpecialFont">Sign in</h3>
+                <label for="signInAccount">
+                    <span class="titleFont">帳號</span>
+                    <input type="email" id="signInAccount" placeholder="請輸入E-mail">
+                </label>
+                
+                <label for="signInPsw">
+                    <span class="titleFont">密碼</span>
+                    <input type="password" minlength="5" maxlength="10" id="signInPsw" placeholder="請輸入5-10碼英文、數字">
+                </label>
+                <div class="bottom">
+                    <div class="more">
+                        <span>忘記密碼</span>
+                        <span id="signUpBtn">註冊新帳號</span>
+                    </div>
+                    <input type="submit" value="登入" class="btn gray titleFont" id="signInSubmit">
+                </div>
+            </form>
+        </div>
+        <div class="signUp">
+            <div class="title">
+                <h2 class="before">註冊</h2>
+                <h3 class="enSpecialFont">Sign up</h3>
+            </div>
+            <form action="" method="POST">
+                <h2 class="before">註冊</h2>
+                <h3 class="enSpecialFont">Sign up</h3>
+                <label for="signUpAccount">
+                    <span class="titleFont">帳號</span>
+                    <input type="email" id="signUpAccount" placeholder="請輸入E-mail">
+                </label>
+                
+                <label for="signUpName">
+                    <span class="titleFont">暱稱</span>
+                    <input type="text" minlength="1" maxlength="8" id="signUpName" placeholder="最長8字">
+                </label>
+                
+                <label for="signUpPsw">
+                    <span class="titleFont">密碼</span>
+                    <input type="password"  minlength="5" maxlength="10" id="signUpPsw" placeholder="請輸入5-10碼英文、數字">
+                </label>
+                
+                <label for="checkPsw">
+                    <span class="titleFont">確認密碼</span>
+                    <input type="password" id="checkPsw" placeholder="請再次輸入密碼">
+                </label>
+                
+                <div class="bottom">
+                    <span id="signInBtn">已有帳號?&nbsp;直接登入</span>
+                    <input type="submit" value="註冊" class="btn gray titleFont" id="signUpSubmit">
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="js/heightWithoutHeader.js"></script>
+    <script>
+        sectionHeight();
+        window.addEventListener('resize',sectionHeight);
+
+        let signUp= document.querySelector('div.signUp');
+        let signIn= document.querySelector('div.signIn');
+        let signInCloseTitle= document.querySelector('div.signIn div.title');
+        let signUpCloseTitle= document.querySelector('div.signUp div.title');
+        let signUpBtn= document.getElementById('signUpBtn');
+        let signInBtn= document.getElementById('signInBtn');
+
+        function signUpOpen(e){
+            e.stopPropagation();
+            if(signUp.classList.contains("open")==false){
+                signUp.classList.add("open");
+                signIn.classList.add("close");
+                signInCloseTitle.classList.add("open");
+                signUpCloseTitle.classList.add("close");
+            }
+            if(document.body.clientWidth<=991){
+                signIn.style.display='none';
+                signUp.style.display='block';
+                signUp.style.width='100%';
+            }
+        }
+        function signInOpen(e){
+            e.stopPropagation();
+            if(signIn.classList.contains("close")==true){
+                signUp.classList.remove("open");
+                signIn.classList.remove("close");
+                signInCloseTitle.classList.remove("open");
+                signUpCloseTitle.classList.remove("close");
+            }
+            if(document.body.clientWidth<=991){
+                signUp.style.display='none';
+                signIn.style.display='block';
+                signIn.style.width='100%';
+            }
+        }
+        signUp.addEventListener('click',signUpOpen);
+        signUpBtn.addEventListener('click',signUpOpen);
+        signIn.addEventListener('click', signInOpen);
+        signInBtn.addEventListener('click', signInOpen);
+
+
+        window.addEventListener('resize',function(){
+            //md
+            if(document.body.clientWidth>=768 && document.body.clientWidth<=991){
+                signUp.style.display= 'none';
+                signIn.style.display= 'block';
+                signIn.style.width= '100%';
+                signUp.classList.remove("open");
+                signIn.classList.remove("close");
+                signInCloseTitle.classList.remove("open");
+                signUpCloseTitle.classList.remove("close");
+
+            //lg
+            }else if(document.body.clientWidth>=992 && document.body.clientWidth<=1199){
+                signUp.style.display= 'block';
+                signUp.style.width= 'calc(100% / 12 * 3)';
+                signIn.style.display= 'block';
+                signIn.style.width= 'calc(100% / 12 * 9)';
+                signUp.classList.remove("open");
+                signIn.classList.remove("close");
+                signInCloseTitle.classList.remove("open");
+                signUpCloseTitle.classList.remove("close");
+                
+
+            //xl
+            }else if(document.body.clientWidth>=1200){
+                signUp.style.display= 'block';
+                signUp.style.width= 'calc(100% / 12 * 3)';
+                signIn.style.display= 'block';
+                signIn.style.width= 'calc(100% / 12 * 9)';
+                signUp.classList.remove("open");
+                signIn.classList.remove("close");
+                signInCloseTitle.classList.remove("open");
+                signUpCloseTitle.classList.remove("close");
+
+
+            //sm
+            }else if(document.body.clientWidth>=576 && document.body.clientWidth<=767){
+                signUp.style.display= 'none';
+                signIn.style.display= 'block';
+                signIn.style.width= '100%';
+                signUp.classList.remove("open");
+                signIn.classList.remove("close");
+                signInCloseTitle.classList.remove("open");
+                signUpCloseTitle.classList.remove("close");
+
+            //ss
+            }else if(document.body.clientWidth<=575){
+                signUp.style.display= 'none';
+                signIn.style.display= 'block';
+                signIn.style.width= '100%';
+                signUp.classList.remove("open");
+                signIn.classList.remove("close");
+                signInCloseTitle.classList.remove("open");
+                signUpCloseTitle.classList.remove("close");
+            }
+        });
+    
+        let signInSubmit=document.getElementById("signInSubmit");
+        let signUpSubmit=document.getElementById("signUpSubmit");
+        signInSubmit.addEventListener("click",function(e){
+            e.preventDefault();
+            location.href="index_mem.html";
+        })
+    </script>
+</body>
+</html>

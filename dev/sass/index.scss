@@ -1,0 +1,1422 @@
+@import 'layout/wrapper';
+@import 'layout/grid';
+@import 'layout/font';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/btn';
+@import 'layout/fatherHeight';
+@import 'layout/card';
+@import 'layout/color';
+@import 'layout/change';
+@import 'layout/scrollbar';
+@import 'layout/rwd';
+@import 'layout/cursor';
+
+@include header(fixed);
+
+section.intro{
+    position: relative;
+    @include fatherHeight();
+    padding-top: 15vh;
+    div.title{
+        position: absolute;
+        top: 30%;
+        left: 50px;
+        z-index: 3;
+
+        @include rwd(md){
+            left: 30px;
+        }
+        @include rwd(sm){
+            left: 30px;
+            top: 50%;
+        }
+        @include rwd(ss){
+            left: 30px;
+            top: 50%;
+        }
+        h1{
+            font-size: 40px;
+            color: rgb(100, 100, 100);
+            @include rwd(lg){
+                font-size: 30px;
+            }
+            @include rwd(md){
+                font-size: 25px;
+            }
+            @include rwd(sm){
+                font-size: 20px;
+            }
+            @include rwd(ss){
+                font-size: 20px;
+            }
+        }
+        div{
+            img{
+                height: 80px;
+                display:block;
+                margin-bottom: 20px;
+                @include rwd(lg){
+                    height: 60px;
+                }
+                @include rwd(md){
+                    height: 60px;
+                }
+                @include rwd(sm){
+                    height: 50px;
+                }
+                @include rwd(ss){
+                    height: 50px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+    div.carousel{
+        float:right; 
+        position: relative;
+        z-index: 2;
+        margin: 10vh 0 40vh 0;
+        overflow: hidden;
+        height: 100vh;
+        @include rwd(lg){
+            margin: 10vh 0 20vh 0;
+        }
+        @include rwd(md){
+            margin: 10vh 0 20vh 0;
+        }
+        @include rwd(sm){
+            margin: 10vh 0 20vh 0;
+        }
+        @include rwd(ss){
+            margin: 5vh 0 15vh 0;
+            height: 70vh;
+        }
+        div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: url(../img/introCarousel_1.jpg) no-repeat top center;
+            background-size: cover;
+            -webkit-transform: scale(1.1);
+                    transform: scale(1.1);
+        }
+    }
+    div.scroll{
+        position: absolute;
+        width: 120px;
+        height: 150px;
+        z-index: 2;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 30vh;
+        @include rwd(lg){
+            bottom: 10vh;
+        }
+        @include rwd(md){
+            left: 100%;
+            transform: translateX(-90%);
+            bottom: 10vh;
+        }
+        @include rwd(sm){
+            left: 100%;
+            transform: translateX(-90%);
+            bottom: 5vh;
+        }
+        @include rwd(ss){
+            left: 100%;
+            transform: translateX(-90%);
+            bottom: 4vh;
+        }
+        p{
+            color: #fff;
+            text-shadow: #333 0px 0px 5px;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        p::after{
+            content: '';
+            margin: 0 auto;
+            display: block;
+            border-right: 1.5px solid #fff;
+            height: 100px;
+            width: 0px;
+            position: relative;
+            top: 10px;
+            animation: length 2s cubic-bezier(0.39, 0.575, 0.565, 1) infinite alternate;
+        }
+    }
+    @keyframes length{
+        from{
+            height: 0;
+        }
+        to{
+            height: 100px;
+        }
+    }
+    div.bg-img{
+        background: url('../img/paper/paper_green.png');
+        background-repeat: repeat;
+        height:70%;
+        position: absolute;
+        bottom: 0px;
+        @include rwd(sm){
+            height: 50%;
+        }
+        @include rwd(ss){
+            height: 50%;
+        }
+    }
+}
+
+section.about{
+    background-image: url("../img/KUMO160219530I9A0126.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    @include fatherHeight();
+    h3{
+        font-size: 3rem;
+        float: left;
+        color: rgba(83, 102, 212, 0.089);
+        margin: 50px 0 0 150px;
+        @include rwd(lg){
+            margin: 0 0 0 50px;
+            position: relative;
+            z-index: 2;
+        }
+        @include rwd(md){
+            margin: 0 0 0 50px;
+            position: relative;
+            z-index: 2;
+        }
+        @include rwd(sm){
+            margin: 0 0 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+        @include rwd(ss){
+            margin: 0 0 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+    }
+    div.aboutCard{
+        border-radius: 10px 0 0 10px;
+        background: #fff;
+        height: 500px;
+        float: right;
+        position: relative;
+        top: -15vh;
+        div.text{
+            height: 100%;
+            float: left;
+            @include rwd(sm){
+               float: none;
+               margin: 0 auto;
+            }
+            @include rwd(ss){
+                float: none;
+                margin: 0 auto;
+             }
+            div.about{
+                width: 80%;
+                height: 70%;
+                margin: 0 auto;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                @include rwd(sm){
+                    width: 60%;
+                }
+                @include rwd(ss){
+                    width: 60%;
+                }
+                h2{
+                    margin-bottom: 50px;
+                    @include rwd(md){
+                        white-space: nowrap;
+                    }
+                    @include rwd(sm){
+                        white-space: nowrap;
+                    }
+                    @include rwd(ss){
+                        white-space: nowrap;
+                    }
+                    img{
+                        height: 45px;
+                        display: inline-block;
+                        margin-right: 20px;
+                        position: relative;
+                        top: 5px;
+                        @include rwd(ss){
+                            margin-right: 10px;
+                        }
+                    }
+                }
+                .btn.gray{
+                    margin-top: 70px;
+                    @include rwd(ss){
+                        margin-top: 50px;
+                    }
+                }
+            }
+        }
+        div.video{
+            height: 100%;
+            float:right;
+            overflow:hidden;
+            position: relative;
+            @include rwd(sm){
+                display: none;
+            }
+            @include rwd(ss){
+                display: none;
+            }
+            video{
+                display: inline-block;
+                width: 100%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+        }
+    }
+    div.where{
+        clear: both;
+        div.title{
+            margin-top: 60px;
+            h3{
+                font-size: 3rem;
+                color: rgba(255, 255, 255, 0.698);
+                text-align: center;
+                margin: 0 auto;
+                float: none;
+                position: relative;
+                z-index: 1;
+                @include rwd(sm){
+                    font-size: 2.5rem;
+                }
+                @include rwd(ss){
+                    font-size: 2rem;
+                    white-space: nowrap;
+                }
+            }
+            h2{
+                text-align: center;
+                position: relative;
+                top: -100px;
+                z-index: 2;
+            }
+        }
+        @include scrollbar('ul');
+        ul{
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            position: relative;
+            top: -50px;
+            width: 300px;
+            height: 180px;
+            align-items: center;
+            transition:  all 1s cubic-bezier(.87,-.41,.19,1.44);
+            &.open{
+                width: 650px;
+                max-width: 90vw;
+                overflow-x:scroll;
+                overflow-y: hidden;
+            }
+            li{
+                width: 120px;
+                height: 120px;
+                border-radius: 100%;
+                background-color: #fff;
+                display: inline-block;
+                flex-shrink: 0;
+                transition: all 0.5s ease;
+                margin-right: 10px;
+                box-shadow: 0 0 5px #ccd inset;
+                &.on{
+                    position: relative;
+                    &::after{
+                        content: '';
+                        display: inline-block;
+                        width: 0px;
+                        height: 0px;
+                        border-color: $lightgreen transparent transparent transparent;
+                        border-style: solid solid solid solid;
+                        border-width: 20px 7px 20px 7px;
+                        position: absolute;
+                        bottom: -40%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+                &:hover{
+                    transform: translateY(-5px);
+                }
+                span{
+                    text-align: center;
+                    font-size: 1.2rem;
+                    white-space: nowrap;
+                    display: inline-block;
+                    position: relative;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    color: $darkgreen;
+                }
+                &.friendlyFather{
+                    transition:  all 0.5s ease;
+                }
+                &.friendlyChild{
+                    display: none;
+                    width: 90px;
+                    height: 90px;
+                    background-color: $lightgreen;
+                    transition:  all 0.5s ease;
+                    span{
+                        font-size: 1rem;
+                        color: #fff;
+                    }
+                    &.open{
+                        display: inline-block; 
+                    }
+                }
+            }
+        }
+    }
+}
+
+section.where{
+    #mapZone{
+        height: 500px;
+    }
+    div.card{
+        float:right;
+        position: relative;
+        top: -200px;
+        z-index: 2;
+        background: #fff;
+        border-radius: 10px 0 0 10px;
+        box-shadow: #999 0px 0px 5px;
+        padding: 30px 80px 30px 60px;
+        position: relative;
+        @include rwd(lg){
+            padding: 30px 50px 30px 30px;
+            top: -230px;
+        }
+        @include rwd(md){
+            padding: 30px 30px 30px 30px;
+            top: -230px;
+        }
+        @include rwd(sm){
+            padding: 20px 25px 20px 25px;
+            top: -230px;
+        }
+        @include rwd(ss){
+            padding:25px;
+            top: -230px;
+        }
+        h3{
+            a{
+                font-size: 1.5rem;
+                font-weight: 500;
+                letter-spacing: 0.2rem;
+                text-decoration: none;
+            }
+            &::after{
+                content:'';
+                display: inline-block;
+                width: 180px;
+                height: 0px;
+                border-top: 1px solid rgba(116, 116, 116, 0.506);
+                position: relative;
+                right: -10px;
+                top: -10px;
+            }
+        }
+        p{
+            margin: 20px 0 30px 0;
+        }
+        .btn.darkgreen{
+            width:150px;
+        }
+        @include changePage(){
+            float: right;
+            position: relative;
+            bottom: -15px;
+            margin-left: 50px;
+        }
+    }
+    div.readMore{
+        height: 200px;
+        background-image: url(../img/paper/paper_gray.png);
+        position: relative;
+        @include rwd(ss){
+            width: 100%;
+        }
+        img.cat{
+            position: absolute;
+            left: 0;
+            height: 100%;
+            @include rwd(sm){
+                left: -70px;
+            }
+            @include rwd(ss){
+                left: -180px;
+            }
+        }
+        .btn.gray{
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+}
+
+section.donation{
+    background-image: url(../img/donation_background.jpg);
+    background-size:cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    position: relative;
+    padding-bottom: 70px;
+    @include fatherHeight();
+    
+    @include rwd(md){
+        padding-bottom: 0;
+    }
+    @include rwd(sm){
+        padding-bottom: 0;
+    }
+    @include rwd(ss){
+        padding-bottom: 0;
+    }
+    h3.enSpecialFont{
+        font-size: 3rem;
+        color: rgba(11, 100, 33, 0.123);
+        position: absolute;
+        top: 50px;
+        left: 100px;
+        @include rwd(lg){
+            left: 0px;
+        }
+        @include rwd(md){
+            z-index: 2;
+            color: rgba(228, 235, 230, 0.075);
+            top: 70px;
+            left: 30px;
+        }
+        @include rwd(sm){
+            z-index: 2;
+            color: rgba(228, 235, 230, 0.075);
+            top: 30px;
+            left: 30px;
+        }
+        @include rwd(ss){
+            z-index: 2;
+            color: rgba(228, 235, 230, 0.075);
+            top: 30px;
+            left: 30px;
+        }
+    }
+    div.rightSide{
+        position: absolute;
+        right: 0;
+        @include fatherHeight();
+
+        @include rwd(md){
+            position: relative;
+            float: right;
+        }
+        @include rwd(sm){
+            position: relative;
+            float: right;
+        }
+        @include rwd(ss){
+            position: relative;
+            float: right;
+        }
+        div.title{
+            position: absolute;
+            z-index: 2;
+            left: 30px;
+            top: 250px;
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+
+            @include rwd(md){
+                width: 85%;
+                left: 70px;
+                top: 180px;
+            }
+            @include rwd(sm){
+                width: 85%;
+                left: 50px;
+                top: 120px;
+            }
+            @include rwd(ss){
+                left: 20px;
+                top: 120px;
+                width: 90%;
+            }
+            div.text{
+                h2{
+                    color: #fff;
+                    &::after{
+                        content: '';
+                        display: block;
+                        width: 80px;
+                        height: 0;
+                        border-top: 5px solid $lightgreen;
+                        margin: 20px 0;
+                    }
+                }
+                p{
+                    color: #fff;
+                }
+            }
+            div.amountAnimation{
+                width: 300px;
+                position:relative;
+                @include rwd(sm){
+                    position: absolute;
+                    top: 220px;
+                    right: 10px;
+                }
+                @include rwd(ss){
+                    position: absolute;
+                    top: 220px;
+                    right: 10px;
+                }
+                span{
+                    color: #fff;
+                    font-size: 1.3rem;
+                    float:right;
+                }
+                div.secondLine{
+                    span.num{
+                        display:inline-block;
+                        font-size: 3rem;
+                        letter-spacing: 2px;
+                        position: relative;
+                        right: 25px;
+                        color: $lightgreen;
+                        width: 200px;
+                    }
+                    span.dollar{
+                        position: absolute;
+                        right: 0;
+                        top: 55px;
+                    }
+                }
+            }
+        }
+        div.carousel_donation{
+            @include fatherHeight();
+            position: relative;
+            padding-top: 100px;
+
+            @include rwd(md){
+                margin: 0 auto;
+                padding-top: 0;
+            }
+            @include rwd(sm){
+                margin: 0 auto;
+                padding-top: 0;
+            }
+            @include rwd(ss){
+                margin: 0 auto;
+                padding-top: 0;
+            }
+            div.img{
+                border-radius: 10px;
+                height: 600px;
+                overflow: hidden;
+                @include rwd(sm){
+                    border-radius: 10px 0 0 10px;
+                }
+                @include rwd(ss){
+                    border-radius: 10px 0 0 10px;
+                }
+                img{
+                    display: inline-block;
+                    min-height: 100%;
+                    min-width: 100%;
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%) scale(1.3);
+                    filter: brightness(0.3);
+                    animation: imgAnimate 12s ease infinite alternate;
+                }
+            }
+            @keyframes imgAnimate{
+                from{
+                    transform: translateX(-50%) scale(1.3);
+                }
+                to{
+                    transform: translateX(-55%) scale(1.3);
+                }
+            }
+            div.card{
+                border-radius: 10px 0 0 10px;
+                background: #fff;
+                padding: 30px 80px 20px 50px;
+                position: relative;
+                float:right;
+                top: -150px;
+                @include fatherHeight();
+                @include rwd(lg){
+                    padding: 20px 30px 20px 30px;
+                    border-radius: 10px;
+                }
+                @include rwd(md){
+                    padding: 30px 50px 20px 50px;
+                    border-radius: 10px;
+                }
+                @include rwd(sm){
+                    padding: 30px 50px 20px 50px;
+                    border-radius: 10px 0 0 10px;
+                }
+                @include rwd(ss){
+                    padding: 20px 20px 20px 30px;
+                    border-radius: 10px 0 0 10px;
+                }
+                span.projectNum{
+                    float:left;
+                }
+                span.date{
+                    float:right;
+                }
+                h4{
+                    a{
+                        display: block;
+                        clear: both;
+                        margin: 40px 0;
+                        text-decoration: none;
+                        font-size: 1.3rem;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                    }
+                }
+                .btn.darkgreen{
+                    position: relative;
+                    top: 5px;
+                    width: 150px;
+                    @include rwd(ss){
+                        width: 100px;
+                    }
+                }
+                div.showNum{
+                    display: inline-flex;
+                    justify-content: space-between;
+                    float: right;
+                    width: 180px;
+                    @include rwd(ss){
+                        width: 150px;
+                    }
+                    div.cur{
+                        position: relative;
+                        right: -10px;
+                        span{
+                            display:block;
+                            &.peoNum{
+                                color: $darkgreen;
+                                span{
+                                    font-size: 1.3rem;
+                                    color: $darkgreen;
+                                    display: inline-block;
+                                }
+                            }
+                        }
+                    }
+                    div.dogAnimate{
+                        position: relative;
+                        top: -12px;
+                        @include rwd(sm){
+                            top: -8px;
+                        }
+                        @include rwd(ss){
+                            top: -5px;
+                        }
+                        span{
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(calc(-50% + 5px),calc(-50% - 5px));
+                        }
+                    }
+                }
+            }
+            @include changePage(){
+                position: absolute;
+                right: 50px;
+                bottom: 100px;
+                @include rwd(sm){
+                    right: 0px;
+                }
+                @include rwd(ss){
+                    right: 20px;
+                }
+            }
+            div.progress_bar{
+                display:inline-block;
+                position: relative;
+                top: 90px;
+                @include rwd(lg){
+                    top: 50px;
+                }
+                span{
+                    display: block;
+                    width: 0;
+                    height: 25px;
+                    border-width: 1.5px;
+                    border-style: solid;
+                    margin-bottom: 10px;
+                    border-color: #fff;
+                    box-shadow: 0 0 2px #999;
+                    &.on{
+                        border-color: $gray;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+    div.leftSide{
+        padding-top: 190px;
+        
+        @include rwd(md){
+            display:none;
+        }
+        @include rwd(sm){
+            display:none;
+        }
+        @include rwd(ss){
+            display:none;
+        }
+        div.card{
+            @include card();
+            margin: 0 auto;
+            margin-bottom: 30px;
+            height: 200px;
+            overflow: hidden;
+            display:flex;
+            box-shadow: 0 0 0px transparent;
+            transition: all 0.5s ease;
+            &:hover{
+                div.img{
+                    img{
+                        transform: translate(-50%,-50%) scale(1.2);
+                    }
+                }
+                div.text{
+                    div.amount{
+                        a.goal{
+                            &::after{
+                                width: 70px;
+                            }
+                        }
+                    }
+                }
+            }
+            &.on{
+                box-shadow: 0 0 10px #999;
+            }
+            // &.first{
+            //     div.img{
+            //         img{
+            //             height: auto;
+            //             width: 100%;
+            //         }
+            //     }
+            // }
+            div.img{
+                overflow: hidden;
+                
+                img{
+                    height: 100%;
+                    min-width: 100%;
+                    position: relative;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    transition: all 0.5s ease;
+                }
+            }
+            div.text{
+                padding: 30px 15px;
+                h4{
+                    a{
+                        margin: 5px 0 20px 0;
+                        text-decoration: none;
+                        font-size: 1.3rem;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                    }
+                }
+                span.date{
+                    float:left;
+                }
+                div.amount{
+                    float:  right;
+                    @include fatherHeight();
+                    span.now{
+                        display: block;
+                        position:relative;
+                        right: -20px;
+                    }
+                    a.goal{
+                        display: block;
+                        position: relative;                       
+                        color: $darkgreen;                       
+                        position: relative;
+                        text-decoration: none;
+                        &::after{
+                            content: '';
+                            display: inline-block;
+                            width: 0px;
+                            height: 10px;
+                            border-bottom: 1px solid $darkgreen;
+                            position: absolute;
+                            right: 0px;
+                            top: 15px;
+                            transition: all 0.5s ease;
+                        }
+                    }
+                }
+                
+            }
+        }
+        .btn.gray{
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+    }
+}
+
+section.collar{
+    position: relative;
+    overflow: hidden;
+    div.top{
+        background-image: url(../img/paper/paper_lightbrown.png);
+        display: block;
+        height: 400px;
+        position: relative;
+        @include rwd(ss){
+            height: 350px;
+        }
+        h3.enSpecialFont{
+            font-size: 5rem;
+            color: rgba(100, 61, 11, 0.055);
+            position: absolute;
+            top: 10px;
+            right: 100px;
+            @include rwd(md){
+                font-size: 4rem;
+                right: 50px;
+            }
+            @include rwd(sm){
+                font-size: 4rem;
+                right: 30px;
+                top: 150px;
+            }
+            @include rwd(ss){
+                font-size: 5rem;
+                right: 30px;
+                top: 150px;
+            }
+        }
+        div.title{
+            padding-left: 110px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index:2;
+            @include rwd(lg){
+                padding-left: 50px;
+            }
+            @include rwd(md){
+                padding-left: 30px;
+                transform: translateY(-140%);
+            }
+            @include rwd(sm){
+                padding-left: 30px;
+                transform: translateY(-150%);
+            }
+            @include rwd(ss){
+                padding-left: 30px;
+                transform: translateY(-130%);
+            }
+            h2{
+                margin-bottom: 30px;
+                @include rwd(sm){
+                    margin-bottom: 20px;
+                }
+                @include rwd(ss){
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        .btn.gray{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 280px;
+            z-index:2;
+            @include rwd(md){
+                transform: translateY(200%);
+            }
+            @include rwd(sm){
+                transform: translateY(-330%);
+                width: 190px;
+            }
+            @include rwd(ss){
+                transform: translateY(-330%);
+                width: 190px;
+            }
+        }
+    }
+    div.middle{
+        background-image: url(../img/paper/paper_1.png);
+        height: 150px;
+        position: relative;
+        img{
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            max-width: 550px;
+            @include rwd(lg){
+                width: 50%;
+            }
+            @include rwd(md){
+                width: 60%;
+            }
+            @include rwd(sm){
+                width: 70%;
+            }
+            @include rwd(ss){
+                width: 75%;
+            }
+        }
+        div.left{
+            padding-left: 110px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            @include rwd(lg){
+                padding-left: 50px;
+            }
+            @include rwd(md){
+                padding-left: 30px;
+            }
+            @include rwd(sm){
+                padding-left: 30px;
+            }
+            @include rwd(ss){
+                padding-left: 30px;
+            }
+            span{
+                color: #ddd;
+                &:first-child{
+                    &::after{
+                        content:'';
+                        display: inline-block;
+                        width: 200px;
+                        height: 0;
+                        border: 0.5px solid #ddd;
+                        position: relative;
+                        top: -5px;
+                        margin: 0 10px;
+                        @include rwd(lg){
+                            width: 150px;
+                        }
+                        @include rwd(md){
+                            width: 90px;
+                        }
+                        @include rwd(sm){
+                            display:none;
+                        }
+                        @include rwd(ss){
+                            display:none;
+                        }
+                    }
+                }
+                &:nth-child(2){
+                    font-size: 2rem;
+                    position: relative;
+                    top: 5px;
+                    @include rwd(sm){
+                        right: -20px;
+                    }
+                    @include rwd(ss){
+                        right: -20px;
+                    }
+                }
+                
+            }
+            h3{
+                color: #ddd;
+                margin-top: 20px;
+                font-size: 1.8rem;
+            } 
+        }
+        a.makeSame{
+            float:right;
+            color: #ddd;
+            text-decoration: none;
+            margin-right: 110px;
+            position: relative;
+            z-index: 2;
+            @include rwd(lg){
+                margin-right: 50px;
+            }
+            @include rwd(md){
+                margin-right: 30px;
+            }
+            @include rwd(sm){
+                margin-right: 30px;
+                top: -20px;
+            }
+            @include rwd(ss){
+                margin-right: 30px;
+                top: -20px;
+            }
+            &:hover{
+                &::after{
+                    transform: translateX(5px) scaleX(1.3);
+                }
+            }
+            &::after{
+                content: '';
+                display: inline-block;
+                width: 50px;
+                height: 20px;
+                background-image: url(../img/button_arrow_white.svg);
+                position: relative;
+                top: 5px;
+                left: 5px;
+                transition: all 0.5s ease;
+                @include rwd(sm){
+                    display:block;
+                    left: 50px;
+                }
+                @include rwd(ss){
+                    display:block;
+                    left: 50px;
+                }
+            }
+        }
+    }
+    div.bottom{
+        height: 150px;
+        display: flex;
+        div.option{
+            width: calc(100% / 7);
+            height: 150px;
+            @include rwd(sm){
+                width: calc(100% / 5);
+            }
+            @include rwd(ss){
+                width: calc(100% / 5);
+            }
+            div{
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                position: relative;
+                &:hover{
+                    &::after{
+                        opacity: 0.3;
+                    }
+                    img{
+                        transform: translate(-50%, calc(-50% + 5px));
+                    }
+                }
+                &::after{
+                    content: '';
+                    display: inline-block;
+                    width: 100px;
+                    height: 50px;
+                    background-image: url(../img/collar/collar_shadow.png);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                    left: 50%;
+                    bottom: 0;
+                    transform: translateX(-50%);
+                    opacity: 0;
+                    transition: all 0.5s ease;
+                }
+                img{
+                    display: inline-block;
+                    width: 80%;
+                    position: relative;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    transition: all 0.5s ease;
+                }
+            }
+            &:first-child{
+                background-image: url(../img/paper/paper_0.png);
+            }
+            &:nth-child(2){
+                background-image: url(../img/paper/paper_1.png);
+            }
+            &:nth-child(3){
+                background-image: url(../img/paper/paper_2.png);
+            }
+            &:nth-child(4){
+                background-image: url(../img/paper/paper_3.png);
+            }
+            &:nth-child(5){
+                background-image: url(../img/paper/paper_4.png);
+            }
+            &:nth-child(6){
+                background-image: url(../img/paper/paper_5.png);
+                @include rwd(sm){display: none;}
+                @include rwd(ss){display: none;}
+            }
+            &:last-child{
+                background-image: url(../img/paper/paper_6.png);
+                @include rwd(sm){display: none;}
+                @include rwd(ss){display: none;}
+            }
+        }
+    }
+}
+
+section.forum{
+    position: relative;
+    background: url(../img/forum_background.png), rgb(233, 255, 207);
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    padding-bottom: 100px;
+    @include rwd(ss){
+        padding-bottom: 80px;
+    }
+    div.title{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position:relative;
+        padding-top: 300px;
+        @include rwd(md){
+            padding-top: 200px;
+        }
+        @include rwd(sm){
+            padding-top: 150px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        @include rwd(ss){
+            padding-top: 150px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        h3.enSpecialFont{
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            bottom: -100px;
+            left: 80px;
+            @include rwd(md){
+                left: 10px;
+            }
+            @include rwd(sm){
+                left: 10px;
+            }
+            @include rwd(ss){
+                left: 10px;
+            }
+        }
+        h2{
+            margin-left: 110px;
+            position: relative;
+            z-index: 2;
+            @include rwd(md){
+                margin-left: 30px;
+            }
+            @include rwd(sm){
+                margin-left: 30px;
+                margin-bottom: 10px;
+            }
+            @include rwd(ss){
+                margin-left: 30px;
+                margin-bottom: 10px;
+            }
+        }
+        p{
+            margin-right: 110px;
+            @include rwd(md){
+                margin-right: 30px;
+            }
+            @include rwd(sm){
+                margin-left: 30px;
+            }
+            @include rwd(ss){
+                margin-left: 30px;
+                position: relative;
+                z-index: 2;
+            }
+        }
+        @include changePage();
+        .changePage{
+            position: absolute;
+            right: 110px;
+            bottom: -50px;
+            @include rwd(md){
+                right: 30px;
+            }
+            @include rwd(sm){
+                right: 30px;
+            }
+            @include rwd(ss){
+                right: 30px;
+            }
+        }
+    }
+    @include scrollbar('div.cards');
+    div.cards{
+        overflow-x: scroll;
+        padding: 90px 30px 50px 30px;
+        display: flex;
+        div.card{
+            @include card();
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width: 300px;
+            height: 350px;
+            margin-right: 40px;
+            @include rwd(sm){
+                width: 250px;
+                height: 350px;
+                margin-right: 30px;
+            }
+            @include rwd(ss){
+                width: 250px;
+                height: 350px;
+                margin-right: 30px;
+            }
+            &:hover{
+                a.img{
+                    img{
+                        transform: translateX(-50%) scale(1.2);
+                    }
+                }
+            }
+            a.img{
+                display: inline-block;
+                border-radius: 10px 10px 0 0;
+                height: 60%;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    transition: all 0.5s ease;
+                }
+            }
+            div.text{
+                padding: 10px 20px;
+                a{
+                    text-decoration: none;
+                    h4{
+                        margin-bottom: 10px;
+                        text-decoration: none;
+                    }
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+    .btn.gray{
+        display: block;
+        margin: 0px auto;
+        margin-top: 70px;
+        position: relative;
+        z-index:2;
+        @include rwd(ss){
+            margin-top: 50px;
+        }
+    }
+    div.paw{
+        position: absolute;
+        width: 100px;
+        height: 80px;
+        bottom: 30px;
+        left: 30px;
+        img{
+            position: absolute;
+            display: inline-block;
+            width: 40px;
+            opacity: 0.3;
+            &:first-child{
+                top: 0;
+                right: 0;
+            }
+            &:last-child{
+                transform: rotate(15deg);
+                bottom: 0;
+            }
+        }
+    }
+}
+
+//===========================================================
+
+// xl (min-width: 1200px)
+@include rwd(xl) {
+	@include grid(xl, 12);
+}
+
+
+// lg (min-width: 992px)
+@include rwd(lg) {
+    @include grid(lg, 12);
+}
+
+
+// md (min-width: 768px)
+@include rwd(md) {
+    @include grid(md, 12);
+}
+
+
+// sm (min-width: 576px)
+@include rwd(sm) {
+    @include grid(sm, 12);
+}
+
+
+// ss (min-width: 414px)
+@include rwd(ss) {
+    @include grid(ss, 12);
+    // *{
+    //     border: 1px solid red;
+    // }
+}

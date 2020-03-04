@@ -1,0 +1,51 @@
+@mixin grid($size, $cols) {
+	@for $i from 1 through $cols {
+		.col-#{$size}-#{$i} {
+			width: percentage($i / $cols);
+			// float: left;
+		}
+	}
+}
+
+// 12欄
+// xs (min-width: 375px)
+// ss (min-width: 414px)
+// sm (min-width: 576px)
+// md (min-width: 768px)
+// lg (min-width: 992px)
+// xl (min-width: 1200px)
+
+@mixin rwd($media) {
+	@if $media == ss {
+		@media screen and (max-width: 575px) { @content; }
+	} @else if $media == sm {
+		@media screen and (min-width: 576px) and (max-width: 767px) { @content; }
+	} @else if $media == md {
+		@media screen and (min-width: 768px) and (max-width: 991px) { @content; }
+	} @else if $media == lg {
+		@media screen and (min-width: 992px) and (max-width: 1199px) { @content; }
+	} @else if $media == xl {
+		@media screen and (min-width: 1200px) { @content; }
+	}
+}
+
+
+// @include rwd(ss) {
+// 	@include grid(ss, 12);
+// }
+
+// @include rwd(sm) {
+// 	@include grid(sm, 12);
+// }
+
+// @include rwd(md) {
+// 	@include grid(md, 12);
+// }
+
+// @include rwd(lg) {
+// 	@include grid(lg, 12);
+// }
+
+// @include rwd(xl) {
+// 	@include grid(xl, 12);
+// }

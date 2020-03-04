@@ -1,0 +1,437 @@
+@import 'layout/wrapper';
+@import 'layout/grid';
+@import 'layout/font';
+@import 'layout/header';
+@import 'layout/fatherHeight';
+@import 'layout/color';
+@import 'layout/card';
+@import 'layout/btn';
+@import 'layout/rwd';
+@import 'layout/scrollbar';
+
+@include header(relative);
+@include scrollbar('section');
+section{
+    display: flex;
+    position: relative;
+    transition: all 1s ease;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    div.signIn{
+        height: 100%;
+        background-image: url(../img/signIn_background.jpg);
+        background-size: cover;
+        background-position: left center;
+        background-repeat: no-repeat;
+        transition: all 1s ease;
+        @include rwd(xl){
+            width: calc(100% / 12 * 9)
+        }
+        @include rwd(lg){
+            width: calc(100% / 12 * 9)
+        }
+        @include rwd(md){
+            width: 100%;
+        }
+        @include rwd(sm){
+            width: 100%;
+        }
+        @include rwd(ss){
+            width: 100%;
+        }
+        div.title{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            max-width: 100%;
+            align-items: baseline;
+            opacity: 0;
+            transition: all 1s ease;
+            left: 50px;
+            bottom: 50px;
+            &.open{
+                opacity: 1;
+            }
+            h2.before{
+                order: 2;
+                display: block;
+            }
+            h3{
+                order:1;
+                font-size:1.5rem;
+                opacity: 0.5;
+            }
+        }
+        form{
+            @include card();
+            display: inline-block;
+            padding: 50px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            transition: all 1s ease;
+            opacity:1;
+            @include rwd(md){
+                padding:30px;
+            }
+            @include rwd(sm){
+                padding:30px;
+                width: 70%;
+            }
+            @include rwd(ss){
+                padding:30px;
+                width: 75%;
+            }
+            h2{
+                position: absolute;
+                right: 0;
+                top: -41px;
+            }
+            h3{
+                position: absolute;
+                left:-70px;
+                bottom: -90px;
+                font-size: 2.5rem;
+                opacity: 0.5;
+                @include rwd(ss){
+                    left: -50px;
+                }
+            }
+            label{
+                display:block;
+                margin-bottom: 20px;
+                &:hover,&:focus{
+                    input{
+                        border-radius: 10px;
+                        border-color: $lightgray;
+                    }
+                }
+                span{
+                    display:block;
+                    position: relative;
+                    top: 10px;
+                    background-color: #fff;
+                    width: 40px;
+                    text-align: center;
+                    padding-right: 3px;
+                }
+                input{
+                    width: 100%;
+                    border-radius: 0px;
+                    box-shadow: none;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: transparent transparent $lightgray transparent;
+                    height: 3rem;
+                    padding: 10px 10px 0px 10px;
+                    outline: none;
+                    transition: all 0.5s ease-in-out;
+                }
+            }
+            div.bottom{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-top: 40px;
+                div.more{
+                    span{
+                        margin-right: 20px;
+                        transition: all 0.5s;
+                        text-decoration: none;
+                        position:relative;
+                        @include rwd(ss){
+                            margin-right: 10px;
+                        }
+                        &::after{
+                            content: '';
+                            display: inline-block;
+                            width: 0%;
+                            height: 0;
+                            border-bottom: 1px solid $gray;
+                            position: absolute;
+                            bottom: -5px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            transition: all 0.5s ease;
+                        }
+                        &:hover{
+                            &::after{
+                                width: 70%;
+                            }
+                        }
+                    }
+                }
+                .btn.gray{
+                    display: inline-block;
+                    width: 140px;
+                    height: 40px;
+                    border: 1.2px solid $gray;
+                    position: relative;
+                    outline:none;
+                    background-color: $gray;
+                    color: #fff;
+                    transition: all 0.5s ease-in-out;
+                    @include rwd(ss){
+                        width: 80px;
+                    }
+                    &:hover{
+                        background-color: #fff;
+                        color: $gray;
+                    }
+                }
+            }
+        }
+        &.close{
+            width: calc(100% / 12 * 3);
+            background-size: cover;
+            background-position: left center;
+            box-shadow: 10px 0px 30px rgba(0,0,0,0.2) inset;
+            @include rwd(xl){
+                width: calc(100% / 12 * 3) !important;
+            }
+            @include rwd(lg){
+                width: calc(100% / 12 * 3)!important;
+            }
+            form{
+                left: -50%;
+                opacity: 0;
+            }
+        }
+    }
+    div.signUp{
+        width: calc(100% / 12 * 3);
+        background-image: url(../img/signUp_background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: right center;
+        box-shadow: 10px 0px 30px rgba(0,0,0,0.2) inset;
+        transition: all 1s ease;
+        @include rwd(xl){
+            width: calc(100% / 12 * 3);
+        }
+        @include rwd(lg){
+            width: calc(100% / 12 * 3);
+        }
+        @include rwd(md){
+            display: none;
+        }
+        @include rwd(sm){
+            display: none;
+        }
+        @include rwd(ss){
+            display: none;
+        }
+        div.title{
+            display: flex;
+            max-width: 100%;
+            align-items: flex-end;
+            float: right;
+            opacity: 1;
+            flex-direction: column;
+            position: absolute;
+            right: 50px;
+            top: 30px;
+            &.close{
+                opacity: 0;
+            }
+            h2.before{
+                order: 1;
+            }
+            h3{
+                order: 2;
+                font-size:1.5rem;
+                opacity: 0.6;
+                position: relative;
+                top: -30px;
+            }
+        }
+        form{
+            display:inline-block;
+            @include card();
+            padding: 30px 50px;
+            position: absolute;
+            right: -50%;
+            top: 50%;
+            transform: translate(50%,-50%);
+            transition: all 1s ease;
+            @include rwd(ss){
+                width: 90%;
+            }
+            @include rwd(sm){
+                width: 70%;
+            }
+            h2{
+                position: absolute;
+                right: -260px;
+                bottom: 180px;
+                color: rgb(26, 26, 26);
+                @include rwd(ss){
+                    display:none;
+                }
+                @include rwd(sm){
+                    display:none;
+                }
+                @include rwd(md){
+                    display:none;
+                }
+            }
+            h3{
+                position: absolute;
+                right:-260px;
+                bottom: 80px;
+                font-size: 2.5rem;
+                opacity: 0.6;
+                color: rgb(26, 26, 26);
+                @include rwd(ss){
+                    display:none;
+                }
+                @include rwd(sm){
+                    display:none;
+                }
+                @include rwd(md){
+                    display:none;
+                }
+            }
+            label{
+                display:block;
+                margin-bottom: 20px;
+                &:hover,&:focus{
+                    input{
+                        border-radius: 10px;
+                        border-color: $lightgray;
+                    }
+                }
+                &[for="checkPsw"]{
+                    span{
+                        width: 80px;
+                    }
+                }
+                span{
+                    display:block;
+                    position: relative;
+                    top: 10px;
+                    background-color: #fff;
+                    width: 40px;
+                    text-align: center;
+                    padding-right: 3px;
+                }
+                input{
+                    width: 100%;
+                    border-radius: 0px;
+                    box-shadow: none;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: transparent transparent $lightgray transparent;
+                    height: 3rem;
+                    padding: 10px 10px 0px 10px;
+                    outline: none;
+                    transition: all 0.5s ease-in-out;
+                }
+            }
+            div.bottom{
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-top: 40px;
+                
+                span{
+                    margin-right: 20px;
+                    transition: all 0.5s;
+                    text-decoration: none;
+                    position:relative;
+                    &::after{
+                        content: '';
+                        display: inline-block;
+                        width: 0%;
+                        height: 0;
+                        border-bottom: 1px solid $gray;
+                        position: absolute;
+                        bottom: -5px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        transition: all 0.5s ease;
+                    }
+                    &:hover{
+                        &::after{
+                            width: 70%;
+                        }
+                    }
+                }
+                .btn.gray{
+                    display: inline-block;
+                    width: 140px;
+                    height: 40px;
+                    border: 1.2px solid $gray;
+                    position: relative;
+                    outline:none;
+                    background-color: $gray;
+                    color: #fff;
+                    transition: all 0.5s ease-in-out;
+                    @include rwd(ss){
+                        width: 80px;
+                    }
+                    &:hover{
+                        background-color: #fff;
+                        color: $gray;
+                    }
+                }
+            }
+        }
+        &.open{
+            box-shadow: 10px 0px 30px rgba(0,0,0,0) inset;
+            background-size: cover;
+            background-position: center center;
+            @include rwd(xl){
+                width: calc(100% / 12 * 9) !important;
+            }
+            @include rwd(lg){
+                width: calc(100% / 12 * 9)!important;
+            }
+            div.title{
+                opacity: 0;
+            }
+            form{
+                right: 50%;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+
+//===========================================================
+
+// xl (min-width: 1200px)
+@include rwd(xl) {
+	@include grid(xl, 12);
+}
+
+
+// lg (min-width: 992px)
+@include rwd(lg) {
+    @include grid(lg, 12);
+
+}
+
+
+// md (min-width: 768px)
+@include rwd(md) {
+    @include grid(md, 12);
+
+}
+
+
+// sm (min-width: 576px)
+@include rwd(sm) {
+    @include grid(sm, 12);
+    //             *{
+    //     border: 1px solid red;
+    // }
+}
+
+
+// ss (min-width: 414px)
+@include rwd(ss) {
+    @include grid(ss, 12);
+}

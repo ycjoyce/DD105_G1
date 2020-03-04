@@ -1,0 +1,60 @@
+@import './color';
+@import './rwd';
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC|Noto+Serif+TC&display=swap');
+@import url('https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap');
+@font-face {
+    font-family: 'Candelia';
+    src: url('../../font/Candelia-Regular-2.ttf') format("truetype");
+}
+
+*{
+    font-family: 'Noto Sans TC', sans-serif;
+    color: $gray;
+    font-weight: 400;
+    letter-spacing: 0.05rem;
+    font-size: 0.95rem;
+}
+
+.titleFont{
+    font-family: 'DM Serif Text','Noto Serif TC';
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+
+.enSpecialFont{
+    font-family: 'Candelia';
+    font-weight: 500;
+}
+
+
+h1{
+    font-size: 2.5rem;
+    font-family: 'DM Serif Text','Noto Serif TC';
+    font-weight: 500;
+    letter-spacing: 0.6rem;
+}
+h2{
+    font-size: 2.3rem;
+    font-family: 'DM Serif Text','Noto Serif TC';
+    font-weight: 500;
+    letter-spacing: 0.4rem;
+    @include rwd(ss){
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+    }
+}
+h3{
+    font-size: 1.5rem;
+    font-family: 'DM Serif Text','Noto Serif TC';
+    font-weight: 500;
+    letter-spacing: 0.2rem;
+}
+h4{
+    font-size: 1.3rem;
+    font-family: 'DM Serif Text','Noto Serif TC';
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+}
+.smalltext{
+    font-size: 0.8rem;
+}

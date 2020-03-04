@@ -1,0 +1,102 @@
+@import './color';
+
+$btn_color: (
+    darkgreen: $darkgreen,
+    lightgreen: $lightgreen,
+    gray: $gray,
+);
+
+
+@each $btn_type, $btn_bgc in $btn_color{
+    .btn.#{$btn_type}{
+        display: inline-block;
+        width: 170px;
+        height: 40px;
+        position: relative;
+        outline:none;
+        background-color: $btn_bgc;
+        transition: all 0.8s ease;
+        span{
+            color: #fff;
+            white-space: nowrap;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 2;    
+        }
+        .border{
+            position:absolute;
+            background:none;
+            transition:all .5s ease-in-out;
+        }
+        .border:nth-of-type(1){
+            top:0;
+            left:0;
+            width:0;
+            height:0;
+            border-top:1px solid $btn_bgc;
+        }
+        .border:nth-of-type(2){
+            top:0;
+            right:0;
+            width:10px;
+            height:0;
+            border-right:1px solid $btn_bgc;
+        }
+        .border:nth-of-type(3){
+            bottom:0;
+            right:0;
+            width:0;
+            height:0;
+            border-bottom:1px solid $btn_bgc;
+        }
+        .border:nth-of-type(4){
+            bottom:0;
+            left:0;
+            width:0;
+            height:0;
+            border-left:1px solid $btn_bgc;
+        }
+        &:hover{
+            background-color: #fff;
+            span{
+                color: $btn_bgc;
+            }
+            .border:nth-of-type(1){
+                width:100%;
+            }
+            .border:nth-of-type(2){
+                height:100%;
+            }
+            .border:nth-of-type(3){
+                width:100%;
+            }
+            .border:nth-of-type(4){
+                height:100%;
+            }
+        }
+    }
+}
+
+.btn.gray{
+    span{
+        img{
+            display: inline-block;
+            width: 30px;
+            transition: all 0.5s ease;
+        }
+    }
+    &:hover{
+        span{
+            img{
+                filter: invert(1);
+                transform: translateX(5px) scaleX(1.3);
+            }
+        }
+    }
+}
+
+.btn.darkgreen{
+    width:150px;
+}

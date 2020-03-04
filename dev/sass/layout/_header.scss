@@ -1,0 +1,409 @@
+@import './color';
+@import './rwd';
+@import './hamburger';
+
+@mixin header($position){
+    header.header-navigation{
+        position: $position;
+        top: 0;
+        width: 100%;
+        z-index:5;
+        &.slideUp {
+            -webkit-transform: translateY(-100px);
+            transform: translateY(-100px);
+            transition: transform .5s ease-out;
+            @include rwd(sm){
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
+            @include rwd(ss){
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
+        }
+        &.slideDown {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+            transition: transform .5s ease-out;
+            @include rwd(sm){
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
+            @include rwd(ss){
+                -webkit-transform: translateY(0px);
+                transform: translateY(0px);
+            }
+        }     
+        nav{
+            background-color: rgba(255, 255, 255, 0.924);
+            left: 0;
+            top:0;
+            div.container{
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                padding: 30px 0;
+                margin: 0 auto;
+                @include rwd(sm){
+                    padding: 10px 0 20px 0;
+                    display:block;
+                    position: relative;
+                    overflow: hidden;
+                    height: 75px;
+                }
+                @include rwd(ss) {
+                    padding: 10px 0 20px 0;
+                    display:block;
+                    position: relative;
+                    overflow: hidden;
+                    height: 75px;
+                }
+                h1{
+                    display: inline-flex;
+                    
+                    @include rwd(sm){
+                        position: relative;
+                        left: 20px;
+                    }
+                    @include rwd(ss){
+                        position: relative;
+                        left: 20px;
+                    }
+                    img{
+                        width: 120px;
+                        @include rwd(sm){
+                            height:50px;
+                            width: auto;
+                        }
+                        @include rwd(ss){
+                            height:50px;
+                            width: auto;
+                        }
+                    }
+                }
+                ul{
+                    display: inline-flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    @include rwd(xl){display: inline-flex !important;}
+                    @include rwd(lg){display: inline-flex !important;}
+                    @include rwd(md){display: inline-flex !important;}
+                    @include rwd(sm){
+                        display: none;
+                        background-color: rgba(190, 241, 140, 0.911);
+                        height: calc(100vh - 75px);
+                        width: 100%;
+                        position: fixed;
+                        top: 75px;
+                        z-index: 5;
+                    }
+                    @include rwd(ss){
+                        display: none;
+                        background-color: rgba(190, 241, 140, 0.911);
+                        height: calc(100vh - 75px);
+                        width: 100%;
+                        position: fixed;
+                        top: 75px;
+                        z-index: 5;
+                    }
+                    li{
+                        list-style: none;
+                        display: inline-block;
+                        position: relative;
+                        @include rwd(sm){
+                            display: block !important;
+                            width: 100%;
+                            // height: calc(100% / 6);
+                            padding: 5vh 0;
+                            position:relative;
+                            border-bottom: 1px solid #fff;
+                        }
+                        @include rwd(ss){
+                            display: block !important;
+                            width: 100%;
+                            // height: calc(100% / 6);
+                            padding: 5vh 0;
+                            position:relative;
+                            border-bottom: 1px solid #fff;
+                        }
+                        a{
+                            text-decoration: none;
+                            transition:all 0.5s ease;
+                            position: relative;
+                            z-index:2;
+                            &:hover{
+                                color: $darkgreen;
+                                &::after{
+                                    opacity: 0.5;
+                                    transform: rotate(15deg);
+                                    @include rwd(md){
+                                        opacity: 0.4;
+                                    }
+                                }
+                            }
+                            &::after{
+                                content: '';
+                                display: inline-block;
+                                width: 20px;
+                                height: 20px;
+                                background-image: url(../../img/pawprint-01.svg);
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                position: absolute;
+                                bottom: 5px;
+                                right: -20px;
+                                opacity: 0;
+                                transition: all 0.8s ease;
+                                z-index:1;
+                                @include rwd(md){
+                                    right: -13px;
+                                }
+                                @include rwd(sm){
+                                    filter: brightness(0.8);
+                                }
+                                @include rwd(ss){
+                                    filter: brightness(0.8);
+                                }
+                            }
+                            &.login{
+                                color: #97be70;
+                                position: relative;
+                                @include rwd(sm){
+                                    color:rgb(109, 141, 78);
+                                }
+                                @include rwd(ss){
+                                    color:rgb(109, 141, 78);
+                                }
+                                &::after{
+                                    content: '';
+                                    display: inline-block;
+                                    width: 0%;
+                                    height: 0;
+                                    border-bottom: 1px solid #97be70;
+                                    position: absolute;
+                                    bottom: -5px;
+                                    left: 50%;
+                                    transform: translateX(-50%);
+                                    transition: all 0.5s ease;
+                                    @include rwd(sm){
+                                        border-bottom:1px solid rgb(109, 141, 78);
+                                    }
+                                    @include rwd(ss){
+                                        border-bottom:1px solid rgb(109, 141, 78);
+                                    }
+                                }
+                                &:hover{
+                                    &::after{
+                                        width: 70%;
+                                    }
+                                }
+                                &.on{
+                                    &::after{
+                                        width: 70%;
+                                    }
+                                }
+                            }
+                            @include rwd(sm){
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%,-50%);
+                                &.login{
+                                    position: absolute;
+                                }
+                            }
+                            @include rwd(ss){
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%,-50%);
+                                &.login{
+                                    position: absolute;
+                                }
+                            }
+                        }
+                        ///////////////////////////////////
+                        &.rwd{
+                            display: none;
+                            @include rwd(sm){
+                                display: block;
+                            }
+                            @include rwd(ss){
+                                display: block;
+                            }
+                        }
+                        &.memZone{
+                            position: relative;
+                            top: 10px;
+                            @include rwd(sm){
+                                display: none !important;
+                            }
+                            @include rwd(ss){
+                                display: none !important;
+                            }
+                            div{
+                                div.memPic{
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 100%;
+                                    background-image: url("../../img/message_mem_1.jpg");
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: right center;
+                                    display: inline-block;
+                                    padding: 0;
+                                    margin-right: 20px;
+                                }
+                                div.message{
+                                    display: inline-block;
+                                    width: 25px;
+                                    height: 25px;
+                                    background-image: url("../../img/message.svg");
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: center center;
+                                    position:relative;
+                                    top: -5px;
+                                    span.unread{
+                                        font-size: 0.5rem;
+                                        line-height: 0.5rem;
+                                        text-align: center;
+                                        display: inline-block;
+                                        border-radius: 10px;
+                                        background-color: rgb(34, 173, 150);
+                                        color: #eee;
+                                        padding: 4px 4px;
+                                        position: absolute;
+                                        top: -5px;
+                                        right: -8px;
+                                    }
+                                }
+                            }
+                            // &:hover{
+                            //     ul.memZone{
+                            //         display: block !important;
+                            //     }
+                            // }
+                            ul.memZone{
+                                position: absolute;
+                                left: 0;
+                                bottom: -100px;
+                                width: 150px;
+                                display:none !important;
+                                @include rwd(md){
+                                    left: -50px;
+                                }
+                                &.open{
+                                    display: block !important;
+                                }
+                                &::before{
+                                    content: '';
+                                    display: inline-block;
+                                    width: 0px;
+                                    height: 0px;
+                                    border-color: #bef18cad transparent transparent transparent;
+                                    border-style: solid solid solid solid;
+                                    border-width: 15px 5px 15px 5px;
+                                    position: absolute;
+                                    top:-30px;
+                                    left: 15px;
+                                    transform: rotate(180deg);
+                                    @include rwd(md){
+                                        left: 65px;
+                                    }
+                                }
+                                li{
+                                    display:block;
+                                    width: 100%;
+                                    background-color: #fff;
+                                    background-color: #bef18cad;
+                                    transition: all 0.5s ease;
+                                    &:first-child{
+                                        border-bottom: 1px solid #fff;
+                                    }
+                                    a{
+                                        display:inline-block;
+                                        width: 100%;
+                                        height: 100%;
+                                        text-align: center;
+                                        padding: 10px 20px;
+                                        color: rgb(107, 107, 107);
+                                        &::after{
+                                            display: none;
+                                        }
+                                    }
+                                    &:hover{
+                                        filter: brightness(0.9);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                button.hamburger{
+                    @include rwd(xl){
+                        display:none;
+                    }
+                    @include rwd(lg){
+                        display:none;
+                    }
+                    @include rwd(md){
+                        display:none;
+                    }
+                    @include rwd(sm){
+                        display: inline-block;
+                        position: absolute;
+                        top: 10px;
+                        right:10px; 
+                        outline: none;
+                        span.hamburger-box{
+                            width: 30px;
+                            span.hamburger-inner{
+                                width: 100%;
+                                height: 3px;
+                                background-color: $lightgray;
+                                &::before{
+                                    width: 100%;
+                                    height: 3px;
+                                    background-color: $lightgray;
+                                }
+                                &::after{
+                                    width: 100%;
+                                    height: 3px;
+                                    background-color: $lightgray;
+                                }
+                            }
+                        }
+                    }
+                    @include rwd(ss){
+                        display: inline-block;
+                        position: absolute;
+                        top: 10px;
+                        right:10px; 
+                        outline: none;
+                        span.hamburger-box{
+                            width: 30px;
+                            span.hamburger-inner{
+                                width: 100%;
+                                height: 3px;
+                                background-color: $lightgray;
+                                &::before{
+                                    width: 100%;
+                                    height: 3px;
+                                    background-color: $lightgray;
+                                }
+                                &::after{
+                                    width: 100%;
+                                    height: 3px;
+                                    background-color: $lightgray;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+

@@ -1,0 +1,17 @@
+@mixin scrollbar($selector){
+    #{$selector}::-webkit-scrollbar{
+        width:5px;
+        height:5px;
+        background-color:transparent;
+    }
+    #{$selector}::-webkit-scrollbar-track{
+        background-color:transparent;
+    }
+    #{$selector}::-webkit-scrollbar-thumb{
+        border-radius:10px;
+        background-color:hsla(171, 47%, 49%, 0.3);
+    }
+    #{$selector}::-webkit-scrollbar-thumb:hover{
+        background-color:rgba(67, 185, 167, 0.6);
+    }
+}
