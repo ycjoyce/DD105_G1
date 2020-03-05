@@ -1,0 +1,504 @@
+// 基本設定
+@import "layout/wrapper";
+@import "layout/grid";
+@import "layout/font";
+@import "layout/color";
+@import 'layout/header';
+@include header(relative);
+@import "layout/footer";
+@import "layout/btn";
+@import "layout/fatherHeight";
+@import "layout/card";
+@import "layout/change";
+@include changePage();
+@import "layout/scrollbar";
+@include scrollbar('div.tabs-container2');
+
+
+.section {
+  // border: 1px solid red;
+  width: 100%;
+  height: calc(100vh - 106px - 100px);
+  // background: linear-gradient(
+  //   -30deg,
+  //   #81c7d4,
+  //   rgba(152, 181, 238, 0.5),
+  //   #f8c3cd
+  // );
+  background-image:url(../img/paper/concrete_seamless.png)
+}
+
+.container {
+  // border: 1px solid red;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  input:focus,
+  select:focus,
+  option:focus {
+    outline: none;
+  }
+  .tabs-container1 {
+    height: 97%;
+    position: sticky;
+    border-radius: 20px;    
+    background: rgba(255, 255, 255, 0.5);
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    h1 {
+      margin-top: 17px;
+    }
+    .tabs {
+      // border: 1px solid red;
+      margin: 0px;
+      margin-top: 17px;
+      padding: 0px;
+      list-style: none;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      transition: all 0.5s;
+      li {
+        margin: 5px;
+        border-radius: 5px;
+        border: 1px solid rgb(206, 206, 206);
+        background: rgba(255, 255, 255, 0.8);
+        color: #222;
+        display: inline-block;
+        padding: 15px 15px;
+        cursor: pointer;
+        margin-top: 3px;
+        width: 100%;
+        flex-grow: 1;
+      }
+      li.current {
+        background: #7e9c23;
+        color: white;
+      }
+    }
+  }
+  .tabs-container2 {
+    overflow: scroll;
+    // border: 1px solid blue;
+    width: calc(100% - 350px);
+    margin: 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    // justify-content: center;
+    // align-items: center;
+    .tab-content {
+      // border: 1px solid red;
+      display: none;
+      background-color: transparent;
+      padding: 15px;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      .small-tabs {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        li {
+          border: 1px solid rgb(206, 206, 206);
+          background: none;
+          background: white;
+          color: #222;
+          display: inline-block;
+          padding: 10px 15px;
+          cursor: pointer;
+        }
+        li.current {
+          border: 1px solid rgb(206, 206, 206);
+          background: #7e9c23;
+          color: white;
+        }
+      }
+      .small-tab-contents {
+        // border: 1px solid red;
+        .small-tab-content {
+          display: none;
+          background: #ededed;
+          padding: 15px;
+        }
+        .small-tab-content.current {
+          display: inherit;
+        }
+      }
+    }
+    .tab-content.current {
+      display: inherit;
+      color: white;
+      .small-tab-contents {
+        .small-tab-content {
+          display: none;
+          background: rgba(255, 255, 255, 0.5);
+          padding: 15px;
+          border-radius: 0 10px 10px 10px;
+        }
+        .small-tab-content.current {
+          display: inherit;
+          box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+          // background: rgba(138, 153, 94, 0.493);
+        }
+      }
+    }
+  }
+}
+
+// ===============================================================
+// 右邊視窗基本設定
+.tab-content {
+  section {
+    padding: 35px;
+    transition: all 0.5s;
+    // background: rgba(255, 255, 255, 0.5);
+    // border-radius: 10px;
+    h3 {
+      margin-bottom: 40px;
+    }
+    >div {
+      margin: 15px 0;
+    }
+    label {
+      display: inline-block;
+      width: 120px;
+    }
+    table {
+      border: 1px solid $darkgreen;
+      border-collapse: collapse;
+      width: 100%;
+      tr,
+      th,
+      td {
+        padding: 5px 10px;
+        border-bottom: 1px solid $darkgreen;
+      }
+      th {
+        text-align: center;
+        color: white;
+        background-color: $darkgreen;
+        border-right: 1px solid white;
+      }
+      td {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+      th:last-child {
+        border-right: none;
+      }
+      button {
+        margin: auto 10px;
+      }
+    }
+    .submitbtn {
+      margin-top: 50px;
+      text-align: center;
+      font-family: 'DM Serif Text','Noto Serif TC';
+    }
+    .updatebtn {
+      display: inline-block;
+      padding: 10px 20px;
+      color: white;
+      background-color: $gray;
+      text-decoration: none;
+      margin: 5px;
+      font-family: 'DM Serif Text','Noto Serif TC';
+    }
+    .updatebtn_s {
+      display: inline-block;
+      padding: 3px 6px;
+      color: white;
+      background-color: $gray;
+      text-decoration: none;
+      margin: 5px;
+      font-family: 'DM Serif Text','Noto Serif TC';
+    }
+  }
+  .memTable {
+    .memTable_content {
+      table {
+        tr {
+          // th,
+          // td {
+          //   width: calc((100% - 60px) / 9);
+          // }
+          td {
+            text-align: center;
+            word-wrap: break-all;
+          }
+          th:last-child,
+          td:last-child {
+            min-width: 80px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    .tabs-container1 {
+      .tabs {
+        width: 300px;
+      }
+    }
+    .tabs-container2 {
+      width: calc(100% - 300px);
+      .tab-content {
+        section {
+          text-align: center;
+          padding: 20px;
+          h3{
+            text-align: left;
+          }
+          .note{
+            text-align: left;
+          }
+          .memInfo_content{
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+  
+}
+
+@media (max-width: 992px) {
+  .container {
+    .tabs-container1 {
+      .tabs {
+        width: 250px;
+      }
+    }
+    .tabs-container2 {
+      width: calc(100% - 250px);
+      .tab-content {
+        section {
+          padding: 10px;
+          .memRWD_992 {
+            display: none;
+          }
+        }
+      }
+    }
+
+    
+  }
+}
+
+// 會員資訊
+.memInfo {
+  .note {
+    border-radius: 10px;
+    background-color: #75d35066;
+    padding: 15px;
+    p:nth-child(1) {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+  }
+  .memInfo_content {
+    padding: 15px;
+    display: flex;
+    .left {
+      width: calc(100% - 160px);
+      >div{
+        margin-bottom: 30px;
+      }
+      label {
+        font-weight: 600;
+        vertical-align: top;
+      }
+      .mempw{
+        display: inline-block;
+        width: calc((100% - 160px) - 120px);
+        vertical-align: top;
+        margin: 0;
+        >input{
+          margin-right: 10px;
+        }
+      }
+    }
+    .right {
+      width: 160px;
+      text-align: center;
+      >div{
+        margin-bottom: 30px;
+      }
+      > label {
+        display: block;
+        width: 100%;
+        font-weight: 600;
+      }
+      img {
+        margin: 10px auto;
+        width: 150px;
+        height: 150px;
+        border: 1px solid $lightgray;
+      }
+      .uploadimgbtn {
+        width: auto;
+        color: #fff;
+        background-color: $gray;
+        display: inline-block;
+        text-align: center;
+        touch-action: manipulation;
+        cursor: pointer;
+        user-select: none;
+        padding: 3px 6px;
+        font-family: 'DM Serif Text','Noto Serif TC';
+      }
+    }
+  }
+  .memInfobtn {
+    text-align: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .memInfo {
+    .memInfo_content {
+      flex-wrap: wrap;
+      text-align: center;
+      .left {
+        width: 100%;
+        text-align: left;
+      }
+      .right {
+        width: 100%;
+        text-align: left;
+        img {
+          display: block;
+          margin-top: 0;
+        }
+        div {
+          display: inline-block;
+          vertical-align: top;
+          text-align: center;
+        }
+        > label {
+          display: inline-block;
+          width: 120px;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .memInfo {
+    .memInfo_content {
+      .left {
+        > div {
+          margin-bottom: 25px;
+          label {
+            width: 100%;
+            margin-bottom: 10px;
+          }
+          input{
+            width: 100%;
+          }
+          .mempw{
+            display: block;
+            width: 100%;
+            >input{
+              margin-right: 0px;
+            }
+          }
+        }
+      }
+      .right {
+        > label {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}
+
+// 我的寵物遺失回報
+.lostPetRp_icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: bottom;
+  margin-right: 3px;
+}
+
+// 管理黑名單
+@import "layout/rwd";
+.tab-content {
+  section {
+    .blacklist_content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-content: space-between;
+      .BLcolumn {
+        width: 48%;
+        margin: 0;
+        > div {
+          margin: 0 0 20px;
+          display: flex;
+          padding: 20px 3%;
+          background-color: rgba(255, 255, 255, 0.5);
+          box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+          > div {
+            width: 50px;
+            min-width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10%;
+            overflow: hidden;
+            img {
+              max-width: 50px;
+              max-height: 50px;
+            }
+          }
+          span {
+            align-self: center;
+          }
+          .BLbtn {
+            margin-left: auto;
+            align-self: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .tab-content {
+    section {
+      .blacklist_content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .tab-content {
+    section {
+      .blacklist_content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .BLcolumn {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
