@@ -10,7 +10,7 @@
     transition: 0.15s linear;
     animation: blobRadius 5s ease infinite, blobBackground 15s ease infinite;
   }
-   
+
   @keyframes blobRadius {
     0%, 100% {
       border-radius: 43% 77% 80% 40% / 40% 40% 80% 80%;

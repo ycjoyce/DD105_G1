@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 頁籤標題 -->
+    @@include('./layout/head.html',{
+        "title": "毛孩交流區"
+    })
+    <!-- title: 本頁名稱 -->
+    <link rel="stylesheet" href="css/index.css">  <!-- 因為自己頁面的 nav 跑掉了，所以加入放著 -->
+    <link rel="stylesheet" href="./css/post_gallery_region.css">
+</head>
+<body>
+    <div class="postregionwrapper">
+    <!-- 導覽列 -->
+        @@include('./layout/header.html')
+
+        <div style="height:20vh"></div>
+        <!-- header 的高度 -->
+
+
+
+        <div>  <!-- 內文的高度 -->
+            <!-- <div class="col-12"> -->
+            <div class="col-8 centerfix">
+                <h2 class="titleFont inlinefix">毛孩交流區</h2>
+                <div class="postregionselectitem">
+                    <span class="selectpostarticleregion">貼文區</span>
+                    <span> | </span>
+                    <span class="selectpostgalleryregion">照片牆</span>
+                </div>
+            </div>
+
+            <div class="col-12">
+
+            </div>
+            <br><br>
+            <div class="col-12">
+                <div class="col-8 centerfix postgallerycontent">
+                    <div id="gallery">
+                        <img src="https://i.ytimg.com/vi/TZiQK81Rjfw/maxresdefault.jpg" class="card img-responsive">
+                        <img src="http://www.fwallpaper.net/wallpapers/H/I/hilary-duff-portrait_1920x1200.jpg" class="card img-responsive">
+                        <img src="http://delbaz.persiangig.com/image/Portraits/Matt-Sayles-portrait-shot-in-Beverly-HillsNov-8-2008-kristen-stewart-2823602-1845-2560.jpg" class="card img-responsive">
+                        <video class="card vid" controls>
+                            <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+                            </source>
+                        </video>
+                        <img src="https://picsum.photos/300" class="card img-responsive">
+                        <img src="https://picsum.photos/400" class="card img-responsive">
+                        <img src="https://picsum.photos/600" class="card img-responsive">
+                        <img src="http://hd.wallpaperswide.com/thumbs/megan_fox_portrait-t2.jpg" class="card img-responsive">
+                        <img src="https://picsum.photos/300/500" class="card img-responsive">
+                        <img src="https://picsum.photos/650" class="card img-responsive">
+                        <img src="https://picsum.photos/550" class="card img-responsive">
+                        <img src="https://picsum.photos/410" class="card img-responsive">
+                        <img src="https://picsum.photos/420" class="card img-responsive">
+                        <img src="https://picsum.photos/430" class="card img-responsive">
+                        <img src="https://picsum.photos/440" class="card img-responsive">
+                        <img src="https://picsum.photos/540" class="card img-responsive">
+                    </div>
+<div class="postregionbackblock"></div>
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        @@include('./layout/footer.html')
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    <script src="./js/post_gallery_region.js"></script>
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/header_slide.js"></script>
+</body>
+</html>

@@ -33,7 +33,7 @@
                 -webkit-transform: translateY(0px);
                 transform: translateY(0px);
             }
-        }     
+        }
         nav{
             background-color: rgba(255, 255, 255, 0.924);
             left: 0;
@@ -60,7 +60,7 @@
                 }
                 h1{
                     display: inline-flex;
-                    
+
                     @include rwd(sm){
                         position: relative;
                         left: 20px;
@@ -354,7 +354,7 @@
                         display: inline-block;
                         position: absolute;
                         top: 10px;
-                        right:10px; 
+                        right:10px;
                         outline: none;
                         span.hamburger-box{
                             width: 30px;
@@ -379,7 +379,7 @@
                         display: inline-block;
                         position: absolute;
                         top: 10px;
-                        right:10px; 
+                        right:10px;
                         outline: none;
                         span.hamburger-box{
                             width: 30px;
@@ -405,5 +405,3 @@
         }
     }
 }
-
-

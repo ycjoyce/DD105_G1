@@ -7,7 +7,6 @@
 <link rel="icon" href="img/logo.ico" type="image/x-icon">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
- 
 
     <link rel="stylesheet" href="css/login.css">
     <script src="js/heightWithoutHeader.js"></script>
@@ -25,19 +24,18 @@
                 <li><a href="">浪浪在哪裡</a></li>
                 <li><a href="">愛心助浪浪</a></li>
                 <li><a href="">客製化項圈</a></li>
-                <li><a href="">毛孩交流區</a></li>
+                <li><a href="./post_article_region.html">毛孩交流區</a></li>
                 <li><a href="">關於我們</a></li>
                 <li><a class="login" href="../login.html">登入 / 註冊</a></li>
-            </ul> 
+            </ul>
             <button class="hamburger hamburger--spring" type="button">
                 <span class="hamburger-box">
                   <span class="hamburger-inner"></span>
-                </span> 
+                </span>
             </button>
-        </div> 
+        </div>
     </nav>
 </header>
-
 
     <section>
         <div class="signIn">
@@ -52,7 +50,7 @@
                     <span class="titleFont">帳號</span>
                     <input type="email" id="signInAccount" placeholder="請輸入E-mail">
                 </label>
-                
+
                 <label for="signInPsw">
                     <span class="titleFont">密碼</span>
                     <input type="password" minlength="5" maxlength="10" id="signInPsw" placeholder="請輸入5-10碼英文、數字">
@@ -78,22 +76,22 @@
                     <span class="titleFont">帳號</span>
                     <input type="email" id="signUpAccount" placeholder="請輸入E-mail">
                 </label>
-                
+
                 <label for="signUpName">
                     <span class="titleFont">暱稱</span>
                     <input type="text" minlength="1" maxlength="8" id="signUpName" placeholder="最長8字">
                 </label>
-                
+
                 <label for="signUpPsw">
                     <span class="titleFont">密碼</span>
                     <input type="password"  minlength="5" maxlength="10" id="signUpPsw" placeholder="請輸入5-10碼英文、數字">
                 </label>
-                
+
                 <label for="checkPsw">
                     <span class="titleFont">確認密碼</span>
                     <input type="password" id="checkPsw" placeholder="請再次輸入密碼">
                 </label>
-                
+
                 <div class="bottom">
                     <span id="signInBtn">已有帳號?&nbsp;直接登入</span>
                     <input type="submit" value="註冊" class="btn gray titleFont" id="signUpSubmit">
@@ -168,7 +166,7 @@
                 signIn.classList.remove("close");
                 signInCloseTitle.classList.remove("open");
                 signUpCloseTitle.classList.remove("close");
-                
+
 
             //xl
             }else if(document.body.clientWidth>=1200){
@@ -203,7 +201,7 @@
                 signUpCloseTitle.classList.remove("close");
             }
         });
-    
+
         let signInSubmit=document.getElementById("signInSubmit");
         let signUpSubmit=document.getElementById("signUpSubmit");
         signInSubmit.addEventListener("click",function(e){

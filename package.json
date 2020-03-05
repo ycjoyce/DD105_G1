@@ -1,7 +1,6 @@
 {
-  "name": "DD105_G1",
+  "name": "dd105_g1",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,5 +28,14 @@
     "gulp-sourcemaps": "^2.6.5",
     "jshint": "^2.11.0",
     "node-sass": "^4.13.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycjoyce/DD105_G1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ycjoyce/DD105_G1/issues"
+  },
+  "homepage": "https://github.com/ycjoyce/DD105_G1#readme",
+  "description": ""
 }

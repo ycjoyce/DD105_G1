@@ -240,7 +240,7 @@
             </div>
             <a href="#" class="makeSame titleFont wow fadeInUp" data-wow-delay=".8s">製作此款項圈</a>
             <img src="img/collar_middle_1.png" id="middleImg">
-        </div> 
+        </div>
         <div class="bottom">
             <div class="option">
                 <div>
@@ -288,7 +288,7 @@
             <!-- @@include('./layout/change.html',{
                 "total": "　"
             }) -->
-        </div> 
+        </div>
         <div class="cards col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
             <div class="card wow fadeInUp" data-wow-delay=".7s">
                 <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
@@ -423,12 +423,12 @@
                 collarMiddle.style.backgroundImage=`url(../img/paper/paper_${i}.png)`;
                 middleNum.innerText=`0${i+1}`;
                 middleImg.src= `img/collar_middle_${i}.png`;
-                
+
                 if(i == 0)
                     middleH3.innerText="質感藍色";
                 else if(i == 1)
                     middleH3.innerText="經典白色";
-                    
+
                 else if(i == 2)
                     middleH3.innerText="熱情紅色";
                 else if(i == 3)
@@ -452,20 +452,20 @@
 
         //數字跳動
         let target = 'count';
-        let startVal = 0;  
-        let endVal = 1848290;  
-        let decimals = 0;  
-        let duration = 3;  
-        
-        let options = {  
-            useEasing: true,  
-            useGrouping: true,  
-            separator: ',',  
-            decimal: '.',  
-        }  
-        let demo = new CountUp(target , startVal, endVal , decimals , duration , options);  
+        let startVal = 0;
+        let endVal = 1848290;
+        let decimals = 0;
+        let duration = 3;
+
+        let options = {
+            useEasing: true,
+            useGrouping: true,
+            separator: ',',
+            decimal: '.',
+        }
+        let demo = new CountUp(target , startVal, endVal , decimals , duration , options);
         document.querySelector('section.donation').addEventListener("mouseover",demo.start());
-        // demo.start();  
+        // demo.start();
 
         new WOW().init();
     </script>

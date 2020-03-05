@@ -1,0 +1,232 @@
+// 基本設定
+@import 'layout/wrapper';
+
+//=======================================================
+
+//格線系統
+@import 'layout/grid';
+//12欄
+//class="col-1" 寬度為總寬度的 1/12
+//class="col-6" 寬度為總寬度的 6/12
+//以此類推(col-1 ~ col-12)
+
+//=======================================================
+
+@import 'layout/rwd';
+
+//=======================================================
+
+//字體及字級設定
+@import 'layout/font';
+//花體英文字 class="enSpecialFont"
+//標題、按鈕等會用到的襯線字體 class="titleFont"
+//日期、按鈕等會用到的小字 class="smalltext"
+
+//=======================================================
+
+//常用顏色
+@import 'layout/color';
+//引用此支sass以變數使用常用色
+//$darkgreen ----- 深綠色
+//$lightgreen ----- 淺綠色
+//$gray ----- 深灰色
+//$lightgray ----- 淺灰色
+
+//=======================================================
+
+//header導覽列
+@import 'layout/header';
+@include header(fixed);
+
+//=======================================================
+
+//footer及page top按鈕
+@import 'layout/footer';
+
+//=======================================================
+
+//按鈕
+@import 'layout/btn';
+//深綠色按鈕 class="btn darkgreen"
+//淺綠色按鈕 class="btn lightgreen"
+//深灰色按鈕 class="btn gray"
+
+//=======================================================
+
+//若子元素都為float元素，支撐父層高度
+@import 'layout/fatherHeight';
+//使用方式 ----- @include fatherHeight();
+
+//=======================================================
+
+//卡片(圓角10px/白底)
+@import 'layout/card';
+//使用方式 ----- @include card();
+
+//=======================================================
+
+//跳轉符號
+@import 'layout/change';
+//使用方式 ----- @include changePage();
+@include changePage();
+
+
+//=======================================================
+
+//overflow時的滑動軸
+@import 'layout/scrollbar';
+//使用方式 ----- @include scrollbar(要套用的物件);
+//例如 ----- @include scrollbar('div.top');
+
+//=======================================================
+
+// 外框設定
+
+body {
+    overflow: auto;
+    /* position: relative; */    /* for the footer to move with the page size */
+    min-height: 100%;            /* for the footer to be at the bottom */
+    /* padding-bottom: 6rem; */  /* Space available between last element and bottom border of the page */
+    margin: 0;
+    padding:0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+}
+.postregionwrapper {
+    position: relative;
+    min-height: 100vh;       /* will cover the 100% of viewport */
+    overflow: hidden;
+    padding-bottom: 138px;    /* height of your footer */
+}
+
+footer {
+    bottom: 0px;
+    width: 100%;
+    position: absolute;
+}
+
+//=======================================================
+// 內文
+
+.breadcrumb {
+    margin-bottom: 25px;
+}
+
+.breadcrumb>a {
+    text-decoration: none;
+}
+
+.commontitlefix {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.startitle {
+    margin-right: 25px;
+}
+
+.post3buttoncollection {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}
+
+.post3button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid lighten(#000, 20);
+    border-radius: 50%;
+}
+
+.postsecretmessagebutton,
+.postfevoritebutton,
+.postsharebutton {
+    margin-right: 15px;
+}
+
+.centerfix {
+    margin: 0 auto;  // 上下 0 左右 auto，做水平置中
+}
+
+.titleFont {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cpc_contentpic1 {
+    float: left;
+    width: 50%;
+    margin-right: 15px;
+}
+
+.cpc_contentpic2 {
+    float: right;
+    width: 50%;
+    margin-right: 15px;
+}
+.cpc_contentpic3 {
+    width: 100%;
+    height: 135px;
+}
+.cpchr {
+    margin: 50px 0;
+}
+
+.totalstarcollection {
+    display: flex;
+    justify-content: center;
+}
+
+.totalstarneedspace {
+    position: relative;
+    // display: flex;
+    // justify-content:center;
+}
+
+.totalstarnum {
+    position: absolute;
+    font-size: 3.5rem;
+    top: -50px;
+    left: 20px;
+}
+
+.starfix {
+    margin-right: 10px;
+}
+
+.star5 {
+    position: relative;
+}
+
+.star {
+    width: 50px;
+    height: 50px;
+    border: 1px solid lighten(#000, 20);
+    border-radius: 50%;
+}
+
+.leftmessage {
+    margin-bottom: 50px;
+}
+.postmessenger {
+    border: 1px solid lighten(#000, 20);
+    margin-bottom: 20px;
+    padding: 15px;
+}
+.commonmemberbasicdata {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.memberhead{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.membername {
+    margin-right: 20px;
+}

@@ -73,7 +73,7 @@ section.intro{
         }
     }
     div.carousel{
-        float:right; 
+        float:right;
         position: relative;
         z-index: 2;
         margin: 10vh 0 40vh 0;
@@ -385,7 +385,7 @@ section.about{
                         color: #fff;
                     }
                     &.open{
-                        display: inline-block; 
+                        display: inline-block;
                     }
                 }
             }
@@ -489,7 +489,7 @@ section.donation{
     position: relative;
     padding-bottom: 70px;
     @include fatherHeight();
-    
+
     @include rwd(md){
         padding-bottom: 0;
     }
@@ -795,7 +795,7 @@ section.donation{
     }
     div.leftSide{
         padding-top: 190px;
-        
+
         @include rwd(md){
             display:none;
         }
@@ -843,7 +843,7 @@ section.donation{
             // }
             div.img{
                 overflow: hidden;
-                
+
                 img{
                     height: 100%;
                     min-width: 100%;
@@ -880,8 +880,8 @@ section.donation{
                     }
                     a.goal{
                         display: block;
-                        position: relative;                       
-                        color: $darkgreen;                       
+                        position: relative;
+                        color: $darkgreen;
                         position: relative;
                         text-decoration: none;
                         &::after{
@@ -897,7 +897,7 @@ section.donation{
                         }
                     }
                 }
-                
+
             }
         }
         .btn.gray{
@@ -1071,13 +1071,13 @@ section.collar{
                         right: -20px;
                     }
                 }
-                
+
             }
             h3{
                 color: #ddd;
                 margin-top: 20px;
                 font-size: 1.8rem;
-            } 
+            }
         }
         a.makeSame{
             float:right;

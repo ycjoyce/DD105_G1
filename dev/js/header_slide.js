@@ -13,6 +13,6 @@ window.addEventListener('scroll', function(e) {
       header.classList.remove("slideUp");
       header.classList.add("slideDown");
     }
-   
+
     new_scroll_position = last_scroll_position;
-  });                  
+  });

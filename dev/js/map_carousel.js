@@ -13,7 +13,7 @@ function mapCarousel(){
     var cardContent= document.querySelector('section.where div.card p');
     var cardBtn= document.querySelector('section.where div.card a.btn span');
     var changeNum= document.querySelector('section.where div.card div.changePage span');
-    
+
     if(cur==1){
         cardTitle.innerText= "寵物遺失地點";
         cardContent.innerHTML= `心愛的毛孩走丟了也別驚慌，<br>
@@ -130,4 +130,3 @@ mapFriendly3.onclick=function(){
     cur=5;
     mapCarousel();
 };
-

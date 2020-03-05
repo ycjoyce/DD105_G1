@@ -13,7 +13,7 @@ function donationCarousel(){
     var complete= document.querySelector('div.carousel_donation div.card div.showNum div.dogAnimate span');
     var changeNum= document.querySelector('div.carousel_donation div.changePage span');
     var progressBar= document.querySelector('div.carousel_donation div.progress_bar');
-    
+
     var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
     var goalVal= leftCards[now-1].querySelector("div.text input[name='goal']").value;
     var curVal= leftCards[now-1].querySelector("div.text input[name='cur']").value;
@@ -21,7 +21,7 @@ function donationCarousel(){
 
     //換大圖
     bigImg.src=`img/donation_card_${now}.jpg`;
-    
+
     projectNum.innerText= leftCards[now-1].querySelector('div.text span:first-child').innerText;
     date.innerText= leftCards[now-1].querySelector('div.text span.date').innerText;
     cardTitle.innerText= leftCards[now-1].querySelector('div.text h4').innerText;

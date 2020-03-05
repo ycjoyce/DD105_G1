@@ -5,19 +5,19 @@ const blobCursor = (() => {
     const { pageX: posX, pageY: posY } = e;
     CURSOR.style.top = `${posY - CURSOR.offsetHeight / 2}px`;
     CURSOR.style.left = `${posX - CURSOR.offsetWidth / 2}px`;
-    }; 
+    };
     document.addEventListener('mousemove', setCursorPos);
-     
+
     const setCursorHover = () => CURSOR.style.transform = 'scale(2.5)';
     const removeCursorHover = () => CURSOR.style.transform = '';
     LINKS.forEach(link => link.addEventListener('mouseover', setCursorHover));
     LINKS.forEach(link => link.addEventListener('mouseleave', removeCursorHover));
-     
+
     })();
 
- 
+
 // $(document).mousemove(function(e){
-//     $('#cursorBlob').css({ 
+//     $('#cursorBlob').css({
 //         left: e.clientX+15,
 //         top: e.clientY+15,
 //     });
