@@ -54,7 +54,9 @@
         <div class="scroll static-content">
             <p class="titleFont smalltext">SCROLL</p>
         </div>
-        <div class="bg-img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12"></div>
+        <div class="bg-img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+            <img src="img/leaf_water1.png">
+        </div>
     </section>
 
     <section class="about">
@@ -91,7 +93,12 @@
             </div>
         </div>
         <div class="where">
+            <img class="left cat" src="./img/where_cat.png">
+            <img class="left" src="./img/cloud-left-2.png">
+            <img class="right dog" src="./img/where_dog.png">
+            <img class="right" src="./img/cloud-right-2.png">
             <div class="title">
+                <!-- <img src="./img/left-img.png"> -->
                 <h3 class="enSpecialFont wow fadeInUp">Where are they</h3>
                 <h2 class="wow fadeInUp" data-wow-delay=".2s">浪浪在哪裡</h2>
             </div>
@@ -116,7 +123,11 @@
     </section>
 
     <section class="where">
+
         <div id="mapZone">
+
+            <!-- <img class="girl" src="./img/girlWithDog-1-2.png">
+            <img class="dog" src="./img/girlWithDog-2.png"> -->
             <iframe src="https://maps.google.com?output=embed&q=taiwan+中央大學" frameborder="0" width="100%" height="500"></iframe>
         </div>
         <div class="card wow fadeInRight" data-wow-duration="1s">
@@ -126,6 +137,7 @@
                 快來回報遺失的地點讓大家一同協尋！<br>
                 看見疑似走失的貓狗也來聯繫主人確認吧。<br>
             </p>
+            <!-- <img src="./img/girlWithDog-3.png"> -->
             <a class="btn darkgreen nav__link"  href='about.html'>
     <span class="titleFont">
         我的寵物遺失了
@@ -305,7 +317,7 @@
 </a>
 
         </div>
-        <div class="middle">
+        <div class="middle orange">
             <div class="left">
                 <span class="titleFont subtitle wow fadeInUp" data-wow-delay=".4s">話題熱議</span>
                 <span class="titleFont num wow fadeInUp" data-wow-delay=".4s">02</span>
@@ -317,37 +329,37 @@
         <div class="bottom">
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_blue.png" class="wow zoomIn">
+                    <img src="img/collar/collar_0.png" class="wow zoomIn">
                 </div>
             </div>
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_white.png" class="wow zoomIn" data-wow-delay=".2s">
+                    <img src="img/collar/collar_1.png" class="wow zoomIn" data-wow-delay=".2s">
                 </div>
             </div>
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_red.png" class="wow zoomIn" data-wow-delay=".4s">
+                    <img src="img/collar/collar_2.png" class="wow zoomIn" data-wow-delay=".4s">
                 </div>
             </div>
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_brown.png" class="wow zoomIn" data-wow-delay=".6s">
+                    <img src="img/collar/collar_3.png" class="wow zoomIn" data-wow-delay=".6s">
                 </div>
             </div>
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_green.png" class="wow zoomIn" data-wow-delay=".8s">
+                    <img src="img/collar/collar_4.png" class="wow zoomIn" data-wow-delay=".8s">
                 </div>
             </div>
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_cyan.png" class="wow zoomIn" data-wow-delay="1s">
+                    <img src="img/collar/collar_5.png" class="wow zoomIn" data-wow-delay="1s">
                 </div>
             </div>
             <div class="option">
                 <div>
-                    <img src="img/collar/collar_purple.png" class="wow zoomIn" data-wow-delay="1.2s">
+                    <img src="img/collar/collar_6.png" class="wow zoomIn" data-wow-delay="1.2s">
                 </div>
             </div>
         </div>
@@ -512,21 +524,27 @@
                 middleNum.innerText=`0${i+1}`;
                 middleImg.src= `img/collar_middle_${i}.png`;
 
-                if(i == 0)
-                    middleH3.innerText="質感藍色";
-                else if(i == 1)
+                if(i!=1){
+                    if(collarMiddle.classList.contains("orange")){
+                        collarMiddle.classList.remove("orange");
+                        if(i == 0)
+                            middleH3.innerText="質感藍色";
+                        else if(i == 2)
+                            middleH3.innerText="熱情紅色";
+                        else if(i == 3)
+                            middleH3.innerText="穩重褐色";
+                        else if(i == 4)
+                            middleH3.innerText="溫暖綠色";
+                        else if(i == 5)
+                            middleH3.innerText="清新藍綠";
+                        else if(i == 6)
+                            middleH3.innerText="夢幻粉色";
+                    }
+                }else{
                     middleH3.innerText="經典白色";
-
-                else if(i == 2)
-                    middleH3.innerText="熱情紅色";
-                else if(i == 3)
-                    middleH3.innerText="穩重褐色";
-                else if(i == 4)
-                    middleH3.innerText="溫暖綠色";
-                else if(i == 5)
-                    middleH3.innerText="清新藍綠";
-                else if(i == 6)
-                    middleH3.innerText="夢幻粉色";
+                    if(collarMiddle.classList.contains("orange")==false)
+                        collarMiddle.classList.add("orange");
+                }
             });
         }
 

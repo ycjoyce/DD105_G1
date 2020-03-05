@@ -169,6 +169,14 @@ section.intro{
         @include rwd(ss){
             height: 50%;
         }
+        img{
+            display: inline-block;
+            width: 400px;
+            position: absolute;
+            bottom: 0px;
+            mix-blend-mode: overlay;
+            opacity: 0.5;
+        }
     }
 }
 
@@ -289,8 +297,34 @@ section.about{
     }
     div.where{
         clear: both;
+        position: relative;
+        img{
+            position: absolute;
+            display: inline-block;
+            &.left{
+                left: 0;
+                width: 300px;
+                &.cat{
+                    width: 80px;
+                    z-index:2;
+                    left: 120px;
+                }
+            }
+            &.right{
+                right: 0;
+                width: 350px;
+                top: 100px;
+                &.dog{
+                    width: 150px;
+                    z-index: 2;
+                    right: 150px;
+                }
+            }
+        }
         div.title{
             margin-top: 60px;
+            position: relative;
+            
             h3{
                 font-size: 3rem;
                 color: rgba(255, 255, 255, 0.698);
@@ -382,7 +416,7 @@ section.about{
                     transition:  all 0.5s ease;
                     span{
                         font-size: 1rem;
-                        color: #fff;
+                        color: $gray;
                     }
                     &.open{
                         display: inline-block;
@@ -394,8 +428,11 @@ section.about{
 }
 
 section.where{
+    position: relative;
+    
     #mapZone{
         height: 500px;
+        position: relative;
     }
     div.card{
         float:right;
@@ -443,6 +480,14 @@ section.where{
         }
         p{
             margin: 20px 0 30px 0;
+        }
+        img{
+            display: inline-block;
+            position: absolute;
+            width: 200px;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.2;
         }
         .btn.darkgreen{
             width:150px;
@@ -1110,7 +1155,7 @@ section.collar{
                 display: inline-block;
                 width: 50px;
                 height: 20px;
-                background-image: url(../img/button_arrow_white.svg);
+                background-image: url(../img/button_arrow_white2.svg);
                 position: relative;
                 top: 5px;
                 left: 5px;
@@ -1122,6 +1167,27 @@ section.collar{
                 @include rwd(ss){
                     display:block;
                     left: 50px;
+                }
+            }
+        }
+        &.orange{
+            div.left{
+                span{
+                    color: rgb(149, 81, 16);
+                    &:first-child{
+                        &::after{
+                            border: 0.5px solid rgb(149, 81, 16);
+                        }
+                    }
+                }
+                h3{
+                    color: rgb(149, 81, 16);
+                }
+            }
+            a.makeSame{
+                color:rgb(149, 81, 16);
+                &::after{
+                    background-image: url(../img/button_arrow_orange.svg);
                 }
             }
         }
