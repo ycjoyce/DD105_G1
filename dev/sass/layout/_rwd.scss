@@ -30,22 +30,22 @@
 }
 
 
-// @include rwd(ss) {
-// 	@include grid(ss, 12);
-// }
+@include rwd(ss) {
+	@include grid(ss, 12);
+}
 
-// @include rwd(sm) {
-// 	@include grid(sm, 12);
-// }
+@include rwd(sm) {
+	@include grid(sm, 12);
+}
 
-// @include rwd(md) {
-// 	@include grid(md, 12);
-// }
+@include rwd(md) {
+	@include grid(md, 12);
+}
 
-// @include rwd(lg) {
-// 	@include grid(lg, 12);
-// }
+@include rwd(lg) {
+	@include grid(lg, 12);
+}
 
-// @include rwd(xl) {
-// 	@include grid(xl, 12);
-// }
+@include rwd(xl) {
+	@include grid(xl, 12);
+}
