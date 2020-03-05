@@ -1,0 +1,364 @@
+.dialog,
+.dialog__overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.dialog {
+  z-index: 10;
+  position: fixed;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dialog__overlay {
+  position: absolute;
+  z-index: 1;
+  background: rgba(55, 58, 71, 0.9);
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  -webkit-backface-visibility: hidden;
+}
+
+.dialog--open .dialog__overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dialog__content {
+  // width: 50%;
+  max-width: 560px;
+  min-width: 310px;
+  background: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  background-image: url(../img/paper/dust_scratches.png);
+  border-radius: 10px;;
+}
+
+.dialog--open .dialog__content {
+  pointer-events: auto;
+}
+
+/* Content */
+.dialog h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 2em;
+  padding: 0 0 2em;
+  margin: 0;
+}
+
+.dialog__overlay {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.dialog.dialog--open .dialog__content,
+.dialog.dialog--close .dialog__content {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.dialog.dialog--open .dialog__content {
+  -webkit-animation-name: anim-open;
+  animation-name: anim-open;
+}
+
+.dialog.dialog--close .dialog__content {
+  -webkit-animation-name: anim-close;
+  animation-name: anim-close;
+}
+
+// .dialog.dialog--open h2,
+// .dialog.dialog--open button {
+//   -webkit-animation: anim-elem-open 0.4s cubic-bezier(0.7, 0, 0.3, 1) both;
+//   animation: anim-elem-open 0.4s cubic-bezier(0.7, 0, 0.3, 1) both;
+// }
+
+// .dialog.dialog--close h2,
+// .dialog.dialog--close button {
+//   -webkit-animation: anim-elem-close 0.4s cubic-bezier(0.7, 0, 0.3, 1) both;
+//   animation: anim-elem-close 0.4s cubic-bezier(0.7, 0, 0.3, 1) both;
+// }
+
+@-webkit-keyframes anim-open {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-400px, 0, 0) scale3d(1.4, 0.5, 1);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes anim-open {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
+    transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+}
+
+@-webkit-keyframes anim-close {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-400px, 0, 0) scale3d(1.4, 0.5, 1);
+  }
+}
+
+@keyframes anim-close {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
+    transform: translate3d(-400px, 0, 0) scale3d(1.4, 0, 1);
+  }
+}
+
+/* Inner elements animations */
+
+@-webkit-keyframes anim-elem-open {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100px, 0, 0);
+  }
+  20% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes anim-elem-open {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100px, 0, 0);
+    transform: translate3d(-100px, 0, 0);
+  }
+  20% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100px, 0, 0);
+    transform: translate3d(-100px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@-webkit-keyframes anim-elem-close {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100px, 0, 0);
+  }
+}
+
+@keyframes anim-elem-close {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(-100px, 0, 0);
+    transform: translate3d(-100px, 0, 0);
+  }
+}
+
+// =======customize
+
+#lostform {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+//   background-image: url(../img/paper/dust_scratches.png);
+  border-radius: 10px;
+  box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.15);
+  p {
+    margin: 23px 0;
+  }
+  label {
+    font-size: 1.1rem;
+    vertical-align: middle;
+  }
+  fieldset {
+    border: none;
+    padding: 50px 80px;
+    transition: all 0.5s;
+    h3 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      line-height: 28px;
+      vertical-align: top;
+      text-align: left;
+    }
+  }
+
+  input,
+  select,
+  .uploadimg_btn {
+    width: calc(100% - 155px);
+    height: 28px;
+    line-height: 28px;
+    vertical-align: top;
+    font-family: "Noto Sans TC", sans-serif;
+    color: $gray;
+    font-weight: 400;
+    letter-spacing: 0.05rem;
+    font-size: 0.95rem;
+  }
+
+  input:focus,
+  select:focus,
+  option:focus {
+    outline: none;
+  }
+
+  p:last-child {
+    text-align: center;
+    margin: 30px 0 10px;
+  }
+
+  .uploadimg_btn {
+    color: #fff;
+    background-color: $gray;
+    display: inline-block;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 30px;
+    transition: all 0.3s;
+  }
+
+  .uploadimg_btn:hover {
+    box-shadow: 2px 2px 4px $lightgray;
+    transform: translate(1px, 1px);
+  }
+}
+
+.action {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: all .5s ease-in-out;
+  &:hover{
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 767px) {
+  #lostform{
+    input,
+    select,
+    .uploadimg_btn {
+      width: 100%;
+    }
+    label{
+      margin-bottom: 5px;
+    }
+    fieldset{
+      text-align: left;
+    }
+    div{
+      text-align: center;
+    }
+  } 
+}
+
+@media (max-width: 414px) {
+  .dialog__content {
+    width: 390px;
+  }
+  #lostform{
+    label{
+      margin-bottom: 3px;
+    }
+    fieldset{
+      padding: 25px 30px 20px;
+      h3{
+        margin-bottom: 20px;
+      }
+    }
+    .uploadimg_btn {
+      margin-bottom: 15px;
+    }
+  } 
+}
+
+@media (max-width: 375px) {
+  .dialog__content {
+    width: 350px;
+  }
+  #lostform{
+    label{
+      margin-bottom: 2px;
+    }
+    fieldset{
+      p{
+        margin: 12px 0;
+      }
+    }
+    .uploadimg_btn {
+      margin-bottom: 10px;
+    }
+  } 
+}
