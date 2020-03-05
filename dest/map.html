@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 頁籤標題 -->
+    <title>浪愛回家 ｜ 浪浪在哪裡</title>
+<link rel="icon" href="img/logo.ico" type="image/x-icon">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+
+    <link rel="stylesheet" href="./css/jquery-ui.css">
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/jquery-ui.js"></script>
+    <script src="./js/modernizr.custom.js"></script>
+    <link rel="stylesheet" href="./css/map.css">
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <header class="header-navigation" id="header">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+            <h1>
+                <a href="index.html">
+                    <img src="../img/logo-wide.png" alt="logo">
+                </a>
+            </h1>
+            <ul class="col-xl-9 col-lg-9 col-md-9">
+                <li><a href="">浪浪在哪裡</a></li>
+                <li><a href="">愛心助浪浪</a></li>
+                <li><a href="">客製化項圈</a></li>
+                <li><a href="./post_article_region.html">毛孩交流區</a></li>
+                <li><a href="">關於我們</a></li>
+                <li><a class="login" href="../login.html">登入 / 註冊</a></li>
+            </ul>
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+
+    <!-- <div style="height:20vh"></div> -->
+
+    <div class="map_container">
+        <div class="map_banner">
+            <div class="map_banner_bg"></div>
+            <h2 class="enSpecialFont map_EN_title">Where are they</h2>
+            <h2 class="map_CH_title">浪浪在哪裡</h2>
+            <div class="map_frIcon_1">
+                <img src="./img/friendly_icon.png">
+                <div class='pulse'></div>
+            </div>
+            <div class="map_frIcon_2"><img src="./img/friendly_icon.png"></div>
+            <div class="map_frIcon_line"><img src="./img/friendly_line.png"></div>
+            
+            <div class="map_banner_pp2"><svg id="svg-sprite">
+	<symbol id="paw" viewBox="0 0 249 209.32">
+		<ellipse cx="27.917" cy="106.333" stroke-width="0" rx="27.917" ry="35.833" fill="#bef18c" />
+		<ellipse cx="84.75" cy="47.749" stroke-width="0" rx="34.75" ry="47.751" fill="#bef18c"/>
+		<ellipse cx="162" cy="47.749" stroke-width="0" rx="34.75" ry="47.751" fill="#bef18c"/>
+		<ellipse cx="221.083" cy="106.333" stroke-width="0" rx="27.917" ry="35.833" fill="#bef18c"/>
+		<path stroke-width="0" fill="#bef18c" d="M43.98 165.39s9.76-63.072 76.838-64.574c0 0 71.082-6.758 83.096 70.33 0 0 2.586 19.855-12.54 31.855 0 0-15.75 17.75-43.75-6.25 0 0-7.124-8.374-24.624-7.874 0 0-12.75-.125-21.5 6.625 0 0-16.375 18.376-37.75 12.75 0 0-28.29-7.72-19.77-42.86z"/>
+	</symbol>
+</svg>
+
+<div class="ajax-loader">
+	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
+	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
+	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
+	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
+	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
+	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
+</div></div>
+            
+        </div class="map_banner">
+
+        <div class="map_content">
+            <!-- 左側篩選區 -->
+            <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12">
+
+                <!-- 快速搜尋－案件申請按鈕 -->
+                <form action="post" class="map_lostapply">
+                    <img src="./img/pawprint-01.svg">
+                    <!-- <input type="button" id="lostform_btn" value="我的寵物遺失了"> -->
+                    <div data-dialog="somedialog" class="trigger">
+                        <a class="btn red nav__link" id="lostform_btn">
+                            <span class="titleFont lostbtnx_xl">
+                                我的寵物遺失了
+                            </span>
+                            <span class="titleFont lostbtnx_sm">
+                                寵物遺失
+                            </span>
+                            <div class="border"></div>
+                            <div class="border"></div>
+                            <div class="border"></div>
+                            <div class="border"></div>
+                        </a>
+                    </div>
+
+                </form>
+
+                <!-- 快速搜尋+我的收藏 -->
+                <div class="map_selector">
+                    <!-- 快速搜尋 -->
+                    <div class="map_filter col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6">
+                        <div id="map_option_fil" class="map_option">快速搜尋</div>
+                        <div class="map_filter_filter">
+                            <!-- 快速搜尋－寵物友善空間 -->
+                            <div class="map_filter_friendly">
+                                <h3>
+                                    <input type="checkbox" name="friendly" id="friendly">
+                                    <label for="friendly">寵物友善空間</label>
+                                </h3>
+                                <p>
+                                    <input type="checkbox" name="fr_rest" id="fr_rest">
+                                    <label for="fr_rest">友善餐廳</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="fr_stay" id="fr_stay">
+                                    <label for="fr_stay">友善住宿</label>
+                                </p>
+                                <p>
+                                    <input type="checkbox" name="fr_point" id="fr_point">
+                                    <label for="fr_point">友善景點</label>
+                                </p>
+                                <p>
+                                    <label for="fr_area">篩選地區</label>
+                                    <select name="fr_area" id="fr_area" class="smalltext">
+                                        <option value="" disabled selected>請選擇地區</option>
+                                        <option value="fr_area_N">北部</option>
+                                        <option value="fr_area_M">中部</option>
+                                        <option value="fr_area_S">南部</option>
+                                        <option value="fr_area_E">東部</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    <label for="fr_rate">選擇星等</label>
+                                    <select name="fr_rate" id="fr_rate" class="smalltext">
+                                        <option value="" disabled selected>請選擇星等</option>
+                                        <option value="fr_rate_5">5</option>
+                                        <option value="fr_rate_4">4</option>
+                                        <option value="fr_rate_3">3</option>
+                                        <option value="fr_rate_2">2</option>
+                                        <option value="fr_rate_1">1</option>
+                                    </select>
+                                </p>
+                            </div>
+
+                            <!-- 快速搜尋－寵物遺失地點 -->
+                            <div class="map_filter_lost">
+                                <h3>
+                                    <input type="checkbox" name="lostcase" id="lostcase">
+                                    <label for="lostcase">寵物遺失地點</label>
+                                </h3>
+                                <p>
+                                    <label for="lost_area">篩選地區</label>
+                                    <select name="lost_area" id="lost_area" class="smalltext">
+                                        <option value="" disabled selected>請選擇地區</option>
+                                        <option value="lost_area_N">北部</option>
+                                        <option value="lost_area_M">中部</option>
+                                        <option value="lost_area_S">南部</option>
+                                        <option value="lost_area_E">東部</option>
+                                    </select>
+                                </p>
+                                <!-- <hr> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 我的收藏 -->
+                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 map_Fav">
+                        <div id="map_option_fav" class="map_option">我的收藏</div>
+                        <div class="map_filter_favorite">
+                            <h3>
+                                <input type="checkbox" name="favorite" id="favorite">
+                                <label for="favorite">寵物友善空間</label>
+                            </h3>
+                            <p>
+                                <input type="checkbox" name="fa_rest" id="fa_rest">
+                                <label for="fa_rest">友善餐廳</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" name="fa_stay" id="fa_stay">
+                                <label for="fa_stay">友善住宿</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" name="fa_point" id="fa_point">
+                                <label for="fa_point">友善景點</label>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側地圖區 -->
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 map_area">
+                <iframe src="http://maps.google.com?output=embed&q=友善動物"
+                    style="width: 100%; height: 100%; border: none;"></iframe>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- 寵物遺失申請燈箱 -->
+    <div id="somedialog" class="dialog">
+        <div class="dialog__overlay"></div>
+        <div id="lostform_cus" class="dialog__content">
+            <div id="lostform">
+                <form action="post">
+                    <fieldset>
+                        <h3>寵物遺失地點登記</h3>
+                        <p>
+                            <label for="lostPetRpLoc">寵物遺失地點</label>
+                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                        </p>
+                        <p>
+                            <label for="lostPetRpLDate">寵物遺失時間</label>
+                            <input type="date" name="lostPetRpLDate" id="lostPetRpLDate">
+                        </p>
+                        <p>
+                            <label for="lostPetRpName">寵物名稱</label>
+                            <input type="text" name="lostPetRpName" id="lostPetRpName">
+                        </p>
+                        <p>
+                            <label for="lostPetRpType">寵物類型</label>
+                            <input type="text" name="lostPetRpType" id="lostPetRpType">
+                        </p>
+                        <p>
+                            <label for="lostPetRpCh">寵物特徵</label>
+                            <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                        </p>
+                        <p>
+                            <label for="lostPetRpStat">案件狀態</label>
+                            <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
+                                <option value="" disabled>-- 請選擇狀態 --</option>
+                                <option value="">進行中</option>
+                                <option value="">已找到</option>
+                                <option value="">未找到，已結案</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="">上傳寵物照片</label>
+                            <label class="uploadimg_btn">
+                                <input id="upload_img" style="display:none;" type="file">
+                                <i class="fa fa-photo"></i> 上傳圖片
+                            </label>
+                        </p>
+                        <div>
+                            <a class="btn darkgreen nav__link"  href=''>
+    <span class="titleFont">
+        送出資料
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div>
+                <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
+            </div>
+        </div>
+    </div>
+    <script src="./js/classie.js"></script>
+    <script src="./js/dialogFx.js"></script>
+    <script>
+        (function () {
+
+            var dlgtrigger = document.querySelector('[data-dialog]'),
+                somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
+                dlg = new DialogFx(somedialog);
+
+            dlgtrigger.addEventListener('click', dlg.toggle.bind(dlg));
+
+        })();
+    </script>
+
+    <!-- footer -->
+    <footer>
+    <div class="page_top" id="page_top">
+        <span class="titleFont smalltext">PAGE TOP</span>
+    </div>
+    <p class="titleFont smalltext">
+        © 2020 Bring Love Home
+    </p>
+</footer>
+
+<script src="../js/page_top.js"></script>
+
+
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/header_slide.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var winWidth = $(window).width();
+            var winHeight = $(window).height();
+
+            // [展開/關閉] 快速搜尋/我的收藏
+            $('#map_option_fil').click(function () {
+                $(this).siblings('.map_filter_filter').slideToggle('slow');
+                $(this).toggleClass('is-active');
+
+                if ($(this).hasClass('is-active')) {
+                    $(this).parent('div').parent('div').children('.map_Fav').children('.map_filter_favorite').hide();
+                    $(this).parent('div').parent('div').children('.map_Fav').children('#map_option_fav').removeClass('is-active');
+                };
+            });
+
+            $('#map_option_fav').click(function () {
+                $(this).siblings('.map_filter_favorite').slideToggle('slow');
+                $(this).toggleClass('is-active');
+
+                if ($(this).hasClass('is-active')) {
+                    $(this).parent('div').parent('div').children('.map_filter').children('.map_filter_filter').hide();
+                    $(this).parent('div').parent('div').children('.map_filter').children('#map_option_fil').removeClass('is-active');
+                };
+            });
+
+            // 小於992px, 移除is-active
+            if (winWidth > 992) {
+                $('#map_option_fil').addClass('is-active');
+            };
+
+            // 手機版改遺失btn
+            // function btnText() {
+            //     if (winWidth < 415) {
+            //         $('.map_container #lostform_btn span').text('寵物遺失');
+            //     } else {
+            //         $('.map_container #lostform_btn span').text('我的寵物遺失了');
+            //     };
+            // }            
+            // $(window).resize(btnText);
+
+        });
+    </script>
+
+</body>
+
+</html>
