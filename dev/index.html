@@ -8,10 +8,22 @@
     })
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- scrollmagic -->
+    <!-- 主程式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <!-- 跟tweenmax結合 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <!-- 開發時debug用(標示觸發點)，上線時移除 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
+
 </head>
 <body>
     @@include('./layout/header.html')
-    @@include('./layout/cursor.html')
+    <!-- @@include('./layout/cursor.html') -->
     <div id="dog_backhome"></div>
     <section class="intro">
         <div class="title">
@@ -28,7 +40,11 @@
             <p class="titleFont smalltext">SCROLL</p>
         </div>
         <div class="bg-img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
-            <img src="img/leaf_water1.png">
+            <img class="introDeco1" src="./img/leaf-02.png">
+            <img class="introDeco2" src="./img/leaf-03.png">
+            <img class="introDeco3" src="./img/leaf-06.png">
+            <img class="introDeco4" src="./img/leaf-07.png">
+            <img class="introDeco5" src="./img/leaf-08.png">
         </div>
     </section>
 
@@ -59,8 +75,11 @@
             </div>
         </div>
         <div class="where">
-            <img class="left cat" src="./img/where_cat.png">
-            <img class="left" src="./img/cloud-left-2.png">
+            <div id="trigger01"></div>
+            <div id="whereCat">
+                <img class="left cat" src="./img/where_cat.png">
+                <img class="left" src="./img/cloud-left-2.png">
+            </div>
             <img class="right dog" src="./img/where_dog.png">
             <img class="right" src="./img/cloud-right-2.png">
             <div class="title">
@@ -243,6 +262,16 @@
                 "innerText": "客製專屬項圈",
                 "connect": " href='about.html'"
             })
+            <div class="images">
+                <img src="./img/handicraft_1.png">
+                <img src="./img/handicraft_2.png">
+                <img src="./img/handicraft_3.png">
+                <img src="./img/handicraft_4.png">
+                <img src="./img/handicraft_5.png">
+                <img src="./img/handicraft_6.png">
+                <img src="./img/handicraft_7.png">
+                <img src="./img/handicraft_8.png">
+            </div>
         </div>
         <div class="middle orange">
             <div class="left">
@@ -408,18 +437,19 @@
             <img src="img/pawprint-01.svg">
             <img src="img/pawprint-01.svg">
         </div>
+        
     </section>
 
     @@include('./layout/footer.html')
 </div>
-    <script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
-    <script src="js/header_slide.js"></script>
-    <script src="js/hamburger.js"></script>
-    <script src="js/moveBackground.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/donation_carousel.js"></script>
-    <script src="js/map_carousel.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="./js/header_slide.js"></script>
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/moveBackground.js"></script>
+    <!-- <script src="./js/cursor.js"></script> -->
+    <script src="./js/donation_carousel.js"></script>
+    <script src="./js/map_carousel.js"></script>
+    <script src="./js/index_animation.js"></script>
+    
 
     <script>
         //點擊項圈
