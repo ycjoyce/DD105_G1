@@ -10,11 +10,14 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-
-    <link rel="stylesheet" href="./css/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="./css/jquery-ui.css"> -->
     <script src="./js/jquery-3.4.1.js"></script>
     <script src="./js/jquery-ui.js"></script>
     <script src="./js/modernizr.custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
     <link rel="stylesheet" href="./css/map.css">
 </head>
 
@@ -49,39 +52,123 @@
     <!-- <div style="height:20vh"></div> -->
 
     <div class="map_container">
-        <div class="map_banner">
+        <!-- 第一屏banner -->
+        <section class="map_banner">
             <div class="map_banner_bg"></div>
             <h2 class="enSpecialFont map_EN_title">Where are they</h2>
             <h2 class="map_CH_title">浪浪在哪裡</h2>
-            <div class="map_frIcon_1">
-                <img src="./img/friendly_icon.png">
-                <div class='pulse'></div>
+        </section>
+
+        <!-- 第二屏introduction -->
+        <div id="trigger01"></div>
+        <section class="map_intro">
+            <div class="map_lostdogGirl">
+                <!-- <img src="./img/map_lostdog_boy.png"> -->
+                <img src="./img/map_lostdog_dog.png" id="lostdogDog">
+                <img src="./img/map_lostdog_girl.png">
             </div>
-            <div class="map_frIcon_2"><img src="./img/friendly_icon.png"></div>
-            <div class="map_frIcon_line"><img src="./img/friendly_line.png"></div>
-            
-            <div class="map_banner_pp2"><svg id="svg-sprite">
-	<symbol id="paw" viewBox="0 0 249 209.32">
-		<ellipse cx="27.917" cy="106.333" stroke-width="0" rx="27.917" ry="35.833" fill="#bef18c" />
-		<ellipse cx="84.75" cy="47.749" stroke-width="0" rx="34.75" ry="47.751" fill="#bef18c"/>
-		<ellipse cx="162" cy="47.749" stroke-width="0" rx="34.75" ry="47.751" fill="#bef18c"/>
-		<ellipse cx="221.083" cy="106.333" stroke-width="0" rx="27.917" ry="35.833" fill="#bef18c"/>
-		<path stroke-width="0" fill="#bef18c" d="M43.98 165.39s9.76-63.072 76.838-64.574c0 0 71.082-6.758 83.096 70.33 0 0 2.586 19.855-12.54 31.855 0 0-15.75 17.75-43.75-6.25 0 0-7.124-8.374-24.624-7.874 0 0-12.75-.125-21.5 6.625 0 0-16.375 18.376-37.75 12.75 0 0-28.29-7.72-19.77-42.86z"/>
-	</symbol>
-</svg>
+            <!-- <div></div> -->
 
-<div class="ajax-loader">
-	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
-	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
-	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
-	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
-	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
-	<div class="paw"><svg class="icon"><use xlink:href="#paw" /></svg></div>
-</div></div>
-            
-        </div class="map_banner">
+            <div class="map_introcontent">
+                <img src="./img/map_intro_boyndog.png" class="map_intro_boyndog">
+                <div>浪愛回家提供一個整合資訊的平台，分享遺失或拾獲寵物資料、即時更新寵物遺失的資訊，並可透過網站聯絡失主，為失主帶來多一分希望，也讓在外流浪的毛小孩儘早回到溫暖的家。</div>
+                <div>
+                    我們也了解很多主人出門遊樂時，不想將毛小孩丟在外面自己進去餐廳吃飯、飯店住宿或者景點玩樂，因此花了很多時間收集寵物友善店家、寵物友善環境狀況，針對寵物服務和設施的寵物友善商家或景點記錄，希望帶給您與毛孩子更豐富的回憶！
+                </div>
+                <div class="map_intro_dog">
+                    <img src="./img/map_intro_leftleaf.png">
+                    <img src="./img/map_intro_dog.png">
+                    <img src="./img/map_intro_rightleaf.png">
+                </div>
+            </div>
+            <div id="app" data-state="0">
+                <div class="ui-big-images">
+                    <div class="ui-big-image" data-key="0">
+                        <img src="./img/map_slideshow-01_lostpet.jpg">
+                    </div>
+                    <div class="ui-big-image" data-key="1">
+                        <img src="./img/map_slideshow-02_restaurant.jpg">
+                    </div>
+                    <div class="ui-big-image" data-key="2">
+                        <img src="./img/map_slideshow-03_hotel.jpg">
+                    </div>
+                    <div class="ui-big-image" data-key="3">
+                        <img src="./img/map_slideshow-04_viewpoint.jpg">
+                    </div>
+                </div>
+                <div class="ui-thumbnails">
+                    <div class="ui-thumbnail" tabindex="-1" data-key="0">
+                        <img src="./img/map_slideshow-01_lostpet.jpg">
+                        <div class="ui-cuticle" data-flip-key="cuticle"></div>
+                    </div>
+                    <div class="ui-thumbnail" tabindex="-1" data-key="1">
+                        <img src="./img/map_slideshow-02_restaurant.jpg">
+                        <div class="ui-cuticle" data-flip-key="cuticle"></div>
+                    </div>
+                    <div class="ui-thumbnail" tabindex="-1" data-key="2">
+                        <img src="./img/map_slideshow-03_hotel.jpg">
+                        <div class="ui-cuticle" data-flip-key="cuticle"></div>
+                    </div>
+                    <div class="ui-thumbnail" tabindex="-1" data-key="3">
+                        <img src="./img/map_slideshow-04_viewpoint.jpg">
+                        <div class="ui-cuticle" data-flip-key="cuticle"></div>
+                    </div>
+                </div>
+                <div class="ui-content">
+                    <div class="ui-articles">
+                        <article class="ui-article" data-key="0">
+                            <h4 class="ui-heading">寵物遺失地點</h4>
+                            <p class="ui-paragraph">
+                                心愛的毛孩走丟了也別驚慌，<br>
+                                快來回報遺失的地點讓大家一同協尋！<br>
+                                看見疑似走失的貓狗也來聯繫主人確認吧。
+                            </p>
+                        </article>
+                        <article class="ui-article" data-key="1">
+                            <h4 class="ui-heading">寵物友善餐廳</h4>
+                            <p class="ui-paragraph">
+                                帶心愛的毛孩出門總是找不到餐廳用餐嗎?<br>
+                                蒐集全台友善寵物餐廳，<br>
+                                讓您能夠輕鬆和毛小孩一同約會去！
+                            </p>
+                        </article>
+                        <article class="ui-article" data-key="2">
+                            <h4 class="ui-heading">寵物友善住宿</h4>
+                            <p class="ui-paragraph">
+                                還在煩惱與毛孩出遊無處可住嗎?<br>
+                                蒐集全台友善寵物住宿，<br>
+                                讓您和毛小孩都睡得安穩！
+                            </p>
+                        </article>
+                        <article class="ui-article" data-key="3">
+                            <h4 class="ui-heading">寵物友善景點</h4>
+                            <p class="ui-paragraph">
+                                苦於找不到合適的景點無法帶毛孩出門嗎?<br>
+                                蒐集全台友善寵物景點，<br>
+                                讓您能夠輕鬆和毛小孩在台灣各地留下足跡！
+                            </p>
+                        </article>
+                        <nav class="ui-nav">
+                            <button id="prev" tabindex="-1" title="Previous"></button>
+                            <button id="next" tabindex="-1" title="Next"></button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="map_content">
+        <!-- 第三屏過場 -->
+        <section class="map_lostdog">
+            <img src="./img/map_lostdog_hurrygirl.png">
+            <div>
+                <p>您也遺失了您的寵物嗎?</p>
+                <p>我們了解您的心急如焚，讓我們來幫助您!</p>
+            </div>
+            <img src="./img/map_lostdog_hurrydog.png">
+        </section>
+
+        <!-- 第四屏map -->
+        <section class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12">
             <!-- 左側篩選區 -->
             <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12">
 
@@ -204,7 +291,7 @@
                 <iframe src="http://maps.google.com?output=embed&q=友善動物"
                     style="width: 100%; height: 100%; border: none;"></iframe>
             </div>
-        </div>
+        </section>
 
 
     </div>
@@ -334,17 +421,96 @@
                 $('#map_option_fil').addClass('is-active');
             };
 
-            // 手機版改遺失btn
-            // function btnText() {
-            //     if (winWidth < 415) {
-            //         $('.map_container #lostform_btn span').text('寵物遺失');
-            //     } else {
-            //         $('.map_container #lostform_btn span').text('我的寵物遺失了');
-            //     };
-            // }            
-            // $(window).resize(btnText);
+
+            // ScrollMagic
+            var controller = new ScrollMagic.Controller();
+            var lostdogDog = TweenMax.to('#lostdogDog', 16, {
+                x: -2000,
+                y: 300,
+                alpha: 0.2,
+            });
+            lostdogDog.delay(0.5);
+            // $("#lostdogDog").load(function () {
+            //     lostdogDog.restart();
+            // })
+
+            new ScrollMagic.Scene({
+                triggerElement: '#trigger01',
+            }).setTween(lostdogDog)
+                .addIndicators()
+                .addTo(controller);
 
         });
+    </script>
+
+    <!-- 輪播圖 -->
+    <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
+    <script>
+        console.clear();
+
+        const elPrevButton = document.querySelector('#prev');
+        const elNextButton = document.querySelector('#next');
+        const flipping = new Flipping();
+
+        const elImages = Array.from(document.querySelectorAll('.ui-big-image'));
+        const elThumbnails = Array.from(document.querySelectorAll('.ui-thumbnail'));
+
+        let state = {
+            photo: 0
+        };
+
+        function send(event) {
+            // read cuticle positions
+            flipping.read();
+
+            const elActives = document.querySelectorAll('[data-active]');
+
+            Array.from(elActives)
+                .forEach(el => el.removeAttribute('data-active'));
+
+            switch (event) {
+                case 'PREV':
+                    state.photo--;
+                    // Math.max(state.photo - 1, 0);
+                    break;
+                case 'NEXT':
+                    state.photo++;
+                    // Math.min(state.photo + 1, elImages.length - 1);
+                    break;
+                default:
+                    state.photo = +event;
+                    break;
+            }
+
+            var len = elImages.length;
+            // Loop Around
+            //state.photo = ( ( state.photo % len) + len ) % len;
+            state.photo = Math.max(0, Math.min(state.photo, len - 1));
+
+            Array.from(document.querySelectorAll(`[data-key="${state.photo}"]`))
+                .forEach(el => {
+                    el.setAttribute('data-active', true);
+                });
+
+            // execute the FLIP animation
+            flipping.flip();
+        }
+
+        elThumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                send(thumb.dataset.key);
+            });
+        });
+
+        elPrevButton.addEventListener('click', () => {
+            send('PREV');
+        });
+
+        elNextButton.addEventListener('click', () => {
+            send('NEXT');
+        });
+
+        send(0);
     </script>
 
 </body>
