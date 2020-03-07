@@ -7,7 +7,9 @@ var reload= browserSync.reload;//browser-sync要設定一個變數為reload的�
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var sourcemaps = require('gulp-sourcemaps');
-var babel= require('gulp-babel');
+var babel = require('gulp-babel');
+var connectPhp=require('gulp-connect-php');
+
 
 //打包
 //=================================================================
@@ -28,6 +30,10 @@ var web={
         'dev/js/*.js',
         'dev/js/**/*.js'
     ],
+    php:[ 
+        'dev/php/*.php',
+        'dev/php/**/*.php'
+    ],
     font:[
         'dev/font/*.*',
         'dev/font/**/*.*'
@@ -41,19 +47,19 @@ var web={
 
 gulp.task('concat', function(){
     gulp.src(web.js).pipe(gulp.dest('./dest/js'));
+    gulp.src(web.php).pipe(gulp.dest('./dest/php'));
     gulp.src(web.font).pipe(gulp.dest('./dest/font'));
     gulp.src(web.img).pipe(gulp.dest('./dest/img'));
 });
 
-// gulp.task('babel',function () {
-//         return gulp.src(web.js)
-//         .pipe(babel())
-//         .pipe(gulp.dest('./dest/js'))
-// });
 
-gulp.task('babel',function () {
+gulp.task('js',function () {
     return gulp.src(web.js)
-        .pipe(babel())
+        .pipe(babel({
+            presets: ['env']
+        }))
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('./dest/js'))
 });
 
@@ -86,13 +92,16 @@ gulp.task('image-min',function(){
 //要上線前再壓縮即可
 
 
-//檢查js有沒有錯誤
-gulp.task('lint', function() {
-    return gulp.src(web.js)
-      .pipe(jshint())
-      .pipe(jshint.reporter('default'));
-  });
-
+gulp.task('server',function(){
+    var options={
+    base:'./dest', /*从打包目录访问*/
+    open:true, /*自动打开浏览器*/
+    bin:'C:/php-7.4.2-nts-Win32-vc15-x64/php.exe',/*自本地php.exe路径地址*/
+    ini:'C:/php-7.4.2-nts-Win32-vc15-x64/php.ini',/*自本地php.ini路径地址*/
+    port:8080, /*自端口*/
+    };
+    connectPhp.server(options);/*启动服务*/
+    });
 
 //將task命名為default
 //終端機呼叫時不用gulp default
@@ -101,12 +110,13 @@ gulp.task('default',function(){
     browserSync.init({
         server:{
             baseDir: "./dest/",
-            index: "index.html"
+            index: "login.html",
+            proxy:'127.0.0.1:8080',
+            open: 'external',
         }
     });
-    gulp.watch(web.js,['babel']).on('change',reload);
+    gulp.watch(web.js,['js']).on('change',reload);
     gulp.watch(web.html,['fileinclude']).on('change',reload);
     gulp.watch(web.sass,['sass']).on('change',reload);
-    gulp.watch(web.js,['lint']).on('change',reload);
-    gulp.watch([web.js,web.font,web.img],['concat']).on('change',reload);
+    gulp.watch([web.js,web.php,web.font,web.img],['concat']).on('change',reload);
 });

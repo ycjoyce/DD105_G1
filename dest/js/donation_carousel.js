@@ -3,6 +3,7 @@ let prevBtn= document.querySelector('div.carousel_donation div.changePage button
 let nextBtn= document.querySelector('div.carousel_donation div.changePage button.to_right');
 let carouselArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.card');
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
+let timerId;
 
 function donationCarousel(){
     var bigImg= document.querySelector('div.carousel_donation div.img img');
@@ -28,7 +29,7 @@ function donationCarousel(){
     goal.innerText= leftCards[now-1].querySelector("div.text input[name='goal']").value;
     complete.innerText= comVal;
     changeNum.innerText= `0${now}/03`;
-    for(i=1; i<=3; i++){
+    for(let i=1; i<=3; i++){
         if(i!=now){
             progressBar.querySelector(`span:nth-child(${i})`).classList.remove("on");
             leftCards[i-1].classList.remove("on");

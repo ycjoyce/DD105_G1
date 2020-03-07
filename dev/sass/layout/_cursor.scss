@@ -1,14 +1,14 @@
 #cursorBlob {
     width: 50px;
     height: 50px;
-    background: linear-gradient(120deg, rgb(235, 193, 202), rgb(229, 199, 235), rgb(178, 195, 224), rgb(171, 217, 223), rgb(205, 231, 184));
-    background-size: 1600% 1600%;
+    background: url(../../img/shabon_l.png);
+    background-size: cover;
     position: absolute;
-    mix-blend-mode: hard-light;
+    // mix-blend-mode: hard-light;
     pointer-events: none;
     z-index: 10;
     transition: 0.15s linear;
-    animation: blobRadius 5s ease infinite, blobBackground 15s ease infinite;
+    animation: blobRadius 3s ease infinite, blobBackground 15s ease infinite;
   }
 
   @keyframes blobRadius {
@@ -36,3 +36,4 @@
       background-position: 100% 50%;
     }
   }
+
