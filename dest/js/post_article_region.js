@@ -66,8 +66,8 @@ $('ul.u1 input[type="checkbox"]').on('click', function() {
     if($(this).prop('checked')){
         $('#postregionSort ul.u1>li input:checkbox').prop('checked',false);
         $(this).prop('checked',true);
-        var title = $(this).val() + " , ";
-        var html = '<span style="transition: all 0.2s ease-in;" title="' + title + '">' + title + '</span>';
+        var postcheckboxtitle1 = $(this).val() + " , ";
+        var html = '<span style="transition: all 0.2s ease-in;" title="' + postcheckboxtitle1 + '">' + postcheckboxtitle1 + '</span>';
         $('p.ms1').append(html);
         // console.log($('p.ms1'));
         $("span.displayfont1").hide();
@@ -88,15 +88,15 @@ $('ul.u2 input[type="checkbox"]').on('click', function() {
       $("span.displayfont2").show();
     }
 
-    var title = $(this).closest('ul.u2').find('input[type="checkbox"]').val(),
-        title = $(this).val() + " , ";
+    var postcheckboxtitle2 = $(this).closest('ul.u2').find('input[type="checkbox"]').val(),
+        postcheckboxtitleaddsymble = $(this).val() + " , ";
     if ($(this).is(':checked')) {
-        var html = '<span style="transition: all 0.2s ease-in;" title="' + title + '">' + title + '</span>';
+        var html = '<span style="transition: all 0.2s ease-in;" title="' + postcheckboxtitleaddsymble + '">' + postcheckboxtitleaddsymble + '</span>';
         $('p.ms2').append(html);
         $("span.displayfont2").hide();
         // $("span.displayfont2").hide();
     } else {
-        $('p.ms2 span[title="' + title + '"]').remove();
+        $('p.ms2 span[title="' + postcheckboxtitleaddsymble + '"]').remove();
         var ret = $("span.displayfont2");
         $('div.aa2').append(ret);
     }
