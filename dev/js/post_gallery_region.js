@@ -1,15 +1,23 @@
 $(document).ready(function(){
-  $("img").click(function(){
-  // $("this").css({"position":"relative"});
-  var t = $(this).attr("src");
-  console.log(this,t);
-  $(".modal-body").html("<img src='"+t+"' class='modal-img'>");
-  $("#myModal").css({"position":"absolute" , "top":"50%" , "left":"50%" , "transform":"translate(-50%, -50%)"});
-  $(".postregionbackblock").css({"display":"block"});
-  $(".postregionbackblock").click(function(){
-      $(".modal-img").remove();
-      $(".postregionbackblock").css({"display":"none"});
-  });
+    $("img").click(function(){
+    $(".modal-body").css({"opacity":"1" , "transition":"opacity .5s ease-in-out"});
+    var t = $(this).attr("src");
+    console.log(this,t);
+    $(".modal-body").html("<img src='"+t+"' class='modal-img'>");
+    // , "top":"50%" , "left":"50%" , "transform":"translate(-50%, -50%)"
+    $(".postregionbackblock").css({"display":"block"});
+
+    $(".postregionbackblock").click(function(){
+        $(".modal-body").css({"opacity":"0.3" , "transition":"opacity .5s ease-in-out"});
+        $(".modal-img").remove();
+        $(".postregionbackblock").css({"display":"none"});
+    });
+
+    $(".modal-img").click(function(){
+        $(".modal-body").css({"opacity":"0.3" , "transition":"opacity .5s ease-in-out"});
+        $(".modal-img").remove();
+        $(".postregionbackblock").css({"display":"none"});
+    });
   // $("#myModal").modal();
 });
 
