@@ -7,7 +7,6 @@
     "浪愛回家 ｜ 會員中心" })
     <link rel="stylesheet" href="./css/memberCenter.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-    
 </head>
 
 <body>
@@ -40,23 +39,23 @@
                             <li><a href="./index.html">登出</a></li>
                         </ul>
                     </li>
-                </ul> 
+                </ul>
                 <button class="hamburger hamburger--spring" type="button">
                     <span class="hamburger-box">
-                      <span class="hamburger-inner"></span>
-                    </span> 
+                        <span class="hamburger-inner"></span>
+                    </span>
                 </button>
-            </div> 
+            </div>
         </nav>
     </header>
 
 
-   
+
     <section class="section">
         <div class="container">
-            <div class="tabs-container1">
+            <div id="tabs-container1">
                 <!-- 左邊大頁籤 -->
-                <h1 class="titleFont">會員中心</h1>
+                <h2 class="titleFont">會員中心</h2>
                 <ul class="tabs">
                     <li class="tab-link current" data-tab="tab-1">會員資訊</li>
                     <li class="tab-link" data-tab="tab-2">我的寵物遺失回報</li>
@@ -67,8 +66,9 @@
                     <li class="tab-link" data-tab="tab-7">我的收藏</li>
                     <li class="tab-link" data-tab="tab-8">管理黑名單</li>
                 </ul>
+                <button id="filterBtn"></button>
             </div>
-            <div class="tabs-container2">
+            <div id="tabs-container2">
                 <!-- 右邊大頁籤 -->
                 <div id="tab-1" class="tab-content current">
                     <!-- 會員資訊 -->
@@ -111,27 +111,27 @@
             © 2020 Bring Love Home
         </p>
     </footer>
-    
+
 
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
     <script>
-    
+
         //hover會員圖片
-        let memPic= document.querySelector('li.memZone div div.memPic');
-        let memZoneUl= document.querySelector('li.memZone ul.memZone');
-        memPic.addEventListener("click",function(){
+        let memPic = document.querySelector('li.memZone div div.memPic');
+        let memZoneUl = document.querySelector('li.memZone ul.memZone');
+        memPic.addEventListener("click", function () {
             memZoneUl.classList.toggle("open");
         })
 
 
         //點擊我的信箱
-        let messageBtn= document.querySelector('nav div ul li div.message');
-        messageBtn.addEventListener("click",function(){
-            location.href= "message.html";
+        let messageBtn = document.querySelector('nav div ul li div.message');
+        messageBtn.addEventListener("click", function () {
+            location.href = "message.html";
         });
 
-        
+
         // jQuery tabs大頁籤開始---------------------------------------
         $(document).ready(function () {
             $('ul.tabs li').click(function () {
@@ -159,6 +159,29 @@
             })
         })
         // jQuery tabs小頁籤結束---------------------------------------
+
+        // 會員中心子選單
+
+        var winWidth = $(window).width();
+        var winHeight = $(window).height();
+
+        if (winWidth < 414) {
+            $(document).ready(function () {
+                //瓷片按鈕點擊滑出
+                $('#filterBtn').click(function () {
+                    $(this).parent('#tabs-container1').toggleClass('-showFilter');
+                });
+
+            });
+        }
+        // let filterBtn = document.getElementById("filterBtn");
+        // let tabsContainer1 = document.getElementsByClassName("tabs-container1");
+        // window.addEventListener("load",function(){
+        //     //瓷片按鈕點擊滑出
+        //     filterBtn.onclick = function(){
+        //         tabsContainer1[0].classList.toggle("-showFilter")
+        //     }
+        // })
 
 
     </script>

@@ -10,6 +10,14 @@
     justify-content: flex-end;
     flex-wrap: wrap;
     border-radius: 10px;
+    @media (max-width: 992px) {
+      width: 95%;
+      margin: 0 auto;
+    }
+    @media (max-width: 414px) {
+      width: 95%;
+    }
+
     .ui-big-images {
       width: 100%;
       overflow: hidden;
@@ -42,6 +50,11 @@
       align-items: center;
       padding: 0.8rem;
     }
+    @media (max-width: 414px) {
+      .ui-thumbnails {
+        width: 100%;
+      }
+    }
 
     .ui-thumbnail {
       display: block;
@@ -63,6 +76,12 @@
       position: relative;
       width: 40%;
       bottom: 0;
+      background: rgb(255, 255, 255);
+    }
+    @media (max-width: 414px) {
+      .ui-content {
+        width: 100%;
+      }
     }
 
     .ui-articles {
