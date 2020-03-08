@@ -120,7 +120,7 @@ footer {
     top: 0;
     left: 0;
     background-color: #000;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 #gallery{
   margin: 15px 0;
@@ -132,9 +132,9 @@ footer {
   -moz-column-gap:20px;
   column-gap:20px;
 }
-#gallery>img {
-    position: relative;
-}
+// #gallery>img {
+//     position: relative;
+// }
 @media (max-width:1200px){
   #gallery{
       -webkit-column-count:3;
@@ -173,12 +173,18 @@ footer {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-.modal-img,.model-vid{
-  width:100%;
-  height:auto;
+.modal-img{
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+    width: 80%;
+    padding:0px;
+    z-index: 1;
+    box-shadow:-3px 5px 15px #000;
 }
 .modal-body{
-  padding:0px;
+    opacity: 0.3;
 }
 
 //=======================================================
