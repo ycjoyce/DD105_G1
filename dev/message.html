@@ -11,6 +11,13 @@
 <body>
     @@include('./layout/header.html')
     <section>
+        <div id="blackListAlert">
+            <form method="POST">
+                <p>設定為黑名單後即無法傳送私信給此用戶，並無法收到此用戶傳來的私信，是否確認將此用戶設為黑名單？</p>
+                <button class="yes btn darkgreen">確認</button>
+                <button class="cancel">取消</button>
+            </form>
+        </div>
         <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12">
             <div class="myMessage">
                 <h2>我的信箱</h2>
@@ -142,7 +149,10 @@
         <main class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-ss-12">
             <ul>
                 <button class="back titleFont"></button>
-                <button id="setting"></button>
+                <div id="setBlackZone">
+                    <button id="setting"></button>
+                    <span id="setBlack">設為黑名單</span>
+                </div>
                 <li class="otherSide wow fadeInLeft">
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
@@ -236,9 +246,16 @@
         sectionHeight();
         window.addEventListener('resize',sectionHeight);
 
-        // let setting= document.getElementById("setting");
-        // setting.style.top= document.querySelector('nav').offsetHeight + 30 + "px";
+        let setBlackZone= document.getElementById("setBlackZone");
+        setBlackZone.style.top= document.querySelector('nav').offsetHeight + 10 + "px";
+        let setting= document.getElementById("setting");
+        let setBlack= document.getElementById("setBlack");
+        setting.addEventListener("click",function(){
+            setBlack.classList.toggle("on");
+        });
+        // setBlack.addEventListener("click",function(){
 
+        // })
         let chatRooms= document.querySelectorAll('aside ul li');
         let aside= document.querySelector('aside');
         let main= document.querySelector('main');  
