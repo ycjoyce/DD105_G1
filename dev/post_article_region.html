@@ -9,15 +9,28 @@
         "title": "毛孩交流區"
     })
     <!-- title: 本頁名稱 -->
-    <link rel="stylesheet" href="css/index.css">  <!-- 因為自己頁面的 nav 跑掉了，所以加入放著 -->
     <link rel="stylesheet" href="./css/post_article_region.css">
 </head>
 <body>
+    <div class="postwritebackblock"></div>
+    <div class="post_write_region">
+        <form class="post_write_form">
+            <label for="writetitle" class="titleFont">
+                <span>Title</span>
+                <input class="postwritetitle" type="text" name="writetitle" placeholder="請輸入標題" value="" />
+            </label>
+            <label for="writecontent" class="titleFont writecontent">
+                <span>Content</span>
+                <textarea class="postwritecontent" type="text" name="writecontent" placeholder="請輸入內容" value="" />
+                </textarea>
+            </label>
+        </form>
+    </div>
     <div class="postregionwrapper">
     <!-- 導覽列 -->
         @@include('./layout/header.html')
 
-        <div style="height:20vh"></div>
+        <div style="height:15vh"></div>
         <!-- header 的高度 -->
 
 
@@ -77,7 +90,7 @@
                         <!-- 綠色按鈕 -->
                         @@include('./layout/btn_darkgreen.html',{
                             "innerText": "我要發文",
-                            "connect": " href='post.html'"
+                            "connect": " href=''"
                         })
                         <!--innerTet: 按鈕內的文字
                             connect: 要連結到的網址-->
@@ -121,7 +134,7 @@
                                 <!-- 灰色按鈕 -->
                                 @@include('./layout/btn_gray.html',{
                                     "innerText": "READ MORE",
-                                    "connect": " href='./common_post_content.html'"
+                                    "connect": " href='./post_content.html'"
                                 })
                                 <!--innerTet: 按鈕內的文字
                                     connect: 要連結到的網址-->
@@ -147,7 +160,7 @@
                         </div>
                         <div class="card-details">
                             <div class="title">
-                                貓咪不愛喝水怎麼辦? friendlyStorePost
+                                貓咪不愛喝水怎麼辦?
                             </div>
                             <div class="subtitle">
                                 我們家貓咪非常不喜歡喝水，請問有什麼方法訓練貓咪培養喝水的習慣嗎?由於大部分的貓咪都會沿習過往的習性，因此不太會主動喝水，加上現在飼主大多飼養乾糧，其中飼料的水分…
@@ -162,7 +175,7 @@
                                 <!-- 灰色按鈕 -->
                                 @@include('./layout/btn_gray.html',{
                                     "innerText": "READ MORE",
-                                    "connect": " href='./friendlystore_post_content.html'"
+                                    "connect": " href='#'"
                                 })
                                 <!--innerTet: 按鈕內的文字
                                     connect: 要連結到的網址-->
