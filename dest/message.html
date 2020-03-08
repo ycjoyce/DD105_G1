@@ -8,8 +8,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-    <link rel="stylesheet" href="css/message.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css"> -->
+    <link rel="stylesheet" href="./css/message.css">
 </head>
 <body>
     <header class="header-navigation" id="header">
@@ -17,7 +16,7 @@
         <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
             <h1>
                 <a href="index.html">
-                    <img src="../img/logo-wide.png" alt="logo">
+                    <img src="./img/logo-wide.png" alt="logo">
                 </a>
             </h1>
             <ul class="col-xl-9 col-lg-9 col-md-9">
@@ -26,7 +25,7 @@
                 <li><a href="">客製化項圈</a></li>
                 <li><a href="./post_article_region.html">毛孩交流區</a></li>
                 <li><a href="">關於我們</a></li>
-                <li><a class="login" href="../login.html">登入 / 註冊</a></li>
+                <li><a class="login" href="./login.html">登入 / 註冊</a></li>
             </ul>
             <button class="hamburger hamburger--spring" type="button">
                 <span class="hamburger-box">
@@ -169,6 +168,7 @@
         <main class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-ss-12">
             <ul>
                 <button class="back titleFont"></button>
+                <button id="setting"></button>
                 <li class="otherSide wow fadeInLeft">
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
@@ -262,9 +262,12 @@
         sectionHeight();
         window.addEventListener('resize',sectionHeight);
 
+        // let setting= document.getElementById("setting");
+        // setting.style.top= document.querySelector('nav').offsetHeight + 30 + "px";
+
         let chatRooms= document.querySelectorAll('aside ul li');
         let aside= document.querySelector('aside');
-        let main= document.querySelector('main');
+        let main= document.querySelector('main');  
         let btnBack= document.querySelector('button.back');
 
         function changeSide(e){

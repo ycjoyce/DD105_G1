@@ -2,13 +2,13 @@ var gulp = require('gulp');
 var cleanCSS= require('gulp-clean-css');
 var sass= require('gulp-sass');
 var fileinclude = require('gulp-file-include');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var reload= browserSync.reload;//browser-sync要設定一個變數為reload的行為
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
-var connectPhp=require('gulp-connect-php');
+var php=require('gulp-connect-php');
 
 
 //打包
@@ -25,6 +25,10 @@ var web={
     sass:[
         'dev/sass/*.scss',
         'dev/sass/**/*.scss'
+    ],
+    css:[
+        'dest/css/*.css',
+        'dest/css/**/*.css'
     ],
     js:[ 
         'dev/js/*.js',
@@ -74,12 +78,29 @@ gulp.task('fileinclude', function() {
 
 
 gulp.task('sass', function(){
-    gulp.src(web.sass)
+    return gulp.src(web.sass)
     .pipe(sourcemaps.init())    //sourcemap -- 判斷css是從哪支sass轉譯                 
     .pipe(sass().on('error', sass.logError))  
     .pipe(sourcemaps.write())   //sourcemap -- 判斷css是從哪支sass轉譯 
-    .pipe(gulp.dest('./dest/css'));           
+    .pipe(gulp.dest('./dest/css'))
+    .pipe(browserSync.stream({match:'**/*.css'}));           
 });
+
+gulp.task('css', function() {
+    return gulp.src('dest/css/**/*.css')
+      .pipe(browserSync.stream({match:'**/*.css'}));
+   });
+
+
+//    gulp.task('styles', function () {
+//     return gulp.src(web.sass)
+//       .pipe(sourcemaps.init())
+//       .pipe(sass().on('error', sass.logError)) 
+//       .pipe(sourcemaps.write())
+//       .pipe(gulp.dest('./dest/css'))
+//       .pipe(browserSync.stream({ match: web.css }));
+//   });
+
 
 
 //壓縮圖片
@@ -92,31 +113,36 @@ gulp.task('image-min',function(){
 //要上線前再壓縮即可
 
 
-gulp.task('server',function(){
-    var options={
-    base:'./dest', /*从打包目录访问*/
-    open:true, /*自动打开浏览器*/
-    bin:'C:/php-7.4.2-nts-Win32-vc15-x64/php.exe',/*自本地php.exe路径地址*/
-    ini:'C:/php-7.4.2-nts-Win32-vc15-x64/php.ini',/*自本地php.ini路径地址*/
-    port:8080, /*自端口*/
-    };
-    connectPhp.server(options);/*启动服务*/
+    gulp.task('php', function(){
+        php.server({base:'./', port:80, keepalive:true});
     });
+
+
+    gulp.task('browserSync', function() {
+        browserSync.init({
+            proxy:"localhost:80",
+            baseDir: "./",
+            index: "login.html",
+            open:true,
+            notify:false
+        });
+        gulp.start('sass');
+        gulp.start('watch');
+    });
+
+
+gulp.task('watch', function () {
+    gulp.watch(web.sass, ['sass']);
+    gulp.watch(web.css, ['css']).on('change',reload);
+    gulp.watch(web.js,['js']).on('change',reload);
+    gulp.watch(web.html,['fileinclude']).on('change',reload);
+    gulp.watch([web.js,web.php,web.font,web.img],['concat']).on('change',reload);
+});
+
 
 //將task命名為default
 //終端機呼叫時不用gulp default
 //直接打gulp就可以了
-gulp.task('default',function(){
-    browserSync.init({
-        server:{
-            baseDir: "./dest/",
-            index: "login.html",
-            proxy:'127.0.0.1:8080',
-            open: 'external',
-        }
-    });
-    gulp.watch(web.js,['js']).on('change',reload);
-    gulp.watch(web.html,['fileinclude']).on('change',reload);
-    gulp.watch(web.sass,['sass']).on('change',reload);
-    gulp.watch([web.js,web.php,web.font,web.img],['concat']).on('change',reload);
+gulp.task('default',['sass','css','browserSync'],function(){
+    gulp.start('watch');
 });

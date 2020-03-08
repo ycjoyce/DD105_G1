@@ -94,7 +94,7 @@ section{
         }
     }
     main{
-        background-color: rgba(221, 243, 227, 0.344);
+        background-image: url(../img/background-image.png); 
         height: 100%;
         @include rwd(sm){
             display:none;
@@ -109,6 +109,14 @@ section{
             height: calc(100% - 50px);
             overflow-y: scroll;
             position: relative;
+            button.setting{
+                display: inline-block;
+                border: 1px solid red;
+                width: 30px;
+                height: 30px;
+                position: fixed;
+                right: 10px;
+            }
             button.back{
                 display:none;
                 border: none;
@@ -211,9 +219,9 @@ section{
                         margin-top: 5px;
                     }
                     button.closeBtn{
-                        width: 10px;
-                        height: 10px;
-                        background-image: url(../img/close.svg);
+                        width: 15px;
+                        height: 15px;
+                        background-image: url("../img/close-icon.png");
                         background-size: contain;
                         background-repeat: no-repeat;
                         background-color: transparent;
