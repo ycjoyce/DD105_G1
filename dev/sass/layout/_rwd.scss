@@ -49,3 +49,42 @@
 @include rwd(xl) {
 	@include grid(xl, 12);
 }
+
+
+
+
+
+
+//客製化頁面RWD
+@mixin RWD($media) {
+    @if $media==xs {
+        @media screen and (max-width: 375px) {
+            @content;
+        }
+    }
+    @else if $media==ss {
+        @media screen and (max-width: 414px) {
+            @content;
+        }
+    }
+    @else if $media==sm {
+        @media screen and (max-width: 575px) {
+            @content;
+        }
+    }
+    @else if $media==md {
+        @media screen and (max-width: 767px) {
+            @content;
+        }
+    }
+    @else if $media==lg {
+        @media screen and (max-width: 991px) {
+            @content;
+        }
+    }
+    @else if $media==xl {
+        @media screen and (max-width: 1199px) {
+            @content;
+        }
+    }
+}
