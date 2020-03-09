@@ -2,41 +2,41 @@
 
 
 
-TweenMax.to('.introDeco1', 3, {
+TweenMax.to('.introDeco1',3,{
     rotation: 5,
     yoyo: true,
     repeat: -1,
-    ease: Sine.easeOut
+    ease: Sine.easeOut,
 });
-TweenMax.to('.introDeco2', 2, {
+TweenMax.to('.introDeco2',2,{
     rotation: -5,
     x: 10,
     yoyo: true,
     repeat: -1,
-    ease: Sine.easeOut
+    ease: Sine.easeOut,
 });
-TweenMax.to('.introDeco3', 3, {
+TweenMax.to('.introDeco3',3,{
     rotation: 3,
     y: 15,
     yoyo: true,
     repeat: -1,
-    ease: Sine.easeOut
+    ease: Sine.easeOut,
 });
-TweenMax.to('.introDeco4', 4, {
+TweenMax.to('.introDeco4',4,{
     rotation: 3,
     y: 10,
     x: 5,
     yoyo: true,
     repeat: -1,
-    ease: Sine.easeOut
+    ease: Sine.easeOut,
 });
-TweenMax.to('.introDeco5', 4, {
+TweenMax.to('.introDeco5',4,{
     rotation: 83,
     y: 3,
     x: 6,
     yoyo: true,
     repeat: -1,
-    ease: Sine.easeOut
+    ease: Sine.easeOut,
 });
 
 
