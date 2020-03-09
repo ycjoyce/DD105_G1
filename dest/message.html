@@ -68,7 +68,7 @@
         <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12">
             <div class="myMessage">
                 <h2>我的信箱</h2>
-                <span class="titleFont">2 則未讀</span>
+                <span class="titleFont"></span><!--幾則未讀-->
             </div>
             <ul>
                 <!-- <li class="unRead">
@@ -243,7 +243,12 @@
             }
         });
 
-        
+        function getMsg(){
+            var xhr= new XMLHttpRequest();
+            var url= "./message.php";
+            xhr.open("POST",url,true);
+            
+        }
 
     </script>
 </body>

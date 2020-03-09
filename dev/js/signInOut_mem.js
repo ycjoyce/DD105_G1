@@ -1,3 +1,4 @@
+//私信、會員中心用這支
 //會員判斷
 function getMember(){
     var xhr= new XMLHttpRequest();
