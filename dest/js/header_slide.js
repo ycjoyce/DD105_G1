@@ -15,8 +15,4 @@ window.addEventListener('scroll', function(e) {
     }
 
     new_scroll_position = last_scroll_position;
-<<<<<<< HEAD
-});
-=======
   });
->>>>>>> yc

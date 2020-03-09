@@ -4,8 +4,4 @@ $("button.hamburger").on("click", function(){
 });
 $("button.hamburger").on("click", function(){
     $("nav ul").slideToggle();
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> yc

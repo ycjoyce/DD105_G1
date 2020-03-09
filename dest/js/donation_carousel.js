@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-let now = 1;
-let prevBtn = document.querySelector('div.carousel_donation div.changePage button.to_left');
-let nextBtn = document.querySelector('div.carousel_donation div.changePage button.to_right');
-let carouselArea = document.querySelector('section.donation div.rightSide div.carousel_donation div.card');
-let changeArea = document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
-=======
 let now= 1;
 let prevBtn= document.querySelector('div.carousel_donation div.changePage button.to_left');
 let nextBtn= document.querySelector('div.carousel_donation div.changePage button.to_right');
 let carouselArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.card');
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
 let timerId;
->>>>>>> yc
 
 function donationCarousel() {
     var bigImg = document.querySelector('div.carousel_donation div.img img');
@@ -31,16 +23,6 @@ function donationCarousel() {
     //換大圖
     bigImg.src = `img/donation_card_${now}.jpg`;
 
-<<<<<<< HEAD
-    projectNum.innerText = leftCards[now - 1].querySelector('div.text span:first-child').innerText;
-    date.innerText = leftCards[now - 1].querySelector('div.text span.date').innerText;
-    cardTitle.innerText = leftCards[now - 1].querySelector('div.text h4').innerText;
-    goal.innerText = leftCards[now - 1].querySelector("div.text input[name='goal']").value;
-    complete.innerText = comVal;
-    changeNum.innerText = `0${now}/03`;
-    for (i = 1; i <= 3; i++) {
-        if (i != now) {
-=======
     projectNum.innerText= leftCards[now-1].querySelector('div.text span:first-child').innerText;
     date.innerText= leftCards[now-1].querySelector('div.text span.date').innerText;
     cardTitle.innerText= leftCards[now-1].querySelector('div.text h4').innerText;
@@ -49,7 +31,6 @@ function donationCarousel() {
     changeNum.innerText= `0${now}/03`;
     for(let i=1; i<=3; i++){
         if(i!=now){
->>>>>>> yc
             progressBar.querySelector(`span:nth-child(${i})`).classList.remove("on");
             leftCards[i - 1].classList.remove("on");
         } else {

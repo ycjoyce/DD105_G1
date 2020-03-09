@@ -1,16 +1,9 @@
 let lFollowX = 0,
-<<<<<<< HEAD
-    lFollowY = 0,
-    x = 0,
-    y = 0,
-    friction = 1 / 30;
-=======
       lFollowY = 0,
       x = 0,
       y = 0,
       friction = 1 / 30,
       translate;
->>>>>>> yc
 
 function moveBackground() {
       x += (lFollowX - x) * friction;
@@ -35,9 +28,6 @@ $(window).on('mousemove click', function (e) {
       lFollowY = 10 * lMouseY / 100;
 });
 
-<<<<<<< HEAD
-moveBackground();
-=======
 moveBackground();
 
 $.fn.parallax = function(resistance, mouse) {
@@ -65,4 +55,3 @@ $(document).mousemove(function(e) {
   // $(".paw1").parallax(10, e);
   // $(".paw2").parallax(5, e);
   });
->>>>>>> yc

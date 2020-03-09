@@ -128,16 +128,6 @@ TweenMax.to('.collarDeco1',1,{
     ease: Power2.easeOut,
 });
 
-<<<<<<< HEAD
-let whereCat = TweenMax.from('#whereCat', 1, {
-    y: -100,
-    scale: 0.8
-});
-
-new ScrollMagic.Scene({
-    triggerElement: '#trigger01'
-}).setTween(whereCat).addIndicators().addTo(controller);
-=======
 TweenMax.to('.collarDeco2',2,{
     x:3,
     y: 8,
@@ -198,4 +188,3 @@ TweenMax.staggerTo('.paw', 1, {
     repeat: -1,
     ease: Power2.easeOut,
 }, 3);
->>>>>>> yc
