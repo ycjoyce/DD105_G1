@@ -4,6 +4,17 @@
 	license: https://www.opensource.org/licenses/mit-license.php
 */
 
+// 分隔線
+$(".btn.darkgreen.nav__link").on('click', function() {
+    $(".postwritebackblock").css({"display":"block"});
+    $(".post_write_region").css({"display":"block"});
+    $(".postwritebackblock").click(function() {
+        $(".postwritebackblock").css({"display":"none"});
+        $(".post_write_region").css({"display":"none"});
+    });
+});
+// 分隔線
+
 $(".postregionsort div.aa1").on('click', function() {
   if($(".postregionsort div").hasClass("aa1")){
       $(".postregionsort div").removeClass("aa1");
@@ -84,19 +95,19 @@ $('ul.u2 input[type="checkbox"]').on('click', function() {
     // console.log($('ul.u2 input[type="checkbox"]').is(':checked'));
     // console.log($(this).is(':checked'));
     if($('ul.u2 input[type="checkbox"]').is(':checked') == false) {
-      // console.log($('ul.u2 input[type="checkbox"]').is(':checked'));
+      console.log($('ul.u2 input[type="checkbox"]').is(':checked'));
       $("span.displayfont2").show();
     }
 
-    var postcheckboxtitle2 = $(this).closest('ul.u2').find('input[type="checkbox"]').val(),
-        postcheckboxtitleaddsymble = $(this).val() + " , ";
+    var title = $(this).closest('ul.u2').find('input[type="checkbox"]').val(),
+        titleaddsymple = $(this).val() + " , ";
     if ($(this).is(':checked')) {
-        var html = '<span style="transition: all 0.2s ease-in;" title="' + postcheckboxtitleaddsymble + '">' + postcheckboxtitleaddsymble + '</span>';
+        var html = '<span style="transition: all 0.2s ease-in;" title="' + titleaddsymple + '">' + titleaddsymple + '</span>';
         $('p.ms2').append(html);
         $("span.displayfont2").hide();
         // $("span.displayfont2").hide();
     } else {
-        $('p.ms2 span[title="' + postcheckboxtitleaddsymble + '"]').remove();
+        $('p.ms2 span[title="' + titleaddsymple + '"]').remove();
         var ret = $("span.displayfont2");
         $('div.aa2').append(ret);
     }
