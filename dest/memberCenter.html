@@ -56,7 +56,7 @@
 
     <section class="section">
         <div class="container">
-            <div id="tabs-container1">
+            <aside id="tabs-container1">
                 <!-- 左邊大頁籤 -->
                 <h2 class="titleFont">會員中心</h2>
                 <ul class="tabs">
@@ -70,7 +70,7 @@
                     <li class="tab-link" data-tab="tab-8">管理黑名單</li>
                 </ul>
                 <button id="filterBtn"></button>
-            </div>
+            </aside>
             <div id="tabs-container2">
                 <!-- 右邊大頁籤 -->
                 <div id="tab-1" class="tab-content current">
@@ -820,14 +820,14 @@
         })
         // jQuery tabs小頁籤結束---------------------------------------
 
-        // 會員中心子選單
+
+        // 會員中心子選單,按鈕點擊滑出
 
         var winWidth = $(window).width();
         var winHeight = $(window).height();
 
         if (winWidth < 414) {
             $(document).ready(function () {
-                //瓷片按鈕點擊滑出
                 $('#filterBtn').click(function () {
                     $(this).parent('#tabs-container1').toggleClass('-showFilter');
                 });
