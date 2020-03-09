@@ -716,8 +716,11 @@
                         </nav>
                         `;
                         var script= document.getElementById("script");
-                        script.innerHTML+= `
-                        `;
+                        var body= document.querySelector('body');
+                        var headerScript= document.createElement("script");
+                        headerScript.src="./js/memberHeader.js";
+                        body.insertBefore(headerScript,script);
+                        
                     }
                 }else{
                     alert( xhr.status );

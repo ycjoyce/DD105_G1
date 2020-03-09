@@ -6,12 +6,119 @@
 @import 'layout/color';
 @import 'layout/scrollbar';
 @import 'layout/rwd';
+@import 'layout/btn';
 
 @include header(relative);
 
 section{
     border-top:1px solid #eee;
     display: flex;
+    position: relative;
+    #blackListAlert{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        background-color: #24242481;
+        display: none;
+        form{
+            width: 300px;
+            max-width: 90vw;
+            // height: 200px;
+            background-color: #fff;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            padding: 30px 40px;
+            button{
+                display: inline-block;
+                width: 100px;
+                height: 40px;
+                position: relative;
+                outline:none;
+                color: #fff;
+                transition: all 0.5s ease-in-out;
+                margin-top: 10px;
+                
+                &.yes{
+                    border: 1.2px solid $darkgreen;
+                    background-color: $darkgreen;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+                &.cancel{
+                    border: 1.2px solid $lightgreen;
+                    background-color: $lightgreen;
+                    color: $gray;
+                    float: right;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+            }
+        }
+    }
+    #deleteAlert{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        background-color: #24242481;
+        display: none;
+        form{
+            width: 300px;
+            max-width: 90vw;
+            // height: 200px;
+            background-color: #fff;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            padding: 30px 40px;
+            p{
+                letter-spacing: 0;
+            }
+            button{
+                display: inline-block;
+                width: 100px;
+                height: 40px;
+                position: relative;
+                outline:none;
+                color: #fff;
+                transition: all 0.5s ease-in-out;
+                margin-top: 10px;
+                
+                &.yes{
+                    border: 1.2px solid $darkgreen;
+                    background-color: $darkgreen;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+                &.cancel{
+                    border: 1.2px solid $lightgreen;
+                    background-color: $lightgreen;
+                    color: $gray;
+                    float: right;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+            }
+        }
+    }
     @include scrollbar('aside');
     aside{
         background-color: rgb(250, 250, 250);
@@ -103,20 +210,57 @@ section{
             display:none;
         }
         @include scrollbar('ul');
+
         ul{
+            #setBlackZone{
+                position: fixed;
+                right: 10px;
+                z-index:3;
+                #setBlack{
+                    position: absolute;
+                    width: 100px;
+                    padding: 10px;
+                    background-color: rgba(145, 185, 170, 0.89);
+                    border: 1px solid rgb(141, 187, 169);
+                    right: 5px;
+                    top: 45px;
+                    color: rgb(246, 246, 246);
+                    display: none;
+                    &.on{
+                        display: block;
+                    }
+                    &::before{
+                        content: '';
+                        display: inline-block;
+                        width: 0px;
+                        height: 0px;
+                        border-color: rgb(141, 187, 169) transparent transparent transparent;
+                        border-style: solid solid solid solid;
+                        border-width: 10px 5px 10px 5px;
+                        position: absolute;
+                        top:-20px;
+                        right: 10px;
+                        transform: rotate(180deg);
+                    }
+                }
+                #setting{
+                    width: 40px;
+                    height: 40px;
+                    background-image: url(../img/wheel.png);
+                    background-size: 20px;
+                    background-repeat: no-repeat;
+                    background-color: transparent;
+                    background-position: center center;
+                    border: none;
+                    outline: none;
+                    opacity: 0.8;
+                }
+            }
             @include fatherHeight();
             padding:30px 50px;
             height: calc(100% - 50px);
             overflow-y: scroll;
             position: relative;
-            button.setting{
-                display: inline-block;
-                border: 1px solid red;
-                width: 30px;
-                height: 30px;
-                position: fixed;
-                right: 10px;
-            }
             button.back{
                 display:none;
                 border: none;
@@ -253,14 +397,13 @@ section{
                     }
                 }
             }
-
-
             }
         }
         form{
             border-top: 1px solid #eee;
             height: 50px;
             display: flex;
+            background-color: #fff;
             label[for="upload"]{
                 display: inline-block;
                 height: 100%;

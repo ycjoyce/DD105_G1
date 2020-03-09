@@ -40,6 +40,9 @@ var web={
     img:[
         'dev/img/*.*',
         'dev/img/**/*.*'
+    ],
+    css:[
+        'dest/css/*.css',
     ]
 };
 
@@ -98,11 +101,12 @@ gulp.task('default',function(){
     browserSync.init({
         server:{
             baseDir: "./dest/",
-            index: "index.html",
+            index: "login.html",
         }
     });
     gulp.watch(web.js,['js']).on('change',reload);
     gulp.watch(web.html,['fileinclude']).on('change',reload);
     gulp.watch(web.sass,['sass']).on('change',reload);
+    gulp.watch(web.css).on('change',reload);
     gulp.watch([web.js,web.php,web.font,web.img],['concat']).on('change',reload);
 });

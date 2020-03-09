@@ -401,30 +401,16 @@
     @@include('./layout/footer.html')
 </div>
     <script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
-    <script src="js/header_slide.js"></script>
-    <script src="js/hamburger.js"></script>
-    <script src="js/moveBackground.js"></script>
-    <script src="js/cursor.js"></script>
-    <script src="js/donation_carousel.js"></script>
-    <script src="js/map_carousel.js"></script>
+    <script src="./js/header_slide.js"></script>
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/moveBackground.js"></script>
+    <script src="./js/cursor.js"></script>
+    <script src="./js/donation_carousel.js"></script>
+    <script src="./js/map_carousel.js"></script>
+    <script src="./js/memberHeader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
 
     <script>
-        //hover會員圖片
-        let memPic= document.querySelector('li.memZone div div.memPic');
-        let memZoneUl= document.querySelector('li.memZone ul.memZone');
-        memPic.addEventListener("click",function(){
-            memZoneUl.classList.toggle("open");
-        })
-
-
-        //點擊我的信箱
-        let messageBtn= document.querySelector('nav div ul li div.message');
-        messageBtn.addEventListener("click",function(){
-            location.href= "message.html";
-        });
-
-
         //點擊項圈
         let collarOptions= document.querySelectorAll('section.collar div.bottom div.option');
         let middleImg= document.getElementById('middleImg');
