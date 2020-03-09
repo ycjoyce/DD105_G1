@@ -63,19 +63,11 @@ $('ul.u1 input[type="checkbox"]').on('click', function() {
         // val() : https://www.w3school.com.cn/jquery/attributes_val.asp
         // prop() : https://www.runoob.com/jquery/html-prop.html
     // if ($(this).is(':checked')) {
-<<<<<<< HEAD
-    if ($(this).prop('checked')) {
-        $('#postregionSort ul.u1>li input:checkbox').prop('checked', false);
-        $(this).prop('checked', true);
-        var postcheckboxtitle1 = $(this).val() + " , ";
-        var html = '<span style="transition: all 0.2s ease-in;" title="' + postcheckboxtitle1 + '">' + postcheckboxtitle1 + '</span>';
-=======
     if($(this).prop('checked')){
         $('#postregionSort ul.u1>li input:checkbox').prop('checked',false);
         $(this).prop('checked',true);
-        var title = $(this).val() + " , ";
-        var html = '<span style="transition: all 0.2s ease-in;" title="' + title + '">' + title + '</span>';
->>>>>>> yc
+        var postcheckboxtitle1 = $(this).val() + " , ";
+        var html = '<span style="transition: all 0.2s ease-in;" title="' + postcheckboxtitle1 + '">' + postcheckboxtitle1 + '</span>';
         $('p.ms1').append(html);
         // console.log($('p.ms1'));
         $("span.displayfont1").hide();
@@ -114,8 +106,4 @@ $('.selectpostgalleryregion').on('click', function() {
     // console.log("on");
     // $('.selectpostarticleregion').css({"color":"#000"});
     window.location.href = "./post_gallery_region.html";
-<<<<<<< HEAD
 });
-=======
-});
->>>>>>> yc
