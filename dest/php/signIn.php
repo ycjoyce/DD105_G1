@@ -15,6 +15,7 @@ try{
         session_start();
         $_SESSION["memId"]= $memRow["memId"];
         $_SESSION["memPsw"]= $memRow["memPsw"];
+        echo $_SESSION["memId"], ":", $_SESSION["memPsw"];
     }
 }catch(PDOException $e){
     echo "錯誤行號: ".$e->getLine()."<br>";

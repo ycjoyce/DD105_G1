@@ -27,8 +27,7 @@
     <!-- 開發時debug用(標示觸發點)，上線時移除 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
     <script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
-    <script src="./js/jquery.lettering.js"></script>
-    <script src="./js/jquery.textillate.js"></script>
+
 </head>
 <body>
     <header class="header-navigation" id="header">
@@ -546,41 +545,10 @@
     <script src="./js/donation_carousel.js"></script>
     <script src="./js/map_carousel.js"></script>
     <script src="./js/index_animation.js"></script>
-    
+    <script src="./js/jquery.lettering.js"></script>
+    <script src="./js/jquery.textillate.js"></script>
 
-    <script>
-        //intro英文字
-        $('#theText').textillate({
-            loop: false,
-            minDisplayTime: 5000,
-            initialDelay: 500,
-            in: {
-                effect: 'fadeIn',
-                delayScale: 1.5,
-                delay: 50,
-                sequence: true,
-                sync: false,
-                reverse: false,
-                shuffle: false,
-                callback: function () {}
-            },
-            out: {
-                effect: 'pulse',
-                delayScale: 1.5,
-                delay: 50,
-                sequence: true,
-                sync: false,
-                reverse: false,
-                shuffle: false,
-                callback: function () {}
-            },
-            autoStart: true,
-            inEffects: [],
-            outEffects: ['fadeOut'],
-            callback: function () {},
-            type: 'char'
-        });     
-
+    <script id="script">
 
         //點擊項圈
         let collarOptions= document.querySelectorAll('section.collar div.bottom div.option');
@@ -662,6 +630,101 @@
         
 
         new WOW().init();
+
+
+        //intro英文字
+        $('#theText').textillate({
+            loop: false,
+            minDisplayTime: 5000,
+            initialDelay: 500,
+            in: {
+                effect: 'fadeIn',
+                delayScale: 1.5,
+                delay: 50,
+                sequence: true,
+                sync: false,
+                reverse: false,
+                shuffle: false,
+                callback: function () {}
+            },
+            out: {
+                effect: 'pulse',
+                delayScale: 1.5,
+                delay: 50,
+                sequence: true,
+                sync: false,
+                reverse: false,
+                shuffle: false,
+                callback: function () {}
+            },
+            autoStart: true,
+            inEffects: [],
+            outEffects: ['fadeOut'],
+            callback: function () {},
+            type: 'char'
+        });     
+
+
+        //會員判斷
+        function getMember(){
+            var xhr= new XMLHttpRequest();
+            var url= "./php/checkMem.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "";
+            xhr.send(data_info);
+            
+            xhr.onload=function (){
+                if( xhr.status == 200 ){
+                    if(xhr.responseText.indexOf("true")!=-1){
+                        console.log(xhr.responseText);
+                        var header = document.getElementById("header");
+                        header.innerHTML=`
+                        <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
+                                <h1>
+                                    <img src="./img/logo-wide.png" alt="logo">
+                                </h1>
+                                <ul class="col-xl-9 col-lg-9 col-md-9">
+                                    <li><a href="">浪浪在哪裡</a></li>
+                                    <li><a href="">愛心助浪浪</a></li>
+                                    <li><a href="">客製化項圈</a></li>
+                                    <li><a href="">毛孩交流區</a></li>
+                                    <li><a href="">關於我們</a></li>
+                                    <li class="rwd"><a href="">會員中心</a></li>
+                                    <li class="rwd"><a href="message.html">我的信箱</a></li>
+                                    <li class="rwd"><a href="index.html">登出</a></li>
+                                    <li class="memZone">
+                                        <div>
+                                            <div class="memPic"></div>
+                                            <div class="message">
+                                                <span class="unread">2</span>
+                                            </div>
+                                        </div>
+                                        <ul class="memZone">
+                                            <li><a href="">會員中心</a></li>
+                                            <li><a href="index.html">登出</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <button class="hamburger hamburger--spring" type="button">
+                                    <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </nav>
+                        `;
+                        var script= document.getElementById("script");
+                        script.innerHTML+= `
+                        `;
+                    }
+                }else{
+                    alert( xhr.status );
+                }
+            }
+        }
+        getMember();
     </script>
 </body>
 </html>
