@@ -460,6 +460,7 @@
     <script src="./js/index_animation.js"></script>
     <script src="./js/jquery.lettering.js"></script>
     <script src="./js/jquery.textillate.js"></script>
+    <script src="./js/signInOut.js"></script>
 
     <script id="script">
 
@@ -473,7 +474,7 @@
         let middleMakeSame= document.querySelector('section.collar div.middle a.makeSame');
         for(let i=0; i<collarOptions.length; i++){
             collarOptions[i].addEventListener('click',function(e){
-                collarMiddle.style.backgroundImage=`url(../img/paper/paper_${i}.png)`;
+                collarMiddle.style.backgroundImage=`url(./img/paper/paper_${i}.png)`;
                 middleNum.innerText=`0${i+1}`;
                 middleImg.src= `img/collar_middle_${i}.png`;
                 if(i == 0){
@@ -578,69 +579,8 @@
         });     
 
 
-        //會員判斷
-        function getMember(){
-            var xhr= new XMLHttpRequest();
-            var url= "./php/checkMem.php";
-            xhr.open("POST",url,true);
-            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            var data_info= "";
-            xhr.send(data_info);
-            
-            xhr.onload=function (){
-                if( xhr.status == 200 ){
-                    if(xhr.responseText.indexOf("true")!=-1){
-                        console.log(xhr.responseText);
-                        var header = document.getElementById("header");
-                        header.innerHTML=`
-                        <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
-                                <h1>
-                                    <img src="./img/logo-wide.png" alt="logo">
-                                </h1>
-                                <ul class="col-xl-9 col-lg-9 col-md-9">
-                                    <li><a href="">浪浪在哪裡</a></li>
-                                    <li><a href="">愛心助浪浪</a></li>
-                                    <li><a href="">客製化項圈</a></li>
-                                    <li><a href="">毛孩交流區</a></li>
-                                    <li><a href="">關於我們</a></li>
-                                    <li class="rwd"><a href="">會員中心</a></li>
-                                    <li class="rwd"><a href="message.html">我的信箱</a></li>
-                                    <li class="rwd"><a href="index.html">登出</a></li>
-                                    <li class="memZone">
-                                        <div>
-                                            <div class="memPic"></div>
-                                            <div class="message">
-                                                <span class="unread">2</span>
-                                            </div>
-                                        </div>
-                                        <ul class="memZone">
-                                            <li><a href="">會員中心</a></li>
-                                            <li><a href="index.html">登出</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <button class="hamburger hamburger--spring" type="button">
-                                    <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                    </span>
-                                </button>
-                            </div>
-                        </nav>
-                        `;
-                        var script= document.getElementById("script");
-                        var body= document.querySelector('body');
-                        var headerScript= document.createElement("script");
-                        headerScript.src="./js/memberHeader.js";
-                        body.insertBefore(headerScript,script);
-                        
-                    }
-                }else{
-                    alert( xhr.status );
-                }
-            }
-        }
-        getMember();
+        
+
     </script>
 </body>
 </html>

@@ -122,8 +122,11 @@ section{
     @include scrollbar('aside');
     aside{
         background-color: rgb(250, 250, 250);
+        border-right: 1px solid #ccc;
+
         overflow-y: scroll;
         height: 100%;
+        padding: 0;
         div.myMessage{
             display: flex;
             justify-content: space-between;
@@ -135,6 +138,7 @@ section{
         }
         ul{
             li{
+                width: 100%;
                 list-style: none;
                 display: flex;
                 padding: 15px 30px;

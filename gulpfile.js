@@ -101,7 +101,7 @@ gulp.task('default',function(){
     browserSync.init({
         server:{
             baseDir: "./dest/",
-            index: "login.html",
+            index: "index.html",
         }
     });
     gulp.watch(web.js,['js']).on('change',reload);
