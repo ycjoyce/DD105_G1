@@ -9,8 +9,8 @@
         width: 100%;
         z-index:5;
         &.slideUp {
-            -webkit-transform: translateY(-100px);
-            transform: translateY(-100px);
+            -webkit-transform: translateY(-120px);
+            transform: translateY(-120px);
             transition: transform .5s ease-out;
             @include rwd(sm){
                 -webkit-transform: translateY(0px);
@@ -146,7 +146,7 @@
                                 display: inline-block;
                                 width: 20px;
                                 height: 20px;
-                                background-image: url(../../img/pawprint-01.svg);
+                                background-image: url("../img/pawprint-01.svg");
                                 background-size: contain;
                                 background-repeat: no-repeat;
                                 position: absolute;
@@ -246,7 +246,7 @@
                                     width: 40px;
                                     height: 40px;
                                     border-radius: 100%;
-                                    background-image: url("../../img/message_mem_1.jpg");
+                                    background-image: url("../img/message_mem_1.jpg");
                                     background-size: cover;
                                     background-repeat: no-repeat;
                                     background-position: right center;
@@ -258,7 +258,7 @@
                                     display: inline-block;
                                     width: 25px;
                                     height: 25px;
-                                    background-image: url("../../img/message.svg");
+                                    background-image: url("../img/message.svg");
                                     background-size: cover;
                                     background-repeat: no-repeat;
                                     background-position: center center;
@@ -316,7 +316,7 @@
                                     display:block;
                                     width: 100%;
                                     background-color: #fff;
-                                    background-color: #bef18cad;
+                                    background-color: #bef18cdf;
                                     transition: all 0.5s ease;
                                     &:first-child{
                                         border-bottom: 1px solid #fff;

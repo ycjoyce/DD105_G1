@@ -8,6 +8,12 @@
     })
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+    <style>
+        #theText span{
+            font: 40px 'Candelia';
+            color: #5d5c5c;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
@@ -27,14 +33,14 @@
     <div id="dog_backhome"></div>
     <section class="intro">
         <div class="title">
-            <h1 class="enSpecialFont">Bring Love Home</h1>
+            <h1 class="enSpecialFont parallax2" id="theText">Bring Love Home</h1>
             <div>
-                <img class="wow slideInLeft" src="./img/header_title_1.png">
-                <img class="wow slideInLeft" data-wow-delay='.2s' src="./img/header_title_2.png">
+                <img class="wow slideInLeft parallax3" data-wow-duration=".5s" src="./img/header_title_1.png">
+                <img class="wow slideInLeft parallax4" data-wow-duration=".5s" src="./img/header_title_2.png">
             </div>
         </div>
-        <div class="carousel wow fadeIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11" data-wow-delay='.5s'>
-            <div class="bg"></div>
+        <div class="carousel wow fadeIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11" data-wow-delay='.5s' data-wow-duration="1s">
+            <div class="bg parallax1"></div>
         </div>
         <div class="scroll static-content">
             <p class="titleFont smalltext">SCROLL</p>
@@ -49,15 +55,16 @@
     </section>
 
     <section class="about">
-        <h3 class="enSpecialFont">About</h3>
+        <h3 class="enSpecialFont" id="trigger01">About</h3>
         <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11" data-wow-duration="1s" data-wow-delay=".5s">
             <div class="text col-xl-6 col-lg-6 col-md-7 col-sm-12 col-ss12">
                 <div class="about">
-                    <h2>
+                    <!-- <div id="trigger01"></div> -->
+                    <h2 class="wow fadeInUp" data-wow-delay="0.5s">
                         <img src="./img/logo.png">
                         關於浪愛回家
                     </h2>
-                    <p>
+                    <p class="wow fadeInUp" data-wow-delay="0.7s">
                         我們關心台灣弱勢的動物，<br>
                         親身貼近動物，真切感受弱勢動物的困苦，<br>
                         以溫柔、堅定的力量「為牠們發聲」。<br>
@@ -74,14 +81,16 @@
                 <video src="img/twelveNight.mp4" autoplay muted loop></video>
             </div>
         </div>
-        <div class="where">
-            <div id="trigger01"></div>
-            <div id="whereCat">
+        <div class="where" id="trigger02">
+
+            <div id="whereCat" class="parallax5">
                 <img class="left cat" src="./img/where_cat.png">
-                <img class="left" src="./img/cloud-left-2.png">
+                <img class="left cloud" src="./img/cloud-left-2.png">
             </div>
-            <img class="right dog" src="./img/where_dog.png">
-            <img class="right" src="./img/cloud-right-2.png">
+            <div id="whereDog" class="parallax6">
+                <img class="right dog" src="./img/where_dog.png">
+                <img class="right cloud" src="./img/cloud-right-2.png">
+            </div>
             <div class="title">
                 <!-- <img src="./img/left-img.png"> -->
                 <h3 class="enSpecialFont wow fadeInUp">Where are they</h3>
@@ -116,8 +125,8 @@
             <iframe src="https://maps.google.com?output=embed&q=taiwan+中央大學" frameborder="0" width="100%" height="500"></iframe>
         </div>
         <div class="card wow fadeInRight" data-wow-duration="1s">
-            <h3><a href="#" class="titleFont">寵物遺失地點</a></h3>
-            <p>
+            <h3 class="wow fadeInUp" data-wow-delay=".5s"><a href="#" class="titleFont">寵物遺失地點</a></h3>
+            <p class="wow fadeInUp" data-wow-delay=".7s">
                 心愛的毛孩走丟了也別驚慌，<br>
                 快來回報遺失的地點讓大家一同協尋！<br>
                 看見疑似走失的貓狗也來聯繫主人確認吧。<br>
@@ -193,7 +202,7 @@
             </div>
         </div>
         <div class="leftSide col-xl-6 col-lg-5">
-            <div class="card on first wow fadeInUp col-xl-8" data-wow-delay=".5s">
+            <div class="card on first wow fadeInLeft col-xl-8" data-wow-delay=".2s">
                 <div class="col-xl-5 col-lg-5 img">
                     <img src="img/donation_card_1.jpg">
                 </div>
@@ -209,7 +218,7 @@
                     <input type="hidden" name="goal" value="30000">
                 </div>
             </div>
-            <div class="card wow fadeInUp col-xl-8" data-wow-delay=".7s">
+            <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".4s">
                 <div class="col-xl-5 col-lg-5 img">
                     <img src="img/donation_card_2.jpg">
                 </div>
@@ -225,7 +234,7 @@
                     <input type="hidden" name="goal" value="20000">
                 </div>
             </div>
-            <div class="card wow fadeInUp col-xl-8" data-wow-delay=".9s">
+            <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".6s">
                 <div class="col-xl-5 col-lg-5 img">
                     <img src="img/donation_card_3.jpg">
                 </div>
@@ -263,14 +272,14 @@
                 "connect": " href='about.html'"
             })
             <div class="images">
-                <img src="./img/handicraft_1.png">
-                <img src="./img/handicraft_2.png">
-                <img src="./img/handicraft_3.png">
-                <img src="./img/handicraft_4.png">
-                <img src="./img/handicraft_5.png">
-                <img src="./img/handicraft_6.png">
-                <img src="./img/handicraft_7.png">
-                <img src="./img/handicraft_8.png">
+                <img class="collarDeco1" src="./img/handicraft_1.png">
+                <img class="collarDeco2" src="./img/handicraft_2.png">
+                <img class="collarDeco3" src="./img/handicraft_3.png">
+                <img class="collarDeco4" src="./img/handicraft_4.png">
+                <img class="collarDeco5" src="./img/handicraft_5.png">
+                <img class="collarDeco6" src="./img/handicraft_6.png">
+                <img class="collarDeco7" src="./img/handicraft_7.png">
+                <img class="collarDeco8" src="./img/handicraft_8.png">
             </div>
         </div>
         <div class="middle orange">
@@ -434,8 +443,8 @@
             "connect": " href='about.html'"
         })
         <div class="paw">
-            <img src="img/pawprint-01.svg">
-            <img src="img/pawprint-01.svg">
+            <img class="paw paw1" src="img/pawprint-01.svg">
+            <img class="paw paw2" src="img/pawprint-01.svg">
         </div>
         
     </section>
@@ -449,9 +458,12 @@
     <script src="./js/donation_carousel.js"></script>
     <script src="./js/map_carousel.js"></script>
     <script src="./js/index_animation.js"></script>
-    
+    <script src="./js/jquery.lettering.js"></script>
+    <script src="./js/jquery.textillate.js"></script>
+    <script src="./js/signInOut.js"></script>
 
-    <script>
+    <script id="script">
+
         //點擊項圈
         let collarOptions= document.querySelectorAll('section.collar div.bottom div.option');
         let middleImg= document.getElementById('middleImg');
@@ -462,30 +474,36 @@
         let middleMakeSame= document.querySelector('section.collar div.middle a.makeSame');
         for(let i=0; i<collarOptions.length; i++){
             collarOptions[i].addEventListener('click',function(e){
-                collarMiddle.style.backgroundImage=`url(../img/paper/paper_${i}.png)`;
+                collarMiddle.style.backgroundImage=`url(./img/paper/paper_${i}.png)`;
                 middleNum.innerText=`0${i+1}`;
                 middleImg.src= `img/collar_middle_${i}.png`;
-
-                if(i!=1){
-                    if(collarMiddle.classList.contains("orange")){
-                        collarMiddle.classList.remove("orange");
-                        if(i == 0)
-                            middleH3.innerText="質感藍色";
-                        else if(i == 2)
-                            middleH3.innerText="熱情紅色";
-                        else if(i == 3)
-                            middleH3.innerText="穩重褐色";
-                        else if(i == 4)
-                            middleH3.innerText="溫暖綠色";
-                        else if(i == 5)
-                            middleH3.innerText="清新藍綠";
-                        else if(i == 6)
-                            middleH3.innerText="夢幻粉色";
-                    }
-                }else{
+                if(i == 0){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="質感藍色";
+                }
+                else if(i ==1){
+                    collarMiddle.classList.add("orange");
                     middleH3.innerText="經典白色";
-                    if(collarMiddle.classList.contains("orange")==false)
-                        collarMiddle.classList.add("orange");
+                }
+                else if(i == 2){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="熱情紅色";
+                }
+                else if(i == 3){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="穩重褐色";
+                }
+                else if(i == 4){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="溫暖綠色";
+                }
+                else if(i == 5){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="清新藍綠";
+                }
+                else if(i == 6){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="夢幻粉色";
                 }
             });
         }
@@ -512,10 +530,57 @@
             decimal: '.',
         }
         let demo = new CountUp(target , startVal, endVal , decimals , duration , options);
-        document.querySelector('section.donation').addEventListener("mouseover",demo.start());
-        // demo.start();
+        var nowScroll,groupToTop;
+        var windowHeight = $(window).height(); 
+        var group = $("section.donation");
+        $(window).scroll(function(){
+            nowScroll = $(this).scrollTop();
+            groupToTop = group.offset().top;
+            if(windowHeight + nowScroll > groupToTop){
+                demo.start();
+            }
+        });
+        
+        
 
         new WOW().init();
+
+
+        //intro英文字
+        $('#theText').textillate({
+            loop: false,
+            minDisplayTime: 5000,
+            initialDelay: 500,
+            in: {
+                effect: 'fadeIn',
+                delayScale: 1.5,
+                delay: 50,
+                sequence: true,
+                sync: false,
+                reverse: false,
+                shuffle: false,
+                callback: function () {}
+            },
+            out: {
+                effect: 'pulse',
+                delayScale: 1.5,
+                delay: 50,
+                sequence: true,
+                sync: false,
+                reverse: false,
+                shuffle: false,
+                callback: function () {}
+            },
+            autoStart: true,
+            inEffects: [],
+            outEffects: ['fadeOut'],
+            callback: function () {},
+            type: 'char'
+        });     
+
+
+        
+
     </script>
 </body>
 </html>

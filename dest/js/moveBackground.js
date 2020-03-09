@@ -1,8 +1,16 @@
 let lFollowX = 0,
+<<<<<<< HEAD
     lFollowY = 0,
     x = 0,
     y = 0,
     friction = 1 / 30;
+=======
+      lFollowY = 0,
+      x = 0,
+      y = 0,
+      friction = 1 / 30,
+      translate;
+>>>>>>> yc
 
 function moveBackground() {
       x += (lFollowX - x) * friction;
@@ -27,4 +35,34 @@ $(window).on('mousemove click', function (e) {
       lFollowY = 10 * lMouseY / 100;
 });
 
+<<<<<<< HEAD
 moveBackground();
+=======
+moveBackground();
+
+$.fn.parallax = function(resistance, mouse) {
+  TweenMax.to($(this), 0.2, {
+    x: -((mouse.clientX - window.innerWidth / 2) / resistance),
+    y: -((mouse.clientY - window.innerHeight / 2) / resistance)
+  });
+};
+
+$(document).mousemove(function(e) {
+  // $(".parallax1").parallax(-30, e);
+  $(".parallax2").parallax(10, e);
+  $(".parallax3").parallax(20, e);
+  $(".parallax4").parallax(30, e);
+  $(".parallax5").parallax(20, e);
+  $(".parallax6").parallax(20, e);
+  $(".collarDeco1").parallax(20, e);
+  $(".collarDeco2").parallax(10, e);
+  $(".collarDeco3").parallax(30, e);
+  $(".collarDeco4").parallax(10, e);
+  $(".collarDeco5").parallax(20, e);
+  $(".collarDeco6").parallax(30, e);
+  $(".collarDeco7").parallax(10, e);
+  $(".collarDeco8").parallax(5, e);
+  // $(".paw1").parallax(10, e);
+  // $(".paw2").parallax(5, e);
+  });
+>>>>>>> yc
