@@ -71,7 +71,7 @@
                 <span class="titleFont">2 則未讀</span>
             </div>
             <ul>
-                <li class="unRead">
+                <!-- <li class="unRead">
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
                     </div>
@@ -81,7 +81,7 @@
                             <span class="smalltext">2020.02.24　21:09</span>
                         </div>
                         <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
-                    </div>
+                    </div> 
                 </li>
                 <li class="on">
                     <div class="img">
@@ -94,7 +94,7 @@
                         </div>
                         <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
                     </div>
-                </li>
+                </li> -->
                 <li>
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
@@ -138,12 +138,12 @@
                 </li>
                 
             </ul>
-            <form action="./php/message.php" method="POST" class="edit">
+            <form action="./php/message.php" method="POST" class="edit" enctype="multipart/form-data">
                 <label for="upload">
-                    <input type="file" id="upload" accept="image/*">
+                    <input type="file" id="upload" name="upload" accept="image/*">
                 </label>
-                <input type="text" id="inputText" placeholder="請輸入私信內容">
-                <input type="submit">
+                <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
+                <input type="submit" value="">
             </div>
         </main>
     </section>
@@ -243,6 +243,7 @@
             }
         });
 
+        
 
     </script>
 </body>
