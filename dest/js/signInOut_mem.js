@@ -1,3 +1,4 @@
+//私信、會員中心用這支
 //會員判斷
 function getMember(){
     var xhr= new XMLHttpRequest();
@@ -55,6 +56,9 @@ function getMember(){
                 var headerScript= document.createElement("script");
                 headerScript.src="./js/memberHeader.js";
                 body.insertBefore(headerScript,script);
+                var memImgSrc= xhr.responseText.split("|")[5];
+                var memImg= document.querySelector('li.memZone div div.memPic');
+                memImg.style.backgroundImage=`url("./img/memImg/${memImgSrc}")`;
             }
         }
     }
