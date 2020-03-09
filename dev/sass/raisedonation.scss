@@ -1,0 +1,462 @@
+// 基本設定
+@import 'layout/wrapper';
+
+//=======================================================
+
+//格線系統
+@import 'layout/grid';
+//12欄
+//class="col-1" 寬度為總寬度的 1/12
+//class="col-6" 寬度為總寬度的 6/12
+//以此類推(col-1 ~ col-12)
+
+//=======================================================
+
+//字體及字級設定
+@import 'layout/font';
+//花體英文字 class="enSpecialFont"
+//標題、按鈕等會用到的襯線字體 class="titleFont"
+//日期、按鈕等會用到的小字 class="smalltext"
+
+//=======================================================
+
+//常用顏色
+@import 'layout/color';
+//引用此支sass以變數使用常用色
+//$darkgreen ----- 深綠色
+//$lightgreen ----- 淺綠色
+//$gray ----- 深灰色
+//$lightgray ----- 淺灰色
+
+//=======================================================
+
+//header導覽列
+@import 'layout/header';
+@include header(fixed);
+
+//=======================================================
+
+//footer及page top按鈕
+@import 'layout/footer';
+
+//=======================================================
+
+//按鈕
+@import 'layout/btn';
+//深綠色按鈕 class="btn darkgreen"
+//淺綠色按鈕 class="btn lightgreen"
+//深灰色按鈕 class="btn gray"
+
+//=======================================================
+
+//若子元素都為float元素，支撐父層高度
+@import 'layout/fatherHeight';
+//使用方式 ----- @include fatherHeight();
+
+//=======================================================
+
+//卡片(圓角10px/白底)
+@import 'layout/card';
+//使用方式 ----- @include card();
+
+//=======================================================
+
+//跳轉符號
+@import 'layout/change';
+//使用方式 ----- @include changePage();
+@include changePage();
+
+
+//=======================================================
+
+//overflow時的滑動軸
+@import 'layout/scrollbar';  
+//使用方式 ----- @include scrollbar(要套用的物件);
+//例如 ----- @include scrollbar('div.top');
+
+@import 'layout/rwd';
+//使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
+//=======================================================
+
+@import 'layout/rwd2';
+//使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
+//=======================================================
+
+.col-12.topimg{
+    img{
+        display: block;
+        width: 100%;
+        // filter: brightness(.7);
+    }
+}
+
+.col-12.step{
+    display: flex;
+    margin-top: 5%;
+    .col-8.stepcontent{
+        margin: 0 auto;
+        .col-12.title{
+            margin-top: 5%;
+            margin-bottom: 10%;
+            h2{
+                text-align: center;
+                color: #555555;
+            }
+        }
+        .col-12.steps{
+            display: flex;
+            // margin-bottom: 10%;
+            .first_step,.second_step,.third_step,.forth_step{
+                border: 1px solid #76912E;
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                // background-color: #BCEF82;
+
+                h1{
+                    // letter-spacing: 10px;
+                    // border: 1px solid salmon;
+                    color: #76912E;
+                    
+
+
+                }
+
+                h2{
+                    text-align: center;
+                    color: #76912E;
+                }
+
+                p{
+
+                    text-align: center;
+                    color: #76912E;
+
+                }
+
+                
+            }
+
+            .arrow{
+                // border: 1px solid teal;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                margin-left: -2%;
+                margin-right: 2%;
+                opacity: .5;
+                
+                
+                img{
+                    width: 60px;
+                    display: block;
+                    // border: 1px solid teal;
+                    
+
+                    
+                }
+            }
+
+            .complete{
+                p{
+                    color: #76912E;
+                    line-height: 150px;
+                
+                }
+            }
+
+        }
+    }
+}
+
+.col-12.form{
+    display: flex;
+    margin-top: 5%;
+    background-image: url(../img/body_bg.png);
+    .col-8.form_content{
+        margin: 0 auto;
+        margin-top: 5%;
+        background-color: white;
+        margin-bottom: 5%;
+        position: relative;
+        .irasuto{
+            // left: 80%;
+            top:-5%;
+            right: -5%;
+            position: absolute;
+
+            img{
+                width: 100%;
+                display: block;
+                // border: 1px solid salmon;
+
+            }
+        }
+
+        form{
+
+            margin-top: 5%;
+            
+
+
+            .name,.email,.startdate,.enddate,.projectname,.goal,.coverphoto,.otherphoto1,.otherphoto2,.otherphoto3,.otherphoto4,.otherphoto5,.projectcontent{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 4%;
+    
+                label,input,textarea{
+                    font-size: 16px;
+                    margin-left: 5%;
+                    color: #555555;
+                }
+    
+                label{
+                    margin-bottom: 1%;
+                }
+    
+                input{
+                    width: 50%;
+                    border: 1px solid #ccc;
+                    padding: 6px;
+                    color: #555555;
+                }
+    
+                input#name,input#startdate,input#enddate,input#goal{
+                    width: 30%;
+                }
+    
+                textarea{
+                    // width: 80%;
+                    margin-right: 5%;
+                    resize: none;
+                    border: 1px solid #ccc;
+                }
+    
+    
+            }
+    
+            .coverphoto,.otherphoto1{
+                position: relative;
+                display: inline-block;
+                // background: #D0EEFF;
+                border: 1px solid #ccc;
+                // padding: 4px 12px;
+                overflow: hidden;
+                text-decoration: none;
+                text-indent: 0;
+                line-height: 20px;
+                width: 150px;
+                padding: 6px;
+                margin-left: 5%;
+                
+    
+                input#coverphoto {
+                    position: absolute;
+                    font-size: 100px;
+                    right: 0;
+                    top: 0;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+                
+            }
+    
+            .rule{
+                div{
+                    // border: 1px solid salmon;
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 5%;
+                    // width: 30%;
+    
+                    label{
+                        margin-top: 1%;
+                        font-size: 16px;
+                        color: #555555;
+                    }
+                    input{
+                        margin-right: 1%;
+                        color: #555555;
+    
+                        p{
+                            margin-left: 0;
+                            // border: 1px solid salmon;
+                            color: #555555;
+                        }
+                        
+                    }
+                }
+    
+                p{
+    
+                    margin-top: 1%;
+                    font-size: 16px;
+                    margin-left: 5%;
+                    color: #555555;
+    
+                }
+            }
+
+            @include scrollbar('div.contract');
+
+            .contract{
+                margin-top: 5%;
+                border: 1px solid #ccc;
+                margin-left: 5%;
+                margin-right: 5%;
+                height: 450px;
+                overflow-y: scroll;
+                margin-bottom: 5%;
+                background-color: rgba(238, 236, 236, 0.178);
+    
+                h4{
+                    text-align: center;
+                    margin: 4%;
+                    color: #555555;
+                }
+    
+                p{
+                    margin-bottom: 3%;
+                    margin-left: 5%;
+                    margin-right: 5%;
+                    color: #555555;
+                }
+    
+                p.title{
+                    font-weight: bold;
+                    font-size: 16px;
+                    margin-bottom: 2%;
+    
+                }
+    
+            }
+
+
+            .frommebutton{
+
+                // border: 1px solid salmon;
+                text-align: center;
+                margin-bottom: 5%;
+                button{
+                    width: 200px;
+                    height: 60px;
+                    cursor: pointer;
+                    font-size: 16px;
+                    letter-spacing: 4px;
+                    border: 1px solid #76912E;
+                    background-color: #76912E;
+                    color: white;
+                   
+                }
+            }
+        }
+
+        
+
+    
+    }
+}
+
+
+// rwd
+
+//rwd 959~768px==============================
+
+.col-12.step{
+
+    @include pad-width{
+
+        .col-8.stepcontent{
+            width: 90%;
+
+            .col-12.steps{
+
+                align-items: center;
+    
+                .first_step,.second_step,.third_step,.forth_step{
+                    width: 135px;
+                    height: 135px;
+
+                    h1{
+                        font-size: 2rem;
+                    }
+                    h2{
+                        font-size: 1.6rem;
+                        
+                    }
+                }   
+    
+            }
+        }
+        
+
+    }
+
+}
+
+.col-12.form{
+
+    padding-bottom: 15%;
+
+    @include pad-width{
+
+        .col-8.form_content{
+            width: 85%;
+        }
+
+
+    }
+
+}
+
+
+
+//rwd 767~375px==============================
+
+.col-12.step{
+
+    @include small-pad-width{
+        display: none;
+    }
+
+}
+
+
+.col-12.form{
+
+    padding-bottom: 15%;
+    margin-top: 15%;
+
+    @include small-pad-width{
+
+        .col-8.form_content{
+            width: 85%;
+
+            .irasuto{
+                width: 30%;
+            }
+
+
+            form{
+                .name,.email,.startdate,.enddate,.projectname,.goal{
+                    input#name,input#email,input#startdate,input#enddate,input#projectname,input#goal{
+                        width: 90%;
+                    }
+                }
+
+                .rule{
+                    p{
+                        margin-right: 5%;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+}
+
+ 

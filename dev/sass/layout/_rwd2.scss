@@ -1,0 +1,36 @@
+//先針對media queries的width設為變數
+
+$pc-media:960px;
+$pcs-media:959px;
+$pad-media:768px;
+$pads-media:767px;
+$phone-media:375px;
+$phones-media:374px;
+
+/*把變數帶入mixin中，此mixin只就單純把media queries寫到我的mixin中，
+並且使用我上面設立的變數來調動media queries的width*/
+
+//電腦  960↑
+ @mixin pc-width() {
+  @media all and (min-width: $pc-media) {
+               @content;
+         }
+    }
+//平板 959~768
+ @mixin pad-width() {
+@media all and (min-width:$pad-media) and (max-width: $pcs-media) {
+                @content;
+          }
+}
+//小平板 767~375
+ @mixin small-pad-width() {
+        @media all and (min-width: $phone-media) and (max-width:$pads-media) {
+                @content;
+          }
+ }
+//手機 374↓
+ @mixin phone-width() {
+        @media all and (max-width: $phones-media) {
+                @content;
+          }
+ }
