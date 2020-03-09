@@ -18,24 +18,104 @@ section{
         height: 100%;
         width: 100%;
         position: absolute;
-        z-index: 4;
+        z-index: 5;
         left: 0;
         top: 0;
-        background-color: #44444481;
+        background-color: #24242481;
+        display: none;
         form{
             width: 300px;
-            height: 220px;
+            max-width: 90vw;
+            // height: 200px;
             background-color: #fff;
             border-radius: 10px;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%,-50%);
-            padding: 30px;
-            p{}
+            padding: 30px 40px;
             button{
-                &.yes{}
-                &.cancel{}
+                display: inline-block;
+                width: 100px;
+                height: 40px;
+                position: relative;
+                outline:none;
+                color: #fff;
+                transition: all 0.5s ease-in-out;
+                margin-top: 10px;
+                
+                &.yes{
+                    border: 1.2px solid $darkgreen;
+                    background-color: $darkgreen;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+                &.cancel{
+                    border: 1.2px solid $lightgreen;
+                    background-color: $lightgreen;
+                    color: $gray;
+                    float: right;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+            }
+        }
+    }
+    #deleteAlert{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        background-color: #24242481;
+        display: none;
+        form{
+            width: 300px;
+            max-width: 90vw;
+            // height: 200px;
+            background-color: #fff;
+            border-radius: 10px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            padding: 30px 40px;
+            p{
+                letter-spacing: 0;
+            }
+            button{
+                display: inline-block;
+                width: 100px;
+                height: 40px;
+                position: relative;
+                outline:none;
+                color: #fff;
+                transition: all 0.5s ease-in-out;
+                margin-top: 10px;
+                
+                &.yes{
+                    border: 1.2px solid $darkgreen;
+                    background-color: $darkgreen;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
+                &.cancel{
+                    border: 1.2px solid $lightgreen;
+                    background-color: $lightgreen;
+                    color: $gray;
+                    float: right;
+                    &:hover{
+                        background-color: #fff;
+                        color: $darkgreen;
+                    }
+                }
             }
         }
     }
@@ -140,11 +220,11 @@ section{
                     position: absolute;
                     width: 100px;
                     padding: 10px;
-                    background-color: rgb(172, 226, 205);
+                    background-color: rgba(145, 185, 170, 0.89);
+                    border: 1px solid rgb(141, 187, 169);
                     right: 5px;
                     top: 45px;
                     color: rgb(246, 246, 246);
-                    // color: #8b8b8b9d;
                     display: none;
                     &.on{
                         display: block;
@@ -154,7 +234,7 @@ section{
                         display: inline-block;
                         width: 0px;
                         height: 0px;
-                        border-color: rgb(172, 226, 205) transparent transparent transparent;
+                        border-color: rgb(141, 187, 169) transparent transparent transparent;
                         border-style: solid solid solid solid;
                         border-width: 10px 5px 10px 5px;
                         position: absolute;

@@ -9,13 +9,20 @@
     <link rel="stylesheet" href="./css/message.css">
 </head>
 <body>
-    @@include('./layout/header.html')
+    @@include('./layout/header_mem.html')
     <section>
-        <div id="blackListAlert">
-            <form method="POST">
+        <div id="blackListAlert" class="md-modal md-effect-1">
+            <form method="POST" class="md-content">
                 <p>設定為黑名單後即無法傳送私信給此用戶，並無法收到此用戶傳來的私信，是否確認將此用戶設為黑名單？</p>
-                <button class="yes btn darkgreen">確認</button>
-                <button class="cancel">取消</button>
+                <button class="yes titleFont">確認</button>
+                <button class="cancel titleFont md-close">取消</button>
+            </form>
+        </div>
+        <div id="deleteAlert">
+            <form method="POST">
+                <p>刪除私信後即無法再顯示及回覆該筆私信，是否確認刪除此筆私信？</p>
+                <button class="yes titleFont">確認</button>
+                <button class="cancel titleFont">取消</button>
             </form>
         </div>
         <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12">
@@ -239,23 +246,46 @@
             </div>
         </main>
     </section>
-    <script src="js/heightWithoutHeader.js"></script>
-    <script src="js/hamburger.js"></script>
+    <script src="./js/heightWithoutHeader.js"></script>
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/memberHeader.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script> -->
     <script>
         sectionHeight();
         window.addEventListener('resize',sectionHeight);
 
         let setBlackZone= document.getElementById("setBlackZone");
-        setBlackZone.style.top= document.querySelector('nav').offsetHeight + 10 + "px";
         let setting= document.getElementById("setting");
         let setBlack= document.getElementById("setBlack");
+        let blackListAlert= document.getElementById("blackListAlert");
+        let closeBtns= document.querySelectorAll('button.closeBtn');
+        let deleteAlert= document.getElementById("deleteAlert");
+        
+        setBlackZone.style.top= document.querySelector('nav').offsetHeight + 10 + "px";
+        window.addEventListener('resize',function(){
+            setBlackZone.style.top= document.querySelector('nav').offsetHeight + 10 + "px";
+        });
         setting.addEventListener("click",function(){
             setBlack.classList.toggle("on");
         });
-        // setBlack.addEventListener("click",function(){
+        setBlack.addEventListener("click",function(){
+            setBlack.classList.toggle("on");
+            blackListAlert.style.display="block";
+        });
+        blackListAlert.querySelector('button.cancel').onclick=function(e){
+            e.preventDefault();
+            blackListAlert.style.display="none";
+        };
+        for(let i=0; i<closeBtns.length; i++){
+            closeBtns[i].onclick=function(){
+                deleteAlert.style.display="block";
+            }
+        }
+        deleteAlert.querySelector('button.cancel').onclick=function(e){
+            e.preventDefault();
+            deleteAlert.style.display="none";
+        }
 
-        // })
         let chatRooms= document.querySelectorAll('aside ul li');
         let aside= document.querySelector('aside');
         let main= document.querySelector('main');  
