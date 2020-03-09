@@ -13,11 +13,14 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="./css/map.css">
     <script src="./js/jquery-3.4.1.js"></script>
-    <script src="./js/jquery-ui.js"></script>
     <script src="./js/modernizr.custom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- scrollmagic -->
+    <!-- 主程式 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <!-- 跟tweenmax結合 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <!-- 開發時debug用(標示觸發點)，上線時移除 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </head>
@@ -28,17 +31,17 @@
     <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
             <h1>
-                <a href="index.html">
-                    <img src="../img/logo-wide.png" alt="logo">
+                <a href="./index.html">
+                    <img src="./img/logo-wide.png" alt="logo">
                 </a>
             </h1>
             <ul class="col-xl-9 col-lg-9 col-md-9">
-                <li><a href="">浪浪在哪裡</a></li>
-                <li><a href="">愛心助浪浪</a></li>
-                <li><a href="">客製化項圈</a></li>
+                <li><a href="./map.html">浪浪在哪裡</a></li>
+                <li><a href="./donation.html">愛心助浪浪</a></li>
+                <li><a href="./customized.html">客製化項圈</a></li>
                 <li><a href="./post_article_region.html">毛孩交流區</a></li>
-                <li><a href="">關於我們</a></li>
-                <li><a class="login" href="../login.html">登入 / 註冊</a></li>
+                <li><a href="./aboutus.html">關於我們</a></li>
+                <li><a class="login" href="./login.html">登入 / 註冊</a></li>
             </ul>
             <button class="hamburger hamburger--spring" type="button">
                 <span class="hamburger-box">
@@ -67,6 +70,7 @@
                 <!-- <img src="./img/map_lostdog_boy.png"> -->
                 <img src="./img/map_lostdog_dog.png" id="lostdogDog">
                 <img src="./img/map_lostdog_girl.png" id="lostdogGirl">
+                <img src="./img/map_lostdog_girl_sweat.gif" id="lostdogGirlSweat">
             </div>
             <!-- <div></div> -->
 
@@ -77,8 +81,8 @@
                 <div data-aos="fade-right">
                     我們也了解很多主人出門遊樂時，不想將毛小孩丟在外面自己進去餐廳吃飯、飯店住宿或者景點玩樂，因此花了很多時間收集寵物友善店家、寵物友善環境狀況，針對寵物服務和設施的寵物友善商家或景點記錄，希望帶給您與毛孩子更豐富的回憶！
                 </div>
-                <div class="map_introCircle map_introCircle_1">寵物遺失通報</div>
-                <div class="map_introCircle map_introCircle_2">寵物友善空間</div>
+                <a href="#mapArea" class="map_introCircle map_introCircle_1">寵物遺失通報</a>
+                <a href="#mapArea" class="map_introCircle map_introCircle_2">寵物友善空間</a>
                 <div class="map_intro_dog">
                     <img src="./img/map_intro_leftleaf.png">
                     <img src="./img/map_intro_dog.png">
@@ -180,7 +184,8 @@
 
 
         <!--------------------- 第五屏map --------------------->
-        <section class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12" data-aos="fade-down">
+        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12"
+            data-aos="fade-down">
             <!-- 左側篩選區 -->
             <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12">
 
@@ -275,24 +280,24 @@
 
                             <!-- 寵物友善空間－我的收藏 -->
                             <!-- <div class="map_filter_lost"> -->
-                                <h3>
-                                    <input type="checkbox" name="favorite" id="favorite">
-                                    <label for="favorite">我的最愛</label>
-                                </h3>
-                                <p>
-                                    <input type="checkbox" name="fa_rest" id="fa_rest">
-                                    <label for="fa_rest">友善餐廳</label>
-                                </p>
-                                <p>
-                                    <input type="checkbox" name="fa_stay" id="fa_stay">
-                                    <label for="fa_stay">友善住宿</label>
-                                </p>
-                                <p>
-                                    <input type="checkbox" name="fa_point" id="fa_point">
-                                    <label for="fa_point">友善景點</label>
-                                </p>
-                                
-                                <!-- <hr> -->
+                            <h3>
+                                <input type="checkbox" name="favorite" id="favorite">
+                                <label for="favorite">我的最愛</label>
+                            </h3>
+                            <p>
+                                <input type="checkbox" name="fa_rest" id="fa_rest">
+                                <label for="fa_rest">友善餐廳</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" name="fa_stay" id="fa_stay">
+                                <label for="fa_stay">友善住宿</label>
+                            </p>
+                            <p>
+                                <input type="checkbox" name="fa_point" id="fa_point">
+                                <label for="fa_point">友善景點</label>
+                            </p>
+
+                            <!-- <hr> -->
                             <!-- </div> -->
                         </div>
                     </div>
@@ -399,7 +404,7 @@
     </p>
 </footer>
 
-<script src="../js/page_top.js"></script>
+<script src="./js/page_top.js"></script>
 
 
     <script src="./js/hamburger.js"></script>
@@ -446,6 +451,7 @@
 
 
             // ====== TweenMax & ScrollMagic (Lostdog)
+            // ------ Dog ------ 
             var controller = new ScrollMagic.Controller();
             var lostdogDog = TweenMax.to('#lostdogDog', 16, {
                 x: -2000,
@@ -459,22 +465,54 @@
                 .addIndicators()
                 .addTo(controller);
 
-            var lostdogGirl = TweenMax.to('#lostdogGirl', 6, {
+            // ------ Girl ------ 
+            var lostdogGirl = TweenMax.to('#lostdogGirl', 3, {
                 x: -400
             });
-            lostdogGirl.delay(0.5);
+            lostdogGirl.delay(1);
             new ScrollMagic.Scene({
                 triggerElement: '#trigger01',
             }).setTween(lostdogGirl)
                 .addIndicators()
                 .addTo(controller);
 
+            // ------ Hurry Girl ------ 
+            var lostdogGirlSweat = TweenMax.to('#lostdogGirlSweat', 1, {
+                alpha: 1,
+            });
+            lostdogGirlSweat.delay(4);
+            new ScrollMagic.Scene({
+                triggerElement: '#trigger01',
+            }).setTween(lostdogGirlSweat)
+                .addIndicators()
+                .addTo(controller);
+
+            // ====== TweenMax & ScrollMagic (Boy&Dog)
+            TweenMax.to('.map_intro_boyndog', 1, {
+                y: 5,
+                x: 3,
+                yoyo: true,
+                repeat: -1,
+            });
+
+            // ====== TweenMax & ScrollMagic (Leaf&Dog)
+            TweenMax.to('.map_intro_dog img:nth-child(2)', 1, {
+                rotation: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: Power0.easeNone,
+            });
+
             // ====== TweenMax & ScrollMagic (Lostdog)
             var controller = new ScrollMagic.Controller();
             var map_hurryGirl = TweenMax.to('#map_hurryGirl', 2.5, {
                 x: 100,
-                startAt: { x: -400 },
-                alpha: 1
+                startAt: { x: -200 },
+                alpha: 1,
+                // rotationY: 180,
+                yoyo: true,
+                // repeat: -1,
+                repeatDelay: 0.5
             });
             map_hurryGirl.delay(2);
             new ScrollMagic.Scene({
@@ -503,7 +541,17 @@
                     triggerElement: '#trigger01',
                 }).setTween(lostdogGirl).addIndicators().addTo(controller);
             }
-        }); </script>
+        });
+
+    </script>
+
+    <!-- 視差滾動 -->
+    <!-- <script src="./js/jquery-parallax.js"></script>
+    <script>
+        $(document).mousemove(function (e) {
+            $('.map_intro_boyndog').parallax(10, e);
+        });
+    </script> -->
 
     <!-- 輪播圖 -->
     <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
