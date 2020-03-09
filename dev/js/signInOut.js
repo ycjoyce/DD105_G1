@@ -10,7 +10,7 @@ function getMember(){
     xhr.onload=function (){
         if( xhr.status == 200 ){
             if(xhr.responseText.indexOf("true")!=-1){
-                console.log(xhr.responseText);
+                // console.log(xhr.responseText);
                 var header = document.getElementById("header");
                 header.innerHTML=`
                 <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -55,6 +55,9 @@ function getMember(){
                 var headerScript= document.createElement("script");
                 headerScript.src="./js/memberHeader.js";
                 body.insertBefore(headerScript,script);
+                var memImgSrc= xhr.responseText.split("|")[5];
+                var memImg= document.querySelector('li.memZone div div.memPic');
+                memImg.style.backgroundImage=`url("./img/memImg/${memImgSrc}")`;
             }
         }
     }

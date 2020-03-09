@@ -70,7 +70,7 @@
                 <h2>我的信箱</h2>
                 <span class="titleFont"></span><!--幾則未讀-->
             </div>
-            <ul>
+            <ul class="aside">
                 <!-- <li class="unRead">
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
@@ -245,11 +245,51 @@
 
         function getMsg(){
             var xhr= new XMLHttpRequest();
-            var url= "./message.php";
+            var url= "./php/message.php";
             xhr.open("POST",url,true);
-            
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "";
+            xhr.send(data_info);
+            xhr.onload=function (){
+                console.log(xhr.responseText);
+                // console.log(xhr.responseText.split("|")[6]);
+                var li= document.createElement("li");
+                var divImg= document.createElement("div");
+                divImg.className= "img";
+                li.appendChild(divImg);
+                var img= document.createElement("img");
+                var sendMemPic= xhr.responseText.split("|")[6];
+                img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
+                divImg.appendChild(img);
+                var divText= document.createElement("div");
+                divText.className="text";
+                var divTitle= document.createElement("div");
+                divTitle.className="title";
+                divText.appendChild(divTitle);
+                var h4= document.createElement("h4");
+                var sendMemName= xhr.responseText.split("|")[5];
+                var h4Text= document.createTextNode(sendMemName);
+                h4.appendChild(h4Text);
+                var span= document.createElement("span");
+                var sendTime= xhr.responseText.split("|")[2];
+                var spanText= document.createTextNode(sendTime);
+                span.appendChild(spanText);
+                span.className="smalltext";
+                divTitle.appendChild(h4);
+                divTitle.appendChild(span);
+                var p= document.createElement("p");
+                if(xhr.responseText.indexOf("last")!=-1){
+                    var latestMsg= xhr.responseText.split("|")[3];//跟此人之間最新一則消息
+                }
+                var pText= document.createTextNode(latestMsg);
+                p.appendChild(pText);
+                divText.appendChild(p);
+                li.appendChild(divText);
+                var ulAside= document.querySelector("ul.aside");
+                ulAside.appendChild(li);
+            };
         }
-
+        getMsg();
     </script>
 </body>
 </html>
