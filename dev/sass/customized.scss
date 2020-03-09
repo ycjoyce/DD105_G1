@@ -1,0 +1,1054 @@
+// 基本設定
+@import 'layout/header';
+@import 'layout/collarLightBox';
+@include header(relative);
+// @include header(sticky);
+@import 'layout/wrapper';
+@import 'layout/grid';
+@import 'layout/font';
+@import 'layout/color';
+@import 'layout/footer';
+@import 'layout/btn';
+@import 'layout/fatherHeight';
+@import 'layout/card';
+@import 'layout/change';
+@include changePage();
+@import 'layout/scrollbar';
+@import 'layout/rwd';
+@import 'layout/tagLightBox';
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+ ::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    // box-shadow: inset 0px 0px 2px 0px black;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #747474;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #313131;
+}
+
+nav {
+    // border: 1px solid red;
+    box-shadow: 0px 2px 5px 0px rgb(172, 172, 172);
+}
+
+section {
+    // border: 1px solid red;
+    width: 100%;
+    .content {
+        // border: 1px solid green;
+        width: 100%;
+        // height: 831px;
+        height: calc(100vh - 106.438px);
+        display: flex;
+        // background-color: #eae0bf;
+        position: relative;
+        @include RWD(md) {
+            flex-direction: column;
+            height: calc(100vh - 75px);
+        }
+        .preview_area {
+            // border: 1px solid blue;
+            border-top: 0.5px solid rgba(128, 128, 128, 0.486);
+            width: calc(100% - 400px);
+            position: relative;
+            // background-color: #eae0bf;
+            transition: all 0.5s ease-in-out;
+            background-color: white;
+            h1 {
+                position: absolute;
+                top: 0%;
+                opacity: 0.6;
+                text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
+                margin-left: 10px;
+                @include RWD(md) {
+                    top: unset;
+                    bottom: -50px;
+                }
+                @include RWD(ss) {
+                    top: unset;
+                    bottom: -30px;
+                    font-size: 1.5rem;
+                }
+                @include RWD(xs) {
+                    top: unset;
+                    bottom: -30px;
+                    font-size: 1.5rem;
+                }
+            }
+            @include RWD(md) {
+                width: 100%;
+                height: 60%;
+            }
+            @include RWD(ss) {
+                height: 55%;
+            }
+            @include RWD(xs) {
+                height: 55%;
+            }
+            canvas {
+                position: absolute;
+            }
+            #zoomIn {
+                position: absolute;
+                right: 73px;
+                top: 28px;
+                // z-index: 2;
+                @include RWD(md) {
+                    top: unset;
+                    bottom: 16px;
+                }
+                @include RWD(ss) {
+                    right: 17px;
+                    bottom: 16px;
+                    width: 18px;
+                    height: 18px;
+                    display: none;
+                }
+            }
+            .list-item {
+                width: 54px;
+                height: 50px;
+                padding: 12px;
+                font-size: 20px;
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: 0%;
+                top: 2%;
+                @include RWD(md) {
+                    top: unset;
+                    bottom: 2%;
+                }
+                @include RWD(ss) {
+                    bottom: 0%;
+                }
+                input[type="checkbox"] {
+                    position: absolute;
+                    clip: rect(0, 0, 0, 0); // Hide original checkbox
+                    &+label {
+                        position: relative;
+                        flex: 1;
+                        // Ellipse
+                        &::before {
+                            content: "";
+                            display: inline-block;
+                            box-sizing: border-box;
+                            width: 54px;
+                            height: 30px;
+                            border-radius: 30px;
+                            background: #FFF;
+                            border: 1px solid rgb(180, 180, 180);
+                            box-shadow: 0 0 0 gray inset;
+                            transition: all 0.25s ease-in-out 0s;
+                            position: absolute;
+                            right: 0;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            // z-index: 1;
+                        }
+                        // Circle
+                        &::after {
+                            content: "";
+                            display: inline-block;
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 30px;
+                            border: 1px solid rgb(180, 180, 180);
+                            background-color: white;
+                            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+                            transition: all 0.25s ease-in-out 0s;
+                            position: absolute;
+                            right: 54px - 30px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            cursor: pointer;
+                            // z-index: 3;
+                        }
+                    }
+                    &:checked+label {
+                        // Ellipse
+                        &::before {
+                            border: 1px solid limegreen;
+                            box-shadow: 0 0 100px limegreen inset;
+                        }
+                        // Circle
+                        &::after {
+                            right: 0;
+                            border: 1px solid limegreen;
+                        }
+                    }
+                }
+                i {
+                    font-size: 16px;
+                    margin-right: 12px;
+                    padding: 0.3em;
+                    background: blue;
+                    color: white;
+                    border-radius: 6px;
+                }
+            }
+        }
+        .edit_area {
+            border: 0.5px solid rgba(128, 128, 128, 0.356);
+            min-width: 600px;
+            max-width: 600px;
+            // background: white;
+            background-color: #fff8de;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 0;
+            // overflow: scroll;
+            @include RWD(md) {
+                width: 100%;
+                height: 40%;
+            }
+            @include RWD(ss) {
+                height: 45%;
+            }
+            @include RWD(xs) {
+                height: 45%;
+            }
+            // 頁籤開始---------------------------------
+            #stepTab {
+                width: 100%;
+                margin: 0 auto;
+                .tabs {
+                    // border: 1px solid red;
+                    border-bottom: 0.5px solid rgba(0, 0, 0, 0.239);
+                    margin: 0px;
+                    padding: 0px;
+                    list-style: none;
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
+                    .fakeCircle1 {
+                        // border: 1px solid red;
+                        width: 110px;
+                        height: 106px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(115deg);
+                        left: 6px;
+                        top: 1px;
+                        // display: block;
+                        opacity: 1;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle1 7s ease-in-out infinite;
+                        @include keyframes(fakeCircle1) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle2 {
+                        // border: 1px solid red;
+                        width: 106px;
+                        height: 110px;
+                        border-radius: 47%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-30deg);
+                        left: 6px;
+                        top: 1px;
+                        // display: block;
+                        opacity: 1;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle2 4s ease-in-out infinite;
+                        @include keyframes(fakeCircle2) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle3 {
+                        // border: 1px solid red;
+                        width: 112px;
+                        height: 104px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(10deg);
+                        left: 6px;
+                        top: 1px;
+                        // display: block;
+                        opacity: 1;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle3 10s ease-in-out infinite;
+                        @include keyframes(fakeCircle3) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle4 {
+                        // border: 1px solid red;
+                        width: 104px;
+                        height: 112px;
+                        border-radius: 46%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-120deg);
+                        left: 6px;
+                        top: 1px;
+                        // display: block;
+                        opacity: 1;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle4 6s ease-in-out infinite;
+                        @include keyframes(fakeCircle4) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle5 {
+                        // border: 1px solid red;
+                        width: 110px;
+                        height: 106px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(115deg);
+                        bottom: 1px;
+                        left: 125px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle5 7s ease-in-out infinite;
+                        @include keyframes(fakeCircle5) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle6 {
+                        // border: 1px solid red;
+                        width: 106px;
+                        height: 110px;
+                        border-radius: 47%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-30deg);
+                        bottom: 1px;
+                        left: 125px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle6 4s ease-in-out infinite;
+                        @include keyframes(fakeCircle6) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle7 {
+                        // border: 1px solid red;
+                        width: 112px;
+                        height: 104px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(10deg);
+                        bottom: 1px;
+                        left: 125px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle7 10s ease-in-out infinite;
+                        @include keyframes(fakeCircle7) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle8 {
+                        // border: 1px solid red;
+                        width: 104px;
+                        height: 112px;
+                        border-radius: 46%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-120deg);
+                        bottom: 1px;
+                        left: 125px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle8 6s ease-in-out infinite;
+                        @include keyframes(fakeCircle8) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle9 {
+                        // border: 1px solid red;
+                        width: 110px;
+                        height: 106px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(115deg);
+                        top: 1px;
+                        left: 245px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle9 7s ease-in-out infinite;
+                        @include keyframes(fakeCircle9) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle10 {
+                        // border: 1px solid red;
+                        width: 106px;
+                        height: 110px;
+                        border-radius: 47%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-30deg);
+                        top: 1px;
+                        left: 245px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle10 4s ease-in-out infinite;
+                        @include keyframes(fakeCircle10) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle11 {
+                        // border: 1px solid red;
+                        width: 112px;
+                        height: 104px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(10deg);
+                        top: 1px;
+                        left: 245px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle11 10s ease-in-out infinite;
+                        @include keyframes(fakeCircle11) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle12 {
+                        // border: 1px solid red;
+                        width: 104px;
+                        height: 112px;
+                        border-radius: 46%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-120deg);
+                        top: 1px;
+                        left: 245px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle12 6s ease-in-out infinite;
+                        @include keyframes(fakeCircle12) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle13 {
+                        // border: 1px solid red;
+                        width: 110px;
+                        height: 106px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(115deg);
+                        bottom: 1px;
+                        left: 365px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle13 7s ease-in-out infinite;
+                        @include keyframes(fakeCircle13) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle14 {
+                        // border: 1px solid red;
+                        width: 106px;
+                        height: 110px;
+                        border-radius: 47%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-30deg);
+                        bottom: 1px;
+                        left: 365px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle14 4s ease-in-out infinite;
+                        @include keyframes(fakeCircle14) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle15 {
+                        // border: 1px solid red;
+                        width: 112px;
+                        height: 104px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(10deg);
+                        bottom: 1px;
+                        left: 365px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle15 10s ease-in-out infinite;
+                        @include keyframes(fakeCircle15) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle16 {
+                        // border: 1px solid red;
+                        width: 104px;
+                        height: 112px;
+                        border-radius: 46%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-120deg);
+                        bottom: 1px;
+                        left: 365px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle16 6s ease-in-out infinite;
+                        @include keyframes(fakeCircle16) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle17 {
+                        // border: 1px solid red;
+                        width: 110px;
+                        height: 106px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(115deg);
+                        right: 6px;
+                        top: 1px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle17 7s ease-in-out infinite;
+                        @include keyframes(fakeCircle17) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle18 {
+                        // border: 1px solid red;
+                        width: 106px;
+                        height: 110px;
+                        border-radius: 47%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-30deg);
+                        right: 6px;
+                        top: 1px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle18 4s ease-in-out infinite;
+                        @include keyframes(fakeCircle18) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle19 {
+                        // border: 1px solid red;
+                        width: 112px;
+                        height: 104px;
+                        border-radius: 48%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(10deg);
+                        right: 6px;
+                        top: 1px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle19 10s ease-in-out infinite;
+                        @include keyframes(fakeCircle19) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                    }
+                    .fakeCircle20 {
+                        // border: 1px solid red;
+                        width: 104px;
+                        height: 112px;
+                        border-radius: 46%;
+                        position: absolute;
+                        background-color: #7e9c23;
+                        transform: rotate(-120deg);
+                        right: 6px;
+                        top: 1px;
+                        // display: none;
+                        opacity: 0;
+                        transition: all 0.2s ease-in-out;
+                        animation: fakeCircle20 6s ease-in-out infinite;
+                        @include keyframes(fakeCircle20) {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(-360deg);
+                            }
+                        }
+                    }
+                    li {
+                        // border: 1px solid #747474;
+                        width: 90px;
+                        height: 90px;
+                        border-radius: 50%;
+                        background-color: #fff8de;
+                        margin: 0px 15px;
+                        display: inline-block;
+                        cursor: pointer !important;
+                        position: relative;
+                        z-index: 2;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        font-size: 1.2rem;
+                        .stepNum {
+                            position: absolute;
+                            top: 0px;
+                            left: 0px;
+                            // color: #747474;
+                            font-size: 1.5rem;
+                        }
+                        .stepTitle {
+                            // color: #747474;
+                        }
+                        .tabSpanOpen {
+                            user-select: none;
+                            color: #7e9c23;
+                        }
+                        .tabSpanClose {
+                            user-select: none;
+                            color: #747474;
+                        }
+                    }
+                    #bigTab1 {
+                        margin-top: 10px;
+                    }
+                    #bigTab3 {
+                        margin-top: 10px;
+                    }
+                    #bigTab5 {
+                        margin-top: 10px;
+                    }
+                    #bigTab2 {
+                        margin-top: 120px;
+                        margin-bottom: 10px;
+                    }
+                    #bigTab4 {
+                        margin-top: 120px;
+                        margin-bottom: 10px;
+                    }
+                    li.current {
+                        border: 1px solid #7e9c23;
+                        background: #7e9c23;
+                        color: white;
+                        transform: scale(1.2);
+                        transition: all 0.2s ease-in-out;
+                        .stepNum {
+                            color: #FFFFFF;
+                            text-shadow: -0.5px -0.5px 0px black, 0.5px 0.5px 0px black;
+                        }
+                        .stepTitle {
+                            color: #ffffff;
+                            // text-shadow: 0.5px 0.5px 0px black;
+                        }
+                    }
+                    .tabOpen {
+                        border: 1px solid #7e9c23;
+                        transition: all 0.2s ease-in-out;
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+                    }
+                    .tabClose {
+                        border: 1px solid #747474;
+                    }
+                    .tabLine1 {
+                        border-bottom: 2px dashed #7e9c23;
+                        border-left: 2px dashed #7e9c23;
+                        border-bottom-left-radius: 50%;
+                        position: absolute;
+                        bottom: 52px;
+                        left: 57px;
+                        width: 80px;
+                        height: 68px;
+                        transition: all 0.8s ease-in-out;
+                        z-index: 1;
+                        opacity: 0;
+                    }
+                    .tabLine2 {
+                        border-top: 2px dashed #7e9c23;
+                        border-left: 2px dashed #7e9c23;
+                        border-top-left-radius: 50%;
+                        position: absolute;
+                        bottom: 100px;
+                        left: 177px;
+                        width: 80px;
+                        height: 68px;
+                        transition: all 0.8s ease-in-out;
+                        z-index: 1;
+                        opacity: 0;
+                    }
+                    .tabLine3 {
+                        border-top: 2px dashed #7e9c23;
+                        border-right: 2px dashed #7e9c23;
+                        border-top-right-radius: 50%;
+                        position: absolute;
+                        bottom: 100px;
+                        left: 340px;
+                        width: 80px;
+                        height: 68px;
+                        transition: all 0.8s ease-in-out;
+                        z-index: 1;
+                        opacity: 0;
+                    }
+                    .tabLine4 {
+                        border-bottom: 2px dashed #7e9c23;
+                        border-right: 2px dashed #7e9c23;
+                        border-bottom-right-radius: 50%;
+                        position: absolute;
+                        bottom: 52px;
+                        left: 463px;
+                        width: 80px;
+                        height: 70px;
+                        transition: all 0.8s ease-in-out;
+                        z-index: 1;
+                        opacity: 0;
+                    }
+                }
+                #tabsContent {
+                    .tab-content {
+                        // border: 1px solid blue;
+                        display: none;
+                        width: 100%;
+                    }
+                    .tab-content.current {
+                        display: inherit;
+                    }
+                    .collarImagesContainer {
+                        // border: 1px solid red;
+                        height: calc(100vh - 106.438px - 270px);
+                        display: flex;
+                        justify-content: space-around;
+                        flex-wrap: wrap;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
+                        width: 100%;
+                        .collarImagesBoxs {
+                            // border: 1px solid rgba(0, 0, 0, 0.171);
+                            width: 50%;
+                            height: 280px;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            &:hover .collarImages {
+                                transform: scale(1.2);
+                            }
+                            &:hover .collarShadow {
+                                transform: scale(1.2);
+                                opacity: 0.8;
+                            }
+                            .collarImages {
+                                user-select: none;
+                                width: 55%;
+                                margin-bottom: 15px;
+                                filter: brightness(0.9);
+                                transition: all 0.2s ease-in-out;
+                            }
+                            .collarImages.imageApplying {
+                                width: 80%;
+                            }
+                            .collarShadow {
+                                margin-top: 15px;
+                                transition: all 0.2s ease-in-out;
+                                opacity: 0;
+                            }
+                            .collarShadow.shadowApplying {
+                                opacity: 1;
+                                transform: scale(1.3);
+                            }
+                        }
+                    }
+                    #collarTagSlider {
+                        // border: 1px solid red;
+                        width: 100%;
+                        height: 450px;
+                        position: relative;
+                        margin: 0px auto;
+                        overflow: hidden;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        #collarTagWrap {
+                            // border: 1px solid red;
+                            width: 1800px;
+                            position: absolute;
+                            left: 200px;
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            transition: left 0.5s ease-in-out;
+                            .tagItems {
+                                // border: 1px solid #747474;
+                                width: 100px;
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                                justify-content: center;
+                                position: relative;
+                                margin: 0px 50px;
+                                // &::before {
+                                //     content: "";
+                                //     // border: 1px solid red;
+                                //     width: 198px;
+                                //     height: 198px;
+                                //     position: absolute;
+                                //     top: 0px;
+                                //     left: 0px;
+                                //     background-color: rgba(0, 0, 0, 0.3);
+                                // }
+                                .tagImages {
+                                    width: 100%;
+                                    transition: all 0.7s ease-in-out 0.1s;
+                                    cursor: pointer;
+                                }
+                                .lockPoint {
+                                    width: 100%;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    margin: 100px auto 15px auto;
+                                    visibility: hidden;
+                                    opacity: 0;
+                                    transition: all 0.2s ease-in-out 0.3s;
+                                }
+                                .lockStatus {
+                                    visibility: hidden;
+                                    opacity: 0;
+                                    transition: all 0.2s ease-in-out 0.3s;
+                                    .unlock {
+                                        border: 1px solid #313131;
+                                        background: transparent;
+                                        width: 120px;
+                                        height: 35px;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        cursor: pointer;
+                                        transition: all 0.2s ease-in-out;
+                                        &:hover {
+                                            background: #313131;
+                                            color: white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .sliderBtns {
+                        // border: 1px solid red;
+                        width: 150px;
+                        display: flex;
+                        justify-content: center;
+                        margin: 0px auto;
+                        #tagTotal {
+                            #nowTag {
+                                transition: 0.2s ease-in-out;
+                            }
+                        }
+                    }
+                }
+            }
+            // 頁籤結束---------------------------------
+            .stepBtn {
+                // border: 1px solid red;
+                height: 50px;
+                width: 600px;
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                bottom: 0px;
+                right: 0px;
+                background-color: rgba(0, 0, 0, 0.8);
+                .stepNextBtn {
+                    border: 0px solid red;
+                    width: 50%;
+                    background: #7e9c23;
+                    color: white;
+                    cursor: pointer;
+                }
+                .stepBackBtn {
+                    border: 0px solid red;
+                    background: #313131;
+                    color: white;
+                    width: 50%;
+                    cursor: pointer;
+                }
+            }
+            #purchaseBtn {
+                margin-top: 200px;
+                width: 100%;
+                #purchaseBtn_1 {
+                    position: fixed;
+                    z-index: 0;
+                    bottom: 0px;
+                    right: 10px;
+                    border: 0px solid red;
+                    width: 590px;
+                    background: #7e9c23;
+                    height: 50px;
+                    color: white;
+                    cursor: pointer;
+                    @include RWD(md) {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
