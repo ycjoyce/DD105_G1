@@ -398,111 +398,6 @@
             if (winWidth > 992) {
                 $('#map_option_lost').addClass('is-active');
             };
-
-
-            // < !--animation -->
-            AOS.init({
-                duration: 1500,
-                once: true,
-                mirror: false
-            });
-
-
-            // ====== TweenMax & ScrollMagic (Lostdog)
-            // ------ Dog ------ 
-            var controller = new ScrollMagic.Controller();
-            var lostdogDog = TweenMax.to('#lostdogDog', 16, {
-                x: -2000,
-                y: 300,
-                alpha: 0.2,
-            });
-            lostdogDog.delay(0.5);
-            new ScrollMagic.Scene({
-                triggerElement: '#trigger01',
-            }).setTween(lostdogDog)
-                .addIndicators()
-                .addTo(controller);
-
-            // ------ Girl ------ 
-            var lostdogGirl = TweenMax.to('#lostdogGirl', 3, {
-                x: -400
-            });
-            lostdogGirl.delay(1);
-            new ScrollMagic.Scene({
-                triggerElement: '#trigger01',
-            }).setTween(lostdogGirl)
-                .addIndicators()
-                .addTo(controller);
-
-            // ------ Hurry Girl ------ 
-            var lostdogGirlSweat = TweenMax.to('#lostdogGirlSweat', 1, {
-                alpha: 1,
-            });
-            lostdogGirlSweat.delay(4);
-            new ScrollMagic.Scene({
-                triggerElement: '#trigger01',
-            }).setTween(lostdogGirlSweat)
-                .addIndicators()
-                .addTo(controller);
-
-            // ====== TweenMax & ScrollMagic (Boy&Dog)
-            TweenMax.to('.map_intro_boyndog', 1, {
-                y: 5,
-                x: 3,
-                yoyo: true,
-                repeat: -1,
-            });
-
-            // ====== TweenMax & ScrollMagic (Leaf&Dog)
-            TweenMax.to('.map_intro_dog img:nth-child(2)', 1, {
-                rotation: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: Power0.easeNone,
-            });
-
-            // ====== TweenMax & ScrollMagic (Lostdog)
-            var controller = new ScrollMagic.Controller();
-            var map_hurryGirl = TweenMax.to('#map_hurryGirl', 2.5, {
-                x: 100,
-                startAt: { x: -200 },
-                alpha: 1,
-                yoyo: true,
-                // repeat: -1,
-                // repeatDelay: 0.5
-            }).to('#map_hurryGirl', 0.5, {
-                rotationY: 180,
-            }).to('#map_hurryGirl', 2.5, {
-                x: -200,
-                startAt: { x: 100 },
-            });
-            map_hurryGirl.delay(2);
-            new ScrollMagic.Scene({
-                triggerElement: '#trigger02',
-            }).setTween(map_hurryGirl)
-                .addIndicators()
-                .addTo(controller);
-
-            var map_hurryDog = TweenMax.to('#map_hurryDog', 3, {
-                x: 600
-            });
-            map_hurryDog.delay(1.5);
-            new ScrollMagic.Scene({
-                triggerElement: '#trigger02',
-            }).setTween(map_hurryDog)
-                .addIndicators()
-                .addTo(controller);
-
-
-            // ====== TweenMax & ScrollMagic (Lostdog)
-            if ($(window).width() < 415) {
-                var controller = new ScrollMagic.Controller(); var
-                    lostdogDog = TweenMax.to('#lostdogDog', 5, { x: -400, y: 20, alpha: 0.2, }); lostdogDog.delay(0.5); new
-                        ScrollMagic.Scene({ triggerElement: '#trigger01', }).setTween(lostdogDog).addIndicators().addTo(controller);
-                var lostdogGirl = TweenMax.to('#lostdogGirl', 5, { x: -100 }); lostdogGirl.delay(0.5); new ScrollMagic.Scene({
-                    triggerElement: '#trigger01',
-                }).setTween(lostdogGirl).addIndicators().addTo(controller);
-            }
         });
 
     </script>
@@ -514,6 +409,9 @@
             $('.map_intro_boyndog').parallax(10, e);
         });
     </script> -->
+
+    <!-- 插圖動畫 -->
+    <script src="./js/map_animation.js"></script>
 
     <!-- 輪播圖 -->
     <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
