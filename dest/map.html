@@ -509,10 +509,14 @@
                 x: 100,
                 startAt: { x: -200 },
                 alpha: 1,
-                // rotationY: 180,
                 yoyo: true,
                 // repeat: -1,
-                repeatDelay: 0.5
+                // repeatDelay: 0.5
+            }).to('#map_hurryGirl', 0.5, {
+                rotationY: 180,
+            }).to('#map_hurryGirl', 2.5, {
+                x: -200,
+                startAt: { x: 100 },
             });
             map_hurryGirl.delay(2);
             new ScrollMagic.Scene({

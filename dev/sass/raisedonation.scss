@@ -85,16 +85,109 @@
 //=======================================================
 
 .col-12.topimg{
-    img{
-        display: block;
-        width: 100%;
-        // filter: brightness(.7);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+
+    .topimg{
+        img{
+            display: block;
+            width: 90%;
+            margin: 0 auto;
+            // filter: brightness(.7);
+        }
     }
+    
+
+    .greenbubble{
+
+        position: absolute;
+        top: 7%;
+        right: -8%;
+            animation: 5000ms greenbubbleAnimation infinite;
+
+            @keyframes greenbubbleAnimation {
+                0% { transform:translateY(20px);}
+                50% {transform:translateY(70px);}
+                100% {transform:translateY(20px);}
+
+            }
+            
+            img{
+                width: 40%;
+                display: block;
+
+            }
+            
+            
+
+    }
+
+    .bluebubble{
+
+        position: absolute;
+        top: 10%;
+        right: -5%;
+            animation: 9000ms bluebubbleAnimation infinite;
+
+            @keyframes bluebubbleAnimation {
+                0% { transform:translateY(20px);}
+                50% {transform:translateY(50px);}
+                100% {transform:translateY(20px);}
+
+            }
+            
+            img{
+                width: 50%;
+                display: block;
+
+            }
+            
+            
+
+    }
+
+
+    .littleyellowbubble{
+
+        position: absolute;
+        bottom: 15%;
+        left: 10%;
+            animation: 9000ms littleyellowbubbleAnimation infinite;
+
+            @keyframes littleyellowbubbleAnimation {
+                0% { transform:translateY(20px);}
+                50% {transform:translateY(50px);}
+                100% {transform:translateY(20px);}
+
+            }
+            
+            img{
+                width: 100%;
+                display: block;
+
+            }
+            
+            
+
+    }
+
+    // h1.first{
+    //     position: absolute;
+    //     top: 17%;
+    //     left: 7%;
+
+    //     color: #555555;
+    //     writing-mode: vertical-rl;
+    //     background-color: white;
+    //     // box-shadow: 3px 3px 10px #cfcfcfcf;
+     
+
+    // }
 }
 
 .col-12.step{
     display: flex;
-    margin-top: 5%;
     .col-8.stepcontent{
         margin: 0 auto;
         .col-12.title{
@@ -104,15 +197,33 @@
                 text-align: center;
                 color: #555555;
             }
+
+
+
+            p{
+                text-align: center;
+                color: #555555;
+                margin-top: 1%;
+            }
+
+            p:nth-child(1){
+                margin-top: 3%;
+            }
+
+            
+
+            
         }
         .col-12.steps{
             display: flex;
+            justify-content: space-between;
             // margin-bottom: 10%;
-            .first_step,.second_step,.third_step,.forth_step{
-                border: 1px solid #76912E;
-                width: 150px;
-                height: 150px;
-                border-radius: 50%;
+            .first_step,.second_step,.third_step,.forth_step,.complete{
+                width: 100%;
+                height: 200px;
+                // border: 1px solid seagreen;
+                margin: 1%;
+                
                 // background-color: #BCEF82;
 
                 h1{
@@ -139,6 +250,82 @@
                 
             }
 
+            .first_step{
+                background-image: url(../img/G.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                animation: 4000ms greenbubbleAnimation infinite;
+                animation-delay:1s;
+
+                @keyframes greenbubbleAnimation {
+                    0% { transform:translateY(0px);}
+                    50% {transform:translateY(3px);}
+                    100% {transform:translateY(0px);}
+
+                }
+                
+               
+            }
+
+            .second_step{
+                background-image: url(../img/B.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                animation: 6000ms bluebubbleAnimation infinite;
+                animation-delay:3s;
+
+                @keyframes bluebubbleAnimation {
+                    0% { transform:translateY(2px);}
+                    50% {transform:translateY(6px);}
+                    100% {transform:translateY(2px);}
+
+                }
+                
+
+                h1,h2,p{
+                    color: #81C4D0;
+                }
+            }
+
+            .third_step{
+                background-image: url(../img/C.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                animation: 8000ms yellowbubbleAnimation infinite;
+                animation-delay:1s;
+
+                @keyframes yellowbubbleAnimation {
+                    0% { transform:translateY(0px);}
+                    50% {transform:translateY(7px);}
+                    100% {transform:translateY(0px);}
+
+                }
+                
+                
+                h1,h2,p{
+                    color:#FFB452;
+                }
+            }
+
+            .forth_step{
+                background-image: url(../img/E.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                animation: 5000ms pinkbubbleAnimation infinite;
+                animation-delay:2s;
+
+                @keyframes pinkbubbleAnimation {
+                    0% { transform:translateY(0px);}
+                    50% {transform:translateY(5px);}
+                    100% {transform:translateY(0px);}
+
+                }
+
+                h1,h2,p{
+                    color:#E18E98;
+                }
+            }
+
             .arrow{
                 // border: 1px solid teal;
                 display:flex;
@@ -160,11 +347,44 @@
             }
 
             .complete{
-                p{
+                width: 100%;
+                background-image: url(../img/G.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: relative;
+                animation: 4000ms greenbubbleAnimation infinite;
+                animation-delay:1s;
+
+                @keyframes greenbubbleAnimation {
+                    0% { transform:translateY(0px);}
+                    50% {transform:translateY(3px);}
+                    100% {transform:translateY(0px);}
+
+                }
+               
+                
+                
+                h3{
                     color: #76912E;
-                    line-height: 150px;
+                    line-height: 180px;
+                    text-align: center;
                 
                 }
+
+                .sparkle{
+                    position: absolute;
+                    top: -3%;
+                    left: 50%;
+                    img{
+                        display: block;
+                        width: 100%;
+                        
+                    }
+                }
+
+                
+
+                
             }
 
         }
@@ -350,6 +570,51 @@
                     color: white;
                    
                 }
+            }
+
+            .bigpinkbubble{
+
+                position: absolute;
+                left: -10%;
+                bottom: -5%;
+                animation: 10000ms bigpinkbubbleAnimation infinite;
+                animation-delay:1s;
+
+                @keyframes bigpinkbubbleAnimation {
+                    0% { transform:translateY(20px);}
+                    50% {transform:translateY(50px);}
+                    100% {transform:translateY(20px);}
+
+                }
+
+                img{
+                    display: block;
+                    width: 60%;
+                }
+
+            }
+
+            .orangebubble{
+
+                position: absolute;
+                left: 2%;
+                bottom: 2%;
+                animation: 8000ms orangebubbleAnimation infinite;
+                animation-delay:1s;
+                z-index: 5;
+
+                @keyframes orangebubbleAnimation {
+                    0% { transform:translateY(10px);}
+                    50% {transform:translateY(40px);}
+                    100% {transform:translateY(10px);}
+
+                }
+
+                img{
+                    display: block;
+                    width: 100%;
+                }
+
             }
         }
 
