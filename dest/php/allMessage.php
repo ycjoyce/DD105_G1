@@ -2,8 +2,8 @@
 session_start();
 require_once("./connectDB.php");
 
-//找所有收件者為此會員的信件
-$sql= "select * from `message` where getMemNo='{$_SESSION["memNo"]}'";
+//找此會員跟所有寄件人的最新一筆
+$sql= "select * from (select * from message order by msgtime desc limit 100) as a where getmemno='{$_SESSION["memId"]}' group by sendmemno;'";
 $msg= $pdo->query($sql);
 $msgRows= $msg->fetchAll(PDO::FETCH_ASSOC);
 if($msgRows->rowCount()==0){

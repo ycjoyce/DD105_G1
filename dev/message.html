@@ -55,7 +55,7 @@
                         <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
                     </div>
                 </li> -->
-                <li>
+                <!-- <li>
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
                     </div>
@@ -66,7 +66,7 @@
                         </div>
                         <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
                     </div>
-                </li>
+                </li> -->
                 
             </ul>
         </aside>
@@ -203,22 +203,17 @@
             }
         });
 
-        function getMsg(){
-            var xhr= new XMLHttpRequest();
-            var url= "./php/message.php";
-            xhr.open("POST",url,true);
-            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            var data_info= "";
-            xhr.send(data_info);
-            xhr.onload=function (){
-                console.log(xhr.responseText);
-                // console.log(xhr.responseText.split("|")[6]);
+        //秀出左邊列表
+        function showMsgList(xmlDoc){
+            var fields= xmlDoc.documentElement.childNodes;//members>member
+            for(var i=0; i<fields.length; i++){
                 var li= document.createElement("li");
+                li.className= "No"+fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
                 var divImg= document.createElement("div");
                 divImg.className= "img";
                 li.appendChild(divImg);
                 var img= document.createElement("img");
-                var sendMemPic= xhr.responseText.split("|")[6];
+                var sendMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
                 img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
                 divImg.appendChild(img);
                 var divText= document.createElement("div");
@@ -227,29 +222,79 @@
                 divTitle.className="title";
                 divText.appendChild(divTitle);
                 var h4= document.createElement("h4");
-                var sendMemName= xhr.responseText.split("|")[5];
+                var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
                 var h4Text= document.createTextNode(sendMemName);
                 h4.appendChild(h4Text);
                 var span= document.createElement("span");
-                var sendTime= xhr.responseText.split("|")[2];
-                var spanText= document.createTextNode(sendTime);
+                var sendTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
+                var spanText= document.createTextNode(sendTime.split(" ")[0]+"　"+sendTime.split(" ")[1].split(":")[0]+":"+sendTime.split(" ")[1].split(":")[1]);
                 span.appendChild(spanText);
                 span.className="smalltext";
                 divTitle.appendChild(h4);
                 divTitle.appendChild(span);
                 var p= document.createElement("p");
-                if(xhr.responseText.indexOf("last")!=-1){
-                    var latestMsg= xhr.responseText.split("|")[3];//跟此人之間最新一則消息
+                if(fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue==""){
+                    var latestMsg= sendMemName+"傳送一張圖片";
+                }else{
+                    var latestMsg=fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
                 }
                 var pText= document.createTextNode(latestMsg);
                 p.appendChild(pText);
                 divText.appendChild(p);
                 li.appendChild(divText);
                 var ulAside= document.querySelector("ul.aside");
-                ulAside.appendChild(li);
+                ulAside.insertBefore(li,ulAside.firstChild);
+                var ulAsideLis= document.querySelectorAll(`aside ul li.No${fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue}`);
+                
+                for(var j=0; j<ulAsideLis.length; j++){
+                    ulAsideLis[j].onclick=function(){
+                        // showAllMsg(ulAsideLis[j].getAttribute("class"));
+                        console.log(ulAsideLis[j].getAttribute("class"));
+                    }
+                }
+            }
+        }
+
+        //取得左邊列表
+        function getMsg(){
+            var xhr= new XMLHttpRequest();
+            var url= "./php/LatestMessage.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "";
+            xhr.send(data_info);
+            xhr.onload=function (){
+                if(xhr.status==200){
+                    if(xhr.responseText.indexOf("notFound")==-1){
+                        showMsgList(xhr.responseXML);
+                        // alert(xhr.responseText);
+                    }else{
+                        alert("尚無私信內容");
+                    }
+                }else{
+                    alert(xhr.status);
+                }
             };
         }
         getMsg();
+
+        //按左邊列表顯示在右邊
+        function showAllMsg(sendMemNo){
+            var xhr= new XMLHttpRequest();
+            var url= "./php/showAllMsg.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "sendMemNo="+sendMemNo;
+            xhr.send(data_info);
+            xhr.onload=function(){
+                if(xhr.status==200){
+                    alert(xhr.responseText);
+                }else{
+                    alert(xhr.status);
+                }
+            };
+        }
+
     </script>
 </body>
 </html>
