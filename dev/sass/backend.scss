@@ -1,0 +1,57 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "node_modules/@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+// 外部資源
+@import "vendors/pace-progress/pace";
+
+.navbar-brand-full {
+  width: 90%;
+  height: 82%;
+}
+
+.sidebar .nav-link {
+  padding-left: 14%;
+  font-size: 0.9rem;
+  font-family: 微軟正黑體;
+}
+
+.sidebar .nav-link .nav-icon {
+  display: none;
+  margin: 0;
+}
+
+.sidebar .nav-dropdown.open > .nav-dropdown-items {
+  max-height: 228px;
+}
+
+.nav {
+  flex-wrap: nowrap;
+}
+
+.app-header {
+  height: 80px;
+}
+
+
+@media screen and (max-width: 1920px) {
+  .header-fixed .app-body {
+    margin-top: 80px;
+  }
+}
+
+
+@media screen and (max-width: 992px){
+.app-header .navbar-brand{
+  top: 12px;
+} 
+}
+
+.navbar-nav{
+  margin-right: 1%;
+}

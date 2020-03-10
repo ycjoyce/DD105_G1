@@ -1,7 +1,7 @@
 //hover會員圖片
-let memImg= document.querySelector('li.memZone div div.memPic');
+// let memberPic= document.querySelector('li.memZone div div.memPic');
 let memZoneUl= document.querySelector('li.memZone ul.memZone');
-memImg.addEventListener("click",function(){
+document.querySelector('li.memZone div div.memPic').addEventListener("click",function(){
     memZoneUl.classList.toggle("open");
 })
 
