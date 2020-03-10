@@ -1,12 +1,4 @@
-$(document).ready(function () {
-
-    // < !--AOS animation -->
-    AOS.init({
-        duration: 1500,
-        once: true,
-        mirror: false
-    });
-
+$(document).ready(function () { 
 
     // ====== TweenMax & ScrollMagic (Lostdog)
     // ------ Dog ------ 
