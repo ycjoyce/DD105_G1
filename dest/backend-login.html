@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台登入</title>
+    <link rel="stylesheet" href="css/backend-login.css">
+</head>
+
+<body>
+    <section id="loginBox">
+        
+        <div class="loginlogo">
+            <img src="img/logo.png">
+        </div>
+        <form action="#" method="post">
+            <table class="loginInfo">
+                <tr>
+                    <td class="memInfoBox">
+                        <input type="text" placeholder="User" maxlength="15" id="memId" name="memId">
+                        <div class="memInfoClear"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="memInfoBox">
+                        <input type="password" placeholder="Password" maxlength="15" id="memPsw" name="memPsw">
+                        <div class="memInfoClear"></div>
+                    </td>
+                </tr>
+            </table>
+            <a class="btn darkgreen nav__link" href='backend.html'>
+    <span class="titleFont">
+        登入
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+            <div id="registeredBtn"> </div>
+            <!-- <div id="registeredBtn">註冊</div> -->
+        </form>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/backend-login.js"></script>
+</body>
+
+</html>

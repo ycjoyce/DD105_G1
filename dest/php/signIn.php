@@ -13,8 +13,14 @@ try{
     }else{
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
         session_start();
+        $_SESSION["memNo"]= $memRow["memNo"];
         $_SESSION["memId"]= $memRow["memId"];
+        $_SESSION["memName"]= $memRow["memName"];
         $_SESSION["memPsw"]= $memRow["memPsw"];
+        $_SESSION["memPic"]= $memRow["memPic"];
+        $_SESSION["memPoint"]= $memRow["memPoint"];
+        $_SESSION["memStatus"]= $memRow["memStatus"];
+        $_SESSION["memTagNo"]= $memRow["memTagNo"];
         echo $_SESSION["memId"], ":", $_SESSION["memPsw"];
     }
 }catch(PDOException $e){
