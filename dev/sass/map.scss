@@ -123,15 +123,17 @@ body {
     .map_EN_title {
       color: rgba(255, 211, 115, 0.2);
       text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.1);
+      position: absolute;
       text-align: right;
-      margin-top: 3%;
-      margin-right: 20%;
+      top: 35% !important;
+      right: 20%;
     }
     .map_CH_title {
       text-align: right;
       text-shadow: 2px 2px 2px rgba(77, 77, 77, 0.5);
-      margin-top: -3%;
-      margin-right: 17%;
+      position: absolute;
+      top: 60% !important;
+      right: 25%;
       color: white;
     }
     @media (max-width: 1200px) {
@@ -768,7 +770,7 @@ body {
     margin: 100px 0 0;
     padding: 150px 0;
     text-align: center;
-    background-image: url(../img/map_lostpet_banner_bg.jpeg);
+    background-image: url(../img/map_lostpet_banner_bg.jpg);
     background-size: cover;
     background-attachment: fixed;
     display: flex;
@@ -905,6 +907,9 @@ body {
       width: 0;
       height: 0;
       border-left: 1px solid #ff5050;
+    }
+    .btn.red:hover {
+      background-color: #fff;
     }
     .btn.red:hover span {
       color: #ff5050;
