@@ -57,11 +57,11 @@ gulp.task('concat', function(){
 
 gulp.task('js',function () {
     return gulp.src(web.js)
-        .pipe(babel({
-            presets: ['env']
-        }))
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
+        // .pipe(babel({
+        //     presets: ['env']
+        // }))
+        // .pipe(jshint())
+        // .pipe(jshint.reporter('default'))
         .pipe(gulp.dest('./dest/js'))
 });
 

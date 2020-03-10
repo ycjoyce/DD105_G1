@@ -243,10 +243,12 @@
             }
         });
 
+        //秀出左邊列表
         function showMsgList(xmlDoc){
             var fields= xmlDoc.documentElement.childNodes;//members>member
             for(var i=0; i<fields.length; i++){
                 var li= document.createElement("li");
+                li.className= "No"+fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
                 var divImg= document.createElement("div");
                 divImg.className= "img";
                 li.appendChild(divImg);
@@ -265,7 +267,7 @@
                 h4.appendChild(h4Text);
                 var span= document.createElement("span");
                 var sendTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
-                var spanText= document.createTextNode(sendTime);
+                var spanText= document.createTextNode(sendTime.split(" ")[0]+"　"+sendTime.split(" ")[1].split(":")[0]+":"+sendTime.split(" ")[1].split(":")[1]);
                 span.appendChild(spanText);
                 span.className="smalltext";
                 divTitle.appendChild(h4);
@@ -281,11 +283,19 @@
                 divText.appendChild(p);
                 li.appendChild(divText);
                 var ulAside= document.querySelector("ul.aside");
-                ulAside.appendChild(li);
+                ulAside.insertBefore(li,ulAside.firstChild);
+                var ulAsideLis= document.querySelectorAll(`aside ul li.No${fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue}`);
+                
+                for(var j=0; j<ulAsideLis.length; j++){
+                    ulAsideLis[j].onclick=function(){
+                        // showAllMsg(ulAsideLis[j].getAttribute("class"));
+                        console.log(ulAsideLis[j].getAttribute("class"));
+                    }
+                }
             }
         }
-        
 
+        //取得左邊列表
         function getMsg(){
             var xhr= new XMLHttpRequest();
             var url= "./php/LatestMessage.php";
@@ -307,6 +317,24 @@
             };
         }
         getMsg();
+
+        //按左邊列表顯示在右邊
+        function showAllMsg(sendMemNo){
+            var xhr= new XMLHttpRequest();
+            var url= "./php/showAllMsg.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "sendMemNo="+sendMemNo;
+            xhr.send(data_info);
+            xhr.onload=function(){
+                if(xhr.status==200){
+                    alert(xhr.responseText);
+                }else{
+                    alert(xhr.status);
+                }
+            };
+        }
+
     </script>
 </body>
 </html>

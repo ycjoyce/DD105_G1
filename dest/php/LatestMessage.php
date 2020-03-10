@@ -3,7 +3,7 @@ session_start();
 require_once("./connectDB.php");
 
 //找此會員跟所有寄件人的最新一筆
-$sql= "select * from (select * from message order by msgtime desc limit 100) `tmp` where getmemno='{$_SESSION["memNo"]}' group by sendmemno;";
+$sql= "select * from (select * from message order by msgtime desc limit 100) `tmp` where getmemno='{$_SESSION["memNo"]}' group by sendmemno order by msgtime;";
 
 $msg= $pdo->query($sql);
 $msgRows= $msg->fetchAll(PDO::FETCH_ASSOC);
