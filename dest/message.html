@@ -117,7 +117,7 @@
                     <button id="setting"></button>
                     <span id="setBlack">設為黑名單</span>
                 </div>
-                <li class="otherSide">
+                <!-- <li class="otherSide">
                     <div class="img">
                         <img src="img/message_mem_1.jpg">
                     </div>
@@ -135,7 +135,7 @@
                         <span class="smalltext">2020.02.24　21:09</span>
                         <button class="closeBtn"></button>
                     </div>
-                </li>
+                </li> -->
                 
             </ul>
             <form action="./php/message.php" method="POST" class="edit" enctype="multipart/form-data">
@@ -287,9 +287,9 @@
                 var ulAsideLis= document.querySelectorAll(`aside ul li.No${fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue}`);
                 
                 for(var j=0; j<ulAsideLis.length; j++){
-                    ulAsideLis[j].onclick=function(){
-                        // showAllMsg(ulAsideLis[j].getAttribute("class"));
-                        console.log(ulAsideLis[j].getAttribute("class"));
+                    ulAsideLis[j].onclick=function(e){
+                        showAllMsg(this.getAttribute("class").substr(2));
+                        console.log(this.getAttribute("class").substr(2));
                     }
                 }
             }
@@ -307,7 +307,7 @@
                 if(xhr.status==200){
                     if(xhr.responseText.indexOf("notFound")==-1){
                         showMsgList(xhr.responseXML);
-                        // alert(xhr.responseText);
+                 
                     }else{
                         alert("尚無私信內容");
                     }
@@ -317,6 +317,65 @@
             };
         }
         getMsg();
+
+        //右邊的顯示內容
+        function showPanel(xmlDoc){
+            var fields= xmlDoc.documentElement.childNodes;//members>member
+            for(var i=0; i<fields.length; i++){
+                var li= document.createElement("li");
+                var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
+                var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
+                console.log("myMemNo:",myMemNo,"|sendMemNo:",sendMemNo);
+                if(myMemNo != sendMemNo){
+                    li.className="otherSide";
+                }else{
+                    li.className="self";
+                }
+                if(li.className=="otherSide"){
+                    var divImg= document.createElement("div");
+                    divImg.className="img";
+                    li.appendChild(divImg);
+                    var img= document.createElement("img");
+                    var sendMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
+                    img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
+                    divImg.appendChild(img);
+                    var h4= document.createElement("h4");
+                    var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                    var h4Text= document.createTextNode(sendMemName);
+                    h4.appendChild(h4Text);
+                    li.appendChild(h4);
+                }
+                var divText= document.createElement("div");
+                divText.className="text";
+                li.appendChild(divText);
+                if(li.className=="otherSide"){
+                    var h4= document.createElement("h4");
+                    var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                    var h4Text= document.createTextNode(sendMemName);
+                    h4.appendChild(h4Text);
+                    divText.appendChild(h4);
+                }
+                var p= document.createElement("p");
+                var pText= fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
+                var pNode= document.createTextNode(pText);
+                p.appendChild(pNode);
+                divText.appendChild(p);
+                //圖片的待補充
+                var span= document.createElement("span");
+                span.className="smalltext";
+                var msgTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
+                var spanText= document.createTextNode(msgTime.split(" ")[0]+"　"+msgTime.split(" ")[1].split(":")[0]+":"+msgTime.split(" ")[1].split(":")[1]);
+                span.appendChild(spanText);
+                divText.appendChild(span);
+                var button= document.createElement("button");
+                button.className="closeBtn";
+                divText.appendChild(button);
+                var ulMain= document.querySelector('main ul');
+                ulMain.appendChild(li);
+
+            }
+        }
+
 
         //按左邊列表顯示在右邊
         function showAllMsg(sendMemNo){
@@ -328,7 +387,8 @@
             xhr.send(data_info);
             xhr.onload=function(){
                 if(xhr.status==200){
-                    alert(xhr.responseText);
+                    showPanel(xhr.responseXML);
+                    // alert(xhr.responseText);
                 }else{
                     alert(xhr.status);
                 }
