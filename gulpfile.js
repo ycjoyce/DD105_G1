@@ -7,6 +7,8 @@ var reload= browserSync.reload;//browser-sync要設定一個變數為reload的�
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var sourcemaps = require('gulp-sourcemaps');
+var babel = require('gulp-babel');
+
 
 //打包
 //=================================================================
@@ -16,15 +18,20 @@ var sourcemaps = require('gulp-sourcemaps');
 var web={
     html:[
         'dev/*.html',
-        'dev/**/*.html'
+        'dev/**/*.html',
+        'dev/**/**/*.html'
     ],
     sass:[
         'dev/sass/*.scss',
         'dev/sass/**/*.scss'
     ],
-    js:[
+    js:[ 
         'dev/js/*.js',
         'dev/js/**/*.js'
+    ],
+    php:[ 
+        'dev/php/*.php',
+        'dev/php/**/*.php'
     ],
     font:[
         'dev/font/*.*',
@@ -33,16 +40,30 @@ var web={
     img:[
         'dev/img/*.*',
         'dev/img/**/*.*'
+    ],
+    css:[
+        'dest/css/*.css',
     ]
 };
 
 
 gulp.task('concat', function(){
     gulp.src(web.js).pipe(gulp.dest('./dest/js'));
+    gulp.src(web.php).pipe(gulp.dest('./dest/php'));
     gulp.src(web.font).pipe(gulp.dest('./dest/font'));
     gulp.src(web.img).pipe(gulp.dest('./dest/img'));
 });
 
+
+gulp.task('js',function () {
+    return gulp.src(web.js)
+        .pipe(babel({
+            presets: ['env']
+        }))
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'))
+        .pipe(gulp.dest('./dest/js'))
+});
 
 gulp.task('fileinclude', function() {
     gulp.src(web.html)
@@ -73,12 +94,22 @@ gulp.task('image-min',function(){
 //要上線前再壓縮即可
 
 
-//檢查js有沒有錯誤
-gulp.task('lint', function() {
-    return gulp.src(web.js)
-      .pipe(jshint())
-      .pipe(jshint.reporter('default'));
-  });
+//將task命名為default
+//終端機呼叫時不用gulp default
+//直接打gulp就可以了
+gulp.task('default',function(){
+    browserSync.init({
+        server:{
+            baseDir: "./dest/",
+            index: "index.html",
+        }
+    });
+    gulp.watch(web.js,['js']).on('change',reload);
+    gulp.watch(web.html,['fileinclude']).on('change',reload);
+    gulp.watch(web.sass,['sass']).on('change',reload);
+    gulp.watch(web.css).on('change',reload);
+    gulp.watch([web.js,web.php,web.font,web.img],['concat']).on('change',reload);
+});
 
 
 /*以下是關於我們的監看任務 */

@@ -1,5 +1,6 @@
 @import "layout/wrapper";
 @import "layout/grid";
+@import "layout/style";
 @import "layout/font";
 @import "layout/color";
 @import "layout/header";
@@ -13,7 +14,7 @@
 @import "layout/scrollbar";
 @import "layout/rwd";
 @import "layout/hamburger";
-@import "layout/style";
+
 
 @mixin bg_image($url_files, $pic_type) {
   background-image: url("../img/#{$url_files}.#{$pic_type}");
