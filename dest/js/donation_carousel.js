@@ -84,10 +84,3 @@ for(let i=1; i<=3; i++){
         donationCarousel();
     }
 }
-usel();
-    };
-};
-
-for (var i = 1; i <= 3; i++) {
-    _loop(i);
-}

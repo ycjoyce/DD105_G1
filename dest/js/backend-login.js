@@ -1,24 +1,23 @@
-'use strict';
-
 function loginInit() {
-    var storage = sessionStorage;
+    let storage = sessionStorage;
 
+    
     function hideClose() {
         $('.memInfoClear').css({
             'visibility': 'hidden'
-        });
+        })
     }
     $('input').focus(function () {
         $(this).next().css({
             'visibility': 'visible'
-        });
-    });
+        })
+    })
     $('input').focusout(function () {
-        setTimeout(hideClose, 200);
-    });
-
+        setTimeout(hideClose, 200)
+    })
+  
     $('.memInfoClear').click(function () {
         $(this).prev().val('');
-    });
+    })
 }
-window.addEventListener('load', loginInit);
+window.addEventListener('load', loginInit)

@@ -23,5 +23,3 @@ $('.theme-color').each(function () {
     </table>
   `)
 })
->\n        <td class="font-weight-bold">' + rgbToHex(Color) + '</td>\n      </tr>\n      <tr>\n        <td class="text-muted">RGB:</td>\n        <td class="font-weight-bold">' + Color + '</td>\n      </tr>\n    </table>\n  ');
-}); /* global rgbToHex */

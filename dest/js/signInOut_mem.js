@@ -107,10 +107,4 @@ function signOut(e){
             alert( xhr.status );
         }
     }
-};            <span class=\"hamburger-inner\"></span>\n                            </span>\n                        </button>\n                    </div>\n                </nav>\n                ";
-            location.href = "./index.html";
-        } else {
-            alert(xhr.status);
-        }
-    };
 };

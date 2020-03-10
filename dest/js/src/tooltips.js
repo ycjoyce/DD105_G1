@@ -8,8 +8,3 @@ import $ from 'jquery'
  */
 
 $('[data-toggle="tooltip"]').tooltip()
-* Licensed under MIT (https://coreui.io/license)
- * --------------------------------------------------------------------------
- */
-
-(0, _jquery2.default)('[data-toggle="tooltip"]').tooltip();

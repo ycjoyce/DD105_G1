@@ -478,13 +478,3 @@ const brandBoxChart4 = new Chart($('#social-box-chart-4'), {
   },
   options: brandBoxChartOptions
 })
-s: [{
-      backgroundColor: 'rgba(255,255,255,.1)',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointHoverBackgroundColor: '#fff',
-      borderWidth: 2,
-      data: [35, 23, 56, 22, 97, 23, 64]
-    }]
-  },
-  options: brandBoxChartOptions
-});

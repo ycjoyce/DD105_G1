@@ -10,5 +10,4 @@ document.querySelector('li.memZone div div.memPic').addEventListener("click",fun
 let messageBtn= document.querySelector('nav div ul li div.message');
 messageBtn.addEventListener("click",function(){
     location.href= "message.html";
-});e.html";
 });

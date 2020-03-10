@@ -129,8 +129,3 @@ if ($(window).width() < 415) {
 
 
 });
-5, { x: -100 });lostdogGirl.delay(0.5);new ScrollMagic.Scene({
-            triggerElement: '#trigger01'
-        }).setTween(lostdogGirl).addIndicators().addTo(controller);
-    }
-});
