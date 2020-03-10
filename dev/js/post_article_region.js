@@ -12,6 +12,10 @@ $(".btn.darkgreen.nav__link").on('click', function() {
         $(".postwritebackblock").css({"display":"none"});
         $(".post_write_region").css({"display":"none"});
     });
+    $(".postwritecrossbutton").click(function() {
+        $(".postwritebackblock").css({"display":"none"});
+        $(".post_write_region").css({"display":"none"});
+    });
 });
 // 分隔線
 
@@ -113,8 +117,41 @@ $('ul.u2 input[type="checkbox"]').on('click', function() {
     }
 });
 
+// ripple 點擊 circle
+$('.card-item').on('click', '.ripple', function(e) {
+
+    var $ripple = $('<span class="rippling" />'),
+        $button = $(this),
+        btnOffset = $button.offset(),
+        xPos = e.pageX - btnOffset.left,
+        yPos = e.pageY - btnOffset.top,
+        size = 0,
+        animateSize = parseInt(Math.max($button.width(), $button.height()) * Math.PI);
+
+    $ripple.css({
+            top: yPos,
+            left: xPos,
+            width: size,
+            height: size,
+            backgroundColor: $button.attr("ripple-color"),
+            opacity: $button.attr("ripple-opacity")
+        })
+        .appendTo($button)
+        .animate({  // $(selector).animate(styles,speed,easing,callback)
+            width: animateSize,
+            height: animateSize,
+            opacity: 0
+        }, 1000, function() {
+            $(this).remove();
+        });
+});
+
 $('.selectpostgalleryregion').on('click', function() {
     // console.log("on");
     // $('.selectpostarticleregion').css({"color":"#000"});
     window.location.href = "./post_gallery_region.html";
+});
+
+$('.card-item').on('click', function() {
+    setTimeout(function(){window.location.href="./post_content.html"} , 400);
 });
