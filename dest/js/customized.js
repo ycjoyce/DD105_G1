@@ -1,11 +1,240 @@
 function dofirst() {
+    var previewArea = document.getElementById('preview_area');
+    var step1NextBtn = document.getElementById('step1NextBtn');
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
-    var backgroundCanvas = document.getElementById('backgroundCanvas');
-    var context2 = backgroundCanvas.getContext('2d');
-    var previewArea = document.getElementById('preview_area');
-    var collarImg = document.getElementById('collarImg');
-    var collarTagImg1 = document.getElementById('collarTagImg1');
+    var canvas2 = document.getElementById('canvas2');
+    var context2 = canvas2.getContext('2d');
+    var sliderBtnLeft = document.getElementById('sliderBtnLeft');
+    var sliderBtnRight = document.getElementById('sliderBtnRight');
+    var collarTagWrap = document.getElementById('collarTagWrap');
+
+
+    // $('#bigTab2').click(function() {
+    //     resizeCanvas();
+    // });
+
+
+    var collarImg = new Image();
+    collarImg.src = "./img/customized_collar/leather_png/1.png";
+    var collarImg2 = new Image();
+    collarImg2.src = "./img/customized_collar/leather_png/real_upper_finish2.png";
+    var tagImg1 = new Image();
+    tagImg1.src = "./img/customized_collar/leather_png/29.png";
+    tagImg2 = new Image();
+    tagImg2.src = "";
+
+
+    tagIndex = 1;
+    // $('.tagImages').click(function() {
+    //     alert(tagIndex);
+    // });
+    step1NextBtn.addEventListener('click', function() {
+        resizeCanvas();
+        if (tagIndex == 1) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 2) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 3) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 4) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 5) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 6) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 7) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 8) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
+            resizeCanvas();
+        }
+    });
+
+    sliderBtnLeft.addEventListener('click', function() {
+        resizeCanvas();
+        tagIndex--;
+        // alert(tagIndex);
+        if (tagIndex == 1) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 2) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 3) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 4) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 5) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 6) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 7) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 8) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
+            resizeCanvas();
+        }
+    });
+    sliderBtnRight.addEventListener('click', function() {
+        tagIndex++;
+        // alert(tagIndex);
+        if (tagIndex == 1) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 2) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 3) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 4) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 5) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 6) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 7) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
+            resizeCanvas();
+        } else if (tagIndex == 8) {
+            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
+            resizeCanvas();
+        }
+    });
+
+    document.getElementById('collarImage1').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/1.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // resizeCanvas();
+    });
+    document.getElementById('collarImage2').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/2.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // resizeCanvas();
+    });
+    document.getElementById('collarImage3').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/3.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // resizeCanvas();
+    });
+    document.getElementById('collarImage4').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/4.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // resizeCanvas();
+    });
+    document.getElementById('collarImage5').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/5.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage6').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/6.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage7').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/7.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage8').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/8.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage9').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/9.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage10').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/10.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage11').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/11.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage12_1').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/12_1.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage12_2').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/12_2.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage13').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/13.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage14').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/14.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage15').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/15.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage16').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/16.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage17').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/17.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage18').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/18.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage19').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/19.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage20').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/20.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage21').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/21.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage22').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/22.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage23').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/23.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage24').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/24.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage25').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/25.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage26').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/26.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+    document.getElementById('collarImage27').addEventListener('click', function() {
+        collarImg.src = "./img/customized_collar/leather_png/27.png";
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+    });
+
 
 
 
@@ -14,8 +243,8 @@ function dofirst() {
     function resizeCanvas() {
         canvas.width = previewArea.clientWidth;
         canvas.height = previewArea.clientHeight;
-        backgroundCanvas.width = previewArea.clientWidth;
-        backgroundCanvas.height = previewArea.clientHeight;
+        canvas2.width = previewArea.clientWidth;
+        canvas2.height = previewArea.clientHeight;
         imgRatio = 1000 / 1000;
         imgWidth = previewArea.clientWidth * 0.7;
         imgHeight = imgWidth * imgRatio;
@@ -50,177 +279,46 @@ function dofirst() {
             imgWidth = previewArea.clientWidth * 0.9;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
-            imgOffsetY = (canvas.height - imgHeight) / 2.5;
+            imgOffsetY = (canvas.height - imgHeight) / 2;
         }
 
-        context2.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // context.drawImage(collarTagImg1, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-
-        // document.querySelector("#chkbox")
-        //     .addEventListener('click', function(e) {
-        //         console.log(e.target.checked);
-        //         if (e.target.checked == false) {
-        //             return false;
-        //         } else if (e.target.checked == true) {
-        //             canvasZoomIn();
-        //             resizeCanvas();
-        //             canvas.style.cursor = "crosshair";
-        //         }
-        //     });
-
-        // function canvasZoomIn() {
-
-        //     // 图片被放大区域的中心点，也是放大镜的中心点
-        //     var centerPoint = {};
-        //     // 图片被放大区域的半径
-        //     var originalRadius = 300;
-        //     // 图片被放大区域
-        //     var originalRectangle = {};
-        //     // 放大倍数
-        //     var scale = 1.4;
-        //     // 放大后区域
-        //     var scaleGlassRectangle;
-
-        //     centerPoint.x = 200;
-        //     centerPoint.y = 200;
-
-        //     mouseEnter();
-        //     mouseMove();
-        //     mouseLeave();
-        //     touchStart();
-        //     touchMove();
-        //     touchEnd();
-        //     draw();
-
-        //     function drawBackGround() {
-        //         resizeCanvas();
-        //     }
-
-        //     function calOriginalRectangle(point) {
-        //         originalRectangle.x = point.x - originalRadius;
-        //         originalRectangle.y = point.y - originalRadius;
-        //         originalRectangle.width = originalRadius * 2;
-        //         originalRectangle.height = originalRadius * 2;
-        //     }
-
-        //     function drawMagnifyingGlass() {
-
-        //         if (window.innerWidth < 576) {
-        //             originalRadius = 150;
-        //         } else if (window.innerWidth < 768) {
-        //             originalRadius = 150;
-        //         } else if (window.innerWidth < 992) {
-        //             originalRadius = 150;
-        //         } else if (window.innerWidth < 1200) {
-        //             originalRadius = 200;
-        //         } else if (window.innerWidth < 1500) {
-        //             originalRadius = 250;
-        //         } else {
-        //             originalRadius = 250;
-        //         }
-
-        //         scaleGlassRectangle = {
-        //             x: centerPoint.x - originalRectangle.width * scale / 2,
-        //             y: centerPoint.y - originalRectangle.height * scale / 2,
-        //             width: originalRectangle.width * scale,
-        //             height: originalRectangle.height * scale
-        //         };
-        //         context.save();
-        //         context.beginPath();
-        //         context.arc(centerPoint.x, centerPoint.y, originalRadius, 0, Math.PI * 2, false);
-        //         context.clip();
-
-        //         context.drawImage(canvas,
-        //             originalRectangle.x, originalRectangle.y,
-        //             originalRectangle.width, originalRectangle.height,
-        //             scaleGlassRectangle.x, scaleGlassRectangle.y,
-        //             scaleGlassRectangle.width, scaleGlassRectangle.height
-        //         );
-        //         context.restore();
-
-        //         context.beginPath();
-        //         var gradient = context.createRadialGradient(
-        //             centerPoint.x, centerPoint.y, originalRadius - 5,
-        //             centerPoint.x, centerPoint.y, originalRadius);
-        //         gradient.addColorStop(0, 'rgba(0,0,0,0.2)');
-        //         gradient.addColorStop(0.80, 'silver');
-        //         gradient.addColorStop(0.90, 'silver');
-        //         gradient.addColorStop(1.0, 'rgba(150,150,150,0.9)');
-
-        //         context.strokeStyle = gradient;
-        //         context.lineWidth = 5;
-        //         context.arc(centerPoint.x, centerPoint.y, originalRadius, 0, Math.PI * 2, false);
-        //         context.stroke();
-        //     }
-
-        //     function draw() {
-        //         context.clearRect(0, 0, canvas.width, canvas.height);
-        //         drawBackGround();
-        //         calOriginalRectangle(centerPoint);
-        //         drawMagnifyingGlass();
-        //     }
-
-        //     function touchStart() {
-        //         canvas.ontouchstart = function(e) {
-        //             e.preventDefault();
-        //             draw();
-        //         };
-        //     }
-
-        //     function touchMove() {
-        //         canvas.ontouchmove = function(e) {
-        //             e.preventDefault();
-        //             centerPoint = windowToCanvas(e.clientX, e.clientY);
-        //             console.log(centerPoint);
-        //             draw();
-        //         };
-        //     }
-
-        //     function touchEnd() {
-        //         canvas.ontouchEnd = function(e) {
-        //             e.preventDefault();
-        //             context.clearRect(0, 0, canvas.width, canvas.height);
-        //             drawBackGround();
-        //         };
-        //     }
-
-        //     function mouseEnter() {
-        //         canvas.onmouseenter = function(e) {
-        //             e.preventDefault();
-        //             context.clearRect(0, 0, canvas.width, canvas.height);
-        //             drawBackGround();
-
-        //         };
-        //     }
-
-        //     function mouseMove() {
-        //         canvas.onmousemove = function(e) {
-        //             centerPoint = windowToCanvas(e.clientX, e.clientY);
-        //             draw();
-        //         };
-        //     }
-
-        //     function mouseLeave() {
-        //         canvas.onmouseleave = function(e) {
-        //             e.preventDefault();
-        //             context.clearRect(0, 0, canvas.width, canvas.height);
-        //             drawBackGround();
-        //         };
-        //     }
-
-        //     function windowToCanvas(x, y) {
-        //         var bbox = canvas.getBoundingClientRect();
-        //         return {
-        //             x: x - bbox.left,
-        //             y: y - bbox.top
-        //         };
-        //     }
-        // }
+        // 輸出主要圖片----------------------------------------------------------------------
+        collarImg.addEventListener('load', function() {
+            context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        });
+        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        //-----------------------------------------------------------------------------------
 
 
+
+        // 輸出背景圖片----------------------------------------------------------------------
+        collarImg2.addEventListener('load', function() {
+            context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        });
+        context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        //-----------------------------------------------------------------------------------
+
+
+
+        // 輸出吊環圖片----------------------------------------------------------------------
+        tagImg1.addEventListener('load', function() {
+            context2.drawImage(tagImg1, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        });
+        context2.drawImage(tagImg1, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        //-----------------------------------------------------------------------------------
+
+
+
+        // 輸出吊牌圖片----------------------------------------------------------------------
+        tagImg2.addEventListener('load', function() {
+            context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        });
+        context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        //-----------------------------------------------------------------------------------
 
 
     }
     window.addEventListener('resize', resizeCanvas);
+
 }
 window.addEventListener('load', dofirst);
