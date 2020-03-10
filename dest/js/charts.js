@@ -13,6 +13,7 @@
 
 /* eslint-disable no-magic-numbers */
 // random Numbers
+
 var random = function random() {
   return Math.round(Math.random() * 100);
 }; // eslint-disable-next-line no-unused-vars

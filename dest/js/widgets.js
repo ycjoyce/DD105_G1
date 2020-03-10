@@ -11,6 +11,7 @@
 
 /* eslint-disable no-magic-numbers */
 // Disable the on-canvas tooltip
+
 Chart.defaults.global.pointHitDetectionRadius = 1;
 Chart.defaults.global.tooltips.enabled = false;
 Chart.defaults.global.tooltips.mode = 'index';
@@ -383,10 +384,9 @@ var brandBoxChartOptions = {
       hitRadius: 10,
       hoverRadius: 4,
       hoverBorderWidth: 3
-    }
-  } // eslint-disable-next-line no-unused-vars
+    } // eslint-disable-next-line no-unused-vars
 
-};
+  } };
 var brandBoxChart1 = new Chart($('#social-box-chart-1'), {
   type: 'line',
   data: {

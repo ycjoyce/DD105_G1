@@ -105,4 +105,9 @@ function signOut(e){
             alert( xhr.status );
         }
     }
+};n class=\"hamburger-box\">\n                            <span class=\"hamburger-inner\"></span>\n                            </span>\n                        </button>\n                    </div>\n                </nav>\n                ";
+        } else {
+            alert(xhr.status);
+        }
+    };
 };

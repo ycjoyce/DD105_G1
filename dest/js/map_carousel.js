@@ -130,3 +130,44 @@ mapFriendly3.onclick=function(){
     curVal=5;
     mapCarousel();
 };
+ssList.add("on");
+        }
+    }
+}
+
+mapCarousel();
+
+mapNextBtn.onclick = function () {
+    if (curVal + 1 <= 5) curVal++;else curVal = 1;
+    mapCarousel();
+};
+
+mapPrevBtn.onclick = function () {
+    if (curVal - 1 >= 1) curVal--;else curVal = 5;
+    mapCarousel();
+};
+
+mapLost.onclick = function () {
+    curVal = 1;
+    mapCarousel();
+};
+
+// mapFriendly.onclick=function(){
+//     curVal=2;
+//     mapCarousel();
+// };
+
+mapFriendly1.onclick = function () {
+    curVal = 3;
+    mapCarousel();
+};
+
+mapFriendly2.onclick = function () {
+    curVal = 4;
+    mapCarousel();
+};
+
+mapFriendly3.onclick = function () {
+    curVal = 5;
+    mapCarousel();
+};
