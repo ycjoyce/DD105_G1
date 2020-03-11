@@ -165,18 +165,39 @@
             }
         });
 
+
+        var theAmt="";
+
+        //取得左邊列表要顯示的未讀數量
+        function unReadAmt(sendMemNo){
+            var xhr= new XMLHttpRequest();
+            var url= "./php/unReadAmt.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "sendMemNo="+sendMemNo;
+            xhr.send(data_info);
+            
+            xhr.onload=function(){
+                if(xhr.status==200){
+                    theAmt= xhr.responseText;
+                    console.log(sendMemNo,"號會員發來的未讀:",theAmt);
+                    document.querySelector(`li.No${sendMemNo}.unRead div.text p span`).innerText= theAmt;
+                }else{
+                    alert(xhr.status);
+                }
+            }
+        }
+
+            
         //秀出左邊列表
         function showMsgList(xmlDoc){
             var fields= xmlDoc.documentElement.childNodes;//members>member
-            // var unReadAmt=0;
             for(var i=0; i<fields.length; i++){
                 var li= document.createElement("li");
                 li.className= "No"+fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
                 var readOrNot= fields[i].getElementsByTagName("readOrNot")[0].firstChild.nodeValue;
                 if(readOrNot==0){
                     li.classList.add("unRead");
-                    // unReadAmt+= 1;
-                    // console.log(i,":", unReadAmt)
                 }
                 var divImg= document.createElement("div");
                 divImg.className= "img";
@@ -211,8 +232,10 @@
                 p.appendChild(pText);
                 if(li.classList.contains("unRead")){
                     var unSpan= document.createElement("span");
-                    var unText= document.createTextNode(unReadAmt);//未讀的數量
-                    unSpan.appendChild(unText);
+                    unReadAmt(fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue);
+                    // var unText= document.createTextNode(theAmt);//未讀的數量
+                    // unSpan.appendChild(unText);
+                    unSpan.innerText= theAmt;
                     p.appendChild(unSpan);
                 }
                 divText.appendChild(p);
@@ -223,12 +246,14 @@
                 
                 for(var j=0; j<ulAsideLis.length; j++){
                     ulAsideLis[j].onclick=function(e){
-                        showAllMsg(this.getAttribute("class").substr(2));
+                        showAllMsg(this.classList[0].substr(2));
+                        // console.log(this.classList[0].substr(2));
+                        changeUnRead(this.classList[0].substr(2));
                         this.classList.add("on");
                         $("aside ul li").not(this).removeClass("on");
+                        this.classList.remove("unRead");
                     }
                 }
-
                 var chatRooms= document.querySelectorAll('aside ul li');
                 
                 for(let i=0; i<chatRooms.length; i++){
@@ -236,6 +261,24 @@
                 }
             }
         }
+
+        //點擊左邊列表，變更訊息的readOrNot
+        function changeUnRead(sendMemNo){
+            var xhr= new XMLHttpRequest();
+            var url= "./php/changeUnRead.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var data_info= "sendMemNo="+sendMemNo;
+            xhr.send(data_info);
+            xhr.onload=function (){
+                if(xhr.status!=200){
+                    alert(xhr.status);
+                }
+            };
+        }
+
+
+       
 
         //取得左邊列表
         function getMsg(){
@@ -249,7 +292,6 @@
                 if(xhr.status==200){
                     if(xhr.responseText.indexOf("notFound")==-1){
                         showMsgList(xhr.responseXML);
-                 
                     }else{
                         alert("尚無私信內容");
                     }
@@ -362,8 +404,9 @@
             var url= "./php/showAllMsg.php";
             xhr.open("POST",url,true);
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            var data_info= "sendMemNo="+sendMemNo;
+            var data_info= `sendMemNo=${sendMemNo}`;
             xhr.send(data_info);
+
             xhr.onload=function(){
                 if(xhr.status==200){
                     showPanel(xhr.responseXML);
@@ -374,6 +417,8 @@
             };
         }
 
+
+        
     </script>
 </body>
 </html>
