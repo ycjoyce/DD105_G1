@@ -96,6 +96,7 @@ body {
   label {
     font-size: 1.1rem;
     vertical-align: middle;
+    cursor: pointer;
   }
   input:focus,
   select:focus,
@@ -166,7 +167,7 @@ body {
     padding: 230px 10% 0;
     flex-wrap: nowrap;
     position: relative;
-    a{
+    a {
       text-decoration: none;
     }
     .map_lostdogGirl {
@@ -1072,6 +1073,19 @@ body {
   padding: 0 20px;
   vertical-align: middle;
   transition: all 0.5s;
+}
+
+.map_container .map_search input[type="checkbox"] {
+  -webkit-appearance: none;
+  -o-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transform: rotate(-30deg);
+  background-image: url(../img/pawprint-white.svg);
+  &:checked{
+    background-image: url(../img/pawprint-01.svg);
+  }
 }
 
 .map_container .map_search p {
