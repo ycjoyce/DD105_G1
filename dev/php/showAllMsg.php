@@ -14,6 +14,7 @@ $xml='<?xml version="1.0"?>';
             $xml.= "<myMemNo>{$_SESSION["memNo"]}</myMemNo>";
             $xml.= "<sendMemNo>{$msgRow['sendMemNo']}</sendMemNo>";
             $xml.= "<getMemNo>{$msgRow['getMemNo']}</getMemNo>";
+            $xml.= "<readOrNot>{$msgRow['readOrNot']}</readOrNot>";
             $xml.= "<msgTime>{$msgRow['msgTime']}</msgTime>";
             $xml.= "<msgText>{$msgRow['msgText']}</msgText>";
             $xml.= "<msgPic>{$msgRow['msgPic']}</msgPic>";

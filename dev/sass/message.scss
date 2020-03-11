@@ -190,8 +190,7 @@ section{
                         p{
                             padding-right: 50px;
                             position: relative;
-                            &::after{
-                                content: '2';
+                            span{
                                 font-size: 0.8rem;
                                 line-height: 0.8rem;
                                 text-align: center;

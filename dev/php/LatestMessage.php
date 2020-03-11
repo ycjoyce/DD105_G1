@@ -19,6 +19,7 @@ if($msg->rowCount()==0){
             $xml.= "<msgTime>{$msgRow['msgTime']}</msgTime>";
             $xml.= "<msgText>{$msgRow['msgText']}</msgText>";
             $xml.= "<msgPic>{$msgRow['msgPic']}</msgPic>";
+            $xml.= "<readOrNot>{$msgRow['readOrNot']}</readOrNot>";
                 $sql= "select * from `memInfo` where memNo='{$msgRow['sendMemNo']}'";
                 $sendMem= $pdo->query($sql);
                 $sendMemRow= $sendMem->fetch(PDO::FETCH_ASSOC);
