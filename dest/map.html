@@ -10,7 +10,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/> -->
     <link rel="stylesheet" href="./css/map.css">
     <script src="./js/jquery-3.4.1.js"></script>
     <script src="./js/modernizr.custom.js"></script>
@@ -23,7 +23,7 @@
     <!-- 開發時debug用(標示觸發點)，上線時移除 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 </head>
 
 <body>
@@ -60,8 +60,8 @@
         <!--------------------- 第一屏banner --------------------->
         <section class="map_banner">
             <div class="map_banner_bg"></div>
-            <h2 class="enSpecialFont map_EN_title" data-aos="fade-left" data-depth="0.8">Where are they</h2>
-            <h2 class="map_CH_title" data-aos="fade-left" data-depth="0.9">浪浪在哪裡</h2>
+            <h2 class="enSpecialFont map_EN_title" data-depth="0.4">Where are they</h2>
+            <h2 class="map_CH_title" data-depth="0.5">浪浪在哪裡</h2>
         </section>
 
         <!--------------------- 第二屏introduction --------------------->
@@ -77,9 +77,9 @@
 
             <div class="map_introcontent">
                 <img src="./img/map_intro_boyndog.png" class="map_intro_boyndog">
-                <div data-aos="fade-right">
+                <div>
                     浪愛回家提供一個整合資訊的平台，分享遺失或拾獲寵物資料、即時更新寵物遺失的資訊，並可透過網站聯絡失主，為失主帶來多一分希望，也讓在外流浪的毛小孩儘早回到溫暖的家。</div>
-                <div data-aos="fade-right">
+                <div>
                     我們也了解很多主人出門遊樂時，不想將毛小孩丟在外面自己進去餐廳吃飯、飯店住宿或者景點玩樂，因此花了很多時間收集寵物友善店家、寵物友善環境狀況，針對寵物服務和設施的寵物友善商家或景點記錄，希望帶給您與毛孩子更豐富的回憶！
                 </div>
                 <a href="#mapArea" class="map_introCircle map_introCircle_1">寵物遺失通報</a>
@@ -169,6 +169,7 @@
 
         <div class="map_pawprint"><img src="./img/pawprint-01.svg"></div>
         <div id="trigger02"></div>
+
         <!--------------------- 第三屏過場 --------------------->
         <section class="map_lostdog">
             <img src="./img/map_lostdog_hurrygirl.png" id="map_hurryGirl">
@@ -181,12 +182,11 @@
         </section>
 
         <!--------------------- 第四屏腳印 --------------------->
-        <Section class="map_footprint" data-aos="fade-down"><img src="./img/map_footprint.gif" data-depth="0.2"></Section>
-
+        <Section class="map_footprint"><img src="./img/map_footprint.gif" data-depth="0.2">
+        </Section>
 
         <!--------------------- 第五屏map --------------------->
-        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12"
-            data-aos="fade-down">
+        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12">
             <!-- 左側篩選區 -->
             <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12">
 
@@ -297,13 +297,8 @@
                                 <input type="checkbox" name="fa_point" id="fa_point">
                                 <label for="fa_point">友善景點</label>
                             </p>
-
-                            <!-- <hr> -->
-                            <!-- </div> -->
                         </div>
                     </div>
-
-
                 </div>
             </div>
 
@@ -313,8 +308,6 @@
                     style="width: 100%; height: 100%; border: none;"></iframe>
             </div>
         </section>
-
-
     </div>
 
     <!-- 寵物遺失申請燈箱 -->
@@ -381,6 +374,7 @@
             </div>
         </div>
     </div>
+    <!-- 燈箱JS -->
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
     <script>
@@ -408,8 +402,19 @@
 <script src="./js/page_top.js"></script>
 
 
+
+    <!-- ========================================== -->
+    <!-- Javascript -->
+
+    <!-- 輪播圖 -->
+    <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
+    <script src="./js/map_slider.js"></script>
+    <!-- Header -->
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
+    <!-- 插圖動畫 -->
+    <script src="./js/map_animation.js"></script>
+
     <script>
         $(document).ready(function () {
 
@@ -445,86 +450,15 @@
 
     </script>
 
-    <!-- 視差滾動 -->
-    <!-- <script src="./js/jquery-parallax.js"></script>
-    <script>
-        $(document).mousemove(function (e) {
-            $('.map_intro_boyndog').parallax(10, e);
+    <!--AOS animation -->
+    <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
+    <!-- <script>
+        AOS.init({
+            duration: 1500,
+            once: true,
+            mirror: false
         });
-    </script> -->
-
-    <!-- 插圖動畫 -->
-    <script src="./js/map_animation.js"></script>
-
-    <!-- 輪播圖 -->
-    <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
-    <script>
-        console.clear();
-
-        const elPrevButton = document.querySelector('#prev');
-        const elNextButton = document.querySelector('#next');
-        const flipping = new Flipping();
-
-        const elImages = Array.from(document.querySelectorAll('.ui-big-image'));
-        const elThumbnails = Array.from(document.querySelectorAll('.ui-thumbnail'));
-
-        let state = {
-            photo: 0
-        };
-
-        function send(event) {
-            // read cuticle positions
-            flipping.read();
-
-            const elActives = document.querySelectorAll('[data-active]');
-
-            Array.from(elActives)
-                .forEach(el => el.removeAttribute('data-active'));
-
-            switch (event) {
-                case 'PREV':
-                    state.photo--;
-                    // Math.max(state.photo - 1, 0);
-                    break;
-                case 'NEXT':
-                    state.photo++;
-                    // Math.min(state.photo + 1, elImages.length - 1);
-                    break;
-                default:
-                    state.photo = +event;
-                    break;
-            }
-
-            var len = elImages.length;
-            // Loop Around
-            //state.photo = ( ( state.photo % len) + len ) % len;
-            state.photo = Math.max(0, Math.min(state.photo, len - 1));
-
-            Array.from(document.querySelectorAll(`[data-key="${state.photo}"]`))
-                .forEach(el => {
-                    el.setAttribute('data-active', true);
-                });
-
-            // execute the FLIP animation
-            flipping.flip();
-        }
-
-        elThumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                send(thumb.dataset.key);
-            });
-        });
-
-        elPrevButton.addEventListener('click', () => {
-            send('PREV');
-        });
-
-        elNextButton.addEventListener('click', () => {
-            send('NEXT');
-        });
-
-        send(0);
-    </script>
+    </script>    -->
 
 </body>
 
