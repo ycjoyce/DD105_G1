@@ -127,11 +127,11 @@ gulp.task('aboutus',function(){
 });
 
 /*以下是後台的監看任務 */
-gulp.task('backend',function(){
+gulp.task('adminManage',function(){
     browserSync.init({
         server:{
             baseDir: "./dest/",
-            index: "backend.html"
+            index: "adminManage.html"
         }
     });
     gulp.watch(web.html,['fileinclude']).on('change',reload);

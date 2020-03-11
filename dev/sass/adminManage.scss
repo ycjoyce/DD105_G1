@@ -38,20 +38,32 @@
   height: 80px;
 }
 
-
 @media screen and (max-width: 1920px) {
   .header-fixed .app-body {
     margin-top: 80px;
   }
 }
 
-
-@media screen and (max-width: 992px){
-.app-header .navbar-brand{
-  top: 12px;
-} 
+@media screen and (max-width: 992px) {
+  .app-header .navbar-brand {
+    top: 12px;
+  }
 }
 
-.navbar-nav{
-  margin-right: 1%;
+.switch-3d .switch-slider {
+  width: 50px;
+  height: 28px;
+}
+
+.switch-input:checked ~.switch-slider::before{
+  transform: translateX(22px);
+}
+
+.table th, .table td{
+  border-top: 0px; 
+}
+
+.table-sm th, .table-sm td{
+  padding: 12px;
+  text-align: center;
 }
