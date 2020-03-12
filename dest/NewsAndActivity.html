@@ -314,7 +314,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item">首頁</li>
         <li class="breadcrumb-item">
-          <a href="adminManage.html">管理員管理</a>
+          <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
         </li>
         <!-- <li class="breadcrumb-item active">Dashboard</li> -->
         <!-- Breadcrumb Menu-->
@@ -334,78 +334,124 @@
    
        <!-- 中間內容 -->
        <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <!-- <div class="card-header">Card title</div> -->
-            <div class="card-body">
-              <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
-              <table class="table table-responsive-sm table-sm">
-                <thead>
-                  <tr>
-                    <th>管理員編號</th>
-                    <th>管理員名稱</th>
-                    <th>管理員帳號</th>
-                    <th>管理員密碼</th>
-                    <th>管理員狀態</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Carwyn Fachtna</td>
-                    <td>2012/01/01</td>
-                    <td>Member</td>
-                    <td></td>
-                    <td>
-                      <label class="switch switch-3d switch-success">
-                        <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                        <span class="switch-slider"></span>
-                    </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Nehemiah Tatius</td>
-                    <td>2012/02/01</td>
-                    <td>Staff</td>
-                    <td></td>
-                    <td>
-                      <label class="switch switch-3d switch-success">
-                        <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                        <span class="switch-slider"></span>
-                    </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ebbe Gemariah</td>
-                    <td>2012/02/01</td>
-                    <td>Admin</td>
-                    <td></td>
-                    <td>
-                      <label class="switch switch-3d switch-success">
-                        <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                        <span class="switch-slider"></span>
-                    </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Eustorgios Amulius</td>
-                    <td>2012/03/01</td>
-                    <td>Member</td>
-                    <td></td>
-                    <td>
-                      <label class="switch switch-3d switch-success">
-                        <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                        <span class="switch-slider"></span>
-                    </label>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+    <div class="col-md-12">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            活動/新聞/宣導上架
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                    data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe>
+                            <form action="./phps/post.php" method="POST" enctype="multipart/form-data"
+                                class="col-xl-12 upact" target="id_iframe">
+                                <input type="text" name="post" value="updata_activity" style="display: none;"
+                                    v-if="update == true">
+                                <input type="text" name="post" value="add_activity" style="display: none;"
+                                    v-if="update == false">
 
+                                <div class="col-xl-6 updata_act_mom" style="vertical-align: middle">
+                                    <label class="col-xl-12 updata_act"
+                                        :style="{backgroundImage: 'url('+upact_infos.activity_img+')'}" for="upimg">
+                                        <input type="file" name="act_img" id="upimg" style="display: none;"
+                                            @change="up_img">
+                                        <img src="./img/back/upload.png" class="uploadimg"
+                                            v-if="upact_infos.activity_img == ''">
+                                        <!-- <img :src=upact_infos.activity_img class="act_img" v-else> -->
+                                        <div class="img_name">{{ upact_infos.activity_g }}</div>
+                                    </label>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group" style="display: inline-block; width: 49%;">
+                                        <label for="activity_num"> 活動/新聞/宣導編號</label>
+                                        <input type="number" class="form-control" id="activity_num" name="activity_num"
+                                            v-model="upact_infos.activity_num" v-if="update == false">
 
+                                    </div>
+                                    <div class="form-group" style="display: inline-block; width: 49%;">
+                                        <label for="activity_name"> 活動/新聞/宣導名稱</label>
+                                        <input type="text" class="form-control" id="activity_name" name="activity_name"
+                                            v-model="upact_infos.activity_name">
+                                    </div>
+                                    <div class="form-group" style="display: inline-block; width: 49%;">
+                                        <label for="activity_start"> 活動/新聞/宣導類型</label>
+                                        <select name="" id="">
+                                            <option value="">活動</option>
+                                            <option value="">新聞</option>
+                                            <option value="">宣導</option>
+                                        </select>
+                                    </div>
+                                    <!-- <div class="form-group" style="display: inline-block; width: 49%;">
+                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
+                        <input type="date" class="form-control" id="activity_fin" name="activity_fin"
+                          v-model="upact_infos.activity_fin">
+                      </div> -->
+                                    <div class="form-group" style="display: inline-block; width: 100%">
+                                        <label for="activity_Introduction"> 活動/新聞/宣導內容介紹</label>
+                                        <textarea type="date" class="form-control" id="activity_Introduction" rows="8"
+                                            name="activity_Introduction" style="resize: none"
+                                            v-model="upact_infos.activity_Introduction"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary submitbtn" style="display:block"
+                                        @click="send_act" v-if="!update">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            活動/新聞/宣導下架
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> 活動/新聞/宣導編號</th>
+                                    <th scope="col"> 活動/新聞/宣導名稱</th>
+                                    <th scope="col"> 活動/新聞/宣導開始時間</th>
+                                    <th scope="col"> 活動/新聞/宣導結束時間</th>
+                                    <th scope="col"> 活動/新聞/宣導內容介紹</th>
+                                    <th scope="col">設定</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in activity_substr">
+                                    <th scope="row">{{ item.activity_no }}</th>
+                                    <td>{{ item.activity_name }}</td>
+                                    <td>{{ item.activity_str }}</td>
+                                    <td>{{ item.activity_fin }}</td>
+                                    <td>
+                                        <div class="limit">{{ item.activity_con }}</div>
+                                    </td>
+                                    <td>
+                                        <a href="#" @click.prevent="get_edit(item.activity_no);update = true">
+                                            編輯</a> / <a href="#" @click.prevent="get_delete(item.activity_no)">下架</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
+</div>
        <!-- end -->
       </div>
     </main>
