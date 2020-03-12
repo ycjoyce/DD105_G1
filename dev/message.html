@@ -98,19 +98,19 @@
                 </li> -->
                 
             </ul>
-            <form action="./php/message.php" method="POST" class="edit" enctype="multipart/form-data">
+            <form method="POST" class="edit" enctype="multipart/form-data">
                 <label for="upload">
                     <input type="file" id="upload" name="upload" accept="image/*">
                 </label>
                 <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
-                <input type="submit" value="">
-            </div>
+                <input type="submit" id="submitText" value="">
+            </form>
         </main>
     </section>
     <script src="./js/heightWithoutHeader.js"></script>
     <script src="./js/hamburger.js"></script>
     <script src="./js/memberHeader.js"></script>
-    <script src="./js/signInOut_mem.js"></script>
+    <script src="./js/signInOut.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script>
         sectionHeight();
@@ -166,8 +166,31 @@
         });
 
 
-        var theAmt="";
+        //送出文字私信，新增至資料庫
+        function addTextMsg(e){
+            e.preventDefault();
+            var xhr= new XMLHttpRequest();
+            var url= "./php/addTextMsg.php";
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var getMemNo= document.querySelector("aside ul li.on").classList[0].substr(2);
+            var data_info= `getMemNo=${getMemNo}&msgText=${document.getElementById("inputText").value}`;
+            xhr.send(data_info);
 
+            xhr.onload=function(){
+                if(xhr.status==200){
+                    showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                    document.getElementById("inputText").value="";
+                }else{
+                    alert(xhr.status);
+                }
+            }
+        }
+        var submitText= document.getElementById("submitText");
+        submitText.addEventListener("click",addTextMsg);
+
+
+        var theAmt="";
         //取得左邊列表要顯示的未讀數量
         function unReadAmt(sendMemNo){
             var xhr= new XMLHttpRequest();
@@ -276,9 +299,6 @@
                 }
             };
         }
-
-
-       
 
         //取得左邊列表
         function getMsg(){

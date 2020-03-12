@@ -222,14 +222,14 @@
                 
                 xhr.onload=function (){
                     if( xhr.status == 200 ){
-                    if(xhr.responseText.indexOf("notFound")!=-1){
-                        alert("查無此會員，請確認帳號密碼是否正確，若尚無帳號請先註冊!");
-                        document.getElementById("signInAccount").value="";
-                        document.getElementById("signInPsw").value="";
-                    }else{
-                        location.href= "./index.html";
-                        // alert(xhr.responseText);
-                    }
+                        if(xhr.responseText.indexOf("notFound")!=-1){
+                            alert("查無此會員，請確認帳號密碼是否正確，若尚無帳號請先註冊!");
+                            document.getElementById("signInAccount").value="";
+                            document.getElementById("signInPsw").value="";
+                        }else{
+                            // history.back();
+                            location.href="./index.html";
+                        }
                     }else{
                         alert( xhr.status );
                     }
