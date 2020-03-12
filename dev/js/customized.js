@@ -240,16 +240,16 @@ function dofirst() {
     resizeCanvas();
 
     function resizeCanvas() {
-        canvas.width = previewArea.clientWidth;
-        canvas.height = previewArea.clientHeight;
-        canvas2.width = previewArea.clientWidth;
-        canvas2.height = previewArea.clientHeight;
-        imgRatio = 1000 / 1000;
-        imgWidth = previewArea.clientWidth * 0.7;
-        imgHeight = imgWidth * imgRatio;
-        imgOffsetX = (canvas.width - imgWidth) / 2;
-        imgOffsetY = (canvas.height - imgHeight) / 2;
-        if (window.innerWidth <= 414) {
+        canvas.width = previewArea.clientWidth; //第一個canvas的寬 = 父層div的寬
+        canvas.height = previewArea.clientHeight; //第一個canvas的高 = 父層div的高
+        canvas2.width = previewArea.clientWidth; //第二個canvas的寬 = 父層div的寬
+        canvas2.height = previewArea.clientHeight; //第二個canvas的高 = 父層div的高
+        imgRatio = 1000 / 1000; //圖片寬高比例
+        imgWidth = previewArea.clientWidth * 0.7; //圖片寬度參數
+        imgHeight = imgWidth * imgRatio; //圖片高度參數
+        imgOffsetX = (canvas.width - imgWidth) / 2; //圖片X位移量
+        imgOffsetY = (canvas.height - imgHeight) / 2; //圖片Y位移量
+        if (window.innerWidth <= 414) { //RWD
             imgWidth = previewArea.clientWidth * 1;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
@@ -314,10 +314,7 @@ function dofirst() {
         });
         context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
         //-----------------------------------------------------------------------------------
-
-
     }
     window.addEventListener('resize', resizeCanvas);
-
 }
 window.addEventListener('load', dofirst);
