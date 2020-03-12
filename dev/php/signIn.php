@@ -21,7 +21,9 @@ try{
         $_SESSION["memPoint"]= $memRow["memPoint"];
         $_SESSION["memStatus"]= $memRow["memStatus"];
         $_SESSION["memTagNo"]= $memRow["memTagNo"];
-        echo $_SESSION["memId"], ":", $_SESSION["memPsw"];
+
+        $member= ["memNo"=>$_SESSION["memNo"],"memId"=>$_SESSION["memId"],"memName"=>$_SESSION["memName"],"memPsw"=>$_SESSION["memPsw"],"memPic"=>$_SESSION["memPic"],"memPoint"=>$_SESSION["memPoint"],"memStatus"=>$_SESSION["memStatus"],"memTagNo"=>$_SESSION["memTagNo"]];
+        echo json_encode($member);
     }
 }catch(PDOException $e){
     echo "錯誤行號: ".$e->getLine()."<br>";

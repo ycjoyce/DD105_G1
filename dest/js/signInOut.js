@@ -1,16 +1,16 @@
+let member;
+
 //會員判斷
 function getMember(){
     var xhr= new XMLHttpRequest();
     var url= "./php/checkMem.php";
-    xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    var data_info= "";
-    xhr.send(data_info);
+    xhr.open("GET",url,true);
+    xhr.send(null);
     
     xhr.onload=function (){
         if( xhr.status == 200 ){
-            if(xhr.responseText.indexOf("true")!=-1){
-                // console.log(xhr.responseText);
+            member= JSON.parse(xhr.responseText);
+            if(member.memId){
                 var header = document.getElementById("header");
                 header.innerHTML=`
                 <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -55,24 +55,24 @@ function getMember(){
                 var headerScript= document.createElement("script");
                 headerScript.src="./js/memberHeader.js";
                 body.insertBefore(headerScript,script);
-                var memImgSrc= xhr.responseText.split("|")[5];
+                var memImgSrc= member.memPic;
                 var memImg= document.querySelector('li.memZone div div.memPic');
                 memImg.style.backgroundImage=`url("./img/memImg/${memImgSrc}")`;
             }
+        
+        }else{
+            alert(xhr.status);
         }
     }
 }
 getMember();
 
 //會員登出
-function signOut(e){
-    // e.preventDefault();
+function signOut(){
     var xhr= new XMLHttpRequest();
     var url= "./php/signOut.php";
-    xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    var data_info= "";
-    xhr.send(data_info);
+    xhr.open("GET",url,true);
+    xhr.send(null);
 
     xhr.onload=function (){
         if(xhr.status==200){
@@ -101,8 +101,14 @@ function signOut(e){
                     </div>
                 </nav>
                 `;
+
+                
+                if(location.pathname.split("/").pop()=="message.html"||location.pathname.split("/").pop()=="memberCenter.html"){
+                    location.href="./index.html";
+                }
+                
         }else{
             alert( xhr.status );
         }
     }
-};
+}

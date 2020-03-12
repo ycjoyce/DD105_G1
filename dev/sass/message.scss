@@ -190,8 +190,7 @@ section{
                         p{
                             padding-right: 50px;
                             position: relative;
-                            &::after{
-                                content: '2';
+                            span{
                                 font-size: 0.8rem;
                                 line-height: 0.8rem;
                                 text-align: center;
@@ -305,6 +304,7 @@ section{
                 align-items: flex-start;
                 margin-bottom: 50px;
                 float: left;
+                width: 80%;
                 div.img{
                     width: 55px;
                     height: 55px;
@@ -388,6 +388,7 @@ section{
                 }
             &.self{
                 float: right;
+                justify-content:flex-end;
                 div.text{
                     order: 1;
                     margin-left: 0;

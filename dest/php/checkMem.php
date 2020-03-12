@@ -1,16 +1,9 @@
 <?php
 session_start();
-if(session_id()!=null){
-    echo "true|";
-    echo $_SESSION["memNo"]."|";
-    echo $_SESSION["memId"]."|";
-    echo $_SESSION["memName"]."|";
-    echo $_SESSION["memPsw"]."|";
-    echo $_SESSION["memPic"]."|";
-    echo $_SESSION["memPoint"]."|";
-    echo $_SESSION["memStatus"]."|";
-    echo $_SESSION["memTagNo"]."|";
+if(isset($_SESSION["memId"])){
+    $member= ["memNo"=>$_SESSION["memNo"],"memId"=>$_SESSION["memId"],"memName"=>$_SESSION["memName"],"memPsw"=>$_SESSION["memPsw"],"memPic"=>$_SESSION["memPic"],"memPoint"=>$_SESSION["memPoint"],"memStatus"=>$_SESSION["memStatus"],"memTagNo"=>$_SESSION["memTagNo"]];
+    echo json_encode($member);
 }else{
-    echo "notFound";
+    echo "{}";
 }
 ?>
