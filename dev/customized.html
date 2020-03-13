@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./css/customized.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="./css/dialog.css"> -->
-
+    <script src="./js/fabric.min.js"></script>
     <script src="./js/modernizr.custom.js"></script>
     <script src="./js/sweet-alert.js"></script>
 
@@ -36,30 +36,14 @@
                 <!-- 編輯區 -->
                 <div id="stepTab">
                     <ul class="tabs">
-                        <div class="fakeCircles fakeCircle1"></div>
-                        <div class="fakeCircles fakeCircle2"></div>
-                        <div class="fakeCircles fakeCircle3"></div>
-                        <div class="fakeCircles fakeCircle4"></div>
-                        <div class="fakeCircles fakeCircle5"></div>
-                        <div class="fakeCircles fakeCircle6"></div>
-                        <div class="fakeCircles fakeCircle7"></div>
-                        <div class="fakeCircles fakeCircle8"></div>
-                        <div class="fakeCircles fakeCircle9"></div>
-                        <div class="fakeCircles fakeCircle10"></div>
-                        <div class="fakeCircles fakeCircle11"></div>
-                        <div class="fakeCircles fakeCircle12"></div>
-                        <div class="fakeCircles fakeCircle13"></div>
-                        <div class="fakeCircles fakeCircle14"></div>
-                        <div class="fakeCircles fakeCircle15"></div>
-                        <div class="fakeCircles fakeCircle16"></div>
-                        <div class="fakeCircles fakeCircle17"></div>
-                        <div class="fakeCircles fakeCircle18"></div>
-                        <div class="fakeCircles fakeCircle19"></div>
-                        <div class="fakeCircles fakeCircle20"></div>
                         <li class="tab-link current tabOpen" data-tab="tab-1" id="bigTab1">
                             <span class="stepNum tabSpanOpen">01</span>
                             <span class="stepTitle tabSpanOpen">STEP</span>
                             <span class="stepTitle tabSpanOpen">選擇皮帶</span>
+                            <div class="fakeCircles fakeCircle1"></div>
+                            <div class="fakeCircles fakeCircle2"></div>
+                            <div class="fakeCircles fakeCircle3"></div>
+                            <div class="fakeCircles fakeCircle4"></div>
                         </li>
                         <div class="tabLine1">
 
@@ -69,6 +53,10 @@
                             <span class="stepNum tabSpanClose">02</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
                             <span class="stepTitle tabSpanClose">選擇吊牌</span>
+                            <div class="fakeCircles fakeCircle5"></div>
+                            <div class="fakeCircles fakeCircle6"></div>
+                            <div class="fakeCircles fakeCircle7"></div>
+                            <div class="fakeCircles fakeCircle8"></div>
                         </li>
                         <div class="tabLine2">
 
@@ -78,6 +66,10 @@
                             <span class="stepNum tabSpanClose">03</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
                             <span class="stepTitle tabSpanClose">新增文字</span>
+                            <div class="fakeCircles fakeCircle9"></div>
+                            <div class="fakeCircles fakeCircle10"></div>
+                            <div class="fakeCircles fakeCircle11"></div>
+                            <div class="fakeCircles fakeCircle12"></div>
                         </li>
                         <div class="tabLine3">
 
@@ -87,6 +79,10 @@
                             <span class="stepNum tabSpanClose">04</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
                             <span class="stepTitle tabSpanClose">寵物試戴</span>
+                            <div class="fakeCircles fakeCircle13"></div>
+                            <div class="fakeCircles fakeCircle14"></div>
+                            <div class="fakeCircles fakeCircle15"></div>
+                            <div class="fakeCircles fakeCircle16"></div>
                         </li>
                         <div class="tabLine4">
 
@@ -96,6 +92,10 @@
                             <span class="stepNum tabSpanClose">05</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
                             <span class="stepTitle tabSpanClose">立即購買</span>
+                            <div class="fakeCircles fakeCircle17"></div>
+                            <div class="fakeCircles fakeCircle18"></div>
+                            <div class="fakeCircles fakeCircle19"></div>
+                            <div class="fakeCircles fakeCircle20"></div>
                         </li>
                     </ul>
                     <div id="tabsContent">
@@ -129,9 +129,10 @@
                                 <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);" id="collarImage25"><img src="./img/customized_collar/collarImages/25collar_FFFFFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
                                 <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);" id="collarImage26"><img src="./img/customized_collar/collarImages/26collar_A2A2A2.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
                                 <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);" id="collarImage27"><img src="./img/customized_collar/collarImages/27collar_3D3D3D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
-                                <div class="stepBtn">
-                                    <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
-                                </div>
+
+                            </div>
+                            <div class="stepBtn">
+                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
                             </div>
                         </div>
                         <div id="tab-2" class="tab-content">
@@ -228,21 +229,58 @@
                                 </div>
                                 <button class="to_right" style="cursor: pointer;" id="sliderBtnRight"></button>
                             </div>
-                            <!-- <div id="sliderBtns">
-                                <div class="sliderBtn">
-                                    <button id="sliderBtnLeft" disabled><<</button>
-                                </div>
-                                <div class="sliderBtn">
-                                    <button id="sliderBtnRight">>></button>
-                                </div>
-                            </div> -->
                             <div class="stepBtn">
                                 <button class="stepBackBtn" id="step2BackBtn">上一步</button>
                                 <button class="stepNextBtn" id="step2NextBtn">下一步</button>
                             </div>
                         </div>
                         <div id="tab-3" class="tab-content">
-                            step3
+                            <div class="addText">
+                                <div id="textStyle">
+                                    <h4 style="margin: 0px 20px 0px 10px;">選擇文字風格： </h4>
+                                    <input type="radio" name="textStyle" id="textStyle1" checked>
+                                    <label for="textStyle1" id="showStyle1">文字雕刻</label>
+                                    <input type="radio" name="textStyle" id="textStyle2">
+                                    <label for="textStyle2" id="showStyle2">文字描邊</label>
+                                    <input type="radio" name="textStyle" id="textStyle3">
+                                    <label for="textStyle3" id="showStyle3">一般文字</label>
+                                </div>
+                                <div id="textFontFamily">
+                                    <h4 style="margin: 0px 20px 0px 10px;">選擇文字字型： </h4>
+                                    <select name="" id="fontFamilySelect">
+                                        <option value="" selected disabled>請選擇字型</option>
+                                        <option value="">字體1</option>
+                                        <option value="">字體2</option>
+                                        <option value="">字體3</option>
+                                        <option value="">字體4</option>
+                                    </select>
+                                </div>
+                                <div id="textContent">
+                                    <h4 style="margin: 0px 20px 0px 10px;">輸入文字內容： </h4>
+                                    <input type="text" name="" id="textContent1" placeholder="請輸入文字">
+                                </div>
+                                <div>
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;">
+                                        <span class="titleFont">
+                                        新增文字
+                                        </span>
+                                        <div class="border"></div>
+                                        <div class="border"></div>
+                                        <div class="border"></div>
+                                        <div class="border"></div>
+                                    </a>
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;">
+                                        <span class="titleFont">
+                                        刪除文字
+                                        </span>
+                                        <div class="border"></div>
+                                        <div class="border"></div>
+                                        <div class="border"></div>
+                                        <div class="border"></div>
+                                    </a>
+                                </div>
+
+                            </div>
                             <div class="stepBtn">
                                 <button class="stepBackBtn" id="step3BackBtn">上一步</button>
                                 <button class="stepNextBtn" id="step3NextBtn">下一步</button>
@@ -312,8 +350,11 @@
 
                             $('ul.tabs li').removeClass('current');
                             $('.tab-content').removeClass('current');
+                            // $('.tab-content').fadeIn("slow");
 
                             $(this).addClass('current'); //標籤樣式換
+
+
                             $("#" + tab_id).addClass('current'); //內容換
                         });
                         $('#step1NextBtn').click(function() { //step1下一步按鈕
@@ -322,7 +363,7 @@
                             } else {
                                 $('ul.tabs li').removeClass('current');
                                 $('.tab-content').removeClass('current');
-                                $(this).parent().parent().parent().next().addClass('current');
+                                $(this).parent().parent().next().addClass('current');
                                 $('#bigTab2').addClass('current');
                                 $('#bigTab2').css('pointer-events', 'unset');
                                 $('#bigTab2').removeClass("tabClose").addClass("tabOpen");
@@ -473,7 +514,6 @@
                         // $('#tagTotal span:first-child').text("1");
                         $('#tagTotal span:last-child').text(tagItems.length);
                         $('.tagImages').click(function() {
-                            // resizeCanvas();
                             let nowIndex = (parseInt($('#collarTagWrap').css("left")) / -200) + 1;
                             let clickTagIndex = $(this).parent().index();
                             // alert(clickTagIndex);
@@ -487,14 +527,12 @@
                                 $('#sliderBtnRight').attr("disabled", true);
                             }
                             if (clickTagIndex > nowIndex) {
-                                curIndex++;
-                                tagIndex++;
-                                // alert(tagIndex);
+                                curIndex = (clickTagIndex - nowIndex) + curIndex;
+                                tagIndex = (clickTagIndex - nowIndex) + tagIndex;
                                 $('#sliderBtnLeft').attr("disabled", false);
                             } else if (clickTagIndex < nowIndex) {
-                                curIndex--;
-                                tagIndex--;
-                                // alert(tagIndex);
+                                curIndex = (clickTagIndex - nowIndex) + curIndex;
+                                tagIndex = (clickTagIndex - nowIndex) + tagIndex;
                                 $('#sliderBtnRight').attr("disabled", false);
                             }
                             $(this).parent().parent().children().children().nextAll().css("visibility", "hidden");

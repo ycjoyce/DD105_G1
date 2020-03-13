@@ -258,14 +258,14 @@ function dofirst() {
             imgWidth = previewArea.clientWidth * 1;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
-            imgOffsetY = (canvas.width - imgWidth) / 10;
+            imgOffsetY = (canvas.height - imgHeight) / 2;
         } else if (window.innerWidth < 768) {
-            imgWidth = previewArea.clientWidth * 0.7;
+            imgWidth = previewArea.clientWidth * 0.8;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2.2;
-            imgOffsetY = (canvas.width - imgWidth) / 10;
+            imgOffsetY = (canvas.height - imgHeight) / 2;
         } else if (window.innerWidth < 992) {
-            imgWidth = previewArea.clientWidth * 1.1;
+            imgWidth = previewArea.clientWidth * 0.6;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
