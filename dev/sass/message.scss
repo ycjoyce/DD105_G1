@@ -119,6 +119,58 @@ section{
             }
         }
     }
+    #imgAlert{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        background-color: #24242481;
+        display: none;
+        form{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            button{
+                position: absolute;
+                left: -15px;
+                top: -15px;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                background-color: $lightgray;
+                background-image: url("../img/close.svg");
+                background-position: center center;
+                background-size: 40%;
+                background-repeat: no-repeat;
+                border: none;
+                outline: none;
+                box-shadow: 0 0 5px #555;
+            }
+            img{
+                max-width: 90vw;
+                max-height: 50vh;
+            }
+            input{
+                position: absolute;
+                right: -25px;
+                bottom: -25px;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                background-color: #fff;
+                box-shadow: 0 0 5px #555;
+                border: none;
+                outline: none;
+                background-image: url(../img/send.svg);
+                background-size: 60%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+    }
     @include scrollbar('aside');
     aside{
         background-color: rgb(250, 250, 250);
@@ -333,7 +385,7 @@ section{
                 div.text{
                     background-color: #e4e8eb;
                     border-radius: 10px;
-                    padding: 20px 30px 15px 25px;
+                    padding: 15px 25px;
                     margin-left: 40px;
                     position: relative;
                     @include rwd(md){
@@ -373,17 +425,7 @@ section{
                         margin-top: 5px;
                     }
                     button.closeBtn{
-                        width: 15px;
-                        height: 15px;
-                        background-image: url("../img/close-icon.png");
-                        background-size: contain;
-                        background-repeat: no-repeat;
-                        background-color: transparent;
-                        border: none;
-                        outline:none;
-                        position: absolute;
-                        right: 10px;
-                        top: 10px;
+                        display: none;
                     }
                 }
             &.self{
@@ -393,8 +435,9 @@ section{
                     order: 1;
                     margin-left: 0;
                     margin-right: 0px;
-                    padding: 15px 25px;
+                    padding: 20px 30px 15px 25px;
                     background-color: $lightgreen;
+                    position: relative;
                     &::before{
                         border-color: transparent transparent transparent $lightgreen;
                         border-style: solid solid solid solid;
@@ -404,7 +447,18 @@ section{
                         left: 100%;
                     }
                     button.closeBtn{
-                        display: none;
+                        width: 15px;
+                        height: 15px;
+                        background-image: url("../img/close-icon.png");
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        background-color: transparent;
+                        border: none;
+                        outline:none;
+                        display: block;
+                        position: absolute;
+                        right: 10px;
+                        top: 10px;
                     }
                 }
             }
