@@ -163,7 +163,7 @@ body{
 
 article {
   .qaWrapper {
-    background-image: url(../img/q&a.PNG);
+    background-image: url(../img/qa_banner.png);
     background-attachment: fixed;
     height: 0;
     padding-top: 30%;
@@ -328,45 +328,45 @@ article {
 
       .bottom {
         bottom: 0;
-        transform-origin: right center;
+        transform-origin: left center;
       }
       input:hover ~ .bottom,
       textarea:hover ~ .bottom {
         transform: scaleX(1);
-        transform-origin: left center;
+        transform-origin: right center;
       }
 
       .top {
         top: 0;
-        transform-origin: left center;
+        transform-origin: right center;
         transition-delay: 0.2s;
       }
       input:hover ~ .top,
       textarea:hover ~ .top {
         transform: scaleX(1);
-        transform-origin: right center;
+        transform-origin: left center;
       }
 
       .right {
-        transform-origin: top center;
+        transform-origin: bottom center;
         right: 0;
-        transition-delay: 0.1s;
+        transition-delay: 0.3s;
       }
       input:hover ~ .right,
       textarea:hover ~ .right {
         transform: scaleY(1);
-        transform-origin: bottom center;
+        transform-origin: top center;
       }
 
       .left {
         left: 0;
-        transform-origin: bottom center;
-        transition-delay: 0.3s;
+        transform-origin: top center;
+        transition-delay: 0.1s;
       }
       input:hover ~ .left,
       textarea:hover ~ .left {
         transform: scaleY(1);
-        transform-origin: top center;
+        transform-origin: bottom center;
       }
     }
   }
