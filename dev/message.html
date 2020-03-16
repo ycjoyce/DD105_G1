@@ -20,9 +20,16 @@
         </div>
         <div id="deleteAlert">
             <form method="POST">
-                <p>刪除私信後即無法再顯示及回覆該筆私信，是否確認刪除此筆私信？</p>
+                <p>是否確認刪除此筆私信？</p>
                 <button class="yes titleFont">確認</button>
                 <button class="cancel titleFont">取消</button>
+            </form>
+        </div>
+        <div id="imgAlert">
+            <form method="POST" enctype="multipart/form-data">
+                <button></button>
+                <img id="imgPanel">
+                <input type="submit" value="" id="submitImg">
             </form>
         </div>
         <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12">
@@ -76,27 +83,6 @@
         <main class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-ss-12">
             <ul>
                 <button class="back titleFont"></button>
-                
-                <!-- <li class="otherSide">
-                    <div class="img">
-                        <img src="img/message_mem_1.jpg">
-                    </div>
-                    <h4>May</h4>
-                    <div class="text">
-                        <h4>May</h4>
-                        <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
-                        <span class="smalltext">2020.02.24　21:09</span>
-                        <button class="closeBtn"></button>
-                    </div>
-                </li>
-                <li class="self">
-                    <div class="text">
-                        <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
-                        <span class="smalltext">2020.02.24　21:09</span>
-                        <button class="closeBtn"></button>
-                    </div>
-                </li> -->
-                
             </ul>
             <form method="POST" class="edit" enctype="multipart/form-data">
                 <label for="upload">
@@ -166,6 +152,66 @@
         });
 
 
+        //我的信箱右邊顯示共幾則未讀
+        function showTotalUnread(){
+            var unreads= document.querySelectorAll("aside li.unRead p span");
+            var amt=0;
+            for(var i=0; i<unreads.length; i++){
+                amt+= parseInt(unreads[i].innerText);
+            }
+            document.querySelector("aside div.myMessage span").innerText= `${amt}則未讀`;
+            getMember();
+        }
+        showTotalUnread();
+
+        //上傳圖片
+        let imgAlert= document.getElementById("imgAlert");
+        imgAlert.querySelector("button").addEventListener("click",function(e){
+            e.preventDefault();
+            imgAlert.style.display="none";
+        });
+        let upload= document.getElementById("upload");
+        upload.addEventListener("change",function(e){
+            if(e.target.files[0]){
+                imgAlert.style.display="block";
+                let file= e.target.files[0];
+                let readFile= new FileReader();
+                readFile.readAsDataURL(file);
+                readFile.addEventListener('load',function(e){
+                    document.getElementById("imgPanel").src= e.target.result;
+                });
+            }
+        });
+        let submitImg= document.getElementById("submitImg");
+        submitImg.addEventListener("click",function(e){
+            e.preventDefault();
+            var formData= new FormData();
+            formData.append("uploadImg",upload.files[0]);
+            formData.append("getMemNo",document.querySelector("aside ul li.on").classList[0].substr(2));
+            $.ajax({
+                url: './php/uploadImg.php',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,                 
+                type: 'post',
+                success: function(data){
+                    if(data.indexOf("error")==-1){
+                        imgAlert.style.display="none";
+                        showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                        document.querySelector("aside ul").innerHTML="";
+                        getMsg();
+                    }else{
+                        alert(data.split("|")[1]);
+                    }
+                },
+                error: function(data){
+                    alert(data);
+                }
+            });
+        });
+
+        
         //送出文字私信，新增至資料庫
         function addTextMsg(e){
             e.preventDefault();
@@ -180,14 +226,25 @@
             xhr.onload=function(){
                 if(xhr.status==200){
                     showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                    document.querySelector("aside ul").innerHTML="";
+                    getMsg();
                     document.getElementById("inputText").value="";
+                    document.getElementById("submitText").disabled=true;
                 }else{
                     alert(xhr.status);
                 }
             }
         }
-        var submitText= document.getElementById("submitText");
-        submitText.addEventListener("click",addTextMsg);
+        let submitText= document.getElementById("submitText");
+        submitText.disabled=true;
+        document.getElementById("inputText").addEventListener("input",function(){
+            if(document.getElementById("inputText").value==""){
+                submitText.disabled=true;
+            }else{
+                submitText.disabled=false;
+                submitText.addEventListener("click",addTextMsg);
+            }
+        });
 
 
         var theAmt="";
@@ -203,8 +260,8 @@
             xhr.onload=function(){
                 if(xhr.status==200){
                     theAmt= xhr.responseText;
-                    console.log(sendMemNo,"號會員發來的未讀:",theAmt);
                     document.querySelector(`li.No${sendMemNo}.unRead div.text p span`).innerText= theAmt;
+                    showTotalUnread();
                 }else{
                     alert(xhr.status);
                 }
@@ -217,27 +274,51 @@
             var fields= xmlDoc.documentElement.childNodes;//members>member
             for(var i=0; i<fields.length; i++){
                 var li= document.createElement("li");
-                li.className= "No"+fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
-                var readOrNot= fields[i].getElementsByTagName("readOrNot")[0].firstChild.nodeValue;
-                if(readOrNot==0){
-                    li.classList.add("unRead");
+                var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
+                var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
+                var getMemNo= fields[i].getElementsByTagName("getMemNo")[0].firstChild.nodeValue;
+                if(myMemNo==sendMemNo){
+                    li.className= "No"+getMemNo;
+                }else{
+                    li.className= "No"+sendMemNo;
                 }
+
+                if(myMemNo!=sendMemNo){
+                    var readOrNot= fields[i].getElementsByTagName("readOrNot")[0].firstChild.nodeValue;
+                    if(readOrNot==0){
+                        li.classList.add("unRead");
+                    }
+                }
+                
                 var divImg= document.createElement("div");
                 divImg.className= "img";
                 li.appendChild(divImg);
                 var img= document.createElement("img");
-                var sendMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
-                img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
+                var listMemPic;
+                if(myMemNo==sendMemNo){
+                    listMemPic= fields[i].getElementsByTagName("getMemPic")[0].firstChild.nodeValue;
+                }else{
+                    listMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
+                }
+                img.src=`./img/memImg/${listMemPic}`;
                 divImg.appendChild(img);
+
                 var divText= document.createElement("div");
                 divText.className="text";
                 var divTitle= document.createElement("div");
                 divTitle.className="title";
                 divText.appendChild(divTitle);
                 var h4= document.createElement("h4");
-                var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
-                var h4Text= document.createTextNode(sendMemName);
+
+                var listMemName;
+                if(myMemNo==sendMemNo){
+                    listMemName= fields[i].getElementsByTagName("getMemName")[0].firstChild.nodeValue;
+                }else{
+                    listMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                }
+                var h4Text= document.createTextNode(listMemName);
                 h4.appendChild(h4Text);
+
                 var span= document.createElement("span");
                 var sendTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
                 var spanText= document.createTextNode(sendTime.split(" ")[0]+"　"+sendTime.split(" ")[1].split(":")[0]+":"+sendTime.split(" ")[1].split(":")[1]);
@@ -246,39 +327,47 @@
                 divTitle.appendChild(h4);
                 divTitle.appendChild(span);
                 var p= document.createElement("p");
-                if(fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue==""){
-                    var latestMsg= sendMemName+"傳送一張圖片";
+                if(!fields[i].getElementsByTagName("msgText")[0].firstChild){
+                    var latestMsg= "傳送一張圖片";
                 }else{
                     var latestMsg=fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
                 }
                 var pText= document.createTextNode(latestMsg);
                 p.appendChild(pText);
+
                 if(li.classList.contains("unRead")){
                     var unSpan= document.createElement("span");
-                    unReadAmt(fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue);
-                    // var unText= document.createTextNode(theAmt);//未讀的數量
-                    // unSpan.appendChild(unText);
+                    if(myMemNo==sendMemNo){
+                        unReadAmt(fields[i].getElementsByTagName("getMemNo")[0].firstChild.nodeValue);
+                    }else{
+                        unReadAmt(fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue);
+                    }
                     unSpan.innerText= theAmt;
                     p.appendChild(unSpan);
                 }
+
                 divText.appendChild(p);
                 li.appendChild(divText);
                 var ulAside= document.querySelector("ul.aside");
                 ulAside.insertBefore(li,ulAside.firstChild);
-                var ulAsideLis= document.querySelectorAll(`aside ul li.No${fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue}`);
-                
+                var ulAsideLis= document.querySelectorAll(`aside ul li.No${myMemNo==sendMemNo?getMemNo:sendMemNo}`);
+
                 for(var j=0; j<ulAsideLis.length; j++){
                     ulAsideLis[j].onclick=function(e){
                         showAllMsg(this.classList[0].substr(2));
-                        // console.log(this.classList[0].substr(2));
                         changeUnRead(this.classList[0].substr(2));
                         this.classList.add("on");
+                        sessionStorage.setItem("now-on",this.classList[0].substr(2));
                         $("aside ul li").not(this).removeClass("on");
-                        this.classList.remove("unRead");
+                        if(this.classList.contains("unRead")){ 
+                            this.querySelector("div.text p").removeChild(this.querySelector("div.text p span"));
+                            this.classList.remove("unRead");
+                        }
+                        showTotalUnread();
                     }
                 }
+
                 var chatRooms= document.querySelectorAll('aside ul li');
-                
                 for(let i=0; i<chatRooms.length; i++){
                     chatRooms[i].addEventListener('click',changeSide);
                 }
@@ -312,6 +401,11 @@
                 if(xhr.status==200){
                     if(xhr.responseText.indexOf("notFound")==-1){
                         showMsgList(xhr.responseXML);
+                        if(sessionStorage.getItem("now-on")){
+                            var nowOn= document.querySelector(`aside ul li.No${sessionStorage.getItem("now-on")}`);
+                            nowOn.classList.add("on");
+                            document.querySelector("aside ul li.on").onclick();
+                        }
                     }else{
                         alert("尚無私信內容");
                     }
@@ -358,7 +452,7 @@
                 var li= document.createElement("li");
                 var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
                 var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
-                console.log("myMemNo:",myMemNo,"|sendMemNo:",sendMemNo);
+
                 if(myMemNo != sendMemNo){
                     li.className="otherSide";
                 }else{
@@ -388,12 +482,18 @@
                     h4.appendChild(h4Text);
                     divText.appendChild(h4);
                 }
-                var p= document.createElement("p");
-                var pText= fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
-                var pNode= document.createTextNode(pText);
-                p.appendChild(pNode);
-                divText.appendChild(p);
-                //圖片的待補充
+                if(!fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                    var p= document.createElement("p");
+                    var pText= fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
+                    var pNode= document.createTextNode(pText);
+                    p.appendChild(pNode);
+                    divText.appendChild(p);
+                }else{
+                    var img= document.createElement("img");
+                    img.src= `./img/msgPic/${fields[i].getElementsByTagName("msgPic")[0].firstChild.nodeValue}`;
+                    img.width= 200;
+                    divText.appendChild(img);
+                }
                 var span= document.createElement("span");
                 span.className="smalltext";
                 var msgTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
@@ -402,6 +502,7 @@
                 divText.appendChild(span);
                 var button= document.createElement("button");
                 button.className="closeBtn";
+                button.classList.add(`No${fields[i].getElementsByTagName("msgNo")[0].firstChild.nodeValue}`);
                 divText.appendChild(button);
                 ulMain.appendChild(li);
                 var closeBtns= document.querySelectorAll('button.closeBtn');
@@ -409,13 +510,36 @@
                 for(var i=0; i<closeBtns.length; i++){
                     closeBtns[i].onclick=function(){
                         deleteAlert.style.display="block";
+                        sessionStorage.setItem("delMsgNo",this.classList[1].substr(2));
                     }
                 }
                 deleteAlert.querySelector('button.cancel').onclick=function(e){
                     e.preventDefault();
                     deleteAlert.style.display="none";
                 }
+                deleteAlert.querySelector('button.yes').onclick=function(e){
+                    e.preventDefault();
+                    deleteAlert.style.display="none";
+                    var xhr= new XMLHttpRequest();
+                    var url= "./php/deleteMsg.php";
+                    xhr.open("POST",url,true);
+                    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                    var data_info=`delMsgNo=${sessionStorage.getItem("delMsgNo")}`;
+                    xhr.send(data_info);
+                    xhr.onload= function(){
+                        if(xhr.status==200){
+                            alert("成功刪除一筆私信");
+                            showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                            document.querySelector("aside ul").innerHTML="";
+                            getMsg();
+                        }else{
+                            alert(xhr.status);
+                        }
+                    }
+                }
             }
+            var mainUl= document.querySelector("main ul");
+            mainUl.scroll(0,mainUl.scrollHeight);
         }
 
         //按左邊列表顯示在右邊
@@ -430,7 +554,6 @@
             xhr.onload=function(){
                 if(xhr.status==200){
                     showPanel(xhr.responseXML);
-                    // alert(xhr.responseText);
                 }else{
                     alert(xhr.status);
                 }
