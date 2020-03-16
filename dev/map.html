@@ -11,6 +11,7 @@
     <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/> -->
     <link rel="stylesheet" href="./css/map.css">
     <script src="./js/jquery-3.4.1.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="./js/modernizr.custom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <!-- scrollmagic -->
@@ -198,11 +199,21 @@
                             <p>
                                 <label for="lost_area">篩選地區</label>
                                 <select name="lost_area" id="lost_area" class="smalltext">
-                                    <option value="" disabled selected>請選擇地區</option>
-                                    <option value="lost_area_N">北部</option>
-                                    <option value="lost_area_M">中部</option>
-                                    <option value="lost_area_S">南部</option>
-                                    <option value="lost_area_E">東部</option>
+                                    <optgroup label="台北市">
+                                        <option value="0" hidden>--請選擇--</option>
+                                        <option value="lost_area_01">士林區</option>
+                                        <option value="lost_area_02">大同區</option>
+                                        <option value="lost_area_03">大安區</option>
+                                        <option value="lost_area_04">中山區</option>
+                                        <option value="lost_area_05">中正區</option>
+                                        <option value="lost_area_06">內湖區</option>
+                                        <option value="lost_area_07">文山區</option>
+                                        <option value="lost_area_08">北投區</option>
+                                        <option value="lost_area_09">松山區</option>
+                                        <option value="lost_area_10">信義區</option>
+                                        <option value="lost_area_11">南港區</option>
+                                        <option value="lost_area_12">萬華區</option>
+                                    </optgroup>
                                 </select>
                             </p>
                         </div>
@@ -219,31 +230,41 @@
                                     <label for="friendly">寵物友善空間</label>
                                 </h3>
                                 <p>
-                                    <input type="checkbox" name="fr_rest" id="fr_rest">
+                                    <input type="checkbox" name="friendtypes[]" id="fr_rest" value="1">
                                     <label for="fr_rest">友善餐廳</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" name="fr_stay" id="fr_stay">
+                                    <input type="checkbox" name="friendtypes[]" id="fr_stay" value="2">
                                     <label for="fr_stay">友善住宿</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" name="fr_point" id="fr_point">
+                                    <input type="checkbox" name="friendtypes[]" id="fr_point" value="3">
                                     <label for="fr_point">友善景點</label>
                                 </p>
                                 <p>
                                     <label for="fr_area">篩選地區</label>
                                     <select name="fr_area" id="fr_area" class="smalltext">
-                                        <option value="" disabled selected>請選擇地區</option>
-                                        <option value="fr_area_N">北部</option>
-                                        <option value="fr_area_M">中部</option>
-                                        <option value="fr_area_S">南部</option>
-                                        <option value="fr_area_E">東部</option>
+                                        <optgroup label="台北市">
+                                            <option value="0" hidden>--請選擇--</option>
+                                            <option value="fr_area_01">士林區</option>
+                                            <option value="fr_area_02">大同區</option>
+                                            <option value="fr_area_03">大安區</option>
+                                            <option value="fr_area_04">中山區</option>
+                                            <option value="fr_area_05">中正區</option>
+                                            <option value="fr_area_06">內湖區</option>
+                                            <option value="fr_area_07">文山區</option>
+                                            <option value="fr_area_08">北投區</option>
+                                            <option value="fr_area_09">松山區</option>
+                                            <option value="fr_area_10">信義區</option>
+                                            <option value="fr_area_11">南港區</option>
+                                            <option value="fr_area_12">萬華區</option>
+                                        </optgroup>
                                     </select>
                                 </p>
                                 <p>
                                     <label for="fr_rate">選擇星等</label>
                                     <select name="fr_rate" id="fr_rate" class="smalltext">
-                                        <option value="" disabled selected>請選擇星等</option>
+                                        <option value="" disabled selected>--請選擇星等--</option>
                                         <option value="fr_rate_5">5</option>
                                         <option value="fr_rate_4">4</option>
                                         <option value="fr_rate_3">3</option>
@@ -277,9 +298,20 @@
             </div>
 
             <!-- 右側地圖區 -->
-            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 map_area">
-                <iframe src="http://maps.google.com?output=embed&q=友善動物"
-                    style="width: 100%; height: 100%; border: none;"></iframe>
+            <div id="gmaps" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 map_area">
+                <div id="map-viewport">
+                    <div class="map" id="googleMap"></div>
+                    <div id="map-control">
+                        <button id="center"><img src="https://img.icons8.com/ios-glyphs/25/2466fa/center-direction.png"
+                                alt="" /></button>
+                        <button id="zoomIn"><img src="https://img.icons8.com/ios-glyphs/18/616161/plus-math.png"
+                                alt="" /></button>
+                        <button id="zoomOut"><img src="https://img.icons8.com/ios-glyphs/18/616161/minus-math.png"
+                                alt="" /></button>
+                    </div>
+                </div>
+                <!-- <iframe src="http://maps.google.com?output=embed&q=友善動物"
+                    style="width: 100%; height: 100%; border: none;"></iframe> -->
             </div>
         </section>
     </div>
@@ -289,7 +321,7 @@
         <div class="dialog__overlay"></div>
         <div id="lostform_cus" class="dialog__content">
             <div id="lostform">
-                <form action="post">
+                <form action="./php/map_lostform.php" method="POST" enctype="multipart/form-data">
                     <fieldset>
                         <h3>寵物遺失地點登記</h3>
                         <p>
@@ -316,23 +348,28 @@
                             <label for="lostPetRpStat">案件狀態</label>
                             <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
                                 <option value="" disabled>-- 請選擇狀態 --</option>
-                                <option value="">進行中</option>
-                                <option value="">已找到</option>
-                                <option value="">未找到，已結案</option>
+                                <option value="0">已找到</option>
+                                <option value="1">進行中</option>
+                                <option value="2">未找到，已結案</option>
                             </select>
                         </p>
                         <p>
                             <label for="">上傳寵物照片</label>
                             <label class="uploadimg_btn">
-                                <input id="upload_img" style="display:none;" type="file">
+                                <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                                    accept="image/*">
                                 <i class="fa fa-photo"></i> 上傳圖片
                             </label>
                         </p>
                         <div>
-                            @@include('./layout/btn_darkgreen.html',{
-                            "innerText": "送出資料",
-                            "connect": " href=''"
-                            })
+                            <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
+                                    送出資料
+                                </span>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                            </button>
                         </div>
                     </fieldset>
                 </form>
@@ -372,6 +409,8 @@
     <script src="./js/header_slide.js"></script>
     <!-- 插圖動畫 -->
     <script src="./js/map_animation.js"></script>
+    <!-- AJAX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -404,9 +443,103 @@
             if (winWidth > 992) {
                 $('#map_option_lost').addClass('is-active');
             };
-        });
 
+            //================================================
+            //==================新增寵物遺失===================
+
+            var lostPetRpImg = document.getElementById("lostPetRpImg");
+            $("#rpbtn").click(function (e) {
+                e.preventDefault();
+                var formData = new FormData();
+                formData.append("lostPetRpName", $("#lostPetRpName").val());
+                formData.append("lostPetRpCh", $("#lostPetRpCh").val());
+                formData.append("lostPetRpLoc", $("#lostPetRpLoc").val());
+                formData.append("lostPetRpLDate", $("#lostPetRpLDate").val());
+                formData.append("lostPetRpType", $("#lostPetRpType").val());
+                formData.append("lostPetRpStat", $("#lostPetRpStat").val());
+                formData.append("lostPetRpImg", lostPetRpImg.files[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "./php/map_lostform.php",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (data) {
+                        if (data.indexOf("成功") != -1) {
+                            alert("新增成功");
+                            $("#somedialog").removeClass("dialog--open");
+                            $("#lostPetRpName").val("");
+                            $("#lostPetRpCh").val("");
+                            $("#lostPetRpLoc").val("");
+                            $("#lostPetRpLDate").val("");
+                            $("#lostPetRpType").val("");
+                            $("#lostPetRpStat").val("");
+                        }
+                        else {
+                            alert("新增失敗");
+                        }
+                    },
+                    error: function () {
+                        alert("請上傳檔案");
+                    }
+                })
+            })
+        });
     </script>
+
+    <!-- -------------------------------------------------- -->
+    <!-- ----------------- GoogleMap ---------------------- -->
+    <script src="./js/map_googlemap.js"></script>
+
+    <!-- -------------------------------------------------- -->
+    <!-- -----------------新增寵物遺失---------------------- -->
+
+    <!-- <script>
+        document.getElementById('rpbtn').addEventListener("click", rpsent);
+        function rpsent() {
+            // e.preventDefault();
+            var xhr = new XMLHttpRequest();
+            var url = "./php/map_lostform.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            var data =
+                `
+                lostPetRpName=${document.getElementById("lostPetRpName").value}&
+                lostPetRpCh=${document.getElementById("lostPetRpCh").value}&
+                lostPetRpLoc=${document.getElementById("lostPetRpLoc").value}&
+                lostPetRpLDate=${document.getElementById("lostPetRpLDate").value}&
+                lostPetRpType=${document.getElementById("lostPetRpType").value}&
+                lostPetRpStat=${document.getElementById("lostPetRpStat").value}
+                
+                `
+                // &lostPetRpImg=${document.getElementById("lostPetRpImg").value}
+                // "lostPetRpName=" + document.getElementById("lostPetRpName").value +
+                // "&lostPetRpCh=" + document.getElementById("lostPetRpCh").value +
+                // "&lostPetRpLoc=" + document.getElementById("lostPetRpLoc").value +
+                // "&lostPetRpLDate=" + document.getElementById("lostPetRpLDate").value +
+                // "&lostPetRpType=" + document.getElementById("lostPetRpType").value +
+                // "&lostPetRpStat=" + document.getElementById("lostPetRpStat").value +
+                // "&lostPetRpImg=" + document.getElementById("lostPetRpImg").value
+                ;
+            xhr.send(data);
+            // alert(data);
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if (xhr.responseText.indexOf("成功") != -1) {
+                        alert("成功");
+                    }
+                    else {
+                        alert("失敗");
+                    }
+                } else {
+                    alert(xhr.status);
+                }
+            };
+        }
+    </script> -->
+
+
 
     <!--AOS animation -->
     <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
