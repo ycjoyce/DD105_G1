@@ -1,28 +1,101 @@
 function dofirst() {
+    WebFont.load({
+        google: {
+            families: ['Pacifico', 'VT323', 'Quicksand', 'Inconsolata']
+        }
+    });
     var previewArea = document.getElementById('preview_area');
     var step1NextBtn = document.getElementById('step1NextBtn');
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
+    // var canvas = document.getElementById('canvas');
+    // var context = canvas.getContext('2d');
+    var canvas = new fabric.Canvas('canvas');
     var canvas2 = document.getElementById('canvas2');
     var context2 = canvas2.getContext('2d');
     var sliderBtnLeft = document.getElementById('sliderBtnLeft');
     var sliderBtnRight = document.getElementById('sliderBtnRight');
     var collarTagWrap = document.getElementById('collarTagWrap');
-
-
-    // $('#bigTab2').click(function() {
-    //     resizeCanvas();
-    // });
-
-
     var collarImg = new Image();
     collarImg.src = "./img/customized_collar/leather_png/1.png";
     var collarImg2 = new Image();
-    collarImg2.src = "./img/customized_collar/leather_png/real_upper_finish4.png";
+    collarImg2.src = "./img/customized_collar/leather_png/real_upper_finish5.png";
     var tagImg1 = new Image();
     tagImg1.src = "./img/customized_collar/leather_png/29_2.png";
     tagImg2 = new Image();
     tagImg2.src = "";
+
+    var HideControls = {
+        'tl': true, //左上   top left
+        'tr': true, //右上   top right          
+        'bl': true, //左下   bottom left
+        'br': true, //右下   bottom right
+        'ml': true, //中左   middle left
+        'mt': true, //中上   middle top
+        'mr': true, //中右   middle right
+        'mb': true, //中下   middle bottom
+        'mtr': true, //中上控制角度     middle top rotate 
+    };
+    delTextBtn.addEventListener('click', function() {
+        canvas.remove(canvas.getActiveObject());
+    });
+    var textStyle1 = document.getElementById('textStyle1');
+    var textStyle2 = document.getElementById('textStyle2');
+    var textStyle3 = document.getElementById('textStyle3');
+    var fontFamilySelect = document.getElementById('fontFamilySelect');
+    var textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
+    var textColor = '#e6c785';
+    var strokeColor = '';
+    var fonts = ["", "Pacifico", "VT323", "Quicksand", "Inconsolata"];
+    var textFontFamily = fonts[0];
+    textStyle1.addEventListener('change', function() {
+        textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
+        textColor = '#e6c785';
+        strokeColor = '';
+    })
+    textStyle2.addEventListener('change', function() {
+        textShadow = '';
+        textColor = 'rgba(0, 0, 0,.0)';
+        strokeColor = 'black';
+    })
+    textStyle3.addEventListener('change', function() {
+        textShadow = '';
+        textColor = '#000';
+        strokeColor = '';
+    })
+    fontFamilySelect.addEventListener('change', function() {
+        if (fontFamilySelect.value == "Pacifico") {
+            textFontFamily = fonts[1];
+        } else if (fontFamilySelect.value == "VT323") {
+            textFontFamily = fonts[2];
+        } else if (fontFamilySelect.value == "Quicksand") {
+            textFontFamily = fonts[3];
+        } else if (fontFamilySelect.value == "Inconsolata") {
+            textFontFamily = fonts[4];
+        }
+    });
+    addTextBtn.addEventListener('click', function() {
+
+        let textContent1 = document.getElementById('textContent1');
+        if (textContent1.value == "") {
+            alert("請先輸入文字");
+        } else {
+            var textWithBackground = new fabric.IText(textContent1.value, {
+                // fontFamily: 'Noto Sans TC',
+                fontFamily: textFontFamily,
+                shadow: textShadow,
+                // shadow: textShadow,
+                fontSize: 24,
+                left: 50,
+                top: 50,
+                fill: textColor,
+                strokeWidth: 0.6,
+                stroke: strokeColor,
+                textBackgroundColor: 'rgba(255,255,255,0)',
+            }).setControlsVisibility(HideControls);
+            canvas.add(textWithBackground);
+            textContent1.value = "";
+        }
+    });
+
 
 
     tagIndex = 1;
@@ -95,153 +168,142 @@ function dofirst() {
         // alert(tagIndex);
         if (tagIndex == 1) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 2) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 3) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 4) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 5) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 6) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 7) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
-            resizeCanvas();
         } else if (tagIndex == 8) {
             tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
-            resizeCanvas();
         }
+        resizeCanvas();
     });
 
     document.getElementById('collarImage1').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/1.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // resizeCanvas();
+        resizeCanvas();
     });
     document.getElementById('collarImage2').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/2.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // resizeCanvas();
+        resizeCanvas();
     });
     document.getElementById('collarImage3').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/3.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // resizeCanvas();
+        resizeCanvas();
     });
     document.getElementById('collarImage4').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/4.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // resizeCanvas();
+        resizeCanvas();
     });
     document.getElementById('collarImage5').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/5.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage6').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/6.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage7').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/7.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage8').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/8.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage9').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/9.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage10').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/10.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage11').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/11.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage12_1').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/12_1.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage12_2').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/12_2.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage13').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/13.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage14').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/14.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage15').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/15.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage16').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/16.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage17').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/17.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage18').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/18.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage19').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/19.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage20').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/20.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage21').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/21.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage22').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/22.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage23').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/23.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage24').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/24.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage25').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/25.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage26').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/26.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
     document.getElementById('collarImage27').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/27.png";
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        resizeCanvas();
     });
 
     resizeCanvas();
 
     function resizeCanvas() {
-        canvas.width = previewArea.clientWidth; //第一個canvas的寬 = 父層div的寬
-        canvas.height = previewArea.clientHeight; //第一個canvas的高 = 父層div的高
+        canvas.setWidth(previewArea.clientWidth);
+        canvas.setHeight(previewArea.clientHeight);
         canvas2.width = previewArea.clientWidth; //第二個canvas的寬 = 父層div的寬
         canvas2.height = previewArea.clientHeight; //第二個canvas的高 = 父層div的高
         imgRatio = 1000 / 1000; //圖片寬高比例
@@ -249,6 +311,8 @@ function dofirst() {
         imgHeight = imgWidth * imgRatio; //圖片高度參數
         imgOffsetX = (canvas.width - imgWidth) / 2; //圖片X位移量
         imgOffsetY = (canvas.height - imgHeight) / 2; //圖片Y位移量
+        fabricScaleX = (previewArea.clientWidth / 1000) * 0.7;
+        fabricScaleY = (previewArea.clientWidth / 1000) * 0.7;
         if (window.innerWidth <= 414) { //RWD
             imgWidth = previewArea.clientWidth * 1;
             imgHeight = imgWidth * imgRatio;
@@ -259,34 +323,86 @@ function dofirst() {
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 1;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 1;
         } else if (window.innerWidth < 768) {
             imgWidth = previewArea.clientWidth * 0.8;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2.2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.8;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.8;
         } else if (window.innerWidth < 992) {
             imgWidth = previewArea.clientWidth * 0.6;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.6;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.6;
         } else if (window.innerWidth < 1200) {
             imgWidth = previewArea.clientWidth * 1;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 1;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 1;
         } else if (window.innerWidth < 1500) {
             imgWidth = previewArea.clientWidth * 0.9;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = fabricScaleX = (previewArea.clientWidth / 1000) * 0.9;
+            fabricScaleY = fabricScaleY = (previewArea.clientWidth / 1000) * 0.9;
         }
 
-        // 輸出主要圖片----------------------------------------------------------------------
-        collarImg.addEventListener('load', function() {
-            context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        canvas.clear();
+        fabric.Image.fromURL(collarImg.src, function(img) {
+            var oImg = img.set({
+                left: imgOffsetX,
+                top: imgOffsetY,
+                angle: 0,
+                opacity: 1,
+                scaleX: fabricScaleX,
+                scaleY: fabricScaleY,
+                selectable: false,
+                hoverCursor: "default",
+            })
+
+            canvas.add(oImg);
         });
-        context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        //-----------------------------------------------------------------------------------
+
+        fabric.Image.fromURL(tagImg2.src, function(img) {
+            var tagImg = img.set({
+                left: imgOffsetX,
+                top: imgOffsetY,
+                angle: 0,
+                opacity: 1,
+                scaleX: fabricScaleX,
+                scaleY: fabricScaleY,
+                selectable: false,
+                hoverCursor: "default",
+            })
+
+            canvas.add(tagImg);
+        });
+        // defaultImg = new fabric.Image(collarImg, {
+        //     left: imgOffsetX,
+        //     top: imgOffsetY,
+        //     angle: 0,
+        //     opacity: 1,
+        //     scaleX: (previewArea.clientWidth / 1000) * 0.7,
+        //     scaleY: (previewArea.clientWidth / 1000) * 0.7,
+        //     selectable: false,
+        //     hoverCursor: "default",
+        // });
+        // canvas.clear();
+        // canvas.add(defaultImg);
+        // // 輸出主要圖片----------------------------------------------------------------------
+        // collarImg.addEventListener('load', function() {
+        //     context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // });
+        // context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // //-----------------------------------------------------------------------------------
 
 
 
@@ -308,12 +424,23 @@ function dofirst() {
 
 
 
-        // 輸出吊牌圖片----------------------------------------------------------------------
-        tagImg2.addEventListener('load', function() {
-            context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        });
-        context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        //-----------------------------------------------------------------------------------
+        // // 輸出吊牌圖片----------------------------------------------------------------------
+        // tagImg2.addEventListener('load', function() {
+        //     context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // });
+        // context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // //-----------------------------------------------------------------------------------
+
+
+        // let textContent1 = document.getElementById('textContent1');
+        // var textWithBackground = new fabric.IText(textContent1.value || '點兩下進行編輯', {
+        //     fontFamily: 'arial black',
+        //     left: imgOffsetX,
+        //     top: imgOffsetY,
+        //     textBackgroundColor: 'rgba(255,255,255,0)'
+        // }).setControlsVisibility(HideControls);
+        // canvas.add(textWithBackground);
+        // textContent1.value = "";
     }
     window.addEventListener('resize', resizeCanvas);
 }

@@ -14,12 +14,13 @@ try{
         $xml.= "<messages>";//根元素
         while($msgRow= $msg->fetch(PDO::FETCH_ASSOC)){
             $xml.= "<message>";
+                $xml.= "<msgNo>{$msgRow['msgNo']}</msgNo>";
                 $xml.= "<myMemNo>{$_SESSION["memNo"]}</myMemNo>";
                 $xml.= "<sendMemNo>{$msgRow['sendMemNo']}</sendMemNo>";
                 $xml.= "<getMemNo>{$msgRow['getMemNo']}</getMemNo>";
                 $xml.= "<readOrNot>{$msgRow['readOrNot']}</readOrNot>";
                 $xml.= "<msgTime>{$msgRow['msgTime']}</msgTime>";
-                $xml.= "<msgText>{$msgRow['msgText']}</msgText>";
+                $xml.= "<msgText>{$msgRow["msgText"]}</msgText>";
                 $xml.= "<msgPic>{$msgRow['msgPic']}</msgPic>";
                     $sql= "select * from `memInfo` where memNo='{$msgRow['sendMemNo']}'";
                     $sendMem= $pdo->query($sql);

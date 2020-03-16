@@ -16,6 +16,7 @@
 @import 'layout/scrollbar';
 @import 'layout/rwd';
 @import 'layout/tagLightBox';
+@import url('https://fonts.googleapis.com/css?family=Pacifico|VT323|Quicksand|Inconsolata');
 @mixin keyframes($name) {
     @-webkit-keyframes #{$name} {
         @content;
@@ -99,7 +100,7 @@ section {
         .preview_area {
             // border: 1px solid blue;
             border-top: 0.5px solid rgba(128, 128, 128, 0.486);
-            width: calc(100% - 400px);
+            width: calc(100% - 600px);
             position: relative;
             // background-color: #eae0bf;
             transition: all 0.5s ease-in-out;
@@ -241,7 +242,7 @@ section {
         }
         .edit_area {
             // border: 0.5px solid rgba(128, 128, 128, 0.356);
-            // min-width: 600px;
+            min-width: 600px;
             // max-width: 600px;
             // background: white;
             background-color: #fff9e4;
@@ -1139,7 +1140,7 @@ section {
                             }
                             #showStyle1 {
                                 font-size: 24px;
-                                color: #e9e4d0;
+                                color: #f0ebd7;
                                 text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
                                 margin-right: 15px;
                             }

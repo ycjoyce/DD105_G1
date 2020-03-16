@@ -1,4 +1,14 @@
 let member;
+//member.memNo --- 登入會員編號
+//member.memId --- 登入會員帳號
+//member.memName --- 登入會員暱稱
+//member.memPsw --- 登入會員密碼
+//member.memPic --- 登入會員圖片
+//member.memPoint --- 登入會員紅利點數
+//member.memStatus --- 登入會員狀態
+//member.memTagNo --- 登入會員解鎖吊牌編號
+
+
 
 //會員判斷
 function getMember(){
@@ -33,7 +43,7 @@ function getMember(){
                                 <div>
                                     <div class="memPic"></div>
                                     <div class="message">
-                                        <span class="unread">2</span>
+                                        <span id="headerUnread" class="unread"></span>
                                     </div>
                                 </div>
                                 <ul class="memZone">
@@ -50,6 +60,11 @@ function getMember(){
                     </div>
                 </nav>
                 `;
+                //漢堡選單
+                $("button.hamburger").on("click", function(){
+                    $(this).toggleClass("is-active");
+                    $("nav ul").slideToggle();
+                });
                 var script= document.getElementById("script");
                 var body= document.querySelector('body');
                 var headerScript= document.createElement("script");
@@ -58,8 +73,29 @@ function getMember(){
                 var memImgSrc= member.memPic;
                 var memImg= document.querySelector('li.memZone div div.memPic');
                 memImg.style.backgroundImage=`url("./img/memImg/${memImgSrc}")`;
+
+
+                var headerUnread= document.getElementById("headerUnread");
+                var xhr2= new XMLHttpRequest();
+                var url2= "./php/headerUnread.php";
+                xhr2.open("POST",url2,true);
+                xhr2.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                var data_info2= `memNo=${member.memNo}`;
+                xhr2.send(data_info2);
+                
+                xhr2.onload=function(){
+                    if(xhr2.status==200){
+                        if(xhr2.responseText!=0){
+                            headerUnread.style.display="inline-block";
+                            headerUnread.innerText= xhr2.responseText;
+                        }else{
+                            headerUnread.style.display="none";
+                        }
+                    }else{
+                        alert(xhr2.status);
+                    }
+                }
             }
-        
         }else{
             alert(xhr.status);
         }
@@ -101,7 +137,7 @@ function signOut(){
                     </div>
                 </nav>
                 `;
-
+                sessionStorage.clear();
                 
                 if(location.pathname.split("/").pop()=="message.html"||location.pathname.split("/").pop()=="memberCenter.html"){
                     location.href="./index.html";
