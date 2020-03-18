@@ -4,7 +4,6 @@ function dofirst() {
             families: ['Pacifico', 'VT323', 'Quicksand', 'Inconsolata']
         }
     });
-
     var previewArea = document.getElementById('preview_area');
     var step1NextBtn = document.getElementById('step1NextBtn');
     // var canvas = document.getElementById('canvas');
@@ -49,6 +48,18 @@ function dofirst() {
     var textStyle2 = document.getElementById('textStyle2');
     var textStyle3 = document.getElementById('textStyle3');
     var fontFamilySelect = document.getElementById('fontFamilySelect');
+<<<<<<< HEAD
+    var textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
+    var textColor = '#e6c785';
+    var strokeColor = '';
+    var fonts = ["", "Pacifico", "VT323", "Quicksand", "Inconsolata"];
+    var textFontFamily = fonts[0];
+    textStyle1.addEventListener('change', function() {
+        textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
+        textColor = '#e6c785';
+        strokeColor = '';
+    })
+=======
     var textColor = 'rgba(0,0,0,1)';
     var strokeColor = 'rgba(0,0,0,1)';
     var strokeWidth = 0.6;
@@ -98,6 +109,7 @@ function dofirst() {
         //     textColor = '#e6c785';
         //     strokeColor = '';
         // })
+>>>>>>> 741dd5b28c6b98bbc3d0da79b2d63fec7f3856c1
     textStyle2.addEventListener('change', function() {
         textStyle2.classList.add("-on");
         strokeWidth = 0.6;
