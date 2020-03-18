@@ -1,11 +1,9 @@
 function dofirst() {
-
     WebFont.load({
         google: {
             families: ['Pacifico', 'VT323', 'Quicksand', 'Inconsolata']
         }
     });
-
     var previewArea = document.getElementById('preview_area');
     var step1NextBtn = document.getElementById('step1NextBtn');
     // var canvas = document.getElementById('canvas');
@@ -43,13 +41,11 @@ function dofirst() {
     var textStyle2 = document.getElementById('textStyle2');
     var textStyle3 = document.getElementById('textStyle3');
     var fontFamilySelect = document.getElementById('fontFamilySelect');
-    // var textShadow = '-1px -1px 0 rgba(0, 0, 0, .7)';
     var textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
     var textColor = '#e6c785';
     var strokeColor = '';
     var fonts = ["", "Pacifico", "VT323", "Quicksand", "Inconsolata"];
     var textFontFamily = fonts[0];
-    // var textShadow2 = '5px 5px 1px #fff';
     textStyle1.addEventListener('change', function() {
         textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
         textColor = '#e6c785';
