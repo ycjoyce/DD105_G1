@@ -4,6 +4,7 @@ function dofirst() {
             families: ['Pacifico', 'VT323', 'Quicksand', 'Inconsolata']
         }
     });
+
     var previewArea = document.getElementById('preview_area');
     var step1NextBtn = document.getElementById('step1NextBtn');
     // var canvas = document.getElementById('canvas');
@@ -23,6 +24,13 @@ function dofirst() {
     tagImg2 = new Image();
     tagImg2.src = "";
 
+    var base64Btn = document.getElementById('base64Btn');
+    base64Btn.addEventListener('click', function() {
+        var canvasbase64 = canvas.toDataURL();
+        console.log(canvasbase64);
+        localStorage.setItem("test123", canvasbase64);
+    })
+
     var HideControls = {
         'tl': true, //左上   top left
         'tr': true, //右上   top right          
@@ -37,30 +45,76 @@ function dofirst() {
     delTextBtn.addEventListener('click', function() {
         canvas.remove(canvas.getActiveObject());
     });
-    var textStyle1 = document.getElementById('textStyle1');
+    // var textStyle1 = document.getElementById('textStyle1');
     var textStyle2 = document.getElementById('textStyle2');
     var textStyle3 = document.getElementById('textStyle3');
     var fontFamilySelect = document.getElementById('fontFamilySelect');
-    var textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
-    var textColor = '#e6c785';
-    var strokeColor = '';
+    var textColor = 'rgba(0,0,0,1)';
+    var strokeColor = 'rgba(0,0,0,1)';
+    var strokeWidth = 0.6;
+    var colorPicker = document.getElementById('colorPicker');
     var fonts = ["", "Pacifico", "VT323", "Quicksand", "Inconsolata"];
     var textFontFamily = fonts[0];
-    textStyle1.addEventListener('change', function() {
-        textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
-        textColor = '#e6c785';
-        strokeColor = '';
-    })
+    var defaultColor = 'rgba(0,0,0,1)';
+    const pickr = Pickr.create({
+        el: '.color-picker',
+        autoReposition: false,
+        closeOnScroll: true,
+        comparison: false,
+        default: defaultColor,
+        // showAlways: true,
+        theme: 'classic', // or 'monolith', or 'nano'
+        components: {
+            opacity: true,
+            hue: true,
+            // Input / output Options
+            interaction: {
+                hex: true,
+                rgba: true,
+                // hsla: true,
+                // hsva: true,
+                // cmyk: true,
+                input: true,
+                // clear: true,
+                // save: true,
+            }
+        }
+    });
+    pickr.on('change', (...args) => {
+            let color = args[0].toRGBA();
+            console.log(color);
+            if (textStyle2.classList.contains("-on") == true) {
+                defaultColor = `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
+                textColor = "rgba(0,0,0,0)";
+                strokeColor = defaultColor;
+            } else {
+                defaultColor = `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
+                strokeColor = 'rgba(0,0,0,0)';
+                textColor = defaultColor;
+            }
+        })
+        // textStyle1.addEventListener('change', function() {
+        //     textShadow = '-1px -1px 0px rgba(0, 0, 0, .7)';
+        //     textColor = '#e6c785';
+        //     strokeColor = '';
+        // })
     textStyle2.addEventListener('change', function() {
-        textShadow = '';
-        textColor = 'rgba(0, 0, 0,.0)';
-        strokeColor = 'black';
+        textStyle2.classList.add("-on");
+        strokeWidth = 0.6;
+        textColor = 'rgba(0,0,0,0)';
+        strokeColor = defaultColor;
+        textStyle3.classList.remove("-on");
     })
     textStyle3.addEventListener('change', function() {
-        textShadow = '';
-        textColor = '#000';
-        strokeColor = '';
+        textStyle3.classList.add("-on");
+        strokeWidth = 0;
+        strokeColor = 'rgba(0,0,0,0)';
+        textColor = defaultColor;
+        textStyle2.classList.remove("-on");
     })
+
+
+
     fontFamilySelect.addEventListener('change', function() {
         if (fontFamilySelect.value == "Pacifico") {
             textFontFamily = fonts[1];
@@ -75,19 +129,23 @@ function dofirst() {
     addTextBtn.addEventListener('click', function() {
 
         let textContent1 = document.getElementById('textContent1');
-        if (textContent1.value == "") {
+        if (textStyle2.classList.contains("-on") == false && textStyle3.classList.contains("-on") == false) {
+            alert("請選擇一種文字風格");
+            return;
+        } else if (fontFamilySelect.value == "default") {
+            alert("請選擇一種字體");
+            return;
+        } else if (textContent1.value == "") {
             alert("請先輸入文字");
+            return;
         } else {
             var textWithBackground = new fabric.IText(textContent1.value, {
-                // fontFamily: 'Noto Sans TC',
                 fontFamily: textFontFamily,
-                shadow: textShadow,
-                // shadow: textShadow,
                 fontSize: 24,
                 left: 50,
                 top: 50,
                 fill: textColor,
-                strokeWidth: 0.6,
+                strokeWidth: strokeWidth,
                 stroke: strokeColor,
                 textBackgroundColor: 'rgba(255,255,255,0)',
             }).setControlsVisibility(HideControls);
@@ -441,6 +499,8 @@ function dofirst() {
         // }).setControlsVisibility(HideControls);
         // canvas.add(textWithBackground);
         // textContent1.value = "";
+        // var dataURL = canvas.toDataURL();
+        // console.log(dataURL);
     }
     window.addEventListener('resize', resizeCanvas);
 }
