@@ -9,6 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
     <link rel="stylesheet" href="./css/customized.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <!-- <link rel="stylesheet" href="./css/dialog.css"> -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
@@ -55,15 +56,19 @@
                 <!-- 預覽區 -->
                 <canvas id="canvas2" style="border: 0px solid blue;"></canvas>
                 <canvas id="canvas" style="border: 0px solid red;"></canvas>
-                <!-- <img src="./img/customized_collar/buckle_tag_png/starTag_finish.png" alt="" id="collarImg" style="display: none;"> -->
+                <!-- <script>
+                    var fullQuality = canvas.toDataURL("image/png", 1.0);
+                    console.log(fullQuality);
+                </script> -->
+                <!-- <img src="./img/customized_collar/leather_png/1collar_FFB9B9_finish.png" alt="" id="collarImg" style="display: none;"> -->
                 <!-- <img src="./img/customized_collar/leather_png/1.png" alt="" id="collarImg" style="display: none;"> -->
 
-                <img src="./img/customized_collar/zoomIn.png" alt="" id="zoomIn">
+                <!-- <img src="./img/customized_collar/zoomIn.png" alt="" id="zoomIn">
                 <div class="list-item">
                     <i class="fa fa-wifi" aria-hidden="true"></i>
                     <input type="checkbox" id="chkbox" />
                     <label for="chkbox"></label>
-                </div>
+                </div> -->
             </div>
             <div class="edit_area" id="edit_area">
                 <!-- 編輯區 -->
@@ -111,13 +116,13 @@
                         <li class="tab-link tabClose" data-tab="tab-4" id="bigTab4" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">04</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
-                            <span class="stepTitle tabSpanClose">寵物試戴</span>
+                            <span class="stepTitle tabSpanClose">完成</span>
                             <div class="fakeCircles fakeCircle13"></div>
                             <div class="fakeCircles fakeCircle14"></div>
                             <div class="fakeCircles fakeCircle15"></div>
                             <div class="fakeCircles fakeCircle16"></div>
                         </li>
-                        <div class="tabLine4">
+                        <!-- <div class="tabLine4">
 
                         </div>
 
@@ -129,7 +134,7 @@
                             <div class="fakeCircles fakeCircle18"></div>
                             <div class="fakeCircles fakeCircle19"></div>
                             <div class="fakeCircles fakeCircle20"></div>
-                        </li>
+                        </li> -->
                     </ul>
                     <div id="tabsContent">
                         <div id="tab-1" class="tab-content current">
@@ -270,17 +275,24 @@
                             <div class="addText">
                                 <div id="textStyle">
                                     <h4 style="margin: 0px 20px 0px 10px;">選擇文字風格： </h4>
-                                    <input type="radio" name="textStyle" id="textStyle1" checked>
-                                    <label for="textStyle1" id="showStyle1">文字雕刻</label>
+                                    <!-- <input type="radio" name="textStyle" id="textStyle1" checked>
+                                    <label for="textStyle1" id="showStyle1">文字雕刻</label> -->
                                     <input type="radio" name="textStyle" id="textStyle2">
                                     <label for="textStyle2" id="showStyle2">文字描邊</label>
                                     <input type="radio" name="textStyle" id="textStyle3">
                                     <label for="textStyle3" id="showStyle3">一般文字</label>
                                 </div>
+                                <div id="textColor">
+                                    <h4 style="margin: 0px 20px 0px 10px;">選擇文字顏色： </h4>
+                                    <div class="color-picker" id="colorPicker"></div>
+                                </div>
+                                <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+                                <script>
+                                </script>
                                 <div id="textFontFamily">
                                     <h4 style="margin: 0px 20px 0px 10px;">選擇文字字型： </h4>
                                     <select name="" id="fontFamilySelect">
-                                        <option value="" selected disabled>請選擇字型</option>
+                                        <option value="default" selected disabled>請選擇字型</option>
                                         <option value="Pacifico">Pacifico</option>
                                         <option value="VT323">VT323</option>
                                         <option value="Quicksand">Quicksand</option>
@@ -311,7 +323,18 @@
                                         <div class="border"></div>
                                     </a>
                                 </div>
-
+                                <!-- <script>
+                                    var dataURL = canvas.toDataURL();
+                                    console.log(dataURL);
+                                </script> -->
+                                <a href="#" download="dl.png" onclick="this.href=canvas.toDataURL();">下載</a>
+                                <button id="base64Btn">轉base64</button>
+                                <!-- <script>
+                                    function convertbase64() {
+                                        var canvasbase64 = canvas.toDataURL();
+                                        console.log(canvasbase64);
+                                    }
+                                </script> -->
                             </div>
                             <div class="stepBtn">
                                 <button class="stepBackBtn" id="step3BackBtn">上一步</button>
@@ -319,22 +342,21 @@
                             </div>
                         </div>
                         <div id="tab-4" class="tab-content">
-                            step4
-                            <div class="stepBtn">
-                                <button class="stepBackBtn" id="step4BackBtn">上一步</button>
-                                <button class="stepNextBtn" id="step4NextBtn">下一步</button>
-                            </div>
-                        </div>
-                        <div id="tab-5" class="tab-content">
-                            step5
-                            <div class="stepBtn">
-                                <button class="stepBackBtn" id="step5BackBtn" style="width: 100%;">上一步</button>
-                            </div>
                             <!-- <div data-dialog="somedialog" class="trigger" id="purchaseBtn">
                                 <button id="purchaseBtn_1">
                                 立即購買
                             </button>
                             </div> -->
+                            step4
+                            <div id="">
+
+                            </div>
+                            <div id="">
+
+                            </div>
+                            <div class="stepBtn">
+                                <button class="stepBackBtn" id="step4BackBtn">上一步</button>
+                            </div>
                         </div>
                     </div>
 

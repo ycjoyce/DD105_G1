@@ -25,7 +25,11 @@ $manager->execute();
     
 <?php 
 if($manager->rowCount()==0){
+<<<<<<< HEAD
 	echo "帳密錯誤, <a href='../backend-login.html'>請重新登入</a>";
+=======
+	echo "帳密錯誤, <a href='backend-login.html'>請重新登入</a>";
+>>>>>>> fe7fb75b75a3c8748cd395e4c925dc0079879aa1
 }else{
 	$managerRow =$manager->fetch(PDO::FETCH_ASSOC);
 
