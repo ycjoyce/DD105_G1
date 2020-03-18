@@ -220,16 +220,20 @@
             xhr.open("POST",url,true);
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             var getMemNo= document.querySelector("aside ul li.on").classList[0].substr(2);
-            var data_info= `getMemNo=${getMemNo}&msgText=${document.getElementById("inputText").value}`;
-            xhr.send(data_info);
 
+            var inputVal=document.getElementById("inputText").value;
+            
+            var data_info= `getMemNo=${getMemNo}&msgText=${encodeURIComponent(inputVal)}`;
+            xhr.send(data_info);
+            console.log(encodeURIComponent(inputVal));
             xhr.onload=function(){
                 if(xhr.status==200){
-                    showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
-                    document.querySelector("aside ul").innerHTML="";
-                    getMsg();
-                    document.getElementById("inputText").value="";
-                    document.getElementById("submitText").disabled=true;
+                    // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                    // document.querySelector("aside ul").innerHTML="";
+                    // getMsg();
+                    // document.getElementById("inputText").value="";
+                    // document.getElementById("submitText").disabled=true;
+                    alert(xhr.responseText);
                 }else{
                     alert(xhr.status);
                 }
@@ -446,6 +450,29 @@
             blackListAlert.querySelector('button.cancel').onclick=function(e){
                 e.preventDefault();
                 blackListAlert.style.display="none";
+            };
+            blackListAlert.querySelector('button.yes').onclick=function(e){
+                e.preventDefault();
+                blackListAlert.style.display="none";
+                var xhr= new XMLHttpRequest();
+                xhr.open("POST","./php/setBlack.php",true);
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                var data_info= `blackMemNo=${document.querySelector("aside ul li.on").classList[0].substr(2)}`;
+                xhr.send(data_info);
+                xhr.onload= function(){
+                    if(xhr.status==200){
+                        if(xhr.responseText.indexOf("ok")!=-1){
+                            alert("已將此會員設為黑名單");
+                            // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                            document.querySelector("aside ul").innerHTML="";
+                            getMsg();
+                        }else{  
+                            alert("設定失敗，請再試一次");
+                        }
+                    }else{
+                        alert(xhr.status);
+                    }
+                }
             };
             btnBack.addEventListener('click',changeSide);
             for(var i=0; i<fields.length; i++){
