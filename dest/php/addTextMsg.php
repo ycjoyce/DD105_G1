@@ -10,7 +10,7 @@ try{
 
     $msg->bindValue(":msgText", htmlspecialchars($_REQUEST["msgText"]));
 
-    echo "特殊字元".htmlspecialchars(str_replace("/&","&amp;",$_REQUEST["msgText"]));
+    echo "特殊字元".htmlspecialchars($_REQUEST["msgText"]);
     // $msg->execute();
 
 }catch(PDOException $e){
