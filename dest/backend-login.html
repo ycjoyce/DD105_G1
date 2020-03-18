@@ -14,22 +14,22 @@
         <div class="loginlogo">
             <img src="img/logo.png">
         </div>
-        <form action="#" method="post">
+        <form action="./php/backend-login.php" method="post">
             <table class="loginInfo">
                 <tr>
                     <td class="memInfoBox">
-                        <input type="text" placeholder="User" maxlength="15" id="memId" name="memId">
+                        <input type="text" placeholder="User" maxlength="15" id="memId" name="managerAccount">
                         <div class="memInfoClear"></div>
                     </td>
                 </tr>
                 <tr>
                     <td class="memInfoBox">
-                        <input type="password" placeholder="Password" maxlength="15" id="memPsw" name="memPsw">
+                        <input type="password" placeholder="Password" maxlength="15" id="memPsw" name="managerPsw">
                         <div class="memInfoClear"></div>
                     </td>
                 </tr>
             </table>
-            <a class="btn darkgreen nav__link" href='adminManage.html'>
+            <button><a class="btn darkgreen nav__link" @@connect>
     <span class="titleFont">
         登入
     </span>
@@ -38,7 +38,7 @@
     <div class="border"></div>
     <div class="border"></div>
 </a>
-
+</button>
             <div id="registeredBtn"> </div>
             <!-- <div id="registeredBtn">註冊</div> -->
         </form>
