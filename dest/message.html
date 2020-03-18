@@ -263,17 +263,16 @@
 
             var inputVal=document.getElementById("inputText").value;
             
-            var data_info= `getMemNo=${getMemNo}&msgText=${inputVal}`;
+            var data_info= `getMemNo=${getMemNo}&msgText=${encodeURIComponent(inputVal)}`;
             xhr.send(data_info);
 
             xhr.onload=function(){
                 if(xhr.status==200){
-                    // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
-                    // document.querySelector("aside ul").innerHTML="";
-                    // getMsg();
-                    // document.getElementById("inputText").value="";
-                    // document.getElementById("submitText").disabled=true;
-                    alert(xhr.responseText);
+                    showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                    document.querySelector("aside ul").innerHTML="";
+                    getMsg();
+                    document.getElementById("inputText").value="";
+                    document.getElementById("submitText").disabled=true;
                 }else{
                     alert(xhr.status);
                 }
