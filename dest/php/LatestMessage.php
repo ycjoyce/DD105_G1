@@ -3,34 +3,17 @@ session_start();
 require_once("./connectDB.php");
 
 //找此會員跟所有寄件人的最新一筆
-// $sql= "select * from `message` m join `blacklist` b ".
-// "on ( m.sendmemno=b.memno m.getmemno=b.memno ) ".
-// "where msgNo ".
-// "in (select max(msgNo) from message where ".
-// "getmemno='{$_SESSION["memNo"]}' or sendmemno=".
-// "'{$_SESSION["memNo"]}' group by ".
-// "concat(if(sendmemno=".
-// "'{$_SESSION["memNo"]}',sendmemno,getmemno),',',".
-// "if(getmemno='{$_SESSION["memNo"]}',sendmemno,getmemno))) ".
-// "and m.sendmenno<>b.blackmemno and m.getmemno<>b.blackmemno ".
-// "order by msgNo;";
-$sql= "select * from message where msgno in ( ".
-      "select distinct msgno from message m join blacklist b on ".
-      "( m.sendmemno=b.memno or m.getmemno = b.memno ) ".
-      "where msgno in (select max(msgNo) from message ".
-      "where m.sendmemno='{$_SESSION["memNo"]}' or m.getmemno='{$_SESSION["memNo"]}' ".
-      "group by concat(if(sendmemno='{$_SESSION["memNo"]}',sendmemno,getmemno),".
-      "',',if(getmemno='{$_SESSION["memNo"]}',sendmemno,getmemno))) ".
-      "and (m.sendmemno<>b.blackmemno and m.getmemno<>b.blackmemno));";
+$sql = "select * from message where msgno in( ".
+       "select distinct msgno from message m left join blacklist b on ".
+       "( ifnull(b.memno,0) in (m.sendmemno,m.getmemno) ) ".
+       "where msgno in ".
+       "(select max(msgNo) from message ".
+       "where sendmemno='{$_SESSION["memNo"]}' or getmemno='{$_SESSION["memNo"]}' ".
+       "group by concat(if(sendmemno='{$_SESSION["memNo"]}',sendmemno,getmemno),".
+       "',',if(getmemno='{$_SESSION["memNo"]}',sendmemno,getmemno))) ".
+       "and ifnull(b.blackmemno,0) not in (m.sendmemno,m.getmemno));";
 
-    //   $sql= "select * from message where msgno in ( ".
-    //   "select distinct msgno from message m left join blacklist b on ".
-    //   "( m.sendmemno=ifnull(b.memno,0) or m.getmemno=ifnull(b.memno,0) ) ".
-    //   "where msgno in (select max(msgNo) from message ".
-    //   "where m.sendmemno='{$_SESSION["memNo"]}' or m.getmemno='{$_SESSION["memNo"]}' ".
-    //   "group by concat(if(sendmemno='{$_SESSION["memNo"]}',sendmemno,getmemno),".
-    //   "',',if(getmemno='{$_SESSION["memNo"]}',sendmemno,getmemno))) ".
-    //   "and (m.sendmemno<>ifnull(b.blackmemno,0) and m.getmemno<>ifnull(b.blackmemno,0)));";
+
 $msg= $pdo->query($sql);
 $msgRows= $msg->fetchAll(PDO::FETCH_ASSOC);
 
