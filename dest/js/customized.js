@@ -4,7 +4,6 @@ function dofirst() {
             families: ['Pacifico', 'VT323', 'Quicksand', 'Inconsolata']
         }
     });
-
     var previewArea = document.getElementById('preview_area');
     var step1NextBtn = document.getElementById('step1NextBtn');
     // var canvas = document.getElementById('canvas');

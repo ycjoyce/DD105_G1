@@ -19,10 +19,33 @@
 
 </head>
 
-<body>
+<body>  
+    <div id="memberPoint">
+        會員點數 : 
+        <span id="showPoint"></span>
+        點
+    </div>
     @@include('./layout/header.html')
+
+    
     <section class="section" id="section">
         <div class="content">
+            <div id="signInFirstBlock">
+                @@include('./layout/btn_darkgreen.html',{
+                    "innerText": "請先登入",
+                    "connect": " href='login.html'"
+                })
+            </div>
+            <script>
+                let hamburger = document.getElementsByClassName('hamburger')[0];
+                let signInFirstBlock = document.getElementById('signInFirstBlock');
+
+                if(hamburger.previousSibling.lastChild.classList.contains("memZone") == true){
+                    signInFirstBlock.style.display= "none";
+                }else{
+                    signInFirstBlock.style.display= "flex";
+                }
+            </script>
             <!-- 客製化content,含預覽區以及編輯區 -->
             <div class="preview_area" id="preview_area" style="background-color: rgba(255, 185, 185, 0.3)">
                 <!-- 預覽區 -->
@@ -372,6 +395,8 @@
             dlgtrigger.addEventListener('click', dlg.toggle.bind(dlg));
         })();
     </script>
+
+    <script src="./js/signInOut.js"></script>
 
 </body>
 
