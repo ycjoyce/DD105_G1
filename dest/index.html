@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh_Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浪愛回家</title>
+<link rel="icon" href="img/logo.ico" type="image/x-icon">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+    <style>
+        #theText span{
+            font: 40px 'Candelia';
+            color: #5d5c5c;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- scrollmagic -->
+    <!-- 主程式 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <!-- 跟tweenmax結合 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <!-- 開發時debug用(標示觸發點)，上線時移除 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
+
+</head>
+<body>
+    <header class="header-navigation" id="header">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+            <h1>
+                <a href="./index.html">
+                    <img src="./img/logo-wide.png" alt="logo">
+                </a>
+            </h1>
+            <ul class="col-xl-9 col-lg-9 col-md-9">
+                <li><a href="./map.html">浪浪在哪裡</a></li>
+                <li><a href="./donation.html">愛心助浪浪</a></li>
+                <li><a href="./customized.html">客製化項圈</a></li>
+                <li><a href="./post_article_region.html">毛孩交流區</a></li>
+                <li><a href="./aboutus.html">關於我們</a></li>
+                <li><a class="login" href="./login.html">登入 / 註冊</a></li>
+            </ul>
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span>
+                </span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+    
+    <div id="dog_backhome"></div>
+    <section class="intro">
+        <div class="title">
+            <h1 class="enSpecialFont parallax2" id="theText">Bring Love Home</h1>
+            <div>
+                <img class="wow slideInLeft parallax3" data-wow-duration=".5s" src="./img/header_title_1.png">
+                <img class="wow slideInLeft parallax4" data-wow-duration=".5s" src="./img/header_title_2.png">
+            </div>
+        </div>
+        <div class="carousel wow fadeIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11" data-wow-delay='.5s' data-wow-duration="1s">
+            <div class="bg parallax1"></div>
+        </div>
+        <div class="scroll static-content">
+            <p class="titleFont smalltext">SCROLL</p>
+        </div>
+        <div class="bg-img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+            <img class="introDeco1" src="./img/leaf-02.png">
+            <img class="introDeco2" src="./img/leaf-03.png">
+            <img class="introDeco3" src="./img/leaf-06.png">
+            <img class="introDeco4" src="./img/leaf-07.png">
+            <img class="introDeco5" src="./img/leaf-08.png">
+        </div>
+    </section>
+
+    <section class="about">
+        <h3 class="enSpecialFont" id="trigger01">About</h3>
+        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11" data-wow-duration="1s" data-wow-delay=".5s">
+            <div class="text col-xl-6 col-lg-6 col-md-7 col-sm-12 col-ss12">
+                <div class="about">
+                    <!-- <div id="trigger01"></div> -->
+                    <h2 class="wow fadeInUp" data-wow-delay="0.5s">
+                        <img src="./img/logo.png">
+                        關於浪愛回家
+                    </h2>
+                    <p class="wow fadeInUp" data-wow-delay="0.7s">
+                        我們關心台灣弱勢的動物，<br>
+                        親身貼近動物，真切感受弱勢動物的困苦，<br>
+                        以溫柔、堅定的力量「為牠們發聲」。<br>
+                        我們最終的目標是：<br>
+                        「有一天，街頭不再有受苦受難的生命。」<br>
+                    </p>
+                    <a class="btn gray nav__link"  href='about.html'>
+    <span class="titleFont">
+        READ MORE
+        <img src="img/button_arrow_white.svg">
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+                </div>
+            </div>
+            <div class="video col-xl-6 col-lg-6 col-md-5 col-sm-12 col-ss-12">
+                <video src="img/twelveNight.mp4" autoplay muted loop></video>
+            </div>
+        </div>
+        <div class="where" id="trigger02">
+
+            <div id="whereCat" class="parallax5">
+                <img class="left cat" src="./img/where_cat.png">
+                <img class="left cloud" src="./img/cloud-left-2.png">
+            </div>
+            <div id="whereDog" class="parallax6">
+                <img class="right dog" src="./img/where_dog.png">
+                <img class="right cloud" src="./img/cloud-right-2.png">
+            </div>
+            <div class="title">
+                <!-- <img src="./img/left-img.png"> -->
+                <h3 class="enSpecialFont wow fadeInUp">Where are they</h3>
+                <h2 class="wow fadeInUp" data-wow-delay=".2s">浪浪在哪裡</h2>
+            </div>
+            <ul class="mapOption">
+                <li class="on wow slideInUp" data-wow-delay=".5s">
+                    <span class="titleFont">寵物<br>遺失地點</span>
+                </li>
+                <li class="wow slideInUp friendlyFather" data-wow-delay=".7s">
+                    <span class="titleFont">寵物<br>友善空間</span>
+                </li>
+                <li class="friendlyChild">
+                    <span class="titleFont">寵物<br>友善餐廳</span>
+                </li>
+                <li class="friendlyChild">
+                    <span class="titleFont">寵物<br>友善住宿</span>
+                </li>
+                <li class="friendlyChild">
+                    <span class="titleFont">寵物<br>友善景點</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="where">
+
+        <div id="mapZone">
+
+            <!-- <img class="girl" src="./img/girlWithDog-1-2.png">
+            <img class="dog" src="./img/girlWithDog-2.png"> -->
+            <iframe src="https://maps.google.com?output=embed&q=taiwan+中央大學" frameborder="0" width="100%" height="500"></iframe>
+        </div>
+        <div class="card wow fadeInRight" data-wow-duration="1s">
+            <h3 class="wow fadeInUp" data-wow-delay=".5s"><a href="#" class="titleFont">寵物遺失地點</a></h3>
+            <p class="wow fadeInUp" data-wow-delay=".7s">
+                心愛的毛孩走丟了也別驚慌，<br>
+                快來回報遺失的地點讓大家一同協尋！<br>
+                看見疑似走失的貓狗也來聯繫主人確認吧。<br>
+            </p>
+            <!-- <img src="./img/girlWithDog-3.png"> -->
+            <a class="btn darkgreen nav__link"  href='about.html'>
+    <span class="titleFont">
+        我的寵物遺失了
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+            <div class="changePage">
+    <button class="to_left"></button>
+    <span class="titleFont">01/02</span>
+    <button class="to_right"></button>
+</div>
+
+        </div>
+        <div class="readMore">
+            <img src="img/map_readmore_cat.png" class="cat">
+            <a class="btn gray nav__link"  href='about.html'>
+    <span class="titleFont">
+        READ MORE
+        <img src="img/button_arrow_white.svg">
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+        </div>
+    </section>
+
+    <section class="donation col-xl-12">
+        <h3 class="enSpecialFont">Donation</h3>
+        <div class="rightSide wow fadeInRight col-xl-6 col-lg-6 col-md-11 col-sm-11 col-ss-11" data-wow-duration="1s">
+            <div class="title">
+                <div class="text">
+                    <h2>愛心助浪浪</h2>
+                    <p>
+                        您的一點愛心，<br>
+                        能讓更多流浪動物獲得幸福。
+                    </p>
+                </div>
+                <div class="amountAnimation">
+                    <span class="titleFont outside">開站至今總募款金額</span>
+                    <!-- <span class="titleFont num outside">1,854,724<span class="titleFont">元</span></span> -->
+                    <div class="secondLine">
+                        <span class="titleFont num outside" id="count"></span>
+                        <span class="titleFont dollar">元</span>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel_donation">
+                <div class="img col-xl-12 col-ss-12">
+                    <img src="img/donation_card_1.jpg">
+                </div>
+                <div class="card col-xl-9 col-lg-10 col-md-8 col-sm-10 col-ss-10">
+                    <span class="titleFont smalltext projectNum">PROJECT 32</span>
+                    <span class="titleFont smalltext date">2020.02.01</span>
+                    <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
+                    <a class="btn darkgreen nav__link"  href='about.html'>
+    <span class="titleFont">
+        了解更多
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+                    <div class="showNum">
+                        <div class="cur">
+                            <span class="titleFont peoNum">目標金額<span class="titleFont">30000</span>元</span>
+                        </div>
+                        <div class="dogAnimate col-xl-8 col-lg-8 col-md-8 col-sm-8 col-ss-8">
+                            <span class="titleFont">58%</span>
+                            <img src="img/donation_dog.svg">
+                        </div>
+                    </div>
+                </div>
+                <div class="changePage">
+    <button class="to_left"></button>
+    <span class="titleFont">01/03</span>
+    <button class="to_right"></button>
+</div>
+
+                <div class="progress_bar">
+                    <span class="on"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="leftSide col-xl-6 col-lg-5">
+            <div class="card on first wow fadeInLeft col-xl-8" data-wow-delay=".2s">
+                <div class="col-xl-5 col-lg-5 img">
+                    <img src="img/donation_card_1.jpg">
+                </div>
+                <div class="col-xl-7 col-lg-7 text">
+                    <span class="titleFont smalltext">PROJECT 32</span>
+                    <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
+                    <span class="titleFont smalltext date">2020.02.01</span>
+                    <div class="amount">
+                        <span class="smalltext titleFont now">目前金額17500元</span>
+                        <a href="#" class="titleFont goal">目標金額30000元</a>
+                    </div>
+                    <input type="hidden" name="cur" value="17500">
+                    <input type="hidden" name="goal" value="30000">
+                </div>
+            </div>
+            <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".4s">
+                <div class="col-xl-5 col-lg-5 img">
+                    <img src="img/donation_card_2.jpg">
+                </div>
+                <div class="col-xl-7 col-lg-7 text">
+                    <span class="titleFont smalltext">PROJECT 33</span>
+                    <h4><a href="#" class="titleFont">棲息處遭破壞，短尾的可愛小橘</a></h4>
+                    <span class="titleFont smalltext date">2020.02.06</span>
+                    <div class="amount">
+                        <span class="smalltext titleFont now">目前金額12500元</span>
+                        <a href="#" class="titleFont goal">目標金額20000元</a>
+                    </div>
+                    <input type="hidden" name="cur" value="12500">
+                    <input type="hidden" name="goal" value="20000">
+                </div>
+            </div>
+            <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".6s">
+                <div class="col-xl-5 col-lg-5 img">
+                    <img src="img/donation_card_3.jpg">
+                </div>
+                <div class="col-xl-7 col-lg-7 text">
+                    <span class="titleFont smalltext">PROJECT 34</span>
+                    <h4><a href="#" class="titleFont">令人心疼!被外勞用利刃從臉貫穿至嘴，天真浪浪小黃依然對人類笑開懷</a></h4>
+                    <span class="titleFont smalltext date">2020.02.08</span>
+                    <div class="amount">
+                        <span class="smalltext titleFont now">目前金額30500元</span>
+                        <a href="#" class="titleFont goal">目標金額40000元</a>
+                    </div>
+                    <input type="hidden" name="cur" value="30500">
+                    <input type="hidden" name="goal" value="40000">
+                </div>
+            </div>
+            <a class="btn gray nav__link"  href='about.html'>
+    <span class="titleFont">
+        READ MORE
+        <img src="img/button_arrow_white.svg">
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+        </div>
+    </section>
+
+    <section class="collar">
+        <div class="top">
+            <h3 class="enSpecialFont">Collar</h3>
+            <div class="title col-xl-4">
+                <h2 class="wow fadeInLeft">客製化項圈</h2>
+                <p class="wow fadeInLeft" data-wow-delay=".2s">
+                    一切全依您喜好，<br>
+                    製作專屬您毛孩的項圈。
+                </p>
+            </div>
+            <a class="btn gray nav__link"  href='about.html'>
+    <span class="titleFont">
+        客製專屬項圈
+        <img src="img/button_arrow_white.svg">
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+            <div class="images">
+                <img class="collarDeco1" src="./img/handicraft_1.png">
+                <img class="collarDeco2" src="./img/handicraft_2.png">
+                <img class="collarDeco3" src="./img/handicraft_3.png">
+                <img class="collarDeco4" src="./img/handicraft_4.png">
+                <img class="collarDeco5" src="./img/handicraft_5.png">
+                <img class="collarDeco6" src="./img/handicraft_6.png">
+                <img class="collarDeco7" src="./img/handicraft_7.png">
+                <img class="collarDeco8" src="./img/handicraft_8.png">
+            </div>
+        </div>
+        <div class="middle orange">
+            <div class="left">
+                <span class="titleFont subtitle wow fadeInUp" data-wow-delay=".4s">話題熱議</span>
+                <span class="titleFont num wow fadeInUp" data-wow-delay=".4s">02</span>
+                <h3 class="wow fadeInUp" data-wow-delay=".6s">經典白色</h3>
+            </div>
+            <a href="#" class="makeSame titleFont wow fadeInUp" data-wow-delay=".8s">製作此款項圈</a>
+            <img src="img/collar_middle_1.png" id="middleImg">
+        </div>
+        <div class="bottom">
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_0.png" class="wow zoomIn">
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_1.png" class="wow zoomIn" data-wow-delay=".2s">
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_2.png" class="wow zoomIn" data-wow-delay=".4s">
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_3.png" class="wow zoomIn" data-wow-delay=".6s">
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_4.png" class="wow zoomIn" data-wow-delay=".8s">
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_5.png" class="wow zoomIn" data-wow-delay="1s">
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <img src="img/collar/collar_6.png" class="wow zoomIn" data-wow-delay="1.2s">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="forum">
+        <div class="title col-xl-12 col-md-12 col-sm-12 col-ss-12">
+            <h3 class="enSpecialFont wow fadeInUp">Forum</h3>
+            <h2 class="wow fadeInUp" data-wow-delay=".2s">毛孩交流區</h2>
+            <p class="col-ss-12 wow fadeInUp" data-wow-delay=".5s">與愛爸愛媽們一同交流飼寵心得和對毛孩的滿滿愛意吧！</p>
+            
+        </div>
+        <div class="cards col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+            <div class="card wow fadeInUp" data-wow-delay=".7s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_1.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.06</span>
+                    <a href="#" class="title">
+                        <h4>貓咪不愛喝水怎麼辦?</h4>
+                    </a>
+                    <a href="#">我們家貓咪非常不喜歡喝水，請問有什麼方法訓練貓咪培養喝水的習慣嗎?…</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay=".9s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_2.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.06</span>
+                    <a href="#" class="title">
+                        <h4>灰貓宅急便♫</h4>
+                    </a>
+                    <a href="#">買了三年的車車紙箱，我家貓貓今天終於賞臉使用了!!獻上灰貓宅急便美照…</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay="1.1s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_3.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.04</span>
+                    <a href="#" class="title">
+                        <h4>結紮經驗分享</h4>
+                    </a>
+                    <a href="#">上午我帶我家狗狗去結紮，中午帶回於此都沒有任何問題，下午發現頭部腫起</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay="1.3s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_1.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.06</span>
+                    <a href="#" class="title">
+                        <h4>貓咪不愛喝水怎麼辦?</h4>
+                    </a>
+                    <a href="#">我們家貓咪非常不喜歡喝水，請問有什麼方法訓練貓咪培養喝水的習慣嗎?…</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay="1.5s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_2.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.06</span>
+                    <a href="#" class="title">
+                        <h4>灰貓宅急便♫</h4>
+                    </a>
+                    <a href="#">買了三年的車車紙箱，我家貓貓今天終於賞臉使用了!!獻上灰貓宅急便美照…</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay="1.7s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_3.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.04</span>
+                    <a href="#" class="title">
+                        <h4>結紮經驗分享</h4>
+                    </a>
+                    <a href="#">上午我帶我家狗狗去結紮，中午帶回於此都沒有任何問題，下午發現頭部腫起</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay="1.9s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_1.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.06</span>
+                    <a href="#" class="title">
+                        <h4>貓咪不愛喝水怎麼辦?</h4>
+                    </a>
+                    <a href="#">我們家貓咪非常不喜歡喝水，請問有什麼方法訓練貓咪培養喝水的習慣嗎?…</a>
+                </div>
+            </div>
+            <div class="card wow fadeInUp" data-wow-delay="2.1s">
+                <a href="#" class="img col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <img src="img/forum_card_2.jpg">
+                </a>
+                <div class="text col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
+                    <span class="titleFont smalltext">2020.02.06</span>
+                    <a href="#" class="title">
+                        <h4>灰貓宅急便♫</h4>
+                    </a>
+                    <a href="#">買了三年的車車紙箱，我家貓貓今天終於賞臉使用了!!獻上灰貓宅急便美照…</a>
+                </div>
+            </div>
+
+        </div>
+        <a class="btn gray nav__link"  href='about.html'>
+    <span class="titleFont">
+        READ MORE
+        <img src="img/button_arrow_white.svg">
+    </span>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+    <div class="border"></div>
+</a>
+
+        <div class="paw">
+            <img class="paw paw1" src="img/pawprint-01.svg">
+            <img class="paw paw2" src="img/pawprint-01.svg">
+        </div>
+        
+    </section>
+
+    <footer>
+    <div class="page_top" id="page_top">
+        <span class="titleFont smalltext">PAGE TOP</span>
+    </div>
+    <p class="titleFont smalltext">
+        © 2020 Bring Love Home
+    </p>
+</footer>
+
+<script src="./js/page_top.js"></script>
+
+</div>
+    <script src="./js/header_slide.js"></script>
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/moveBackground.js"></script>
+    <!-- <script src="./js/cursor.js"></script> -->
+    <script src="./js/donation_carousel.js"></script>
+    <script src="./js/map_carousel.js"></script>
+    <script src="./js/index_animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.js"></script>
+    <script src="./js/signInOut.js"></script>
+
+    <script id="script">
+
+        //點擊項圈
+        let collarOptions= document.querySelectorAll('section.collar div.bottom div.option');
+        let middleImg= document.getElementById('middleImg');
+        let collarMiddle= document.querySelector('section.collar div.middle');
+        let middleSub= document.querySelector('section.collar div.middle div.left span.subtitle');
+        let middleNum= document.querySelector('section.collar div.middle div.left span.num');
+        let middleH3= document.querySelector('section.collar div.middle div.left h3');
+        let middleMakeSame= document.querySelector('section.collar div.middle a.makeSame');
+        for(let i=0; i<collarOptions.length; i++){
+            collarOptions[i].addEventListener('click',function(e){
+                collarMiddle.style.backgroundImage=`url(./img/paper/paper_${i}.png)`;
+                middleNum.innerText=`0${i+1}`;
+                middleImg.src= `img/collar_middle_${i}.png`;
+                if(i == 0){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="質感藍色";
+                }
+                else if(i ==1){
+                    collarMiddle.classList.add("orange");
+                    middleH3.innerText="經典白色";
+                }
+                else if(i == 2){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="熱情紅色";
+                }
+                else if(i == 3){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="穩重褐色";
+                }
+                else if(i == 4){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="溫暖綠色";
+                }
+                else if(i == 5){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="清新藍綠";
+                }
+                else if(i == 6){
+                    collarMiddle.classList.remove("orange");
+                    middleH3.innerText="夢幻粉色";
+                }
+            });
+        }
+
+
+        //地圖展開選項
+        $( ".friendlyFather" ).click(function() {
+            $(".mapOption").toggleClass( "open" );
+            $(".friendlyChild").toggleClass( "open" );
+        });
+
+
+        //數字跳動
+        let target = 'count';
+        let startVal = 0;
+        let endVal = 1848290;
+        let decimals = 0;
+        let duration = 3;
+
+        let options = {
+            useEasing: true,
+            useGrouping: true,
+            separator: ',',
+            decimal: '.',
+        }
+        let demo = new CountUp(target , startVal, endVal , decimals , duration , options);
+        var nowScroll,groupToTop;
+        var windowHeight = $(window).height(); 
+        var group = $("section.donation");
+        $(window).scroll(function(){
+            nowScroll = $(this).scrollTop();
+            groupToTop = group.offset().top;
+            if(windowHeight + nowScroll > groupToTop){
+                demo.start();
+            }
+        });
+        
+        
+
+        new WOW().init();
+
+
+        //intro英文字
+        $('#theText').textillate({
+            loop: false,
+            minDisplayTime: 5000,
+            initialDelay: 500,
+            in: {
+                effect: 'fadeIn',
+                delayScale: 1.5,
+                delay: 50,
+                sequence: true,
+                sync: false,
+                reverse: false,
+                shuffle: false,
+                callback: function () {}
+            },
+            out: {
+                effect: 'pulse',
+                delayScale: 1.5,
+                delay: 50,
+                sequence: true,
+                sync: false,
+                reverse: false,
+                shuffle: false,
+                callback: function () {}
+            },
+            autoStart: true,
+            inEffects: [],
+            outEffects: ['fadeOut'],
+            callback: function () {},
+            type: 'char'
+        });     
+
+
+        
+
+    </script>
+</body>
+</html>

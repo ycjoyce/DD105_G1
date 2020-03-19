@@ -483,7 +483,6 @@
                     if(xhr.status==200){
                         if(xhr.responseText.indexOf("ok")!=-1){
                             alert("已將此會員設為黑名單");
-                            sessionStorage.removeItem("now-on");
                             // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
                             main.innerHTML=`<ul>
                                 <button class="back titleFont"></button>
@@ -500,8 +499,7 @@
                             if(document.querySelector("aside ul li.on")){
                                 document.querySelector("aside ul li.on").className.remove("on");
                             }
-                            document.getElementById("upload").disabled=true;
-                            document.getElementById("submitText").disabled=true;
+
                             
                         }else{  
                             alert("設定失敗，請再試一次");

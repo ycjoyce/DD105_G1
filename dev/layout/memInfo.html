@@ -1,0 +1,52 @@
+<section class="memInfo">
+    <h3>
+        會員資訊
+    </h3>
+    <div class="note">
+        <p>小提醒</p>
+        <p>你填寫的「會員暱稱」將會被引用於網站上公開評價及相關連結，如果你不希望你的真實姓名被列入本平台及其他外部搜尋引擎的搜尋結果，建議你選擇一個親切的暱稱使用。請放心，你的電子郵件及所有與其他會員溝通的訊息、檔案及相關購買資料，網站將依照個人資料保護法保障你的個人隱私！
+        </p>
+    </div>
+    <div class="memInfo_content">
+        <div class="left">
+            <div>
+                <label for="">會員編號</label>
+                <span>123112</span>
+            </div>
+            <div>
+                <label for="">會員帳號</label>
+                <span>handsome@gmail.com</span>
+            </div>
+            <div>
+                <label for="">會員暱稱</label>
+                <input type="text" value="帥帥">
+            </div>
+            <div>
+                <label for="">會員密碼</label>
+                <div class="mempw">
+                    <input type="password" value="password"><a href="#" class="updatebtn_s">修改密碼</a>
+                </div>
+            </div>
+            <div>
+                <label for="">紅利點數</label>
+                <span>999</span>
+            </div>
+        </div>
+        <div class="right">
+            <label for="">會員圖片</label>
+            <div>
+                <img src="http://fakeimg.pl/150x150" alt="">
+                <label class="uploadimgbtn">
+                    <input id="upload_img" style="display:none;" type="file">
+                    <i class="fa fa-photo"></i> 更換照片
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="submitbtn">
+        @@include('../layout/btn_gray.html',{
+            "innerText": "更新會員資料",
+            "connect": " href='#'"
+        })
+    </div>
+</section>
