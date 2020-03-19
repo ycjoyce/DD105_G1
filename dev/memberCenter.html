@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> @@include('./layout/head.html',{ "title":
+    "浪愛回家 ｜ 會員中心" })
+    <link rel="stylesheet" href="./css/memberCenter.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</head>
+
+<body>
+    <header class="header-navigation" id="header">
+        <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
+                <h1>
+                    <a href="./index.html">
+                        <img src="./img/logo-wide.png" alt="logo">
+                    </a>
+                </h1>
+                <ul class="col-xl-9 col-lg-9 col-md-9">
+                    <li><a href="./login.html">浪浪在哪裡</a></li>
+                    <li><a href="">愛心助浪浪</a></li>
+                    <li><a href="./customized.html">客製化項圈</a></li>
+                    <li><a href="./post_article_region.html">毛孩交流區</a></li>
+                    <li><a href="./aboutus.html">關於我們</a></li>
+                    <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
+                    <li class="rwd"><a href="./message.html">我的信箱</a></li>
+                    <li class="rwd"><a href="./index.html">登出</a></li>
+                    <li class="memZone">
+                        <div>
+                            <div class="memPic"></div>
+                            <div class="message">
+                                <span class="unread">2</span>
+                            </div>
+                        </div>
+                        <ul class="memZone">
+                            <li><a href="./memberCenter.html">會員中心</a></li>
+                            <li><a href="./index.html">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="hamburger hamburger--spring" type="button">
+                    <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <section class="section">
+        <div class="container">
+            <aside id="tabs-container1">
+                <!-- 左邊大頁籤 -->
+                <h2 class="titleFont">會員中心</h2>
+                <ul class="tabs">
+                    <li class="tab-link current" data-tab="tab-1">會員資訊</li>
+                    <li class="tab-link" data-tab="tab-2">我的寵物遺失回報</li>
+                    <li class="tab-link" data-tab="tab-3">募款專區</li>
+                    <li class="tab-link" data-tab="tab-4">貼文專區</li>
+                    <li class="tab-link" data-tab="tab-5">照片牆專區</li>
+                    <li class="tab-link" data-tab="tab-6">我的訂單</li>
+                    <li class="tab-link" data-tab="tab-7">我的收藏</li>
+                    <li class="tab-link" data-tab="tab-8">管理黑名單</li>
+                </ul>
+                <button id="filterBtn"></button>
+            </aside>
+            <div id="tabs-container2">
+                <!-- 右邊大頁籤 -->
+                <div id="tab-1" class="tab-content current">
+                    <!-- 會員資訊 -->
+                    @@include('./layout/memInfo.html')
+                </div>
+                <div id="tab-2" class="tab-content">
+                    <!-- 我的寵物遺失回報 -->
+                    @@include('./layout/lostPetReport.html')
+                </div>
+                <div id="tab-3" class="tab-content">
+                    <!-- 募款專區 -->
+                    @@include('./layout/fundraising.html')
+                </div>
+                <div id="tab-4" class="tab-content">
+                    <!-- 貼文專區 -->
+                    @@include('./layout/postInfo.html')
+                </div>
+                <div id="tab-5" class="tab-content">
+                    <!-- 照片牆專區 -->
+                    @@include('./layout/gallery.html')
+                </div>
+                <div id="tab-6" class="tab-content">
+                    <!-- 我的訂單 -->
+                    @@include('./layout/order.html')
+                </div>
+                <div id="tab-7" class="tab-content">
+                    <!-- 我的收藏 -->
+                    @@include('./layout/favorite.html')
+                </div>
+                <div id="tab-8" class="tab-content">
+                    <!-- 管理黑名單 -->
+                    @@include('./layout/blacklist.html')
+                </div>
+            </div>
+        </div>
+        <!-- container -->
+    </section>
+    <!-- <footer>
+        <p class="titleFont smalltext">
+            © 2020 Bring Love Home
+        </p>
+    </footer> -->
+
+
+    <script src="./js/hamburger.js"></script>
+    <script src="./js/header_slide.js"></script>
+    <script src="./js/signInOut.js"></script>
+    <script src="./js/blacklistTable.js"></script>
+    <script>
+
+
+        // jQuery tabs大頁籤開始---------------------------------------
+        $(document).ready(function () {
+            $('ul.tabs li').click(function () {
+                var tab_id = $(this).attr('data-tab');
+
+                $('ul.tabs li').removeClass('current');
+                $('.tab-content').removeClass('current');
+
+                $(this).addClass('current');
+                $("#" + tab_id).addClass('current');
+            })
+        })
+        // jQuery tabs大頁籤結束---------------------------------------
+
+        // jQuery tabs小頁籤開始---------------------------------------
+        $(document).ready(function () {
+            $('.small-tabs li').click(function () {
+                var small_tab_id = $(this).attr('data-tab');
+
+                $(this).parent().children().removeClass('current');
+                $(this).parent().next().children().removeClass('current');
+
+                $(this).addClass('current');
+                $("#" + small_tab_id).addClass('current');
+            })
+        })
+        // jQuery tabs小頁籤結束---------------------------------------
+
+
+        // 會員中心子選單,按鈕點擊滑出
+
+        var winWidth = $(window).width();
+        var winHeight = $(window).height();
+
+        if (winWidth < 414) {
+            $(document).ready(function () {
+                $('#filterBtn').click(function () {
+                    $(this).parent('#tabs-container1').toggleClass('-showFilter');
+                });
+
+            });
+        }
+        // let filterBtn = document.getElementById("filterBtn");
+        // let tabsContainer1 = document.getElementsByClassName("tabs-container1");
+        // window.addEventListener("load",function(){
+        //     //瓷片按鈕點擊滑出
+        //     filterBtn.onclick = function(){
+        //         tabsContainer1[0].classList.toggle("-showFilter")
+        //     }
+        // })
+
+
+    </script>
+</body>
+
+</html>
