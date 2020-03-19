@@ -3,7 +3,17 @@ session_start();
 require_once("./connectDB.php");
 
 //找此會員跟所有寄件人的最新一筆
-$sql= "select * from message where msgNo in (select max(msgNo) from message where getmemno='{$_SESSION["memNo"]}' or sendmemno='{$_SESSION["memNo"]}' group by concat(if(sendmemno='{$_SESSION["memNo"]}',sendmemno,getmemno),',',if(getmemno='{$_SESSION["memNo"]}',sendmemno,getmemno))) order by msgNo;";
+$sql = "select * from message ".
+       "where msgno in ".
+       "( select max(msgNo) from message where sendmemno='{$_SESSION["memNo"]}' or getmemno='{$_SESSION["memNo"]}' ".
+       "group by ".
+       "concat(if(sendmemno='{$_SESSION["memNo"]}',sendmemno,getmemno),',',if(getmemno='{$_SESSION["memNo"]}',sendmemno,getmemno)) ) ".
+       "and sendmemno not in ".
+       "(select blackmemno from blacklist where memno='{$_SESSION["memNo"]}') ".
+       "and getmemno not in ".
+       "(select blackmemno from blacklist where memno='{$_SESSION["memNo"]}');";
+
+
 $msg= $pdo->query($sql);
 $msgRows= $msg->fetchAll(PDO::FETCH_ASSOC);
 

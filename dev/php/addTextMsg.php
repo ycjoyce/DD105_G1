@@ -10,8 +10,8 @@ try{
 
     $msg->bindValue(":msgText",$_REQUEST["msgText"]);
 
-    echo "特殊字元".$_REQUEST["msgText"];
-    // $msg->execute();
+    // echo "特殊字元".htmlspecialchars($_REQUEST["msgText"]);
+    $msg->execute();
 
 }catch(PDOException $e){
     echo "錯誤訊息: ".$e->getMessage()."<br>";

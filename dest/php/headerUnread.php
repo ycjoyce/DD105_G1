@@ -3,7 +3,11 @@ session_start();
 
 try{
     require_once("./connectDB.php");
-    $sql= "select count(*) amt from `message` where `getMemNo`={$_SESSION["memNo"]} and `readOrNot` = 0;";
+    $sql= "select count(*) amt from `message` where ".
+    "`getMemNo`={$_SESSION["memNo"]} and `readOrNot` = 0 ".
+    "and sendmemno not in ".
+    "(select blackmemno from blacklist where memno='{$_SESSION["memNo"]}') ;";
+    
     $unReadAmt= $pdo->query($sql);
     $unReadNo= $unReadAmt->fetch(PDO::FETCH_ASSOC);
     echo $unReadNo["amt"];

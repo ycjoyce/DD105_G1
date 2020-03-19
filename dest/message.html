@@ -78,45 +78,6 @@
                 <span class="titleFont"></span><!--幾則未讀-->
             </div>
             <ul class="aside">
-                <!-- <li class="unRead">
-                    <div class="img">
-                        <img src="img/message_mem_1.jpg">
-                    </div>
-                    <div class="text">
-                        <div class="title">
-                            <h4>May</h4>
-                            <span class="smalltext">2020.02.24　21:09</span>
-                        </div>
-                        <p>
-                            Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味
-                            <span></span>
-                        </p>
-                    </div> 
-                </li>
-                <li class="on">
-                    <div class="img">
-                        <img src="img/message_mem_1.jpg">
-                    </div>
-                    <div class="text">
-                        <div class="title">
-                            <h4>May</h4>
-                            <span class="smalltext">2020.02.24　21:09</span>
-                        </div>
-                        <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
-                    </div>
-                </li> -->
-                <!-- <li>
-                    <div class="img">
-                        <img src="img/message_mem_1.jpg">
-                    </div>
-                    <div class="text">
-                        <div class="title">
-                            <h4>May</h4>
-                            <span class="smalltext">2020.02.24　21:09</span>
-                        </div>
-                        <p>Hello想請問你文章裡面分享的飼料是哪個牌子呢～～～？我家貓咪最近吃飯吃不好，想幫他換換口味</p>
-                    </div>
-                </li> -->
                 
             </ul>
         </aside>
@@ -144,6 +105,8 @@
 
         var aside= document.querySelector('aside');
         var main= document.querySelector('main');  
+
+        // main.style.backgroundImage= `url(./img/msgBg/${1+Math.floor(Math.random()*10)}.jpg)`;
         
         function changeSide(e){
             if(document.body.clientWidth<=767){
@@ -211,6 +174,7 @@
             imgAlert.style.display="none";
         });
         let upload= document.getElementById("upload");
+        upload.disabled=true;
         upload.addEventListener("change",function(e){
             if(e.target.files[0]){
                 imgAlert.style.display="block";
@@ -268,12 +232,11 @@
             console.log(encodeURIComponent(inputVal));
             xhr.onload=function(){
                 if(xhr.status==200){
-                    // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
-                    // document.querySelector("aside ul").innerHTML="";
-                    // getMsg();
-                    // document.getElementById("inputText").value="";
-                    // document.getElementById("submitText").disabled=true;
-                    alert(xhr.responseText);
+                    showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                    document.querySelector("aside ul").innerHTML="";
+                    getMsg();
+                    document.getElementById("inputText").value="";
+                    document.getElementById("submitText").disabled=true;
                 }else{
                     alert(xhr.status);
                 }
@@ -281,15 +244,7 @@
         }
         let submitText= document.getElementById("submitText");
         submitText.disabled=true;
-        document.getElementById("inputText").addEventListener("input",function(){
-            if(document.getElementById("inputText").value==""){
-                submitText.disabled=true;
-            }else{
-                submitText.disabled=false;
-                submitText.addEventListener("click",addTextMsg);
-            }
-        });
-
+        
 
         var theAmt="";
         //取得左邊列表要顯示的未讀數量
@@ -408,6 +363,16 @@
                             this.classList.remove("unRead");
                         }
                         showTotalUnread();
+                        document.getElementById("upload").disabled=false;
+                        
+                        document.getElementById("inputText").addEventListener("input",function(){
+                            if(document.getElementById("inputText").value==""){
+                                submitText.disabled=true;
+                            }else{
+                                submitText.disabled=false;
+                                submitText.addEventListener("click",addTextMsg);
+                            }
+                        })
                     }
                 }
 
@@ -451,7 +416,22 @@
                             document.querySelector("aside ul li.on").onclick();
                         }
                     }else{
-                        alert("尚無私信內容");
+                        // alert("尚無私信內容");
+                        document.querySelector("aside ul").innerHTML=`
+                        <div id="withoutMsg">
+                            <div class="img">
+                                <p class="bubble">尚無私信內容</p>
+                                <img src="./img/yuru_neko6.png">
+                            </div>
+                            <div class="text">
+                                <p>立即前往</p>
+                                <div>
+                                    <a href="./map.html">浪浪在哪裡</a><img src="./img/pawprint-01.svg">
+                                    <a href="./post_article_region.html">毛孩交流區</a>
+                                </div>
+                                <p>開始體驗私信吧！</p>
+                            </div>
+                        </div>`;
                     }
                 }else{
                     alert(xhr.status);
@@ -504,8 +484,23 @@
                         if(xhr.responseText.indexOf("ok")!=-1){
                             alert("已將此會員設為黑名單");
                             // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                            main.innerHTML=`<ul>
+                                <button class="back titleFont"></button>
+                            </ul>
+                            <form method="POST" class="edit" enctype="multipart/form-data">
+                                <label for="upload">
+                                    <input type="file" id="upload" name="upload" accept="image/*">
+                                </label>
+                                <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
+                                <input type="submit" id="submitText" value="">
+                            </form>`;
                             document.querySelector("aside ul").innerHTML="";
                             getMsg();
+                            if(document.querySelector("aside ul li.on")){
+                                document.querySelector("aside ul li.on").className.remove("on");
+                            }
+
+                            
                         }else{  
                             alert("設定失敗，請再試一次");
                         }
