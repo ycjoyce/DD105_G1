@@ -11,6 +11,7 @@
 @import 'layout/scrollbar';
 @import 'layout/rwd';
 @import 'layout/cursor';
+@import 'layout/animation';
 
 @include header(fixed);
 
@@ -496,6 +497,7 @@ section.where{
             top: -230px;
         }
         h3{
+            position: relative;
             a{
                 font-size: 1.5rem;
                 font-weight: 500;
@@ -511,6 +513,19 @@ section.where{
                 position: relative;
                 right: -10px;
                 top: -10px;
+            }
+            &.active{
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    background-color: $lightgreen;
+                    height: 1px;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0%;
+                    animation: widthChange 1s;
+                }
             }
         }
         p{
