@@ -220,6 +220,12 @@
       text-decoration: none;
       margin: 5px;
       font-family: "DM Serif Text", "Noto Serif TC";
+      transition: all 0.5s;
+      &:hover{
+        border:  1px solid $gray !important;
+        background-color: #fff;
+        color: $gray;
+      }
     }
     .updatebtn_s {
       display: inline-block;
@@ -484,47 +490,48 @@
 
 // 管理黑名單
 @import "layout/rwd";
-.tab-content {
-  section {
+
+  section.blacklistTable {
     .blacklist_content {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       align-content: space-between;
-      .BLcolumn {
-        width: 48%;
-        margin: 0;
-        > div {
-          margin: 0 0 20px;
-          display: flex;
-          padding: 20px 3%;
-          background-color: rgba(255, 255, 255, 0.5);
-          box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
-          > div {
-            width: 50px;
-            min-width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 10%;
-            overflow: hidden;
-            img {
-              max-width: 50px;
-              max-height: 50px;
-            }
+      div.card {
+        margin: 0 0 20px;
+        display: flex;
+        padding: 20px 3%;
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+        width: 45%;
+         div {
+          width: 50px;
+          min-width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: inline-block;
+          margin-right: 10%;
+          overflow: hidden;
+          img {
+            max-width: 50px;
+            max-height: 50px;
           }
-          span {
-            align-self: center;
-          }
-          .BLbtn {
-            margin-left: auto;
-            align-self: center;
-          }
+        }
+        span {
+          align-self: center;
+        }
+        .BLbtn {
+          margin-left: auto;
+          align-self: center;
+          border: 1px solid transparent;
+          outline: none;
+          
         }
       }
     }
   }
-}
+
+
 
 @media (max-width: 1200px) {
   .tab-content {
