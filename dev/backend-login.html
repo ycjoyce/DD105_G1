@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>後台登入</title>
     <link rel="stylesheet" href="css/backend-login.css">
+    @@include('./layout/head.html',{"title": "浪愛回家"})
 </head>
 
 <body>
@@ -29,7 +29,13 @@
                     </td>
                 </tr>
             </table>
-            <button>@@include('layout/btn_darkgreen.html',{"innerText": "登入"})</button>
+            <button class="btn darkgreen nav__link">
+                <span class="titleFont">登入</span>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+            </button>
             <div id="registeredBtn"> </div>
             <!-- <div id="registeredBtn">註冊</div> -->
         </form>
