@@ -714,47 +714,6 @@
                     <section class="blacklistTable">
     <h3>管理黑名單</h3>
     <div class="blacklist_content">
-        <!-- <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-            <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-             <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-             <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-             <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-    
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-             <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-             <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-             <button class="updatebtn BLbtn">解除黑名單</button>
-        </div>
-        <div class="card">
-            <div><img src="https://picsum.photos/60/60"></div>
-            <span>May</span>
-            <button class="updatebtn BLbtn">解除黑名單</button>
-        </div> -->
         
     </div>
 </section>
@@ -763,19 +722,28 @@
         </div>
         <!-- container -->
     </section>
-    <!-- <footer>
+    <footer>
         <p class="titleFont smalltext">
             © 2020 Bring Love Home
         </p>
-    </footer> -->
+    </footer>
 
 
     <script src="./js/hamburger.js"></script>
-    <script src="./js/header_slide.js"></script>
+    <!-- <script src="./js/header_slide.js"></script> -->
     <script src="./js/signInOut.js"></script>
     <script src="./js/blacklistTable.js"></script>
     <script>
 
+        //section高度
+        function sectionHeight(){
+            let header= document.querySelector('nav');
+            let section= document.querySelector('section');
+            let footer= document.querySelector('footer');
+            section.style.height= window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
+        }
+        sectionHeight();
+        window.addEventListener("resize",sectionHeight);
 
         // jQuery tabs大頁籤開始---------------------------------------
         $(document).ready(function () {

@@ -1,23 +1,21 @@
 function cancelBlack(e){
-    // alert(this.className);
-    var blackMemNo= this.classList[2].substr(2);
-    // alert(blackMemNo);
-    var xhr= new XMLHttpRequest();
-    var url= "./php/cancelBlack.php";
-    xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    var data_info= `blackMemNo=${blackMemNo}`;
-    xhr.send(data_info);
-
-    if(xhr.status==200){
-        
-            alert("已成功解除一筆黑名單");
-            document.querySelector("div.blacklist_content").innerHTML="";
-            // showBlacklist();
-        
-    }else{
-        alert("it's me");
-    }
+    $.ajax({
+        url: './php/cancelBlack.php',
+        data: {blackMemNo:this.classList[2].substr(2)},
+        type: 'POST',
+        success(data){
+            if(data.indexOf("error")==-1){
+                alert("已成功解除一筆黑名單");
+                document.querySelector("div.blacklist_content").innerHTML="";
+                showBlacklist();
+            }else{
+                alert("解除失敗，請再試一次");
+            }
+        },
+        error(data){
+            alert("it's me");
+        },
+    });
 }
 
 function showBlacklist(){
@@ -27,14 +25,24 @@ function showBlacklist(){
     xhr.send(null);
     xhr.onload= function(){
         if(xhr.status==200){
+            var container= document.querySelector("div.blacklist_content");
             if(xhr.responseText.indexOf("notFound")!=-1){
-                alert("無黑名單");
+                // alert("無黑名單");
+                container.style.display="block";
+                container.innerHTML=`
+                <div class="withoutBlack">
+                    <div>
+                        <img src="./img/fukidashi04.png" class="bubble">
+                        <p>目前尚無<br>黑名單</p>
+                    </div>
+                    <img src="./img/animal_cat.png" class="cat">
+                </div>`;
             }else{
                 var res= JSON.parse(xhr.responseText);
-                console.log(res);
+                container.style.display="flex";
+                
                 //DOM
                 for(var i=0; i<res.length; i++){
-                    var container= document.querySelector("div.blacklist_content");
                     var divCard= document.createElement("div");
                     divCard.className= "card";
                     container.insertBefore(divCard,container.firstChild);
