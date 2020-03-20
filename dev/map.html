@@ -8,11 +8,12 @@
     @@include('./layout/head.html',{
     "title": "浪愛回家 ｜ 浪浪在哪裡"
     })
-    <!-- <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/> -->
     <link rel="stylesheet" href="./css/map.css">
-    <script src="./js/jquery-3.4.1.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="./js/modernizr.custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <!-- scrollmagic -->
     <!-- 主程式 -->
@@ -26,10 +27,8 @@
 </head>
 
 <body>
-    <!-- 導覽列 -->
+    <!--------------------- 導覽列 --------------------->
     @@include('./layout/header.html')
-
-    <!-- <div style="height:20vh"></div> -->
 
     <div class="map_container">
         <!--------------------- 第一屏banner --------------------->
@@ -43,13 +42,10 @@
         <div id="trigger01"></div>
         <section class="map_intro">
             <div class="map_lostdogGirl">
-                <!-- <img src="./img/map_lostdog_boy.png"> -->
                 <img src="./img/map_lostdog_dog.png" id="lostdogDog">
                 <img src="./img/map_lostdog_girl.png" id="lostdogGirl">
                 <img src="./img/map_lostdog_girl_sweat.gif" id="lostdogGirlSweat">
             </div>
-            <!-- <div></div> -->
-
             <div class="map_introcontent">
                 <img src="./img/map_intro_boyndog.png" class="map_intro_boyndog">
                 <div>
@@ -65,6 +61,7 @@
                     <img src="./img/map_intro_rightleaf.png">
                 </div>
             </div>
+            <!-- 輪播圖 -->
             <div id="app" data-state="0">
                 <div class="ui-big-images">
                     <div class="ui-big-image" data-key="0">
@@ -141,7 +138,7 @@
             </div>
         </section>
 
-
+        <!--------------------- 第二屏結束 --------------------->
         <div class="map_pawprint"><img src="./img/pawprint-darkgreen.svg"></div>
         <div id="trigger02"></div>
 
@@ -246,18 +243,18 @@
                                     <select name="fr_area" id="fr_area" class="smalltext">
                                         <optgroup label="台北市">
                                             <option value="0" hidden>--請選擇--</option>
-                                            <option value="fr_area_01">士林區</option>
-                                            <option value="fr_area_02">大同區</option>
-                                            <option value="fr_area_03">大安區</option>
-                                            <option value="fr_area_04">中山區</option>
-                                            <option value="fr_area_05">中正區</option>
-                                            <option value="fr_area_06">內湖區</option>
-                                            <option value="fr_area_07">文山區</option>
-                                            <option value="fr_area_08">北投區</option>
-                                            <option value="fr_area_09">松山區</option>
-                                            <option value="fr_area_10">信義區</option>
-                                            <option value="fr_area_11">南港區</option>
-                                            <option value="fr_area_12">萬華區</option>
+                                            <option value="1">士林區</option>
+                                            <option value="2">大同區</option>
+                                            <option value="3">大安區</option>
+                                            <option value="4">中山區</option>
+                                            <option value="5">中正區</option>
+                                            <option value="6">內湖區</option>
+                                            <option value="7">文山區</option>
+                                            <option value="8">北投區</option>
+                                            <option value="9">松山區</option>
+                                            <option value="10">信義區</option>
+                                            <option value="11">南港區</option>
+                                            <option value="12">萬華區</option>
                                         </optgroup>
                                     </select>
                                 </p>
@@ -379,6 +376,8 @@
             </div>
         </div>
     </div>
+    <!--  -->
+    <div id="psdd" value="123" style="width: 50px; height: 50px; background-color: aqua;">12</div>
     <!-- 燈箱JS -->
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
@@ -398,22 +397,28 @@
     @@include('./layout/footer.html')
 
 
-    <!-- ========================================== -->
-    <!-- Javascript -->
+    <!-------------------------------------------------------------->
+    <!------------------------- Javascript ------------------------->
+    <!-------------------------------------------------------------->
 
-    <!-- 輪播圖 -->
-    <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
-    <script src="./js/map_slider.js"></script>
+    <!-- Login -->
+    <script src="./js/signInOut.js"></script>
+
     <!-- Header -->
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
+    <!-- 輪播圖 -->
+    <script src='https://unpkg.com/flipping@1.1.0/dist/flipping.web.js'></script>
+    <script src="./js/map_slider.js"></script>
     <!-- 插圖動畫 -->
     <script src="./js/map_animation.js"></script>
-    <!-- AJAX -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
 
     <script>
         $(document).ready(function () {
+            $('#psdd').click(function () {
+                alert("你好")
+            })
 
             var winWidth = $(window).width();
             var winHeight = $(window).height();
@@ -444,9 +449,8 @@
                 $('#map_option_lost').addClass('is-active');
             };
 
-            //================================================
-            //==================新增寵物遺失===================
 
+            // 寵物遺失申請
             var lostPetRpImg = document.getElementById("lostPetRpImg");
             $("#rpbtn").click(function (e) {
                 e.preventDefault();
@@ -481,7 +485,7 @@
                         }
                     },
                     error: function () {
-                        alert("請上傳檔案");
+                        alert("請上傳圖片");
                     }
                 })
             })
@@ -492,64 +496,7 @@
     <!-- ----------------- GoogleMap ---------------------- -->
     <script src="./js/map_googlemap.js"></script>
 
-    <!-- -------------------------------------------------- -->
-    <!-- -----------------新增寵物遺失---------------------- -->
 
-    <!-- <script>
-        document.getElementById('rpbtn').addEventListener("click", rpsent);
-        function rpsent() {
-            // e.preventDefault();
-            var xhr = new XMLHttpRequest();
-            var url = "./php/map_lostform.php";
-            xhr.open("POST", url, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            var data =
-                `
-                lostPetRpName=${document.getElementById("lostPetRpName").value}&
-                lostPetRpCh=${document.getElementById("lostPetRpCh").value}&
-                lostPetRpLoc=${document.getElementById("lostPetRpLoc").value}&
-                lostPetRpLDate=${document.getElementById("lostPetRpLDate").value}&
-                lostPetRpType=${document.getElementById("lostPetRpType").value}&
-                lostPetRpStat=${document.getElementById("lostPetRpStat").value}
-                
-                `
-                // &lostPetRpImg=${document.getElementById("lostPetRpImg").value}
-                // "lostPetRpName=" + document.getElementById("lostPetRpName").value +
-                // "&lostPetRpCh=" + document.getElementById("lostPetRpCh").value +
-                // "&lostPetRpLoc=" + document.getElementById("lostPetRpLoc").value +
-                // "&lostPetRpLDate=" + document.getElementById("lostPetRpLDate").value +
-                // "&lostPetRpType=" + document.getElementById("lostPetRpType").value +
-                // "&lostPetRpStat=" + document.getElementById("lostPetRpStat").value +
-                // "&lostPetRpImg=" + document.getElementById("lostPetRpImg").value
-                ;
-            xhr.send(data);
-            // alert(data);
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-                    if (xhr.responseText.indexOf("成功") != -1) {
-                        alert("成功");
-                    }
-                    else {
-                        alert("失敗");
-                    }
-                } else {
-                    alert(xhr.status);
-                }
-            };
-        }
-    </script> -->
-
-
-
-    <!--AOS animation -->
-    <!-- <script src="https://unpkg.com/aos@next/dist/aos.js"></script> -->
-    <!-- <script>
-        AOS.init({
-            duration: 1500,
-            once: true,
-            mirror: false
-        });
-    </script>    -->
 
 </body>
 

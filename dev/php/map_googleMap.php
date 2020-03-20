@@ -1,20 +1,24 @@
 <?php
 
-session_start();
-
 try{
+    // require("phpsqlajax_dbinfo.php");
     require_once('./connectDB.php');
 
-    $types = implode(',', $_REQUEST['friendtypes']);
-    $sql= "select * from `petfriendly` where 
-    `friendlyTypeNo` in :friendlyTypes and 
-    `friendlyLocNo`= :friendlyLocNo;";
-        
-    $friendtypes = $pdo->prepare($sql);
-    $friendtypes->execute($data1);
+    $sql= "select * from `petfriendly`";
+    // where `friendlyTypeNo` in :friendlyTypes
+    // and   `friendlyLocNo` = :friendlyLocNo"
+    
+    // $types = $pdo->prepare($sql);
+    $types = $pdo->query($sql);
 
-    $result = $friendtypes->fetchAll();
-    print_r(var_dump($va));
+    // $types->bindValue(":friendlyTypes", implode(',', $_REQUEST['friendtypes']);
+    // $types->bindValue(":friendlyLocNo", $_REQUEST['fr_area']);
+    $types->execute();
+
+    $typesRow = $types->fetchAll(PDO::FETCH_ASSOC);
+    $result = json_encode($typesRow);
+    echo ($result);
+    //  var_dump
 
 }catch(PDOException $e){
     echo "錯誤訊息:". $e->getMessage();
