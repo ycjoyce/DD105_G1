@@ -8,6 +8,7 @@
     })
     <link rel="stylesheet" href="css/login.css">
     <script src="js/heightWithoutHeader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 </head>
 <body>
     @@include('./layout/header.html')
@@ -30,7 +31,7 @@
                 </label>
                 <div class="bottom">
                     <div class="more">
-                        <span>忘記密碼</span>
+                        <span id="forgetPsw">忘記密碼</span>
                         <span id="signUpBtn">註冊新帳號</span>
                     </div>
                     <input type="button" onclick="getMember()" value="登入" class="btn gray titleFont" id="signInSubmit">
@@ -250,6 +251,32 @@
                 }
             }
             
+        }
+    
+        let forgetPsw = document.getElementById("forgetPsw");
+        forgetPsw.addEventListener("click",findPsw);
+        function findPsw(){
+            var email= prompt("請輸入註冊帳號(E-mail)");
+            var preg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+            if(email=='' || !preg.test(email)){
+                alert("請填寫正確E-mail");
+            }else{
+                $.ajax({
+                    url: './php/findPsw.php',
+                    data: {email:email},
+                    type: 'POST',
+                    success(data){
+                        if(data.indexOf("notFound")!=-1){
+                            alert("此E-mail尚未註冊");
+                        }else{
+                            console.log(data);
+                        }
+                    },
+                    error(data){
+                        alert("error");
+                    },
+                });
+            }
         }
     </script>
 </body>

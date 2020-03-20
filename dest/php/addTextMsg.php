@@ -8,7 +8,7 @@ try{
     $msg->bindValue(":getMemNo", $_REQUEST["getMemNo"]);
 
 
-    $msg->bindValue(":msgText",$_REQUEST["msgText"]);
+    $msg->bindValue(":msgText",htmlspecialchars($_REQUEST["msgText"]));
 
     // echo "特殊字元".htmlspecialchars($_REQUEST["msgText"]);
     $msg->execute();
