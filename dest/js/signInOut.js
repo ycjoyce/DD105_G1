@@ -103,6 +103,13 @@ function getMember(){
 }
 getMember();
 
+function customizedSignIn() {
+    var signInFirstBlock = document.getElementById('signInFirstBlock');
+    var memPoints = member.memPoint;
+    signInFirstBlock.style.display = "flex";
+    memberPoint.style.display = "none"; 
+}
+
 //會員登出
 function signOut(){
     var xhr= new XMLHttpRequest();
@@ -138,11 +145,10 @@ function signOut(){
                 </nav>
                 `;
                 sessionStorage.clear();
-                
+                customizedSignIn();
                 if(location.pathname.split("/").pop()=="message.html"||location.pathname.split("/").pop()=="memberCenter.html"){
                     location.href="./index.html";
                 }
-                
         }else{
             alert( xhr.status );
         }
