@@ -513,40 +513,66 @@ section.where{
                 position: relative;
                 right: -10px;
                 top: -10px;
+                opacity: 1;
+                transition: opacity 0.5s;
             }
             &.active{
                 &::before{
                     content: '';
                     display: inline-block;
-                    background-color: $lightgreen;
-                    height: 1px;
+                    background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                    height: 100%;
                     position: absolute;
                     bottom: 0;
                     left: 0;
                     width: 0%;
-                    animation: widthChange 1s;
+                    animation: widthChange 0.5s ease-in-out;
+                }
+                &::after{
+                    opacity: 0;
                 }
             }
         }
         p{
             margin: 20px 0 30px 0;
-        }
-        img{
-            display: inline-block;
-            position: absolute;
-            width: 200px;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0.2;
+            transition: all 0.5s;
+            position: relative;
+            &.active{
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                    height: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0%;
+                    animation: widthChange 0.5s ease-in-out;
+                }
+            }
         }
         .btn.darkgreen{
             width:150px;
+            filter: hue-rotate(0);
+            transition: all 0.5s;
+            &.active{
+                filter: hue-rotate(90deg);
+            }
         }
         @include changePage(){
             float: right;
             position: relative;
             bottom: -15px;
             margin-left: 50px;
+        }
+        div.changePage{
+            button{
+                transform: translateY(0);
+                transition: all 0.5s ease;
+                &.active{
+                    transform: translateY(3px);
+                }
+            }
         }
     }
     div.readMore{

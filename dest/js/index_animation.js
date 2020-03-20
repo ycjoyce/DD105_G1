@@ -1,6 +1,3 @@
-// import { Timeline } from "gsap/gsap-core";
-
-
 
 TweenMax.to('.introDeco1',3,{
     rotation: 5,
@@ -42,20 +39,29 @@ TweenMax.to('.introDeco5',4,{
 
 /////////////////////////////////
 
-//section.about
+//header
 
-let controller = new ScrollMagic.Controller();
+
 
 // var tl= new TimelineMax({
 //     repeat: 1,
 //     yoyo: true
 // });
 
-// tl.from('div.about h2',0.5,{
-//     scale: 0,
-// }).from('div.about p',0.5,{
-//     scale: 0,
-//     x: 50,
+// tl.from('header nav h1',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:first-child',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(2)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(3)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(4)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(5)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(6)',0.5,{
+//     y: -50,
 // });
 
 ////////////////////////////////
@@ -82,6 +88,8 @@ TweenMax.to('.left.cloud',2,{
     repeat: -1, 
 });
 
+
+// let controller = new ScrollMagic.Controller();
 // new ScrollMagic.Scene({
 //     triggerElement: '#trigger01',
 //     duration: 600,
@@ -188,3 +196,7 @@ TweenMax.staggerTo('.paw', 1, {
     repeat: -1,
     ease: Power2.easeOut,
 }, 3);
+
+
+////////////////////////////////////
+

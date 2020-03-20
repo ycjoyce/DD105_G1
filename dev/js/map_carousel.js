@@ -90,7 +90,41 @@ function mapCarousel(){
 
 mapCarousel();
 
+let mapChangeBtn= document.querySelector('section.where div.card div.changePage button');
+
 mapNextBtn.onclick=function(){
+    //箭頭動畫
+    var timer;
+    mapNextBtn.classList.add("active");
+    clearTimeout(timer);
+    timer= setTimeout(function(){
+        mapNextBtn.classList.remove("active");
+    },300);
+    
+    //標題轉場
+    var cardTitle= document.querySelector('section.where div.card h3');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //內文轉場
+    var cardContent= document.querySelector('section.where div.card p');
+    cardContent.classList.add("active");
+    cardContent.addEventListener("animationend",function(){
+        cardContent.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('section.where div.card a.btn');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
+    //數字變化
     if(curVal+1<=5)
         curVal++;
     else
@@ -99,6 +133,38 @@ mapNextBtn.onclick=function(){
 };
 
 mapPrevBtn.onclick=function(){
+    //箭頭動畫
+    var timer;
+    mapPrevBtn.classList.add("active");
+    clearTimeout(timer);
+    timer= setTimeout(function(){
+        mapPrevBtn.classList.remove("active");
+    },300);
+    
+    //標題轉場
+    var cardTitle= document.querySelector('section.where div.card h3');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //內文轉場
+    var cardContent= document.querySelector('section.where div.card p');
+    cardContent.classList.add("active");
+    cardContent.addEventListener("animationend",function(){
+        cardContent.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('section.where div.card a.btn');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
+    //數字變化
     if(curVal-1>=1)
         curVal--;
     else
