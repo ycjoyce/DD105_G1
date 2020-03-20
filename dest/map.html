@@ -253,15 +253,15 @@
                                     <label for="friendly">寵物友善空間</label>
                                 </h3>
                                 <p>
-                                    <input type="checkbox" class="friendtypes" name="friendtypes[]" id="fr_rest" value="1">
+                                    <input type="checkbox" name="friendtypes[]" id="fr_rest" value="1">
                                     <label for="fr_rest">友善餐廳</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" class="friendtypes" name="friendtypes[]" id="fr_stay" value="2">
+                                    <input type="checkbox" name="friendtypes[]" id="fr_stay" value="2">
                                     <label for="fr_stay">友善住宿</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" class="friendtypes" name="friendtypes[]" id="fr_point" value="3">
+                                    <input type="checkbox" name="friendtypes[]" id="fr_point" value="3">
                                     <label for="fr_point">友善景點</label>
                                 </p>
                                 <p>
@@ -281,10 +281,10 @@
                                             <option value="10">信義區</option>
                                             <option value="11">南港區</option>
                                             <option value="12">萬華區</option>
-                                        <!-- </optgroup> -->
+                                        </optgroup>
                                     </select>
                                 </p>
-                                <!-- <p>
+                                <p>
                                     <label for="fr_rate">選擇星等</label>
                                     <select name="fr_rate" id="fr_rate" class="smalltext">
                                         <option value="" disabled selected>--請選擇星等--</option>
@@ -294,7 +294,7 @@
                                         <option value="fr_rate_2">2</option>
                                         <option value="fr_rate_1">1</option>
                                     </select>
-                                </p> -->
+                                </p>
                             </div>
 
                             <!-- 寵物友善空間－我的收藏 -->
@@ -403,6 +403,7 @@
         </div>
     </div>
     <!--  -->
+    <div id="psdd" value="123" style="width: 50px; height: 50px; background-color: aqua;">12</div>
     <!-- 燈箱JS -->
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
@@ -436,6 +437,8 @@
     <!------------------------- Javascript ------------------------->
     <!-------------------------------------------------------------->
 
+    <!-- Login -->
+    <script src="./js/signInOut.js"></script>
 
     <!-- Header -->
     <script src="./js/hamburger.js"></script>
@@ -449,6 +452,9 @@
 
     <script>
         $(document).ready(function () {
+            $('#psdd').click(function () {
+                alert("你好")
+            })
 
             var winWidth = $(window).width();
             var winHeight = $(window).height();
@@ -529,8 +535,5 @@
 
 
 </body>
-
-    <!-- 會員登入 -->
-    <script src="./js/signInOut.js"></script>
 
 </html>
