@@ -25,15 +25,15 @@ try{
     $lostPetRpNo = $pdo->lastInsertId();
 
     //先檢查images資料夾存不存在
-	if( file_exists("img") === false){
-		mkdir("img");
+	if( file_exists("../img/lostrp/")==false){
+		mkdir("../img/lostrp/");
 	}
 		//將檔案copy到要放的路徑
 		$fileInfoArr = pathinfo($_FILES["lostPetRpImg"]["name"]);
 		$fileName = "{$lostPetRpNo}.{$fileInfoArr["extension"]}";
 
 		$from = $_FILES["lostPetRpImg"]["tmp_name"];
-		$to = "../img/$fileName";
+		$to = "../img/lostrp/$fileName";
 		if(copy( $from, $to)===true){
 			//將檔案名稱寫回資料庫
 			$sql = "update lostpetreport set lostPetRpImg = :lostPetRpImg where lostPetRpNo = $lostPetRpNo";

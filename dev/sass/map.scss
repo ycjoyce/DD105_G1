@@ -75,12 +75,12 @@
 @import "layout/scrollbar";
 //使用方式 ----- @include scrollbar(要套用的物件);
 //例如 ----- @include scrollbar('div.top');
+@include scrollbar('div.friendContent');
 
 //=======================================================
 
 // 燈箱
 @import "map_animation/mapLightbox";
-
 @import "map_animation/mapSlideshow";
 
 //=======================================================
@@ -1116,6 +1116,15 @@ body {
         font-weight: initial;
         font-size: inherit;
         overflow: visible;
+      }
+      .friendContent{
+        width: 300px;
+        img{
+          max-width: 290px;
+        }
+        p{
+          margin: 5px;
+        }
       }
     }
     button {
