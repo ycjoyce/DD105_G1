@@ -822,11 +822,39 @@ section.donation{
                 span.projectNum{
                     float:left;
                     position: relative;
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 span.date{
                     float:right;
+                    position: relative;
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 h4{
+                    position: relative;
                     a{
                         display: block;
                         clear: both;
@@ -838,13 +866,31 @@ section.donation{
                         -webkit-line-clamp: 2;
                         overflow: hidden;
                     }
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 .btn.darkgreen{
                     position: relative;
                     top: 5px;
                     width: 150px;
+                    filter: hue-rotate(0);
+                    transition: all 0.5s;
                     @include rwd(ss){
                         width: 100px;
+                    }
+                    &.active{
+                        filter: hue-rotate(90deg);
                     }
                 }
                 div.showNum{
@@ -866,6 +912,20 @@ section.donation{
                                     font-size: 1.3rem;
                                     color: $darkgreen;
                                     display: inline-block;
+                                    position: relative;
+                                    &.active{
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                                            height: 100%;
+                                            position: absolute;
+                                            bottom: 0;
+                                            left: 0;
+                                            width: 0%;
+                                            animation: widthChange 0.5s ease-in-out;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -897,6 +957,15 @@ section.donation{
                 }
                 @include rwd(ss){
                     right: 20px;
+                }
+            }
+            div.changePage{
+                button{
+                    transform: translateY(0);
+                    transition: all 0.5s ease;
+                    &.active{
+                        transform: translateY(3px);
+                    }
                 }
             }
             div.progress_bar{
@@ -1150,7 +1219,7 @@ section.collar{
         }
     }
     div.middle{
-        background-image: url(../img/paper/paper_1.png);
+        background-image: url(../img/paper/paper_0.png);
         height: 150px;
         position: relative;
         img{
@@ -1357,7 +1426,7 @@ section.collar{
                 }
                 img{
                     display: inline-block;
-                    width: 80%;
+                    width: 70%;
                     position: relative;
                     top: 50%;
                     left: 50%;
