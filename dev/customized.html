@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> @@include('./layout/head.html',{ "title":
-    "浪愛回家 ｜ 客製化項圈" })
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> @@include('./layout/head.html',{ "title": "浪愛回家 ｜ 客製化項圈" })
     <link rel="stylesheet" href="./css/customized.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -23,34 +22,14 @@
 <body>
     <div id="memberPoint">
         會員點數 :
-        <span id="showPoint"></span>
-        點
+        <span id="showPoint"></span> 點
     </div>
-    <script>
-
-    </script>
-
     @@include('./layout/header.html')
-
-
     <section class="section" id="section">
         <div class="content">
             <div id="signInFirstBlock">
-                @@include('./layout/btn_darkgreen.html',{
-                "innerText": "請先登入",
-                "connect": " href='login.html'"
-                })
+                @@include('./layout/btn_darkgreen.html',{ "innerText": "請先登入", "connect": " href='login.html'" })
             </div>
-            <!-- <script>
-                let hamburger = document.getElementsByClassName('hamburger')[0];
-                let signInFirstBlock = document.getElementById('signInFirstBlock');
-
-                if(hamburger.previousSibling.lastChild.classList.contains("memZone") == true){
-                    signInFirstBlock.style.display= "none";
-                }else{
-                    signInFirstBlock.style.display= "flex";
-                }
-            </script> -->
             <script>
                 function getPoint() {
                     var memberPoint = document.getElementById('memberPoint');
@@ -59,7 +38,7 @@
                     var url = "php/checkMem.php";
                     xhr.open("GET", url, true);
                     xhr.send(null);
-                    xhr.onload = function () {
+                    xhr.onload = function() {
                         if (xhr.status == 200) {
                             member = JSON.parse(xhr.responseText);
                             if (member.memId) {
@@ -72,9 +51,6 @@
                     }
                 }
                 getPoint();
-
-                
-                
             </script>
             <!-- 客製化content,含預覽區以及編輯區 -->
             <div class="preview_area" id="preview_area" style="background-color: rgba(255, 185, 185, 0.3)">
@@ -108,10 +84,7 @@
                             <div class="fakeCircles fakeCircle3"></div>
                             <div class="fakeCircles fakeCircle4"></div>
                         </li>
-                        <div class="tabLine1">
-
-                        </div>
-
+                        <div class="tabLine1"></div>
                         <li class="tab-link tabClose" data-tab="tab-2" id="bigTab2" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">02</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
@@ -121,10 +94,7 @@
                             <div class="fakeCircles fakeCircle7"></div>
                             <div class="fakeCircles fakeCircle8"></div>
                         </li>
-                        <div class="tabLine2">
-
-                        </div>
-
+                        <div class="tabLine2"></div>
                         <li class="tab-link tabClose" data-tab="tab-3" id="bigTab3" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">03</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
@@ -134,10 +104,7 @@
                             <div class="fakeCircles fakeCircle11"></div>
                             <div class="fakeCircles fakeCircle12"></div>
                         </li>
-                        <div class="tabLine3">
-
-                        </div>
-
+                        <div class="tabLine3"></div>
                         <li class="tab-link tabClose" data-tab="tab-4" id="bigTab4" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">04</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
@@ -164,151 +131,44 @@
                     <div id="tabsContent">
                         <div id="tab-1" class="tab-content current">
                             <div class="collarImagesContainer" style="padding: 0px;">
-                                <div class="collarImagesBoxs"
-                                    style="background-color: rgba(255, 185, 185, 0.4); border: 0px solid #7e9c23;"
-                                    id="collarImage1"><img src="./img/customized_collar/collarImages/1collar_FFB9B9.png"
-                                        class="collarImages imageApplying"><img
-                                        src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow shadowApplying"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 128, 0.4);"
-                                    id="collarImage2"><img src="./img/customized_collar/collarImages/2collar_FF8080.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(198, 36, 36, 0.4);"
-                                    id="collarImage3"><img src="./img/customized_collar/collarImages/3collar_C62424.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 181, 106, 0.4);"
-                                    id="collarImage4"><img src="./img/customized_collar/collarImages/4collar_FFB46A.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 0, 0.4);"
-                                    id="collarImage5"><img src="./img/customized_collar/collarImages/5collar_FF7E00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(239, 248, 112, 0.4);"
-                                    id="collarImage6"><img src="./img/customized_collar/collarImages/6collar_F0F870.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(238, 255, 0, 0.4);"
-                                    id="collarImage7"><img src="./img/customized_collar/collarImages/7collar_F0FF00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(158, 255, 109, 0.4);"
-                                    id="collarImage8"><img src="./img/customized_collar/collarImages/8collar_9DFF6D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(120, 255, 53, 0.4);"
-                                    id="collarImage9"><img src="./img/customized_collar/collarImages/9collar_77FF35.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 0, 0.4);"
-                                    id="collarImage10"><img
-                                        src="./img/customized_collar/collarImages/10collar_01FF00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(14, 140, 14, 0.4);"
-                                    id="collarImage11"><img
-                                        src="./img/customized_collar/collarImages/11collar_0F8C0E.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(13, 134, 110, 0.4);"
-                                    id="collarImage12_1"><img
-                                        src="./img/customized_collar/collarImages/12collar_0D866D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(25, 57, 24,0.4);"
-                                    id="collarImage12_2"><img
-                                        src="./img/customized_collar/collarImages/12collar_255724.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(160, 255, 209, 0.4);"
-                                    id="collarImage13"><img
-                                        src="./img/customized_collar/collarImages/13collar_A0FFD1.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(110, 248, 181, 0.4);"
-                                    id="collarImage14"><img
-                                        src="./img/customized_collar/collarImages/14collar_6EF8B5.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 204, 0.4);"
-                                    id="collarImage15"><img
-                                        src="./img/customized_collar/collarImages/15collar_00FFCA.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(5, 238, 255, 0.4);"
-                                    id="collarImage16"><img
-                                        src="./img/customized_collar/collarImages/16collar_05EDFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(27, 110, 116, 0.4);"
-                                    id="collarImage17"><img
-                                        src="./img/customized_collar/collarImages/17collar_1B6E74.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 140, 255, 0.4);"
-                                    id="collarImage18"><img
-                                        src="./img/customized_collar/collarImages/18collar_008DFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(15, 69, 114, 0.4);"
-                                    id="collarImage19"><img
-                                        src="./img/customized_collar/collarImages/19collar_0F4672.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(248, 120, 255, 0.4);"
-                                    id="collarImage20"><img
-                                        src="./img/customized_collar/collarImages/20collar_F878FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(191, 164, 255, 0.4);"
-                                    id="collarImage21"><img
-                                        src="./img/customized_collar/collarImages/21collar_BFA4FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(128, 74, 255, 0.4);"
-                                    id="collarImage22"><img
-                                        src="./img/customized_collar/collarImages/22collar_7F4AFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(78, 2, 255, 0.4);"
-                                    id="collarImage23"><img
-                                        src="./img/customized_collar/collarImages/23collar_4C02FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(50, 40, 75, 0.4);"
-                                    id="collarImage24"><img
-                                        src="./img/customized_collar/collarImages/24collar_32284B.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);"
-                                    id="collarImage25"><img
-                                        src="./img/customized_collar/collarImages/25collar_FFFFFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);"
-                                    id="collarImage26"><img
-                                        src="./img/customized_collar/collarImages/26collar_A2A2A2.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);"
-                                    id="collarImage27"><img
-                                        src="./img/customized_collar/collarImages/27collar_3D3D3D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 185, 185, 0.4); border: 0px solid #7e9c23;" id="collarImage1"><img src="./img/customized_collar/collarImages/1collar_FFB9B9.png" class="collarImages imageApplying"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow shadowApplying"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 128, 0.4);" id="collarImage2"><img src="./img/customized_collar/collarImages/2collar_FF8080.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(198, 36, 36, 0.4);" id="collarImage3"><img src="./img/customized_collar/collarImages/3collar_C62424.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 181, 106, 0.4);" id="collarImage4"><img src="./img/customized_collar/collarImages/4collar_FFB46A.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 0, 0.4);" id="collarImage5"><img src="./img/customized_collar/collarImages/5collar_FF7E00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(239, 248, 112, 0.4);" id="collarImage6"><img src="./img/customized_collar/collarImages/6collar_F0F870.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(238, 255, 0, 0.4);" id="collarImage7"><img src="./img/customized_collar/collarImages/7collar_F0FF00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(158, 255, 109, 0.4);" id="collarImage8"><img src="./img/customized_collar/collarImages/8collar_9DFF6D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(120, 255, 53, 0.4);" id="collarImage9"><img src="./img/customized_collar/collarImages/9collar_77FF35.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 0, 0.4);" id="collarImage10"><img src="./img/customized_collar/collarImages/10collar_01FF00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(14, 140, 14, 0.4);" id="collarImage11"><img src="./img/customized_collar/collarImages/11collar_0F8C0E.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(13, 134, 110, 0.4);" id="collarImage12_1"><img src="./img/customized_collar/collarImages/12collar_0D866D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(25, 57, 24,0.4);" id="collarImage12_2"><img src="./img/customized_collar/collarImages/12collar_255724.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(160, 255, 209, 0.4);" id="collarImage13"><img src="./img/customized_collar/collarImages/13collar_A0FFD1.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(110, 248, 181, 0.4);" id="collarImage14"><img src="./img/customized_collar/collarImages/14collar_6EF8B5.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 204, 0.4);" id="collarImage15"><img src="./img/customized_collar/collarImages/15collar_00FFCA.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(5, 238, 255, 0.4);" id="collarImage16"><img src="./img/customized_collar/collarImages/16collar_05EDFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(27, 110, 116, 0.4);" id="collarImage17"><img src="./img/customized_collar/collarImages/17collar_1B6E74.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 140, 255, 0.4);" id="collarImage18"><img src="./img/customized_collar/collarImages/18collar_008DFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(15, 69, 114, 0.4);" id="collarImage19"><img src="./img/customized_collar/collarImages/19collar_0F4672.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(248, 120, 255, 0.4);" id="collarImage20"><img src="./img/customized_collar/collarImages/20collar_F878FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(191, 164, 255, 0.4);" id="collarImage21"><img src="./img/customized_collar/collarImages/21collar_BFA4FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(128, 74, 255, 0.4);" id="collarImage22"><img src="./img/customized_collar/collarImages/22collar_7F4AFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(78, 2, 255, 0.4);" id="collarImage23"><img src="./img/customized_collar/collarImages/23collar_4C02FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(50, 40, 75, 0.4);" id="collarImage24"><img src="./img/customized_collar/collarImages/24collar_32284B.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);" id="collarImage25"><img src="./img/customized_collar/collarImages/25collar_FFFFFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);" id="collarImage26"><img src="./img/customized_collar/collarImages/26collar_A2A2A2.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);" id="collarImage27"><img src="./img/customized_collar/collarImages/27collar_3D3D3D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
                             </div>
                             <div class="stepBtn">
-                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2"
-                                    style="width: 100%;">下一步</button>
+                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
                             </div>
                         </div>
                         <div id="tab-2" class="tab-content">
                             <div id="collarTagSlider">
                                 <div id="collarTagWrap">
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/boneTag.png" alt="" class="tagImages"
-                                            style="filter: brightness(1);">
+                                        <img src="./img/customized_collar/tag_png/boneTag.png" alt="" class="tagImages" style="filter: brightness(1);">
                                         <div class="lockPoint" style="visibility: visible; opacity: 1;">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -318,8 +178,7 @@
                                         </div>
                                     </div>
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/circleTag.png" alt=""
-                                            class="tagImages">
+                                        <img src="./img/customized_collar/tag_png/circleTag.png" alt="" class="tagImages">
                                         <div class="lockPoint">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -329,8 +188,7 @@
                                         </div>
                                     </div>
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/cloverTag.png" alt=""
-                                            class="tagImages">
+                                        <img src="./img/customized_collar/tag_png/cloverTag.png" alt="" class="tagImages">
                                         <div class="lockPoint">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -340,8 +198,7 @@
                                         </div>
                                     </div>
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/fishTag_2.png" alt=""
-                                            class="tagImages">
+                                        <img src="./img/customized_collar/tag_png/fishTag_2.png" alt="" class="tagImages">
                                         <div class="lockPoint">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -351,8 +208,7 @@
                                         </div>
                                     </div>
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/footprintTag.png" alt=""
-                                            class="tagImages">
+                                        <img src="./img/customized_collar/tag_png/footprintTag.png" alt="" class="tagImages">
                                         <div class="lockPoint">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -362,8 +218,7 @@
                                         </div>
                                     </div>
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/heartTag.png" alt=""
-                                            class="tagImages">
+                                        <img src="./img/customized_collar/tag_png/heartTag.png" alt="" class="tagImages">
                                         <div class="lockPoint">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -373,8 +228,7 @@
                                         </div>
                                     </div>
                                     <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/spadesTag_2.png" alt=""
-                                            class="tagImages">
+                                        <img src="./img/customized_collar/tag_png/spadesTag_2.png" alt="" class="tagImages">
                                         <div class="lockPoint">
                                             <span>所需點數&nbsp;:</span>
                                             <span>&nbsp;300</span>
@@ -442,8 +296,7 @@
                                     <input type="text" name="" id="textContent1" placeholder="請輸入文字">
                                 </div>
                                 <div>
-                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;"
-                                        id="addTextBtn">
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="addTextBtn">
                                         <span class="titleFont">
                                             新增文字
                                         </span>
@@ -452,8 +305,7 @@
                                         <div class="border"></div>
                                         <div class="border"></div>
                                     </a>
-                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;"
-                                        id="delTextBtn">
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="delTextBtn">
                                         <span class="titleFont">
                                             刪除文字
                                         </span>
@@ -533,7 +385,7 @@
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
     <script>
-        (function () {
+        (function() {
             var dlgtrigger = document.querySelector('[data-dialog]'),
                 somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
                 dlg = new DialogFx(somedialog);
