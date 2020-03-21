@@ -732,5 +732,10 @@
   <script src="./js/pace.min.js"></script>
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
+  <script>
+ 
+ console.log(sessionStorage.getItem('admin_account'));
+ $('.adminName').text(sessionStorage.getItem('admin_account') + ' 您好');
+  </script>
 </body>
 </html>
