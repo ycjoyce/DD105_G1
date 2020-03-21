@@ -1,5 +1,183 @@
-// import { Timeline } from "gsap/gsap-core";
+var t1 = new TimelineMax({
+    repeat: -1,
+    repeatDelay: 2,
+    repeatDelay: 1,
+});
 
+
+if(document.body.clientWidth>=1200){//xl 
+    t1.to("img.dog_gif", 0.5, {
+        alpha: 1,
+        startAt: { alpha: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 3, {
+        x: 320,
+        startAt: { x: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 1, {
+        alpha: 0,
+    })
+    .to("img.heart", 1, {
+        y: -50,
+        alpha: 1,
+        startAt: { y: 0 , alpha: 0},
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        scaleX: 1.1,
+        scaleY: 1.1, 
+        yoyo: true,
+        repeat: 4,
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        alpha: 0,
+        startAt: { alpha: 1 },
+        ease: Power0.easeIn,
+    })
+}else if(document.body.clientWidth>=992 && document.body.clientWidth<=1199){//lg
+    t1.to("img.dog_gif", 0.5, {
+        alpha: 1,
+        startAt: { alpha: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 3, {
+        x: 220,
+        startAt: { x: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 1, {
+        alpha: 0,
+    })
+    .to("img.heart", 1, {
+        y: -50,
+        alpha: 1,
+        startAt: { y: 0 , alpha: 0},
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        scaleX: 1.1,
+        scaleY: 1.1, 
+        yoyo: true,
+        repeat: 4,
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        alpha: 0,
+        startAt: { alpha: 1 },
+        ease: Power0.easeIn,
+    })
+}else if(document.body.clientWidth>=768 && document.body.clientWidth<=991){//md
+    t1.to("img.dog_gif", 0.5, {
+        alpha: 1,
+        startAt: { alpha: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 2.5, {
+        x: 220,
+        startAt: { x: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 1, {
+        alpha: 0,
+    })
+    .to("img.heart", 1, {
+        y: -50,
+        alpha: 1,
+        startAt: { y: 0 , alpha: 0},
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        scaleX: 1.1,
+        scaleY: 1.1, 
+        yoyo: true,
+        repeat: 4,
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        alpha: 0,
+        startAt: { alpha: 1 },
+        ease: Power0.easeIn,
+    })
+}else if(document.body.clientWidth>=576 && document.body.clientWidth<=767){//sm
+    t1.to("img.dog_gif", 0.5, {
+        alpha: 1,
+        startAt: { alpha: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 2, {
+        x: 170,
+        startAt: { x: 0 },
+        ease: Power0.easeIn
+    })
+    .to("img.dog_gif", 1, {
+        alpha: 0,
+    })
+    .to("img.heart", 1, {
+        y: -50,
+        alpha: 1,
+        startAt: { y: 0 , alpha: 0},
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        scaleX: 1.1,
+        scaleY: 1.1, 
+        yoyo: true,
+        repeat: 4,
+        ease: Power0.easeIn,
+    })
+    .to("img.heart", 0.5, {
+        alpha: 0,
+        startAt: { alpha: 1 },
+        ease: Power0.easeIn,
+    })
+}
+
+
+TweenMax.to('#bubble1',30,{
+    bezier: {//貝茲曲線
+        values:[
+            {x:-100,y:-100},
+            {x:300,y:250},
+            {x:500,y:300},
+            {x:600,y:500},
+            {x:700,y:600},
+            {x:850,y:750},
+        ],
+        autoRotate: false,//形狀沿著曲線轉
+    },
+    startAt: { alpha: 0.6 , x: -200 , y: -200 },
+    rotation: 360,
+    scaleX: 1.2,
+    scaleY: 1.2,
+    alpha: 0.3,
+    repeat: -1,
+    repeatDelay: 1,
+});
+
+TweenMax.to('#bubble2',15,{
+    bezier: {//貝茲曲線
+        values:[
+            {x:1300,y:300},
+            {x:1100,y:250},
+            {x:900,y:200},
+            {x:600,y:150},
+            {x:450,y:120},
+            {x:300,y:60},
+            {x:150,y:-200},
+        ],
+        autoRotate: false,//形狀沿著曲線轉
+    },
+    startAt: { alpha: 0.6 , x: 1500 , y: 250 },
+    rotation: 360,
+    scaleX: 1.2,
+    scaleY: 1.2,
+    alpha: 0.3,
+    repeat: -1,
+    repeatDelay: 1,
+});
 
 
 TweenMax.to('.introDeco1',3,{
@@ -42,20 +220,29 @@ TweenMax.to('.introDeco5',4,{
 
 /////////////////////////////////
 
-//section.about
+//header
 
-let controller = new ScrollMagic.Controller();
+
 
 // var tl= new TimelineMax({
 //     repeat: 1,
 //     yoyo: true
 // });
 
-// tl.from('div.about h2',0.5,{
-//     scale: 0,
-// }).from('div.about p',0.5,{
-//     scale: 0,
-//     x: 50,
+// tl.from('header nav h1',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:first-child',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(2)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(3)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(4)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(5)',0.5,{
+//     y: -50,
+// }).from('header nav ul:first-child li:nth-child(6)',0.5,{
+//     y: -50,
 // });
 
 ////////////////////////////////
@@ -82,6 +269,8 @@ TweenMax.to('.left.cloud',2,{
     repeat: -1, 
 });
 
+
+// let controller = new ScrollMagic.Controller();
 // new ScrollMagic.Scene({
 //     triggerElement: '#trigger01',
 //     duration: 600,
@@ -188,3 +377,7 @@ TweenMax.staggerTo('.paw', 1, {
     repeat: -1,
     ease: Power2.easeOut,
 }, 3);
+
+
+////////////////////////////////////
+

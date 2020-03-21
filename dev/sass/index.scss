@@ -19,6 +19,23 @@ body{
     overflow-x: hidden !important;
 }
 
+#theText span{
+    font: 40px 'Candelia';
+    color: #5d5c5c;
+    @include rwd(lg){
+        font: 30px 'Candelia';
+    }
+    @include rwd(md){
+        font: 30px 'Candelia';
+    }
+    @include rwd(sm){
+        font: 30px 'Candelia';
+    }
+    @include rwd(ss){
+        font: 20px 'Candelia';
+    }
+}
+
 section.intro{
     position: relative;
     @include fatherHeight();
@@ -58,7 +75,7 @@ section.intro{
             }
         }
         div{
-            img{
+            img.text{
                 height: 80px;
                 display:block;
                 margin-bottom: 20px;
@@ -74,6 +91,63 @@ section.intro{
                 @include rwd(ss){
                     height: 50px;
                     margin-bottom: 10px;
+                }
+            }
+            div{
+                position: relative;
+                margin-top: 20px;
+                img.dog_gif{
+                    position: absolute;
+                    left: 0;
+                    top: -40px;
+                    width: 80px;
+                    z-index: 4;
+                    // @include rwd(ss){
+                    //     top: 100px;
+                    // }
+                }
+                img.house{
+                    position: absolute;
+                    left: 370px;
+                    top: -40px;
+                    width: 50px;
+                    z-index: 3;
+                    @include rwd(lg){
+                        left: 270px;
+                    }
+                    @include rwd(md){
+                        left: 270px;
+                    }
+                    @include rwd(sm){
+                        left: 220px;
+                    }
+                    @include rwd(ss){
+                        // left: 80vw;
+                        // top: 100px;
+                        display: none;
+                    }
+                }
+                img.heart{
+                    position: absolute;
+                    left: 385px;
+                    // top: -70px;
+                    top: -20px;
+                    width: 20px;
+                    z-index: 2;
+                    @include rwd(lg){
+                        left: 285px;
+                    }
+                    @include rwd(md){
+                        left: 285px;
+                    }
+                    @include rwd(sm){
+                        left: 235px;
+                    }
+                    @include rwd(ss){
+                        // left: 80vw;
+                        // top: 120px;
+                        display: none;
+                    }
                 }
             }
         }
@@ -109,6 +183,12 @@ section.intro{
             background-size: cover;
             -webkit-transform: scale(1.1);
                     transform: scale(1.1);
+            img.bubble{
+                width: 15vw;
+            }
+            #bubble2{
+                width: 9vw;
+            }
         }
     }
     div.scroll{
@@ -177,7 +257,9 @@ section.intro{
         }
         img{
             position: absolute;
-            
+            @include rwd(ss){
+                display: none;
+            }
             &:first-child{
                 width: 200px;
                 left: -50px;
@@ -513,40 +595,66 @@ section.where{
                 position: relative;
                 right: -10px;
                 top: -10px;
+                opacity: 1;
+                transition: opacity 0.5s;
             }
             &.active{
                 &::before{
                     content: '';
                     display: inline-block;
-                    background-color: $lightgreen;
-                    height: 1px;
+                    background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                    height: 100%;
                     position: absolute;
                     bottom: 0;
                     left: 0;
                     width: 0%;
-                    animation: widthChange 1s;
+                    animation: widthChange 0.5s ease-in-out;
+                }
+                &::after{
+                    opacity: 0;
                 }
             }
         }
         p{
             margin: 20px 0 30px 0;
-        }
-        img{
-            display: inline-block;
-            position: absolute;
-            width: 200px;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0.2;
+            transition: all 0.5s;
+            position: relative;
+            &.active{
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                    height: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0%;
+                    animation: widthChange 0.5s ease-in-out;
+                }
+            }
         }
         .btn.darkgreen{
             width:150px;
+            filter: hue-rotate(0);
+            transition: all 0.5s;
+            &.active{
+                filter: hue-rotate(90deg);
+            }
         }
         @include changePage(){
             float: right;
             position: relative;
             bottom: -15px;
             margin-left: 50px;
+        }
+        div.changePage{
+            button{
+                transform: translateY(0);
+                transition: all 0.5s ease;
+                &.active{
+                    transform: translateY(3px);
+                }
+            }
         }
     }
     div.readMore{
@@ -796,11 +904,39 @@ section.donation{
                 span.projectNum{
                     float:left;
                     position: relative;
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 span.date{
                     float:right;
+                    position: relative;
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 h4{
+                    position: relative;
                     a{
                         display: block;
                         clear: both;
@@ -812,13 +948,31 @@ section.donation{
                         -webkit-line-clamp: 2;
                         overflow: hidden;
                     }
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 .btn.darkgreen{
                     position: relative;
                     top: 5px;
                     width: 150px;
+                    filter: hue-rotate(0);
+                    transition: all 0.5s;
                     @include rwd(ss){
                         width: 100px;
+                    }
+                    &.active{
+                        filter: hue-rotate(90deg);
                     }
                 }
                 div.showNum{
@@ -840,6 +994,20 @@ section.donation{
                                     font-size: 1.3rem;
                                     color: $darkgreen;
                                     display: inline-block;
+                                    position: relative;
+                                    &.active{
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                                            height: 100%;
+                                            position: absolute;
+                                            bottom: 0;
+                                            left: 0;
+                                            width: 0%;
+                                            animation: widthChange 0.5s ease-in-out;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -871,6 +1039,15 @@ section.donation{
                 }
                 @include rwd(ss){
                     right: 20px;
+                }
+            }
+            div.changePage{
+                button{
+                    transform: translateY(0);
+                    transition: all 0.5s ease;
+                    &.active{
+                        transform: translateY(3px);
+                    }
                 }
             }
             div.progress_bar{
@@ -1124,7 +1301,7 @@ section.collar{
         }
     }
     div.middle{
-        background-image: url(../img/paper/paper_1.png);
+        background-image: url(../img/paper/paper_0.png);
         height: 150px;
         position: relative;
         img{
@@ -1331,7 +1508,7 @@ section.collar{
                 }
                 img{
                     display: inline-block;
-                    width: 80%;
+                    width: 70%;
                     position: relative;
                     top: 50%;
                     left: 50%;

@@ -41,9 +41,52 @@ function donationCarousel(){
     }
 }
 
-donationCarousel();
+// donationCarousel();
 
 nextBtn.onclick=function(){
+    //箭頭動畫
+    var timer;
+    nextBtn.classList.add("active");
+    clearTimeout(timer);
+    timer= setTimeout(function(){
+        nextBtn.classList.remove("active");
+    },300);
+
+    //小字轉場
+    var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
+    var date= document.querySelector('div.carousel_donation div.card span.date');
+    projectNum.classList.add("active");
+    projectNum.addEventListener("animationend",function(){
+        projectNum.classList.remove("active");
+    });
+    date.classList.add("active");
+    date.addEventListener("animationend",function(){
+        date.classList.remove("active");
+    });
+
+    //標題轉場
+    var cardTitle= document.querySelector('div.carousel_donation div.card h4');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('div.carousel_donation div.card a.btn.darkgreen');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
+    //金額轉場
+    var goal= document.querySelector('div.carousel_donation div.card div.showNum div.cur span.peoNum span');
+    goal.classList.add("active");
+    goal.addEventListener("animationend",function(){
+        goal.classList.remove("active");
+    });
+
     if(now+1<=3)
         now++;
     else
@@ -52,6 +95,49 @@ nextBtn.onclick=function(){
 };
 
 prevBtn.onclick=function(){
+    //箭頭動畫
+    var timer;
+    prevBtn.classList.add("active");
+    clearTimeout(timer);
+    timer= setTimeout(function(){
+        prevBtn.classList.remove("active");
+    },300);
+
+    //小字轉場
+    var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
+    var date= document.querySelector('div.carousel_donation div.card span.date');
+    projectNum.classList.add("active");
+    projectNum.addEventListener("animationend",function(){
+        projectNum.classList.remove("active");
+    });
+    date.classList.add("active");
+    date.addEventListener("animationend",function(){
+        date.classList.remove("active");
+    });
+
+    //標題轉場
+    var cardTitle= document.querySelector('div.carousel_donation div.card h4');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('div.carousel_donation div.card a.btn.darkgreen');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
+    //金額轉場
+    var goal= document.querySelector('div.carousel_donation div.card div.showNum div.cur span.peoNum span');
+    goal.classList.add("active");
+    goal.addEventListener("animationend",function(){
+        goal.classList.remove("active");
+    });
+
     if(now-1>=1)
         now--;
     else
@@ -62,7 +148,7 @@ prevBtn.onclick=function(){
 function play(){
     timerId= setInterval(function(){
         nextBtn.onclick();
-    },5000);
+    },8000);
 }
 play();
 
@@ -80,6 +166,41 @@ let clickBar= document.querySelector('div.carousel_donation div.progress_bar');
 
 for(let i=1; i<=3; i++){
     clickBar.querySelector(`span:nth-child(${i})`).onclick=function(){
+        //小字轉場
+        var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
+        var date= document.querySelector('div.carousel_donation div.card span.date');
+        projectNum.classList.add("active");
+        projectNum.addEventListener("animationend",function(){
+            projectNum.classList.remove("active");
+        });
+        date.classList.add("active");
+        date.addEventListener("animationend",function(){
+            date.classList.remove("active");
+        });
+
+        //標題轉場
+        var cardTitle= document.querySelector('div.carousel_donation div.card h4');
+        cardTitle.classList.add("active");
+        cardTitle.addEventListener("animationend",function(){
+            cardTitle.classList.remove("active");
+        });
+
+        //按鈕轉場
+        var greenBtn= document.querySelector('div.carousel_donation div.card a.btn.darkgreen');
+        var btnTimer;
+        greenBtn.classList.add("active");
+        clearTimeout(btnTimer);
+        btnTimer= setTimeout(function(){
+            greenBtn.classList.remove("active");
+        },500);
+
+        //金額轉場
+        var goal= document.querySelector('div.carousel_donation div.card div.showNum div.cur span.peoNum span');
+        goal.classList.add("active");
+        goal.addEventListener("animationend",function(){
+            goal.classList.remove("active");
+        });
+        
         now= i;
         donationCarousel();
     }
