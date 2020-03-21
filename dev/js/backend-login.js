@@ -24,18 +24,18 @@ function loginInit() {
 
 
 function sendForm() {
-  let managerAccount = $("#managerId").val();
-  let managerPsw = $("#managerPsw").val();
+  let managerAccount = $("#memId").val();
+  let managerPsw = $("#memPsw").val();
   let data_info = `managerAccount=${managerAccount}&managerPsw=${managerPsw}`;
   //先檢查帳密是否都輸入，沒有的話跳出視窗警告，都有的話建立AJAX物件送表單去驗證
   if (managerAccount == "") {
     alert("請輸入帳號");
-    $("#managerId").focus();
+    $("#memId").focus();
     return false;
   } 
   if (managerPsw == "") {
     alert("請輸入密碼");
-    $("#managerPsw").focus();
+    $("#memPsw").focus();
     return false;
   } else {
     // var xhr = new XMLHttpRequest();
@@ -69,9 +69,9 @@ function sendForm() {
            }
            else{
              alert("帳號密碼有誤 請重新輸入!");
-             $("#managerId").val("");
-             $("#managerPsw").val("");
-             $("#managerId").focus();
+             $("#memId").val("");
+             $("#memPsw").val("");
+             $("#memId").focus();
              return false ;
            }
           }
