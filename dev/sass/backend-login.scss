@@ -49,8 +49,7 @@ body{
   margin: auto;
   z-index: 1;
 }
-#loginBox .loginInfo .memInfoBox #memId,
-#loginBox .loginInfo .memInfoBox #memPsw {
+input {
   color: #38227c;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -60,8 +59,7 @@ body{
   width: 245px;
   position: relative;
 }
-#loginBox .loginInfo .memInfoBox #memId:focus,
-#loginBox .loginInfo .memInfoBox #memPsw:focus {
+#loginBox .loginInfo .memInfoBox input:focus{
   outline: none;
   // border-color: #0b99fa;
 }

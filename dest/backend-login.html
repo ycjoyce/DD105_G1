@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/backend-login.css">
+    <link rel="stylesheet" href="./css/backend-login.css">
     <title>浪愛回家</title>
 <link rel="icon" href="img/logo.ico" type="image/x-icon">
 
@@ -18,22 +18,21 @@
         <div class="loginlogo">
             <img src="img/logo.png">
         </div>
-        <form action="./php/backend-login.php" method="post">
-            <table class="loginInfo">
+        <form action=" ">
                 <tr>
                     <td class="memInfoBox">
-                        <input type="text" placeholder="User" maxlength="15" id="memId" name="managerAccount">
+                        <input type="text" placeholder="User" maxlength="15" id="managerId" name="managerAccount">
                         <div class="memInfoClear"></div>
                     </td>
                 </tr>
                 <tr>
                     <td class="memInfoBox">
-                        <input type="password" placeholder="Password" maxlength="15" id="memPsw" name="managerPsw">
+                        <input type="password" placeholder="Password" maxlength="15" id="managerPsw" name="managerPsw">
                         <div class="memInfoClear"></div>
                     </td>
                 </tr>
             </table>
-            <button class="btn darkgreen nav__link">
+            <button id="btnLogin" type="submit" class="btn darkgreen nav__link" >
                 <span class="titleFont">登入</span>
                 <div class="border"></div>
                 <div class="border"></div>
@@ -45,7 +44,7 @@
         </form>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="js/backend-login.js"></script>
+    <script src="./js/backend-login.js"></script>
 </body>
 
 </html>
