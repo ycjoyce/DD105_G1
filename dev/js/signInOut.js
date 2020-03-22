@@ -8,6 +8,21 @@ let member;
 //member.memStatus --- 登入會員狀態
 //member.memTagNo --- 登入會員解鎖吊牌編號
 
+//判斷所在頁面
+function checkPage(){
+    if(location.pathname.split("/").pop()=="map.html"){
+        document.getElementById("navMap").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="donation.html"){
+        document.getElementById("navDonate").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="customized.html"){
+        document.getElementById("navCus").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="post_article_region.html"){
+        document.getElementById("navPost").classList.add("active");
+    }
+    else if(location.pathname.split("/").pop()=="aboutus.html"){
+        document.getElementById("navAbout").classList.add("active");
+    }
+}
 
 
 //會員判斷
@@ -26,19 +41,19 @@ function getMember(){
                 <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
                         <h1>
-                            <a href="./index.html">
+                            <a href="./main.html">
                                 <img src="./img/logo-wide.png" alt="logo">
                             </a>
                         </h1>
                         <ul class="col-xl-9 col-lg-9 col-md-9">
-                            <li><a href="./map.html">浪浪在哪裡</a></li>
-                            <li><a href="./donation.html">愛心助浪浪</a></li>
-                            <li><a href="./customized.html">客製化項圈</a></li>
-                            <li><a href="./post_article_region.html">毛孩交流區</a></li>
-                            <li><a href="./aboutus.html">關於我們</a></li>
+                            <li><a href="./map.html" id="navMap">浪浪在哪裡</a></li>
+                            <li><a href="./donation.html" id="navDonate">愛心助浪浪</a></li>
+                            <li><a href="./customized.html" id="navCus">客製化項圈</a></li>
+                            <li><a href="./post_article_region.html" id="navPost">毛孩交流區</a></li>
+                            <li><a href="./aboutus.html" id="navAbout">關於我們</a></li>
                             <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
                             <li class="rwd"><a href="./message.html">我的信箱</a></li>
-                            <li class="rwd"><a href="./index.html">登出</a></li>
+                            <li class="rwd"><a href="./main.html">登出</a></li>
                             <li class="memZone">
                                 <div>
                                     <div class="memPic"></div>
@@ -73,7 +88,8 @@ function getMember(){
                 var memImgSrc= member.memPic;
                 var memImg= document.querySelector('li.memZone div div.memPic');
                 memImg.style.backgroundImage=`url("./img/memImg/${memImgSrc}")`;
-
+                
+                checkPage();
 
                 var headerUnread= document.getElementById("headerUnread");
                 var xhr2= new XMLHttpRequest();
@@ -124,7 +140,7 @@ function signOut(){
                 <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
                         <h1>
-                            <a href="./index.html">
+                            <a href="./main.html">
                                 <img src="./img/logo-wide.png" alt="logo">
                             </a>
                         </h1>
@@ -146,8 +162,9 @@ function signOut(){
                 `;
                 sessionStorage.clear();
                 customizedSignIn();
+                checkPage();
                 if(location.pathname.split("/").pop()=="message.html"||location.pathname.split("/").pop()=="memberCenter.html"){
-                    location.href="./index.html";
+                    location.href="./main.html";
                 }
         }else{
             alert( xhr.status );

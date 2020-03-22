@@ -14,14 +14,14 @@ function dofirst() {
     var sliderBtnLeft = document.getElementById('sliderBtnLeft');
     var sliderBtnRight = document.getElementById('sliderBtnRight');
     var collarTagWrap = document.getElementById('collarTagWrap');
+    tagImg2 = document.getElementById('tagImg2');
     var collarImg = new Image();
     collarImg.src = "./img/customized_collar/leather_png/1.png";
     var collarImg2 = new Image();
     collarImg2.src = "./img/customized_collar/leather_png/real_upper_finish5.png";
     var tagImg1 = new Image();
     tagImg1.src = "./img/customized_collar/leather_png/29_2.png";
-    tagImg2 = new Image();
-    tagImg2.src = "";
+    // tagImg2.src = "";
 
     var base64Btn = document.getElementById('base64Btn');
     base64Btn.addEventListener('click', function() {
@@ -153,95 +153,51 @@ function dofirst() {
         }
     });
 
-
-
     tagIndex = 1;
-    $('.tagImages').click(function() {
-        // alert(tagIndex);
-        if (tagIndex == 1) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
-        } else if (tagIndex == 2) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
-        } else if (tagIndex == 3) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
-        } else if (tagIndex == 4) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
-        } else if (tagIndex == 5) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
-        } else if (tagIndex == 6) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
-        } else if (tagIndex == 7) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
-        } else if (tagIndex == 8) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
-        }
-        resizeCanvas();
-    });
-    step1NextBtn.addEventListener('click', function() {
-        if (tagIndex == 1) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
-        } else if (tagIndex == 2) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
-        } else if (tagIndex == 3) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
-        } else if (tagIndex == 4) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
-        } else if (tagIndex == 5) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
-        } else if (tagIndex == 6) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
-        } else if (tagIndex == 7) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
-        } else if (tagIndex == 8) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
-        }
-        resizeCanvas();
-    });
-
-    sliderBtnLeft.addEventListener('click', function() {
-        tagIndex--;
-        // alert(tagIndex);
-        if (tagIndex == 1) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
-        } else if (tagIndex == 2) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
-        } else if (tagIndex == 3) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
-        } else if (tagIndex == 4) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
-        } else if (tagIndex == 5) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
-        } else if (tagIndex == 6) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
-        } else if (tagIndex == 7) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
-        } else if (tagIndex == 8) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
-        }
-        resizeCanvas();
-    });
-    sliderBtnRight.addEventListener('click', function() {
-        tagIndex++;
-        // alert(tagIndex);
-        if (tagIndex == 1) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/boneTag_finish.png";
-        } else if (tagIndex == 2) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/circleTag_finish.png";
-        } else if (tagIndex == 3) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/cloverTag_finish.png";
-        } else if (tagIndex == 4) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/fishTag_finish.png";
-        } else if (tagIndex == 5) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/footprint_finish.png";
-        } else if (tagIndex == 6) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/heartTag_finish.png";
-        } else if (tagIndex == 7) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/spadesTag_finish.png";
-        } else if (tagIndex == 8) {
-            tagImg2.src = "./img/customized_collar/buckle_tag_png/starTag_finish.png";
-        }
-        resizeCanvas();
-    });
+    $(document).ready(function() {
+        $.ajax({
+            url: "php/getTagInfo.php",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                $('.tagImages').click(function() {
+                    let showPsn = $(this).attr("psn");
+                    for (i = 0; i < data.length; i++) {
+                        if (showPsn == i) {
+                            tagImg2.src = `./img/customized_collar/new1/${data[i].tagSrc2}`;
+                        }
+                    }
+                    resizeCanvas();
+                });
+                $('#sliderBtnLeft').click(function() {
+                    tagIndex--;
+                    for (i = 0; i < data.length; i++) {
+                        if (tagIndex == i + 1) {
+                            tagImg2.src = `./img/customized_collar/new1/${data[i].tagSrc2}`;
+                        }
+                    }
+                    resizeCanvas();
+                })
+                $('#sliderBtnRight').click(function() {
+                    tagIndex++;
+                    for (i = 0; i < data.length; i++) {
+                        if (tagIndex == i + 1) {
+                            tagImg2.src = `./img/customized_collar/new1/${data[i].tagSrc2}`;
+                        }
+                    }
+                    resizeCanvas();
+                })
+                $('#step1NextBtn').click(function() {
+                    for (i = 0; i < data.length; i++) {
+                        if (tagIndex == i + 1) {
+                            tagImg2.src = `./img/customized_collar/new1/${data[i].tagSrc2}`;
+                        }
+                    }
+                    resizeCanvas();
+                })
+            }
+        })
+    })
 
     document.getElementById('collarImage1').addEventListener('click', function() {
         collarImg.src = "./img/customized_collar/leather_png/1.png";

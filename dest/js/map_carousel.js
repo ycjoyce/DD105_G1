@@ -173,6 +173,29 @@ mapPrevBtn.onclick=function(){
 };
 
 mapLost.onclick=function(){
+    //標題轉場
+    var cardTitle= document.querySelector('section.where div.card h3');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //內文轉場
+    var cardContent= document.querySelector('section.where div.card p');
+    cardContent.classList.add("active");
+    cardContent.addEventListener("animationend",function(){
+        cardContent.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('section.where div.card a.btn');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
     curVal=1;
     mapCarousel();
 };
@@ -183,16 +206,85 @@ mapLost.onclick=function(){
 // };
 
 mapFriendly1.onclick=function(){
+    //標題轉場
+    var cardTitle= document.querySelector('section.where div.card h3');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //內文轉場
+    var cardContent= document.querySelector('section.where div.card p');
+    cardContent.classList.add("active");
+    cardContent.addEventListener("animationend",function(){
+        cardContent.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('section.where div.card a.btn');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
     curVal=3;
     mapCarousel();
 };
 
 mapFriendly2.onclick=function(){
+    //標題轉場
+    var cardTitle= document.querySelector('section.where div.card h3');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //內文轉場
+    var cardContent= document.querySelector('section.where div.card p');
+    cardContent.classList.add("active");
+    cardContent.addEventListener("animationend",function(){
+        cardContent.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('section.where div.card a.btn');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+
     curVal=4;
     mapCarousel();
 };
 
 mapFriendly3.onclick=function(){
+    //標題轉場
+    var cardTitle= document.querySelector('section.where div.card h3');
+    cardTitle.classList.add("active");
+    cardTitle.addEventListener("animationend",function(){
+        cardTitle.classList.remove("active");
+    });
+
+    //內文轉場
+    var cardContent= document.querySelector('section.where div.card p');
+    cardContent.classList.add("active");
+    cardContent.addEventListener("animationend",function(){
+        cardContent.classList.remove("active");
+    });
+
+    //按鈕轉場
+    var greenBtn= document.querySelector('section.where div.card a.btn');
+    var btnTimer;
+    greenBtn.classList.add("active");
+    clearTimeout(btnTimer);
+    btnTimer= setTimeout(function(){
+        greenBtn.classList.remove("active");
+    },500);
+    
     curVal=5;
     mapCarousel();
 };
