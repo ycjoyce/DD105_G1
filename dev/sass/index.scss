@@ -12,11 +12,65 @@
 @import 'layout/rwd';
 @import 'layout/cursor';
 @import 'layout/animation';
+@import url('https://fonts.googleapis.com/css?family=East+Sea+Dokdo&display=swap');
 
 @include header(fixed);
 
 body{
     overflow-x: hidden !important;
+}
+#loading{
+    position: absolute;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-color: $lightgreen;
+    opacity: 1;
+    transition: all 0.5s;
+    div.img{
+        width: 100px;
+        height: 220px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        background-position: right center;
+        background-size: 80px;
+        background-repeat: no-repeat;
+    }
+    #loadingText{
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        span{
+            span{
+                span{
+                    font-family: 'East Sea Dokdo', cursive;
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+    
+}
+#theText span{
+    font: 40px 'Candelia';
+    color: #5d5c5c;
+    @include rwd(lg){
+        font: 30px 'Candelia';
+    }
+    @include rwd(md){
+        font: 30px 'Candelia';
+    }
+    @include rwd(sm){
+        font: 30px 'Candelia';
+    }
+    @include rwd(ss){
+        font: 20px 'Candelia';
+    }
 }
 
 section.intro{
@@ -58,7 +112,7 @@ section.intro{
             }
         }
         div{
-            img{
+            img.text{
                 height: 80px;
                 display:block;
                 margin-bottom: 20px;
@@ -74,6 +128,64 @@ section.intro{
                 @include rwd(ss){
                     height: 50px;
                     margin-bottom: 10px;
+                }
+            }
+            div{
+                position: relative;
+                margin-top: 20px;
+                img.dog_gif{
+                    position: absolute;
+                    left: 0;
+                    top: -40px;
+                    width: 80px;
+                    z-index: 4;
+                    @include rwd(ss){
+                        // top: 100px;
+                        display: none;
+                    }
+                }
+                img.house{
+                    position: absolute;
+                    left: 370px;
+                    top: -40px;
+                    width: 50px;
+                    z-index: 3;
+                    @include rwd(lg){
+                        left: 270px;
+                    }
+                    @include rwd(md){
+                        left: 270px;
+                    }
+                    @include rwd(sm){
+                        left: 220px;
+                    }
+                    @include rwd(ss){
+                        // left: 80vw;
+                        // top: 100px;
+                        display: none;
+                    }
+                }
+                img.heart{
+                    position: absolute;
+                    left: 385px;
+                    // top: -70px;
+                    top: -20px;
+                    width: 20px;
+                    z-index: 2;
+                    @include rwd(lg){
+                        left: 285px;
+                    }
+                    @include rwd(md){
+                        left: 285px;
+                    }
+                    @include rwd(sm){
+                        left: 235px;
+                    }
+                    @include rwd(ss){
+                        // left: 80vw;
+                        // top: 120px;
+                        display: none;
+                    }
                 }
             }
         }
@@ -109,6 +221,18 @@ section.intro{
             background-size: cover;
             -webkit-transform: scale(1.1);
                     transform: scale(1.1);
+            img.bubble{
+                width: 18vw;
+                position:absolute;
+                top: -18vw;
+
+            }
+            #bubble2{
+                width: 12vw;
+            }
+            #bubble3{
+                width: 15vw;
+            }
         }
     }
     div.scroll{
@@ -177,7 +301,9 @@ section.intro{
         }
         img{
             position: absolute;
-            
+            @include rwd(ss){
+                display: none;
+            }
             &:first-child{
                 width: 200px;
                 left: -50px;
