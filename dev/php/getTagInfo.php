@@ -10,10 +10,7 @@ try {
         echo "{}";
     }else{
         $tagRow = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-        // echo gettype($tagRow);
-        // echo $tagRow;
         echo json_encode($tagRow);
-        // echo gettype($tagRow);
     }
 } catch (PDOException $e) {
     echo "錯誤行號 : " . $e->getLine() . "<br>";

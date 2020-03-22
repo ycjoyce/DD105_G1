@@ -1098,7 +1098,10 @@ section {
                                     max-height: 200px;
                                     transition: all 0.7s ease-in-out 0.1s;
                                     cursor: pointer;
-                                    filter: brightness(0.7);
+                                    filter: brightness(0.6);
+                                }
+                                #tagImages1 {
+                                    filter: brightness(1);
                                 }
                                 .lockPoint {
                                     width: 100%;
@@ -1109,6 +1112,10 @@ section {
                                     visibility: hidden;
                                     opacity: 0;
                                     transition: all 0.2s ease-in-out 0.3s;
+                                }
+                                #lockPoint1 {
+                                    visibility: visible;
+                                    opacity: 1;
                                 }
                                 .lockStatus {
                                     visibility: hidden;
@@ -1129,6 +1136,10 @@ section {
                                             color: white;
                                         }
                                     }
+                                }
+                                #unlock1 {
+                                    visibility: visible;
+                                    opacity: 1;
                                 }
                             }
                         }
