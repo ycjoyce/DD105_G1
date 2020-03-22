@@ -15,12 +15,14 @@ if( $manager->rowCount() == 0){
 }else{
 	 $managerRow = $manager->fetch(PDO::FETCH_ASSOC);
 	 session_start();
+	 $_SESSION["managerNo"] = $managerRow["managerNo"] ;
 	 $_SESSION["managerAccount"] = $managerRow["managerAccount"] ;
 	 $_SESSION["managerPsw"] = $managerRow["managerPsw"] ;
+	 $_SESSION["managerName"] = $managerRow["managerName"] ;
+	 $_SESSION["managerStatus"] = $managerRow["managerStatus"] ;
 	
-$manage = ["managerAccount" => $_SESSION["managerAccount"] , "managerPsw" => $_SESSION["managerPsw"] ];
+$manage = ["managerNo" => $_SESSION["managerNo"] , "managerAccount" => $_SESSION["managerAccount"] , "managerPsw" => $_SESSION["managerPsw"] , "managerName" => $_SESSION["managerName"] , "managerStatus" => $_SESSION["managerStatus"]];
 echo json_encode($manage) ;
-
 }
 
 

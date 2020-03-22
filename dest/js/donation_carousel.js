@@ -41,7 +41,7 @@ function donationCarousel(){
     }
 }
 
-// donationCarousel();
+donationCarousel();
 
 nextBtn.onclick=function(){
     //箭頭動畫

@@ -1234,13 +1234,13 @@ header.header-navigation {
             transition: all 0.5s ease;
             position: relative;
             z-index: 2; }
-            header.header-navigation nav div.container ul li a:hover {
+            header.header-navigation nav div.container ul li a:hover, header.header-navigation nav div.container ul li a.active {
               color: #647926; }
-              header.header-navigation nav div.container ul li a:hover::after {
+              header.header-navigation nav div.container ul li a:hover::after, header.header-navigation nav div.container ul li a.active::after {
                 opacity: 0.5;
                 transform: rotate(15deg); }
                 @media screen and (min-width: 768px) and (max-width: 991px) {
-                  header.header-navigation nav div.container ul li a:hover::after {
+                  header.header-navigation nav div.container ul li a:hover::after, header.header-navigation nav div.container ul li a.active::after {
                     opacity: 0.4; } }
             header.header-navigation nav div.container ul li a::after {
               content: '';
