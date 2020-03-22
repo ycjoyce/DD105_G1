@@ -1,6 +1,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <style>
     .table tr {
+        /* border: 1px solid red; */
         border-top: 1px solid #c8ced3;
         display: flex;
         align-items: center;
@@ -8,19 +9,43 @@
     }
     
     .table tr th {
-        justify-content: flex-start;
+        /* border: 1px solid blue; */
+        /* padding: 0px; */
+        min-width: 110px;
     }
     
     .table tr td {
-        justify-content: flex-end;
+        /* border: 1px solid green; */
+        display: flex;
+        align-items: center;
+        justify-self: flex-end;
+        padding: 0px;
+    }
+    
+    input[type="file"] {
+        width: 180px;
+        margin-left: 30px;
+    }
+    
+    .table tr:nth-child(2) td img {
+        padding: 10px 0px;
+    }
+    
+    @media screen and (max-width:575px) {
+        .table tr:nth-child(2) td {
+            flex-direction: column;
+        }
+        .table tr:nth-child(3) td {
+            flex-direction: column;
+        }
     }
 </style>
 <div class="row equipsRow" id="tagContent">
-    <div class="col-xl-4 col-lg-6">
-        <div class="card">
+    <div class="col-xl-6 col-md-12">
+        <div class="card" style="margin: 10px;">
             <div class="card-header">新增吊牌</div>
             <div class="card-body">
-                <form action="php/customizedTag.php" method="POST" enctype="multipart/form-data">
+                <form action="php/addTagInfo.php" method="POST" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <th>吊牌名稱</th>
@@ -29,16 +54,16 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>吊牌圖案來源1</th>
+                            <th>輪播預覽圖</th>
                             <td>
                                 <img src="">
                                 <input type="file" name="tagSrc1" id="">
                             </td>
                         </tr>
                         <tr>
-                            <th>吊牌圖案來源2</th>
+                            <th>客製化預覽圖</th>
                             <td>
-                                <img src="../img/customized_collar/new1">
+                                <img src="">
                                 <input type="file" name="tagSrc2" id="">
                             </td>
                         </tr>
@@ -50,10 +75,10 @@
                         </tr>
                     </table>
                     <div class="row">
-                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
-                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="button">新增吊牌</button>
+                        <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="submit" id="addTagBtn">新增吊牌</button>
                         </div>
-                        <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                        <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
                             <button class="btn btn-pill btn-block btn-secondary cancelClear" type="reset">清除</button>
                         </div>
                     </div>
@@ -62,6 +87,20 @@
         </div>
     </div>
 </div>
+<!-- <script>
+    $(document).ready(function() {
+        $('#addTagBtn').click(function() {
+            $.ajax({
+                url: "php/addTagInfo.php",
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    alert("成功新增一筆吊牌資料");
+                }
+            })
+        });
+    })
+</script> -->
 <script>
     function getTagInfo() {
         $.ajax({
@@ -72,11 +111,11 @@
                 let msg = "";
                 for (i = 0; i < data.length; i++) {
                     msg += `
-                <div class="col-xl-4 col-lg-6">
-                    <div class="card">
-                        <div class="card-header" tagNo="${data[i].tagNo}">吊牌${data[i].tagNo}號</div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="card" style="margin: 10px;">
+                        <div class="card-header" tagNo="${i+1}">吊牌${i+1}號</div>
                         <div class="card-body">
-                            <form action="php/customizedTag.php" method="POST" enctype="multipart/form-data">
+                            <form action="" method="POST" enctype="multipart/form-data">
                                 <table class="table">
                                     <tr>
                                         <th>吊牌名稱</th>
@@ -85,14 +124,14 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>吊牌圖案來源1</th>
+                                        <th>輪播預覽圖</th>
                                         <td>
                                             <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
                                             <input type="file" name="tagSrc1" id="">
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>吊牌圖案來源2</th>
+                                        <th>客製化預覽圖</th>
                                         <td>
                                             <img src="./img/customized_collar/new1/${data[i].tagSrc2}" style="max-width: 100px;">
                                             <input type="file" name="tagSrc2" id="">
@@ -115,10 +154,10 @@
                                     </tr>
                                 </table>
                                 <div class="row">
-                                    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                    <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
                                         <button class="btn btn-pill btn-block btn-primary confirmInsert" type="submit">確認修改</button>
                                     </div>
-                                    <div class="col-6 col-sm-4 col-md-2 col-xl mb-3 mb-xl-0">
+                                    <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
                                         <button class="btn btn-pill btn-block btn-secondary cancelClear" type="reset">刪除吊牌</button>
                                     </div>
                                 </div>

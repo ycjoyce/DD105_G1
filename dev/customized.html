@@ -57,6 +57,7 @@
                 <!-- 預覽區 -->
                 <canvas id="canvas2" style="border: 0px solid blue;"></canvas>
                 <canvas id="canvas" style="border: 0px solid red;"></canvas>
+                <img src="" alt="" id="tagImg2" style="display: none;">
                 <!-- <script>
                     var fullQuality = canvas.toDataURL("image/png", 1.0);
                     console.log(fullQuality);
@@ -167,88 +168,35 @@
                         <div id="tab-2" class="tab-content">
                             <div id="collarTagSlider">
                                 <div id="collarTagWrap">
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/boneTag.png" alt="" class="tagImages" style="filter: brightness(1);">
-                                        <div class="lockPoint" style="visibility: visible; opacity: 1;">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus" id="unlock1" style="visibility: visible; opacity: 1;">
-                                            <button class="unlock">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/circleTag.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus" id="unlock2">
-                                            <button class="unlock">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/cloverTag.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus" id="unlock3">
-                                            <button class="unlock">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/fishTag_2.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock4">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/footprintTag.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock5">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/heartTag.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock6">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/spadesTag_2.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock7">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/starTag.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock8">解鎖</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
+                            <script>
+                                function showTag() {
+                                    $.ajax({
+                                        url: "php/getTagInfo.php",
+                                        type: "post",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            let msg = "";
+                                            for (i = 0; i < data.length; i++) {
+                                                msg +=
+                                                    `<div class="tagItems">
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc1}" alt="" class="tagImages" id="tagImages${i+1}" psn="${i}">
+                                                        <div class="lockPoint" id="lockPoint${i+1}">
+                                                            <span>所需點數&nbsp;:</span>
+                                                            <span>&nbsp;${data[i].tagPoint}</span>
+                                                        </div>
+                                                        <div class="lockStatus" id="unlock${i+1}">
+                                                            <button class="unlock">解鎖</button>
+                                                        </div>
+                                                    </div>`
+                                            }
+                                            $("#collarTagWrap").append(msg);
+                                        }
+                                    })
+                                }
+                                showTag();
+                            </script>
                             <div class="changePage sliderBtns">
                                 <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
                                 <div id="tagTotal">
