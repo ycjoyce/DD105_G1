@@ -152,6 +152,6 @@ $('.selectpostgalleryregion').on('click', function() {
     window.location.href = "./post_gallery_region.html";
 });
 
-$('.card-item').on('click', function() {
-    setTimeout(function(){window.location.href="./post_content.html"} , 400);
-});
+// $('.card-item').on('click', function() {
+//     setTimeout(function(){window.location.href='./post_content.php?piNo=<?=$prodRow["piNo"]?>'} , 400);
+// });
