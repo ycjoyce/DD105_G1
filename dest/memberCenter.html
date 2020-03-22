@@ -101,7 +101,9 @@
             <div>
                 <label for="">會員密碼</label>
                 <div class="mempw">
-                    <input type="password" value="password"><a href="#" class="updatebtn_s">修改密碼</a>
+                   
+                    <input type="submit" value="0000" id="update_input"><a href="#" class="updatebtn_s">修改密碼</a>
+                    <img id="update_img" onclick="hideShowPsw()" src="./img/visible.png" style="width: 2%;">
                 </div>
             </div>
             <div>
@@ -800,6 +802,24 @@
 
 
     </script>
+<!-- 這是修改密碼的 圖片 點擊可切換顯示、隱藏密碼 start -->
+    <script>
+        var updateimg = document.getElementById("update_img");
+        var updateinput = document.getElementById("update_input");
+        //隱藏 text block 顯示 password block
+        function hideShowPsw(){
+            if (updateinput.type == "password"){
+                updateinput.type = "text";
+                update_img.src = "./img/invisible.png";
+            }else{
+                updateinput.type = "password";
+                update_img.src = "./img/visible.png";
+            }
+        }
+
+    </script>
+<!-- 這是修改密碼的 圖片 點擊可切換顯示、隱藏密碼 end -->
+    
 </body>
 
 </html>
