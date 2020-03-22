@@ -65,7 +65,15 @@ function sendForm() {
           data: data_info,
           success: function($manage){
            if( $manage != "沒查詢到該帳號密碼"){
-             window.location.href = "adminManage.html";
+            if (typeof(Storage) !== "undefined") {//如果瀏覽器支持Storage存取
+                                                  //就把json的資料抓到Storage放
+              sessionStorage.setItem("managerNo", $manage.managerNo);
+              sessionStorage.setItem("managerAccount", $manage.managerAccount);
+              sessionStorage.setItem("managerPsw", $manage.managerPsw);
+              sessionStorage.setItem("managerName", $manage.managerName);
+              sessionStorage.setItem("managerStatus", $manage.managerStatus);
+          };
+            window.location.href = "adminManage.html";
            }
            else{
              alert("帳號密碼有誤 請重新輸入!");
