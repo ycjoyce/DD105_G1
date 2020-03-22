@@ -1,12 +1,10 @@
 <?php
 try{
     require_once('connectDB.php');
-    
-    $sql = "DELETE FROM `customizedtag` WHERE `tagNo`=:tagNo";
+    $sql = "delete from `customizedtag` where `tagNo`=:tagNo";
     $pdoStatement = $pdo->prepare($sql);
+    $pdoStatement->bindValue(":tagNo",$_POST["tagNo"]);
     $pdoStatement->execute();
-    
-    }
 }catch (PDOException $e) {
     echo "錯誤行號 : " . $e->getLine() . "<br>";
     echo "錯誤訊息 : " . $e->getMessage() . "<br>";

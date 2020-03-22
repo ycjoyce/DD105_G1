@@ -95,12 +95,13 @@
                 type: "post",
                 dataType: "json",
                 success: function(data) {
-                    alert("成功新增一筆吊牌資料");
+                    window.location.reload();
                 }
             })
         });
     })
 </script> -->
+
 <script>
     function getTagInfo() {
         $.ajax({
@@ -155,10 +156,10 @@
                                 </table>
                                 <div class="row">
                                     <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                                        <button class="btn btn-pill btn-block btn-primary confirmInsert" type="submit">確認修改</button>
+                                        <input class="btn btn-pill btn-block btn-primary updateTagBtn" type="submit" value="確認修改">
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                                        <button class="btn btn-pill btn-block btn-secondary cancelClear" type="reset">刪除吊牌</button>
+                                    <div class="tagNo${data[i].tagNo} col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                        <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="reset" value="刪除吊牌">
                                     </div>
                                 </div>
                             </form>
@@ -171,4 +172,55 @@
         })
     }
     getTagInfo();
+
+
+    function delTag(sendTagNo) {
+        var xhr = new XMLHttpRequest();
+        var url = "php/delTagInfo.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `tagNo=${sendTagNo}`;
+        xhr.send(data_info);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                window.location.reload();
+            }
+        }
+    }
+    $(document).ready(function() {
+        $('.delTagBtn').click(function() {
+            let result = confirm("確定要刪除嗎?");
+            if (result) {
+                delTag(this.classList[0].substr(5));
+            } else {
+                return;
+            }
+        })
+    })
+
+    function updateTag(sendTagNo) {
+        var xhr = new XMLHttpRequest();
+        var url = "php/updateTagInfo.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `tagNo=${sendTagNo}`;
+        xhr.send(data_info);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                window.location.reload();
+            }
+        }
+    }
+    $(document).ready(function() {
+        $('.updateTagBtn').click(function() {
+            let result = confirm("確定要更新資料嗎?");
+            if (result) {
+                updateTag(this.classList[0].substr(5));
+            } else {
+                return;
+            }
+        })
+    })
 </script>

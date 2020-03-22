@@ -24,6 +24,7 @@
 </head>
 
 <body>
+
     <div id="memberPoint">
         會員點數 :
         <span id="showPoint"></span> 點
@@ -233,6 +234,17 @@
                                     })
                                 }
                                 showTag();
+                                $(document).ready(function() {
+                                    $('.unlock').click(function() {
+                                        // alert("123");
+                                        let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數300點`);
+                                        if (result) {
+                                            swal("兌換成功!", "", "success");
+                                        } else {
+                                            return;
+                                        }
+                                    })
+                                });
                             </script>
                             <div class="changePage sliderBtns">
                                 <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
