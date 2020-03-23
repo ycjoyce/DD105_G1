@@ -104,7 +104,7 @@
         <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
             <h1>
                 <a href="./index.html">
-                    <img src="./img/logo-wide.png" alt="logo">
+                    <img src="" alt="logo">  <!-- ./img/logo-wide.png -->
                 </a>
             </h1>
             <ul class="col-xl-9 col-lg-9 col-md-9">
@@ -219,20 +219,20 @@
                     ?>
                     <?php
                 	foreach($prodRows as $i => $prodRow) {
-                        // echo $prodRow['piNo'];
-                        // echo "<script>
-                        //       $('.card-item').on('click', function() {
-                        //         setTimeout(function(){window.location.href='./post_content.php?piNo=", $prodRow['piNo'], "} , 400);
-                        //         });
-                        //       </script>";
+                        if($i%2 == 0 ){
+                            $align = "left";
+                        }else{
+                            $align = "right";
+                        }
                     ?>
-                    <div class="card-item svg-wrapper">   <!-- card-item-left -->
+                    <div class="card-item svg-wrapper card-item-<?=$align?>">
+                        <input class="cardItemSetpiNoSpan" type="hidden" value="<?=$prodRow["piNo"]?>"></input>   <!-- card-item-left -->
                         <div class="ripple"></div>
                         <div class="card-img">
                             <div class="article-date">
                                 <?=$prodRow["piTimereset"]?>
                             </div>
-                            <img src="./img/postarticleregion/1.png">
+                            <img src="">  <!-- ./img/postarticleregion/1.png -->
                         </div>
                         <div class="card-details">
                             <div class="title">
@@ -250,20 +250,16 @@
                             <div class="buttononlinefix">
                                 <!-- 灰色按鈕 -->
                                 <a class="btn gray nav__link"  href='./post_content.php?piNo=<?=$prodRow["piNo"]?>'>
-                                <!-- <script>
-                                    $('.card-item').on('click', function() {
-                                        setTimeout(function(){window.location.href='./post_content.php?piNo=????'} , 400);
-                                    });
-                                </script> -->
-    <span class="titleFont">
-        READ MORE
-        <img src="img/button_arrow_white.svg">
-    </span>
-    <div class="border"></div>
-    <div class="border"></div>
-    <div class="border"></div>
-    <div class="border"></div>
-</a>
+
+                                    <span class="titleFont">
+                                        READ MORE
+                                        <img src="">  <!-- img/button_arrow_white.svg -->
+                                    </span>
+                                    <div class="border"></div>
+                                    <div class="border"></div>
+                                    <div class="border"></div>
+                                    <div class="border"></div>
+                                </a>
 
                                 <!-- innerTet: 按鈕內的文字
                                     connect: 要連結到的網址 -->
@@ -273,13 +269,14 @@
                             <rect class="shape" height='100%' width='100%' />
                         </svg>
                     </div>
+
+                    <!-- -------------------------------------------------------------- -->
                     <?php
                 	}
                 	?>
                 </div>
             </div>
         </div>
-
         <!-- footer -->
         <footer>
     <div class="page_top" id="page_top">
@@ -289,14 +286,13 @@
         © 2020 Bring Love Home
     </p>
 </footer>
-
-<script src="./js/page_top.js"></script>
+<!-- <script src="./js/page_top.js"></script> -->
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="./js/post_article_region.js"></script>
-    <script src="./js/signInOut.js"></script>
-    <script src="./js/hamburger.js"></script>
-    <script src="./js/header_slide.js"></script>
+    <!-- <script src="./js/signInOut.js"></script> -->
+    <!-- <script src="./js/hamburger.js"></script> -->
+    <!-- <script src="./js/header_slide.js"></script> -->
 </body>
 </html>
