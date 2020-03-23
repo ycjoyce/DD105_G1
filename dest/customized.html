@@ -209,6 +209,22 @@
                                 </div>
                             </div>
                             <script>
+                                // function updateMemPoint(sendNewPoint) {
+                                //     var xhr = new XMLHttpRequest();
+                                //     var url = "php/checkMem.php";
+                                //     xhr.open("GET", url, true);
+                                //     xhr.send(null);
+                                //     xhr.onload = function() {
+                                //         if (xhr.status == 200) {
+                                //             member = JSON.parse(xhr.responseText);
+                                //             if (member.memId) {
+                                //                 var memPoints = member.memPoint;
+                                //                 document.getElementById('showPoint').innerText = memPoints;
+                                //             }
+                                //         }
+                                //     }
+                                // }
+
                                 function showTag() {
                                     $.ajax({
                                         url: "php/getTagInfo.php",
@@ -225,26 +241,33 @@
                                                             <span>&nbsp;${data[i].tagPoint}</span>
                                                         </div>
                                                         <div class="lockStatus" id="unlock${i+1}">
-                                                            <button class="unlock">解鎖</button>
+                                                            <button class="unlock" point="${data[i].tagPoint}">解鎖</button>
                                                         </div>
                                                     </div>`
                                             }
                                             $("#collarTagWrap").append(msg);
+                                            $(document).ready(function() {
+                                                $('.unlock').click(function() {
+                                                    let point = $(this).attr('point');
+                                                    let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
+                                                    if (result) {
+                                                        if (member.memPoint >= point) {
+                                                            swal("兌換成功!", "", "success");
+                                                            member.memPoint = member.memPoint - point;
+                                                            updateMemPoint(member.memPoint);
+                                                            // getPoint();
+                                                        } else {
+                                                            alert(`會員點數不足,還差 ${point-member.memPoint} 點`);
+                                                        }
+                                                    } else {
+                                                        return;
+                                                    }
+                                                })
+                                            });
                                         }
                                     })
                                 }
                                 showTag();
-                                $(document).ready(function() {
-                                    $('.unlock').click(function() {
-                                        // alert("123");
-                                        let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數300點`);
-                                        if (result) {
-                                            swal("兌換成功!", "", "success");
-                                        } else {
-                                            return;
-                                        }
-                                    })
-                                });
                             </script>
                             <div class="changePage sliderBtns">
                                 <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
