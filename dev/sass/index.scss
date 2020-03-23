@@ -12,8 +12,10 @@
 @import 'layout/rwd';
 @import 'layout/cursor';
 @import 'layout/animation';
-@import 'layout/indexMap'; // 地圖section
 @import url('https://fonts.googleapis.com/css?family=East+Sea+Dokdo&display=swap');
+
+// 地圖section
+@import 'layout/indexMap'; 
 
 @include header(fixed);
 

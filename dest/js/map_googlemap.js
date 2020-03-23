@@ -143,7 +143,6 @@ function initialize() {
   // Gmap skin
   // map.mapTypes.set("Custom", customType);
   // map.mapTypes.set("Basic", basicType);
-
 }
 
 function geoSuccess(pos) {
@@ -384,14 +383,13 @@ function getFriendly() {
   };
 }
 
-// 變更地區，並進行監聽
-var area = document.querySelector("#fr_area");
-area.addEventListener("change", changeArea);
-function changeArea() {
-  alert("切換地區!");
-  var locNo = area.value;
-  // alert(locNo);
-  // 清除資料
+// 變更寵物友善地區及類別
+let search_area = "";
+let search_type = "";
+alert(search_area,"first");
+
+function changeMarker() {
+  alert("切換");
   for (i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -399,12 +397,71 @@ function changeArea() {
   infoWindows = [];
 
   var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_GMgetFriendly.php");
+  xhr.open("get", "./php/map_googleMap.php");
   xhr.send(null);
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     for (var i = 0; data.length > i; i++) {
-      if (data[i].friendlyLocNo == locNo) {
+      if(search_type == 0){
+        alert('沒選地區')
+        if (
+          data[i].friendlyTypeNo == search_type[0]
+        ) {
+          loadfriendlyData(
+            data[i].friendlylat,
+            data[i].friendlylng,
+            data[i].friendlyName,
+            data[i].friendlyPic,
+            data[i].friendlyTel,
+            data[i].friendlyAddress,
+            data[i].friendlyIntro_1,
+            data[i].friendlyIntro_2,
+            data[i].friendlyIntro_3,
+            data[i].friendlyIntro_4,
+            data[i].friendlyTypeNo,
+            data[i].friendlyTypeName
+          );
+        }
+        if (
+          data[i].friendlyTypeNo == search_type[1]
+        ) {
+          loadfriendlyData(
+            data[i].friendlylat,
+            data[i].friendlylng,
+            data[i].friendlyName,
+            data[i].friendlyPic,
+            data[i].friendlyTel,
+            data[i].friendlyAddress,
+            data[i].friendlyIntro_1,
+            data[i].friendlyIntro_2,
+            data[i].friendlyIntro_3,
+            data[i].friendlyIntro_4,
+            data[i].friendlyTypeNo,
+            data[i].friendlyTypeName
+          );
+        }
+        if (
+          data[i].friendlyTypeNo == search_type[2]
+        ) {
+          loadfriendlyData(
+            data[i].friendlylat,
+            data[i].friendlylng,
+            data[i].friendlyName,
+            data[i].friendlyPic,
+            data[i].friendlyTel,
+            data[i].friendlyAddress,
+            data[i].friendlyIntro_1,
+            data[i].friendlyIntro_2,
+            data[i].friendlyIntro_3,
+            data[i].friendlyIntro_4,
+            data[i].friendlyTypeNo,
+            data[i].friendlyTypeName
+          );
+        }
+      }else{if (
+        data[i].friendlyTypeNo == search_type[0] &&
+        data[i].friendlyLocNo == search_area
+      ) {
         loadfriendlyData(
           data[i].friendlylat,
           data[i].friendlylng,
@@ -415,71 +472,187 @@ function changeArea() {
           data[i].friendlyIntro_1,
           data[i].friendlyIntro_2,
           data[i].friendlyIntro_3,
-          data[i].friendlyIntro_4
+          data[i].friendlyIntro_4,
+          data[i].friendlyTypeNo,
+          data[i].friendlyTypeName
         );
       }
+      if (
+        data[i].friendlyTypeNo == search_type[1] &&
+        data[i].friendlyLocNo == search_area
+      ) {
+        loadfriendlyData(
+          data[i].friendlylat,
+          data[i].friendlylng,
+          data[i].friendlyName,
+          data[i].friendlyPic,
+          data[i].friendlyTel,
+          data[i].friendlyAddress,
+          data[i].friendlyIntro_1,
+          data[i].friendlyIntro_2,
+          data[i].friendlyIntro_3,
+          data[i].friendlyIntro_4,
+          data[i].friendlyTypeNo,
+          data[i].friendlyTypeName
+        );
+      }
+      if (
+        data[i].friendlyTypeNo == search_type[2] &&
+        data[i].friendlyLocNo == search_area
+      ) {
+        loadfriendlyData(
+          data[i].friendlylat,
+          data[i].friendlylng,
+          data[i].friendlyName,
+          data[i].friendlyPic,
+          data[i].friendlyTel,
+          data[i].friendlyAddress,
+          data[i].friendlyIntro_1,
+          data[i].friendlyIntro_2,
+          data[i].friendlyIntro_3,
+          data[i].friendlyIntro_4,
+          data[i].friendlyTypeNo,
+          data[i].friendlyTypeName
+        );
+      }}
+      
     }
   };
 }
+window.addEventListener("load", function() {
+  let area = document.querySelector("#fr_area");
+  area.onchange = function(e) {
+    search_area = e.target.value;
+    alert(search_area);
+    changeMarker();
+  };
 
-// 變更類型，並進行監聽
-var type = document.getElementsByName("friendtypes");
-for (var i = 0; i < type.length; i++) {
-  //然後只要有人被點按，我就執行以下的函式
-  type[i].addEventListener("click", function() {
-    for (i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
-    }
-    var type = document.getElementsByName("friendtypes");
-    let arrA = [];
-    //檢查全部的checkbox有誰被勾選
-    for (var i = 0; i < type.length; i++) {
-      if (type[i].checked == true) {
-        //有勾選就去看他的值
-        console.log(type[i].value);
+  let type = document.getElementsByName("friendtypes");
+  for (let i = 0; i < type.length; i++) {
+    type[i].onchange = function(e) {
+      var type = document.getElementsByName("friendtypes");
+      let arrA = [];
+      //檢查全部的checkbox有誰被勾選
+      for (var i = 0; i < type.length; i++) {
+        if (type[i].checked == true) {
+          //有勾選就去看他的值
+          console.log(type[i].value);
 
-        //假設撈出來的資料是以下的arr陣列
-        var arr = new Array(1, 2, 3);
-        //假設在陣列找不到
-        if (arr.indexOf(parseInt(type[i].value)) != -1) {
-          //顯示資料們
-          arrA.push(type[i].value);
-          var xhr = new XMLHttpRequest();
-          xhr.open("get", "./php/map_googleMap.php");
-          xhr.send(null);
-          xhr.onload = function() {
-            var data = JSON.parse(xhr.responseText);
-            for (var i = 0; data.length > i; i++) {
-              if (
-                data[i].friendlyTypeNo == arrA[0] ||
-                data[i].friendlyTypeNo == arrA[1] ||
-                data[i].friendlyTypeNo == arrA[2]
-              ) {
-                loadData(
-                  data[i].friendlylat,
-                  data[i].friendlylng,
-                  data[i].friendlyName,
-                  data[i].friendlyPic,
-                  data[i].friendlyTel,
-                  data[i].friendlyAddress,
-                  data[i].friendlyIntro_1,
-                  data[i].friendlyIntro_2,
-                  data[i].friendlyIntro_3,
-                  data[i].friendlyIntro_4
-                );
-              }
-            }
-          };
+          //假設撈出來的資料是以下的arr陣列
+          var arr = new Array(1, 2, 3);
+          //假設在陣列找不到
+          if (arr.indexOf(parseInt(type[i].value)) != -1) {
+            //顯示資料們
+            arrA.push(type[i].value);
+          }
         }
       }
-    }
-    alltypeValue(arrA);
-  });
-  const alltypeValue = arrA => {
-    console.log(arrA);
-  };
-}
+      search_type = arrA;
+      alert(search_type);
+      changeMarker();
+    };
+  }
+});
 
+// 變更地區，並進行監聽
+// var area = document.querySelector("#fr_area");
+// area.addEventListener("change", changeArea);
+// function changeArea() {
+//   alert("切換地區!");
+//   var locNo = area.value;
+//   // alert(locNo);
+//   // 清除資料
+//   for (i = 0; i < markers.length; i++) {
+//     markers[i].setMap(null);
+//   }
+//   markers = [];
+//   infoWindows = [];
+
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("get", "./php/map_googleMap.php");
+//   xhr.send(null);
+//   xhr.onload = function() {
+//     var data = JSON.parse(xhr.responseText);
+//     for (var i = 0; data.length > i; i++) {
+//       if (data[i].friendlyLocNo == locNo) {
+//         loadData(
+//           data[i].friendlylat,
+//           data[i].friendlylng,
+//           data[i].friendlyName,
+//           data[i].friendlyPic,
+//           data[i].friendlyTel,
+//           data[i].friendlyAddress,
+//           data[i].friendlyIntro_1,
+//           data[i].friendlyIntro_2,
+//           data[i].friendlyIntro_3,
+//           data[i].friendlyIntro_4,
+//           data[i].friendlyTypeNo,
+//           data[i].friendlyTypeName
+//         );
+//       }
+//     }
+//   };
+// }
+
+// 變更類型，並進行監聽
+// var type = document.getElementsByName("friendtypes");
+// for (var i = 0; i < type.length; i++) {
+//   //然後只要有人被點按，我就執行以下的函式
+//   type[i].addEventListener("click", function() {
+//     for (i = 0; i < markers.length; i++) {
+//       markers[i].setMap(null);
+//     }
+//     var type = document.getElementsByName("friendtypes");
+//     let arrA = [];
+//     //檢查全部的checkbox有誰被勾選
+//     for (var i = 0; i < type.length; i++) {
+//       if (type[i].checked == true) {
+//         //有勾選就去看他的值
+//         console.log(type[i].value);
+
+//         //假設撈出來的資料是以下的arr陣列
+//         var arr = new Array(1, 2, 3);
+//         //假設在陣列找不到
+//         if (arr.indexOf(parseInt(type[i].value)) != -1) {
+//           //顯示資料們
+//           arrA.push(type[i].value);
+//           var xhr = new XMLHttpRequest();
+//           xhr.open("get", "./php/map_googleMap.php");
+//           xhr.send(null);
+//           xhr.onload = function() {
+//             var data = JSON.parse(xhr.responseText);
+//             for (var i = 0; data.length > i; i++) {
+//               if (
+//                 data[i].friendlyTypeNo == arrA[0] ||
+//                 data[i].friendlyTypeNo == arrA[1] ||
+//                 data[i].friendlyTypeNo == arrA[2]
+//               ) {
+//                 loadData(
+//                   data[i].friendlylat,
+//                   data[i].friendlylng,
+//                   data[i].friendlyName,
+//                   data[i].friendlyPic,
+//                   data[i].friendlyTel,
+//                   data[i].friendlyAddress,
+//                   data[i].friendlyIntro_1,
+//                   data[i].friendlyIntro_2,
+//                   data[i].friendlyIntro_3,
+//                   data[i].friendlyIntro_4,
+//                   data[i].friendlyTypeNo,
+//                   data[i].friendlyTypeName
+//                 );
+//               }
+//             }
+//           };
+//         }
+//       }
+//     }
+//     alltypeValue(arrA);
+//   });
+//   const alltypeValue = arrA => {
+//     console.log(arrA);
+//   };
+// }
 
 /*** 讀取地標 ***/
 function loadfriendlyData(
@@ -549,4 +722,3 @@ function loadfriendlyData(
   });
   markers.push(marker);
 }
-

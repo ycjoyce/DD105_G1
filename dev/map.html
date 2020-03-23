@@ -252,6 +252,7 @@
                                     <select name="fr_area" id="fr_area" class="smalltext">
                                         <optgroup label="台北市">
                                             <option value="0" hidden>--請選擇--</option>
+                                            <option value="0">全　部</option>
                                             <option value="1">士林區</option>
                                             <option value="2">大同區</option>
                                             <option value="3">大安區</option>
@@ -471,6 +472,7 @@
 
             //判斷會員登入
             function checkLoginStatus(e) {
+                // alert('判斷');
                 // e.stopPropagation();
                 var xhr = new XMLHttpRequest();
                 var url = "php/checkMem.php";
@@ -490,7 +492,7 @@
                     }
                 }
             }
-            document.getElementById("lostPetRpLoc").addEventListener("click", checkLoginStatus);
+            document.getElementById("lostform_btn").addEventListener("click", checkLoginStatus);
 
 
 

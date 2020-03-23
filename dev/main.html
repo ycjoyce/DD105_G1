@@ -138,7 +138,6 @@
     <section class="where">
 
         <div id="mapZone">
-
             <!-- <img class="girl" src="./img/girlWithDog-1-2.png">
             <img class="dog" src="./img/girlWithDog-2.png"> -->
             <!-- <iframe src="https://maps.google.com?output=embed&q=taiwan+中央大學" frameborder="0" width="100%" height="500"></iframe> -->
@@ -162,13 +161,15 @@
                 看見疑似走失的貓狗也來聯繫主人確認吧。<br>
             </p>
             <!-- <img src="./img/girlWithDog-3.png"> -->
-            @@include('./layout/btn_darkgreen.html',{
-            "innerText": "我的寵物遺失了",
-            "connect": " href='about.html'"
-            })
-            @@include('./layout/change.html',{
-            "total": "01/02"
-            })
+            <div data-dialog="somedialog" class="trigger">
+                @@include('./layout/btn_darkgreen.html',{
+                "innerText": "我的寵物遺失了",
+                "connect": ""
+                })                
+            </div>
+                @@include('./layout/change.html',{
+                "total": "01/02"
+                })
         </div>
         <div class="readMore">
             <img src="img/map_readmore_cat.png" class="cat">
@@ -478,6 +479,78 @@
 
     </section>
 
+
+    <!-- 寵物遺失申請燈箱 -->
+    <div id="somedialog" class="dialog">
+        <div class="dialog__overlay"></div>
+        <div id="lostform_cus" class="dialog__content">
+            <div id="lostform">
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- action="./php/map_lostform.php" -->
+                    <fieldset>
+                        <h3>寵物遺失地點登記</h3>
+                        <p>
+                            <label for="lostPetRpLoc">寵物遺失地點</label>
+                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                            <input type="hidden" id="memNo" name="memNo" value="">
+                            <input type="hidden" id="memName" name="memName" value="">
+                            <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
+                            <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
+                            <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
+                        </p>
+                        <p>
+                            <label for="lostPetRpLDate">寵物遺失時間</label>
+                            <input type="date" name="lostPetRpLDate" id="lostPetRpLDate">
+                        </p>
+                        <p>
+                            <label for="lostPetRpName">寵物名稱</label>
+                            <input type="text" name="lostPetRpName" id="lostPetRpName">
+                        </p>
+                        <p>
+                            <label for="lostPetRpType">寵物類型</label>
+                            <input type="text" name="lostPetRpType" id="lostPetRpType">
+                        </p>
+                        <p>
+                            <label for="lostPetRpCh">寵物特徵</label>
+                            <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                        </p>
+                        <p>
+                            <label for="lostPetRpStat">案件狀態</label>
+                            <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
+                                <option value="" disabled>-- 請選擇狀態 --</option>
+                                <option value="0">進行中</option>
+                                <option value="1">已找到</option>
+                                <option value="2">未找到，已結案</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="">上傳寵物照片</label>
+                            <label class="uploadimg_btn">
+                                <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                                    accept="image/*">
+                                <i class="fa fa-photo"></i> 上傳圖片
+                            </label>
+                        </p>
+                        <div>
+                            <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
+                                    送出資料
+                                </span>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div>
+                <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
+            </div>
+        </div>
+    </div>
+
+
     @@include('./layout/footer.html')
     </div>
     <!-- <script src="./js/loading.js"></script> -->
@@ -491,7 +564,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.js"></script>
     <script src="./js/signInOut.js"></script>
-    <script src="./js/map_forIndexjs.js"></script>
+     <!-- google map --> <script src="./js/map_forIndexjs.js"></script>
 
     <script id="script">
 
@@ -635,6 +708,23 @@
             type: 'char'
         });     
     </script>
+
+    <!-- 燈箱JS -->    
+    <script src="./js/modernizr.custom.js"></script>
+    <script src="./js/classie.js"></script>
+    <script src="./js/dialogFx.js"></script>
+    <script>
+        (function () {
+
+            var dlgtrigger = document.querySelector('[data-dialog]'),
+                somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
+                dlg = new DialogFx(somedialog);
+
+            dlgtrigger.addEventListener('click', dlg.toggle.bind(dlg));
+
+        })();
+    </script>
+
 </body>
 
 </html>
