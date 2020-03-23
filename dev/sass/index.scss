@@ -1060,6 +1060,7 @@ section.donation{
                     div.dogAnimate{
                         position: relative;
                         top: -12px;
+                        overflow: hidden;
                         @include rwd(sm){
                             top: -8px;
                         }
@@ -1071,6 +1072,24 @@ section.donation{
                             top: 50%;
                             left: 50%;
                             transform: translate(calc(-50% + 5px),calc(-50% - 5px));
+                            z-index: 3;
+                        }
+                        img{
+                            width: 100%;
+                            position: relative;
+                            z-index: 2;
+                        }
+                        #wave{
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            left: 50%;
+                            // bottom: -80%;
+                            z-index: 1;
+                            transform: translateX(-40%);
+                            background: linear-gradient(127deg, rgba(237,249,88,.8), rgba(237,249,88,0) 70.71%),
+                                        linear-gradient(217deg, rgba(126,232,77,.8), rgba(126,232,77,0) 70.71%);
+                            animation: blobRadius 3s ease infinite, blobBackground 15s ease infinite;
                         }
                     }
                 }

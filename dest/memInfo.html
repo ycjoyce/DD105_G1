@@ -297,12 +297,12 @@
         <li class="nav-item">
           <a class="nav-link" href="memInfo.html" target="_top">會員資料管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="blacklist.html" target="_top">黑名單管理</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="messageManage.html" target="_top">私信資料管理</a>
-        </li>
+        </li> -->
       </ul>
     </li>
   </ul>
@@ -686,17 +686,6 @@
       </div>
     </aside>
   </div>
-  <footer>
-    <div class="page_top" id="page_top">
-        <span class="titleFont smalltext">PAGE TOP</span>
-    </div>
-    <p class="titleFont smalltext">
-        © 2020 Bring Love Home
-    </p>
-</footer>
-
-<script src="./js/page_top.js"></script>
-
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -715,6 +704,7 @@
               if(data.indexOf("notFound")!=-1){
                   alert("目前尚無會員");
               }else{
+                  //生成表格
                   var memRow= JSON.parse(data);
                   var memTable= document.getElementById("memTable");
                   for(var i=0; i<memRow.length; i++){
@@ -723,14 +713,17 @@
 
                     var tdNo= document.createElement("td");
                     tdNo.innerHTML= memRow[i].memNo;
+                    tdNo.style.minWidth="100px";
                     tr.appendChild(tdNo);
 
                     var tdId= document.createElement("td");
                     tdId.innerHTML= memRow[i].memId;
+                    tdId.style.minWidth="100px";
                     tr.appendChild(tdId);
 
                     var tdName= document.createElement("td");
                     tdName.innerHTML= memRow[i].memName;
+                    tdName.style.minWidth="100px";
                     tr.appendChild(tdName);
 
                     var tdPic= document.createElement("td");
@@ -742,18 +735,23 @@
 
                     var tdPoint= document.createElement("td");
                     tdPoint.innerHTML= memRow[i].memPoint;
+                    tdPoint.style.minWidth="100px";
                     tr.appendChild(tdPoint);
 
                     var tdStatus= document.createElement("td");
+                    tdStatus.style.minWidth="100px";
                     tr.appendChild(tdStatus);
                     var label= document.createElement("label");
                     label.className="switch switch-3d switch-success";
                     tdStatus.appendChild(label);
                     var input= document.createElement("input");
-                    input.className= "switch-input question_status modified";
+                    input.className= `switch-input question_status modified No${memRow[i].memNo}`;
                     input.type="checkbox";
                     input.name="question_status";
                     input.value="1";
+                    if(memRow[i].memStatus==1){
+                      input.checked="true";
+                    }
                     input.style="border: 1px solid rgb(204, 204, 204);";
                     label.appendChild(input);
                     var span= document.createElement("span");
@@ -761,8 +759,27 @@
                     label.appendChild(span);
 
                     var tdTagNo= document.createElement("td");
+                    tdTagNo.style.minWidth="200px";
                     tdTagNo.innerHTML= memRow[i].memTagNo;
                     tr.appendChild(tdTagNo);
+
+                    //操作停權
+                    var activeInput= memTable.querySelector(`tr input.No${memRow[i].memNo}`);
+                    activeInput.addEventListener("change",function(){
+                      $.ajax({
+                        url: './php/changeMemStatus.php',
+                        type: 'POST',
+                        data: {memNo: this.classList[3].substr(2)},
+                        success(data){
+                          if(data.indexOf("error")!=-1){
+                            alert("修改失敗");
+                          }
+                        },
+                        error(data){
+                          alert(data);
+                        },
+                      });
+                    });
                   }
               }
           },

@@ -161,8 +161,11 @@ function signOut(){
                 </nav>
                 `;
                 sessionStorage.clear();
-                customizedSignIn();
                 checkPage();
+                
+                if(location.pathname.split("/").pop()=="customized.html"){
+                    customizedSignIn();
+                }
                 if(location.pathname.split("/").pop()=="message.html"||location.pathname.split("/").pop()=="memberCenter.html"){
                     location.href="./main.html";
                 }

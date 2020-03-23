@@ -5,7 +5,7 @@ $sendMemNo= $_REQUEST["sendMemNo"];
 try{
     require_once("./connectDB.php");
     //找此會員跟此寄件人的所有信件
-    $sql= "select * from `message` where `sendMemNo` in ('{$sendMemNo}','{$_SESSION["memNo"]}') and `getMemNo` in ('{$_SESSION["memNo"]}','{$sendMemNo}') order by `msgTime`;";
+    $sql= "select * from `message` where `sendMemNo` in ('{$sendMemNo}','{$_SESSION["memNo"]}') and `getMemNo` in ('{$_SESSION["memNo"]}','{$sendMemNo}') order by `msgNo`;";
     
     $msg= $pdo->query($sql);
 

@@ -4,33 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/selectIndex.css">
 </head>
 <body>
-    <div class="dog">
-
-    </div>
-
-    <script>
-        let nowLoading= 1;
-
-        function dogRunning(){
-            var dogArea= document.querySelector("div.do g");
-            dogArea.style.backgroundImage= `url(../img/loading${nowLoading}.png)`;
-            // console.log(nowLoading);
-        }
-        dogRunning();
-
-        function playLoading(){
-            timerLoading= setInterval(function(){
-                if(nowLoading+1>7){
-                    nowLoading=1;
-                }else{
-                    nowLoading++;
-                }
-                dogRunning();
-            },800);
-        }
-        playLoading();
-    </script>
+    
+    
 </body>
 </html>
