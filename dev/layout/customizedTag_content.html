@@ -7,13 +7,13 @@
         align-items: center;
         justify-content: space-between;
     }
-    
+
     .table tr th {
         /* border: 1px solid blue; */
         /* padding: 0px; */
         min-width: 110px;
     }
-    
+
     .table tr td {
         /* border: 1px solid green; */
         display: flex;
@@ -21,20 +21,21 @@
         justify-self: flex-end;
         padding: 0px;
     }
-    
+
     input[type="file"] {
         width: 180px;
         margin-left: 30px;
     }
-    
+
     .table tr:nth-child(2) td img {
         padding: 10px 0px;
     }
-    
+
     @media screen and (max-width:575px) {
         .table tr:nth-child(2) td {
             flex-direction: column;
         }
+
         .table tr:nth-child(3) td {
             flex-direction: column;
         }
@@ -45,38 +46,39 @@
         <div class="card" style="margin: 10px;">
             <div class="card-header">新增吊牌</div>
             <div class="card-body">
-                <form action="php/addTagInfo.php" method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <table class="table">
                         <tr>
                             <th>吊牌名稱</th>
                             <td>
-                                <input type="text" name="tagName" id="">
+                                <input type="text" name="tagName" id="tagName">
                             </td>
                         </tr>
                         <tr>
                             <th>輪播預覽圖</th>
                             <td>
                                 <img src="">
-                                <input type="file" name="tagSrc1" id="">
+                                <input type="file" name="tagSrc1" id="tagSrc1">
                             </td>
                         </tr>
                         <tr>
                             <th>客製化預覽圖</th>
                             <td>
                                 <img src="">
-                                <input type="file" name="tagSrc2" id="">
+                                <input type="file" name="tagSrc2" id="tagSrc2">
                             </td>
                         </tr>
                         <tr>
                             <th>吊牌所需點數</th>
                             <td>
-                                <input type="text" name="tagPoint" id="">
+                                <input type="text" name="tagPoint" id="tagPoint">
                             </td>
                         </tr>
                     </table>
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="submit" id="addTagBtn">新增吊牌</button>
+                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="button"
+                                id="addTagBtn">新增吊牌</button>
                         </div>
                         <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
                             <button class="btn btn-pill btn-block btn-secondary cancelClear" type="reset">清除</button>
@@ -87,20 +89,34 @@
         </div>
     </div>
 </div>
-<!-- <script>
-    $(document).ready(function() {
-        $('#addTagBtn').click(function() {
-            $.ajax({
-                url: "php/addTagInfo.php",
-                type: "post",
-                dataType: "json",
-                success: function(data) {
-                    window.location.reload();
-                }
-            })
-        });
-    })
-</script> -->
+<div class="tagBody">
+
+</div>
+<script>
+    function addTag() {
+        var formData = new FormData();
+        var tagName = document.getElementById('tagName');
+        var tagSrc1 = document.getElementById("tagSrc1");
+        var tagSrc2 = document.getElementById("tagSrc2");
+        var tagPoint = document.getElementById('tagPoint');
+        formData.append("tagName", tagName.value);
+        formData.append("tagSrc1", tagSrc1.files[0]);
+        formData.append("tagSrc2", tagSrc2.files[0]);
+        formData.append("tagPoint", tagPoint.value);
+        $.ajax({
+            url: "php/addTagInfo.php",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            type: 'post',
+            success: function () {
+                // window.location.reload();\
+                getTagInfo();
+            }
+        })
+    }
+</script>
 
 <script>
     function getTagInfo() {
@@ -108,20 +124,20 @@
             url: "php/getTagInfo.php",
             type: "post",
             dataType: "json",
-            success: function(data) {
-                let msg = "";
+            success: function (data) {
+                msg = "";
                 for (i = 0; i < data.length; i++) {
                     msg += `
-                <div class="col-xl-6 col-md-12">
+                <div class="col-xl-6 col-md-12" tagabc="abc">
                     <div class="card" style="margin: 10px;">
-                        <div class="card-header" tagNo="${i+1}">吊牌${i+1}號</div>
+                        <div class="card-header" tagNo="${i + 1}">吊牌${i + 1}號</div>
                         <div class="card-body">
                             <form action="" method="POST" enctype="multipart/form-data">
                                 <table class="table">
                                     <tr>
                                         <th>吊牌名稱</th>
                                         <td>
-                                            <input type="text" name="tagName" id="" value="${data[i].tagName}">
+                                            <input type="text" name="tagName" id="tagName${data[i].tagNo}" value="${data[i].tagName}">
                                         </td>
                                     </tr>
                                     <tr>
@@ -129,6 +145,7 @@
                                         <td>
                                             <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
                                             <input type="file" name="tagSrc1" id="">
+                                            <input type="text" name="tagSrc1_old" value="${data[i].tagSrc1}">
                                         </td>
                                     </tr>
                                     <tr>
@@ -141,7 +158,7 @@
                                     <tr>
                                         <th>吊牌所需點數</th>
                                         <td>
-                                            <input type="text" name="tagPoint" id="" value="${data[i].tagPoint}">
+                                            <input type="text" name="tagPoint" id="tagPoint${data[i].tagNo}" value="${data[i].tagPoint}">
                                         </td>
                                     </tr>
                                     <tr>
@@ -156,71 +173,84 @@
                                 </table>
                                 <div class="row">
                                     <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                                        <input class="btn btn-pill btn-block btn-primary updateTagBtn" type="submit" value="確認修改">
+                                        <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-primary updateTagBtn" type="button" value="確認修改">
                                     </div>
-                                    <div class="tagNo${data[i].tagNo} col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                                        <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="reset" value="刪除吊牌">
+                                    <div class=" col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                        <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="button" value="刪除吊牌">
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>`;
+                    
                 }
-                $("#tagContent").append(msg);
+                // $("#tagContent").empty();
+                $(".tagBody").append(msg);
             }
         })
     }
     getTagInfo();
-
+    $(document).ready(function () {
+                        $('#addTagBtn').click(function () {
+                            if (tagName.value == "") {
+                                alert("請先設定吊牌姓名");
+                                return;
+                            } else if (tagSrc1.value == "" || tagSrc2.value == "") {
+                                alert("請先上傳吊牌圖片");
+                                return;
+                            } else if (tagPoint.value == "") {
+                                alert("請先設定吊牌點數");
+                                return;
+                            } else {
+                                addTag();
+                                alert("新增成功");
+                                // window.location.reload();
+                                // $("#tagContent").append();
+                            }
+                        })
+                    })
 
     function delTag(sendTagNo) {
         var xhr = new XMLHttpRequest();
-        var url = "php/delTagInfo.php";
+        var url = "./php/delTagInfo.php";
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data_info = `tagNo=${sendTagNo}`;
         xhr.send(data_info);
-
-        xhr.onload = function() {
-            if (xhr.status == 200) {
-                window.location.reload();
-            }
-        }
     }
-    $(document).ready(function() {
-        $('.delTagBtn').click(function() {
+    $(document).ready(function () {
+        $('.delTagBtn').click(function () {
             let result = confirm("確定要刪除嗎?");
             if (result) {
                 delTag(this.classList[0].substr(5));
+                alert("刪除成功");
+                $(this).parent().parent().parent().parent().parent().parent().remove();
             } else {
                 return;
             }
         })
     })
-
     function updateTag(sendTagNo) {
         var xhr = new XMLHttpRequest();
         var url = "php/updateTagInfo.php";
+        var updateTagName = document.getElementById(`tagName${sendTagNo}`).value;
+        var updateTagPoint = document.getElementById(`tagPoint${sendTagNo}`).value;
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data_info = `tagNo=${sendTagNo}`;
+        var data_info = `tagNo=${sendTagNo}&tagName=${updateTagName}&tagPoint=${updateTagPoint}`;
         xhr.send(data_info);
-
-        xhr.onload = function() {
-            if (xhr.status == 200) {
-                window.location.reload();
-            }
-        }
+        // console.log(data_info);
     }
-    $(document).ready(function() {
-        $('.updateTagBtn').click(function() {
+    $(document).ready(function () {
+        $('.updateTagBtn').click(function () {
             let result = confirm("確定要更新資料嗎?");
             if (result) {
                 updateTag(this.classList[0].substr(5));
+                alert("更新成功");
             } else {
                 return;
             }
         })
-    })
+    });
 </script>

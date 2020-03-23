@@ -1,6 +1,6 @@
 <?php
 try{
-    require_once('connectDB.php');
+    require_once('./connectDB.php');
     $sql = "delete from `customizedtag` where `tagNo`=:tagNo";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->bindValue(":tagNo",$_POST["tagNo"]);

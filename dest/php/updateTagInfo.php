@@ -1,7 +1,8 @@
 <?php
 try{
-    require_once('connectDB.php');
-    $sql = "update `customizedtag` set tagName=:tagName, tagPoint=:tagPoint where tagNo=:tagNo";
+    require_once('./connectDB.php');
+    $sql = "update `customizedtag` set tagName=:tagName, tagPoint=:tagPoint where tagNo=:tagNo;";
+    // $sql = "update `customizedtag` set tagName=1234, tagPoint=300 where tagNo=1";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->bindValue(":tagName",$_POST["tagName"]);
     $pdoStatement->bindValue(":tagPoint",$_POST["tagPoint"]);
