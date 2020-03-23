@@ -2,15 +2,12 @@
 var map;
 // 紀錄從遠端撈下來的資料
 var data;
-// 記錄目前載入的 marker
+//記錄目前載入的 marker
 var markers = [];
-// 記錄當前點擊 google window
+//記錄當前點擊 google window
 var currentInfoWindow = "";
 
-// 輸入地址找經緯度
-var geocoder;
-
-// Custom style
+//Custom style
 var styleCustom = [
   {
     featureType: "administrative.land_parcel",
@@ -54,7 +51,7 @@ var styleCustom = [
   }
 ];
 
-// Gmaps style
+//Gmaps style
 var styleBasic = [
   { featureType: "all", elementType: "all", stylers: [{ visibility: "off" }] },
   {
@@ -106,9 +103,9 @@ var styleBasic = [
 // var customType = new google.maps.StyledMapType(styleCustom, { name: "Custom" });
 // var basicType = new google.maps.StyledMapType(styleBasic, { name: "Basic" });
 
-// Latitude/longitude preset
-const lat = 24.9102204,
-  lng = 121.3862414;
+//Latitude/longitude preset
+const lat = 25.101501,
+  lng = 121.5409;
 
 const $center = document.getElementById("center");
 
@@ -118,12 +115,12 @@ $(function() {
 
 /*** Gmaps initialize ***/
 function initialize() {
-  // 獲取設備當前的位置
+  //獲取設備當前的位置
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
     center: { lat: lat, lng: lng },
-    zoom: 10,
+    zoom: 12,
     styles: styleCustom,
     mapTypeControl: false,
     zoomControl: false,
@@ -134,16 +131,58 @@ function initialize() {
     draggable: true
   });
 
-  // 取得遠端資料並渲染
-  getLost();
+  //取得遠端資料並渲染
+  getData();
 
-  // Zoom control
+  //Zoom control
   zoomControl();
 
-  // Gmap skin
+  // Change this depending on the name of your PHP or XML file
+  // downloadUrl('../../php/map_googleMap.php', function(data) {
+  //   var xml = data.responseXML;
+  //   var markers = xml.documentElement.getElementsByTagName('marker');
+  //   Array.prototype.forEach.call(markers, function(markerElem) {
+  //     var friendlyNo = markerElem.getAttribute('friendlyNo');
+  //     var friendlyName = markerElem.getAttribute('friendlyName');
+  //     var friendlyAddress = markerElem.getAttribute('friendlyAddress');
+  //     var friendlyTypeNo = markerElem.getAttribute('friendlyTypeNo');
+  //     var point = new google.maps.LatLng(
+  //         parseFloat(markerElem.getAttribute('friendlylat')),
+  //         parseFloat(markerElem.getAttribute('friendlylng')));
+
+  //     var infowincontent = document.createElement('div');
+  //     var strong = document.createElement('strong');
+  //     strong.textContent = friendlyName
+  //     infowincontent.appendChild(strong);
+  //     infowincontent.appendChild(document.createElement('br'));
+
+  //     var text = document.createElement('text');
+  //     text.textContent = friendlyAddress
+  //     infowincontent.appendChild(text);
+  //     var icon = customLabel[friendlyTypeNo] || {};
+  //     var marker = new google.maps.Marker({
+  //       map: map,
+  //       position: point,
+  //       label: icon.label
+  //     });
+  //     marker.addListener('click', function() {
+  //       infoWindow.setContent(infowincontent);
+  //       infoWindow.open(map, marker);
+  //     });
+  //   });
+  // });
+
+  //Draw overlay
+  // var overlay = new google.maps.OverlayView();
+  // overlay.draw = function() {};
+  // overlay.setMap(map);
+
+  //Gmap skin
   // map.mapTypes.set("Custom", customType);
   // map.mapTypes.set("Basic", basicType);
 
+  //Add custom markers
+  // setMarkers();
 }
 
 function geoSuccess(pos) {
@@ -179,7 +218,6 @@ function centerMarker(latitude, longitude) {
 //     map.setCenter(new google.maps.LatLng(latitude, longitude));
 //   });
 // }
-
 /*** Zoom control ***/
 function zoomControl() {
   var zoomIn = document.getElementById("zoomIn");
@@ -200,173 +238,23 @@ function zoomControl() {
   });
 }
 
-// ===========================================================================================//
-
-/// 輸入地址
-document.getElementById("lostPetRpLoc").onchange = getAddress;
-var geocoder = new google.maps.Geocoder();
-function getAddress() {
-  alert("測試");
-  var address = document.getElementById("lostPetRpLoc").value;
-  geocoder.geocode({ address: address }, function(results, status) {
-    if (status == "OK") {
-      console.log(results[0]);
-      alert(
-        `${
-          results[0].formatted_address
-        } | ${results[0].geometry.location.lat()} | ${results[0].geometry.location.lng()}`
-      );
-      document.getElementById("lostPetRpLocAdd").value =
-        results[0].formatted_address;
-      document.getElementById(
-        "lostPetRpLoclat"
-      ).value = results[0].geometry.location.lat();
-      document.getElementById(
-        "lostPetRpLoclng"
-      ).value = results[0].geometry.location.lng();
-    } else {
-      console.log(status);
-    }
-  });
-}
-
-/*** 寵物遺失載入地標 ***/
-function getLost() {
-  for (i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-  infoWindows = [];
+/*** 篩選地標 ***/
+function getData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_GMgetLostRp.php");
+  xhr.open("get", "./php/map_googleMap.php");
   xhr.send(null);
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     // alert(str)
     console.log(data);
+    console.log(
+      "Test: data[0] = ",
+      data[0].friendlylat,
+      data[0].friendlylng,
+      data[0].friendlyName
+    );
     for (var i = 0; data.length > i; i++) {
-      loadLostData(
-        data[i].lostPetRpLoclat,
-        data[i].lostPetRpLoclng,
-        data[i].lostPetRpName,
-        data[i].lostPetRpImg,
-        data[i].lostPetRpLDate,
-        data[i].lostPetRpLoc,
-        data[i].lostPetRpType,
-        data[i].lostPetRpCh,
-        data[i].lostPetRpLocAdd,
-        data[i].memName
-      );
-    }
-  };
-}
-
-/*** 讀取地標 ***/
-function loadLostData(
-  lat,
-  lng,
-  title,
-  pic,
-  date,
-  loc,
-  type,
-  character,
-  add,
-  memName
-) {
-  var contentString = `
-    <div class="lostContent">
-    <img src="./img/lostrp/${pic}" alt="">
-      <ul>
-        <li>寵物名稱：${title}</li>
-        <li>寵物遺失日期：${date}</li>
-        <li>寵物遺失地點：${loc}</li>
-        <li>寵物類型：${type}</li>
-        <li>寵物特徵：${character}</li>
-        <li>私信主人：<a href="#" title:"我要私信主人">${memName}<img src="./img/icon_private_message.svg"></a></li>
-      </ul>
-    </div>
-  `;
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-  var marker = new google.maps.Marker({
-    position: { lat: parseFloat(lat), lng: parseFloat(lng) },
-    title: title,
-    map: map,
-    // animation: google.maps.Animation.BOUNCE,
-    animation: google.maps.Animation.DROP,
-    icon: {
-      url: `./img/mapMarker_lost.png`,
-      scaledSize: new google.maps.Size(40, 40)
-    }
-  });
-  marker.addListener("click", function() {
-    if (currentInfoWindow != "") {
-      currentInfoWindow.close();
-      currentInfoWindow = "";
-    }
-    infowindow.open(map, marker);
-    currentInfoWindow = infowindow;
-  });
-  markers.push(marker);
-}
-
-// 變更地區，並進行監聽
-var dist = document.querySelector("#lost_area");
-dist.addEventListener("change", changeDist);
-function changeDist() {
-  alert("切換地區!");
-  var distVal = dist.value;
-  // alert(locNo);
-  // 清除資料
-  for (i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-  infoWindows = [];
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_GMgetLostRp.php");
-  xhr.send(null);
-  xhr.onload = function() {
-    var data = JSON.parse(xhr.responseText);
-    for (var i = 0; data.length > i; i++) {
-      if (data[i].lostPetRpLocAdd.indexOf(distVal) != -1) {
-        loadLostData(
-          data[i].lostPetRpLoclat,
-          data[i].lostPetRpLoclng,
-          data[i].lostPetRpName,
-          data[i].lostPetRpImg,
-          data[i].lostPetRpLDate,
-          data[i].lostPetRpLoc,
-          data[i].lostPetRpType,
-          data[i].lostPetRpCh,
-          data[i].lostPetRpLocAdd,
-          data[i].memName
-        );
-      }
-    }
-  };
-}
-
-// ===================================================================================//
-/*** 友善空間載入地標 ***/
-function getFriendly() {
-  for (i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-  infoWindows = [];
-  var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_GMgetFriendly.php");
-  xhr.send(null);
-  xhr.onload = function() {
-    var data = JSON.parse(xhr.responseText);
-    // alert(str)
-    console.log(data);
-    for (var i = 0; data.length > i; i++) {
-      loadfriendlyData(
+      loadData(
         data[i].friendlylat,
         data[i].friendlylng,
         data[i].friendlyName,
@@ -376,9 +264,7 @@ function getFriendly() {
         data[i].friendlyIntro_1,
         data[i].friendlyIntro_2,
         data[i].friendlyIntro_3,
-        data[i].friendlyIntro_4,
-        data[i].friendlyTypeNo,
-        data[i].friendlyTypeName
+        data[i].friendlyIntro_4
       );
     }
   };
@@ -399,13 +285,13 @@ function changeArea() {
   infoWindows = [];
 
   var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_GMgetFriendly.php");
+  xhr.open("get", "./php/map_googleMap.php");
   xhr.send(null);
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyLocNo == locNo) {
-        loadfriendlyData(
+        loadData(
           data[i].friendlylat,
           data[i].friendlylng,
           data[i].friendlyName,
@@ -480,9 +366,8 @@ for (var i = 0; i < type.length; i++) {
   };
 }
 
-
 /*** 讀取地標 ***/
-function loadfriendlyData(
+function loadData(
   lat,
   lng,
   title,
@@ -492,26 +377,11 @@ function loadfriendlyData(
   intro1,
   intro2,
   intro3,
-  intro4,
-  typeno,
-  typename
+  intro4
 ) {
   var contentString = `
     <div class="friendContent">
-        <!-- Swiper -->
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    
+    <img src="./img/map_friendly/${pic}" alt="">
       <ul>
         <li>店名：${title}</li>
         <li>電話：${tel}</li>
@@ -521,23 +391,16 @@ function loadfriendlyData(
         <li>周邊服務：${intro3}</li>      
         <li>環境服務：${intro4}</li>
       </ul>
-      <hr>
-      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon"><span>${typename}</span>
     </div>
   `;
+
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
   var marker = new google.maps.Marker({
     position: { lat: parseFloat(lat), lng: parseFloat(lng) },
     title: title,
-    map: map,
-    // animation: google.maps.Animation.BOUNCE,
-    animation: google.maps.Animation.DROP,
-    icon: {
-      url: `./img/mapMarker_${typeno}.png`,
-      scaledSize: new google.maps.Size(40, 40)
-    }
+    map: map
   });
   marker.addListener("click", function() {
     if (currentInfoWindow != "") {
@@ -550,3 +413,95 @@ function loadfriendlyData(
   markers.push(marker);
 }
 
+/*** Custom marker event ***/
+// var markerData = [
+//   { id: 1, name: "松山文創園區", x: "25.0440459", y: "121.5578874" },
+//   { id: 2, name: "台北車站", x: "25.0475419", y: "121.5139815" },
+//   { id: 3, name: "台北小巨蛋", x: "25.051659", y: "121.5496839" },
+//   { id: 4, name: "捷運中山國小站", x: "25.0627672", y: "121.523779" }
+// ];
+// var markers = [],
+//   oldMarker = "",
+//   infowindows = [];
+
+// function setMarkers() {
+//   $.each(markerData, function(i, el) {
+//     //Set marker
+//     var marker = new google.maps.Marker({
+//       map: map,
+//       draggable: false,
+//       animation: google.maps.Animation.DROP, //google.maps.Animation.DROP
+//       icon: {
+//         url: "https://img.icons8.com/material-rounded/48/b93939/marker.png",
+//         size: new google.maps.Size(48, 48), //icon px
+//         origin: new google.maps.Point(0, 0), //icon ori pos
+//         anchor: new google.maps.Point(24, 24) //icon center
+//       },
+//       zIndex: 2,
+//       position: new google.maps.LatLng(el.x, el.y)
+//     });
+//     markers[el.id] = marker;
+
+//     //Set infowindow
+//     var info = '<div id="infoBox"><div><h6> ' + el.name + "</h6></div></div>";
+//     var infowindow = new google.maps.InfoWindow({
+//       pixelOffset: new google.maps.Size(0, -18),
+//       content: info
+//     });
+//     infowindows[el.id] = infowindow;
+
+//     //Markers click event
+//     google.maps.event.addListener(markers[el.id], "click", function() {
+//       //Infobox show/hide
+//       if (infowindow) infowindow.close();
+
+//       //Marker on/off
+//       if (oldMarker == "") {
+//         markerOn(el.id);
+//       } else {
+//         if (oldMarker != el.id) {
+//           markerOff(oldMarker);
+//           markerOn(el.id);
+//         }
+//       }
+//     });
+//   });
+// }
+
+// function markerOff(old) {
+//   infowindows[old].close(map, markers[old]);
+//   markers[old].setAnimation(null);
+//   markers[old].setIcon(
+//     "https://img.icons8.com/material-rounded/48/b93939/marker.png"
+//   );
+//   markers[old].setZIndex(1);
+// }
+
+// function markerOn(now) {
+//   map.setCenter(markers[now].getPosition());
+//   infowindows[now].open(map, markers[now]);
+//   markers[now].setAnimation(google.maps.Animation.BOUNCE);
+//   markers[now].setIcon(
+//     "https://img.icons8.com/material-rounded/48/d04a4a/marker.png"
+//   );
+//   markers[now].setZIndex(10);
+//   oldMarker = now;
+// }
+
+// function downloadUrl(url, callback) {
+//   var request = window.ActiveXObject ?
+//       new ActiveXObject('Microsoft.XMLHTTP') :
+//       new XMLHttpRequest;
+
+//   request.onreadystatechange = function() {
+//     if (request.readyState == 4) {
+//       request.onreadystatechange = doNothing;
+//       callback(request, request.status);
+//     }
+//   };
+
+//   request.open('GET', url, true);
+//   request.send(null);
+// }
+
+// function doNothing() {}
