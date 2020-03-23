@@ -1,11 +1,10 @@
 <?php
 try{
     require_once('connectDB.php');
-    $sql = "update `customizedtag` set tagName=:tagName, tagPoint=:tagPoint where tagNo=:tagNo";
+    $sql = "update `meminfo` set memPoint=:memPoint where memNo=:memNo";
     $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement->bindValue(":tagName",$_POST["tagName"]);
-    $pdoStatement->bindValue(":tagPoint",$_POST["tagPoint"]);
-    $pdoStatement->bindValue(":tagNo",$_POST["tagNo"]);
+    $pdoStatement->bindValue(":memPoint",$_POST["memPoint"]);
+    $pdoStatement->bindValue(":memNo",$_POST["memNo"]);
     $pdoStatement->execute();
 
 }catch (PDOException $e) {

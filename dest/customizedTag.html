@@ -343,13 +343,13 @@
         align-items: center;
         justify-content: space-between;
     }
-
+    
     .table tr th {
         /* border: 1px solid blue; */
         /* padding: 0px; */
         min-width: 110px;
     }
-
+    
     .table tr td {
         /* border: 1px solid green; */
         display: flex;
@@ -357,21 +357,20 @@
         justify-self: flex-end;
         padding: 0px;
     }
-
+    
     input[type="file"] {
         width: 180px;
         margin-left: 30px;
     }
-
+    
     .table tr:nth-child(2) td img {
         padding: 10px 0px;
     }
-
+    
     @media screen and (max-width:575px) {
         .table tr:nth-child(2) td {
             flex-direction: column;
         }
-
         .table tr:nth-child(3) td {
             flex-direction: column;
         }
@@ -413,8 +412,7 @@
                     </table>
                     <div class="row">
                         <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="button"
-                                id="addTagBtn">新增吊牌</button>
+                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="button" id="addTagBtn">新增吊牌</button>
                         </div>
                         <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
                             <button class="btn btn-pill btn-block btn-secondary cancelClear" type="reset">清除</button>
@@ -425,9 +423,7 @@
         </div>
     </div>
 </div>
-<div class="tagBody">
 
-</div>
 <script>
     function addTag() {
         var formData = new FormData();
@@ -446,9 +442,9 @@
             processData: false,
             data: formData,
             type: 'post',
-            success: function () {
+            success: function() {
                 // window.location.reload();\
-                getTagInfo();
+                // getTagInfo();
             }
         })
     }
@@ -460,7 +456,7 @@
             url: "php/getTagInfo.php",
             type: "post",
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 msg = "";
                 for (i = 0; i < data.length; i++) {
                     msg += `
@@ -519,33 +515,33 @@
                         </div>
                     </div>
                 </div>`;
-                    
+
                 }
                 // $("#tagContent").empty();
-                $(".tagBody").append(msg);
+                $("#tagContent").append(msg);
             }
         })
     }
     getTagInfo();
-    $(document).ready(function () {
-                        $('#addTagBtn').click(function () {
-                            if (tagName.value == "") {
-                                alert("請先設定吊牌姓名");
-                                return;
-                            } else if (tagSrc1.value == "" || tagSrc2.value == "") {
-                                alert("請先上傳吊牌圖片");
-                                return;
-                            } else if (tagPoint.value == "") {
-                                alert("請先設定吊牌點數");
-                                return;
-                            } else {
-                                addTag();
-                                alert("新增成功");
-                                // window.location.reload();
-                                // $("#tagContent").append();
-                            }
-                        })
-                    })
+    $(document).ready(function() {
+        $('#addTagBtn').click(function() {
+            if (tagName.value == "") {
+                alert("請先設定吊牌姓名");
+                return;
+            } else if (tagSrc1.value == "" || tagSrc2.value == "") {
+                alert("請先上傳吊牌圖片");
+                return;
+            } else if (tagPoint.value == "") {
+                alert("請先設定吊牌點數");
+                return;
+            } else {
+                addTag();
+                alert("新增成功");
+                window.location.reload();
+                // $("#tagContent").append();
+            }
+        })
+    })
 
     function delTag(sendTagNo) {
         var xhr = new XMLHttpRequest();
@@ -555,8 +551,8 @@
         var data_info = `tagNo=${sendTagNo}`;
         xhr.send(data_info);
     }
-    $(document).ready(function () {
-        $('.delTagBtn').click(function () {
+    $(document).ready(function() {
+        $('.delTagBtn').click(function() {
             let result = confirm("確定要刪除嗎?");
             if (result) {
                 delTag(this.classList[0].substr(5));
@@ -567,6 +563,7 @@
             }
         })
     })
+
     function updateTag(sendTagNo) {
         var xhr = new XMLHttpRequest();
         var url = "php/updateTagInfo.php";
@@ -578,8 +575,8 @@
         xhr.send(data_info);
         // console.log(data_info);
     }
-    $(document).ready(function () {
-        $('.updateTagBtn').click(function () {
+    $(document).ready(function() {
+        $('.updateTagBtn').click(function() {
             let result = confirm("確定要更新資料嗎?");
             if (result) {
                 updateTag(this.classList[0].substr(5));
