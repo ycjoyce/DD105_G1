@@ -2,7 +2,7 @@
 try{
     require_once('./connectDB.php');
 
-    $sql= "select * from `memInfo` where memId=:memId and memPsw=:memPsw;";
+    $sql= "select * from `memInfo` where memId=:memId and memPsw=:memPsw and memStatus=1;";
     $member= $pdo->prepare($sql);
     $member->bindValue(':memId',$_REQUEST["signInAccount"]);
     $member->bindValue(':memPsw',$_REQUEST["signInPsw"]);
