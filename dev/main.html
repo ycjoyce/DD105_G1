@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh_Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @@include('./layout/head.html',{
-        "title": "浪愛回家"
+    "title": "浪愛回家"
     })
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
@@ -12,6 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <!-- google map api -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
     <!-- scrollmagic -->
     <!-- 主程式 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
@@ -22,6 +26,7 @@
     <script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
 
 </head>
+
 <body>
     @@include('./layout/header.html')
     <!-- @@include('./layout/cursor.html') -->
@@ -38,7 +43,8 @@
         <div class="title">
             <h1 class="enSpecialFont parallax2" id="theText">Bring Love Home</h1>
             <div>
-                <img class="text wow fadeIn parallax3" data-wow-delay="1.6s" data-wow-duration=".8s" src="./img/header_title_1.png">
+                <img class="text wow fadeIn parallax3" data-wow-delay="1.6s" data-wow-duration=".8s"
+                    src="./img/header_title_1.png">
                 <div class="wow fadeIn parallax4" data-wow-delay="2s" data-wow-duration=".8s">
                     <img src="./img/dog_giphy.gif" class="dog_gif">
                     <img class="text" src="./img/header_title_2.png">
@@ -68,7 +74,8 @@
 
     <section class="about">
         <h3 class="enSpecialFont" id="trigger01">About</h3>
-        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11" data-wow-duration="1s" data-wow-delay=".5s">
+        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11" data-wow-duration="1s"
+            data-wow-delay=".5s">
             <div class="text col-xl-6 col-lg-6 col-md-7 col-sm-12 col-ss12">
                 <div class="about">
                     <!-- <div id="trigger01"></div> -->
@@ -84,8 +91,8 @@
                         「有一天，街頭不再有受苦受難的生命。」<br>
                     </p>
                     @@include('./layout/btn_gray.html',{
-                        "innerText": "READ MORE",
-                        "connect": " href='about.html'"
+                    "innerText": "READ MORE",
+                    "connect": " href='about.html'"
                     })
                 </div>
             </div>
@@ -131,10 +138,20 @@
     <section class="where">
 
         <div id="mapZone">
-
             <!-- <img class="girl" src="./img/girlWithDog-1-2.png">
             <img class="dog" src="./img/girlWithDog-2.png"> -->
-            <iframe src="https://maps.google.com?output=embed&q=taiwan+中央大學" frameborder="0" width="100%" height="500"></iframe>
+            <!-- <iframe src="https://maps.google.com?output=embed&q=taiwan+中央大學" frameborder="0" width="100%" height="500"></iframe> -->
+            <div id="map-viewport">
+                <div class="map" id="googleMap"></div>
+                <div id="map-control">
+                    <button id="center"><img src="https://img.icons8.com/ios-glyphs/25/2466fa/center-direction.png"
+                            alt="" /></button>
+                    <button id="zoomIn"><img src="https://img.icons8.com/ios-glyphs/18/616161/plus-math.png"
+                            alt="" /></button>
+                    <button id="zoomOut"><img src="https://img.icons8.com/ios-glyphs/18/616161/minus-math.png"
+                            alt="" /></button>
+                </div>
+            </div>
         </div>
         <div class="card wow fadeInRight" data-wow-duration="1s">
             <h3 class="wow fadeInUp" data-wow-delay=".2s"><a href="#" class="titleFont">寵物遺失地點</a></h3>
@@ -144,19 +161,21 @@
                 看見疑似走失的貓狗也來聯繫主人確認吧。<br>
             </p>
             <!-- <img src="./img/girlWithDog-3.png"> -->
-            @@include('./layout/btn_darkgreen.html',{
+            <div data-dialog="somedialog" class="trigger">
+                @@include('./layout/btn_darkgreen.html',{
                 "innerText": "我的寵物遺失了",
-                "connect": " href='about.html'"
-            })
-            @@include('./layout/change.html',{
+                "connect": ""
+                })                
+            </div>
+                @@include('./layout/change.html',{
                 "total": "01/02"
-            })
+                })
         </div>
         <div class="readMore">
             <img src="img/map_readmore_cat.png" class="cat">
             @@include('./layout/btn_gray.html',{
-                "innerText": "READ MORE",
-                "connect": " href='about.html'"
+            "innerText": "READ MORE",
+            "connect": " href='about.html'"
             })
         </div>
     </section>
@@ -190,8 +209,8 @@
                     <span class="titleFont smalltext date">2020.02.01</span>
                     <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
                     @@include('./layout/btn_darkgreen.html',{
-                        "innerText": "了解更多",
-                        "connect": " href='about.html'"
+                    "innerText": "了解更多",
+                    "connect": " href='about.html'"
                     })
                     <div class="showNum">
                         <div class="cur">
@@ -199,12 +218,13 @@
                         </div>
                         <div class="dogAnimate col-xl-8 col-lg-8 col-md-8 col-sm-8 col-ss-8">
                             <span class="titleFont">58%</span>
-                            <img src="img/donation_dog.svg">
+                            <img src="./img/percent.png">
+                            <div id="wave"></div>
                         </div>
                     </div>
                 </div>
                 @@include('./layout/change.html',{
-                    "total": "01/03"
+                "total": "01/03"
                 })
                 <div class="progress_bar">
                     <span class="on"></span>
@@ -263,8 +283,8 @@
                 </div>
             </div>
             @@include('./layout/btn_gray.html',{
-                "innerText": "READ MORE",
-                "connect": " href='about.html'"
+            "innerText": "READ MORE",
+            "connect": " href='about.html'"
             })
         </div>
     </section>
@@ -280,8 +300,8 @@
                 </p>
             </div>
             @@include('./layout/btn_gray.html',{
-                "innerText": "客製專屬項圈",
-                "connect": " href='about.html'"
+            "innerText": "客製專屬項圈",
+            "connect": " href='about.html'"
             })
             <div class="images">
                 <img class="collarDeco1" id="collarDeco1" src="./img/handicraft_1.png">
@@ -347,7 +367,7 @@
             <h3 class="enSpecialFont wow fadeInUp">Forum</h3>
             <h2 class="wow fadeInUp" data-wow-delay=".2s">毛孩交流區</h2>
             <p class="col-ss-12 wow fadeInUp" data-wow-delay=".5s">與愛爸愛媽們一同交流飼寵心得和對毛孩的滿滿愛意吧！</p>
-            
+
         </div>
         <div class="cards col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12">
             <div class="card wow fadeInUp" data-wow-delay=".7s">
@@ -449,19 +469,91 @@
 
         </div>
         @@include('./layout/btn_gray.html',{
-            "innerText": "READ MORE",
-            "connect": " href='about.html'"
+        "innerText": "READ MORE",
+        "connect": " href='about.html'"
         })
         <div class="paw">
             <img class="paw paw1" src="img/pawprint-01.svg">
             <img class="paw paw2" src="img/pawprint-01.svg">
         </div>
-        
+
     </section>
 
+
+    <!-- 寵物遺失申請燈箱 -->
+    <div id="somedialog" class="dialog">
+        <div class="dialog__overlay"></div>
+        <div id="lostform_cus" class="dialog__content">
+            <div id="lostform">
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- action="./php/map_lostform.php" -->
+                    <fieldset>
+                        <h3>寵物遺失地點登記</h3>
+                        <p>
+                            <label for="lostPetRpLoc">寵物遺失地點</label>
+                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                            <input type="hidden" id="memNo" name="memNo" value="">
+                            <input type="hidden" id="memName" name="memName" value="">
+                            <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
+                            <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
+                            <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
+                        </p>
+                        <p>
+                            <label for="lostPetRpLDate">寵物遺失時間</label>
+                            <input type="date" name="lostPetRpLDate" id="lostPetRpLDate">
+                        </p>
+                        <p>
+                            <label for="lostPetRpName">寵物名稱</label>
+                            <input type="text" name="lostPetRpName" id="lostPetRpName">
+                        </p>
+                        <p>
+                            <label for="lostPetRpType">寵物類型</label>
+                            <input type="text" name="lostPetRpType" id="lostPetRpType">
+                        </p>
+                        <p>
+                            <label for="lostPetRpCh">寵物特徵</label>
+                            <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                        </p>
+                        <p>
+                            <label for="lostPetRpStat">案件狀態</label>
+                            <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
+                                <option value="" disabled>-- 請選擇狀態 --</option>
+                                <option value="0">進行中</option>
+                                <option value="1">已找到</option>
+                                <option value="2">未找到，已結案</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="">上傳寵物照片</label>
+                            <label class="uploadimg_btn">
+                                <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                                    accept="image/*">
+                                <i class="fa fa-photo"></i> 上傳圖片
+                            </label>
+                        </p>
+                        <div>
+                            <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
+                                    送出資料
+                                </span>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                                <div class="border"></div>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div>
+                <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
+            </div>
+        </div>
+    </div>
+
+
     @@include('./layout/footer.html')
-</div>
-    <script src="./js/loading.js"></script>
+    </div>
+    <!-- <script src="./js/loading.js"></script> -->
     <script src="./js/header_slide.js"></script>
     <script src="./js/hamburger.js"></script>
     <!-- <script src="./js/cursor.js"></script> -->
@@ -472,6 +564,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.js"></script>
     <script src="./js/signInOut.js"></script>
+     <!-- google map --> <script src="./js/map_forIndexjs.js"></script>
 
     <script id="script">
 
@@ -484,54 +577,54 @@
         // })
 
         //點擊項圈
-        let collarOptions= document.querySelectorAll('section.collar div.bottom div.option');
-        let middleImg= document.getElementById('middleImg');
-        let collarMiddle= document.querySelector('section.collar div.middle');
-        let middleSub= document.querySelector('section.collar div.middle div.left span.subtitle');
-        let middleNum= document.querySelector('section.collar div.middle div.left span.num');
-        let middleH3= document.querySelector('section.collar div.middle div.left h3');
-        let middleMakeSame= document.querySelector('section.collar div.middle a.makeSame');
-        for(let i=0; i<collarOptions.length; i++){
-            collarOptions[i].addEventListener('click',function(e){
-                collarMiddle.style.backgroundImage=`url(./img/paper/paper_${i}.png)`;
-                middleNum.innerText=`0${i+1}`;
-                middleImg.src= `img/collar_middle_${i}.png`;
-                if(i == 0){
+        let collarOptions = document.querySelectorAll('section.collar div.bottom div.option');
+        let middleImg = document.getElementById('middleImg');
+        let collarMiddle = document.querySelector('section.collar div.middle');
+        let middleSub = document.querySelector('section.collar div.middle div.left span.subtitle');
+        let middleNum = document.querySelector('section.collar div.middle div.left span.num');
+        let middleH3 = document.querySelector('section.collar div.middle div.left h3');
+        let middleMakeSame = document.querySelector('section.collar div.middle a.makeSame');
+        for (let i = 0; i < collarOptions.length; i++) {
+            collarOptions[i].addEventListener('click', function (e) {
+                collarMiddle.style.backgroundImage = `url(./img/paper/paper_${i}.png)`;
+                middleNum.innerText = `0${i + 1}`;
+                middleImg.src = `img/collar_middle_${i}.png`;
+                if (i == 0) {
                     collarMiddle.classList.remove("orange");
-                    middleH3.innerText="質感藍色";
+                    middleH3.innerText = "質感藍色";
                 }
-                else if(i ==1){
+                else if (i == 1) {
                     collarMiddle.classList.add("orange");
-                    middleH3.innerText="亮麗黃色";
+                    middleH3.innerText = "亮麗黃色";
                 }
-                else if(i == 2){
+                else if (i == 2) {
                     collarMiddle.classList.remove("orange");
-                    middleH3.innerText="熱情紅色";
+                    middleH3.innerText = "熱情紅色";
                 }
-                else if(i == 3){
+                else if (i == 3) {
                     collarMiddle.classList.remove("orange");
-                    middleH3.innerText="穩重褐色";
+                    middleH3.innerText = "穩重褐色";
                 }
-                else if(i == 4){
+                else if (i == 4) {
                     collarMiddle.classList.remove("orange");
-                    middleH3.innerText="溫暖綠色";
+                    middleH3.innerText = "溫暖綠色";
                 }
-                else if(i == 5){
+                else if (i == 5) {
                     collarMiddle.classList.remove("orange");
-                    middleH3.innerText="清新藍綠";
+                    middleH3.innerText = "清新藍綠";
                 }
-                else if(i == 6){
+                else if (i == 6) {
                     collarMiddle.classList.remove("orange");
-                    middleH3.innerText="夢幻粉色";
+                    middleH3.innerText = "夢幻粉色";
                 }
             });
         }
 
 
         //地圖展開選項
-        $( ".friendlyFather" ).click(function() {
-            $(".mapOption").toggleClass( "open" );
-            $(".friendlyChild").toggleClass( "open" );
+        $(".friendlyFather").click(function () {
+            $(".mapOption").toggleClass("open");
+            $(".friendlyChild").toggleClass("open");
         });
 
 
@@ -548,19 +641,19 @@
             separator: ',',
             decimal: '.',
         }
-        let demo = new CountUp(target , startVal, endVal , decimals , duration , options);
-        var nowScroll,groupToTop;
-        var windowHeight = $(window).height(); 
+        let demo = new CountUp(target, startVal, endVal, decimals, duration, options);
+        var nowScroll, groupToTop;
+        var windowHeight = $(window).height();
         var group = $("section.donation");
-        $(window).scroll(function(){
+        $(window).scroll(function () {
             nowScroll = $(this).scrollTop();
             groupToTop = group.offset().top;
-            if(windowHeight + nowScroll > groupToTop){
+            if (windowHeight + nowScroll > groupToTop) {
                 demo.start();
             }
         });
-        
-        
+
+
 
         new WOW().init();
 
@@ -578,15 +671,15 @@
                 sync: false,
                 reverse: false,
                 shuffle: false,
-                callback: function () {}
+                callback: function () { }
             },
             autoStart: true,
             outEffects: ['pulse'],
             type: 'char'
-        });     
+        });
 
 
-        
+
         $('#loadingText').textillate({
             loop: true,
             minDisplayTime: 2000,
@@ -599,7 +692,7 @@
                 sync: false,
                 reverse: false,
                 shuffle: false,
-                callback: function () {}
+                callback: function () { }
             },
             out: {
                 effect: 'bounce',
@@ -609,11 +702,29 @@
                 sync: false,
                 reverse: true,
                 shuffle: false,
-                callback: function () {}
+                callback: function () { }
             },
             autoStart: true,
             type: 'char'
         });     
     </script>
+
+    <!-- 燈箱JS -->    
+    <script src="./js/modernizr.custom.js"></script>
+    <script src="./js/classie.js"></script>
+    <script src="./js/dialogFx.js"></script>
+    <script>
+        (function () {
+
+            var dlgtrigger = document.querySelector('[data-dialog]'),
+                somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
+                dlg = new DialogFx(somedialog);
+
+            dlgtrigger.addEventListener('click', dlg.toggle.bind(dlg));
+
+        })();
+    </script>
+
 </body>
+
 </html>

@@ -46,7 +46,7 @@
     width: 350px;
     transition: left 0.5s;
     top: 10px;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     h2 {
       margin-top: 17px;
     }
@@ -85,10 +85,10 @@
       height: 40px;
       border-radius: 100%;
       border: none;
-      background-image: url(../img/icon_plus.png);
-      background-size: cover;
+      background-image: url(../img/pawprint-01.svg);
+      background-size: 25px;
       background-repeat: no-repeat;
-      background-position: right center;
+      background-position: center;
       background-color: darkgreen;
       padding: 0;
       position: absolute;

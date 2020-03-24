@@ -244,132 +244,132 @@ window.addEventListener('load', function() {
         nowTag.innerText = offset + 1;
     });
 
-    document.querySelector('#unlock1').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock2').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock3').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock4').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock5').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock6').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock7').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
-    document.querySelector('#unlock8').onclick = function() {
-        swal({
-                title: "兌換提示",
-                text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-                // type: "info",
-                allowOutsideClick: true,
-                showCancelButton: false,
-                confirmButtonColor: '#7e9c23',
-                confirmButtonText: '確認',
-                closeOnConfirm: false,
-                //closeOnCancel: false
-            },
-            function() {
-                swal("兌換成功!", "", "success");
-            });
-    };
+    // document.querySelector('#unlock1').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock2').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock3').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock4').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock5').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock6').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock7').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
+    // document.querySelector('#unlock8').onclick = function() {
+    //     swal({
+    //             title: "兌換提示",
+    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
+    //             // type: "info",
+    //             allowOutsideClick: true,
+    //             showCancelButton: false,
+    //             confirmButtonColor: '#7e9c23',
+    //             confirmButtonText: '確認',
+    //             closeOnConfirm: false,
+    //             //closeOnCancel: false
+    //         },
+    //         function() {
+    //             swal("兌換成功!", "", "success");
+    //         });
+    // };
 })

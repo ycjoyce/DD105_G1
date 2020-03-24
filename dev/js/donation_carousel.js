@@ -5,7 +5,17 @@ let carouselArea= document.querySelector('section.donation div.rightSide div.car
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
 let timerId;
 
+function dogAniSize(){
+    let dogAnimate= document.querySelector('section.donation div.dogAnimate');
+    let upImg= dogAnimate.querySelector("img");
+    dogAnimate.style.height= upImg.offsetHeight + "px";
+}
+dogAniSize();
+window.addEventListener("resize",dogAniSize);
+
+
 function donationCarousel(){
+    console.log(now);
     var bigImg= document.querySelector('div.carousel_donation div.img img');
     var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
     var date= document.querySelector('div.carousel_donation div.card span.date');
@@ -19,9 +29,8 @@ function donationCarousel(){
     var goalVal= leftCards[now-1].querySelector("div.text input[name='goal']").value;
     var curVal= leftCards[now-1].querySelector("div.text input[name='cur']").value;
     var comVal= Math.floor(curVal/goalVal*100)+"%";
-
-    //換大圖
-    bigImg.src=`img/donation_card_${now}.jpg`;
+    var wave= document.getElementById("wave");
+    wave.style.bottom= Math.floor(curVal/goalVal*100)*0.8-80 +"%";
 
     projectNum.innerText= leftCards[now-1].querySelector('div.text span:first-child').innerText;
     date.innerText= leftCards[now-1].querySelector('div.text span.date').innerText;
@@ -39,6 +48,8 @@ function donationCarousel(){
             leftCards[i-1].classList.add("on");
         }
     }
+    //換大圖
+    bigImg.src=`img/donation_card_${now}.jpg`;
 }
 
 donationCarousel();

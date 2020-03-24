@@ -326,10 +326,12 @@
                 divTitle.appendChild(h4);
                 divTitle.appendChild(span);
                 var p= document.createElement("p");
-                if(!fields[i].getElementsByTagName("msgText")[0].firstChild){
-                    var latestMsg= "傳送一張圖片";
-                }else{
+                if(!fields[i].getElementsByTagName("msgText")[0].firstChild && !fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                    var latestMsg= "";
+                }else if (fields[i].getElementsByTagName("msgText")[0].firstChild && !fields[i].getElementsByTagName("msgPic")[0].firstChild){
                     var latestMsg=fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
+                }else if (!fields[i].getElementsByTagName("msgText")[0].firstChild && fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                    var latestMsg= "傳送一張圖片";
                 }
                 var pText= document.createTextNode(latestMsg);
                 p.appendChild(pText);
@@ -511,94 +513,97 @@
             };
             btnBack.addEventListener('click',changeSide);
             for(var i=0; i<fields.length; i++){
-                var li= document.createElement("li");
-                var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
-                var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
+                if(fields[i].getElementsByTagName("msgText")[0].firstChild || fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                    var li= document.createElement("li");
+                    var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
+                    var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
 
-                if(myMemNo != sendMemNo){
-                    li.className="otherSide";
-                }else{
-                    li.className="self";
-                }
-                if(li.className=="otherSide"){
-                    var divImg= document.createElement("div");
-                    divImg.className="img";
-                    li.appendChild(divImg);
-                    var img= document.createElement("img");
-                    var sendMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
-                    img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
-                    divImg.appendChild(img);
-                    var h4= document.createElement("h4");
-                    var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
-                    var h4Text= document.createTextNode(sendMemName);
-                    h4.appendChild(h4Text);
-                    li.appendChild(h4);
-                }
-                var divText= document.createElement("div");
-                divText.className="text";
-                li.appendChild(divText);
-                if(li.className=="otherSide"){
-                    var h4= document.createElement("h4");
-                    var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
-                    var h4Text= document.createTextNode(sendMemName);
-                    h4.appendChild(h4Text);
-                    divText.appendChild(h4);
-                }
-                if(!fields[i].getElementsByTagName("msgPic")[0].firstChild){
-                    var p= document.createElement("p");
-                    var pText= fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
-                    var pNode= document.createTextNode(pText);
-                    p.appendChild(pNode);
-                    divText.appendChild(p);
-                }else{
-                    var img= document.createElement("img");
-                    img.src= `./img/msgPic/${fields[i].getElementsByTagName("msgPic")[0].firstChild.nodeValue}`;
-                    img.width= 200;
-                    divText.appendChild(img);
-                }
-                var span= document.createElement("span");
-                span.className="smalltext";
-                var msgTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
-                var spanText= document.createTextNode(msgTime.split(" ")[0]+"　"+msgTime.split(" ")[1].split(":")[0]+":"+msgTime.split(" ")[1].split(":")[1]);
-                span.appendChild(spanText);
-                divText.appendChild(span);
-                var button= document.createElement("button");
-                button.className="closeBtn";
-                button.classList.add(`No${fields[i].getElementsByTagName("msgNo")[0].firstChild.nodeValue}`);
-                divText.appendChild(button);
-                ulMain.appendChild(li);
-                var closeBtns= document.querySelectorAll('button.closeBtn');
-                var deleteAlert= document.getElementById("deleteAlert");
-                for(var i=0; i<closeBtns.length; i++){
-                    closeBtns[i].onclick=function(){
-                        deleteAlert.style.display="block";
-                        sessionStorage.setItem("delMsgNo",this.classList[1].substr(2));
+                    if(myMemNo != sendMemNo){
+                        li.className="otherSide";
+                    }else{
+                        li.className="self";
                     }
-                }
-                deleteAlert.querySelector('button.cancel').onclick=function(e){
-                    e.preventDefault();
-                    deleteAlert.style.display="none";
-                }
-                deleteAlert.querySelector('button.yes').onclick=function(e){
-                    e.preventDefault();
-                    deleteAlert.style.display="none";
-                    var xhr= new XMLHttpRequest();
-                    var url= "./php/deleteMsg.php";
-                    xhr.open("POST",url,true);
-                    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-                    var data_info=`delMsgNo=${sessionStorage.getItem("delMsgNo")}`;
-                    xhr.send(data_info);
-                    xhr.onload= function(){
-                        if(xhr.status==200){
-                            alert("成功刪除一筆私信");
-                            showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
-                            document.querySelector("aside ul").innerHTML="";
-                            getMsg();
-                        }else{
-                            alert(xhr.status);
+                    if(li.className=="otherSide"){
+                        var divImg= document.createElement("div");
+                        divImg.className="img";
+                        li.appendChild(divImg);
+                        var img= document.createElement("img");
+                        var sendMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
+                        img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
+                        divImg.appendChild(img);
+                        var h4= document.createElement("h4");
+                        var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                        var h4Text= document.createTextNode(sendMemName);
+                        h4.appendChild(h4Text);
+                        li.appendChild(h4);
+                    }
+                    var divText= document.createElement("div");
+                    divText.className="text";
+                    li.appendChild(divText);
+                    if(li.className=="otherSide"){
+                        var h4= document.createElement("h4");
+                        var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                        var h4Text= document.createTextNode(sendMemName);
+                        h4.appendChild(h4Text);
+                        divText.appendChild(h4);
+                    }
+                    if(!fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                        var p= document.createElement("p");
+                        var pText= fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
+                        var pNode= document.createTextNode(pText);
+                        p.appendChild(pNode);
+                        divText.appendChild(p);
+                    }else{
+                        var img= document.createElement("img");
+                        img.src= `./img/msgPic/${fields[i].getElementsByTagName("msgPic")[0].firstChild.nodeValue}`;
+                        img.width= 200;
+                        divText.appendChild(img);
+                    }
+                    var span= document.createElement("span");
+                    span.className="smalltext";
+                    var msgTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
+                    var spanText= document.createTextNode(msgTime.split(" ")[0]+"　"+msgTime.split(" ")[1].split(":")[0]+":"+msgTime.split(" ")[1].split(":")[1]);
+                    span.appendChild(spanText);
+                    divText.appendChild(span);
+                    var button= document.createElement("button");
+                    button.className="closeBtn";
+                    button.classList.add(`No${fields[i].getElementsByTagName("msgNo")[0].firstChild.nodeValue}`);
+                    divText.appendChild(button);
+                    ulMain.appendChild(li);
+                    var closeBtns= document.querySelectorAll('button.closeBtn');
+                    var deleteAlert= document.getElementById("deleteAlert");
+                    for(var i=0; i<closeBtns.length; i++){
+                        closeBtns[i].onclick=function(){
+                            deleteAlert.style.display="block";
+                            sessionStorage.setItem("delMsgNo",this.classList[1].substr(2));
+                        }
+                    }
+                    deleteAlert.querySelector('button.cancel').onclick=function(e){
+                        e.preventDefault();
+                        deleteAlert.style.display="none";
+                    }
+                    deleteAlert.querySelector('button.yes').onclick=function(e){
+                        e.preventDefault();
+                        deleteAlert.style.display="none";
+                        var xhr= new XMLHttpRequest();
+                        var url= "./php/deleteMsg.php";
+                        xhr.open("POST",url,true);
+                        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                        var data_info=`delMsgNo=${sessionStorage.getItem("delMsgNo")}`;
+                        xhr.send(data_info);
+                        xhr.onload= function(){
+                            if(xhr.status==200){
+                                alert("成功刪除一筆私信");
+                                showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                                document.querySelector("aside ul").innerHTML="";
+                                getMsg();
+                            }else{
+                                alert(xhr.status);
+                            }
                         }
                     }
                 }
+                
             }
             var mainUl= document.querySelector("main ul");
             mainUl.scroll(0,mainUl.scrollHeight);

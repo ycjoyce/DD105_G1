@@ -723,14 +723,21 @@
         <!-- container -->
     </section>
     <footer>
-        <p class="titleFont smalltext">
-            © 2020 Bring Love Home
-        </p>
-    </footer>
+    <div class="page_top" id="page_top">
+        <span class="titleFont smalltext">PAGE TOP</span>
+    </div>
+    <p class="titleFont smalltext">
+        © 2020 Bring Love Home
+    </p>
+</footer>
+
+<script src="./js/page_top.js"></script>
+
 
 
     <script src="./js/hamburger.js"></script>
     <!-- <script src="./js/header_slide.js"></script> -->
+    <script src="./js/page_top.js"></script>
     <script src="./js/signInOut.js"></script>
     <script src="./js/blacklistTable.js"></script>
     <!-- Login -->
@@ -742,7 +749,7 @@
             let header= document.querySelector('nav');
             let section= document.querySelector('section');
             let footer= document.querySelector('footer');
-            section.style.height= window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
+            section.style.minHeight= window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
         }
         sectionHeight();
         window.addEventListener("resize",sectionHeight);
@@ -781,7 +788,7 @@
         var winWidth = $(window).width();
         var winHeight = $(window).height();
 
-        if (winWidth < 414) {
+        if (winWidth < 415) {
             $(document).ready(function () {
                 $('#filterBtn').click(function () {
                     $(this).parent('#tabs-container1').toggleClass('-showFilter');

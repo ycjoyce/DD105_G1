@@ -1,5 +1,9 @@
 <?php
 
+ini_set("display_errors","On");
+error_reporting(E_ALL);
+
+
 $errMsg = "";
 
 try{
@@ -9,16 +13,20 @@ try{
     
     if( $_FILES["lostPetRpImg"]["error"] == UPLOAD_ERR_OK){
 
-    $sql= "INSERT INTO `lostpetreport` (lostPetRpName, lostPetRpCh, lostPetRpLoc, lostPetRpLDate, lostPetRpType, lostPetRpStat, lostPetRpImg) values(:lostPetRpName, :lostPetRpCh, :lostPetRpLoc, :lostPetRpLDate, :lostPetRpType,:lostPetRpStat, null)";
+    $sql= "INSERT INTO `lostpetreport` (memNo, memName, lostPetRpName, lostPetRpCh, lostPetRpLoc, lostPetRpLDate, lostPetRpType, lostPetRpStat, lostPetRpImg, lostPetRpLoclat, lostPetRpLoclng, lostPetRpLocAdd) values(:memNo, :memName, :lostPetRpName, :lostPetRpCh, :lostPetRpLoc, :lostPetRpLDate, :lostPetRpType,:lostPetRpStat, null, :lostPetRpLoclat,:lostPetRpLoclng ,:lostPetRpLocAdd)";
    
-    $lostRp= $pdo->prepare($sql);
+	$lostRp= $pdo->prepare($sql);
+	$lostRp->bindValue(":memNo", $_POST["memNo"]);
+	$lostRp->bindValue(":memName", $_POST["memName"]);
     $lostRp->bindValue(":lostPetRpName", $_POST["lostPetRpName"]);
     $lostRp->bindValue(":lostPetRpCh", $_POST["lostPetRpCh"]);
     $lostRp->bindValue(":lostPetRpLoc", $_POST["lostPetRpLoc"]);
     $lostRp->bindValue(":lostPetRpLDate", $_POST["lostPetRpLDate"]);
     $lostRp->bindValue(":lostPetRpType", $_POST["lostPetRpType"]);    
-    $lostRp->bindValue(":lostPetRpStat", $_POST["lostPetRpStat"]);
-    // $lostRp->bindValue(":lostPetRpImg", $_FILES["lostPetRpImg"]["name"]);
+	$lostRp->bindValue(":lostPetRpStat", $_POST["lostPetRpStat"]);
+	$lostRp->bindValue(":lostPetRpLoclat", $_POST["lostPetRpLoclat"]);
+	$lostRp->bindValue(":lostPetRpLoclng", $_POST["lostPetRpLoclng"]);
+	$lostRp->bindValue(":lostPetRpLocAdd", $_POST["lostPetRpLocAdd"]);
     $lostRp->execute();
 
     //取得自動創號的key值
@@ -57,5 +65,6 @@ catch(PDOException $e) {
 	$errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";	
 }
 echo $errMsg;
+
 
 ?>

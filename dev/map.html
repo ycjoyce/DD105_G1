@@ -8,6 +8,7 @@
     @@include('./layout/head.html',{
     "title": "浪愛回家 ｜ 浪浪在哪裡"
     })
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <link rel="stylesheet" href="./css/map.css">
     <script src="./js/modernizr.custom.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -15,6 +16,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
     <!-- scrollmagic -->
     <!-- 主程式 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
@@ -198,18 +200,25 @@
                                 <select name="lost_area" id="lost_area" class="smalltext">
                                     <optgroup label="台北市">
                                         <option value="0" hidden>--請選擇--</option>
-                                        <option value="lost_area_01">士林區</option>
-                                        <option value="lost_area_02">大同區</option>
-                                        <option value="lost_area_03">大安區</option>
-                                        <option value="lost_area_04">中山區</option>
-                                        <option value="lost_area_05">中正區</option>
-                                        <option value="lost_area_06">內湖區</option>
-                                        <option value="lost_area_07">文山區</option>
-                                        <option value="lost_area_08">北投區</option>
-                                        <option value="lost_area_09">松山區</option>
-                                        <option value="lost_area_10">信義區</option>
-                                        <option value="lost_area_11">南港區</option>
-                                        <option value="lost_area_12">萬華區</option>
+                                        <option value="台灣">全　部</option>
+                                        <option value="基隆">基隆市</option>
+                                        <option value="台北">台北市</option>
+                                        <option value="新北">新北市</option>
+                                        <option value="桃園">桃園市</option>
+                                        <option value="新竹">新竹縣/市</option>
+                                        <option value="苗栗">苗栗縣</option>
+                                        <option value="台中">台中市</option>
+                                        <option value="彰化">彰化縣</option>
+                                        <option value="南投">南投縣</option>
+                                        <option value="雲林">雲林縣</option>
+                                        <option value="嘉義">嘉義縣/市</option>
+                                        <option value="台南">台南市</option>
+                                        <option value="高雄">高雄市</option>
+                                        <option value="屏東">屏東縣</option>
+                                        <option value="宜蘭">宜蘭縣</option>
+                                        <option value="花蓮">花蓮縣</option>
+                                        <option value="台東">台東縣</option>
+                                        <option value="澎湖">澎湖縣</option>
                                     </optgroup>
                                 </select>
                             </p>
@@ -227,15 +236,15 @@
                                     <label for="friendly">寵物友善空間</label>
                                 </h3>
                                 <p>
-                                    <input type="checkbox" name="friendtypes[]" id="fr_rest" value="1">
+                                    <input type="checkbox" name="friendtypes" id="fr_rest" value="1" checked>
                                     <label for="fr_rest">友善餐廳</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" name="friendtypes[]" id="fr_stay" value="2">
+                                    <input type="checkbox" name="friendtypes" id="fr_stay" value="2" checked>
                                     <label for="fr_stay">友善住宿</label>
                                 </p>
                                 <p>
-                                    <input type="checkbox" name="friendtypes[]" id="fr_point" value="3">
+                                    <input type="checkbox" name="friendtypes" id="fr_point" value="3" checked>
                                     <label for="fr_point">友善景點</label>
                                 </p>
                                 <p>
@@ -243,6 +252,7 @@
                                     <select name="fr_area" id="fr_area" class="smalltext">
                                         <optgroup label="台北市">
                                             <option value="0" hidden>--請選擇--</option>
+                                            <option value="0">全　部</option>
                                             <option value="1">士林區</option>
                                             <option value="2">大同區</option>
                                             <option value="3">大安區</option>
@@ -258,7 +268,7 @@
                                         </optgroup>
                                     </select>
                                 </p>
-                                <p>
+                                <!-- <p>
                                     <label for="fr_rate">選擇星等</label>
                                     <select name="fr_rate" id="fr_rate" class="smalltext">
                                         <option value="" disabled selected>--請選擇星等--</option>
@@ -268,7 +278,7 @@
                                         <option value="fr_rate_2">2</option>
                                         <option value="fr_rate_1">1</option>
                                     </select>
-                                </p>
+                                </p> -->
                             </div>
 
                             <!-- 寵物友善空間－我的收藏 -->
@@ -307,8 +317,6 @@
                                 alt="" /></button>
                     </div>
                 </div>
-                <!-- <iframe src="http://maps.google.com?output=embed&q=友善動物"
-                    style="width: 100%; height: 100%; border: none;"></iframe> -->
             </div>
         </section>
     </div>
@@ -318,12 +326,18 @@
         <div class="dialog__overlay"></div>
         <div id="lostform_cus" class="dialog__content">
             <div id="lostform">
-                <form action="./php/map_lostform.php" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- action="./php/map_lostform.php" -->
                     <fieldset>
                         <h3>寵物遺失地點登記</h3>
                         <p>
                             <label for="lostPetRpLoc">寵物遺失地點</label>
                             <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                            <input type="hidden" id="memNo" name="memNo" value="">
+                            <input type="hidden" id="memName" name="memName" value="">
+                            <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
+                            <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
+                            <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
                         </p>
                         <p>
                             <label for="lostPetRpLDate">寵物遺失時間</label>
@@ -345,8 +359,8 @@
                             <label for="lostPetRpStat">案件狀態</label>
                             <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
                                 <option value="" disabled>-- 請選擇狀態 --</option>
-                                <option value="0">已找到</option>
-                                <option value="1">進行中</option>
+                                <option value="0">進行中</option>
+                                <option value="1">已找到</option>
                                 <option value="2">未找到，已結案</option>
                             </select>
                         </p>
@@ -376,8 +390,6 @@
             </div>
         </div>
     </div>
-    <!--  -->
-    <div id="psdd" value="123" style="width: 50px; height: 50px; background-color: aqua;">12</div>
     <!-- 燈箱JS -->
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
@@ -416,15 +428,21 @@
 
     <script>
         $(document).ready(function () {
-            $('#psdd').click(function () {
-                alert("你好")
-            })
-
             var winWidth = $(window).width();
             var winHeight = $(window).height();
 
+            function mem_No() {
+                var mem_No = member.memNo;
+                var mem_Id = member.memName;
+                document.getElementById('memNo').value = mem_No;
+                document.getElementById('memName').value = mem_Id;
+            };
+            mem_No();
+
             // [展開/關閉] 快速搜尋/我的收藏
             $('#map_option_fil').click(function () {
+                // 取得遠端資料並渲染
+                getFriendly();
                 $(this).siblings('.map_filter_filter').slideToggle('slow');
                 $(this).toggleClass('is-active');
 
@@ -435,6 +453,8 @@
             });
 
             $('#map_option_lost').click(function () {
+                // 取得遠端資料並渲染
+                getLost();
                 $(this).siblings('.map_filter_lost').slideToggle('slow');
                 $(this).toggleClass('is-active');
 
@@ -450,17 +470,49 @@
             };
 
 
+            //判斷會員登入
+            function checkLoginStatus(e) {
+                // alert('判斷');
+                // e.stopPropagation();
+                var xhr = new XMLHttpRequest();
+                var url = "php/checkMem.php";
+                xhr.open("GET", url, true);
+                xhr.send(null);
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        member = JSON.parse(xhr.responseText);
+                        if (!member.memName) {
+                            // document.getElementById("somedialog").style.display = "none";
+                            // $('[data-dialog]').removeClass("trigger");
+                            e.preventDefault();
+                            e.stopPropagation();
+                            alert('請先登入');
+                            $("#somedialog").removeClass("dialog--open");
+                        }
+                    }
+                }
+            }
+            document.getElementById("lostform_btn").addEventListener("click", checkLoginStatus);
+
+
+
+
             // 寵物遺失申請
             var lostPetRpImg = document.getElementById("lostPetRpImg");
             $("#rpbtn").click(function (e) {
                 e.preventDefault();
                 var formData = new FormData();
+                formData.append("memNo", $("#memNo").val());
+                formData.append("memName", $("#memName").val());
                 formData.append("lostPetRpName", $("#lostPetRpName").val());
                 formData.append("lostPetRpCh", $("#lostPetRpCh").val());
                 formData.append("lostPetRpLoc", $("#lostPetRpLoc").val());
                 formData.append("lostPetRpLDate", $("#lostPetRpLDate").val());
                 formData.append("lostPetRpType", $("#lostPetRpType").val());
                 formData.append("lostPetRpStat", $("#lostPetRpStat").val());
+                formData.append("lostPetRpLoclat", $("#lostPetRpLoclat").val());
+                formData.append("lostPetRpLoclng", $("#lostPetRpLoclng").val());
+                formData.append("lostPetRpLocAdd", $("#lostPetRpLocAdd").val());
                 formData.append("lostPetRpImg", lostPetRpImg.files[0]);
                 $.ajax({
                     type: "POST",
@@ -473,23 +525,44 @@
                         if (data.indexOf("成功") != -1) {
                             alert("新增成功");
                             $("#somedialog").removeClass("dialog--open");
-                            $("#lostPetRpName").val("");
-                            $("#lostPetRpCh").val("");
-                            $("#lostPetRpLoc").val("");
-                            $("#lostPetRpLDate").val("");
-                            $("#lostPetRpType").val("");
-                            $("#lostPetRpStat").val("");
+                            $("#memNo,#memName,#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd").val("");
+                            getLost();
                         }
                         else {
                             alert("新增失敗");
                         }
                     },
-                    error: function () {
-                        alert("請上傳圖片");
+                    error: function (xhr, status, error) {
+                        // alert("請上傳圖片");
+                        // var err = eval("(" + xhr.responseText + ")");
+                        alert(xhr.Message);
                     }
                 })
             })
         });
+
+
+        var mySwiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            direction: 'vertical',
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
     </script>
 
     <!-- -------------------------------------------------- -->

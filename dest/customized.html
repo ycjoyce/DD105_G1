@@ -24,9 +24,14 @@
 </head>
 
 <body>
+
     <div id="memberPoint">
         會員點數 :
         <span id="showPoint"></span> 點
+    </div>
+    <div style="display: none; position: fixed; right: 100px; top: 150px; z-index: 100;">
+        解鎖吊牌:
+        <span id="memTagNo"></span>
     </div>
     <header class="header-navigation" id="header">
     <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -79,10 +84,10 @@
                         if (xhr.status == 200) {
                             member = JSON.parse(xhr.responseText);
                             if (member.memId) {
-                                var memPoints = member.memPoint;
                                 memberPoint.style.display = "block";
-                                document.getElementById('showPoint').innerText = memPoints;
                                 signInFirstBlock.style.display = "none";
+                                // alert(typeof(member.memNo));
+
                             }
                         }
                     }
@@ -208,6 +213,61 @@
                                 </div>
                             </div>
                             <script>
+                                window.addEventListener('load', function() {
+                                    var memNo = member.memNo;
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/getMemPoint.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memNo=${memNo}`;
+                                    xhr.send(data_info);
+
+                                    xhr.onload = function() {
+                                        // console.log(this.responseText);
+                                        let frontStr = this.responseText.substr(14);
+                                        // console.log(frontStr);
+                                        let backStr = frontStr.lastIndexOf('0');
+                                        // console.log(backStr);
+                                        newStr = parseInt(frontStr.substring(0, backStr + 1));
+                                        // console.log(newStr);
+                                        // console.log(typeof(newStr));
+                                        document.getElementById('showPoint').innerText = newStr;
+                                        member.memPoint = document.getElementById('showPoint').innerText;
+                                    };
+
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/getMemTagNo.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memNo=${memNo}`;
+                                    xhr.send(data_info);
+                                    xhr.onload = function() {
+                                        // alert(this.responseText);
+                                        let frontStr = this.responseText.substr(14);
+                                        // console.log(frontStr);
+                                        let backStr = frontStr.lastIndexOf('"');
+                                        // console.log(backStr);
+                                        let newTagStr = frontStr.substring(0, backStr);
+                                        // console.log(typeof(newTagStr));
+                                        document.getElementById('memTagNo').innerText = newTagStr;
+                                        console.log(typeof(document.getElementById('memTagNo').innerText));
+                                        newArray = document.getElementById('memTagNo').innerText.split(",");
+                                        // console.log(myArray);
+                                        member.memTagNo = document.getElementById('memTagNo').innerText;
+                                    }
+                                });
+
+
+                                function updateMemPoint(sendNewPoint) {
+                                    var memNo = member.memNo;
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/updateMemPoint.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memNo=${memNo}&memPoint=${sendNewPoint}`;
+                                    xhr.send(data_info);
+                                }
+
                                 function showTag() {
                                     $.ajax({
                                         url: "php/getTagInfo.php",
@@ -217,22 +277,72 @@
                                             let msg = "";
                                             for (i = 0; i < data.length; i++) {
                                                 msg +=
-                                                    `<div class="tagItems">
+                                                    `<div class="tagItems" tagNo="${data[i].tagNo}">
                                                         <img src="./img/customized_collar/new1/${data[i].tagSrc1}" alt="" class="tagImages" id="tagImages${i+1}" psn="${i}">
                                                         <div class="lockPoint" id="lockPoint${i+1}">
                                                             <span>所需點數&nbsp;:</span>
                                                             <span>&nbsp;${data[i].tagPoint}</span>
                                                         </div>
                                                         <div class="lockStatus" id="unlock${i+1}">
-                                                            <button class="unlock">解鎖</button>
+                                                            <button class="unlock" point="${data[i].tagPoint}">解鎖</button>
                                                         </div>
                                                     </div>`
                                             }
                                             $("#collarTagWrap").append(msg);
+                                            $(document).ready(function() {
+                                                newArray = document.getElementById('memTagNo').innerText.split(",");
+                                                $('.unlock').click(function() {
+                                                    let point = parseInt($(this).attr('point'));
+                                                    let nowPoint = $('#showPoint').text();
+                                                    let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
+                                                    if (result) {
+                                                        if (nowPoint >= point) {
+                                                            nowPoint = nowPoint - point;
+                                                            member.memPoint = nowPoint;
+                                                            updateMemPoint(nowPoint);
+                                                            document.getElementById('showPoint').innerText = nowPoint;
+                                                            swal("兌換成功!", "", "success");
+                                                            newArray.push($(this).parent().parent().attr('tagNo'));
+                                                            tagStr = newArray.toString();
+                                                            if (tagStr.charAt(0) == ",") {
+                                                                tagStr = tagStr.substr(1);
+                                                            }
+                                                            updateMemTagNo(tagStr);
+                                                            document.getElementById('memTagNo').innerText = tagStr;
+                                                            member.memTagNo = document.getElementById('memTagNo').innerText;
+                                                        } else {
+                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點`);
+                                                        }
+                                                    } else {
+                                                        return;
+                                                    }
+                                                })
+                                            });
                                         }
                                     })
                                 }
                                 showTag();
+
+                                // $(document).ready(function() {
+                                //     var arr = new Array();
+                                //     alert(typeof(arr));
+                                //     $('.unlock').click(function() {
+                                //         arr.push($(this).parent().parent().attr('tagNo'));
+                                //         console.log(arr);
+                                //         alert(arr);
+                                //     })
+                                // })
+
+
+                                function updateMemTagNo(sendMemTagNo) {
+                                    var memNo = member.memNo;
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/updateMemTagNo.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memNo=${memNo}&memTagNo=${sendMemTagNo}`;
+                                    xhr.send(data_info);
+                                }
                             </script>
                             <div class="changePage sliderBtns">
                                 <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
