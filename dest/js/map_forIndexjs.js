@@ -271,10 +271,11 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a href="#" title:"我要私信主人">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li>私信主人：<a class="mapMsg" title:"我要私信主人">${memName}<img src="./img/icon_private_message.svg"></a></li>
       </ul>
     </div>
   `;
+
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
@@ -296,6 +297,31 @@ function loadLostData(
     }
     infowindow.open(map, marker);
     currentInfoWindow = infowindow;
+
+    //連結私信功能================================
+
+    //判斷登入狀態
+    // let memStatus= member.memId;
+    function checkMemStatus(e){
+      e.preventDefault();
+      e.stopPropagation();
+      // if(member.memId){
+      //   e.preventDefault();
+      //   alert("請先登入");
+      //   location.href="./login.html";
+      // }else{
+      //   alert("ok");
+      // }
+      alert("ok");
+    }
+    
+    let mapMsg= document.querySelector("a.magMsg");
+    
+    mapMsg.addEventListener("click",checkMemStatus);  
+    
+   
+    //==========================================
+
   });
   markers.push(marker);
 }

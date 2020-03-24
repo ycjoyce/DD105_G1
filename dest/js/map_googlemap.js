@@ -386,7 +386,7 @@ function getFriendly() {
 // 變更寵物友善地區及類別
 let search_area = "";
 let search_type = "";
-alert(search_area,"first");
+alert(search_area, "first");
 
 function changeMarker() {
   alert("切換");
@@ -402,63 +402,64 @@ function changeMarker() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     for (var i = 0; data.length > i; i++) {
-      if(search_type == 0){
-        alert('沒選地區')
-        if (
-          data[i].friendlyTypeNo == search_type[0]
-        ) {
-          loadfriendlyData(
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
-        }
-        if (
-          data[i].friendlyTypeNo == search_type[1]
-        ) {
-          loadfriendlyData(
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
-        }
-        if (
-          data[i].friendlyTypeNo == search_type[2]
-        ) {
-          loadfriendlyData(
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
-        }
-      }else{if (
+      // if(search_type == 0){
+      //   alert('沒選地區')
+      //   if (
+      //     data[i].friendlyTypeNo == search_type[0]
+      //   ) {
+      //     loadfriendlyData(
+      //       data[i].friendlylat,
+      //       data[i].friendlylng,
+      //       data[i].friendlyName,
+      //       data[i].friendlyPic,
+      //       data[i].friendlyTel,
+      //       data[i].friendlyAddress,
+      //       data[i].friendlyIntro_1,
+      //       data[i].friendlyIntro_2,
+      //       data[i].friendlyIntro_3,
+      //       data[i].friendlyIntro_4,
+      //       data[i].friendlyTypeNo,
+      //       data[i].friendlyTypeName
+      //     );
+      //   }
+      //   if (
+      //     data[i].friendlyTypeNo == search_type[1]
+      //   ) {
+      //     loadfriendlyData(
+      //       data[i].friendlylat,
+      //       data[i].friendlylng,
+      //       data[i].friendlyName,
+      //       data[i].friendlyPic,
+      //       data[i].friendlyTel,
+      //       data[i].friendlyAddress,
+      //       data[i].friendlyIntro_1,
+      //       data[i].friendlyIntro_2,
+      //       data[i].friendlyIntro_3,
+      //       data[i].friendlyIntro_4,
+      //       data[i].friendlyTypeNo,
+      //       data[i].friendlyTypeName
+      //     );
+      //   }
+      //   if (
+      //     data[i].friendlyTypeNo == search_type[2]
+      //   ) {
+      //     loadfriendlyData(
+      //       data[i].friendlylat,
+      //       data[i].friendlylng,
+      //       data[i].friendlyName,
+      //       data[i].friendlyPic,
+      //       data[i].friendlyTel,
+      //       data[i].friendlyAddress,
+      //       data[i].friendlyIntro_1,
+      //       data[i].friendlyIntro_2,
+      //       data[i].friendlyIntro_3,
+      //       data[i].friendlyIntro_4,
+      //       data[i].friendlyTypeNo,
+      //       data[i].friendlyTypeName
+      //     );
+      //   }
+      // }else{
+      if (
         data[i].friendlyTypeNo == search_type[0] &&
         data[i].friendlyLocNo == search_area
       ) {
@@ -514,9 +515,9 @@ function changeMarker() {
           data[i].friendlyTypeNo,
           data[i].friendlyTypeName
         );
-      }}
-      
+      }
     }
+    // }
   };
 }
 window.addEventListener("load", function() {
