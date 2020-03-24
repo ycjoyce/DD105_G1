@@ -250,6 +250,51 @@ $(".mapOption li:nth-child(1)").click(function() {
   getLost();
 });
 
+//連結私信功能==================================
+let petLostOwner="";
+function mapMsg(id){
+  if(member.memId){
+    $.ajax({
+      url: './php/checkNotSelf.php',
+      type: 'POST',
+      data: {lostNo: id.substr(4)},
+      success(data){
+        if(member.memNo==data){
+          alert("此寵物主人為您本人");
+        }else{
+          petLostOwner= data;
+          $.ajax({
+            url: './php/mapMsg.php',
+            type: 'POST',
+            data: {lostNo: id.substr(4)},
+            success(data){
+              if(data.indexOf("error")==-1){
+                sessionStorage.setItem("now-on",petLostOwner);
+                location.href="./message.html";
+              }else{
+                alert("操作失敗");
+              }
+            },
+            error(data){
+              alert(data);
+            }
+          });
+          // alert(`我是${member.memNo}，這張卡片編號是${id.substr(4)}`);
+        }
+      },
+      error(data){
+        alert(data);
+      },
+    });
+    
+  }else{
+    alert("請先登入");
+  }
+}
+
+//=============================================
+
+
 // 讀取地標
 function loadLostData(
   rpNo,
@@ -273,10 +318,11 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a href="#" title:"我要私信主人" id="msg_${rpNo}">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')">${memName}<img src="./img/icon_private_message.svg"></a></li>
       </ul>
     </div>
   `;
+
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });

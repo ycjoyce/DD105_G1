@@ -599,7 +599,16 @@ section.where{
         height: 500px;
         position: relative;
     }
+    
     div.card{
+        transition: all 0.5s;
+        &.hide{
+            left: 105%;
+            #mapCardBtn{
+                left: -50px;
+                top: -50px;
+            }
+        }
         float:right;
         position: relative;
         top: -200px;
@@ -608,7 +617,7 @@ section.where{
         border-radius: 10px 0 0 10px;
         box-shadow: #999 0px 0px 5px;
         padding: 30px 80px 30px 60px;
-        position: relative;
+        max-width: 100%;
         @include rwd(lg){
             padding: 30px 50px 30px 30px;
             top: -230px;
@@ -624,6 +633,36 @@ section.where{
         @include rwd(ss){
             padding:25px;
             top: -230px;
+            width: 100%;
+        }
+        #mapCardBtn{
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            background-color: $darkgreen;
+            border: none;
+            outline: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: -50px;
+            transition: all 0.5s;
+            color: rgb(237, 251, 229);
+            display: none;
+            @include rwd(ss){
+                display: block;
+            }
+            img{
+                transition: all 0.5s;
+                width: 20px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-53%);
+                &.rotate{
+                    transform: translate(-50%,-53%) rotate(180deg);
+                }
+            }
         }
         h3{
             position: relative;
@@ -644,6 +683,9 @@ section.where{
                 top: -10px;
                 opacity: 1;
                 transition: opacity 0.5s;
+                @include rwd(ss){
+                    display: none;
+                }
             }
             &.active{
                 &::before{
@@ -680,14 +722,67 @@ section.where{
                 }
             }
         }
-        .btn.darkgreen{
-            width:150px;
-            filter: hue-rotate(0);
-            transition: all 0.5s;
-            &.active{
-                filter: hue-rotate(90deg);
+        div.trigger{
+            display: inline-block;
+            .btn.darkgreen{
+                width:150px;
+                filter: hue-rotate(0);
+                transition: all 0.5s;
+                &.active{
+                    filter: hue-rotate(90deg);
+                }
+                &.lostPet{
+                    background-color: #ff5050;
+                    .border:nth-of-type(1){
+                        top:0;
+                        left:0;
+                        width:0;
+                        height:0;
+                        border-top:1px solid #ff5050;
+                    }
+                    .border:nth-of-type(2){
+                        top:0;
+                        right:0;
+                        width:0;
+                        height:0;
+                        border-right:1px solid #ff5050;
+                    }
+                    .border:nth-of-type(3){
+                        bottom:0;
+                        right:0;
+                        width:0;
+                        height:0;
+                        border-bottom:1px solid #ff5050;
+                    }
+                    .border:nth-of-type(4){
+                        bottom:0;
+                        left:0;
+                        width:0;
+                        height:0;
+                        border-left:1px solid #ff5050;
+                    }
+                    &:hover{
+                        background-color: #fff;
+                        span{
+                            color: #ff5050;
+                        }
+                        .border:nth-of-type(1){
+                            width:100%;
+                        }
+                        .border:nth-of-type(2){
+                            height:100%;
+                        }
+                        .border:nth-of-type(3){
+                            width:100%;
+                        }
+                        .border:nth-of-type(4){
+                            height:100%;
+                        }
+                    }
+                }
             }
         }
+        
         @include changePage(){
             float: right;
             position: relative;
@@ -695,11 +790,17 @@ section.where{
             margin-left: 50px;
         }
         div.changePage{
+            @include rwd(ss){
+                margin-left: 0;
+            }
             button{
                 transform: translateY(0);
                 transition: all 0.5s ease;
                 &.active{
                     transform: translateY(3px);
+                }
+                @include rwd(ss){
+                    width: 40px;
                 }
             }
         }
@@ -931,6 +1032,7 @@ section.donation{
                 position: relative;
                 float:right;
                 top: -150px;
+                max-width: 500px;
                 @include fatherHeight();
                 @include rwd(lg){
                     padding: 20px 30px 20px 30px;
@@ -1012,7 +1114,7 @@ section.donation{
                 .btn.darkgreen{
                     position: relative;
                     top: 5px;
-                    width: 150px;
+                    width: 120px;
                     filter: hue-rotate(0);
                     transition: all 0.5s;
                     @include rwd(ss){
@@ -1539,10 +1641,10 @@ section.collar{
             height: 150px;
             flex-shrink: 0;
             @include rwd(sm){
-                width: 100px;
+                min-width: 100px;
             }
             @include rwd(ss){
-                width: 100px;
+                min-width: 100px;
             }
             div{
                 display: inline-block;

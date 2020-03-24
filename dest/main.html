@@ -186,7 +186,11 @@
                 </div>
             </div>
         </div>
-        <div class="card wow fadeInRight" data-wow-duration="1s">
+        
+        <div class=" hide card wow fadeInRight" data-wow-duration="1s">
+            <button id="mapCardBtn">
+                <img src="./img/back.png">
+            </button>
             <h3 class="wow fadeInUp" data-wow-delay=".2s"><a href="#" class="titleFont">寵物遺失地點</a></h3>
             <p class="wow fadeInUp" data-wow-delay=".4s">
                 心愛的毛孩走丟了也別驚慌，<br>
@@ -797,6 +801,45 @@
             autoStart: true,
             type: 'char'
         });     
+        
+
+        //地圖rwd
+        var mapCardBtn= document.getElementById("mapCardBtn");
+        var mapCard= document.querySelector("section.where div.card");
+        mapCardBtn.addEventListener("click",function(){
+            if(mapCard.classList.contains("hide")){
+                mapCard.classList.remove("hide");
+                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                    mapCardBtn.querySelector("img").classList.remove("rotate");
+                }
+            }else{
+                mapCard.classList.add("hide");
+                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                    mapCardBtn.querySelector("img").classList.add("rotate");
+                }
+            }
+        });
+        
+        if(document.body.clientWidth>575){
+            if(mapCard.classList.contains("hide")){
+                mapCard.classList.remove("hide");
+            }
+        }else{
+            if(!mapCard.classList.contains("hide")){
+                mapCard.classList.add("hide");
+            }
+        }
+        window.addEventListener("resize",function(){
+            if(document.body.clientWidth>575){
+                if(mapCard.classList.contains("hide")){
+                    mapCard.classList.remove("hide");
+                }
+            }else{
+                if(!mapCard.classList.contains("hide")){
+                    mapCard.classList.add("hide");
+                }
+            }
+        });
     </script>
 
     <!-- 燈箱JS -->    

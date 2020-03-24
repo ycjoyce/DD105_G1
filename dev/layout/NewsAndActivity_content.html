@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="accordion" id="accordionExample">
-            <div class="card">
+            <!-- <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
@@ -27,17 +27,17 @@
                                         :style="{backgroundImage: 'url('+upact_infos.activity_img+')'}" for="upimg">
                                         <input type="file" name="act_img" id="upimg" style="display: none;"
                                             @change="up_img">
-                                        <img src="./img/back/upload.png" class="uploadimg"
+                                        <img src="./img/upload-zone.png" class="uploadimg"
                                             v-if="upact_infos.activity_img == ''">
-                                        <!-- <img :src=upact_infos.activity_img class="act_img" v-else> -->
-                                        <div class="img_name">{{ upact_infos.activity_g }}</div>
-                                    </label>
+                                        <img :src=upact_infos.activity_img class="act_img" v-else> -->
+                                        <!-- <div class="img_name">{{ upact_infos.activity_g }}</div> -->
+                                    <!-- </label>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_num"> 活動/新聞/宣導編號</label>
                                         <input type="number" class="form-control" id="activity_num" name="activity_num"
-                                            v-model="upact_infos.activity_num" v-if="update == false">
+                                            v-model="upact_infos.activity_num" v-if="update == false" min="0" step="1">
 
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
@@ -52,13 +52,13 @@
                                             <option value="">新聞</option>
                                             <option value="">宣導</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="form-group" style="display: inline-block; width: 49%;">
                         <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
                         <input type="date" class="form-control" id="activity_fin" name="activity_fin"
                           v-model="upact_infos.activity_fin">
                       </div> -->
-                                    <div class="form-group" style="display: inline-block; width: 100%">
+                                    <!-- <div class="form-group" style="display: inline-block; width: 100%">
                                         <label for="activity_Introduction"> 活動/新聞/宣導內容介紹</label>
                                         <textarea type="date" class="form-control" id="activity_Introduction" rows="8"
                                             name="activity_Introduction" style="resize: none"
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="card">
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
@@ -86,24 +86,20 @@
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th scope="col"> 活動/新聞/宣導編號</th>
-                                    <th scope="col"> 活動/新聞/宣導名稱</th>
-                                    <th scope="col"> 活動/新聞/宣導開始時間</th>
-                                    <th scope="col"> 活動/新聞/宣導結束時間</th>
-                                    <th scope="col"> 活動/新聞/宣導內容介紹</th>
-                                    <th scope="col">設定</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導編號</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導名稱</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導類型</th>     
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導內容介紹</th>
+                                    <th scope="col" style="text-align: center;">設定</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr v-for="item in activity_substr">
-                                    <th scope="row">{{ item.activity_no }}</th>
-                                    <td>{{ item.activity_name }}</td>
-                                    <td>{{ item.activity_str }}</td>
-                                    <td>{{ item.activity_fin }}</td>
-                                    <td>
-                                        <div class="limit">{{ item.activity_con }}</div>
-                                    </td>
-                                    <td>
+                            <tbody> 
+                                <tr v-for="item in activity">
+                                    <th scope="row" style="text-align: center;">{{ item.inforNo}}</th>
+                                    <td style="text-align: center;">{{ item.inforName }}</td>
+                                    <td style="text-align: center;">{{ item.inforType }}</td>
+                                    <td style="text-align: center;">{{ item.inforContent }}</td>
+                                    <td style="text-align: center;">
                                         <a href="#" @click.prevent="get_edit(item.activity_no);update = true">
                                             編輯</a> / <a href="#" @click.prevent="get_delete(item.activity_no)">下架</a>
                                     </td>
