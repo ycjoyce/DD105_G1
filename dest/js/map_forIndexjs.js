@@ -8,7 +8,7 @@ var map;
 // 紀錄從遠端撈下來的資料
 var data;
 // 記錄目前載入的 marker
-var markers = [];
+let markers = [];
 // 記錄當前點擊 google window
 var currentInfoWindow = "";
 
@@ -222,6 +222,7 @@ function getLost() {
     console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadLostData(
+        data[i].lostPetRpNo,
         data[i].lostPetRpLoclat,
         data[i].lostPetRpLoclng,
         data[i].lostPetRpName,
@@ -251,6 +252,7 @@ $(".mapOption li:nth-child(1)").click(function() {
 
 // 讀取地標
 function loadLostData(
+  rpNo,
   lat,
   lng,
   title,
@@ -271,7 +273,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a href="#" title:"我要私信主人">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li>私信主人：<a href="#" title:"我要私信主人" id="msg_${rpNo}">${memName}<img src="./img/icon_private_message.svg"></a></li>
       </ul>
     </div>
   `;

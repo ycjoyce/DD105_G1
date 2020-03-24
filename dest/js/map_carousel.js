@@ -45,12 +45,12 @@ function mapCarousel() {
       mapFriendly3.classList.remove("on");
     }
     //=====地圖圖標開始=====//
-    // for (i = 0; i < markers.length; i++) {
-    //   markers[i].setMap(null);
-    // }
-    // markers = [];
-    // infoWindows = [];
-    // getLost();
+    for (i = 0; i < markers.length; i++) {
+      markers[i].setMap(null);
+    }
+    markers = [];
+    infoWindows = [];
+    getLost();
     //=====地圖圖標結束=====//
   } else if (curVal == 2) {
     cardTitle.innerText = "寵物友善空間";
