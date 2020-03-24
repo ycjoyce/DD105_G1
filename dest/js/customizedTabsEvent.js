@@ -14,30 +14,51 @@ $(document).ready(function() {
         $('.fakeCircle8').css("opacity", "1");
     });
     $('#bigTab3').click(function() { //step3圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle9').css("opacity", "1");
+            $('.fakeCircle10').css("opacity", "1");
+            $('.fakeCircle11').css("opacity", "1");
+            $('.fakeCircle12').css("opacity", "1");
+        }
+
+
     });
     $('#bigTab4').click(function() { //step4圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle13').css("opacity", "1");
-        $('.fakeCircle14').css("opacity", "1");
-        $('.fakeCircle15').css("opacity", "1");
-        $('.fakeCircle16').css("opacity", "1");
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle13').css("opacity", "1");
+            $('.fakeCircle14').css("opacity", "1");
+            $('.fakeCircle15').css("opacity", "1");
+            $('.fakeCircle16').css("opacity", "1");
+        }
     });
     $('ul.tabs li').click(function() {
         let tab_id = $(this).attr('data-tab');
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            alert("請先解鎖此吊牌");
+        } else {
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+            // $('.tab-content').fadeIn("slow");
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
-        // $('.tab-content').fadeIn("slow");
-
-        $(this).addClass('current'); //標籤樣式換
+            $(this).addClass('current'); //標籤樣式換
 
 
-        $("#" + tab_id).addClass('current'); //內容換
+            $("#" + tab_id).addClass('current'); //內容換
+        }
+
+
     });
     $('#step1NextBtn').click(function() { //step1下一步按鈕
         if (($('.collarImages').hasClass("imageApplying")) == false) {
@@ -59,21 +80,26 @@ $(document).ready(function() {
         }
     });
     $('#step2NextBtn').click(function() { //step2下一步按鈕
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            alert("請先解鎖此吊牌");
+        } else {
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
-
-        $(this).parent().parent().next().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('#bigTab3').css('pointer-events', 'unset');
-        $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
-        $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
-        $('.tabLine2').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+            $(this).parent().parent().next().addClass('current');
+            $('#bigTab3').addClass('current');
+            $('#bigTab3').css('pointer-events', 'unset');
+            $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
+            $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
+            $('.tabLine2').css("opacity", "1");
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle9').css("opacity", "1");
+            $('.fakeCircle10').css("opacity", "1");
+            $('.fakeCircle11').css("opacity", "1");
+            $('.fakeCircle12').css("opacity", "1");
+        }
     });
     $('#step2BackBtn').click(function() { //step2上一步按鈕
 
@@ -155,7 +181,7 @@ window.addEventListener('load', function() {
     let sliderBtnRight = document.getElementById('sliderBtnRight');
     let tagItems = document.getElementsByClassName('tagItems');
     let tagTotal = document.getElementById('tagTotal');
-    let nowTag = document.getElementById('nowTag');
+    nowTag = document.getElementById('nowTag');
     let tagImages = document.getElementsByClassName('tagImages');
     let lockPoint = document.getElementsByClassName('lockPoint');
     let lockStatus = document.getElementsByClassName('lockStatus');
@@ -243,133 +269,4 @@ window.addEventListener('load', function() {
         lockStatus[offset].style.opacity = "1";
         nowTag.innerText = offset + 1;
     });
-
-    // document.querySelector('#unlock1').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock2').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock3').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock4').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock5').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock6').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock7').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock8').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
 })

@@ -29,14 +29,18 @@
         會員點數 :
         <span id="showPoint"></span> 點
     </div>
-    <div style="display: block; position: fixed; right: 100px; top: 150px; z-index: 100;">
+    <div style="display: none; position: fixed; right: 100px; top: 150px; z-index: 100;">
         解鎖吊牌:
         <span id="memTagNo"></span>
     </div>
-    <div style="display: block; position: fixed; right: 100px; top: 200px; z-index: 100;">
+    <div style="display: none; position: fixed; right: 100px; top: 200px; z-index: 100;">
         全部吊牌:
         <span id="lockTagNo"></span>
     </div>
+    <!-- <div style="display: block; position: fixed; right: 100px; top: 350px; z-index: 100;">
+        解鎖狀態:
+        <span id="status"></span>
+    </div> -->
 
     <header class="header-navigation" id="header">
     <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -85,14 +89,12 @@
                     var url = "php/checkMem.php";
                     xhr.open("GET", url, true);
                     xhr.send(null);
-                    xhr.onload = function () {
+                    xhr.onload = function() {
                         if (xhr.status == 200) {
                             member = JSON.parse(xhr.responseText);
                             if (member.memId) {
                                 memberPoint.style.display = "block";
                                 signInFirstBlock.style.display = "none";
-                                // alert(typeof(member.memNo));
-
                             }
                         }
                     }
@@ -179,143 +181,37 @@
                     <div id="tabsContent">
                         <div id="tab-1" class="tab-content current">
                             <div class="collarImagesContainer" style="padding: 0px;">
-                                <div class="collarImagesBoxs"
-                                    style="background-color: rgba(255, 185, 185, 0.4); border: 0px solid #7e9c23;"
-                                    id="collarImage1"><img src="./img/customized_collar/collarImages/1collar_FFB9B9.png"
-                                        class="collarImages imageApplying"><img
-                                        src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow shadowApplying"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 128, 0.4);"
-                                    id="collarImage2"><img src="./img/customized_collar/collarImages/2collar_FF8080.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(198, 36, 36, 0.4);"
-                                    id="collarImage3"><img src="./img/customized_collar/collarImages/3collar_C62424.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 181, 106, 0.4);"
-                                    id="collarImage4"><img src="./img/customized_collar/collarImages/4collar_FFB46A.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 0, 0.4);"
-                                    id="collarImage5"><img src="./img/customized_collar/collarImages/5collar_FF7E00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(239, 248, 112, 0.4);"
-                                    id="collarImage6"><img src="./img/customized_collar/collarImages/6collar_F0F870.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(238, 255, 0, 0.4);"
-                                    id="collarImage7"><img src="./img/customized_collar/collarImages/7collar_F0FF00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(158, 255, 109, 0.4);"
-                                    id="collarImage8"><img src="./img/customized_collar/collarImages/8collar_9DFF6D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(120, 255, 53, 0.4);"
-                                    id="collarImage9"><img src="./img/customized_collar/collarImages/9collar_77FF35.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 0, 0.4);"
-                                    id="collarImage10"><img
-                                        src="./img/customized_collar/collarImages/10collar_01FF00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(14, 140, 14, 0.4);"
-                                    id="collarImage11"><img
-                                        src="./img/customized_collar/collarImages/11collar_0F8C0E.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(13, 134, 110, 0.4);"
-                                    id="collarImage12_1"><img
-                                        src="./img/customized_collar/collarImages/12collar_0D866D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(25, 57, 24,0.4);"
-                                    id="collarImage12_2"><img
-                                        src="./img/customized_collar/collarImages/12collar_255724.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(160, 255, 209, 0.4);"
-                                    id="collarImage13"><img
-                                        src="./img/customized_collar/collarImages/13collar_A0FFD1.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(110, 248, 181, 0.4);"
-                                    id="collarImage14"><img
-                                        src="./img/customized_collar/collarImages/14collar_6EF8B5.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 204, 0.4);"
-                                    id="collarImage15"><img
-                                        src="./img/customized_collar/collarImages/15collar_00FFCA.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(5, 238, 255, 0.4);"
-                                    id="collarImage16"><img
-                                        src="./img/customized_collar/collarImages/16collar_05EDFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(27, 110, 116, 0.4);"
-                                    id="collarImage17"><img
-                                        src="./img/customized_collar/collarImages/17collar_1B6E74.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 140, 255, 0.4);"
-                                    id="collarImage18"><img
-                                        src="./img/customized_collar/collarImages/18collar_008DFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(15, 69, 114, 0.4);"
-                                    id="collarImage19"><img
-                                        src="./img/customized_collar/collarImages/19collar_0F4672.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(248, 120, 255, 0.4);"
-                                    id="collarImage20"><img
-                                        src="./img/customized_collar/collarImages/20collar_F878FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(191, 164, 255, 0.4);"
-                                    id="collarImage21"><img
-                                        src="./img/customized_collar/collarImages/21collar_BFA4FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(128, 74, 255, 0.4);"
-                                    id="collarImage22"><img
-                                        src="./img/customized_collar/collarImages/22collar_7F4AFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(78, 2, 255, 0.4);"
-                                    id="collarImage23"><img
-                                        src="./img/customized_collar/collarImages/23collar_4C02FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(50, 40, 75, 0.4);"
-                                    id="collarImage24"><img
-                                        src="./img/customized_collar/collarImages/24collar_32284B.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);"
-                                    id="collarImage25"><img
-                                        src="./img/customized_collar/collarImages/25collar_FFFFFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);"
-                                    id="collarImage26"><img
-                                        src="./img/customized_collar/collarImages/26collar_A2A2A2.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);"
-                                    id="collarImage27"><img
-                                        src="./img/customized_collar/collarImages/27collar_3D3D3D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 185, 185, 0.4); border: 0px solid #7e9c23;" id="collarImage1"><img src="./img/customized_collar/collarImages/1collar_FFB9B9.png" class="collarImages imageApplying"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow shadowApplying"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 128, 0.4);" id="collarImage2"><img src="./img/customized_collar/collarImages/2collar_FF8080.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(198, 36, 36, 0.4);" id="collarImage3"><img src="./img/customized_collar/collarImages/3collar_C62424.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 181, 106, 0.4);" id="collarImage4"><img src="./img/customized_collar/collarImages/4collar_FFB46A.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 0, 0.4);" id="collarImage5"><img src="./img/customized_collar/collarImages/5collar_FF7E00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(239, 248, 112, 0.4);" id="collarImage6"><img src="./img/customized_collar/collarImages/6collar_F0F870.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(238, 255, 0, 0.4);" id="collarImage7"><img src="./img/customized_collar/collarImages/7collar_F0FF00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(158, 255, 109, 0.4);" id="collarImage8"><img src="./img/customized_collar/collarImages/8collar_9DFF6D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(120, 255, 53, 0.4);" id="collarImage9"><img src="./img/customized_collar/collarImages/9collar_77FF35.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 0, 0.4);" id="collarImage10"><img src="./img/customized_collar/collarImages/10collar_01FF00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(14, 140, 14, 0.4);" id="collarImage11"><img src="./img/customized_collar/collarImages/11collar_0F8C0E.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(13, 134, 110, 0.4);" id="collarImage12_1"><img src="./img/customized_collar/collarImages/12collar_0D866D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(25, 57, 24,0.4);" id="collarImage12_2"><img src="./img/customized_collar/collarImages/12collar_255724.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(160, 255, 209, 0.4);" id="collarImage13"><img src="./img/customized_collar/collarImages/13collar_A0FFD1.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(110, 248, 181, 0.4);" id="collarImage14"><img src="./img/customized_collar/collarImages/14collar_6EF8B5.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 204, 0.4);" id="collarImage15"><img src="./img/customized_collar/collarImages/15collar_00FFCA.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(5, 238, 255, 0.4);" id="collarImage16"><img src="./img/customized_collar/collarImages/16collar_05EDFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(27, 110, 116, 0.4);" id="collarImage17"><img src="./img/customized_collar/collarImages/17collar_1B6E74.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 140, 255, 0.4);" id="collarImage18"><img src="./img/customized_collar/collarImages/18collar_008DFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(15, 69, 114, 0.4);" id="collarImage19"><img src="./img/customized_collar/collarImages/19collar_0F4672.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(248, 120, 255, 0.4);" id="collarImage20"><img src="./img/customized_collar/collarImages/20collar_F878FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(191, 164, 255, 0.4);" id="collarImage21"><img src="./img/customized_collar/collarImages/21collar_BFA4FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(128, 74, 255, 0.4);" id="collarImage22"><img src="./img/customized_collar/collarImages/22collar_7F4AFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(78, 2, 255, 0.4);" id="collarImage23"><img src="./img/customized_collar/collarImages/23collar_4C02FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(50, 40, 75, 0.4);" id="collarImage24"><img src="./img/customized_collar/collarImages/24collar_32284B.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);" id="collarImage25"><img src="./img/customized_collar/collarImages/25collar_FFFFFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);" id="collarImage26"><img src="./img/customized_collar/collarImages/26collar_A2A2A2.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);" id="collarImage27"><img src="./img/customized_collar/collarImages/27collar_3D3D3D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
                             </div>
                             <div class="stepBtn">
-                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2"
-                                    style="width: 100%;">下一步</button>
+                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
                             </div>
                         </div>
                         <div id="tab-2" class="tab-content">
@@ -324,48 +220,6 @@
                                 </div>
                             </div>
                             <script>
-                                window.addEventListener('load', function () {
-                                    var memNo = member.memNo;
-                                    var xhr = new XMLHttpRequest();
-                                    var url = "php/getMemPoint.php";
-                                    xhr.open("POST", url, true);
-                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    var data_info = `memNo=${memNo}`;
-                                    xhr.send(data_info);
-
-                                    xhr.onload = function () {
-                                        // console.log(this.responseText);
-                                        let frontStr = this.responseText.substr(14);
-                                        // console.log(frontStr);
-                                        let backStr = frontStr.lastIndexOf('0');
-                                        // console.log(backStr);
-                                        newStr = parseInt(frontStr.substring(0, backStr + 1));
-                                        // console.log(newStr);
-                                        // console.log(typeof(newStr));
-                                        document.getElementById('showPoint').innerText = newStr;
-                                        member.memPoint = document.getElementById('showPoint').innerText;
-                                    };
-
-
-                                    var xhr = new XMLHttpRequest();
-                                    var url = "php/getMemTagNo.php";
-                                    xhr.open("POST", url, true);
-                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    var data_info = `memNo=${memNo}`;
-                                    xhr.send(data_info);
-                                    xhr.onload = function () {
-                                        let frontStr = this.responseText.substr(14);
-                                        let backStr = frontStr.lastIndexOf('"');
-                                        let newTagStr = frontStr.substring(0, backStr);
-                                        document.getElementById('memTagNo').innerText = newTagStr;
-                                        newArray = document.getElementById('memTagNo').innerText.split(",");
-                                        member.memTagNo = document.getElementById('memTagNo').innerText;
-                                        console.log(document.getElementById('memTagNo').innerText);
-                                        console.log(document.getElementById('lockTagNo').innerText);
-                                    }
-                                });
-
-
                                 function updateMemPoint(sendNewPoint) {
                                     var memNo = member.memNo;
                                     var xhr = new XMLHttpRequest();
@@ -376,46 +230,63 @@
                                     xhr.send(data_info);
                                 }
 
+
+                                function lockTagNo() {
+                                    let tagItems = document.getElementsByClassName('tagItems');
+                                    let lockPoint = document.getElementsByClassName('lockPoint');
+                                    let lockStatus = document.getElementsByClassName('lockStatus');
+                                    let status = document.getElementsByClassName('status');
+                                    for (i = 0; i < newArray.length; i++) {
+                                        for (j = 0; j < lockPoint.length; j++) {
+                                            if (lockPoint[j].getAttribute('tagNo') == newArray[i]) {
+                                                console.log(lockPoint[j].getAttribute('tagNo'));
+                                                // lockPoint[j].style.display = "none";
+                                                lockPoint[j].innerHTML =
+                                                    `
+                                                        <span class="tagStatus" style="font-size:18px";>已解鎖</span>
+                                                    `;
+                                                lockStatus[j].style.display = "none";
+                                                status[j].innerText = "已解鎖";
+                                            }
+                                        }
+                                    }
+                                }
+
                                 lockTag = document.getElementById('memTagNo').innerText;
                                 allTagNo = document.getElementById('lockTagNo').innerText.split(",");
                                 allTagNo.shift();
-
-
-
-                                console.log(lockTag);
 
                                 function showTag() {
                                     $.ajax({
                                         url: "php/getTagInfo.php",
                                         type: "post",
                                         dataType: "json",
-                                        success: function (data) {
+                                        success: function(data) {
                                             let msg = "";
                                             for (i = 0; i < data.length; i++) {
                                                 msg +=
                                                     `<div class="tagItems" tagNo="${data[i].tagNo}">
                                                         <img src="./img/customized_collar/new1/${data[i].tagSrc1}" alt="" class="tagImages" id="tagImages${i + 1}" psn="${i}">
-                                                        <div class="lockPoint" id="lockPoint${i + 1}">
+                                                        <div class="lockPoint" id="lockPoint${i + 1}" tagNo="${data[i].tagNo}">
                                                             <span>所需點數&nbsp;:</span>
                                                             <span>&nbsp;${data[i].tagPoint}</span>
                                                         </div>
-                                                        <div class="lockStatus" id="unlock${i + 1}">
+                                                        <div class="lockStatus" id="unlock${i + 1}" tagNo="${data[i].tagNo}">
                                                             <button class="unlock" point="${data[i].tagPoint}">解鎖</button>
                                                         </div>
+                                                        <div>
+                                                            <span class="status" style="display:none">未解鎖</span>
+                                                        </div>
                                                     </div>`
-                                                console.log("全部吊牌編號 : ", data[i].tagNo);
                                                 allTagNo.push(data[i].tagNo);
                                             }
-                                            console.log("資料庫有的吊牌編號", allTagNo);
                                             allTagNoStr = allTagNo.toString();
                                             document.getElementById('lockTagNo').innerText = allTagNoStr;
-                                            // alert(document.getElementById('lockTagNo').innerText);
-                                            // alert(document.getElementById('memTagNo').innerText);
                                             $("#collarTagWrap").append(msg);
-                                            $(document).ready(function () {
+                                            $(document).ready(function() {
                                                 newArray = document.getElementById('memTagNo').innerText.split(",");
 
-                                                $('.unlock').click(function () {
+                                                $('.unlock').click(function() {
                                                     let point = parseInt($(this).attr('point'));
                                                     let nowPoint = $('#showPoint').text();
                                                     let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
@@ -434,6 +305,7 @@
                                                             updateMemTagNo(tagStr);
                                                             document.getElementById('memTagNo').innerText = tagStr;
                                                             member.memTagNo = document.getElementById('memTagNo').innerText;
+                                                            lockTagNo();
                                                         } else {
                                                             alert(`會員點數不足,還差 ${point - nowPoint} 點`);
                                                         }
@@ -469,6 +341,45 @@
                                     var data_info = `memNo=${memNo}&memTagNo=${sendMemTagNo}`;
                                     xhr.send(data_info);
                                 }
+
+                                window.addEventListener('load', function() {
+                                    var memNo = member.memNo;
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/getMemPoint.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memNo=${memNo}`;
+                                    xhr.send(data_info);
+
+                                    xhr.onload = function() {
+                                        newStr = JSON.parse(this.responseText)[0].memPoint; //取回點數值
+                                        document.getElementById('showPoint').innerText = newStr; //把點數值放進span裡
+                                        member.memPoint = document.getElementById('showPoint').innerText; //session裡的member.memPoint資料更新
+                                    };
+
+
+
+
+                                    function getMemTagNo() {
+                                        var xhr = new XMLHttpRequest();
+                                        var url = "php/getMemTagNo.php";
+                                        xhr.open("POST", url, true);
+                                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                        var data_info = `memNo=${memNo}`;
+                                        xhr.send(data_info);
+                                        xhr.onload = function() {
+                                            let newTagStr = JSON.parse(this.responseText)[0].memTagNo; //取回會員解鎖過的吊牌編號
+                                            document.getElementById('memTagNo').innerText = newTagStr; //把吊牌編號寫進隱藏欄位
+                                            newArray = document.getElementById('memTagNo').innerText.split(","); //newArray = 隱藏欄位字串轉陣列
+                                            member.memTagNo = document.getElementById('memTagNo').innerText; //session裡的member.memTagNo資料更新
+                                            // console.log("已解鎖過的吊牌編號 : ", document.getElementById('memTagNo').innerText);
+                                            // console.log("資料庫有的吊牌編號 : ", document.getElementById('lockTagNo').innerText);
+
+                                            lockTagNo();
+                                        }
+                                    }
+                                    getMemTagNo();
+                                });
                             </script>
                             <div class="changePage sliderBtns">
                                 <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
@@ -480,7 +391,7 @@
                                 <button class="to_right" style="cursor: pointer;" id="sliderBtnRight"></button>
                             </div>
                             <div class="stepBtn">
-                                <button class="stepBackBtn" id="step2BackBtn">上一步</button>
+                                <!-- <button class="stepBackBtn" id="step2BackBtn">上一步</button> -->
                                 <button class="stepNextBtn" id="step2NextBtn">下一步</button>
                             </div>
                         </div>
@@ -517,8 +428,7 @@
                                     <input type="text" name="" id="textContent1" placeholder="請輸入文字">
                                 </div>
                                 <div>
-                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;"
-                                        id="addTextBtn">
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="addTextBtn">
                                         <span class="titleFont">
                                             新增文字
                                         </span>
@@ -527,8 +437,7 @@
                                         <div class="border"></div>
                                         <div class="border"></div>
                                     </a>
-                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;"
-                                        id="delTextBtn">
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="delTextBtn">
                                         <span class="titleFont">
                                             刪除文字
                                         </span>
@@ -552,7 +461,7 @@
                                 </script> -->
                             </div>
                             <div class="stepBtn">
-                                <button class="stepBackBtn" id="step3BackBtn">上一步</button>
+                                <!-- <button class="stepBackBtn" id="step3BackBtn">上一步</button> -->
                                 <button class="stepNextBtn" id="step3NextBtn">下一步</button>
                             </div>
                         </div>
@@ -570,7 +479,7 @@
 
                             </div>
                             <div class="stepBtn">
-                                <button class="stepBackBtn" id="step4BackBtn">上一步</button>
+                                <button class="stepBackBtn" id="step4BackBtn">送出訂單</button>
                             </div>
                         </div>
                     </div>
@@ -608,7 +517,7 @@
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
     <script>
-        (function () {
+        (function() {
             var dlgtrigger = document.querySelector('[data-dialog]'),
                 somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
                 dlg = new DialogFx(somedialog);
