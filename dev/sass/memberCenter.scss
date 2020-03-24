@@ -351,6 +351,21 @@
   }
 }
 
+
+// 地圖寵物遺失表格
+.lostrptable{
+  tr{
+    height: 75px;
+  }
+  td{
+    height: 75px;
+  }
+  img{
+    max-width: 50px;
+  }
+}
+
+
 // 會員資訊
 .memInfo {
   .note {

@@ -599,12 +599,11 @@ $("#rpbtn").click(function (e) {
 document.getElementById("lostPetRpLoc").onchange = getAddress;
 var geocoder = new google.maps.Geocoder();
 function getAddress() {
-  alert("測試");
+  // alert("測試");
   var address = document.getElementById("lostPetRpLoc").value;
   geocoder.geocode({ address: address }, function(results, status) {
     if (status == "OK") {
-      console.log(results[0]);
-      alert(
+      console.log(
         `${
           results[0].formatted_address
         } | ${results[0].geometry.location.lat()} | ${results[0].geometry.location.lng()}`
