@@ -15,6 +15,7 @@ window.addEventListener("resize",dogAniSize);
 
 
 function donationCarousel(){
+    console.log(now);
     var bigImg= document.querySelector('div.carousel_donation div.img img');
     var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
     var date= document.querySelector('div.carousel_donation div.card span.date');

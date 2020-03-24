@@ -59,7 +59,7 @@ function mapCarousel() {
                                 讓您能夠輕鬆和毛小孩一同出遊！<br>`;
     cardBtn.innerText = "了解更多";
     changeNum.innerText = "02/05";
-    if (mapFriendly1.classList.contains("on") == false) {
+    if (mapFriendly.classList.contains("on") == false) {
       mapLost.classList.remove("on");
       mapFriendly.classList.add("on");
       mapFriendly1.classList.remove("on");

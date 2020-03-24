@@ -931,6 +931,7 @@ section.donation{
                 position: relative;
                 float:right;
                 top: -150px;
+                max-width: 500px;
                 @include fatherHeight();
                 @include rwd(lg){
                     padding: 20px 30px 20px 30px;
@@ -1012,7 +1013,7 @@ section.donation{
                 .btn.darkgreen{
                     position: relative;
                     top: 5px;
-                    width: 150px;
+                    width: 120px;
                     filter: hue-rotate(0);
                     transition: all 0.5s;
                     @include rwd(ss){
