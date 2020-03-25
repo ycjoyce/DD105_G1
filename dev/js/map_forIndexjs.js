@@ -219,7 +219,7 @@ function getLost() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     // alert(str)
-    console.log(data);
+    // console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadLostData(
         data[i].lostPetRpNo,
@@ -362,7 +362,7 @@ function getFriendly() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     // alert(str)
-    console.log(data);
+    // console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadfriendlyData(
         data[i].friendlylat,
