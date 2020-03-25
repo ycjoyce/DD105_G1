@@ -22,7 +22,12 @@ function checkPage(){
         document.getElementById("navAbout").classList.add("active");
     }else if(location.pathname.split("/").pop()=="login.html"){
         document.getElementById("navLogin").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="memberCenter.html"){
+        document.getElementById("navMem").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="message.html"){
+        document.getElementById("navMsg").classList.add("active");
     }
+    
 }
 checkPage();
 
@@ -52,9 +57,9 @@ function getMember(){
                             <li><a href="./customized.html" id="navCus">客製化項圈</a></li>
                             <li><a href="./post_article_region.html" id="navPost">毛孩交流區</a></li>
                             <li><a href="./aboutus.html" id="navAbout">關於我們</a></li>
-                            <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
-                            <li class="rwd"><a href="./message.html">我的信箱</a></li>
-                            <li class="rwd"><a onclick="signOut()">登出</a></li>
+                            <li class="rwd"><a href="./memberCenter.html" id="navMem">會員中心</a></li>
+                            <li class="rwd"><a href="./message.html" id="navMsg">我的信箱</a></li>
+                            <li class="rwd"><a onclick="signOut()" class="login">登出</a></li>
                             <li class="memZone">
                                 <div>
                                     <div class="memPic"></div>

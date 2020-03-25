@@ -146,20 +146,20 @@ $(document).ready(function() {
         $('.fakeCircle7').css("opacity", "1");
         $('.fakeCircle8').css("opacity", "1");
     });
-    $('#step4BackBtn').click(function() { //step4上一步按鈕
+    // $('#step4BackBtn').click(function() { //step4上一步按鈕
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
+    //     $('ul.tabs li').removeClass('current');
+    //     $('.tab-content').removeClass('current');
 
-        $(this).parent().parent().prev().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('.tabLine1').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
-    });
+    //     $(this).parent().parent().prev().addClass('current');
+    //     $('#bigTab3').addClass('current');
+    //     $('.tabLine1').css("opacity", "1");
+    //     $('.fakeCircles').css("opacity", "0");
+    //     $('.fakeCircle9').css("opacity", "1");
+    //     $('.fakeCircle10').css("opacity", "1");
+    //     $('.fakeCircle11').css("opacity", "1");
+    //     $('.fakeCircle12').css("opacity", "1");
+    // });
     $('.collarImagesBoxs').click(function() {
         $(this).parent().children().children().removeClass("imageApplying");
         $(this).children().addClass("imageApplying");
