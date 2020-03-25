@@ -9,7 +9,7 @@ try{
         switch($_FILES["uploadImg"]["error"]){
             case 0:
                 $sql= "insert into `message` (sendMemNo, getMemNo, msgTime, msgText, msgPic) values ('{$_SESSION["memNo"]}', (select memno from `meminfo` where memid='bringlovehome@gmail.com'), date_format(now(),'%Y.%m.%d  %H:%i'), null, null);";
-                $addImg= $pdo->exec();       
+                $addImg= $pdo->exec($sql);       
     
                 if(isset($addImg)){
                     //取出自動編碼的號碼
@@ -32,13 +32,14 @@ try{
 
                 $sql= "insert into `message` (sendMemNo, getMemNo, msgTime, msgText, msgPic) values ('{$_SESSION["memNo"]}', (select memno from `meminfo` where memid='bringlovehome@gmail.com'), date_format(now(),'%Y.%m.%d  %H:%i'), :msgText, null);";
                 $text= $pdo->prepare($sql);
-                $text->bindValue(":msgText",htmlspecialchars($_REQUEST["msgText"]));
+                $text->bindValue(":msgText",htmlspecialchars($_REQUEST["msgContent"]));
                 $addText= $text->execute();
 
-                $sql= "select memno from `meminfo` where memid='bringlovehome@gmail.com';";
+                $sql= "select * from `meminfo` where memid='bringlovehome@gmail.com';";
                 $official= $pdo->query($sql);
+                $officialRow=$official->fetch(PDO::FETCH_ASSOC);
 
-                echo "both|success|".$official["memNo"];
+                echo "textOnly|success|".$officialRow["memNo"];
                 break;
             case 1:
                 echo "檔案太大，上傳檔案大小不可超過2M";
@@ -79,10 +80,11 @@ try{
                     $imgName= $pdo->exec($sql);
                 }
 
-                $sql= "select memno from `meminfo` where memid='bringlovehome@gmail.com';";
+                $sql= "select * from `meminfo` where memid='bringlovehome@gmail.com';";
                 $official= $pdo->query($sql);
+                $officialRow=$official->fetch(PDO::FETCH_ASSOC);
 
-                echo "imgOnly|success|".$official["memNo"];
+                echo "textOnly|success|".$officialRow["memNo"];
                 break;
             case 1:
                 echo "檔案太大，上傳檔案大小不可超過2M";
@@ -101,13 +103,14 @@ try{
     else if(!isset($_FILES["uploadImg"]["error"]) && isset($_REQUEST["msgContent"])){
         $sql= "insert into `message` (sendMemNo, getMemNo, msgTime, msgText, msgPic) values ('{$_SESSION["memNo"]}', (select memno from `meminfo` where memid='bringlovehome@gmail.com'), date_format(now(),'%Y.%m.%d  %H:%i'), :msgText, null);";
         $text= $pdo->prepare($sql);
-        $text->bindValue(":msgText",htmlspecialchars($_REQUEST["msgText"]));
+        $text->bindValue(":msgText",htmlspecialchars($_REQUEST["msgContent"]));
         $addText= $text->execute();
 
-        $sql= "select memno from `meminfo` where memid='bringlovehome@gmail.com';";
-                $official= $pdo->query($sql);
+        $sql= "select * from `meminfo` where memid='bringlovehome@gmail.com';";
+        $official= $pdo->query($sql);
+        $officialRow=$official->fetch(PDO::FETCH_ASSOC);
 
-        echo "textOnly|success|".$official["memNo"];
+        echo "textOnly|success|".$officialRow["memNo"];
     }
     
 }catch(PDOException $e){

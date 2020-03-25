@@ -274,6 +274,9 @@ article {
     // border: 1px solid red;
     
     form{
+      #msgPanel{
+        color: $darkgreen;
+      }
       .set_box_border {
         position: relative;
         display: inline-block;

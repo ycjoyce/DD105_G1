@@ -239,12 +239,13 @@
         }
 
         function addMember(){
+            var email= document.getElementById("signUpAccount").value;
+            var preg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+
             if(document.getElementById("signUpAccount").value==""){
                 alert("請輸入帳號");
-            }else if(document.getElementById("signUpAccount").value.indexOf("@")==-1){
-                alert("帳號需為E-mail");
-            }else if(document.getElementById("signUpAccount").value.indexOf("@")==document.getElementById("signUpAccount").value.length-1){
-                alert("帳號請輸入完整E-mail");
+            }else if(email=='' || !preg.test(email)){
+                alert("帳號請填寫正確E-mail");
             }else if(document.getElementById("signUpName").value==""){
                 alert("請輸入暱稱");
             }else if(document.getElementById("signUpPsw").value.length<4){
@@ -264,6 +265,11 @@
                         if(xhr.responseText.indexOf("此帳號已註冊")!=-1){
                             alert(xhr.responseText);
                             document.getElementById("signUpAccount").value="";
+                            document.getElementById("signUpPsw").value="";
+                            document.getElementById("signUpName").value="";
+                            document.getElementById("checkPsw").value="";
+                        }else if(xhr.responseText.indexOf("此暱稱已被使用")!=-1){
+                            alert(xhr.responseText);
                             document.getElementById("signUpPsw").value="";
                             document.getElementById("signUpName").value="";
                             document.getElementById("checkPsw").value="";
