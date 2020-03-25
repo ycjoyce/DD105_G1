@@ -50,7 +50,7 @@ $(document).ready(function() {
             }
         }
       }
-      $(".memTable_content")
+      $("#tab-2 .memTable_content")
         .children("table")
         .append(html);
     },

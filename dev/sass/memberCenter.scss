@@ -311,8 +311,37 @@
   }
 }
 @media (max-width: 767px) {
-  section{
-    height: auto;
+  .container {
+    aside {
+      position: fixed;
+      left: -230px;
+      height: calc(100vh - 75px - 120px);
+      width: 220px;
+      background-color: rgba(255, 255, 255, 0.95);
+      top: 75px;
+      z-index: 2;
+      h2 {
+        font-size: 1.5rem;
+      }
+      .tabs {
+        width: 100%;
+        li {
+          padding: 6px 15px;
+          text-align: center;
+          width: 100%;
+        }
+      }
+      button {
+        display: inline-block;
+      }
+    }
+    aside#tabs-container1.-showFilter {
+      left: 0px;
+    }
+    #tabs-container2 {
+      width: 100%;
+      height: calc(100vh - 75px - 120px);
+    }
   }
 }
 
@@ -521,6 +550,7 @@
       // }
       div.withoutBlack{
         width: 400px;
+        max-width: 100%;
         position: relative;
         padding-top: 150px;
         margin: 0 auto;
@@ -555,7 +585,10 @@
         padding: 20px 3%;
         background-color: rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
-        width: 48%;
+        width: 100%;
+        @include rwd(xl){
+          width: 48%;
+        }
          div {
           width: 50px;
           min-width: 50px;
