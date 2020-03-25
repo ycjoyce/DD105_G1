@@ -22,10 +22,6 @@ function checkPage(){
         document.getElementById("navAbout").classList.add("active");
     }else if(location.pathname.split("/").pop()=="login.html"){
         document.getElementById("navLogin").classList.add("active");
-    }else if(location.pathname.split("/").pop()=="memberCenter.html"){
-        document.getElementById("navMem").classList.add("active");
-    }else if(location.pathname.split("/").pop()=="message.html"){
-        document.getElementById("navMsg").classList.add("active");
     }
     
 }
