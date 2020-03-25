@@ -312,8 +312,42 @@
   }
 }
 @media (max-width: 767px) {
+<<<<<<< HEAD
   section {
     height: auto;
+=======
+  .container {
+    aside {
+      position: fixed;
+      left: -230px;
+      height: calc(100vh - 75px - 120px);
+      width: 220px;
+      background-color: rgba(255, 255, 255, 0.95);
+      top: 75px;
+      z-index: 2;
+      h2 {
+        font-size: 1.5rem;
+      }
+      .tabs {
+        width: 100%;
+        li {
+          padding: 6px 15px;
+          text-align: center;
+          width: 100%;
+        }
+      }
+      button {
+        display: inline-block;
+      }
+    }
+    aside#tabs-container1.-showFilter {
+      left: 0px;
+    }
+    #tabs-container2 {
+      width: 100%;
+      height: calc(100vh - 75px - 120px);
+    }
+>>>>>>> 90293d3102d6adc3e5cf8d88b4ef05c8ac59a5be
   }
 }
 
@@ -715,6 +749,7 @@
 // 管理黑名單
 @import "layout/rwd";
 
+<<<<<<< HEAD
 section.blacklistTable {
   .blacklist_content {
     display: flex;
@@ -741,6 +776,64 @@ section.blacklistTable {
         }
         p {
           text-align: center;
+=======
+  section.blacklistTable {
+    .blacklist_content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: space-between;
+      // &::after{
+      //   content: '';
+      //   flex: auto;
+      // }
+      div.withoutBlack{
+        width: 400px;
+        max-width: 100%;
+        position: relative;
+        padding-top: 150px;
+        margin: 0 auto;
+        div{
+          width: 150px;
+          height: 130px;
+          position: absolute;
+          top: 0;
+          right: 50px;
+          img.bubble{
+            width: 100%;
+          }
+          p{
+            text-align: center;
+            display: inline-block;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            color: $gray;
+          }
+        }
+        img.cat{
+          width: 40%;
+          display: block;
+          margin: 0 auto;
+        }
+      }
+      div.card {
+        margin: 0 0 20px;
+        display: flex;
+        padding: 20px 3%;
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+        width: 100%;
+        @include rwd(xl){
+          width: 48%;
+        }
+         div {
+          width: 50px;
+          min-width: 50px;
+          height: 50px;
+          border-radius: 50%;
+>>>>>>> 90293d3102d6adc3e5cf8d88b4ef05c8ac59a5be
           display: inline-block;
           position: absolute;
           left: 50%;

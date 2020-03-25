@@ -21,7 +21,7 @@
 .dialog__overlay {
     position: fixed;
     z-index: 10;
-    background: rgba(55, 58, 71, 0.9);
+    background: rgba(0,0,0,0.425);
     opacity: 0;
     -webkit-transition: opacity 0.3s;
     transition: opacity 0.3s;
@@ -38,8 +38,8 @@
     max-width: 1200px;
     width: 90%;
     height: 500px;
-    background: rgba(255, 255, 255, 0.609);
-    padding: 4em;
+    background: rgba(255, 255, 255, 1);
+    // padding: 4em;
     text-align: center;
     position: relative;
     z-index: 11;
@@ -54,13 +54,13 @@
 
 /* Content */
 
-.dialog h2 {
-    margin: 0;
-    font-weight: 400;
-    font-size: 2em;
-    padding: 0 0 2em;
-    margin: 0;
-}
+// .dialog h2 {
+//     margin: 0;
+//     font-weight: 400;
+//     font-size: 2em;
+//     padding: 0 0 2em;
+//     margin: 0;
+// }
 
 .dialog__overlay {
     -webkit-transition-duration: 0.4s;
@@ -189,12 +189,12 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    transition: all 0.2s ease-in-out;
+    top: 15px;
+    right: 15px;
+    transition: all 0.5s ease-in-out;
     &:hover {
         transform: rotate(180deg);
     }

@@ -1,19 +1,26 @@
-$(document).ready(function() {
-    $('#bigTab1').click(function() { //step1圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle1').css("opacity", "1");
-        $('.fakeCircle2').css("opacity", "1");
-        $('.fakeCircle3').css("opacity", "1");
-        $('.fakeCircle4').css("opacity", "1");
+$(document).ready(function () {
+    $('#bigTab1').click(function () { //step1圓圈
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle1').css("opacity", "1");
+            $('.fakeCircle2').css("opacity", "1");
+            $('.fakeCircle3').css("opacity", "1");
+            $('.fakeCircle4').css("opacity", "1");
+        }
     });
-    $('#bigTab2').click(function() { //step2圓圈
+    $('#bigTab2').click(function () { //step2圓圈
         $('.fakeCircles').css("opacity", "0");
         $('.fakeCircle5').css("opacity", "1");
         $('.fakeCircle6').css("opacity", "1");
         $('.fakeCircle7').css("opacity", "1");
         $('.fakeCircle8').css("opacity", "1");
+        $(this).css('pointer-events',"none");
     });
-    $('#bigTab3').click(function() { //step3圓圈
+    $('#bigTab3').click(function () { //step3圓圈
         let status = document.getElementsByClassName('status');
         let nowTag = document.getElementById('nowTag').innerText;
         if (status[nowTag - 1].innerText == "未解鎖") {
@@ -28,7 +35,7 @@ $(document).ready(function() {
 
 
     });
-    $('#bigTab4').click(function() { //step4圓圈
+    $('#bigTab4').click(function () { //step4圓圈
         let status = document.getElementsByClassName('status');
         let nowTag = document.getElementById('nowTag').innerText;
         if (status[nowTag - 1].innerText == "未解鎖") {
@@ -41,7 +48,7 @@ $(document).ready(function() {
             $('.fakeCircle16').css("opacity", "1");
         }
     });
-    $('ul.tabs li').click(function() {
+    $('ul.tabs li').click(function () {
         let tab_id = $(this).attr('data-tab');
         let status = document.getElementsByClassName('status');
         let nowTag = document.getElementById('nowTag').innerText;
@@ -60,7 +67,7 @@ $(document).ready(function() {
 
 
     });
-    $('#step1NextBtn').click(function() { //step1下一步按鈕
+    $('#step1NextBtn').click(function () { //step1下一步按鈕
         if (($('.collarImages').hasClass("imageApplying")) == false) {
             alert("請先選擇一款皮帶");
         } else {
@@ -79,7 +86,7 @@ $(document).ready(function() {
             $('.fakeCircle8').css("opacity", "1");
         }
     });
-    $('#step2NextBtn').click(function() { //step2下一步按鈕
+    $('#step2NextBtn').click(function () { //step2下一步按鈕
         let status = document.getElementsByClassName('status');
         let nowTag = document.getElementById('nowTag').innerText;
         if (status[nowTag - 1].innerText == "未解鎖") {
@@ -101,7 +108,7 @@ $(document).ready(function() {
             $('.fakeCircle12').css("opacity", "1");
         }
     });
-    $('#step2BackBtn').click(function() { //step2上一步按鈕
+    $('#step2BackBtn').click(function () { //step2上一步按鈕
 
         $('ul.tabs li').removeClass('current');
         $('.tab-content').removeClass('current');
@@ -115,7 +122,7 @@ $(document).ready(function() {
         $('.fakeCircle3').css("opacity", "1");
         $('.fakeCircle4').css("opacity", "1");
     });
-    $('#step3NextBtn').click(function() { //step3下一步按鈕
+    $('#step3NextBtn').click(function () { //step3下一步按鈕
 
         $('ul.tabs li').removeClass('current');
         $('.tab-content').removeClass('current');
@@ -132,7 +139,7 @@ $(document).ready(function() {
         $('.fakeCircle15').css("opacity", "1");
         $('.fakeCircle16').css("opacity", "1");
     });
-    $('#step3BackBtn').click(function() { //step3上一步按鈕
+    $('#step3BackBtn').click(function () { //step3上一步按鈕
 
         $('ul.tabs li').removeClass('current');
         $('.tab-content').removeClass('current');
@@ -146,21 +153,21 @@ $(document).ready(function() {
         $('.fakeCircle7').css("opacity", "1");
         $('.fakeCircle8').css("opacity", "1");
     });
-    $('#step4BackBtn').click(function() { //step4上一步按鈕
+    // $('#step4BackBtn').click(function() { //step4上一步按鈕
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
+    //     $('ul.tabs li').removeClass('current');
+    //     $('.tab-content').removeClass('current');
 
-        $(this).parent().parent().prev().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('.tabLine1').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
-    });
-    $('.collarImagesBoxs').click(function() {
+    //     $(this).parent().parent().prev().addClass('current');
+    //     $('#bigTab3').addClass('current');
+    //     $('.tabLine1').css("opacity", "1");
+    //     $('.fakeCircles').css("opacity", "0");
+    //     $('.fakeCircle9').css("opacity", "1");
+    //     $('.fakeCircle10').css("opacity", "1");
+    //     $('.fakeCircle11').css("opacity", "1");
+    //     $('.fakeCircle12').css("opacity", "1");
+    // });
+    $('.collarImagesBoxs').click(function () {
         $(this).parent().children().children().removeClass("imageApplying");
         $(this).children().addClass("imageApplying");
         $(this).parent().children().children().next().removeClass("shadowApplying");
@@ -174,7 +181,7 @@ $(document).ready(function() {
 })
 
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     let curIndex = -1;
     let collarTagWrap = document.getElementById('collarTagWrap');
     let sliderBtnLeft = document.getElementById('sliderBtnLeft');
@@ -190,7 +197,7 @@ window.addEventListener('load', function() {
 
     // $('#tagTotal span:first-child').text("1");
     $('#tagTotal span:last-child').text(tagItems.length);
-    $('.tagImages').click(function() {
+    $('.tagImages').click(function () {
         let nowIndex = (parseInt($('#collarTagWrap').css("left")) / -200) + 1;
         let clickTagIndex = $(this).parent().index();
         // alert(clickTagIndex);
@@ -221,7 +228,7 @@ window.addEventListener('load', function() {
         $('#tagTotal span:first-child').text(clickTagIndex + 1);
 
     });
-    sliderBtnLeft.addEventListener('click', function() {
+    sliderBtnLeft.addEventListener('click', function () {
         console.log(parseInt(collarTagWrap.style.left));
         curIndex--;
         collarTagWrap.style.left = -200 * curIndex + 'px';
@@ -245,7 +252,7 @@ window.addEventListener('load', function() {
         nowTag.innerText = offset + 1;
     });
 
-    sliderBtnRight.addEventListener('click', function() {
+    sliderBtnRight.addEventListener('click', function () {
         console.log(parseInt(collarTagWrap.style.left));
         curIndex++;
         collarTagWrap.style.left = -200 * curIndex + 'px';

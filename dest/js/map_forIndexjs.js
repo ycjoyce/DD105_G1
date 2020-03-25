@@ -279,7 +279,6 @@ function mapMsg(id){
               alert(data);
             }
           });
-          // alert(`我是${member.memNo}，這張卡片編號是${id.substr(4)}`);
         }
       },
       error(data){
