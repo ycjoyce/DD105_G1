@@ -720,13 +720,13 @@
         mapCardBtn.addEventListener("click",function(){
             if(mapCard.classList.contains("hide")){
                 mapCard.classList.remove("hide");
-                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
-                    mapCardBtn.querySelector("img").classList.remove("rotate");
+                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                    mapCardBtn.querySelector("img").classList.add("rotate");
                 }
             }else{
                 mapCard.classList.add("hide");
-                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
-                    mapCardBtn.querySelector("img").classList.add("rotate");
+                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                    mapCardBtn.querySelector("img").classList.remove("rotate");
                 }
             }
         });
@@ -735,9 +735,15 @@
             if(mapCard.classList.contains("hide")){
                 mapCard.classList.remove("hide");
             }
+            if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                mapCardBtn.querySelector("img").classList.add("rotate");
+            }
         }else{
             if(!mapCard.classList.contains("hide")){
                 mapCard.classList.add("hide");
+            }
+            if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                mapCardBtn.querySelector("img").classList.remove("rotate");
             }
         }
         window.addEventListener("resize",function(){
@@ -745,9 +751,15 @@
                 if(mapCard.classList.contains("hide")){
                     mapCard.classList.remove("hide");
                 }
+                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                    mapCardBtn.querySelector("img").classList.add("rotate");
+                }
             }else{
                 if(!mapCard.classList.contains("hide")){
                     mapCard.classList.add("hide");
+                }
+                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                    mapCardBtn.querySelector("img").classList.remove("rotate");
                 }
             }
         });

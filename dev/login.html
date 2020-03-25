@@ -278,6 +278,30 @@
                 });
             }
         }
+
+
+        //判斷所在頁面
+        function checkPage(){
+            if(location.pathname.split("/").pop()=="map.html"){
+                document.getElementById("navMap").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="donation.html"){
+                document.getElementById("navDonate").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="customized.html"){
+                document.getElementById("navCus").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="post_article_region.html"){
+                document.getElementById("navPost").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="aboutus.html"){
+                document.getElementById("navAbout").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="login.html"){
+                document.getElementById("navLogin").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="memberCenter.html"){
+                document.getElementById("navMem").classList.add("active");
+            }else if(location.pathname.split("/").pop()=="message.html"){
+                document.getElementById("navMsg").classList.add("active");
+            }
+            
+        }
+        checkPage();
     </script>
 </body>
 </html>

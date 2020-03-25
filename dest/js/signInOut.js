@@ -18,12 +18,13 @@ function checkPage(){
         document.getElementById("navCus").classList.add("active");
     }else if(location.pathname.split("/").pop()=="post_article_region.html"){
         document.getElementById("navPost").classList.add("active");
-    }
-    else if(location.pathname.split("/").pop()=="aboutus.html"){
+    }else if(location.pathname.split("/").pop()=="aboutus.html"){
         document.getElementById("navAbout").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="login.html"){
+        document.getElementById("navLogin").classList.add("active");
     }
 }
-
+checkPage();
 
 //會員判斷
 function getMember(){
@@ -53,7 +54,7 @@ function getMember(){
                             <li><a href="./aboutus.html" id="navAbout">關於我們</a></li>
                             <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
                             <li class="rwd"><a href="./message.html">我的信箱</a></li>
-                            <li class="rwd"><a href="./main.html">登出</a></li>
+                            <li class="rwd"><a onclick="signOut()">登出</a></li>
                             <li class="memZone">
                                 <div>
                                     <div class="memPic"></div>
@@ -145,12 +146,12 @@ function signOut(){
                             </a>
                         </h1>
                         <ul class="col-xl-9 col-lg-9 col-md-9">
-                            <li><a href="./map.html">浪浪在哪裡</a></li>
-                            <li><a href="./donation.html">愛心助浪浪</a></li>
-                            <li><a href="./customized.html">客製化項圈</a></li>
-                            <li><a href="./post_article_region.html">毛孩交流區</a></li>
-                            <li><a href="./aboutus.html">關於我們</a></li>
-                            <li><a class="login" href="./login.html">登入 / 註冊</a></li>
+                            <li><a href="./map.html" id="navMap">浪浪在哪裡</a></li>
+                            <li><a href="./donation.html" id="navDonate">愛心助浪浪</a></li>
+                            <li><a href="./customized.html" id="navCus">客製化項圈</a></li>
+                            <li><a href="./post_article_region.html" id="navPost">毛孩交流區</a></li>
+                            <li><a href="./aboutus.html" id="navAbout">關於我們</a></li>
+                            <li><a class="login" href="./login.html" id="navLogin">登入 / 註冊</a></li>
                         </ul>
                         <button class="hamburger hamburger--spring" type="button">
                             <span class="hamburger-box">
@@ -162,7 +163,11 @@ function signOut(){
                 `;
                 sessionStorage.clear();
                 checkPage();
-                
+                //漢堡選單
+                $("button.hamburger").on("click", function(){
+                    $(this).toggleClass("is-active");
+                    $("nav ul").slideToggle();
+                });
                 if(location.pathname.split("/").pop()=="customized.html"){
                     customizedSignIn();
                 }

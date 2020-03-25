@@ -203,7 +203,7 @@ article {
   .map_option::before {
     content: "";
     display: block;
-    background-image: url(./img/pattern.png);
+    background-image: url(../img/paper/pattern.png);
     background-size: contain;
     height: 40px;
     width: 100%;
@@ -216,7 +216,7 @@ article {
   .option_height::before {
     content: "";
     display: block;
-    background-image: url(/img/pattern.png);
+    background-image: url(../img/paper/pattern.png);
     background-size: cover;
     height: 60px;
     width: 100%;
