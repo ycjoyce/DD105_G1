@@ -276,60 +276,31 @@
             <h3>聯絡我們</h3>
             <div class="blackLine"></div>
             <div class="address_tel">
-              <h4>地址:桃園市中壢區中大路300 號</h4>
-              <h4>電話:(03)425-7387</h4>
+              <h4>對於我們有任何好奇或是想說的話嗎 ?</h4>
+              <h4>歡迎發送私信聯絡我們 !</h4>
             </div>
             
           </div>
           <div class="col-7 contactRight">
-            <form action="" method="">
-              <div>
-                <p>
-                  <h3>姓名</h3>
-                </p>
+            <form method="POST">
+            
                 <div class="set_box_border">
-                  <input type="text">
-                  <div class="text_dash_line"></div>
-                  <span class="top"></span>
-                  <span class="right"></span>
-                  <span class="bottom"></span>
-                  <span class="left"></span>
+                  <textarea id="msgContent" cols="40" rows="10" placeholder="請輸入私信內容" style="resize:none"></textarea>
+                  <div class="border"></div>
+                  <div class="border"></div>
+                  <div class="border"></div>
+                  <div class="border"></div>
                 </div>
-              </div>
-
-              <div>
-                <p>
-                  <h3>電子郵件</h3>
-                </p>
-                <div class="set_box_border">
-                  <input type="email">
-                  <div class="text_dash_line"></div>
-                  <span class="bottom"></span>
-                  <span class="right"></span>
-                  <span class="top"></span>
-                  <span class="left"></span>
-                </div>
-              </div>
-
-              <div>
-                <br>
-                <div class="set_box_border">
-                  <textarea name="" cols="40" rows="10" placeholder="留言給我們" style="resize:none"></textarea>
-                  <span class="bottom"></span>
-                  <span class="right"></span>
-                  <span class="top"></span>
-                  <span class="left"></span>
-                </div>
-              </div>
-
-              <div>
-                <br>
-                @@include('layout/btn_gray.html',{"innerText": "提交"})
-              </div>
+              
+              
+                <label for="uploadImg">附加圖片<img src="./img/clip-outline.png">
+                  <input type="file" id="uploadImg">
+                  <span id="msgPanel"></span>
+                </label>
+                
+              @@include('layout/btn_gray.html',{"innerText": "發送私信"})
+              
             </form>
-
-
-
           </div>
         </div>
 
@@ -343,8 +314,10 @@
   <script src="./js/shutter.js"></script>
   <script src="./js/page_top.js"></script>
   <script src="./js/signInOut.js"></script>
+  <script src="./js/aboutusMsg.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
+  
 </body>
 
 </html>
