@@ -18,7 +18,7 @@ function dofirst() {
     var collarImg = new Image();
     collarImg.src = "./img/customized_collar/leather_png/1.png";
     var collarImg2 = new Image();
-    collarImg2.src = "./img/customized_collar/leather_png/real_upper_finish5.png";
+    collarImg2.src = "./img/customized_collar/leather_png/real_upper_finish8.png";
     var tagImg1 = new Image();
     tagImg1.src = "./img/customized_collar/leather_png/29_2.png";
     // tagImg2.src = "";
@@ -315,58 +315,71 @@ function dofirst() {
     resizeCanvas();
 
     function resizeCanvas() {
+        canvasRatio = 831 / 1320;
         canvas.setWidth(previewArea.clientWidth);
-        canvas.setHeight(previewArea.clientHeight);
+        canvas.setHeight(previewArea.clientWidth * canvasRatio);
+        console.log("寬", previewArea.clientWidth, "px");
+        console.log("高", previewArea.clientWidth * canvasRatio, "px");
         canvas2.width = previewArea.clientWidth; //第二個canvas的寬 = 父層div的寬
-        canvas2.height = previewArea.clientHeight; //第二個canvas的高 = 父層div的高
+        canvas2.height = previewArea.clientWidth * canvasRatio; //第二個canvas的高 = 父層div的高
         imgRatio = 1000 / 1000; //圖片寬高比例
-        imgWidth = previewArea.clientWidth * 0.7; //圖片寬度參數
+        imgWidth = previewArea.clientWidth * 0.75; //圖片寬度參數
         imgHeight = imgWidth * imgRatio; //圖片高度參數
         imgOffsetX = (canvas.width - imgWidth) / 2; //圖片X位移量
         imgOffsetY = (canvas.height - imgHeight) / 2; //圖片Y位移量
-        fabricScaleX = (previewArea.clientWidth / 1000) * 0.7;
-        fabricScaleY = (previewArea.clientWidth / 1000) * 0.7;
-        if (window.innerWidth <= 414) { //RWD
-            imgWidth = previewArea.clientWidth * 1;
+        fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+        fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
+        if (window.innerWidth = 375) { //RWD
+            imgWidth = previewArea.clientWidth * 0.75;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
-            imgOffsetY = -15;
+            imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
+        } else if (window.innerWidth = 414) {
+            imgWidth = previewArea.clientWidth * 0.75;
+            imgHeight = imgWidth * imgRatio;
+            imgOffsetX = (canvas.width - imgWidth) / 2;
+            imgOffsetY = (canvas.height - imgHeight) / 2;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
         } else if (window.innerWidth < 576) {
-            imgWidth = previewArea.clientWidth * 1;
+            imgWidth = previewArea.clientWidth * 0.75;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
-            fabricScaleX = (previewArea.clientWidth / 1000) * 1;
-            fabricScaleY = (previewArea.clientWidth / 1000) * 1;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
         } else if (window.innerWidth < 768) {
-            imgWidth = previewArea.clientWidth * 0.8;
+            imgWidth = previewArea.clientWidth * 0.75;
             imgHeight = imgWidth * imgRatio;
-            imgOffsetX = (canvas.width - imgWidth) / 2.2;
+            imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
-            fabricScaleX = (previewArea.clientWidth / 1000) * 0.8;
-            fabricScaleY = (previewArea.clientWidth / 1000) * 0.8;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
         } else if (window.innerWidth < 992) {
-            imgWidth = previewArea.clientWidth * 0.6;
+            imgWidth = previewArea.clientWidth * 0.75;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
-            fabricScaleX = (previewArea.clientWidth / 1000) * 0.6;
-            fabricScaleY = (previewArea.clientWidth / 1000) * 0.6;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
         } else if (window.innerWidth < 1200) {
-            imgWidth = previewArea.clientWidth * 1;
+            imgWidth = previewArea.clientWidth * 0.75;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
-            fabricScaleX = (previewArea.clientWidth / 1000) * 1;
-            fabricScaleY = (previewArea.clientWidth / 1000) * 1;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
         } else if (window.innerWidth < 1500) {
-            imgWidth = previewArea.clientWidth * 0.9;
+            imgWidth = previewArea.clientWidth * 0.75;
             imgHeight = imgWidth * imgRatio;
             imgOffsetX = (canvas.width - imgWidth) / 2;
             imgOffsetY = (canvas.height - imgHeight) / 2;
-            fabricScaleX = fabricScaleX = (previewArea.clientWidth / 1000) * 0.9;
-            fabricScaleY = fabricScaleY = (previewArea.clientWidth / 1000) * 0.9;
+            fabricScaleX = (previewArea.clientWidth / 1000) * 0.75;
+            fabricScaleY = (previewArea.clientWidth / 1000) * 0.75;
         }
+
 
         canvas.clear();
         fabric.Image.fromURL(collarImg.src, function(img) {
