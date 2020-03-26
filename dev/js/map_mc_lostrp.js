@@ -73,7 +73,6 @@ $(document).ready(function() {
       error: function(xhr) {
         alert(xhr.Message);
       }
-<<<<<<< HEAD
     });
   }
 
@@ -222,16 +221,4 @@ $(document).ready(function() {
       });
     });
   }
-=======
-      $("#tab-2 .memTable_content")
-        .children("table")
-        .append(html);
-    },
-    error: function(xhr) {
-      // alert("請上傳圖片");
-      // var err = eval("(" + xhr.responseText + ")");
-      alert(xhr.Message);
-    }
-  });
->>>>>>> 90293d3102d6adc3e5cf8d88b4ef05c8ac59a5be
 });
