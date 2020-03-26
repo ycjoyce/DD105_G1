@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="accordion" id="accordionExample">
-            <!-- <div class="card">
+            <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
@@ -15,63 +15,68 @@
                     <div class="card-body">
                         <div class="row">
                             <iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe>
-                            <form action="./phps/post.php" method="POST" enctype="multipart/form-data"
-                                class="col-xl-12 upact" target="id_iframe">
+                            <form action="./php/add-activity.php" method="post" enctype="multipart/form-data" class="col-xl-12 upact"
+                                target="id_iframe" id="actForm">
                                 <input type="text" name="post" value="updata_activity" style="display: none;"
                                     v-if="update == true">
                                 <input type="text" name="post" value="add_activity" style="display: none;"
                                     v-if="update == false">
 
                                 <div class="col-xl-6 updata_act_mom" style="vertical-align: middle">
-                                    <label class="col-xl-12 updata_act"
-                                        :style="{backgroundImage: 'url('+upact_infos.activity_img+')'}" for="upimg">
+                                    <label class="col-xl-12 updata_act" for="upimg"
+                                        :style="{backgroundImage:'url('+upInfors.activity_img+')'}">
                                         <input type="file" name="act_img" id="upimg" style="display: none;"
-                                            @change="up_img">
+                                         @change="up_img">
                                         <img src="./img/upload-zone.png" class="uploadimg"
-                                            v-if="upact_infos.activity_img == ''">
-                                        <img :src=upact_infos.activity_img class="act_img" v-else> -->
-                                        <!-- <div class="img_name">{{ upact_infos.activity_g }}</div> -->
-                                    <!-- </label>
-                                </div>
+                                            v-if="upInfors.activity_img == ''">
+                                        <!-- <img :src=upInfors.activity_img class="act_img" v-else> -->
+                                        <div class="img_name" >{{ upInfors.activity_g }}</div>
+                                    </label>
+                                </div> 
                                 <div class="col-xl-6">
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_num"> 活動/新聞/宣導編號</label>
                                         <input type="number" class="form-control" id="activity_num" name="activity_num"
-                                            v-model="upact_infos.activity_num" v-if="update == false" min="0" step="1">
-
+                                            min="0" step="1" v-model="upInfors.activity_num" v-if="update == false">
+                                        <input type="number" class="form-control" id="activity_num" name="activity_num"
+                                            min="0" step="1" v-model="upInfors.activity_num" v-if="update == true"
+                                            readonly>
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_name"> 活動/新聞/宣導名稱</label>
                                         <input type="text" class="form-control" id="activity_name" name="activity_name"
-                                            v-model="upact_infos.activity_name">
+                                            v-model="upInfors.activity_name">
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
-                                        <label for="activity_start"> 活動/新聞/宣導類型</label>
-                                        <select name="" id="">
-                                            <option value="">活動</option>
-                                            <option value="">新聞</option>
-                                            <option value="">宣導</option>
+                                        <label for="activity_type"> 活動/新聞/宣導類型</label>
+                                        <select name="activity_type" id="activity_type"
+                                            v-model="upInfors.activity_type">
+                                            <option value="活動">活動</option>
+                                            <option value="新聞">新聞</option>
+                                            <option value="宣導">宣導</option>
                                         </select>
-                                    </div> -->
+                                    </div>
                                     <!-- <div class="form-group" style="display: inline-block; width: 49%;">
-                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
-                        <input type="date" class="form-control" id="activity_fin" name="activity_fin"
-                          v-model="upact_infos.activity_fin">
-                      </div> -->
-                                    <!-- <div class="form-group" style="display: inline-block; width: 100%">
+                                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
+                                        <input type="date" class="form-control" id="activity_fin" name="activity_fin">
+                                    </div> -->
+                                    <div class="form-group" style="display: inline-block; width: 100%">
                                         <label for="activity_Introduction"> 活動/新聞/宣導內容介紹</label>
                                         <textarea type="date" class="form-control" id="activity_Introduction" rows="8"
-                                            name="activity_Introduction" style="resize: none"
-                                            v-model="upact_infos.activity_Introduction"></textarea>
+                                            name="activity_Introduction" v-model="upInfors.activity_Introduction"
+                                            style="resize: none"></textarea>
                                     </div>
+
                                     <button type="submit" class="btn btn-primary submitbtn" style="display:block"
-                                        @click="send_act" v-if="!update">Submit</button>
+                                        @click="send_act" v-if="!update">上傳</button>
+                                    <button type="submit" class="btn btn-primary submitbtn" style="display:block"
+                                        @click="update_act" v-else>更新</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="card">
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
@@ -88,19 +93,19 @@
                                 <tr>
                                     <th scope="col" style="text-align: center;"> 活動/新聞/宣導編號</th>
                                     <th scope="col" style="text-align: center;"> 活動/新聞/宣導名稱</th>
-                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導類型</th>     
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導類型</th>
                                     <th scope="col" style="text-align: center;"> 活動/新聞/宣導內容介紹</th>
                                     <th scope="col" style="text-align: center;">設定</th>
                                 </tr>
                             </thead>
-                            <tbody> 
+                            <tbody>
                                 <tr v-for="item in activity">
                                     <th scope="row" style="text-align: center;">{{ item.inforNo}}</th>
                                     <td style="text-align: center;">{{ item.inforName }}</td>
                                     <td style="text-align: center;">{{ item.inforType }}</td>
                                     <td style="text-align: center;">{{ item.inforContent }}</td>
                                     <td style="text-align: center;">
-                                        <a href="#" @click.prevent="get_edit(item.activity_no);update = true">
+                                        <a href="#" @click.prevent="get_edit(item.inforNo);update = true">
                                             編輯</a> / <a href="#" @click.prevent="get_delete(item.activity_no)">下架</a>
                                     </td>
                                 </tr>
