@@ -39,12 +39,203 @@
     width: 90%;
     height: 600px;
     background: rgba(255, 255, 255, 1);
-    // padding: 4em;
+    padding: 10px;
     text-align: center;
     position: relative;
     z-index: 11;
     opacity: 0;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #collarDetail {
+        // border: 1px solid red;
+        width: 400px;
+        display: flex;
+        margin-top: 30px;
+        #orderTotal {
+            width: 180px;
+            // border: 1px solid blue;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            #orderQTY {
+                margin-left: 20px;
+            }
+            #orderPrice {
+                margin-left: 20px;
+            }
+        }
+    }
+    #orderDetail {
+        // border: 1px solid red;
+        width: 100%;
+        height: 240px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        .orderList {
+            margin-left: 40px;
+            font-size: 1rem;
+        }
+    }
+    .credit-card-box {
+        width: 240px;
+        height: 150px;
+        margin: 0px 0px 40px 0px;
+        perspective: 1000px;
+        position: relative;
+        // overflow: hidden;
+        &:hover .flip,
+        &.hover .flip {
+            transform: rotateY(180deg);
+        }
+        .front,
+        .back {
+            // border: 1px solid red;
+            width: 240px;
+            height: 150px;
+            border-radius: 15px;
+            // -webkit-backface-visibility: visible;
+            // -webkit-backface-visibility: hidden;
+            // backface-visibility: hidden;
+            backface-visibility: visible;
+            background: linear-gradient(135deg, #7cbfc2, #00d369);
+            //   background-image: url(../img/bg-01.png);
+            //   background-size : cover;
+            position: absolute;
+            color: #fff;
+            font-family: Inconsolata;
+            top: 0;
+            left: 0;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-image: url("../img/dogsleep.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                opacity: 0.05;
+            }
+        }
+        .flip {
+            transition: 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: transform 1s;
+        }
+        .logo {
+            position: absolute;
+            top: 5.4px;
+            right: 12px;
+            width: 36px;
+            svg {
+                width: 100%;
+                height: auto;
+                fill: #fff;
+            }
+        }
+        .front {
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
+        .back {
+            transform: rotateY(180deg);
+            .logo {
+                top: 111px;
+            }
+        }
+        .chip {
+            position: absolute;
+            width: 36px;
+            height: 27px;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, hsl(269, 54%, 87%) 0%, hsl(200, 64%, 89%) 44%, hsl(18, 55%, 94%) 100%);
+            border-radius: 8px;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border: 2.4px solid hsla(0, 0, 50, 0.1);
+                width: 80%;
+                height: 70%;
+                border-radius: 3px;
+            }
+        }
+        .strip {
+            background: linear-gradient(135deg, hsl(0, 0, 25%), hsl(0, 0, 10%));
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            top: 18px;
+            left: 0;
+        }
+        .number {
+            position: absolute;
+            margin: 0 auto;
+            top: 61.8px;
+            left: 11.4px;
+            font-size: 0.9rem;
+            color: white;
+        }
+        label {
+            font-size: 6px;
+            letter-spacing: 1px;
+            text-shadow: none;
+            text-transform: uppercase;
+            font-weight: normal;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .card-holder,
+        .card-expiration-date {
+            position: absolute;
+            margin: 0 auto;
+            top: 108px;
+            left: 11.4px;
+            font-size: 13.2px;
+            div {
+                font-size: 0.5rem;
+                color: white;
+            }
+        }
+        .card-expiration-date {
+            text-align: right;
+            left: auto;
+            right: 12px;
+        }
+        .ccv {
+            height: 21.6px;
+            background: #fff;
+            width: 90%;
+            border-radius: 3px;
+            top: 48%;
+            left: 0;
+            right: 0;
+            position: absolute;
+            margin: 0 auto;
+            color: #000;
+            text-align: right;
+            padding: 1%;
+            label {
+                font-size: 0.5rem;
+                margin: -25px 0 8.4px;
+                color: #fff;
+            }
+        }
+    }
 }
 
 .dialog--open .dialog__content {

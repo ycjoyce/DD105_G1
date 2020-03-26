@@ -58,12 +58,12 @@ function getMember(){
                             <li class="rwd"><a onclick="signOut()" class="login">登出</a></li>
                             <li class="memZone">
                                 <div>
-                                    <div class="memPic"></div>
+                                    <div class="memPic" id="memPic"></div>
                                     <div class="message">
                                         <span id="headerUnread" class="unread"></span>
                                     </div>
                                 </div>
-                                <ul class="memZone">
+                                <ul class="memZone" id="togglePanel">
                                     <li><a href="./memberCenter.html">會員中心</a></li>
                                     <li><a id="signOut" onclick="signOut()">登出</a></li>
                                 </ul>
@@ -77,6 +77,7 @@ function getMember(){
                     </div>
                 </nav>
                 `;
+
                 //漢堡選單
                 $("button.hamburger").on("click", function(){
                     $(this).toggleClass("is-active");

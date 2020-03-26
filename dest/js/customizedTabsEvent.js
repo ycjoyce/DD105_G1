@@ -152,19 +152,48 @@ $(document).ready(function() {
         $('.fakeCircle7').css("opacity", "1");
         $('.fakeCircle8').css("opacity", "1");
     });
-    // $('#step4BackBtn').click(function() { //step4上一步按鈕
+    $('#step4BackBtn').click(function() { //step4立即購買按鈕
 
-    //     $('ul.tabs li').removeClass('current');
-    //     $('.tab-content').removeClass('current');
+        // $('ul.tabs li').removeClass('current');
+        // $('.tab-content').removeClass('current');
 
-    //     $(this).parent().parent().prev().addClass('current');
-    //     $('#bigTab3').addClass('current');
-    //     $('.tabLine1').css("opacity", "1");
-    //     $('.fakeCircles').css("opacity", "0");
-    //     $('.fakeCircle9').css("opacity", "1");
-    //     $('.fakeCircle10').css("opacity", "1");
-    //     $('.fakeCircle11').css("opacity", "1");
-    //     $('.fakeCircle12').css("opacity", "1");
+        // $(this).parent().parent().prev().addClass('current');
+        // $('#bigTab3').addClass('current');
+        // $('.tabLine1').css("opacity", "1");
+        // $('.fakeCircles').css("opacity", "0");
+        // $('.fakeCircle9').css("opacity", "1");
+        // $('.fakeCircle10').css("opacity", "1");
+        // $('.fakeCircle11').css("opacity", "1");
+        // $('.fakeCircle12').css("opacity", "1");
+        if ($('#orderNameInput').val() == "") {
+            alert("請先輸入收件人姓名");
+            return;
+        } else if ($('#orderPhoneInput').val() == "") {
+            alert("請先輸入收件人電話");
+            return;
+        } else if ($('#orderAddressInput').val() == "") {
+            alert("請先輸入收件人地址");
+            return;
+        } else {
+            $(this).parent().attr("data-dialog", "somedialog");
+            $('#orderName').text("收件人姓名 : " + $('#orderNameInput').val());
+            $('#orderPhone').text("收件人電話 : " + $('#orderPhoneInput').val());
+            $('#orderAddress').text("收件人地址 : " + $('#orderAddressInput').val());
+        }
+    });
+    // $('#orderBtn').click(function() {
+    //     if ($('#orderNameInput').val() == "") {
+    //         alert("請先輸入收件人姓名");
+    //         return;
+    //     } else if ($('#orderPhoneInput').val() == "") {
+    //         alert("請先輸入收件人電話");
+    //         return;
+    //     } else if ($('#orderAddressInput').val() == "") {
+    //         alert("請先輸入收件人地址");
+    //         return;
+    //     } else {
+    //         alert("訂單已成功送出");
+    //     }
     // });
     $('.collarImagesBoxs').click(function() {
         $(this).parent().children().children().removeClass("imageApplying");
@@ -186,6 +215,8 @@ $(document).ready(function() {
             nowCount -= 1;
             $('#collarCount').text(nowCount);
             $('#totalPrice').text("$" + nowCount * 300);
+            $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
+            $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
         }
     })
     $('#plusCountBtn').click(function() {
@@ -193,9 +224,14 @@ $(document).ready(function() {
         nowCount += 1;
         $('#collarCount').text(nowCount);
         $('#totalPrice').text("$" + nowCount * 300);
+        $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
+        $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
     })
+    $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
+    $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
 
 })
+
 
 
 window.addEventListener('load', function() {
@@ -210,10 +246,12 @@ window.addEventListener('load', function() {
     let lockPoint = document.getElementsByClassName('lockPoint');
     let lockStatus = document.getElementsByClassName('lockStatus');
     let todayDate = document.getElementById('todayDate');
+    let orderDate = document.getElementById('orderDate');
+
 
     let today = new Date();
     todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
-
+    orderDate.innerText = `訂購日期 : ${todayDate.innerText}`;
     tagImages[0].style.transform = "scale(2.5)";
 
     // $('#tagTotal span:first-child').text("1");
