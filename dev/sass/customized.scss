@@ -1231,43 +1231,71 @@ section {
         // @include RWD(lg) {
         //     height: 855px;
         // }
-        .purchaseContent {
-            // border: 1px solid #7e9c23;
-            // background-color: #7e9c23;
-            background-color: rgba(0, 0, 0, 0.7);
-            height: 50px;
-            // margin-top: 30px;
-            margin: 60px 0px;
-            width: 400px;
+        #orderForm {
+            // border: 1px solid red;
+            width: 364px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            border-radius: 25px;
-            #purchaseCount {
+            .purchaseContent {
+                // border: 1px solid #7e9c23;
+                // background-color: #7e9c23;
+                background-color: rgba(0, 0, 0, 0.7);
+                height: 50px;
+                // margin-top: 30px;
+                margin: 60px 0px 30px 0px;
+                width: 100%;
                 display: flex;
-                margin-left: 80px;
+                justify-content: center;
                 align-items: center;
-                .countBtn {
-                    border: 0px solid #67801e;
-                    width: 30px;
-                    height: 30px;
-                    background-color: transparent;
-                    border-radius: 50%;
+                border-radius: 25px;
+                #purchaseCount {
                     display: flex;
-                    justify-content: center;
+                    margin-left: 80px;
                     align-items: center;
-                    margin: 0px 10px;
-                    transition: all 0.2s ease-in-out;
-                    color: white;
-                    cursor: pointer;
-                    // transform: scale(2);
+                    .countBtn {
+                        border: 0px solid #67801e;
+                        width: 30px;
+                        height: 30px;
+                        background-color: transparent;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0px 10px;
+                        transition: all 0.2s ease-in-out;
+                        color: white;
+                        cursor: pointer;
+                        // transform: scale(2);
+                        &:focus {
+                            outline-style: none;
+                        }
+                        &:hover {
+                            // border: 2px solid #7e9c23;
+                            background-color: #313131;
+                            color: white;
+                        }
+                    }
+                }
+            }
+            .orderDetails {
+                border: 0px solid rgba(0, 0, 0, 0.3);
+                // width: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 10px 0px;
+                .orderDetailsLabel {
+                    margin-bottom: 5px;
+                    color: #555555;
+                    font-weight: bold;
+                }
+                .orderDetailsInput {
+                    border: 1px solid rgba(0, 0, 0, 0.3);
+                    padding: 10px;
+                    border-radius: 2px;
+                    height: 38px;
                     &:focus {
                         outline-style: none;
-                    }
-                    &:hover {
-                        // border: 2px solid #7e9c23;
-                        background-color: #313131;
-                        color: white;
                     }
                 }
             }
