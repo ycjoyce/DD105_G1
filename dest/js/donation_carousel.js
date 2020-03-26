@@ -10,7 +10,6 @@ function dogAniSize(){
     let upImg= dogAnimate.querySelector("img");
     dogAnimate.style.height= upImg.offsetHeight + "px";
 }
-dogAniSize();
 window.addEventListener("resize",dogAniSize);
 
 
@@ -38,6 +37,7 @@ function donationCarousel(){
     complete.innerText= comVal;
     changeNum.innerText= `0${now}/03`;
 
+    // alert(`${projectNum.innerText}|${date.innerText}|${cardTitle.innerText}`);
     // console.log(now);
     // console.log(projectNum.innerText);
     // console.log(date.innerText);
@@ -168,7 +168,7 @@ function play(){
         nextBtn.onclick();
     },8000);
 }
-play();
+
 
 function stop(){
     clearInterval(timerId);
