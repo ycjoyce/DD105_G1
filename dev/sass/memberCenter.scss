@@ -312,10 +312,6 @@
   }
 }
 @media (max-width: 767px) {
-<<<<<<< HEAD
-  section {
-    height: auto;
-=======
   .container {
     aside {
       position: fixed;
@@ -347,7 +343,6 @@
       width: 100%;
       height: calc(100vh - 75px - 120px);
     }
->>>>>>> 90293d3102d6adc3e5cf8d88b4ef05c8ac59a5be
   }
 }
 
@@ -749,34 +744,6 @@
 // 管理黑名單
 @import "layout/rwd";
 
-<<<<<<< HEAD
-section.blacklistTable {
-  .blacklist_content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
-    // &::after{
-    //   content: '';
-    //   flex: auto;
-    // }
-    div.withoutBlack {
-      width: 400px;
-      position: relative;
-      padding-top: 150px;
-      margin: 0 auto;
-      div {
-        width: 150px;
-        height: 130px;
-        position: absolute;
-        top: 0;
-        right: 50px;
-        img.bubble {
-          width: 100%;
-        }
-        p {
-          text-align: center;
-=======
   section.blacklistTable {
     .blacklist_content {
       display: flex;
@@ -833,12 +800,11 @@ section.blacklistTable {
           min-width: 50px;
           height: 50px;
           border-radius: 50%;
->>>>>>> 90293d3102d6adc3e5cf8d88b4ef05c8ac59a5be
           display: inline-block;
-          position: absolute;
+          // position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%);
+          // transform: translate(-50%, -50%);
           color: $gray;
         }
       }
@@ -879,7 +845,7 @@ section.blacklistTable {
       }
     }
   }
-}
+
 
 @media (max-width: 1200px) {
   .tab-content {
