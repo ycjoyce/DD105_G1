@@ -36,6 +36,7 @@ function mapCarousel() {
                                 快來回報遺失的地點讓大家一同協尋！<br>
                                 看見疑似走失的貓狗也來聯繫主人確認吧。<br>`;
     cardBtn.innerText = "我的寵物遺失了";
+    document.querySelector("section.where div.card a.btn").classList.add("lostPet");
     changeNum.innerText = "01/05";
     if (mapLost.classList.contains("on") == false) {
       mapLost.classList.add("on");
@@ -45,12 +46,12 @@ function mapCarousel() {
       mapFriendly3.classList.remove("on");
     }
     //=====地圖圖標開始=====//
-    for (i = 0; i < markers.length; i++) {
-      markers[i].setMap(null);
-    }
-    markers = [];
-    infoWindows = [];
-    getLost();
+    // for (i = 0; i < markers.length; i++) {
+    //   markers[i].setMap(null);
+    // }
+    // markers = [];
+    // infoWindows = [];
+    // getLost();
     //=====地圖圖標結束=====//
   } else if (curVal == 2) {
     cardTitle.innerText = "寵物友善空間";
@@ -58,6 +59,9 @@ function mapCarousel() {
                                 蒐集全台友善寵物空間，<br>
                                 讓您能夠輕鬆和毛小孩一同出遊！<br>`;
     cardBtn.innerText = "了解更多";
+    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
+      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    }
     changeNum.innerText = "02/05";
     if (mapFriendly.classList.contains("on") == false) {
       mapLost.classList.remove("on");
@@ -80,6 +84,9 @@ function mapCarousel() {
                                 蒐集全台友善寵物餐廳，<br>
                                 讓您能夠輕鬆和毛小孩一同約會去！<br>`;
     cardBtn.innerText = "了解更多";
+    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
+      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    }
     changeNum.innerText = "03/05";
     if (mapFriendly1.classList.contains("on") == false) {
       mapLost.classList.remove("on");
@@ -127,6 +134,9 @@ function mapCarousel() {
                                 蒐集全台友善寵物住宿，<br>
                                 讓您和毛小孩都睡得安穩！<br>`;
     cardBtn.innerText = "了解更多";
+    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
+      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    }
     changeNum.innerText = "04/05";
     if (mapFriendly2.classList.contains("on") == false) {
       mapLost.classList.remove("on");
@@ -173,6 +183,9 @@ function mapCarousel() {
                                 蒐集全台友善寵物景點，<br>
                                 讓您能夠輕鬆和毛小孩在台灣各地留下足跡！<br>`;
     cardBtn.innerText = "了解更多";
+    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
+      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    }
     changeNum.innerText = "05/05";
     if (mapFriendly3.classList.contains("on") == false) {
       mapLost.classList.remove("on");

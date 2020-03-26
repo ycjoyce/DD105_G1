@@ -205,12 +205,11 @@ function zoomControl() {
 document.getElementById("lostPetRpLoc").onchange = getAddress;
 var geocoder = new google.maps.Geocoder();
 function getAddress() {
-  alert("測試");
+  // alert("測試");
   var address = document.getElementById("lostPetRpLoc").value;
   geocoder.geocode({ address: address }, function(results, status) {
     if (status == "OK") {
-      console.log(results[0]);
-      alert(
+      console.log(
         `${
           results[0].formatted_address
         } | ${results[0].geometry.location.lat()} | ${results[0].geometry.location.lng()}`
@@ -245,6 +244,7 @@ function getLost() {
     console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadLostData(
+        data[i].lostPetRpNo,
         data[i].lostPetRpLoclat,
         data[i].lostPetRpLoclng,
         data[i].lostPetRpName,
@@ -260,8 +260,51 @@ function getLost() {
   };
 }
 
+//連結私信功能==================================
+let petLostOwner = "";
+function mapMsg(id) {
+  if (member.memId) {
+    $.ajax({
+      url: "./php/checkNotSelf.php",
+      type: "POST",
+      data: { lostNo: id.substr(4) },
+      success(data) {
+        if (member.memNo == data) {
+          alert("此寵物主人為您本人");
+        } else {
+          petLostOwner = data;
+          $.ajax({
+            url: "./php/mapMsg.php",
+            type: "POST",
+            data: { lostNo: id.substr(4) },
+            success(data) {
+              if (data.indexOf("error") == -1) {
+                sessionStorage.setItem("now-on", petLostOwner);
+                location.href = "./message.html";
+              } else {
+                alert("操作失敗");
+              }
+            },
+            error(data) {
+              alert(data);
+            }
+          });
+        }
+      },
+      error(data) {
+        alert(data);
+      }
+    });
+  } else {
+    alert("請先登入");
+  }
+}
+
+//=============================================
+
 /*** 讀取地標 ***/
 function loadLostData(
+  rpNo,
   lat,
   lng,
   title,
@@ -282,7 +325,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a href="#" title:"我要私信主人">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')">${memName}<img src="./img/icon_private_message.svg"></a></li>
       </ul>
     </div>
   `;
@@ -315,9 +358,8 @@ function loadLostData(
 var dist = document.querySelector("#lost_area");
 dist.addEventListener("change", changeDist);
 function changeDist() {
-  alert("切換地區!");
   var distVal = dist.value;
-  // alert(locNo);
+  alert(distVal);
   // 清除資料
   for (i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
@@ -333,6 +375,7 @@ function changeDist() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].lostPetRpLocAdd.indexOf(distVal) != -1) {
         loadLostData(
+          data[i].lostPetRpNo,
           data[i].lostPetRpLoclat,
           data[i].lostPetRpLoclng,
           data[i].lostPetRpName,
@@ -384,12 +427,11 @@ function getFriendly() {
 }
 
 // 變更寵物友善地區及類別
-let search_area = "";
-let search_type = "";
-alert(search_area, "first");
+let search_area;
+let search_type;
 
 function changeMarker() {
-  alert("切換");
+  // alert("切換");
   for (i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
@@ -402,129 +444,204 @@ function changeMarker() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     for (var i = 0; data.length > i; i++) {
-      // if(search_type == 0){
-      //   alert('沒選地區')
-      //   if (
-      //     data[i].friendlyTypeNo == search_type[0]
-      //   ) {
-      //     loadfriendlyData(
-      //       data[i].friendlylat,
-      //       data[i].friendlylng,
-      //       data[i].friendlyName,
-      //       data[i].friendlyPic,
-      //       data[i].friendlyTel,
-      //       data[i].friendlyAddress,
-      //       data[i].friendlyIntro_1,
-      //       data[i].friendlyIntro_2,
-      //       data[i].friendlyIntro_3,
-      //       data[i].friendlyIntro_4,
-      //       data[i].friendlyTypeNo,
-      //       data[i].friendlyTypeName
-      //     );
-      //   }
-      //   if (
-      //     data[i].friendlyTypeNo == search_type[1]
-      //   ) {
-      //     loadfriendlyData(
-      //       data[i].friendlylat,
-      //       data[i].friendlylng,
-      //       data[i].friendlyName,
-      //       data[i].friendlyPic,
-      //       data[i].friendlyTel,
-      //       data[i].friendlyAddress,
-      //       data[i].friendlyIntro_1,
-      //       data[i].friendlyIntro_2,
-      //       data[i].friendlyIntro_3,
-      //       data[i].friendlyIntro_4,
-      //       data[i].friendlyTypeNo,
-      //       data[i].friendlyTypeName
-      //     );
-      //   }
-      //   if (
-      //     data[i].friendlyTypeNo == search_type[2]
-      //   ) {
-      //     loadfriendlyData(
-      //       data[i].friendlylat,
-      //       data[i].friendlylng,
-      //       data[i].friendlyName,
-      //       data[i].friendlyPic,
-      //       data[i].friendlyTel,
-      //       data[i].friendlyAddress,
-      //       data[i].friendlyIntro_1,
-      //       data[i].friendlyIntro_2,
-      //       data[i].friendlyIntro_3,
-      //       data[i].friendlyIntro_4,
-      //       data[i].friendlyTypeNo,
-      //       data[i].friendlyTypeName
-      //     );
-      //   }
-      // }else{
-      if (
-        data[i].friendlyTypeNo == search_type[0] &&
-        data[i].friendlyLocNo == search_area
-      ) {
-        loadfriendlyData(
-          data[i].friendlylat,
-          data[i].friendlylng,
-          data[i].friendlyName,
-          data[i].friendlyPic,
-          data[i].friendlyTel,
-          data[i].friendlyAddress,
-          data[i].friendlyIntro_1,
-          data[i].friendlyIntro_2,
-          data[i].friendlyIntro_3,
-          data[i].friendlyIntro_4,
-          data[i].friendlyTypeNo,
-          data[i].friendlyTypeName
-        );
+      if (search_area) {
+        if (search_type) {
+          if (
+            data[i].friendlyTypeNo == search_type[0] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[1] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[2] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        } else {
+          if (data[i].friendlyLocNo == search_area) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        }
       }
-      if (
-        data[i].friendlyTypeNo == search_type[1] &&
-        data[i].friendlyLocNo == search_area
-      ) {
-        loadfriendlyData(
-          data[i].friendlylat,
-          data[i].friendlylng,
-          data[i].friendlyName,
-          data[i].friendlyPic,
-          data[i].friendlyTel,
-          data[i].friendlyAddress,
-          data[i].friendlyIntro_1,
-          data[i].friendlyIntro_2,
-          data[i].friendlyIntro_3,
-          data[i].friendlyIntro_4,
-          data[i].friendlyTypeNo,
-          data[i].friendlyTypeName
-        );
-      }
-      if (
-        data[i].friendlyTypeNo == search_type[2] &&
-        data[i].friendlyLocNo == search_area
-      ) {
-        loadfriendlyData(
-          data[i].friendlylat,
-          data[i].friendlylng,
-          data[i].friendlyName,
-          data[i].friendlyPic,
-          data[i].friendlyTel,
-          data[i].friendlyAddress,
-          data[i].friendlyIntro_1,
-          data[i].friendlyIntro_2,
-          data[i].friendlyIntro_3,
-          data[i].friendlyIntro_4,
-          data[i].friendlyTypeNo,
-          data[i].friendlyTypeName
-        );
+      if (search_type) {
+        if (search_area) {
+          if (
+            data[i].friendlyTypeNo == search_type[0] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[1] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[2] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        } else {
+          if (data[i].friendlyTypeNo == search_type[0]) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == search_type[1]) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == search_type[2]) {
+            loadfriendlyData(
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        }
       }
     }
     // }
   };
 }
 window.addEventListener("load", function() {
+  // changeMarker();
   let area = document.querySelector("#fr_area");
   area.onchange = function(e) {
     search_area = e.target.value;
-    alert(search_area);
+    // alert(search_area);
     changeMarker();
   };
 
@@ -549,111 +666,11 @@ window.addEventListener("load", function() {
         }
       }
       search_type = arrA;
-      alert(search_type);
+      // alert(search_type);
       changeMarker();
     };
   }
 });
-
-// 變更地區，並進行監聽
-// var area = document.querySelector("#fr_area");
-// area.addEventListener("change", changeArea);
-// function changeArea() {
-//   alert("切換地區!");
-//   var locNo = area.value;
-//   // alert(locNo);
-//   // 清除資料
-//   for (i = 0; i < markers.length; i++) {
-//     markers[i].setMap(null);
-//   }
-//   markers = [];
-//   infoWindows = [];
-
-//   var xhr = new XMLHttpRequest();
-//   xhr.open("get", "./php/map_googleMap.php");
-//   xhr.send(null);
-//   xhr.onload = function() {
-//     var data = JSON.parse(xhr.responseText);
-//     for (var i = 0; data.length > i; i++) {
-//       if (data[i].friendlyLocNo == locNo) {
-//         loadData(
-//           data[i].friendlylat,
-//           data[i].friendlylng,
-//           data[i].friendlyName,
-//           data[i].friendlyPic,
-//           data[i].friendlyTel,
-//           data[i].friendlyAddress,
-//           data[i].friendlyIntro_1,
-//           data[i].friendlyIntro_2,
-//           data[i].friendlyIntro_3,
-//           data[i].friendlyIntro_4,
-//           data[i].friendlyTypeNo,
-//           data[i].friendlyTypeName
-//         );
-//       }
-//     }
-//   };
-// }
-
-// 變更類型，並進行監聽
-// var type = document.getElementsByName("friendtypes");
-// for (var i = 0; i < type.length; i++) {
-//   //然後只要有人被點按，我就執行以下的函式
-//   type[i].addEventListener("click", function() {
-//     for (i = 0; i < markers.length; i++) {
-//       markers[i].setMap(null);
-//     }
-//     var type = document.getElementsByName("friendtypes");
-//     let arrA = [];
-//     //檢查全部的checkbox有誰被勾選
-//     for (var i = 0; i < type.length; i++) {
-//       if (type[i].checked == true) {
-//         //有勾選就去看他的值
-//         console.log(type[i].value);
-
-//         //假設撈出來的資料是以下的arr陣列
-//         var arr = new Array(1, 2, 3);
-//         //假設在陣列找不到
-//         if (arr.indexOf(parseInt(type[i].value)) != -1) {
-//           //顯示資料們
-//           arrA.push(type[i].value);
-//           var xhr = new XMLHttpRequest();
-//           xhr.open("get", "./php/map_googleMap.php");
-//           xhr.send(null);
-//           xhr.onload = function() {
-//             var data = JSON.parse(xhr.responseText);
-//             for (var i = 0; data.length > i; i++) {
-//               if (
-//                 data[i].friendlyTypeNo == arrA[0] ||
-//                 data[i].friendlyTypeNo == arrA[1] ||
-//                 data[i].friendlyTypeNo == arrA[2]
-//               ) {
-//                 loadData(
-//                   data[i].friendlylat,
-//                   data[i].friendlylng,
-//                   data[i].friendlyName,
-//                   data[i].friendlyPic,
-//                   data[i].friendlyTel,
-//                   data[i].friendlyAddress,
-//                   data[i].friendlyIntro_1,
-//                   data[i].friendlyIntro_2,
-//                   data[i].friendlyIntro_3,
-//                   data[i].friendlyIntro_4,
-//                   data[i].friendlyTypeNo,
-//                   data[i].friendlyTypeName
-//                 );
-//               }
-//             }
-//           };
-//         }
-//       }
-//     }
-//     alltypeValue(arrA);
-//   });
-//   const alltypeValue = arrA => {
-//     console.log(arrA);
-//   };
-// }
 
 /*** 讀取地標 ***/
 function loadfriendlyData(

@@ -1,10 +1,16 @@
 $(document).ready(function() {
     $('#bigTab1').click(function() { //step1圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle1').css("opacity", "1");
-        $('.fakeCircle2').css("opacity", "1");
-        $('.fakeCircle3').css("opacity", "1");
-        $('.fakeCircle4').css("opacity", "1");
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle1').css("opacity", "1");
+            $('.fakeCircle2').css("opacity", "1");
+            $('.fakeCircle3').css("opacity", "1");
+            $('.fakeCircle4').css("opacity", "1");
+        }
     });
     $('#bigTab2').click(function() { //step2圓圈
         $('.fakeCircles').css("opacity", "0");
@@ -14,30 +20,51 @@ $(document).ready(function() {
         $('.fakeCircle8').css("opacity", "1");
     });
     $('#bigTab3').click(function() { //step3圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle9').css("opacity", "1");
+            $('.fakeCircle10').css("opacity", "1");
+            $('.fakeCircle11').css("opacity", "1");
+            $('.fakeCircle12').css("opacity", "1");
+        }
+
+
     });
     $('#bigTab4').click(function() { //step4圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle13').css("opacity", "1");
-        $('.fakeCircle14').css("opacity", "1");
-        $('.fakeCircle15').css("opacity", "1");
-        $('.fakeCircle16').css("opacity", "1");
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle13').css("opacity", "1");
+            $('.fakeCircle14').css("opacity", "1");
+            $('.fakeCircle15').css("opacity", "1");
+            $('.fakeCircle16').css("opacity", "1");
+        }
     });
     $('ul.tabs li').click(function() {
         let tab_id = $(this).attr('data-tab');
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            alert("請先解鎖此吊牌");
+        } else {
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+            // $('.tab-content').fadeIn("slow");
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
-        // $('.tab-content').fadeIn("slow");
-
-        $(this).addClass('current'); //標籤樣式換
+            $(this).addClass('current'); //標籤樣式換
 
 
-        $("#" + tab_id).addClass('current'); //內容換
+            $("#" + tab_id).addClass('current'); //內容換
+        }
+
+
     });
     $('#step1NextBtn').click(function() { //step1下一步按鈕
         if (($('.collarImages').hasClass("imageApplying")) == false) {
@@ -59,21 +86,26 @@ $(document).ready(function() {
         }
     });
     $('#step2NextBtn').click(function() { //step2下一步按鈕
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            alert("請先解鎖此吊牌");
+        } else {
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
-
-        $(this).parent().parent().next().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('#bigTab3').css('pointer-events', 'unset');
-        $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
-        $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
-        $('.tabLine2').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+            $(this).parent().parent().next().addClass('current');
+            $('#bigTab3').addClass('current');
+            $('#bigTab3').css('pointer-events', 'unset');
+            $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
+            $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
+            $('.tabLine2').css("opacity", "1");
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle9').css("opacity", "1");
+            $('.fakeCircle10').css("opacity", "1");
+            $('.fakeCircle11').css("opacity", "1");
+            $('.fakeCircle12').css("opacity", "1");
+        }
     });
     $('#step2BackBtn').click(function() { //step2上一步按鈕
 
@@ -120,20 +152,49 @@ $(document).ready(function() {
         $('.fakeCircle7').css("opacity", "1");
         $('.fakeCircle8').css("opacity", "1");
     });
-    $('#step4BackBtn').click(function() { //step4上一步按鈕
+    $('#step4BackBtn').click(function() { //step4立即購買按鈕
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
+        // $('ul.tabs li').removeClass('current');
+        // $('.tab-content').removeClass('current');
 
-        $(this).parent().parent().prev().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('.tabLine1').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+        // $(this).parent().parent().prev().addClass('current');
+        // $('#bigTab3').addClass('current');
+        // $('.tabLine1').css("opacity", "1");
+        // $('.fakeCircles').css("opacity", "0");
+        // $('.fakeCircle9').css("opacity", "1");
+        // $('.fakeCircle10').css("opacity", "1");
+        // $('.fakeCircle11').css("opacity", "1");
+        // $('.fakeCircle12').css("opacity", "1");
+        if ($('#orderNameInput').val() == "") {
+            alert("請先輸入收件人姓名");
+            return;
+        } else if ($('#orderPhoneInput').val() == "") {
+            alert("請先輸入收件人電話");
+            return;
+        } else if ($('#orderAddressInput').val() == "") {
+            alert("請先輸入收件人地址");
+            return;
+        } else {
+            $(this).parent().attr("data-dialog", "somedialog");
+            $('#orderName').text("收件人姓名 : " + $('#orderNameInput').val());
+            $('#orderPhone').text("收件人電話 : " + $('#orderPhoneInput').val());
+            $('#orderAddress').text("收件人地址 : " + $('#orderAddressInput').val());
+        }
     });
+    // $('#orderBtn').click(function() {
+    //     if ($('#orderNameInput').val() == "") {
+    //         alert("請先輸入收件人姓名");
+    //         return;
+    //     } else if ($('#orderPhoneInput').val() == "") {
+    //         alert("請先輸入收件人電話");
+    //         return;
+    //     } else if ($('#orderAddressInput').val() == "") {
+    //         alert("請先輸入收件人地址");
+    //         return;
+    //     } else {
+    //         alert("訂單已成功送出");
+    //     }
+    // });
     $('.collarImagesBoxs').click(function() {
         $(this).parent().children().children().removeClass("imageApplying");
         $(this).children().addClass("imageApplying");
@@ -145,7 +206,32 @@ $(document).ready(function() {
         preBackgroundColor = $(this).css("background-color");
         $('#preview_area').css("background-color", preBackgroundColor);
     });
+
+    $('#minusCountBtn').click(function() {
+        let nowCount = parseInt($('#collarCount').text());
+        if ($('#collarCount').text() == 1) {
+            return;
+        } else {
+            nowCount -= 1;
+            $('#collarCount').text(nowCount);
+            $('#totalPrice').text("$" + nowCount * 300);
+            $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
+            $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
+        }
+    })
+    $('#plusCountBtn').click(function() {
+        let nowCount = parseInt($('#collarCount').text());
+        nowCount += 1;
+        $('#collarCount').text(nowCount);
+        $('#totalPrice').text("$" + nowCount * 300);
+        $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
+        $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
+    })
+    $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
+    $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
+
 })
+
 
 
 window.addEventListener('load', function() {
@@ -155,11 +241,17 @@ window.addEventListener('load', function() {
     let sliderBtnRight = document.getElementById('sliderBtnRight');
     let tagItems = document.getElementsByClassName('tagItems');
     let tagTotal = document.getElementById('tagTotal');
-    let nowTag = document.getElementById('nowTag');
+    nowTag = document.getElementById('nowTag');
     let tagImages = document.getElementsByClassName('tagImages');
     let lockPoint = document.getElementsByClassName('lockPoint');
     let lockStatus = document.getElementsByClassName('lockStatus');
+    let todayDate = document.getElementById('todayDate');
+    let orderDate = document.getElementById('orderDate');
 
+
+    let today = new Date();
+    todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+    orderDate.innerText = `訂購日期 : ${todayDate.innerText}`;
     tagImages[0].style.transform = "scale(2.5)";
 
     // $('#tagTotal span:first-child').text("1");
@@ -243,133 +335,4 @@ window.addEventListener('load', function() {
         lockStatus[offset].style.opacity = "1";
         nowTag.innerText = offset + 1;
     });
-
-    // document.querySelector('#unlock1').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock2').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock3').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock4').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock5').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock6').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock7').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
-    // document.querySelector('#unlock8').onclick = function() {
-    //     swal({
-    //             title: "兌換提示",
-    //             text: "您確定要兌換此吊牌款式嗎,將扣除300點!",
-    //             // type: "info",
-    //             allowOutsideClick: true,
-    //             showCancelButton: false,
-    //             confirmButtonColor: '#7e9c23',
-    //             confirmButtonText: '確認',
-    //             closeOnConfirm: false,
-    //             //closeOnCancel: false
-    //         },
-    //         function() {
-    //             swal("兌換成功!", "", "success");
-    //         });
-    // };
 })

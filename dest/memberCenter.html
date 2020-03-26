@@ -10,47 +10,37 @@
 
     <link rel="stylesheet" href="./css/memberCenter.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
+
 </head>
 
 <body>
     <header class="header-navigation" id="header">
         <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
+            <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
                 <h1>
-                    <a href="./index.html">
+                    <a href="./main.html">
                         <img src="./img/logo-wide.png" alt="logo">
                     </a>
                 </h1>
                 <ul class="col-xl-9 col-lg-9 col-md-9">
-                    <li><a href="./login.html">浪浪在哪裡</a></li>
-                    <li><a href="">愛心助浪浪</a></li>
-                    <li><a href="./customized.html">客製化項圈</a></li>
-                    <li><a href="./post_article_region.html">毛孩交流區</a></li>
-                    <li><a href="./aboutus.html">關於我們</a></li>
-                    <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
-                    <li class="rwd"><a href="./message.html">我的信箱</a></li>
-                    <li class="rwd"><a href="./index.html">登出</a></li>
-                    <li class="memZone">
-                        <div>
-                            <div class="memPic"></div>
-                            <div class="message">
-                                <span class="unread">2</span>
-                            </div>
-                        </div>
-                        <ul class="memZone">
-                            <li><a href="./memberCenter.html">會員中心</a></li>
-                            <li><a href="./index.html">登出</a></li>
-                        </ul>
-                    </li>
+                    <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                    <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                    <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                    <li><a id="navPost" href="./post_article_region.html">毛孩交流區</a></li>
+                    <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                    <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
                 </ul>
                 <button class="hamburger hamburger--spring" type="button">
                     <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
+                      <span class="hamburger-inner"></span> 
                     </span>
                 </button>
             </div>
         </nav>
     </header>
+    
 
 
 
@@ -87,41 +77,37 @@
     <div class="memInfo_content">
         <div class="left">
             <div>
-                <label for="">會員編號</label>
-                <span>123112</span>
+                <label>會員帳號</label>
+                <span id="memId"></span>
             </div>
             <div>
-                <label for="">會員帳號</label>
-                <span>handsome@gmail.com</span>
+                <label for="memName">會員暱稱</label>
+                <input type="text" id="memName" minlength="1" maxlength="8" placeholder="最長8字" required>
             </div>
             <div>
-                <label for="">會員暱稱</label>
-                <input type="text" value="帥帥">
-            </div>
-            <div>
-                <label for="">會員密碼</label>
+                <label for="memPsw">會員密碼</label>
                 <div class="mempw">
-                    <input type="password" value="password"><a href="#" class="updatebtn_s">修改密碼</a>
+                    <input type="password" id="memPsw" minlength="4" maxlength="10" placeholder="請輸入4-10碼英文、數字" required><a class="updatebtn_s" id="showPsw">顯示密碼</a>
                 </div>
             </div>
             <div>
-                <label for="">紅利點數</label>
-                <span>999</span>
+                <label>紅利點數</label>
+                <span id="memPoint"></span>
             </div>
         </div>
         <div class="right">
-            <label for="">會員圖片</label>
+            <label>會員圖片</label>
             <div>
-                <img src="http://fakeimg.pl/150x150" alt="">
+                <div id="memPic"></div>
                 <label class="uploadimgbtn">
-                    <input id="upload_img" style="display:none;" type="file">
+                    <input id="upload_img" style="display:none;" type="file" accept="image/*">
                     <i class="fa fa-photo"></i> 更換照片
                 </label>
             </div>
         </div>
     </div>
     <div class="submitbtn">
-        <a class="btn gray nav__link"  href='#'>
+        <a class="btn gray nav__link" @@connect>
     <span class="titleFont">
         更新會員資料
         <img src="img/button_arrow_white.svg">
@@ -140,7 +126,7 @@
                     <section class="memTable">
     <h3>我的寵物遺失回報</h3>
     <div class="memTable_content">
-        <table>
+        <table class="lostrptable">
             <tr>
                 <th class="titleFont">編號</th>
                 <th class="titleFont">刊登日期</th>
@@ -153,51 +139,94 @@
                 <th class="titleFont memRWD_992">寵物圖片</th>
                 <th class="titleFont"></th>
             </tr>
+            <!-- 
             <tr>
                 <td>03</td>
                 <td>2019-12-25</td>
                 <td class="memRWD_992"><a href="map.html">
-                    <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
-                </a></td>
+                        <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
+                    </a></td>
                 <td class="memRWD_992">2019-12-25</td>
                 <td>小白</td>
                 <td class="memRWD_992">柴犬</td>
-                <!-- <td>藍色項圈，吊牌有名字，不怕生愛撒嬌</td> -->
                 <td class="memRWD_992">未找到，結案</td>
                 <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
-                <td><a href="#" class="updatebtn_s">編輯</a><a href="#" class="updatebtn_s">結案</a></td>
+                <td></td>
             </tr>
-            <tr>
-                <td>02</td>
-                <td>2019-10-01</td>
-                <td class="memRWD_992"><a href="map.html">
-                    <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
-                </a></td>
-                <td class="memRWD_992">2019-10-01</td>
-                <td>小白</td>
-                <td class="memRWD_992">柴犬</td>
-                <!-- <td>藍色項圈，吊牌有名字，不怕生愛撒嬌</td> -->
-                <td class="memRWD_992">已找到</td>
-                <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
-                <td><a href="#" class="updatebtn_s">編輯</a><a href="#" class="updatebtn_s">結案</a></td>
-            </tr>
-            <tr>
-                <td>01</td>
-                <td>2019-04-01</td>
-                <td class="memRWD_992"><a href="map.html">
-                    <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
-                </a></td>
-                <td class="memRWD_992">2019-04-01</td>
-                <td>多多</td>
-                <td class="memRWD_992">短毛貓</td>
-                <!-- <td>橘色項圈，吊牌有名字，怕人</td> -->
-                <td class="memRWD_992">已找到</td>
-                <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
-                <td><a href="#" class="updatebtn_s">編輯</a><a href="#" class="updatebtn_s">結案</a></td>
-            </tr>
+            -->
         </table>
     </div>
 </section>
+
+
+<!-- 寵物遺失申請燈箱 -->
+<div id="lostform_cus">
+    <div id="lostclose"></div>
+    <!-- <div class="lostform_cus">
+        <div class="lostform" title="寵物遺失地點">
+        <form method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <h3>寵物遺失地點登記</h3>
+                <p>
+                    <label for="lostPetRpLoc">寵物遺失地點</label>
+                    <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                    <input type="hidden" id="memNo" name="memNo" value="">
+                    <input type="hidden" id="memName" name="memName" value="">
+                    <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
+                    <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
+                    <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
+                </p>
+                <p>
+                    <label for="lostPetRpLDate">寵物遺失時間</label>
+                    <input type="date" name="lostPetRpLDate" id="lostPetRpLDate">
+                </p>
+                <p>
+                    <label for="lostPetRpName">寵物名稱</label>
+                    <input type="text" name="lostPetRpName" id="lostPetRpName">
+                </p>
+                <p>
+                    <label for="lostPetRpType">寵物類型</label>
+                    <input type="text" name="lostPetRpType" id="lostPetRpType">
+                </p>
+                <p>
+                    <label for="lostPetRpCh">寵物特徵</label>
+                    <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                </p>
+                <p>
+                    <label for="lostPetRpStat">案件狀態</label>
+                    <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
+                        <option value="" disabled>-- 請選擇狀態 --</option>
+                        <option value="0">進行中</option>
+                        <option value="1">已找到</option>
+                        <option value="2">未找到，已結案</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="">上傳寵物照片</label>
+                    <label class="uploadimg_btn">
+                        <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                            accept="image/*">
+                        <i class="fa fa-photo"></i> 上傳圖片
+                    </label>
+                </p>
+                <div>
+                    <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
+                            送出資料
+                        </span>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="lightBtn">
+            <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
+        </div>
+    </div>    
+    </div> -->
+</div>
                 </div>
                 <div id="tab-3" class="tab-content">
                     <!-- 募款專區 -->
@@ -740,19 +769,20 @@
     <script src="./js/page_top.js"></script>
     <script src="./js/signInOut.js"></script>
     <script src="./js/blacklistTable.js"></script>
-    <!-- Login -->
-    <script src="./js/signInOut.js"></script>
+    <script src="./js/memInfoTable.js"></script>
+    <!-- 寵物遺失回報 -->
+    <script src="./js/map_mc_lostrp.js"></script>
     <script>
 
         //section高度
-        function sectionHeight(){
-            let header= document.querySelector('nav');
-            let section= document.querySelector('section');
-            let footer= document.querySelector('footer');
-            section.style.minHeight= window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
+        function sectionHeight() {
+            let header = document.querySelector('nav');
+            let section = document.querySelector('section');
+            let footer = document.querySelector('footer');
+            section.style.minHeight = window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
         }
         sectionHeight();
-        window.addEventListener("resize",sectionHeight);
+        window.addEventListener("resize", sectionHeight);
 
         // jQuery tabs大頁籤開始---------------------------------------
         $(document).ready(function () {
@@ -784,11 +814,9 @@
 
 
         // 會員中心子選單,按鈕點擊滑出
-
         var winWidth = $(window).width();
-        var winHeight = $(window).height();
 
-        if (winWidth < 415) {
+        if (winWidth < 767) {
             $(document).ready(function () {
                 $('#filterBtn').click(function () {
                     $(this).parent('#tabs-container1').toggleClass('-showFilter');
@@ -796,14 +824,7 @@
 
             });
         }
-        // let filterBtn = document.getElementById("filterBtn");
-        // let tabsContainer1 = document.getElementsByClassName("tabs-container1");
-        // window.addEventListener("load",function(){
-        //     //瓷片按鈕點擊滑出
-        //     filterBtn.onclick = function(){
-        //         tabsContainer1[0].classList.toggle("-showFilter")
-        //     }
-        // })
+
 
 
     </script>

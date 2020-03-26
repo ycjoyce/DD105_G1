@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/message.css">
 </head>
 <body>
-    @@include('./layout/header_mem.html')
+    @@include('./layout/header.html')
     <section>
         <div id="blackListAlert" class="md-modal md-effect-1">
             <form method="POST" class="md-content">
@@ -31,6 +31,13 @@
                 <img id="imgPanel">
                 <input type="submit" value="" id="submitImg">
             </form>
+        </div>
+        <div id="showImgAlert">
+            <div>
+                <button></button>
+                <img id="showImgPanel">
+                <a href="" download=""></a>
+            </div>
         </div>
         <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12">
             <div class="myMessage">
@@ -54,10 +61,11 @@
             </form>
         </main>
     </section>
+
+    <script src="./js/signInOut.js"></script>
+    <script src="./js/memberHeader.js"></script>
     <script src="./js/heightWithoutHeader.js"></script>
     <script src="./js/hamburger.js"></script>
-    <script src="./js/memberHeader.js"></script>
-    <script src="./js/signInOut.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script>
         sectionHeight();
@@ -446,6 +454,11 @@
                         if(xhr.responseText.indexOf("ok")!=-1){
                             alert("已將此會員設為黑名單");
                             // showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                            if(document.body.clientWidth<=767){
+                                aside.style.width= '100%';
+                                main.style.display= 'none';
+                                main.style.width= '100%';
+                            }
                             main.innerHTML=`<ul>
                                 <button class="back titleFont"></button>
                             </ul>
@@ -517,6 +530,7 @@
                         var img= document.createElement("img");
                         img.src= `./img/msgPic/${fields[i].getElementsByTagName("msgPic")[0].firstChild.nodeValue}`;
                         img.width= 200;
+                        img.className="msgPic";
                         divText.appendChild(img);
                     }
                     var span= document.createElement("span");
@@ -530,6 +544,55 @@
                     button.classList.add(`No${fields[i].getElementsByTagName("msgNo")[0].firstChild.nodeValue}`);
                     divText.appendChild(button);
                     ulMain.appendChild(li);
+
+                    //下載圖片
+                    var liImgs= document.querySelectorAll("img.msgPic");
+                    var showImgAlert= document.getElementById("showImgAlert");
+                    function browserIsIe() {
+                        if (!!window.ActiveXObject || "ActiveXObject" in window){
+                            return true;
+                        }
+                        else{
+                            return false;
+                        }
+                    }
+                    function createIframe(imgSrc) {
+                        if ($("#IframeReportImg").length === 0){
+                            $('<iframe style="display:none;" id="IframeReportImg" name="IframeReportImg" onload="downloadImg();" width="0" height="0" src="about:blank"></iframe>').appendTo("body");
+                        }
+                        if ($('#IframeReportImg').attr("src") != imgSrc) {
+                            $('#IframeReportImg').attr("src",imgSrc);
+                        } else {
+                            downloadImg();
+                        }
+                    }
+                    function downloadImg() {
+                        if ($('#IframeReportImg').src != "about:blank") {
+                            window.frames["IframeReportImg"].document.execCommand("SaveAs");
+                        }
+                    }
+                    
+                   
+                    for(var i=0; i<liImgs.length; i++){
+                        liImgs[i].onclick=function(e){
+                            showImgAlert.style.display="block";
+                            showImgAlert.querySelector("img").src=this.src;
+                            if (browserIsIe()) {
+                                var imgSrc = $(this).attr("src");
+                                createIframe(imgSrc);
+                            } else {
+                                showImgAlert.querySelector("a").href=this.src;
+                                showImgAlert.querySelector("a").download=this.split("_").pop();
+                            }
+                        }
+                    }
+                    showImgAlert.querySelector("button").onclick=function(){
+                        showImgAlert.style.display="none";
+                    }
+
+
+
+                    //刪除訊息
                     var closeBtns= document.querySelectorAll('button.closeBtn');
                     var deleteAlert= document.getElementById("deleteAlert");
                     for(var i=0; i<closeBtns.length; i++){
@@ -553,7 +616,7 @@
                         xhr.send(data_info);
                         xhr.onload= function(){
                             if(xhr.status==200){
-                                alert("成功刪除一筆私信");
+                                // alert("成功刪除一筆私信");
                                 showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
                                 document.querySelector("aside ul").innerHTML="";
                                 getMsg();
@@ -588,7 +651,7 @@
         }
 
 
-        
+
     </script>
 </body>
 </html>

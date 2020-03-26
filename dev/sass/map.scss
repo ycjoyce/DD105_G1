@@ -77,6 +77,7 @@
 //例如 ----- @include scrollbar('div.top');
 @include scrollbar("div.friendContent");
 
+
 //=======================================================
 
 // 燈箱
@@ -858,6 +859,7 @@ body {
     margin: 0 auto;
     margin-bottom: 200px;
     position: relative;
+    z-index: 1;
     .btn.red {
       display: inline-block;
       width: 170px;
@@ -1296,6 +1298,10 @@ body {
   }
 }
 
+@media (max-width: 576px) {
+
+}
+
 @media (max-width: 500px) {
   .map_container #lostform_cus input,
   .map_container #lostform_cus select,
@@ -1304,7 +1310,7 @@ body {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 415px) {
   .map_container .map_content #lostform_btn {
     width: 75px;
     height: 75px;

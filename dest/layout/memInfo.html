@@ -10,41 +10,37 @@
     <div class="memInfo_content">
         <div class="left">
             <div>
-                <label for="">會員編號</label>
-                <span>123112</span>
+                <label>會員帳號</label>
+                <span id="memId"></span>
             </div>
             <div>
-                <label for="">會員帳號</label>
-                <span>handsome@gmail.com</span>
+                <label for="memName">會員暱稱</label>
+                <input type="text" id="memName" minlength="1" maxlength="8" placeholder="最長8字" required>
             </div>
             <div>
-                <label for="">會員暱稱</label>
-                <input type="text" value="帥帥">
-            </div>
-            <div>
-                <label for="">會員密碼</label>
+                <label for="memPsw">會員密碼</label>
                 <div class="mempw">
-                    <input type="password" value="password"><a href="#" class="updatebtn_s">修改密碼</a>
+                    <input type="password" id="memPsw" minlength="4" maxlength="10" placeholder="請輸入4-10碼英文、數字" required><a class="updatebtn_s" id="showPsw">顯示密碼</a>
                 </div>
             </div>
             <div>
-                <label for="">紅利點數</label>
-                <span>999</span>
+                <label>紅利點數</label>
+                <span id="memPoint"></span>
             </div>
         </div>
         <div class="right">
-            <label for="">會員圖片</label>
+            <label>會員圖片</label>
             <div>
-                <img src="http://fakeimg.pl/150x150" alt="">
+                <div id="memPic"></div>
                 <label class="uploadimgbtn">
-                    <input id="upload_img" style="display:none;" type="file">
+                    <input id="upload_img" style="display:none;" type="file" accept="image/*">
                     <i class="fa fa-photo"></i> 更換照片
                 </label>
             </div>
         </div>
     </div>
     <div class="submitbtn">
-        <a class="btn gray nav__link"  href='#'>
+        <a class="btn gray nav__link" @@connect>
     <span class="titleFont">
         更新會員資料
         <img src="img/button_arrow_white.svg">
