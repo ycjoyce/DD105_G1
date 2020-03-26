@@ -9,30 +9,43 @@ formBtn.addEventListener("click",function(e){
         if(!uploadImg.files[0] && msgContent.value==""){
             alert("請輸入私信內容");
         }else{
-            var formData= new FormData();
-            if(uploadImg.files[0]){
-                formData.append("uploadImg",uploadImg.files[0]);
-            }
-            if(msgContent.value!=""){
-                formData.append("msgContent",msgContent.value);
-            }
             $.ajax({
-                url: './php/aboutusMsg.php',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: formData,
-                type: 'POST',
+                url: './php/checkBlackOfficial.php',
+                type: 'GET',
                 success(data){
-                    if(data.indexOf("success")!=-1){
-                        sessionStorage.setItem("now-on",data.split("|")[2]);
-                        location.href="./message.html";
+                    if(data.indexOf("success")==-1){
+                        alert("已將官方帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
                     }else{
-                        alert(data);
+                        var formData= new FormData();
+                        if(uploadImg.files[0]){
+                            formData.append("uploadImg",uploadImg.files[0]);
+                        }
+                        if(msgContent.value!=""){
+                            formData.append("msgContent",msgContent.value);
+                        }
+                        $.ajax({
+                            url: './php/aboutusMsg.php',
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            type: 'POST',
+                            success(data){
+                                if(data.indexOf("success")!=-1){
+                                    sessionStorage.setItem("now-on",data.split("|")[2]);
+                                    location.href="./message.html";
+                                }else{
+                                    alert(data);
+                                }
+                            },
+                            error(data){
+                                alert("error");
+                            }
+                        });
                     }
                 },
                 error(data){
-                    alert("error");
+                    alert(data);
                 }
             });
         }
