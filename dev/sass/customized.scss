@@ -130,15 +130,11 @@ section {
             z-index: 99;
         }
         .preview_area {
-            // border: 1px solid blue;
-            // border-top: 0.5px solid rgba(128, 128, 128, 0.486);
             width: calc(100% - 600px);
-            position: relative;
-            // background-color: #eae0bf;
+            // min-height: 831px;
             transition: all 0.5s ease-in-out;
             display: flex;
             align-items: center;
-            // background-color: rgba(255, 185, 185, 0.4);
             @include RWD(lg) {
                 width: 100%;
                 min-height: 610px;
@@ -151,130 +147,6 @@ section {
             }
             @include RWD(ss) {
                 min-height: 300px;
-            }
-            h1 {
-                position: absolute;
-                top: 0%;
-                opacity: 0.6;
-                text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
-                margin-left: 10px;
-                @include RWD(md) {
-                    top: unset;
-                    bottom: -50px;
-                }
-                @include RWD(ss) {
-                    top: unset;
-                    bottom: -30px;
-                    font-size: 1.5rem;
-                }
-                @include RWD(xs) {
-                    top: unset;
-                    bottom: -30px;
-                    font-size: 1.5rem;
-                }
-            }
-            canvas {
-                position: absolute;
-            }
-            #zoomIn {
-                position: absolute;
-                right: 73px;
-                top: 28px;
-                // z-index: 2;
-                @include RWD(md) {
-                    top: unset;
-                    bottom: 16px;
-                }
-                @include RWD(ss) {
-                    right: 17px;
-                    bottom: 16px;
-                    width: 18px;
-                    height: 18px;
-                    display: none;
-                }
-            }
-            .list-item {
-                width: 54px;
-                height: 50px;
-                padding: 12px;
-                font-size: 20px;
-                display: flex;
-                align-items: center;
-                position: absolute;
-                right: 0%;
-                top: 2%;
-                @include RWD(md) {
-                    top: unset;
-                    bottom: 2%;
-                }
-                @include RWD(ss) {
-                    bottom: 0%;
-                }
-                input[type="checkbox"] {
-                    position: absolute;
-                    clip: rect(0, 0, 0, 0); // Hide original checkbox
-                    &+label {
-                        position: relative;
-                        flex: 1;
-                        // Ellipse
-                        &::before {
-                            content: "";
-                            display: inline-block;
-                            box-sizing: border-box;
-                            width: 54px;
-                            height: 30px;
-                            border-radius: 30px;
-                            background: #fff;
-                            border: 1px solid rgb(180, 180, 180);
-                            box-shadow: 0 0 0 gray inset;
-                            transition: all 0.25s ease-in-out 0s;
-                            position: absolute;
-                            right: 0;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            cursor: pointer;
-                            // z-index   : 1;
-                        }
-                        // Circle
-                        &::after {
-                            content: "";
-                            display: inline-block;
-                            width: 30px;
-                            height: 30px;
-                            border-radius: 30px;
-                            border: 1px solid rgb(180, 180, 180);
-                            background-color: white;
-                            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-                            transition: all 0.25s ease-in-out 0s;
-                            position: absolute;
-                            right: 54px - 30px;
-                            top: 50%;
-                            transform: translateY(-50%);
-                            cursor: pointer;
-                            // z-index      : 3;
-                        }
-                    }
-                    &:checked+label {
-                        // Ellipse
-                        &::before {
-                            border: 1px solid limegreen;
-                            box-shadow: 0 0 100px limegreen inset;
-                        }
-                        // Circle
-                        &::after {
-                            right: 0;
-                            border: 1px solid limegreen;
-                        }
-                    }
-                }
-                i {
-                    font-size: 16px;
-                    margin-right: 12px;
-                    padding: 0.3em;
-                    background: blue;
-                    color: white;
-                    border-radius: 6px;
-                }
             }
         }
         .edit_area {

@@ -411,6 +411,21 @@ function dofirst() {
 
             canvas.add(tagImg);
         });
+
+        fabric.Image.fromURL(collarImg2.src, function(img) {
+            var tagImg = img.set({
+                left: imgOffsetX,
+                top: imgOffsetY,
+                angle: 0,
+                opacity: 1,
+                scaleX: fabricScaleX,
+                scaleY: fabricScaleY,
+                selectable: false,
+                hoverCursor: "default",
+            })
+
+            canvas.add(tagImg);
+        });
         // defaultImg = new fabric.Image(collarImg, {
         //     left: imgOffsetX,
         //     top: imgOffsetY,
@@ -432,12 +447,12 @@ function dofirst() {
 
 
 
-        // 輸出背景圖片----------------------------------------------------------------------
-        collarImg2.addEventListener('load', function() {
-            context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        });
-        context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        //-----------------------------------------------------------------------------------
+        // // 輸出背景圖片----------------------------------------------------------------------
+        // collarImg2.addEventListener('load', function() {
+        //     context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // });
+        // context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
+        // //-----------------------------------------------------------------------------------
 
 
 

@@ -20,6 +20,9 @@
 
 <body>
 
+    <form action="" method="POST" id="base64Form">
+        <input type="hidden" name="hidden_data" id="hidden_data">
+    </form>
     <div id="memberPoint">
         會員點數 :
         <span id="showPoint"></span> 點
@@ -70,8 +73,9 @@
             <!-- 客製化content,含預覽區以及編輯區 -->
             <div class="preview_area" id="preview_area" style="background-color: rgba(255, 185, 185, 0.4)">
                 <!-- 預覽區 -->
-                <canvas id="canvas2" style="border: 0px solid blue;"></canvas>
                 <canvas id="canvas" style="border: 0px solid red;"></canvas>
+                <canvas id="canvas2" style="border: 0px solid blue;"></canvas>
+
                 <img src="" alt="" id="tagImg2" style="display: none;">
                 <!-- <script>
                     var fullQuality = canvas.toDataURL("image/png", 1.0);
@@ -87,6 +91,30 @@
                     <label for="chkbox"></label>
                 </div> -->
             </div>
+            <script>
+                function saveImage() {
+                    var canvas = document.getElementById('canvas');
+                    var dataURL = canvas.toDataURL("image/png");
+                    document.getElementById('hidden_data').value = dataURL;
+                    document.getElementById("testImg").src = dataURL;
+                    // var formData = new FormData(document.getElementById("base64Form"));
+
+                    // var xhr = new XMLHttpRequest();
+                    // xhr.onload = function() {
+                    //     if (xhr.status == 200) {
+                    //         if (xhr.responseText == "error") {
+                    //             alert("Error");
+                    //         } else {
+                    //             alert("Succesfully uploaded");
+                    //         }
+                    //     } else {
+                    //         alert(xhr.status);
+                    //     }
+                    // }
+                    // xhr.open('POST', 'php/canvasBase64.php', true);
+                    // xhr.send(formData);
+                }
+            </script>
             <div class="edit_area" id="edit_area">
                 <!-- 編輯區 -->
                 <div id="stepTab">
@@ -565,7 +593,7 @@
                                     </form>
                                 </div>
                                 <div class="stepBtn" data-dialog="somedialog" class="trigger">
-                                    <button class="stepBackBtn" id="step4BackBtn">送出訂單</button>
+                                    <button class="stepBackBtn" id="step4BackBtn" onclick="saveImage()">立即購買</button>
                                 </div>
                             </div>
                         </div>
@@ -595,7 +623,7 @@
         <div class="dialog__overlay"></div>
         <div class="dialog__content">
             <h3 style="color: #313131;">確認明細</h3>
-            <!-- @@include('./layout/card.html') -->
+            <img src="" id="testImg" width="200" alt="">
             <div>
                 <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
             </div>
