@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
+
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -15,8 +16,8 @@
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
- <!-- top_header -->
- @@include('layout/top_header.html')
+  <!-- top_header -->
+  @@include('layout/top_header.html')
   <div class="app-body">
     <div class="sidebar">
       <!-- sidebar menu-->
@@ -46,10 +47,10 @@
         </li>
       </ol>
       <div class="container-fluid">
-   
-       <!-- 中間內容 -->
-       @@include('layout/petFriendly_content.html')
-       <!-- end -->
+
+        <!-- 中間內容 -->
+        @@include('layout/petFriendly_content.html')
+        <!-- end -->
       </div>
     </main>
     <aside class="aside-menu">
@@ -353,6 +354,7 @@
       </div>
     </aside>
   </div>
+
   @@include('layout/footer.html')
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
@@ -362,5 +364,78 @@
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
   <script src="./js/backend-managerName.js"></script>
+
+  <script>
+
+    $(document).ready(function () {
+      // 把寵物遺失從資料庫撈回來
+      getfriendly();
+
+      function getfriendly() {
+        $.ajax({
+          url: './php/back_friendly.php',
+          type: 'GET',
+          dataType: "json",
+          success: function (data) {
+            let html = "";
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].friendlyStatus == 1) {
+                html += `<tr>
+                    <td>${data[i].friendlyNo}</td>
+                    <td>${data[i].friendlyName}</td>
+                    <td>${data[i].friendlyAddress}</td>
+                    <td>
+                      <label class="switch switch-3d switch-success">
+                        <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" checked psn="${data[i].friendlyNo}">
+                        <span class="switch-slider"></span>
+                      </label>
+                    </td>
+                  </tr>`
+              } else {
+                html +=
+                  `<tr>
+                <td>${data[i].friendlyNo}</td>
+                <td>${data[i].friendlyName}</td>
+                <td>${data[i].friendlyAddress}</td>
+                <td>
+                  <label class="switch switch-3d switch-success">
+                    <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" psn="${data[i].friendlyNo}">
+                    <span class="switch-slider"></span>
+                  </label>
+                </td>
+              </tr>`
+              };
+            }
+            $("#friendlyinfo").append(html);
+
+            changeStatus();
+          },
+          error: function (xhr) {
+            alert(xhr.Message);
+          }
+        });
+      }
+      function changeStatus() {
+        $(".switch-input").click(function () {
+          var psn = $(this).attr("psn");
+          // alert(psn)
+          $.ajax({
+            url: './php/back_changeFriendlystat.php',
+            type: 'POST',
+            data: { friendlyNo: psn },
+            success(data) {
+              if (data.indexOf("error") != -1) {
+                alert("修改失敗");
+              }
+            },
+            error(data) {
+              alert(data);
+            },
+          });
+        })
+      };
+    });
+  </script>
 </body>
+
 </html>

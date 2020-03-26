@@ -3,7 +3,7 @@
 try{
     require_once('./connectDB.php');
 
-    $sql= "select * from `petfriendly`";    
+    $sql= "select * from `petfriendly` where friendlyStatus = 1";    
     $types = $pdo->query($sql);
     $types->execute();
 
