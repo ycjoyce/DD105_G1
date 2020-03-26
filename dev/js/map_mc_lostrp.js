@@ -28,8 +28,7 @@ $(document).ready(function() {
                 <td class="memRWD_992">進行中</td>
                 <td class="memRWD_992"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
                 <td>
-                <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯</a>
-                <a href="#" class="lostform_close updatebtn_s" psn="${data[i].lostPetRpNo}">結案</a>
+                <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                 </td>
             </tr>`;
           } else if (data[i].lostPetRpStat == 1) {
@@ -44,8 +43,7 @@ $(document).ready(function() {
                 <td class="memRWD_992">已找到</td>
                 <td class="memRWD_992"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
                 <td>
-                <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯</a>
-                <a href="#" class="lostform_close updatebtn_s" psn="${data[i].lostPetRpNo}">結案</a>
+                <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                 </td>
             </tr>`;
           } else {
@@ -61,8 +59,7 @@ $(document).ready(function() {
                     <td class="memRWD_992">未找到，結案</td>
                     <td class="memRWD_992"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
                     <td>
-                    <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯</a>
-                <a href="#" class="lostform_close updatebtn_s" psn="${data[i].lostPetRpNo}">結案</a>
+                    <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                     </td>
                   </tr>`;
             }
