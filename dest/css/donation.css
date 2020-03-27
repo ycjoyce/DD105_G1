@@ -2007,7 +2007,6 @@ button[type=submit].fakeformbtn {
     left: 15px;
     top: -27.5px;
     border-radius: 50%;
-    background-image: url(https://hahow.in/images/57ab3d5585b097070042067a);
     background-size: cover;
     border: solid 2px white;
     z-index: 5; }
@@ -2030,7 +2029,6 @@ button[type=submit].fakeformbtn {
     position: absolute;
     left: 0;
     top: 0px;
-    background-image: url(https://hahow.in/images/574fab4f206cd60900c52a67?width=300);
     background-size: cover;
     border-radius: 5px 5px 0px 0px;
     transition: .3s; }
