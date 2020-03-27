@@ -1,7 +1,7 @@
 function dofirst() {
     WebFont.load({
         google: {
-            families: ['Pacifico', 'VT323', 'Quicksand', 'Inconsolata']
+            families: ['DFKai-sb', 'Microsoft JhengHei', 'Arial', 'Pacifico', 'Coming Soon', 'Quicksand', 'Inconsolata']
         }
     });
     var previewArea = document.getElementById('preview_area');
@@ -23,12 +23,12 @@ function dofirst() {
     tagImg1.src = "./img/customized_collar/leather_png/29_2.png";
     // tagImg2.src = "";
 
-    var base64Btn = document.getElementById('base64Btn');
-    base64Btn.addEventListener('click', function() {
-        var canvasbase64 = canvas.toDataURL();
-        console.log(canvasbase64);
-        localStorage.setItem("test123", canvasbase64);
-    })
+    // var base64Btn = document.getElementById('base64Btn');
+    // base64Btn.addEventListener('click', function() {
+    //     var canvasbase64 = canvas.toDataURL();
+    //     console.log(canvasbase64);
+    //     localStorage.setItem("test123", canvasbase64);
+    // })
 
     var HideControls = {
         'tl': true, //左上   top left
@@ -52,7 +52,7 @@ function dofirst() {
     var strokeColor = 'rgba(0,0,0,1)';
     var strokeWidth = 0.6;
     var colorPicker = document.getElementById('colorPicker');
-    var fonts = ["", "Pacifico", "VT323", "Quicksand", "Inconsolata"];
+    var fonts = ['', 'DFKai-sb', 'Microsoft JhengHei', 'Arial', 'Pacifico', 'Coming Soon', 'Quicksand', 'Inconsolata'];
     var textFontFamily = fonts[0];
     var defaultColor = 'rgba(0,0,0,1)';
     const pickr = Pickr.create({
@@ -115,14 +115,20 @@ function dofirst() {
 
 
     fontFamilySelect.addEventListener('change', function() {
-        if (fontFamilySelect.value == "Pacifico") {
+        if (fontFamilySelect.value == "DFKai-sb") {
             textFontFamily = fonts[1];
-        } else if (fontFamilySelect.value == "VT323") {
+        } else if (fontFamilySelect.value == "Microsoft JhengHei") {
             textFontFamily = fonts[2];
-        } else if (fontFamilySelect.value == "Quicksand") {
+        } else if (fontFamilySelect.value == "Arial") {
             textFontFamily = fonts[3];
-        } else if (fontFamilySelect.value == "Inconsolata") {
+        } else if (fontFamilySelect.value == "Pacifico") {
             textFontFamily = fonts[4];
+        } else if (fontFamilySelect.value == "Coming Soon") {
+            textFontFamily = fonts[5];
+        } else if (fontFamilySelect.value == "Quicksand") {
+            textFontFamily = fonts[6];
+        } else if (fontFamilySelect.value == "Inconsolata") {
+            textFontFamily = fonts[7];
         }
     });
     addTextBtn.addEventListener('click', function() {
