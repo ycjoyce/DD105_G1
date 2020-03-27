@@ -7,35 +7,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>浪愛回家後台</title>
   <!-- Icons-->
-  <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-<div id="app">
-  <!-- top_header -->
-  @@include('layout/top_header.html')
-  <div class="app-body">
-    <div class="sidebar">
-      <!-- sidebar menu-->
-      @@include('layout/sidebar_nav.html')
-      <!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button> -->
-    </div>
-    <main class="main">
-      <!-- Breadcrumb-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">首頁</li>
-        <li class="breadcrumb-item">
-          <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
-        </li>
-        <!-- <li class="breadcrumb-item active">Dashboard</li> -->
-        <!-- Breadcrumb Menu-->
-        <li class="breadcrumb-menu d-md-down-none">
-          <!-- <div class="btn-group" role="group" aria-label="Button group">
+  <div id="app">
+    <!-- top_header -->
+    @@include('layout/top_header.html')
+    <div class="app-body">
+      <div class="sidebar">
+        <!-- sidebar menu-->
+        @@include('layout/sidebar_nav.html')
+        <!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button> -->
+      </div>
+      <main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">首頁</li>
+          <li class="breadcrumb-item">
+            <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
+          </li>
+          <!-- <li class="breadcrumb-item active">Dashboard</li> -->
+          <!-- Breadcrumb Menu-->
+          <li class="breadcrumb-menu d-md-down-none">
+            <!-- <div class="btn-group" role="group" aria-label="Button group">
             <a class="btn" href="#">
               <i class="icon-speech"></i>
             </a>
@@ -44,18 +44,18 @@
             <a class="btn" href="#">
               <i class="icon-settings"></i>  Settings</a>
           </div> -->
-        </li>
-      </ol>
-      <div class="container-fluid">
-        <!-- 中間內容 -->
-        
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <!-- 中間內容 -->
+
           @@include('layout/NewsAndActivity_content.html')
-        
-        <!-- end -->
-      </div>
-    </main>
+
+          <!-- end -->
+        </div>
+      </main>
+    </div>
   </div>
-</div>
   <!-- @@include('layout/footer.html') -->
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
@@ -71,24 +71,113 @@
     var back = new Vue({
       el: "#app",
       data: {
-        activity: [],
+        activity: [], // 活動上下架
+        update: false,
+        upInfors: {
+          activity_img: '',
+          activity_num: '',
+          activity_name: '',
+          activity_type: '',
+          activity_Introduction: '',
+          activity_g: '',
+        }
       },
       methods: {
 
+        clean_form() { //清除表單資料 
+
+          document.getElementById('actForm').reset();
+        },
+
         get_activity() { //取得已經建立的活動資訊
           var vm = this;
-          axios.get('./php/NewsAndActivity.php').then(function (res) {
+          axios.post('./php/NewsAndActivity.php').then(function (res) {
             console.log(res.data);
             vm.activity = res.data;
             // console.log(vm.activity);
           }).catch(err => { console.log(err) })
-        }
+        },
+        up_img() {
+          var vm = this;
+          var upimg = document.getElementById('upimg').files[0];//抓上傳的圖片
+          console.log(upimg);
+          vm.upInfors.activity_g = upimg.name; //圖片檔名
+          var readFile = new FileReader();
+          readFile.readAsDataURL(upimg); //將抓取的圖片編碼成data URL
+          readFile.addEventListener('load', function () {
+            vm.upInfors.activity_img = readFile.result;
+          })
+        },
+        send_act() {
+          var vm = this;
+          if (vm.upInfors.activity_img == '') {
+            alert('請上傳圖片');
+          } else if (vm.upInfors.activity_num == '') {
+            alert('編號不能為空');
+          } else if (vm.upInfors.activity_name == '') {
+            alert('名稱不能為空');
+          } else if (vm.upInfors.activity_type == '') {
+            alert('請選擇一種類型');
+          } else if (vm.upInfors.activity_Introduction == '') {
+            alert('內容不能為空');
+          } else {
+            setTimeout(function () {
+              alert('上傳成功!')
+              vm.clean_form();
+              vm.get_activity();
+
+              var collapseOne = document.getElementById('collapseOne');
+              var collapseTwo = document.getElementById('collapseTwo');
+              collapseOne.className = "collapse";
+              collapseTwo.className = "collapse show";
+
+            }, 1000)
+          }
+
+        },
+
+        update_act() {
+
+          var vm = this;
+          setTimeout(function () {
+            alert('更新成功!')
+            vm.clean_form();
+            vm.get_activity();
+
+            var collapseOne = document.getElementById('collapseOne');
+            var collapseTwo = document.getElementById('collapseTwo');
+            collapseOne.className = "collapse";
+            collapseTwo.className = "collapse show";
+
+          }, 1000)
+        },
+
+        get_edit(no) {
+          var vm = this;
+          axios.get('./php/update_activity.php?id=' + no).then(function (res) {
+            console.log(res.data);
+            vm.upInfors.activity_img = `./img/${res.data.inforPic}`;
+            vm.upInfors.activity_num = res.data.inforNo;
+            vm.upInfors.activity_name = res.data.inforName;
+            vm.upInfors.activity_type = res.data.inforType;
+            vm.upInfors.activity_Introduction = res.data.inforContent;
+            vm.upInfors.activity_g = res.data.inforPic;
+
+            var collapseOne = document.getElementById('collapseOne');
+            var collapseTwo = document.getElementById('collapseTwo');
+            collapseOne.className = "collapse show";
+            collapseTwo.className = "collapse";
+          }).catch(err => {
+            console.log(err)
+          })
+        },
+
       },
       mounted() {
         this.get_activity();
       },
-    
-      
+
+
 
     })
   </script>

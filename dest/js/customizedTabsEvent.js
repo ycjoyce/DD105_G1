@@ -1,10 +1,16 @@
 $(document).ready(function() {
     $('#bigTab1').click(function() { //step1圓圈
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle1').css("opacity", "1");
-        $('.fakeCircle2').css("opacity", "1");
-        $('.fakeCircle3').css("opacity", "1");
-        $('.fakeCircle4').css("opacity", "1");
+        let status = document.getElementsByClassName('status');
+        let nowTag = document.getElementById('nowTag').innerText;
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            return;
+        } else {
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle1').css("opacity", "1");
+            $('.fakeCircle2').css("opacity", "1");
+            $('.fakeCircle3').css("opacity", "1");
+            $('.fakeCircle4').css("opacity", "1");
+        }
     });
     $('#bigTab2').click(function() { //step2圓圈
         $('.fakeCircles').css("opacity", "0");
@@ -146,19 +152,33 @@ $(document).ready(function() {
         $('.fakeCircle7').css("opacity", "1");
         $('.fakeCircle8').css("opacity", "1");
     });
-    $('#step4BackBtn').click(function() { //step4上一步按鈕
+    $('#step4BackBtn').click(function() { //step4立即購買按鈕
 
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
+        // $('ul.tabs li').removeClass('current');
+        // $('.tab-content').removeClass('current');
 
-        $(this).parent().parent().prev().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('.tabLine1').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+        // $(this).parent().parent().prev().addClass('current');
+        // $('#bigTab3').addClass('current');
+        // $('.tabLine1').css("opacity", "1");
+        // $('.fakeCircles').css("opacity", "0");
+        // $('.fakeCircle9').css("opacity", "1");
+        // $('.fakeCircle10').css("opacity", "1");
+        // $('.fakeCircle11').css("opacity", "1");
+        // $('.fakeCircle12').css("opacity", "1");
+        // if ($('#orderNameInput').val() == "") {
+        //     alert("請先輸入收件人姓名");
+        //     return;
+        // } else if ($('#orderPhoneInput').val() == "") {
+        //     alert("請先輸入收件人電話");
+        //     return;
+        // } else if ($('#orderAddressInput').val() == "") {
+        //     alert("請先輸入收件人地址");
+        //     return;
+        // } else {
+        $('#orderName').text($('#orderNameInput').val());
+        $('#orderPhone').text($('#orderPhoneInput').val());
+        $('#orderAddress').text($('#orderAddressInput').val());
+        // }
     });
     $('.collarImagesBoxs').click(function() {
         $(this).parent().children().children().removeClass("imageApplying");
@@ -171,7 +191,32 @@ $(document).ready(function() {
         preBackgroundColor = $(this).css("background-color");
         $('#preview_area').css("background-color", preBackgroundColor);
     });
+
+    $('#minusCountBtn').click(function() {
+        let nowCount = parseInt($('#collarCount').text());
+        if ($('#collarCount').text() == 1) {
+            return;
+        } else {
+            nowCount -= 1;
+            $('#collarCount').text(nowCount);
+            $('#totalPrice').text(nowCount * 300);
+            $('#orderQTY').text($('#collarCount').text());
+            $('#orderPrice').text($('#totalPrice').text());
+        }
+    })
+    $('#plusCountBtn').click(function() {
+        let nowCount = parseInt($('#collarCount').text());
+        nowCount += 1;
+        $('#collarCount').text(nowCount);
+        $('#totalPrice').text(nowCount * 300);
+        $('#orderQTY').text($('#collarCount').text());
+        $('#orderPrice').text($('#totalPrice').text());
+    })
+    $('#orderQTY').text($('#collarCount').text());
+    $('#orderPrice').text($('#totalPrice').text());
+
 })
+
 
 
 window.addEventListener('load', function() {
@@ -185,7 +230,13 @@ window.addEventListener('load', function() {
     let tagImages = document.getElementsByClassName('tagImages');
     let lockPoint = document.getElementsByClassName('lockPoint');
     let lockStatus = document.getElementsByClassName('lockStatus');
+    let todayDate = document.getElementById('todayDate');
+    let orderDate = document.getElementById('orderDate');
 
+
+    let today = new Date();
+    todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+    orderDate.innerText = `${todayDate.innerText}`;
     tagImages[0].style.transform = "scale(2.5)";
 
     // $('#tagTotal span:first-child').text("1");

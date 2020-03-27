@@ -219,7 +219,7 @@ function getLost() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     // alert(str)
-    console.log(data);
+    // console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadLostData(
         data[i].lostPetRpNo,
@@ -279,7 +279,6 @@ function mapMsg(id){
               alert(data);
             }
           });
-          // alert(`我是${member.memNo}，這張卡片編號是${id.substr(4)}`);
         }
       },
       error(data){
@@ -362,7 +361,7 @@ function getFriendly() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     // alert(str)
-    console.log(data);
+    // console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadfriendlyData(
         data[i].friendlylat,

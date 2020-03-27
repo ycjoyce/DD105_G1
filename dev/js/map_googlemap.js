@@ -244,6 +244,7 @@ function getLost() {
     console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadLostData(
+        data[i].lostPetRpNo,
         data[i].lostPetRpLoclat,
         data[i].lostPetRpLoclng,
         data[i].lostPetRpName,
@@ -259,8 +260,51 @@ function getLost() {
   };
 }
 
+//連結私信功能==================================
+let petLostOwner = "";
+function mapMsg(id) {
+  if (member.memId) {
+    $.ajax({
+      url: "./php/checkNotSelf.php",
+      type: "POST",
+      data: { lostNo: id.substr(4) },
+      success(data) {
+        if (member.memNo == data) {
+          alert("此寵物主人為您本人");
+        } else {
+          petLostOwner = data;
+          $.ajax({
+            url: "./php/mapMsg.php",
+            type: "POST",
+            data: { lostNo: id.substr(4) },
+            success(data) {
+              if (data.indexOf("error") == -1) {
+                sessionStorage.setItem("now-on", petLostOwner);
+                location.href = "./message.html";
+              } else {
+                alert("操作失敗");
+              }
+            },
+            error(data) {
+              alert(data);
+            }
+          });
+        }
+      },
+      error(data) {
+        alert(data);
+      }
+    });
+  } else {
+    alert("請先登入");
+  }
+}
+
+//=============================================
+
 /*** 讀取地標 ***/
 function loadLostData(
+  rpNo,
   lat,
   lng,
   title,
@@ -281,7 +325,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a href="#" title:"我要私信主人">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')">${memName}<img src="./img/icon_private_message.svg"></a></li>
       </ul>
     </div>
   `;
@@ -314,9 +358,8 @@ function loadLostData(
 var dist = document.querySelector("#lost_area");
 dist.addEventListener("change", changeDist);
 function changeDist() {
-  // alert("切換地區!");
   var distVal = dist.value;
-  // alert(locNo);
+  alert(distVal);
   // 清除資料
   for (i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
@@ -332,6 +375,7 @@ function changeDist() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].lostPetRpLocAdd.indexOf(distVal) != -1) {
         loadLostData(
+          data[i].lostPetRpNo,
           data[i].lostPetRpLoclat,
           data[i].lostPetRpLoclng,
           data[i].lostPetRpName,

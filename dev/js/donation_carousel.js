@@ -10,12 +10,10 @@ function dogAniSize(){
     let upImg= dogAnimate.querySelector("img");
     dogAnimate.style.height= upImg.offsetHeight + "px";
 }
-dogAniSize();
 window.addEventListener("resize",dogAniSize);
 
 
 function donationCarousel(){
-    console.log(now);
     var bigImg= document.querySelector('div.carousel_donation div.img img');
     var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
     var date= document.querySelector('div.carousel_donation div.card span.date');
@@ -38,6 +36,15 @@ function donationCarousel(){
     goal.innerText= leftCards[now-1].querySelector("div.text input[name='goal']").value;
     complete.innerText= comVal;
     changeNum.innerText= `0${now}/03`;
+
+    // alert(`${projectNum.innerText}|${date.innerText}|${cardTitle.innerText}`);
+    // console.log(now);
+    // console.log(projectNum.innerText);
+    // console.log(date.innerText);
+    // console.log(cardTitle.innerText);
+    // console.log(goal.innerText);
+    // console.log(complete.innerText);
+
     for(let i=1; i<=3; i++){
         if(i!=now){
             progressBar.querySelector(`span:nth-child(${i})`).classList.remove("on");
@@ -161,7 +168,7 @@ function play(){
         nextBtn.onclick();
     },8000);
 }
-play();
+
 
 function stop(){
     clearInterval(timerId);

@@ -7,18 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>浪愛回家後台</title>
   <!-- Icons-->
-  <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-<div id="app">
-  <!-- top_header -->
-  <header class="app-header navbar">
+  <div id="app">
+    <!-- top_header -->
+    <header class="app-header navbar">
     <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -113,10 +113,10 @@
       <span class="navbar-toggler-icon"></span>
     </button> -->
   </header>
-  <div class="app-body">
-    <div class="sidebar">
-      <!-- sidebar menu-->
-      <nav class="sidebar-nav">
+    <div class="app-body">
+      <div class="sidebar">
+        <!-- sidebar menu-->
+        <nav class="sidebar-nav">
   <ul class="nav">
     <!-- <li class="nav-item">
         <a class="nav-link" href="index.html">
@@ -147,15 +147,15 @@
         <li class="nav-item">
           <a class="nav-link" href="petFriendly.html">寵物友善空間管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="petFriendlyScore.html">寵物友善空間評論管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="base/carousel.html">寵物友善空間收藏管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="lostPetReport.html">寵物遺失回報管理</a>
-        </li>
+        </li> -->
         
         <!-- <li class="nav-item">
             <a class="nav-link" href="base/forms.html">
@@ -309,19 +309,19 @@
     </li>
   </ul>
 </nav>
-      <!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button> -->
-    </div>
-    <main class="main">
-      <!-- Breadcrumb-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">首頁</li>
-        <li class="breadcrumb-item">
-          <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
-        </li>
-        <!-- <li class="breadcrumb-item active">Dashboard</li> -->
-        <!-- Breadcrumb Menu-->
-        <li class="breadcrumb-menu d-md-down-none">
-          <!-- <div class="btn-group" role="group" aria-label="Button group">
+        <!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button> -->
+      </div>
+      <main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">首頁</li>
+          <li class="breadcrumb-item">
+            <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
+          </li>
+          <!-- <li class="breadcrumb-item active">Dashboard</li> -->
+          <!-- Breadcrumb Menu-->
+          <li class="breadcrumb-menu d-md-down-none">
+            <!-- <div class="btn-group" role="group" aria-label="Button group">
             <a class="btn" href="#">
               <i class="icon-speech"></i>
             </a>
@@ -330,15 +330,15 @@
             <a class="btn" href="#">
               <i class="icon-settings"></i>  Settings</a>
           </div> -->
-        </li>
-      </ol>
-      <div class="container-fluid">
-        <!-- 中間內容 -->
-        
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <!-- 中間內容 -->
+
           <div class="row">
     <div class="col-md-12">
         <div class="accordion" id="accordionExample">
-            <!-- <div class="card">
+            <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
@@ -352,63 +352,68 @@
                     <div class="card-body">
                         <div class="row">
                             <iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe>
-                            <form action="./phps/post.php" method="POST" enctype="multipart/form-data"
-                                class="col-xl-12 upact" target="id_iframe">
+                            <form action="./php/add-activity.php" method="post" enctype="multipart/form-data" class="col-xl-12 upact"
+                                target="id_iframe" id="actForm">
                                 <input type="text" name="post" value="updata_activity" style="display: none;"
                                     v-if="update == true">
                                 <input type="text" name="post" value="add_activity" style="display: none;"
                                     v-if="update == false">
 
                                 <div class="col-xl-6 updata_act_mom" style="vertical-align: middle">
-                                    <label class="col-xl-12 updata_act"
-                                        :style="{backgroundImage: 'url('+upact_infos.activity_img+')'}" for="upimg">
+                                    <label class="col-xl-12 updata_act" for="upimg"
+                                        :style="{backgroundImage:'url('+upInfors.activity_img+')'}">
                                         <input type="file" name="act_img" id="upimg" style="display: none;"
-                                            @change="up_img">
+                                         @change="up_img">
                                         <img src="./img/upload-zone.png" class="uploadimg"
-                                            v-if="upact_infos.activity_img == ''">
-                                        <img :src=upact_infos.activity_img class="act_img" v-else> -->
-                                        <!-- <div class="img_name">{{ upact_infos.activity_g }}</div> -->
-                                    <!-- </label>
-                                </div>
+                                            v-if="upInfors.activity_img == ''">
+                                        <!-- <img :src=upInfors.activity_img class="act_img" v-else> -->
+                                        <div class="img_name" >{{ upInfors.activity_g }}</div>
+                                    </label>
+                                </div> 
                                 <div class="col-xl-6">
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_num"> 活動/新聞/宣導編號</label>
                                         <input type="number" class="form-control" id="activity_num" name="activity_num"
-                                            v-model="upact_infos.activity_num" v-if="update == false" min="0" step="1">
-
+                                            min="0" step="1" v-model="upInfors.activity_num" v-if="update == false">
+                                        <input type="number" class="form-control" id="activity_num" name="activity_num"
+                                            min="0" step="1" v-model="upInfors.activity_num" v-if="update == true"
+                                            readonly>
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_name"> 活動/新聞/宣導名稱</label>
                                         <input type="text" class="form-control" id="activity_name" name="activity_name"
-                                            v-model="upact_infos.activity_name">
+                                            v-model="upInfors.activity_name">
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
-                                        <label for="activity_start"> 活動/新聞/宣導類型</label>
-                                        <select name="" id="">
-                                            <option value="">活動</option>
-                                            <option value="">新聞</option>
-                                            <option value="">宣導</option>
+                                        <label for="activity_type"> 活動/新聞/宣導類型</label>
+                                        <select name="activity_type" id="activity_type"
+                                            v-model="upInfors.activity_type">
+                                            <option value="活動">活動</option>
+                                            <option value="新聞">新聞</option>
+                                            <option value="宣導">宣導</option>
                                         </select>
-                                    </div> -->
+                                    </div>
                                     <!-- <div class="form-group" style="display: inline-block; width: 49%;">
-                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
-                        <input type="date" class="form-control" id="activity_fin" name="activity_fin"
-                          v-model="upact_infos.activity_fin">
-                      </div> -->
-                                    <!-- <div class="form-group" style="display: inline-block; width: 100%">
+                                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
+                                        <input type="date" class="form-control" id="activity_fin" name="activity_fin">
+                                    </div> -->
+                                    <div class="form-group" style="display: inline-block; width: 100%">
                                         <label for="activity_Introduction"> 活動/新聞/宣導內容介紹</label>
                                         <textarea type="date" class="form-control" id="activity_Introduction" rows="8"
-                                            name="activity_Introduction" style="resize: none"
-                                            v-model="upact_infos.activity_Introduction"></textarea>
+                                            name="activity_Introduction" v-model="upInfors.activity_Introduction"
+                                            style="resize: none"></textarea>
                                     </div>
+
                                     <button type="submit" class="btn btn-primary submitbtn" style="display:block"
-                                        @click="send_act" v-if="!update">Submit</button>
+                                        @click="send_act" v-if="!update">上傳</button>
+                                    <button type="submit" class="btn btn-primary submitbtn" style="display:block"
+                                        @click="update_act" v-else>更新</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="card">
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
@@ -425,19 +430,19 @@
                                 <tr>
                                     <th scope="col" style="text-align: center;"> 活動/新聞/宣導編號</th>
                                     <th scope="col" style="text-align: center;"> 活動/新聞/宣導名稱</th>
-                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導類型</th>     
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導類型</th>
                                     <th scope="col" style="text-align: center;"> 活動/新聞/宣導內容介紹</th>
                                     <th scope="col" style="text-align: center;">設定</th>
                                 </tr>
                             </thead>
-                            <tbody> 
+                            <tbody>
                                 <tr v-for="item in activity">
                                     <th scope="row" style="text-align: center;">{{ item.inforNo}}</th>
                                     <td style="text-align: center;">{{ item.inforName }}</td>
                                     <td style="text-align: center;">{{ item.inforType }}</td>
                                     <td style="text-align: center;">{{ item.inforContent }}</td>
                                     <td style="text-align: center;">
-                                        <a href="#" @click.prevent="get_edit(item.activity_no);update = true">
+                                        <a href="#" @click.prevent="get_edit(item.inforNo);update = true">
                                             編輯</a> / <a href="#" @click.prevent="get_delete(item.activity_no)">下架</a>
                                     </td>
                                 </tr>
@@ -450,12 +455,12 @@
     </div>
 </div>
 </div>
-        
-        <!-- end -->
-      </div>
-    </main>
+
+          <!-- end -->
+        </div>
+      </main>
+    </div>
   </div>
-</div>
   
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
@@ -471,24 +476,113 @@
     var back = new Vue({
       el: "#app",
       data: {
-        activity: [],
+        activity: [], // 活動上下架
+        update: false,
+        upInfors: {
+          activity_img: '',
+          activity_num: '',
+          activity_name: '',
+          activity_type: '',
+          activity_Introduction: '',
+          activity_g: '',
+        }
       },
       methods: {
 
+        clean_form() { //清除表單資料 
+
+          document.getElementById('actForm').reset();
+        },
+
         get_activity() { //取得已經建立的活動資訊
           var vm = this;
-          axios.get('./php/NewsAndActivity.php').then(function (res) {
+          axios.post('./php/NewsAndActivity.php').then(function (res) {
             console.log(res.data);
             vm.activity = res.data;
             // console.log(vm.activity);
           }).catch(err => { console.log(err) })
-        }
+        },
+        up_img() {
+          var vm = this;
+          var upimg = document.getElementById('upimg').files[0];//抓上傳的圖片
+          console.log(upimg);
+          vm.upInfors.activity_g = upimg.name; //圖片檔名
+          var readFile = new FileReader();
+          readFile.readAsDataURL(upimg); //將抓取的圖片編碼成data URL
+          readFile.addEventListener('load', function () {
+            vm.upInfors.activity_img = readFile.result;
+          })
+        },
+        send_act() {
+          var vm = this;
+          if (vm.upInfors.activity_img == '') {
+            alert('請上傳圖片');
+          } else if (vm.upInfors.activity_num == '') {
+            alert('編號不能為空');
+          } else if (vm.upInfors.activity_name == '') {
+            alert('名稱不能為空');
+          } else if (vm.upInfors.activity_type == '') {
+            alert('請選擇一種類型');
+          } else if (vm.upInfors.activity_Introduction == '') {
+            alert('內容不能為空');
+          } else {
+            setTimeout(function () {
+              alert('上傳成功!')
+              vm.clean_form();
+              vm.get_activity();
+
+              var collapseOne = document.getElementById('collapseOne');
+              var collapseTwo = document.getElementById('collapseTwo');
+              collapseOne.className = "collapse";
+              collapseTwo.className = "collapse show";
+
+            }, 1000)
+          }
+
+        },
+
+        update_act() {
+
+          var vm = this;
+          setTimeout(function () {
+            alert('更新成功!')
+            vm.clean_form();
+            vm.get_activity();
+
+            var collapseOne = document.getElementById('collapseOne');
+            var collapseTwo = document.getElementById('collapseTwo');
+            collapseOne.className = "collapse";
+            collapseTwo.className = "collapse show";
+
+          }, 1000)
+        },
+
+        get_edit(no) {
+          var vm = this;
+          axios.get('./php/update_activity.php?id=' + no).then(function (res) {
+            console.log(res.data);
+            vm.upInfors.activity_img = `./img/${res.data.inforPic}`;
+            vm.upInfors.activity_num = res.data.inforNo;
+            vm.upInfors.activity_name = res.data.inforName;
+            vm.upInfors.activity_type = res.data.inforType;
+            vm.upInfors.activity_Introduction = res.data.inforContent;
+            vm.upInfors.activity_g = res.data.inforPic;
+
+            var collapseOne = document.getElementById('collapseOne');
+            var collapseTwo = document.getElementById('collapseTwo');
+            collapseOne.className = "collapse show";
+            collapseTwo.className = "collapse";
+          }).catch(err => {
+            console.log(err)
+          })
+        },
+
       },
       mounted() {
         this.get_activity();
       },
-    
-      
+
+
 
     })
   </script>

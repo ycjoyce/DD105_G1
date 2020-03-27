@@ -7,47 +7,37 @@
     "浪愛回家 ｜ 會員中心" })
     <link rel="stylesheet" href="./css/memberCenter.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
+
 </head>
 
 <body>
     <header class="header-navigation" id="header">
         <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
+            <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
                 <h1>
-                    <a href="./index.html">
+                    <a href="./main.html">
                         <img src="./img/logo-wide.png" alt="logo">
                     </a>
                 </h1>
                 <ul class="col-xl-9 col-lg-9 col-md-9">
-                    <li><a href="./login.html">浪浪在哪裡</a></li>
-                    <li><a href="">愛心助浪浪</a></li>
-                    <li><a href="./customized.html">客製化項圈</a></li>
-                    <li><a href="./post_article_region.html">毛孩交流區</a></li>
-                    <li><a href="./aboutus.html">關於我們</a></li>
-                    <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
-                    <li class="rwd"><a href="./message.html">我的信箱</a></li>
-                    <li class="rwd"><a href="./index.html">登出</a></li>
-                    <li class="memZone">
-                        <div>
-                            <div class="memPic"></div>
-                            <div class="message">
-                                <span class="unread">2</span>
-                            </div>
-                        </div>
-                        <ul class="memZone">
-                            <li><a href="./memberCenter.html">會員中心</a></li>
-                            <li><a href="./index.html">登出</a></li>
-                        </ul>
-                    </li>
+                    <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                    <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                    <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                    <li><a id="navPost" href="./post_article_region.html">毛孩交流區</a></li>
+                    <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                    <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
                 </ul>
                 <button class="hamburger hamburger--spring" type="button">
                     <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
+                      <span class="hamburger-inner"></span> 
                     </span>
                 </button>
             </div>
         </nav>
     </header>
+    
 
 
 
@@ -114,18 +104,20 @@
     <script src="./js/page_top.js"></script>
     <script src="./js/signInOut.js"></script>
     <script src="./js/blacklistTable.js"></script>
+    <script src="./js/memInfoTable.js"></script>
+    <!-- 寵物遺失回報 -->
     <script src="./js/map_mc_lostrp.js"></script>
     <script>
 
         //section高度
-        function sectionHeight(){
-            let header= document.querySelector('nav');
-            let section= document.querySelector('section');
-            let footer= document.querySelector('footer');
-            section.style.minHeight= window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
+        function sectionHeight() {
+            let header = document.querySelector('nav');
+            let section = document.querySelector('section');
+            let footer = document.querySelector('footer');
+            section.style.minHeight = window.innerHeight - header.offsetHeight - footer.offsetHeight + "px";
         }
         sectionHeight();
-        window.addEventListener("resize",sectionHeight);
+        window.addEventListener("resize", sectionHeight);
 
         // jQuery tabs大頁籤開始---------------------------------------
         $(document).ready(function () {
@@ -159,7 +151,7 @@
         // 會員中心子選單,按鈕點擊滑出
         var winWidth = $(window).width();
 
-        if (winWidth < 415) {
+        if (winWidth < 767) {
             $(document).ready(function () {
                 $('#filterBtn').click(function () {
                     $(this).parent('#tabs-container1').toggleClass('-showFilter');
@@ -167,6 +159,9 @@
 
             });
         }
+
+
+
     </script>
 </body>
 
