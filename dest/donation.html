@@ -7,6 +7,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="./css/donation.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+
   
   <!-- 頁籤標題 -->
   <header class="header-navigation" id="header">
@@ -34,6 +36,14 @@
     </nav>
 </header>
 
+<<<<<<< HEAD
+=======
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+  <script src="./js/jquery.numscroll.js"></script>
+  
+>>>>>>> 2daacdca79f4f994b6ae9e22070b21f0e331f1fc
 </head>
 
 <body>
@@ -114,10 +124,10 @@
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
-                    <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + newdo.memPic + '.jpg)'"></div>
+                    <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + newdo.memPic +')'"></div>
                     <div class="top">
                       <div class="donationpic"
-                        v-bind:style="'background-image:url(/img/donation/' + newdo.fundImg + '.jpg)'">
+                        v-bind:style="'background-image:url(./img/donation/' + newdo.fundImg + '.jpg)'">
                       </div>
                       <div class="tag">募資中</div>
                       <div class="heartbtn"><i class="fas fa-heart"></i></div>
@@ -154,11 +164,11 @@
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + deaddo .memPic + '.jpg)'">
+                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + deaddo .memPic +')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(/img/donation/' + deaddo .fundImg + '.jpg)'"></div>
+                    v-bind:style="'background-image:url(./img/donation/' + deaddo .fundImg + '.jpg)'"></div>
                   <div class="tag">最後倒數</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
@@ -194,11 +204,11 @@
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + hisdo .memPic + '.jpg)'">
+                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + hisdo .memPic + ')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(/img/donation/' + hisdo .fundImg + '.jpg)'"></div>
+                    v-bind:style="'background-image:url(./img/donation/' + hisdo .fundImg + '.jpg)'"></div>
                   <div class="tag">已結束</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
@@ -342,15 +352,25 @@
 
 <script src="./js/page_top.js"></script>
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 2daacdca79f4f994b6ae9e22070b21f0e331f1fc
+
+
+  <script src="./js/signInOut.js"></script>
+  <script src="./js/donation_test.js"></script>
+  <script src="./js/donation.js"></script>
+  <script src="./js/hamburger.js"></script>
+  <script src="./js/header_slide.js"></script>
+  <script src="./js/donation.js"></script>
+  <!-- <script src="./donation_deadline.js"></script> -->
   <script>
       $(".num").numScroll({
           time: 10000
-      });
-  </script>
+      }); 
 
-  <script src="./js/wow.min.js"></script>
-  <script>
+
       new WOW().init();
   </script>
 
@@ -363,17 +383,7 @@
                 })
                 })
               </script> -->
-
-
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
-  <script src="./js/donation_test.js"></script>
-  <script src="./js/donation.js"></script>
-  <script src="./js/hamburger.js"></script>
-  <script src="./js/header_slide.js"></script>
-  <script src="./js/donation.js"></script>
-  <script src="./js/jquery.numscroll.js"></script>
-  <!-- <script src="./donation_deadline.js"></script> -->
+  
 </body>
 
 </html>

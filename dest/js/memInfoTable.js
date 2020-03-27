@@ -57,32 +57,74 @@ submitbtn.addEventListener("click",function(){
     if(memName.value==""||memPsw.value==""){
         alert("請輸入修改");
     }else{
-        var formData= new FormData();
-        formData.append("memName",memName.value);
-        formData.append("memPsw",memPsw.value);
-        if(upload_img.files[0]){
-            formData.append("uploadImg",upload_img.files[0]);
-        }
-        
-        $.ajax({
-            url: './php/updateMemInfo.php',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
-            type: 'POST',
-            success(data){
-                if(data.indexOf("success")!=-1){
-                    alert("修改成功");
-                    getMember();
-                    window.location.reload();
-                }else{
-                   console.log(data);
+        if(memName.value!=member.memName){
+            $.ajax({
+                url: './php/checkName.php',
+                data: {memName: memName.value},
+                type: 'POST',
+                success(data){
+                    if(data.indexOf("ok")==-1){
+                        alert(data);
+                    }else{
+                        var formData= new FormData();
+                        formData.append("memName",memName.value);
+                        formData.append("memPsw",memPsw.value);
+                        if(upload_img.files[0]){
+                            formData.append("uploadImg",upload_img.files[0]);
+                        }
+                        $.ajax({
+                            url: './php/updateMemInfo.php',
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            type: 'POST',
+                            success(data){
+                                if(data.indexOf("success")!=-1){
+                                    alert("修改成功");
+                                    getMember();
+                                    window.location.reload();
+                                }else{
+                                console.log(data);
+                                }
+                                },
+                                error(data){
+                                    alert("error");
+                                }
+                            });
+                    }
+                },
+                error(data){
+                    alert("error");
                 }
-            },
-            error(data){
-                alert("error");
+            });
+        }else{
+            var formData= new FormData();
+            formData.append("memName",memName.value);
+            formData.append("memPsw",memPsw.value);
+            if(upload_img.files[0]){
+                formData.append("uploadImg",upload_img.files[0]);
             }
-        });
+            $.ajax({
+                url: './php/updateMemInfo.php',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                type: 'POST',
+                success(data){
+                    if(data.indexOf("success")!=-1){
+                        alert("修改成功");
+                        getMember();
+                        window.location.reload();
+                    }else{
+                    console.log(data);
+                    }
+                    },
+                    error(data){
+                        alert("error");
+                    }
+                });
+        }
     }
 });

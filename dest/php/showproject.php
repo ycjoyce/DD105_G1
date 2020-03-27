@@ -6,7 +6,7 @@ $errMsg = "";
 
 try{
 
-    require_once("connectdd105g1.php");
+    require_once("./connectDB.php");
     $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundContent, f.fundImg, f.fundArticleImg1, f.fundArticleImg2, f.fundArticleF, f.fundArticleS, f.fundArticleT, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic, to_days(f.fundEndDate)-to_days(CURRENT_DATE()+1) dead,round((f.fundNowAmount / f.fundGoal)*100) pas from fundraising f join meminfo m on f.memNo = m.memNo
     where fundNo = :fundNo";
     
