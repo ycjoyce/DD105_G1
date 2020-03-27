@@ -1211,7 +1211,7 @@ section {
 #orderContent {
     // border: 1px solid red;
     width: 100%;
-    height: calc(100vh - 106.438px - 280px);
+    height: calc(100vh - 106.438px - 230px);
     overflow-y: scroll;
     overflow-x: hidden;
     @include RWD(lg) {
@@ -1276,6 +1276,11 @@ section {
                             color: white;
                         }
                     }
+                }
+            }
+            #totalPrice {
+                &::before {
+                    content: "$";
                 }
             }
             .orderDetails {
