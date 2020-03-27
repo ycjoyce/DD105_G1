@@ -19,6 +19,7 @@
     <script src="./js/sweet-alert.js"></script>
     <script src="./js/customizedTabsEvent.js"></script>
     <script src="./js/customized.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon&display=swap" rel="stylesheet">
 
 </head>
 
@@ -315,7 +316,7 @@
 
                                                 $('.unlock').click(function() {
                                                     let point = parseInt($(this).attr('point'));
-                                                    let nowPoint = $('#showPoint').text();
+                                                    let nowPoint = parseInt($('#showPoint').text());
                                                     let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
                                                     if (result) {
                                                         if (nowPoint >= point) {
@@ -443,11 +444,14 @@
                                 <div id="textFontFamily">
                                     <h4 style="margin: 0px 20px 0px 90px;">選擇文字字型： </h4>
                                     <select name="" id="fontFamilySelect">
-                                        <option value="default" selected disabled>請選擇字型</option>
-                                        <option value="Pacifico">Pacifico</option>
-                                        <option value="VT323">VT323</option>
-                                        <option value="Quicksand">Quicksand</option>
-                                        <option value="Inconsolata">Inconsolata</option>
+                                        <option class="fontFamilys" value="default" selected disabled>請選擇字型</option>
+                                        <option class="fontFamilys" value="DFKai-sb" style="font-family:DFKai-sb;">標楷體</option>
+                                        <option class="fontFamilys" value="Microsoft JhengHei" style="font-family:Microsoft JhengHei;">微軟正黑體</option>
+                                        <option class="fontFamilys" value="Arial" style="font-family: Arial;">Arial</option>
+                                        <option class="fontFamilys" value="Pacifico" style="font-family: Pacifico;">Pacifico</option>
+                                        <option class="fontFamilys" value="Coming Soon" style="font-family: Coming Soon;">Coming Soon</option>
+                                        <option class="fontFamilys" value="Quicksand" style="font-family: Quicksand;">Quicksand</option>
+                                        <option class="fontFamilys" value="Inconsolata" style="font-family:Inconsolata">Inconsolata</option>
                                     </select>
                                 </div>
                                 <div id="textContent">
@@ -478,8 +482,8 @@
                                     var dataURL = canvas.toDataURL();
                                     console.log(dataURL);
                                 </script> -->
-                                <a href="#" download="dl.png" onclick="this.href=canvas.toDataURL();">下載</a>
-                                <button id="base64Btn">轉base64</button>
+                                <!-- <a href="#" download="dl.png" onclick="this.href=canvas.toDataURL();">下載</a> -->
+                                <!-- <button id="base64Btn">轉base64</button> -->
                                 <!-- <script>
                                     function convertbase64() {
                                         var canvasbase64 = canvas.toDataURL();
