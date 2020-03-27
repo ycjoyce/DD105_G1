@@ -143,6 +143,27 @@ function initialize() {
   // Gmap skin
   // map.mapTypes.set("Custom", customType);
   // map.mapTypes.set("Basic", basicType);
+  var mySwiper = new Swiper(".swiper-container", {
+    // Optional parameters
+    direction: "vertical",
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination"
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: ".swiper-scrollbar"
+    }
+  });
 }
 
 function geoSuccess(pos) {
@@ -254,7 +275,7 @@ function getLost() {
         data[i].lostPetRpType,
         data[i].lostPetRpCh,
         data[i].lostPetRpLocAdd,
-        data[i].memName        
+        data[i].memName
       );
     }
   };
@@ -302,7 +323,7 @@ function mapMsg(id) {
 
 //=============================================
 
-/*** 讀取地標 ***/
+/*** 讀取寵物遺失地標 ***/
 function loadLostData(
   rpNo,
   lat,
@@ -423,6 +444,27 @@ function getFriendly() {
         data[i].friendlyTypeName
       );
     }
+    var mySwiper = new Swiper(".swiper-container", {
+      // Optional parameters
+      direction: "vertical",
+      loop: true,
+
+      // If we need pagination
+      pagination: {
+        el: ".swiper-pagination"
+      },
+
+      // Navigation arrows
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+
+      // And if we need scrollbar
+      scrollbar: {
+        el: ".swiper-scrollbar"
+      }
+    });
   };
 }
 
@@ -672,7 +714,7 @@ window.addEventListener("load", function() {
   }
 });
 
-/*** 讀取地標 ***/
+/*** 讀取友善空間地標 ***/
 function loadfriendlyData(
   lat,
   lng,
@@ -687,6 +729,27 @@ function loadfriendlyData(
   typeno,
   typename
 ) {
+  var mySwiper = new Swiper(".swiper-container", {
+    // Optional parameters
+    direction: "vertical",
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination"
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: ".swiper-scrollbar"
+    }
+  });
   var contentString = `
     <div class="friendContent">
         <!-- Swiper -->
@@ -740,3 +803,26 @@ function loadfriendlyData(
   });
   markers.push(marker);
 }
+
+
+var mySwiper = new Swiper ('.swiper-container', {
+  // Optional parameters
+  direction: 'vertical',
+  loop: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // And if we need scrollbar
+  scrollbar: {
+    el: '.swiper-scrollbar',
+  },
+})

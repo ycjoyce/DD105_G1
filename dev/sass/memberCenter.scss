@@ -171,38 +171,38 @@
 // ===============================================================
 // 右邊視窗基本設定
 
-#showPsw{
-  @include rwd(lg){
+#showPsw {
+  @include rwd(lg) {
     margin: 10px 0 15px 0;
   }
-  @include rwd(md){
+  @include rwd(md) {
     margin: 10px 0 15px 0;
   }
-  @include rwd(sm){
+  @include rwd(sm) {
     margin: 10px 0 15px 0;
   }
-  @include rwd(ss){
+  @include rwd(ss) {
     margin: 10px 0 15px 0;
   }
 }
 
-label.uploadimgbtn{
-  @include rwd(lg){
+label.uploadimgbtn {
+  @include rwd(lg) {
     position: absolute;
     bottom: 40px;
     margin-left: 15px;
   }
-  @include rwd(md){
+  @include rwd(md) {
     position: absolute;
     bottom: 40px;
     margin-left: 15px;
   }
-  @include rwd(sm){
+  @include rwd(sm) {
     position: absolute;
     bottom: 40px;
     margin-left: 15px;
   }
-  @include rwd(ss){
+  @include rwd(ss) {
     position: absolute;
     bottom: 40px;
     margin-left: 15px;
@@ -472,7 +472,7 @@ label.uploadimgbtn{
     }
     fieldset {
       border: none;
-      padding: 50px 80px;
+      padding: 30px 50px;
       transition: all 0.5s;
       h3 {
         text-align: center;
@@ -483,6 +483,17 @@ label.uploadimgbtn{
       }
       img {
         max-width: 100px;
+      }
+      #imageShow {
+        display: inline-block;
+        overflow: hidden;
+        margin: 10px auto;
+        width: 250px;
+        height: 150px;
+        // border: 1px solid #999898;
+        background-size: auto 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
     }
     label {
@@ -511,7 +522,7 @@ label.uploadimgbtn{
       margin: 30px 0 10px;
     }
     .uploadimgbtn_brfore {
-      margin-bottom: 0px;
+      margin-bottom: -10px;
     }
     .uploadimgbtn_after {
       margin-top: 0px;
@@ -697,7 +708,7 @@ label.uploadimgbtn{
         background-position: center center;
         background-repeat: no-repeat;
       }
-      
+
       .uploadimgbtn {
         width: auto;
         color: #fff;
@@ -791,67 +802,38 @@ label.uploadimgbtn{
 // 管理黑名單
 @import "layout/rwd";
 
-  section.blacklistTable {
-    .blacklist_content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-content: space-between;
-      // &::after{
-      //   content: '';
-      //   flex: auto;
-      // }
-      div.withoutBlack{
-        width: 400px;
-        max-width: 100%;
-        position: relative;
-        padding-top: 150px;
-        margin: 0 auto;
-        div{
-          width: 150px;
-          height: 130px;
-          position: absolute;
-          top: 0;
-          right: 50px;
-          img.bubble{
-            width: 100%;
-          }
-          p{
-            text-align: center;
-            display: inline-block;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            color: $gray;
-          }
+section.blacklistTable {
+  .blacklist_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    // &::after{
+    //   content: '';
+    //   flex: auto;
+    // }
+    div.withoutBlack {
+      width: 400px;
+      max-width: 100%;
+      position: relative;
+      padding-top: 150px;
+      margin: 0 auto;
+      div {
+        width: 150px;
+        height: 130px;
+        position: absolute;
+        top: 0;
+        right: 50px;
+        img.bubble {
+          width: 100%;
         }
-        img.cat{
-          width: 40%;
-          display: block;
-          margin: 0 auto;
-        }
-      }
-      div.card {
-        margin: 0 0 20px;
-        display: flex;
-        padding: 20px 3%;
-        background-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
-        width: 100%;
-        @include rwd(xl){
-          width: 48%;
-        }
-         div {
-          width: 50px;
-          min-width: 50px;
-          height: 50px;
-          border-radius: 50%;
+        p {
+          text-align: center;
           display: inline-block;
-          // position: absolute;
+          position: absolute;
           left: 50%;
           top: 50%;
-          // transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
           color: $gray;
         }
       }
@@ -867,32 +849,60 @@ label.uploadimgbtn{
       padding: 20px 3%;
       background-color: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
-      width: 48%;
+      width: 100%;
+      @include rwd(xl) {
+        width: 48%;
+      }
       div {
         width: 50px;
         min-width: 50px;
         height: 50px;
         border-radius: 50%;
         display: inline-block;
-        margin-right: 10%;
-        overflow: hidden;
-        img {
-          max-width: 50px;
-          max-height: 50px;
-        }
-      }
-      span {
-        align-self: center;
-      }
-      .BLbtn {
-        margin-left: auto;
-        align-self: center;
-        border: 1px solid transparent;
-        outline: none;
+        // position: absolute;
+        left: 50%;
+        top: 50%;
+        // transform: translate(-50%, -50%);
+        color: $gray;
       }
     }
+    img.cat {
+      width: 40%;
+      display: block;
+      margin: 0 auto;
+    }
   }
-
+  div.card {
+    margin: 0 0 20px;
+    display: flex;
+    padding: 20px 3%;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+    width: 48%;
+    div {
+      width: 50px;
+      min-width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 10%;
+      overflow: hidden;
+      img {
+        max-width: 50px;
+        max-height: 50px;
+      }
+    }
+    span {
+      align-self: center;
+    }
+    .BLbtn {
+      margin-left: auto;
+      align-self: center;
+      border: 1px solid transparent;
+      outline: none;
+    }
+  }
+}
 
 @media (max-width: 1200px) {
   .tab-content {

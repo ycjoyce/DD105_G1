@@ -54,7 +54,7 @@ try{
                 // $_SESSION["memPic"]= $newName;
                 // $_SESSION["memName"]= $_REQUEST["memName"];
                 // $_SESSION["memPsw"]= $_REQUEST["memPsw"];
-                echo "成功";
+                echo "ok";
                 break;
             case 1:
                 echo "檔案太大，上傳檔案大小不可超過2M";
