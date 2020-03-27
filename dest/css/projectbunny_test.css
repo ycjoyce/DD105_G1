@@ -1,0 +1,918 @@
+.col-1 {
+  width: 8.33333%;
+  border: 1px solid blue;
+}
+
+.col-2 {
+  width: 16.66667%;
+  border: 1px solid blue;
+}
+
+.col-3 {
+  width: 25%;
+  border: 1px solid blue;
+}
+
+.col-4 {
+  width: 33.33333%;
+  border: 1px solid blue;
+}
+
+.col-5 {
+  width: 41.66667%;
+  border: 1px solid blue;
+}
+
+.col-6 {
+  width: 50%;
+  border: 1px solid blue;
+}
+
+.col-7 {
+  width: 58.33333%;
+  border: 1px solid blue;
+}
+
+.col-8 {
+  width: 66.66667%;
+  border: 1px solid blue;
+}
+
+.col-9 {
+  width: 75%;
+  border: 1px solid blue;
+}
+
+.col-10 {
+  width: 83.33333%;
+  border: 1px solid blue;
+}
+
+.col-11 {
+  width: 91.66667%;
+  border: 1px solid blue;
+}
+
+.col-12 {
+  width: 100%;
+  border: 1px solid blue;
+}
+
+* {
+  border: 1px solid blueviolet;
+  color: #555;
+  position: relative;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.col-8.projectcontentbox {
+  margin: 0 auto;
+}
+
+.imgchange {
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.imgchange .imgrow {
+  width: 50%;
+}
+
+.imgchange .imgrow img {
+  width: 50%;
+  display: block;
+}
+
+.imgchange .imgrow #big {
+  width: 100%;
+}
+
+.imgchange .imgrow #small {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+}
+
+.imgchange .imgrow #small img {
+  width: 30%;
+  display: block;
+}
+
+.imgchange .status {
+  width: 45%;
+  font-size: 1em;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.imgchange .status .texts {
+  letter-spacing: 1px;
+}
+
+.imgchange .status .texts .statusrow {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.imgchange .status .texts .statusrow .lastday {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.imgchange .status .texts .progressbar {
+  height: 15px;
+  margin-bottom: 10px;
+  background-color: lightblue;
+  overflow: hidden;
+}
+
+.imgchange .status .texts .progressbar .valuebar {
+  width: 100px;
+  height: 100%;
+  background-color: darkblue;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.imgchange .status .goal {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.imgchange .status .socialbtnbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  justify-items: center;
+}
+
+.imgchange .status .socialbtnbox ul {
+  list-style: none;
+  border: 1px solid seagreen;
+}
+
+.imgchange .status .socialbtnbox ul li.heart {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.imgchange .status .socialbtnbox ul li.heart i {
+  font-size: 1em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #EE7785;
+}
+
+.imgchange .status .socialbtnbox ul li.share {
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.imgchange .status .socialbtnbox ul li.share i {
+  font-size: 1em;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #84B1ED;
+}
+
+.imgchange .status .socialbtnbox .button {
+  display: inline-block;
+}
+
+.imgchange .status .socialbtnbox .button button {
+  width: 100px;
+  height: 40px;
+  border: 1px solid #76912E;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 4px;
+  color: #76912E;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.imgchange .status .socialbtnbox .button button:hover {
+  background-color: #76912E;
+  color: white;
+}
+
+.artcontent {
+  margin: 20px auto;
+  letter-spacing: 1px;
+}
+
+.artcontent h3 {
+  padding: 20px;
+  background-image: url(./img/donation/big_bule_bubble.png);
+}
+
+.artcontent .fundArticleF {
+  padding: 20px;
+  line-height: 1.5em;
+  padding-bottom: 20px;
+}
+
+.artcontent .fundArticleS {
+  padding: 20px;
+  line-height: 1.5em;
+  padding-bottom: 20px;
+}
+
+.artcontent .fundArticleT {
+  padding: 20px;
+  line-height: 1.5em;
+  padding-bottom: 20px;
+}
+
+.artcontent .button {
+  text-align: center;
+}
+
+.artcontent .button button {
+  width: 100px;
+  height: 40px;
+  background-color: #76912E;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1em;
+  letter-spacing: 4px;
+}
+
+.newprojectrow {
+  margin-top: 20px;
+}
+
+.newprojectrow h3 {
+  text-align: center;
+}
+
+#app {
+  overflow: hidden;
+  margin: 0 auto;
+  border: 1px solid saddlebrown;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+button[type=submit].fakeformbtn {
+  margin: 0;
+  text-align: left;
+  padding: 0;
+  border: 0px;
+  background-color: transparent;
+  border-radius: 5px;
+  color: #555;
+}
+
+button[type=submit].fakeformbtn:focus {
+  outline: none;
+}
+
+.donationcardbox {
+  max-width: 260px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  color: #4F4C4B;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 40px 20px;
+}
+
+.donationcardbox:hover .heartbtn {
+  bottom: 10px;
+}
+
+.donationcardbox:hover .donationpic {
+  -webkit-transform: scale(1.13);
+          transform: scale(1.13);
+}
+
+.donationcardbox:hover .bottom .valuebar {
+  width: 100%;
+}
+
+.donationcardbox .raiser {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  left: 15px;
+  top: -27.5px;
+  border-radius: 50%;
+  background-size: cover;
+  border: solid 2px white;
+  z-index: 5;
+}
+
+.top {
+  height: 160px;
+  overflow: hidden;
+}
+
+.top .tag {
+  -webkit-transform: translateX(95px) translateY(20px) rotate(45deg);
+          transform: translateX(95px) translateY(20px) rotate(45deg);
+  width: 100%;
+  text-align: center;
+  padding: 5px 0px;
+  background-color: #8fc8ce;
+  color: white;
+  font-weight: 700;
+  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+}
+
+.top .donationpic {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  background-image: url(https://hahow.in/images/574fab4f206cd60900c52a67?width=300);
+  background-size: cover;
+  border-radius: 5px 5px 0px 0px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.top .heartbtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  bottom: -50px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.top .heartbtn:hover {
+  background-color: #8fc8ce;
+}
+
+.top .heartbtn:hover i {
+  color: white;
+}
+
+.top .heartbtn i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 22px;
+  color: #8fc8ce;
+}
+
+.bottom {
+  height: 184px;
+  padding: 15px;
+}
+
+.bottom .donationtitle {
+  font-size: 25px;
+  margin-top: 0;
+}
+
+.bottom .texts {
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.bottom .texts .orange {
+  padding-left: 5px;
+  color: #8fc8ce;
+}
+
+.bottom .statusrow {
+  margin-bottom: 10px;
+}
+
+.bottom .statusrow .lastday {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.bottom .progressbar {
+  height: 10px;
+  margin-bottom: 10px;
+  background-color: #e5e5e1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bottom .progressbar .valuebar {
+  width: 100px;
+  height: 100%;
+  background-color: #8fc8ce;
+  border-radius: 5px 0px 0px 5px;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.bottom .goal {
+  text-align: center;
+}
+
+.bottom .bottombar {
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #8fc8ce;
+  border-radius: 0px 0px 5px 5px;
+}
+
+#leftRightPanel {
+  border: 1px solid sandybrown;
+  width: 100%;
+}
+
+#leftRightPanel #btnLeft {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 200px;
+  left: -5%;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.582);
+  cursor: pointer;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+#leftRightPanel #btnLeft i {
+  color: #6da316;
+}
+
+#leftRightPanel #btnLeft:focus {
+  outline: none;
+}
+
+#leftRightPanel #btnLeft:hover {
+  border: 1px solid #6da316;
+}
+
+#leftRightPanel #btnLeft:hover i {
+  color: #6da316;
+}
+
+#leftRightPanel #btnRight {
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 200px;
+  right: -5%;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.582);
+  cursor: pointer;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+#leftRightPanel #btnRight i {
+  color: #6da316;
+}
+
+#leftRightPanel #btnRight:focus {
+  outline: none;
+}
+
+#leftRightPanel #btnRight:hover {
+  border: 1px solid #6da316;
+}
+
+#leftRightPanel #btnRight:hover i {
+  color: #6da316;
+}
+
+.itempanel {
+  position: relative;
+  height: 500px;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid skyblue;
+}
+
+.itempanel .wrap {
+  position: absolute;
+  margin-top: 20px;
+  width: 100%;
+  -webkit-transition: left 1s;
+  transition: left 1s;
+  border: 1px solid red;
+}
+
+.col-12.box {
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.425);
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.col-12.box .content {
+  background-color: white;
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px;
+  position: absolute;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 1px solid salmon;
+  /*--------------------
+Buttons
+--------------------*/
+  /*--------------------
+  Form
+  --------------------*/
+  /*--------------------
+  Checkout
+  --------------------*/
+  /*--------------------
+  Credit Card
+  --------------------*/
+}
+
+.col-12.box .content .btn {
+  margin: 20px 0;
+}
+
+.col-12.box .content .btn .cancel {
+  width: 150px;
+  height: 40px;
+  border: 1px solid #647926;
+  text-align: center;
+  cursor: pointer;
+  color: #647926;
+  float: right;
+  margin: 20px 0;
+  outline: none;
+}
+
+.col-12.box .content .form fieldset {
+  border: none;
+  padding: 0;
+  padding: 10px 0;
+  position: relative;
+  clear: both;
+}
+
+.col-12.box .content .form fieldset.fieldset-expiration {
+  float: left;
+  width: 60%;
+}
+
+.col-12.box .content .form fieldset.fieldset-expiration .select {
+  width: 84px;
+  margin-right: 12px;
+  float: left;
+}
+
+.col-12.box .content .form fieldset.fieldset-ccv {
+  clear: none;
+  float: right;
+  width: 86px;
+}
+
+.col-12.box .content .form fieldset label {
+  display: block;
+  text-transform: uppercase;
+  color: #555555;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.col-12.box .content .form fieldset input,
+.col-12.box .content .form fieldset .select {
+  width: 100%;
+  height: 38px;
+  color: #555555;
+  padding: 10px;
+  border-radius: 2px;
+  outline: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.col-12.box .content .form fieldset input.input-cart-number,
+.col-12.box .content .form fieldset .select.input-cart-number {
+  width: 82px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.col-12.box .content .form fieldset input.input-cart-number:last-child,
+.col-12.box .content .form fieldset .select.input-cart-number:last-child {
+  margin-right: 0;
+}
+
+.col-12.box .content .form fieldset .select {
+  position: relative;
+}
+
+.col-12.box .content .form fieldset .select::after {
+  content: '';
+  border-top: 8px solid #222;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  position: absolute;
+  z-index: 2;
+  top: 14px;
+  right: 10px;
+  pointer-events: none;
+}
+
+.col-12.box .content .form fieldset .select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  padding: 0;
+  border: none;
+  width: 100%;
+  outline: none !important;
+  top: 6px;
+  left: 6px;
+  background: none;
+}
+
+.col-12.box .content .form fieldset .select select :-moz-focusring {
+  color: transparent;
+}
+
+.col-12.box .content .checkout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: 3%;
+}
+
+.col-12.box .content .credit-card-box {
+  width: 400px;
+  height: 280px;
+  margin-top: 5%;
+}
+
+.col-12.box .content .credit-card-box:hover .flip,
+.col-12.box .content .credit-card-box.hover .flip {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.col-12.box .content .credit-card-box .front,
+.col-12.box .content .credit-card-box .back {
+  width: 400px;
+  height: 250px;
+  border-radius: 15px;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  background: linear-gradient(135deg, #7cbfc2, #16888b);
+  position: absolute;
+  color: #fff;
+  font-family: Inconsolata;
+  top: 0;
+  left: 0;
+}
+
+.col-12.box .content .credit-card-box .front::before,
+.col-12.box .content .credit-card-box .back::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: url("../img/dogsleep.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: .05;
+}
+
+.col-12.box .content .credit-card-box .flip {
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: relative;
+}
+
+.col-12.box .content .credit-card-box .logo {
+  position: absolute;
+  top: 9px;
+  right: 20px;
+  width: 60px;
+}
+
+.col-12.box .content .credit-card-box .logo svg {
+  width: 100%;
+  height: auto;
+  fill: #fff;
+}
+
+.col-12.box .content .credit-card-box .front {
+  z-index: 2;
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.col-12.box .content .credit-card-box .back {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.col-12.box .content .credit-card-box .back .logo {
+  top: 185px;
+}
+
+.col-12.box .content .credit-card-box .chip {
+  position: absolute;
+  width: 60px;
+  height: 45px;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #ddccf0 0%, #d1e9f5 44%, #f8ece7 100%);
+  border-radius: 8px;
+}
+
+.col-12.box .content .credit-card-box .chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 4px solid rgba(128, 128, 128, 0.1);
+  width: 80%;
+  height: 70%;
+  border-radius: 5px;
+}
+
+.col-12.box .content .credit-card-box .strip {
+  background: linear-gradient(135deg, #404040, #1a1a1a);
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  top: 30px;
+  left: 0;
+}
+
+.col-12.box .content .credit-card-box .number {
+  position: absolute;
+  margin: 0 auto;
+  top: 103px;
+  left: 19px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.col-12.box .content .credit-card-box label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-weight: normal;
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.col-12.box .content .credit-card-box .card-holder,
+.col-12.box .content .credit-card-box .card-expiration-date {
+  position: absolute;
+  margin: 0 auto;
+  top: 180px;
+  left: 19px;
+  font-size: 22px;
+}
+
+.col-12.box .content .credit-card-box .card-holder div,
+.col-12.box .content .credit-card-box .card-expiration-date div {
+  color: white;
+}
+
+.col-12.box .content .credit-card-box .card-expiration-date {
+  text-align: right;
+  left: auto;
+  right: 20px;
+}
+
+.col-12.box .content .credit-card-box .ccv {
+  height: 36px;
+  background: #fff;
+  width: 90%;
+  border-radius: 3px;
+  top: 43%;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: 0 auto;
+  color: #000;
+  text-align: right;
+  padding: 1%;
+}
+
+.col-12.box .content .credit-card-box .ccv label {
+  margin: -25px 0 14px;
+  color: #fff;
+}
+
+.col-12.box .content .the-most {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.col-12.box .content .the-most img {
+  max-width: 100%;
+}
+
+.col-12.box .content .close {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  outline: none;
+}
+
+.col-12.box .content .close i {
+  color: #ccc;
+  padding: 5%;
+}
+/*# sourceMappingURL=projectbunny_test.css.map */
