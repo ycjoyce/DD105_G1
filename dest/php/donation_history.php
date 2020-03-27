@@ -3,7 +3,7 @@
 
 try{
 
-    require_once("connectdd105g1.php");
+    require_once("./connectDB.php");
     $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundImg, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic from fundraising f join meminfo m on f.memNo = m.memNo WHERE datediff(f.fundEndDate, f.fundStartDate)<20";
     $fundraising = $pdo->query($sql);
     $fundraising->execute();
