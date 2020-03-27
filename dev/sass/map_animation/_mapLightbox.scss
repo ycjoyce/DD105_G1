@@ -239,7 +239,7 @@
   }
   fieldset {
     border: none;
-    padding: 50px 80px;
+    padding: 30px 60px;
     transition: all 0.5s;
     h3 {
       text-align: center;
@@ -263,6 +263,13 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+  }
+
+  #rpbtn{
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    outline: none;
   }
 
   input,
