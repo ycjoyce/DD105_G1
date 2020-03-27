@@ -121,10 +121,10 @@
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
-                    <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + newdo.memPic + '.jpg)'"></div>
+                    <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + newdo.memPic +')'"></div>
                     <div class="top">
                       <div class="donationpic"
-                        v-bind:style="'background-image:url(/img/donation/' + newdo.fundImg + '.jpg)'">
+                        v-bind:style="'background-image:url(./img/donation/' + newdo.fundImg + '.jpg)'">
                       </div>
                       <div class="tag">募資中</div>
                       <div class="heartbtn"><i class="fas fa-heart"></i></div>
@@ -161,11 +161,11 @@
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + deaddo .memPic + '.jpg)'">
+                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + deaddo .memPic +')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(/img/donation/' + deaddo .fundImg + '.jpg)'"></div>
+                    v-bind:style="'background-image:url(./img/donation/' + deaddo .fundImg + '.jpg)'"></div>
                   <div class="tag">最後倒數</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
@@ -201,11 +201,11 @@
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + hisdo .memPic + '.jpg)'">
+                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + hisdo .memPic + ')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(/img/donation/' + hisdo .fundImg + '.jpg)'"></div>
+                    v-bind:style="'background-image:url(./img/donation/' + hisdo .fundImg + '.jpg)'"></div>
                   <div class="tag">已結束</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
