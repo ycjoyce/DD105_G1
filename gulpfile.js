@@ -154,3 +154,16 @@ gulp.task('adminlogin',function(){
     gulp.watch(web.js,['lint']).on('change',reload);
     gulp.watch([web.js,web.font,web.img],['concat']).on('change',reload);
 });
+
+gulp.task('leadingPage',function(){
+    browserSync.init({
+        server:{
+            baseDir: "./dest/",
+            index: "leadingPage.html"
+        }
+    });
+    gulp.watch(web.html,['fileinclude']).on('change',reload);
+    gulp.watch(web.sass,['sass']).on('change',reload);
+    gulp.watch(web.js,['lint']).on('change',reload);
+    gulp.watch([web.js,web.font,web.img],['concat']).on('change',reload);
+});

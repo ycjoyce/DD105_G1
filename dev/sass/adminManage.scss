@@ -123,6 +123,17 @@
 }
 
 
+.updata_act .img_name {
+  position: absolute;
+  // width: 50%;
+  height: 24px;
+  bottom: 16px;
+  right: 0;
+  text-align: center;
+  /* line-height: 24px; */
+  background-color: #fff;
+}
+
 @media (max-width: 992px) {
   .upact {
     display: inline-block;
