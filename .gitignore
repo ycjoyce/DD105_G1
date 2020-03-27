@@ -47,3 +47,5 @@ bower_components
 .zip
 libs
 compress
+dest/php/connectDB.php
+dev/php/connectDB.php

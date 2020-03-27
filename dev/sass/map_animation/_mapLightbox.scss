@@ -225,7 +225,7 @@
   border-radius: 10px;
   box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.15);
   p {
-    margin: 23px 0;
+    margin: 18px 0;
   }
   label {
     font-size: 1.1rem;
@@ -246,6 +246,17 @@
       vertical-align: top;
       text-align: left;
     }
+  }
+  #imageShow {
+    display: inline-block;
+    overflow: hidden;
+    margin: 10px auto;
+    width: 300px;
+    height: 150px;
+    // border: 1px solid #999898;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   input,
@@ -281,7 +292,7 @@
     touch-action: manipulation;
     cursor: pointer;
     user-select: none;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     transition: all 0.3s;
   }
 

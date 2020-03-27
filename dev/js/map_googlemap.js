@@ -254,7 +254,7 @@ function getLost() {
         data[i].lostPetRpType,
         data[i].lostPetRpCh,
         data[i].lostPetRpLocAdd,
-        data[i].memName
+        data[i].memName        
       );
     }
   };
