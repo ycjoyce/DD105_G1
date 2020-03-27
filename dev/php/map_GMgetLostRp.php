@@ -3,7 +3,7 @@
 try{
     require_once('./connectDB.php');
 
-    $sql= "select * from `lostpetreport` where lostPetRpStat = 0";
+    $sql= "select * from lostpetreport L, meminfo M  where L.memNo = M.memNo and lostPetRpStat = 0";
     $types = $pdo->query($sql);
     $types->execute();
 
