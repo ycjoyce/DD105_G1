@@ -1133,6 +1133,9 @@ section {
                             #fontFamilySelect {
                                 width: 200px;
                                 height: 30px;
+                                .fontFamilys {
+                                    font-size: 20px;
+                                }
                             }
                         }
                         #textContent {
@@ -1211,7 +1214,7 @@ section {
 #orderContent {
     // border: 1px solid red;
     width: 100%;
-    height: calc(100vh - 106.438px - 280px);
+    height: calc(100vh - 106.438px - 230px);
     overflow-y: scroll;
     overflow-x: hidden;
     @include RWD(lg) {
@@ -1276,6 +1279,11 @@ section {
                             color: white;
                         }
                     }
+                }
+            }
+            #totalPrice {
+                &::before {
+                    content: "$";
                 }
             }
             .orderDetails {
@@ -1425,7 +1433,7 @@ Form
             // -webkit-backface-visibility: hidden;
             // backface-visibility: hidden;
             backface-visibility: visible;
-            background: linear-gradient(135deg, #7cbfc2, #00d369);
+            background: linear-gradient(135deg, #7cbfc2, #0b5fad);
             //   background-image: url(../img/bg-01.png);
             //   background-size : cover;
             position: absolute;
@@ -1440,10 +1448,10 @@ Form
                 height: 100%;
                 top: 0;
                 left: 0;
-                background-image: url("../img/dogsleep.png");
+                background-image: url("../img/map_intro_boyndog.png");
                 background-size: cover;
                 background-repeat: no-repeat;
-                opacity: 0.05;
+                opacity: 0.1;
             }
         }
         .flip {

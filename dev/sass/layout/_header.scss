@@ -7,7 +7,7 @@
         position: $position;
         top: 0;
         width: 100%;
-        z-index:5;
+        z-index:6;
         &.slideUp {
             -webkit-transform: translateY(-120px);
             transform: translateY(-120px);
@@ -290,6 +290,7 @@
                                 bottom: -100px;
                                 width: 150px;
                                 display:none !important;
+                                
                                 @include rwd(md){
                                     left: -50px;
                                 }

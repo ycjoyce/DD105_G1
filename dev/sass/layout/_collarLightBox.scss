@@ -62,9 +62,17 @@
             justify-content: space-around;
             #orderQTY {
                 margin-left: 20px;
+                font-size: 1rem;
+                &::before {
+                    content: "購買數量 : ";
+                }
             }
             #orderPrice {
                 margin-left: 20px;
+                font-size: 1rem;
+                &::before {
+                    content: "總金額 : $";
+                }
             }
         }
     }
@@ -80,6 +88,26 @@
         .orderList {
             margin-left: 40px;
             font-size: 1rem;
+        }
+        #orderDate {
+            &::before {
+                content: "訂購日期 : ";
+            }
+        }
+        #orderName {
+            &::before {
+                content: "寄件人姓名 : ";
+            }
+        }
+        #orderPhone {
+            &::before {
+                content: "寄件人電話 : ";
+            }
+        }
+        #orderAddress {
+            &::before {
+                content: "寄件人地址 : ";
+            }
         }
     }
     .credit-card-box {
