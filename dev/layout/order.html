@@ -1,43 +1,58 @@
 <section class="memTable">
     <h3>我的訂單</h3>
     <div class="memTable_content">
-        <table>
+        <table id="memOrderList">
             <tr>
-                <th class="titleFont">編號</th>
-                <th class="titleFont">購買日期</th>
-                <th class="titleFont memRWD_992">客製化項圈編號</th>
+                <th class="titleFont">訂單編號</th>
                 <th class="titleFont">商品圖案</th>
+                <th class="titleFont">購買日期</th>
+                <th class="titleFont">收件人姓名</th>
+                <th class="titleFont">收件人電話</th>
+                <th class="titleFont">收件人地址</th>
                 <th class="titleFont memRWD_992">商品數量</th>
                 <th class="titleFont memRWD_992">訂單金額</th>
                 <th class="titleFont memRWD_992">訂單狀態</th>
             </tr>
-            <tr>
-                <td>03</td>
-                <td>2020-01-25</td>
-                <td class="memRWD_992">123112_003</td>
-                <td><img src="https://picsum.photos/80/110"></td>
-                <td class="memRWD_992">2</td>
-                <td class="memRWD_992">980</td>
-                <td class="memRWD_992">已完成付款</td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td>2019-12-25</td>
-                <td class="memRWD_992">123112_002</td>
-                <td><img src="https://picsum.photos/80/110"></td>
-                <td class="memRWD_992">1</td>
-                <td class="memRWD_992">490</td>
-                <td class="memRWD_992">已完成出貨</td>
-            </tr>
-            <tr>
-                <td>01</td>
-                <td>2019-12-01</td>
-                <td class="memRWD_992">123112_001</td>
-                <td><img src="https://picsum.photos/80/110"></td>
-                <td class="memRWD_992">5</td>
-                <td class="memRWD_992">2450</td>
-                <td class="memRWD_992">已取件</td>
-            </tr>
         </table>
     </div>
 </section>
+
+<script>
+    window.addEventListener('load', function() {
+        function getOrderList() {
+            var memNo = member.memNo;
+            var formData = new FormData();
+            formData.append("memNo", memNo);
+            $.ajax({
+                url: "php/getOrderList.php",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    msg = "";
+                    for (i = 0; i < data.length; i++) {
+                        msg +=
+                            `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                <td>${data[i].orderDate}</td>
+                                <td>${data[i].orderName}</td>
+                                <td>${data[i].orderPhone}</td>
+                                <td>${data[i].orderAddress}</td>
+                                <td class="memRWD_992">${data[i].orderQty}</td>
+                                <td class="memRWD_992">${data[i].orderPrice}</td>
+                                <td class="memRWD_992">待出貨</td>
+                            </tr>
+                        `;
+                    }
+                    $('#memOrderList').append(msg);
+                }
+            })
+        }
+        getOrderList();
+    })
+</script>
