@@ -31,7 +31,8 @@ var web={
     ],
     php:[ 
         'dev/php/*.php',
-        'dev/php/**/*.php'
+        'dev/php/**/*.php',
+        'dev/*.php',
     ],
     font:[
         'dev/font/*.*',

@@ -4,13 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <!-- 頁籤標題 -->
+  <title>浪愛回家 | 愛心助浪浪</title>
+<link rel="icon" href="./img/logo.ico" type="image/x-icon">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
   <link rel="stylesheet" href="./css/donation.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
 
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script> -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+  <script src="./js/jquery.numscroll.js"></script>
   
-  <!-- 頁籤標題 -->
+</head>
+
+<body>
   <header class="header-navigation" id="header">
     <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
@@ -35,18 +46,6 @@
         </div>
     </nav>
 </header>
-
-<<<<<<< HEAD
-=======
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
-  <script src="./js/jquery.numscroll.js"></script>
-  
->>>>>>> 2daacdca79f4f994b6ae9e22070b21f0e331f1fc
-</head>
-
-<body>
 
   <div style="height:15vh"></div>
   <!---------------- maru輪播 ---------------->
@@ -120,7 +119,7 @@
         <div class="tab tab1 -on">
           <div id="app">
               <div class="donationcardbox" v-for="newdo in newdonationdatas">
-                <form action="./php/showproject.php" method="post">
+                <form action="./showproject.php" method="post">
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
@@ -160,7 +159,7 @@
         <div class="tab tab2">
           <div id="app2">
             <div class="donationcardbox" v-for="deaddo in deadlinedonationdatas">
-              <form action="./php/showproject.php" method="post">
+              <form action="./showproject.php" method="post">
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
@@ -200,7 +199,7 @@
         <div class="tab tab3">
           <div id="app3">
             <div class="donationcardbox" v-for="hisdo in historydonationdatas">
-              <form action="./php/showproject.php" method="post">
+              <form action="./showproject.php" method="post">
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
@@ -352,10 +351,7 @@
 
 <script src="./js/page_top.js"></script>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 2daacdca79f4f994b6ae9e22070b21f0e331f1fc
 
 
   <script src="./js/signInOut.js"></script>

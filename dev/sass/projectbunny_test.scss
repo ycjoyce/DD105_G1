@@ -33,12 +33,25 @@ $padding_class: 15px;
 //class="col-6" 寬度為總寬度的 6/12
 //以此類推(col-1 ~ col-12)
 
+@import 'layout/rwd';
+
+@import 'layout/header';
+@include header(fixed);
+header{
+  h1{
+    margin: 0 !important;
+  }
+  ul{
+    margin: 0 !important;
+  }
+}
+
 //=======================================================
 
 *{
     // padding: 20px;
     border: 1px solid blueviolet;
-    color: #555;
+    color: #555; 
     position: relative;
     
    
