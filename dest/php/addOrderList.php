@@ -2,7 +2,7 @@
 try{
     require_once('connectDB.php');
     $sql = "insert into `orderrecord`(`memNo`,`orderPic`,`orderDate`,`orderName`,`orderPhone`,`orderAddress`,`orderQty`,`orderPrice`,`orderStatus`)
-     values (:memNo,'',:orderDate,:orderName,:orderPhone,:orderAddress,:orderQty,:orderPrice,'')";
+     values (:memNo,'',:orderDate,:orderName,:orderPhone,:orderAddress,:orderQty,:orderPrice, '0')";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->bindValue(":memNo",$_POST["memNo"]);
     $pdoStatement->bindValue(":orderDate",$_POST["orderDate"]);

@@ -19,12 +19,12 @@
 
 <script>
     window.addEventListener('load', function() {
-        function getOrderList() {
+        function memOrderList() {
             var memNo = member.memNo;
             var formData = new FormData();
             formData.append("memNo", memNo);
             $.ajax({
-                url: "php/getOrderList.php",
+                url: "php/memOrderList.php",
                 cache: false,
                 contentType: false,
                 processData: false,
@@ -34,25 +34,72 @@
                 success: function(data) {
                     msg = "";
                     for (i = 0; i < data.length; i++) {
-                        msg +=
-                            `
-                            <tr>
-                                <td>${i+1}</td>
-                                <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
-                                <td>${data[i].orderDate}</td>
-                                <td>${data[i].orderName}</td>
-                                <td>${data[i].orderPhone}</td>
-                                <td>${data[i].orderAddress}</td>
-                                <td class="memRWD_992">${data[i].orderQty}</td>
-                                <td class="memRWD_992">${data[i].orderPrice}</td>
-                                <td class="memRWD_992">待出貨</td>
-                            </tr>
-                        `;
+                        if (data[i].orderStatus == 0) {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td class="memRWD_992 orderStatus">待出貨</td>
+                                </tr>
+                            `;
+                        } else if (data[i].orderStatus == 1) {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td class="memRWD_992 orderStatus">已出貨</td>
+                                </tr>
+                            `;
+                        } else if (data[i].orderStatus == 2) {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td class="memRWD_992 orderStatus">待收貨</td>
+                                </tr>
+                            `;
+                        } else {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td class="memRWD_992 orderStatus">已收貨</td>
+                                </tr>
+                            `;
+                        }
                     }
                     $('#memOrderList').append(msg);
                 }
             })
         }
-        getOrderList();
+        memOrderList();
     })
 </script>

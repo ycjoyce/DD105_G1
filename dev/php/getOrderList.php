@@ -1,10 +1,8 @@
 <?php
 try {
     require_once('connectDB.php');
-    $sql = "select *
-    from `orderrecord` o join `memInfo` m on (o.memNo = m.memNo) where o.memNo=:memNo;";
+    $sql = "select * from `orderrecord`";
     $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement->bindValue(":memNo",$_REQUEST["memNo"]);
     $pdoStatement->execute();
 
     //如果找得資料，取回資料，送出JSON字串
