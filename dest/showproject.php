@@ -6,7 +6,7 @@ $errMsg = "";
 
 try{
 
-    require_once("./connectDB.php");
+    require_once("./php/connectDB.php");
     $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundContent, f.fundImg, f.fundArticleImg1, f.fundArticleImg2, f.fundArticleF, f.fundArticleS, f.fundArticleT, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic, to_days(f.fundEndDate)-to_days(CURRENT_DATE()+1) dead,round((f.fundNowAmount / f.fundGoal)*100) pas from fundraising f join meminfo m on f.memNo = m.memNo
     where fundNo = :fundNo";
     
@@ -31,28 +31,51 @@ try{
 }
 
 ?>
+<?php
 
+if($errMsg != ""){
+    echo "<div><center>$errMsg</center></div>";
+}else{
+    $fundraisingrows =  $fundraising->fetchObject();
+    $arr = array($fundraisingrows);
+    // echo $jsonObj = json_encode( $arr );
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/projectbunny_test.css">
+    <title><?= "愛心助浪浪 | Project{$fundraisingrows->fundNo}"?></title>
+    <link rel="icon" href="./img/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/projectbunny_test.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
 </head>
 <body>
-    <?php
+    <header class="header-navigation" id="header">
+        <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+                <h1>
+                    <a href="./main.html">
+                        <img src="./img/logo-wide.png" alt="logo">
+                    </a>
+                </h1>
+                <ul class="col-xl-9 col-lg-9 col-md-9">
+                    <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                    <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                    <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                    <li><a id="navPost" href="./post_article_region.html">毛孩交流區</a></li>
+                    <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                    <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
+                </ul>
+                <button class="hamburger hamburger--spring" type="button">
+                    <span class="hamburger-box">
+                    <span class="hamburger-inner"></span> 
+                    </span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
-    if($errMsg != ""){
-        echo "<div><center>$errMsg</center></div>";
-    }else{
-        $fundraisingrows =  $fundraising->fetchObject();
-        $arr = array($fundraisingrows);
-        // echo $jsonObj = json_encode( $arr );
-    ?>
-
-   
     <div class="projectcontentbox col-8">
         <div class="imgchange">
             <div class="imgrow">
@@ -87,6 +110,7 @@ try{
                             <ul class="socialbtn">
                                 <li class="heart"><i class="fas fa-heart"></i></li>
                                 <li class="share"><i class="fas fa-share-alt"></i></li>
+                                <li id="donationMsg" class="No<?=$fundraisingrows->memNo?>" style="width:30px;height:30px;background-color:yellow;"></li>
                             </ul>
                         </div>
                         <div class="button">
@@ -99,11 +123,11 @@ try{
         </div>
         <!---------------- 專案文章  ---------------->
         <div class="artcontent col-12">
-            <h3 style="background-image: url(../img/donation/big_bule_bubble.png);background-repeat:no-repeat;background-size:contain;">毛孩介紹</h3>
+            <h3 style="background-image: url(./img/donation/big_bule_bubble.png);background-repeat:no-repeat;background-size:contain;">毛孩介紹</h3>
             <div class="fundArticleF"><?php echo $fundraisingrows->fundArticleF;?></div>
-            <h3 style="background-image: url(../img/donation/big_pink_bubble.png);background-repeat:no-repeat;background-size:contain;">捐款目的</h3>
+            <h3 style="background-image: url(./img/donation/big_pink_bubble.png);background-repeat:no-repeat;background-size:contain;">捐款目的</h3>
             <div class="fundArticleS"><?php echo $fundraisingrows->fundArticleS;?></div>
-            <h3 style="background-image: url(../img/donation/big_green_bubble.png);background-repeat:no-repeat;background-size:contain;">拉票文宣</h3>
+            <h3 style="background-image: url(./img/donation/big_green_bubble.png);background-repeat:no-repeat;background-size:contain;">拉票文宣</h3>
             <div class="fundArticleT"><?php echo $fundraisingrows->fundArticleT;?></div>
             <div class="button">
                 <button>我要捐款</button>
@@ -124,10 +148,10 @@ try{
                         <input type="hidden" :value="newdo.fundNo" name="fundNo">
                         <button type="submit" class="fakeformbtn">
                             <!-- <a class="cardbox"> -->
-                            <div class="raiser" v-bind:style="'background-image:url(../img/donation/' + newdo.memPic + '.jpg)'"></div>
+                            <div class="raiser" v-bind:style="'background-image:url(./img/donation/' + newdo.memPic + '.jpg)'"></div>
                             <div class="top">
                                 <div class="donationpic"
-                                v-bind:style="'background-image:url(../img/donation/' + newdo.fundImg + '.jpg)'">
+                                v-bind:style="'background-image:url(./img/donation/' + newdo.fundImg + '.jpg)'">
                                 </div>
                                 <div class="tag">募資中</div>
                                 <div class="heartbtn"><i class="fas fa-heart"></i></div>
@@ -367,7 +391,46 @@ try{
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
-<script src="../js/project_donation_new.js"></script>
+<script src="./js/signInOut.js"></script>
+<!-- <script src="./js/project_donation_new.js"></script> -->
+<script src="./js/hamburger.js"></script>
+<script src="./js/header_slide.js"></script>
+<script>
+    //連結私信=================================
+    $("#donationMsg").click(function(){
+      if(member.memId){
+        var authorNo= this.classList[0].substr(2);
+        if(member.memNo==authorNo){
+          alert("此發起者為您本人");
+        }else{
+          $.ajax({
+            url: './php/donationMsg.php',
+            type: 'POST',
+            data: {getMemNo: authorNo},
+            success(data){
+              if(data.indexOf("error")==-1){
+                sessionStorage.setItem("now-on",authorNo);
+                location.href="./message.html";
+              }else{
+                alert("操作失敗");
+              }
+            },
+            error(data){
+              alert(data);
+            }
+          });
+        }
+    }else{
+      alert("請先登入");
+    }
+    });
+
+
+//header高度
+let projectcontentbox= document.querySelector(".projectcontentbox.col-8");
+let header= document.querySelector('nav');
+projectcontentbox.style.marginTop= header.offsetHeight + "px";
+</script>
 </html>
 
 
