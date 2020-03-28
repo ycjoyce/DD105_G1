@@ -47,8 +47,7 @@ $(document).ready(function() {
                 </td>
             </tr>`;
           } else {
-            {
-              html += `
+            html += `
                 <tr>
                     <td>${data[i].lostPetRpNo}</td>
                     <td>${data[i].lostPetRpDate}</td>
@@ -62,11 +61,10 @@ $(document).ready(function() {
                     <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                     </td>
                   </tr>`;
-            }
           }
         }
-        $(".lostrptable").empty();
-        $(".lostrptable").append(html);
+        $(".lostrptabletbody").empty();
+        $(".lostrptabletbody").append(html);
 
         // 燈箱開啟按鈕
         openCard();
@@ -129,8 +127,8 @@ $(document).ready(function() {
                           </select>
                       </p>
                       <p class="uploadimgbtn_brfore">
-                          <label for="">寵物照片</label>
-                          <img src="./img/lostrp/${data.lostPetRpImg}">
+                          <label>寵物照片</label>
+                          <span id="imageShow" style="background-image: url('./img/lostrp/${data.lostPetRpImg}');"></span>
                       </p>
                       <p class="uploadimgbtn_after">
                           <label></label>
@@ -203,10 +201,11 @@ $(document).ready(function() {
           }
 
           // 送出更新表單
+          var lostPetRpImg = document.getElementById("lostPetRpImg");
           $("#rpbtn").click(function(e) {
             e.preventDefault();
             var psn = data.lostPetRpNo;
-            console.log(psn);
+            console.log("寵物遺失編號"+psn+"更新");
             var formData = new FormData();
             formData.append("lostPetRpNo", psn);
             formData.append("lostPetRpName", $("#lostPetRpName").val());
@@ -218,7 +217,7 @@ $(document).ready(function() {
             formData.append("lostPetRpLoclat", $("#lostPetRpLoclat").val());
             formData.append("lostPetRpLoclng", $("#lostPetRpLoclng").val());
             formData.append("lostPetRpLocAdd", $("#lostPetRpLocAdd").val());
-            console.log(formData);
+            formData.append("lostPetRpImg", lostPetRpImg.files[0]);
             $.ajax({
               type: "POST",
               url: "./php/map_MClostrpedit.php",
@@ -228,7 +227,8 @@ $(document).ready(function() {
               data: formData,
               success: function(data) {
                 if (data.indexOf("ok") != -1) {
-                  alert("已更新成功");
+                  alert("更新成功");
+                  getlostrpList();
                   $("#lostform_cus")
                     .fadeOut()
                     .css("display", "none");
@@ -242,6 +242,18 @@ $(document).ready(function() {
               }
             });
           });
+
+          // 燈箱顯示圖片
+          let imageShow = document.getElementById('imageShow');
+          //document屬性files,會是陣列
+          lostPetRpImg.addEventListener('change', function () {
+              var file = lostPetRpImg.files[0];
+              var fileReader = new FileReader();
+              fileReader.readAsDataURL(file);
+              fileReader.addEventListener("load", function (e) {
+                  imageShow.style.backgroundImage = `url(${e.target.result})`;
+              });
+          });
         },
         error: function(xhr) {
           alert(xhr.Message);
@@ -249,4 +261,5 @@ $(document).ready(function() {
       });
     });
   }
+  
 });

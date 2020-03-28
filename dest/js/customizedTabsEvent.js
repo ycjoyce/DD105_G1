@@ -165,36 +165,21 @@ $(document).ready(function() {
         // $('.fakeCircle10').css("opacity", "1");
         // $('.fakeCircle11').css("opacity", "1");
         // $('.fakeCircle12').css("opacity", "1");
-        if ($('#orderNameInput').val() == "") {
-            alert("請先輸入收件人姓名");
-            return;
-        } else if ($('#orderPhoneInput').val() == "") {
-            alert("請先輸入收件人電話");
-            return;
-        } else if ($('#orderAddressInput').val() == "") {
-            alert("請先輸入收件人地址");
-            return;
-        } else {
-            $(this).parent().attr("data-dialog", "somedialog");
-            $('#orderName').text("收件人姓名 : " + $('#orderNameInput').val());
-            $('#orderPhone').text("收件人電話 : " + $('#orderPhoneInput').val());
-            $('#orderAddress').text("收件人地址 : " + $('#orderAddressInput').val());
-        }
+        // if ($('#orderNameInput').val() == "") {
+        //     alert("請先輸入收件人姓名");
+        //     return;
+        // } else if ($('#orderPhoneInput').val() == "") {
+        //     alert("請先輸入收件人電話");
+        //     return;
+        // } else if ($('#orderAddressInput').val() == "") {
+        //     alert("請先輸入收件人地址");
+        //     return;
+        // } else {
+        $('#orderName').text($('#orderNameInput').val());
+        $('#orderPhone').text($('#orderPhoneInput').val());
+        $('#orderAddress').text($('#orderAddressInput').val());
+        // }
     });
-    // $('#orderBtn').click(function() {
-    //     if ($('#orderNameInput').val() == "") {
-    //         alert("請先輸入收件人姓名");
-    //         return;
-    //     } else if ($('#orderPhoneInput').val() == "") {
-    //         alert("請先輸入收件人電話");
-    //         return;
-    //     } else if ($('#orderAddressInput').val() == "") {
-    //         alert("請先輸入收件人地址");
-    //         return;
-    //     } else {
-    //         alert("訂單已成功送出");
-    //     }
-    // });
     $('.collarImagesBoxs').click(function() {
         $(this).parent().children().children().removeClass("imageApplying");
         $(this).children().addClass("imageApplying");
@@ -214,21 +199,21 @@ $(document).ready(function() {
         } else {
             nowCount -= 1;
             $('#collarCount').text(nowCount);
-            $('#totalPrice').text("$" + nowCount * 300);
-            $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
-            $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
+            $('#totalPrice').text(nowCount * 300);
+            $('#orderQTY').text($('#collarCount').text());
+            $('#orderPrice').text($('#totalPrice').text());
         }
     })
     $('#plusCountBtn').click(function() {
         let nowCount = parseInt($('#collarCount').text());
         nowCount += 1;
         $('#collarCount').text(nowCount);
-        $('#totalPrice').text("$" + nowCount * 300);
-        $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
-        $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
+        $('#totalPrice').text(nowCount * 300);
+        $('#orderQTY').text($('#collarCount').text());
+        $('#orderPrice').text($('#totalPrice').text());
     })
-    $('#orderQTY').text("購買數量 : " + $('#collarCount').text());
-    $('#orderPrice').text("總金額 : " + $('#totalPrice').text());
+    $('#orderQTY').text($('#collarCount').text());
+    $('#orderPrice').text($('#totalPrice').text());
 
 })
 
@@ -251,7 +236,7 @@ window.addEventListener('load', function() {
 
     let today = new Date();
     todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
-    orderDate.innerText = `訂購日期 : ${todayDate.innerText}`;
+    orderDate.innerText = `${todayDate.innerText}`;
     tagImages[0].style.transform = "scale(2.5)";
 
     // $('#tagTotal span:first-child').text("1");

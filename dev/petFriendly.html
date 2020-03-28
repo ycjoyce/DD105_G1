@@ -399,7 +399,7 @@
                 <td>${data[i].friendlyAddress}</td>
                 <td>
                   <label class="switch switch-3d switch-success">
-                    <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" psn="${data[i].friendlyNo}">
+                    <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" psn="${data[i].friendlyNo}">
                     <span class="switch-slider"></span>
                   </label>
                 </td>

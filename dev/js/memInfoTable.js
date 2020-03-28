@@ -1,6 +1,9 @@
 let memId= document.getElementById("memId");
 let memName= document.getElementById("memName");
 let memPsw= document.getElementById("memPsw");
+let nowPsw= document.getElementById("nowPsw");
+let newPsw= document.getElementById("newPsw");
+let checkPsw= document.getElementById("checkPsw");
 let memPoint= document.getElementById("memPoint");
 let memPic= document.getElementById("memPic");
 let showPsw= document.getElementById("showPsw");
@@ -31,14 +34,11 @@ function getMemInfo(){
 }
 getMemInfo();
 
-//切換密碼按鈕
+//修改密碼按鈕
 showPsw.addEventListener("click",function(){
-    if(showPsw.innerText=="隱藏密碼"){
-        memPsw.type="password";
-        showPsw.innerText="顯示密碼";
-    }else{
-        memPsw.type="text";
-        showPsw.innerText="隱藏密碼";
+    var clickToShow= document.querySelectorAll(".clickToShow");
+    for(var i=0; i<clickToShow.length; i++){
+        clickToShow[i].classList.toggle("show");
     }
 });
 
@@ -53,36 +53,146 @@ upload_img.addEventListener("change",function(){
 });
 
 //送出修改
+
+function setNewPsw(){
+    var formData= new FormData();
+    formData.append("memName",memName.value);
+    formData.append("memPsw",newPsw.value);
+    
+    if(upload_img.files[0]){
+    formData.append("uploadImg",upload_img.files[0]);
+    }
+    $.ajax({
+    url: './php/updateMemInfo.php',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: formData,
+    type: 'POST',
+    success(data){
+        if(data.indexOf("success")!=-1){
+            alert("修改成功");
+            getMember();
+            window.location.reload();
+        }else{
+            console.log(data);
+        }
+        },
+        error(data){
+            alert("error");
+        }
+    });
+}
+
+function originalPsw(){
+    var formData= new FormData();
+    formData.append("memName",memName.value);
+    formData.append("memPsw",memPsw.value);
+    
+    if(upload_img.files[0]){
+    formData.append("uploadImg",upload_img.files[0]);
+    }
+    $.ajax({
+    url: './php/updateMemInfo.php',
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: formData,
+    type: 'POST',
+    success(data){
+        if(data.indexOf("success")!=-1){
+            alert("修改成功");
+            getMember();
+            window.location.reload();
+        }else{
+            console.log(data);
+        }
+        },
+        error(data){
+            alert("error");
+        }
+    });
+}
+
 submitbtn.addEventListener("click",function(){
     if(memName.value==""||memPsw.value==""){
         alert("請輸入修改");
     }else{
-        var formData= new FormData();
-        formData.append("memName",memName.value);
-        formData.append("memPsw",memPsw.value);
-        if(upload_img.files[0]){
-            formData.append("uploadImg",upload_img.files[0]);
-        }
-        
-        $.ajax({
-            url: './php/updateMemInfo.php',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
-            type: 'POST',
-            success(data){
-                if(data.indexOf("success")!=-1){
-                    alert("修改成功");
-                    getMember();
-                    window.location.reload();
-                }else{
-                   console.log(data);
+        if(memName.value!=member.memName){//如果有要修改名字
+            $.ajax({//檢查暱稱有無重複
+                url: './php/checkName.php',
+                data: {memName: memName.value},
+                type: 'POST',
+                success(data){
+                    if(data.indexOf("ok")==-1){//名字重複
+                        alert(data);
+                    }else{//名字沒有重複
+                        if(nowPsw.value!="" && newPsw.value!="" && checkPsw.value!=""){//如果有要修改密碼
+                            if(nowPsw.value=="" || newPsw.value=="" || checkPsw.value==""){
+                                alert("請輸入完整資料");
+                            }else{
+                                if(nowPsw.value!=member.memPsw){//如果現在密碼輸入錯誤
+                                    alert("請輸入正確之現在密碼");
+                                    nowPsw.value="";
+                                    newPsw.value="";
+                                    checkPsw.value="";
+                                }else{//如果現在密碼輸入正確
+                                    if(newPsw.value.length<4){
+                                        alert("請輸入4碼以上之密碼");
+                                        newPsw.value="";
+                                        checkPsw.value="";
+                                    }else{
+                                        if(newPsw.value==checkPsw.value){
+                                            setNewPsw();
+                                        }else{
+                                            alert("確認密碼錯誤");
+                                            newPsw.value="";
+                                            checkPsw.value="";
+                                        }
+                                    }
+                                }
+                            }
+                        }else{//沒有要修改密碼
+                            originalPsw();
+                        }
+                    }
+                },
+                error(data){
+                    alert("error");
                 }
-            },
-            error(data){
-                alert("error");
+            });
+        }else{//沒有要修改名字
+            if(nowPsw.value!="" || newPsw.value!="" || checkPsw.value!=""){//如果有要修改密碼
+                if(nowPsw.value=="" || newPsw.value=="" || checkPsw.value==""){
+                    alert("請輸入完整資料");
+                }else{
+                    if(nowPsw.value!=member.memPsw){//如果現在密碼輸入錯誤
+                        alert("請輸入正確之現在密碼");
+                        nowPsw.value="";
+                        newPsw.value="";
+                        checkPsw.value="";
+                    }else{
+                        if(newPsw.value.length<4){
+                            alert("請輸入4碼以上之密碼");
+                            newPsw.value="";
+                            checkPsw.value="";
+                        }else{
+                            if(newPsw.value==checkPsw.value){
+                                setNewPsw();
+                            }else{
+                                alert("確認密碼錯誤");
+                                newPsw.value="";
+                                checkPsw.value="";
+                            }
+                        }
+                    }
+                }
+            }else{//沒有要修改密碼
+                originalPsw();
             }
-        });
+        }
     }
 });
+
+
+

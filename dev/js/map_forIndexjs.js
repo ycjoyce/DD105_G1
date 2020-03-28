@@ -2,7 +2,6 @@
 // =========================以下載入地圖的部分=========================
 // ===================================================================
 
-
 // 記錄地圖資訊
 var map;
 // 紀錄從遠端撈下來的資料
@@ -238,7 +237,6 @@ function getLost() {
   };
 }
 
-
 /// 點選寵物遺失地標
 $(".mapOption li:nth-child(1)").click(function() {
   // 清除資料
@@ -251,48 +249,46 @@ $(".mapOption li:nth-child(1)").click(function() {
 });
 
 //連結私信功能==================================
-let petLostOwner="";
-function mapMsg(id){
-  if(member.memId){
+let petLostOwner = "";
+function mapMsg(id) {
+  if (member.memId) {
     $.ajax({
-      url: './php/checkNotSelf.php',
-      type: 'POST',
-      data: {lostNo: id.substr(4)},
-      success(data){
-        if(member.memNo==data){
+      url: "./php/checkNotSelf.php",
+      type: "POST",
+      data: { lostNo: id.substr(4) },
+      success(data) {
+        if (member.memNo == data) {
           alert("此寵物主人為您本人");
-        }else{
-          petLostOwner= data;
+        } else {
+          petLostOwner = data;
           $.ajax({
-            url: './php/mapMsg.php',
-            type: 'POST',
-            data: {lostNo: id.substr(4)},
-            success(data){
-              if(data.indexOf("error")==-1){
-                sessionStorage.setItem("now-on",petLostOwner);
-                location.href="./message.html";
-              }else{
+            url: "./php/mapMsg.php",
+            type: "POST",
+            data: { lostNo: id.substr(4) },
+            success(data) {
+              if (data.indexOf("error") == -1) {
+                sessionStorage.setItem("now-on", petLostOwner);
+                location.href = "./message.html";
+              } else {
                 alert("操作失敗");
               }
             },
-            error(data){
+            error(data) {
               alert(data);
             }
           });
         }
       },
-      error(data){
+      error(data) {
         alert(data);
-      },
+      }
     });
-    
-  }else{
+  } else {
     alert("請先登入");
   }
 }
 
 //=============================================
-
 
 // 讀取地標
 function loadLostData(
@@ -466,19 +462,19 @@ type.click(function() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyTypeNo == "1") {
         loadfriendlyData(
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
+          data[i].friendlylat,
+          data[i].friendlylng,
+          data[i].friendlyName,
+          data[i].friendlyPic,
+          data[i].friendlyTel,
+          data[i].friendlyAddress,
+          data[i].friendlyIntro_1,
+          data[i].friendlyIntro_2,
+          data[i].friendlyIntro_3,
+          data[i].friendlyIntro_4,
+          data[i].friendlyTypeNo,
+          data[i].friendlyTypeName
+        );
       }
     }
   };
@@ -503,24 +499,23 @@ type.click(function() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyTypeNo == "2") {
         loadfriendlyData(
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
+          data[i].friendlylat,
+          data[i].friendlylng,
+          data[i].friendlyName,
+          data[i].friendlyPic,
+          data[i].friendlyTel,
+          data[i].friendlyAddress,
+          data[i].friendlyIntro_1,
+          data[i].friendlyIntro_2,
+          data[i].friendlyIntro_3,
+          data[i].friendlyIntro_4,
+          data[i].friendlyTypeNo,
+          data[i].friendlyTypeName
+        );
       }
     }
   };
 });
-
 
 // 點選寵物友善住宿
 var type = $(".mapOption li:nth-child(5)");
@@ -541,19 +536,19 @@ type.click(function() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyTypeNo == "3") {
         loadfriendlyData(
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
+          data[i].friendlylat,
+          data[i].friendlylng,
+          data[i].friendlyName,
+          data[i].friendlyPic,
+          data[i].friendlyTel,
+          data[i].friendlyAddress,
+          data[i].friendlyIntro_1,
+          data[i].friendlyIntro_2,
+          data[i].friendlyIntro_3,
+          data[i].friendlyIntro_4,
+          data[i].friendlyTypeNo,
+          data[i].friendlyTypeName
+        );
       }
     }
   };
@@ -563,14 +558,14 @@ type.click(function() {
 // =========================以下為寵物遺失申請=========================
 // ===================================================================
 
-$(document).ready(function () {
-function mem_No() {
-  var mem_No = member.memNo;
-  var mem_Id = member.memName;
-  document.getElementById('memNo').value = mem_No;
-  document.getElementById('memName').value = mem_Id;
-};
-mem_No();
+$(document).ready(function() {
+  // function mem_No() {
+  //   var mem_No = member.memNo;
+  //   var mem_Id = member.memName;
+  //   document.getElementById("memNo").value = mem_No;
+  //   document.getElementById("memName").value = mem_Id;
+  // }
+  // mem_No();
 });
 
 //判斷會員登入
@@ -581,64 +576,66 @@ function checkLoginStatus(e) {
   var url = "php/checkMem.php";
   xhr.open("GET", url, true);
   xhr.send(null);
-  xhr.onload = function () {
-      if (xhr.status == 200) {
-          member = JSON.parse(xhr.responseText);
-          if (!member.memName) {
-              // document.getElementById("somedialog").style.display = "none";
-              // $('[data-dialog]').removeClass("trigger");
-              e.preventDefault();
-              e.stopPropagation();
-              alert('請先登入');
-              $("#somedialog").removeClass("dialog--open");
-          }
+  xhr.onload = function() {
+    if (xhr.status == 200) {
+      member = JSON.parse(xhr.responseText);
+      if (!member.memName) {
+        // document.getElementById("somedialog").style.display = "none";
+        // $('[data-dialog]').removeClass("trigger");
+        e.preventDefault();
+        e.stopPropagation();
+        alert("請先登入");
+        $("#somedialog").removeClass("dialog--open");
       }
-  }
+    }
+  };
 }
-document.querySelector(".trigger a").addEventListener("click", checkLoginStatus);
-
+document
+  .querySelector(".trigger a")
+  .addEventListener("click", checkLoginStatus);
 
 var lostPetRpImg = document.getElementById("lostPetRpImg");
-$("#rpbtn").click(function (e) {
-    e.preventDefault();
-    var formData = new FormData();
-    formData.append("memNo", $("#memNo").val());
-    formData.append("memName", $("#memName").val());
-    formData.append("lostPetRpName", $("#lostPetRpName").val());
-    formData.append("lostPetRpCh", $("#lostPetRpCh").val());
-    formData.append("lostPetRpLoc", $("#lostPetRpLoc").val());
-    formData.append("lostPetRpLDate", $("#lostPetRpLDate").val());
-    formData.append("lostPetRpType", $("#lostPetRpType").val());
-    formData.append("lostPetRpStat", $("#lostPetRpStat").val());
-    formData.append("lostPetRpLoclat", $("#lostPetRpLoclat").val());
-    formData.append("lostPetRpLoclng", $("#lostPetRpLoclng").val());
-    formData.append("lostPetRpLocAdd", $("#lostPetRpLocAdd").val());
-    formData.append("lostPetRpImg", lostPetRpImg.files[0]);
-    $.ajax({
-        type: "POST",
-        url: "./php/map_lostform.php",
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: formData,
-        success: function (data) {
-            if (data.indexOf("成功") != -1) {
-                alert("新增成功");
-                $("#somedialog").removeClass("dialog--open");
-                $("#memNo,#memName,#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd").val("");
-                getLost();
-            }
-            else {
-                alert("新增失敗");
-            }
-        },
-        error: function (xhr, status, error) {
-            // alert("請上傳圖片");
-            // var err = eval("(" + xhr.responseText + ")");
-            alert(xhr.Message);
-        }
-    })
-})
+$("#rpbtn").click(function(e) {
+  e.preventDefault();
+  var formData = new FormData();
+  // formData.append("memNo", $("#memNo").val());
+  // formData.append("memName", $("#memName").val());
+  formData.append("lostPetRpName", $("#lostPetRpName").val());
+  formData.append("lostPetRpCh", $("#lostPetRpCh").val());
+  formData.append("lostPetRpLoc", $("#lostPetRpLoc").val());
+  formData.append("lostPetRpLDate", $("#lostPetRpLDate").val());
+  formData.append("lostPetRpType", $("#lostPetRpType").val());
+  formData.append("lostPetRpStat", $("#lostPetRpStat").val());
+  formData.append("lostPetRpLoclat", $("#lostPetRpLoclat").val());
+  formData.append("lostPetRpLoclng", $("#lostPetRpLoclng").val());
+  formData.append("lostPetRpLocAdd", $("#lostPetRpLocAdd").val());
+  formData.append("lostPetRpImg", lostPetRpImg.files[0]);
+  $.ajax({
+    type: "POST",
+    url: "./php/map_lostform.php",
+    cache: false,
+    contentType: false,
+    processData: false,
+    data: formData,
+    success: function(data) {
+      if (data.indexOf("成功") != -1) {
+        alert("新增成功");
+        $("#somedialog").removeClass("dialog--open");
+        $(
+          "#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd"
+        ).val("");
+        getLost();
+      } else {
+        alert("新增失敗");
+      }
+    },
+    error: function(xhr, status, error) {
+      // alert("請上傳圖片");
+      // var err = eval("(" + xhr.responseText + ")");
+      alert(xhr.Message);
+    }
+  });
+});
 
 /// 輸入地址
 document.getElementById("lostPetRpLoc").onchange = getAddress;
@@ -666,3 +663,18 @@ function getAddress() {
     }
   });
 }
+
+$(document).ready(function() {
+  // 燈箱顯示圖片
+  let upload_img = document.getElementById("lostPetRpImg");
+  let imageShow = document.getElementById("imageShow");
+  //document屬性files,會是陣列
+  upload_img.addEventListener("change", function() {
+    var file = upload_img.files[0];
+    var fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.addEventListener("load", function(e) {
+      imageShow.style.backgroundImage = `url(${e.target.result})`;
+    });
+  });
+});

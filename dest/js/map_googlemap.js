@@ -143,6 +143,27 @@ function initialize() {
   // Gmap skin
   // map.mapTypes.set("Custom", customType);
   // map.mapTypes.set("Basic", basicType);
+  var mySwiper = new Swiper(".swiper-container", {
+    // Optional parameters
+    direction: "vertical",
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+      el: ".swiper-pagination"
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: ".swiper-scrollbar"
+    }
+  });
 }
 
 function geoSuccess(pos) {
@@ -199,7 +220,7 @@ function zoomControl() {
   });
 }
 
-// ===========================================================================================//
+// ======================================輸入地址=============================================//
 
 /// 輸入地址
 document.getElementById("lostPetRpLoc").onchange = getAddress;
@@ -227,6 +248,8 @@ function getAddress() {
     }
   });
 }
+
+// ======================================寵物遺失=============================================//
 
 /*** 寵物遺失載入地標 ***/
 function getLost() {
@@ -302,7 +325,7 @@ function mapMsg(id) {
 
 //=============================================
 
-/*** 讀取地標 ***/
+/*** 讀取寵物遺失地標 ***/
 function loadLostData(
   rpNo,
   lat,
@@ -359,7 +382,7 @@ var dist = document.querySelector("#lost_area");
 dist.addEventListener("change", changeDist);
 function changeDist() {
   var distVal = dist.value;
-  alert(distVal);
+  // alert(distVal);
   // 清除資料
   for (i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
@@ -392,7 +415,7 @@ function changeDist() {
   };
 }
 
-// ===================================================================================//
+// ======================================友善空間=============================================//
 /*** 友善空間載入地標 ***/
 function getFriendly() {
   for (i = 0; i < markers.length; i++) {
@@ -409,6 +432,7 @@ function getFriendly() {
     console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadfriendlyData(
+        data[i].friendlyNo,
         data[i].friendlylat,
         data[i].friendlylng,
         data[i].friendlyName,
@@ -451,6 +475,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -470,6 +495,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -489,6 +515,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -506,6 +533,7 @@ function changeMarker() {
         } else {
           if (data[i].friendlyLocNo == search_area) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -529,6 +557,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -548,6 +577,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -567,6 +597,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -584,6 +615,7 @@ function changeMarker() {
         } else {
           if (data[i].friendlyTypeNo == search_type[0]) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -600,6 +632,7 @@ function changeMarker() {
           }
           if (data[i].friendlyTypeNo == search_type[1]) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -616,6 +649,7 @@ function changeMarker() {
           }
           if (data[i].friendlyTypeNo == search_type[2]) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -672,8 +706,9 @@ window.addEventListener("load", function() {
   }
 });
 
-/*** 讀取地標 ***/
+/*** 讀取友善空間地標 ***/
 function loadfriendlyData(
+  no,
   lat,
   lng,
   title,
@@ -713,7 +748,8 @@ function loadfriendlyData(
         <li>環境服務：${intro4}</li>
       </ul>
       <hr>
-      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon"><span>${typename}</span>
+      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon" PSN="A"><span>${typename}</span>
+      <input type="checkbox" fav="${no}" name="addfriendlyFav" class="addfriendlyFav" onchange="addFav()">
     </div>
   `;
   var infowindow = new google.maps.InfoWindow({
@@ -739,4 +775,31 @@ function loadfriendlyData(
     currentInfoWindow = infowindow;
   });
   markers.push(marker);
+}
+
+// ======================================新增最愛=============================================//
+
+function addFav() {
+  // console.log($(".addfriendlyFav").attr("fav"));
+  var fav = $(".addfriendlyFav").attr("fav");
+  if ($(".addfriendlyFav").prop("checked") == true) {
+    console.log("OK");
+  } else {
+    console.log(fav);
+    $.ajax({
+      type: "POST",
+      url: "./php/map_addFav.php",
+      data: { friendlyNo: fav },
+      success: function(data) {
+        if (data.indexOf("ok") != -1) {
+          alert("新增成功");
+        } else {
+          alert("新增失敗");
+        }
+      },
+      error: function(xhr) {
+        alert(xhr.Message);
+      }
+    });
+  }
 }
