@@ -234,16 +234,12 @@ window.addEventListener('load', function() {
     let orderDate = document.getElementById('orderDate');
     let tab2_content = document.getElementsByClassName('tab2_content')[0];
     // newItemsWidth = $('.tab2_content').width() / 3;
-    console.log($('.tab2_content').width());
-    // $('.tagItems').css("width", ($('.tab2_content').width() / 3));
-    // console.log(('.tagItems').width());
-    // collarTagWrap.style.width = tagItems.length*
+    // let newItemsWidth = $('#collarTagSlider').width() / 3;
+
     // if ($('.tab2_content').width() > 600) {
     //     $('.tagItems').css("width", 200);
-    //     $('#collarTagWrap').css("left", 200);
     // } else {
-    //     $('.tagItems').css("width", this.window.innerWidth / 3);
-    //     $('#collarTagWrap').css("left", this.window.innerWidth / 3);
+    //     $('.tagItems').css("width", newItemsWidth);
     // }
     // window.addEventListener('resize', function() {
     //     let newItemsWidth = $('#collarTagSlider').width() / 3;
@@ -263,13 +259,13 @@ window.addEventListener('load', function() {
     $('#tagTotal span:last-child').text(tagItems.length);
     $('.tagImages').click(function() {
         let newItemsWidth = $('#collarTagSlider').width() / 3;
-        let nowIndex = (parseInt($('#collarTagWrap').css("left")) / -200) + 1;
+        let nowIndex = (parseFloat($('#collarTagWrap').css("left")) / -200) + 1;
+        console.log("nowIndex = ", nowIndex);
         let clickTagIndex = $(this).parent().index();
         // alert(clickTagIndex);
         let clickOffset = -200 * (clickTagIndex - 1) + 'px';
         $('#collarTagWrap').css("left", clickOffset);
-        $('.tagImages').css("transform", "scale(1)");
-        $(this).css("transform", "scale(2.5)");
+
         if (clickTagIndex == 0) {
             $('#sliderBtnLeft').attr("disabled", true);
         } else if (clickTagIndex == (tagImages.length - 1)) {
@@ -284,6 +280,8 @@ window.addEventListener('load', function() {
             tagIndex = (clickTagIndex - nowIndex) + tagIndex;
             $('#sliderBtnRight').attr("disabled", false);
         }
+        $('.tagImages').css("transform", "scale(1)");
+        $(this).css("transform", "scale(2.5)");
         $(this).parent().parent().children().children().nextAll().css("visibility", "hidden");
         $(this).nextAll().css("visibility", "visible");
         $(this).parent().parent().children().children().nextAll().css("opacity", "0");
@@ -291,19 +289,20 @@ window.addEventListener('load', function() {
         $(this).parent().parent().children().children().css("filter", "brightness(0.6)");
         $(this).css("filter", "brightness(1)");
         $('#tagTotal span:first-child').text(clickTagIndex + 1);
-
     });
+
+    // $('#sliderBtnLeft').click(function() {
+    //     curIndex--;
+
+    // });
     sliderBtnLeft.addEventListener('click', function() {
-        let newItemsWidth = $('#collarTagSlider').width() / 3;
-        console.log(parseInt(collarTagWrap.style.left));
         curIndex--;
         collarTagWrap.style.left = -200 * curIndex + 'px';
         sliderBtnRight.disabled = false;
-        if (parseInt(collarTagWrap.style.left) == 200) {
+        if (parseFloat(collarTagWrap.style.left) == 200) {
             sliderBtnLeft.disabled = true;
         }
-        let offset = (parseInt(collarTagWrap.style.left) / -200) + 1;
-        // alert(offset);
+        let offset = (parseFloat(collarTagWrap.style.left) / -200) + 1;
         tagImages[offset + 1].style.transform = "scale(1)";
         tagImages[offset].style.transform = "scale(2.5)";
         tagImages[offset + 1].style.filter = "brightness(0.7)";
@@ -320,16 +319,13 @@ window.addEventListener('load', function() {
     });
 
     sliderBtnRight.addEventListener('click', function() {
-        let newItemsWidth = $('#collarTagSlider').width() / 3;
-        console.log(parseInt(collarTagWrap.style.left));
         curIndex++;
         collarTagWrap.style.left = -200 * curIndex + 'px';
         sliderBtnLeft.disabled = false;
-        if (parseInt(collarTagWrap.style.left) == (tagImages.length - 2) * -200) {
+        if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 2) * -200) {
             sliderBtnRight.disabled = true;
         }
-        let offset = (parseInt(collarTagWrap.style.left) / -200) + 1;
-        // alert(offset);
+        let offset = (parseFloat(collarTagWrap.style.left) / -200) + 1;
         tagImages[offset - 1].style.transform = "scale(1)";
         tagImages[offset].style.transform = "scale(2.5)";
         tagImages[offset - 1].style.filter = "brightness(0.7)";

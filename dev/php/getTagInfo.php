@@ -1,7 +1,7 @@
 <?php
 try {
     require_once('connectDB.php');
-    $sql = "select * from `customizedtag`";
+    $sql = "select * from `customizedtag` where tagStatus = '1'";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->execute();
 

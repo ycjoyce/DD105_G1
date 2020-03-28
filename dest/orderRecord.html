@@ -403,7 +403,7 @@
                                               <option value="0" selected>待出貨</option>
                                               <option value="1">已出貨</option>
                                               <option value="2">待收貨</option>
-                                              <option value="3">已收貨</option>
+                                              <option value="3">已取貨</option>
                                             </select>
                                         </form>
                                     </td>
@@ -427,7 +427,7 @@
                                               <option value="0">待出貨</option>
                                               <option value="1" selected>已出貨</option>
                                               <option value="2">待收貨</option>
-                                              <option value="3">已收貨</option>
+                                              <option value="3">已取貨</option>
                                             </select>
                                         </form>
                                     </td>
@@ -451,7 +451,7 @@
                                               <option value="0">待出貨</option>
                                               <option value="1">已出貨</option>
                                               <option value="2" selected>待收貨</option>
-                                              <option value="3">已收貨</option>
+                                              <option value="3">已取貨</option>
                                             </select>
                                         </form>
                                     </td>
@@ -475,7 +475,7 @@
                                               <option value="0">待出貨</option>
                                               <option value="1">已出貨</option>
                                               <option value="2">待收貨</option>
-                                              <option value="3" selected>已收貨</option>
+                                              <option value="3" selected>已取貨</option>
                                             </select>
                                         </form>
                                     </td>
@@ -486,6 +486,16 @@
                     $(document).ready(function() {
                         $('.orderSelects').change(function() {
                             updateOrderRecord($(this).attr('orderNo'), $(this).val());
+                            if ($(this).val() == "0") {
+                                alert(`訂單狀態更新成功,狀態已變為待出貨`);
+                            } else if ($(this).val() == "1") {
+                                alert("訂單狀態更新成功,狀態已變為已出貨");
+                            } else if ($(this).val() == "2") {
+                                alert("訂單狀態更新成功,狀態已變為待收貨");
+                            } else {
+                                alert("訂單狀態更新成功,狀態已變為已取貨");
+                            }
+
                         })
                     })
                     $('#allOrderList').append(msg);
@@ -504,9 +514,7 @@
         xhr.send(data_info);
 
         xhr.onload = function() {
-            if (xhr.status == 200) {
-                alert("訂單狀態更新成功");
-            }
+            if (xhr.status == 200) {}
         }
     }
 </script>
