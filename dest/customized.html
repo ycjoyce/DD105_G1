@@ -85,24 +85,26 @@
 
             </div>
             <script>
-                function getPoint() {
-                    var memberPoint = document.getElementById('memberPoint');
-                    var signInFirstBlock = document.getElementById('signInFirstBlock');
-                    var xhr = new XMLHttpRequest();
-                    var url = "php/checkMem.php";
-                    xhr.open("GET", url, true);
-                    xhr.send(null);
-                    xhr.onload = function() {
-                        if (xhr.status == 200) {
-                            member = JSON.parse(xhr.responseText);
-                            if (member.memId) {
-                                memberPoint.style.display = "block";
-                                signInFirstBlock.style.display = "none";
+                window.addEventListener('load', function() {
+                    function getPoint() {
+                        var memberPoint = document.getElementById('memberPoint');
+                        var signInFirstBlock = document.getElementById('signInFirstBlock');
+                        var xhr = new XMLHttpRequest();
+                        var url = "php/checkMem.php";
+                        xhr.open("GET", url, true);
+                        xhr.send(null);
+                        xhr.onload = function() {
+                            if (xhr.status == 200) {
+                                member = JSON.parse(xhr.responseText);
+                                if (member.memId) {
+                                    memberPoint.style.display = "block";
+                                    signInFirstBlock.style.display = "none";
+                                }
                             }
                         }
                     }
-                }
-                getPoint();
+                    getPoint();
+                })
             </script>
             <!-- 客製化content,含預覽區以及編輯區 -->
             <div class="preview_area" id="preview_area" style="background-color: rgba(255, 185, 185, 0.4)">
@@ -242,10 +244,13 @@
                                 <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-2" class="tab-content" style="background-color: #fff9e4;">
+                        <div id="tab-2" class="tab-content tab2_content" style="background-color: #fff9e4; overflow-y: scroll;">
                             <div id="collarTagSlider">
                                 <div id="collarTagWrap">
+
                                 </div>
+                                <button class="sliderBtns" id="sliderBtnLeft" disabled><</button>
+                                <button class="sliderBtns" id="sliderBtnRight">></button>
                             </div>
                             <script>
                                 function updateMemPoint(sendNewPoint) {
@@ -410,13 +415,13 @@
                                 });
                             </script>
                             <div class="changePage sliderBtns">
-                                <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
+                                <!-- <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button> -->
                                 <div id="tagTotal">
                                     <span class="titleFont" style="font-size: 20px;" id="nowTag">1</span>
                                     <span class="titleFont" style="font-size: 20px;">/</span>
                                     <span class="titleFont" style="font-size: 20px;"></span>
                                 </div>
-                                <button class="to_right" style="cursor: pointer;" id="sliderBtnRight"></button>
+                                <!-- <button class="to_right" style="cursor: pointer;" id="sliderBtnRight"></button> -->
                             </div>
                             <div class="stepBtn">
                                 <!-- <button class="stepBackBtn" id="step2BackBtn">上一步</button> -->
@@ -426,7 +431,7 @@
                         <div id="tab-3" class="tab-content" style="background-color: #fff9e4;">
                             <div class="addText">
                                 <div id="textStyle">
-                                    <h4 style="margin: 0px 20px 0px 90px;">選擇文字風格： </h4>
+                                    <span class="collarTextTitles">選擇文字風格： </span>
                                     <!-- <input type="radio" name="textStyle" id="textStyle1" checked>
                                     <label for="textStyle1" id="showStyle1">文字雕刻</label> -->
                                     <input type="radio" name="textStyle" id="textStyle2">
@@ -435,14 +440,14 @@
                                     <label for="textStyle3" id="showStyle3">一般文字</label>
                                 </div>
                                 <div id="textColor">
-                                    <h4 style="margin: 0px 20px 0px 90px;">選擇文字顏色： </h4>
+                                    <span class="collarTextTitles">選擇文字顏色： </span>
                                     <div class="color-picker" id="colorPicker"></div>
                                 </div>
                                 <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
                                 <script>
                                 </script>
                                 <div id="textFontFamily">
-                                    <h4 style="margin: 0px 20px 0px 90px;">選擇文字字型： </h4>
+                                    <span class="collarTextTitles">選擇文字字型： </span>
                                     <select name="" id="fontFamilySelect">
                                         <option class="fontFamilys" value="default" selected disabled>請選擇字型</option>
                                         <option class="fontFamilys" value="DFKai-sb" style="font-family:DFKai-sb;">標楷體</option>
@@ -455,10 +460,16 @@
                                     </select>
                                 </div>
                                 <div id="textContent">
-                                    <h4 style="margin: 0px 20px 0px 90px;">輸入文字內容： </h4>
+                                    <span class="collarTextTitles">輸入文字內容： </span>
                                     <input type="text" name="" id="textContent1" placeholder="請輸入文字">
+                                    <div id="addTextBtn">
+                                        <img src="./img/customized_collar/plusText.png" class="plusTextImg">
+                                    </div>
+                                    <div id="delTextBtn">
+                                        <img src="./img/customized_collar/deleteTextBtn.png" class="delTextImg">
+                                    </div>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="addTextBtn">
                                         <span class="titleFont">
                                             新增文字
@@ -477,7 +488,7 @@
                                         <div class="border"></div>
                                         <div class="border"></div>
                                     </a>
-                                </div>
+                                </div> -->
                                 <!-- <script>
                                     var dataURL = canvas.toDataURL();
                                     console.log(dataURL);
@@ -506,7 +517,7 @@
                                 <div class="checkout">
                                     <form action="" id="orderForm">
                                         <div class="purchaseContent">
-                                            <h4 style="color: white;">購買數量</h4>
+                                            <span style="color: white; font-size: 1rem; margin-left: 20px;">購買數量</span>
                                             <div id="purchaseCount">
                                                 <input class="countBtn" id="minusCountBtn" type="button" value="-">
                                                 <span id="collarCount" style="text-align: center; border: 0px solid red; width: 20px; color: white;">1</span>
@@ -735,7 +746,9 @@
 
                 xhr.onload = function() {
                     if (xhr.status == 200) {
+                        $("#somedialog").removeClass("dialog--open");
                         alert("訂單已成功送出");
+                        window.location.reload();
                     } else {
                         alert("錯誤");
                     }

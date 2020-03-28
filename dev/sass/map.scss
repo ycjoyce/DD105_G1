@@ -146,13 +146,14 @@ body {
       height: 200px;
       .map_EN_title {
         margin-top: 50px;
-        margin-right: 0%;
-        font-size: 1.3rem;
+        margin-right: -27%;
+        font-size: 1rem;
         text-align: center;
+        color: rgba(255, 211, 115, 0.8);
       }
       .map_CH_title {
         margin-top: -40px;
-        margin-right: 0%;
+        margin-right: -55%;
         text-align: center;
         font-size: 1.6rem;
       }
@@ -372,11 +373,12 @@ body {
   }
   @media (max-width: 414px) {
     .map_intro {
-      padding: 160px 0 0;
+      padding: 120px 0 0;
       .map_lostdogGirl {
         position: absolute;
         top: -30px;
         right: 20px;
+        display: none;
         img {
           transform: scale(0.4);
         }
@@ -386,10 +388,13 @@ body {
         }
       }
       .map_introcontent {
+        padding: 0 35px 30px;
         div:nth-child(2) {
           margin-bottom: 100px;
+          border-radius: 10px;
         }
         div:nth-child(3) {
+          border-radius: 10px;
           position: relative;
           left: 0;
           width: 100%;
@@ -410,6 +415,7 @@ body {
         }
         .map_intro_dog {
           margin-top: 50px;
+          padding: 0;
         }
       }
     }
@@ -1324,6 +1330,7 @@ body {
       font-size: 0.95rem;
     }
   }
+
   .map_content::before {
     background-color: transparent;
   }
@@ -1331,11 +1338,9 @@ body {
     height: 0;
     margin: 0;
   }
-
   .map_container .map_lostapply > img {
     display: none;
   }
-
   .map_container .map_option {
     background-size: 12%;
   }
@@ -1348,5 +1353,18 @@ body {
   }
   .map_container .map_lostapply .map_btnClick {
     display: none;
+  }
+  .map_container .map_search p{
+    margin-left: 15px;
+  }
+
+  .map_container .map_filter_filter, .map_container .map_filter_lost{
+    padding: 20px 10% 30px
+  }
+  .map_container #gmaps #googleMap .friendContent, .map_container #gmaps #googleMap .lostContent{
+    width: 215px;
+  }
+  .map_container #gmaps #googleMap .friendContent img, .map_container #gmaps #googleMap .lostContent img{
+    max-width: 215px;
   }
 }

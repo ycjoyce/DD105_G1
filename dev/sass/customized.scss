@@ -192,6 +192,8 @@ section {
                     display: flex;
                     justify-content: center;
                     position: relative;
+                    overflow-x: hidden;
+                    overflow-y: hidden;
                     @include RWD(lg) {
                         align-items: center;
                     }
@@ -982,24 +984,13 @@ section {
                             //     left: 400px;
                             // }
                             .tagItems {
-                                // border      : 1px solid #747474;
-                                width: 100px;
+                                // border: 1px solid #747474;
+                                width: 200px;
                                 display: flex;
                                 flex-direction: column;
                                 align-items: center;
                                 justify-content: center;
                                 position: relative;
-                                margin: 0px 50px;
-                                // &::before {
-                                //     content         : "";
-                                //     // border       : 1px solid red;
-                                //     width           : 198px;
-                                //     height          : 198px;
-                                //     position        : absolute;
-                                //     top             : 0px;
-                                //     left            : 0px;
-                                //     background-color: rgba(0, 0, 0, 0.3);
-                                // }
                                 .tagImages {
                                     width: 80px;
                                     max-height: 200px;
@@ -1050,27 +1041,52 @@ section {
                                 }
                             }
                         }
-                    }
-                    .sliderBtns {
-                        // border      : 1px solid red;
-                        width: 150px;
-                        display: flex;
-                        justify-content: center;
-                        margin: 50px auto;
-                        #tagTotal {
-                            #nowTag {
-                                transition: 0.2s ease-in-out;
-                            }
+                        .sliderBtns {
+                            border: 0px solid black;
+                            width: 40px;
+                            height: 40px;
+                            background-color: rgba(0, 0, 0, 0.3);
+                            border-radius: 50%;
+                            cursor: pointer;
+                        }
+                        #sliderBtnLeft {
+                            position: absolute;
+                            top: 50%;
+                            left: 10px;
+                            transform: translate(0%, -50%);
+                        }
+                        #sliderBtnRight {
+                            position: absolute;
+                            top: 50%;
+                            right: 10px;
+                            transform: translate(0%, -50%);
                         }
                     }
                     .addText {
-                        // border     : 1px solid red;
-                        width: 100%;
+                        // border: 1px solid red;
+                        max-width: 600px;
+                        // width: 100%;
                         // height     : 300px;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        margin: 30px auto 50px auto;
                         // justify-content: space-around;
+                        .collarTextTitles {
+                            margin: 0px 20px 0px 90px;
+                            color: #555555;
+                            font-weight: bold;
+                            font-size: 1rem;
+                            @include RWD(sm) {
+                                margin: 0px 20px 0px 20px;
+                            }
+                            @include RWD(ss) {
+                                margin: 0px 20px 0px 10px;
+                            }
+                            @include RWD(xs) {
+                                margin: 0px 10px 0px 10px;
+                            }
+                        }
                         #textStyle {
                             // border: 1px solid red;
                             width: 100%;
@@ -1078,7 +1094,7 @@ section {
                             display: flex;
                             justify-content: flex-start;
                             align-items: center;
-                            margin-top: 30px;
+                            // margin-top: 30px;
                             // margin: 0px 20px 0px 90px;
                             // @include RWD(sm) {
                             //     margin: 0px 20px 0px 10px;
@@ -1087,19 +1103,25 @@ section {
                             //     margin-right: 10px;
                             // }
                             #showStyle1 {
-                                font-size: 24px;
+                                font-size: 1.5rem;
                                 color: #f0ebd7;
                                 text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
                                 margin-right: 15px;
+                                @include RWD(xs) {
+                                    font-size: 1.1rem;
+                                }
                             }
                             #textStyle2 {
                                 margin-right: 10px;
                             }
                             #showStyle2 {
-                                font-size: 24px;
+                                font-size: 1.5rem;
                                 color: #fff9e4;
                                 text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
                                 margin-right: 15px;
+                                @include RWD(xs) {
+                                    font-size: 1.2rem;
+                                }
                             }
                             #textStyle3 {
                                 margin-right: 10px;
@@ -1131,10 +1153,16 @@ section {
                             align-items: center;
                             margin-top: 30px;
                             #fontFamilySelect {
-                                width: 200px;
+                                width: 150px;
                                 height: 30px;
+                                @include RWD(xs) {
+                                    width: 130px;
+                                }
                                 .fontFamilys {
                                     font-size: 20px;
+                                    @include RWD(ss) {
+                                        font-size: 16px;
+                                    }
                                 }
                             }
                         }
@@ -1150,8 +1178,44 @@ section {
                                 border: 0px solid red;
                                 border-bottom: 1px solid #313131;
                                 background-color: transparent;
-                                width: 200px;
+                                width: 150px;
                                 height: 30px;
+                                @include RWD(xs) {
+                                    width: 130px;
+                                }
+                            }
+                            #addTextBtn {
+                                border: 1px solid #555555;
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 3px;
+                                margin: 0px 10px 0px 20px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                cursor: pointer;
+                                transition: 0.2s ease-in-out;
+                                .plusTextImg {
+                                    width: 18px;
+                                    height: 18px;
+                                    opacity: 0.8;
+                                }
+                            }
+                            #delTextBtn {
+                                border: 1px solid #555555;
+                                width: 35px;
+                                height: 35px;
+                                border-radius: 3px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                cursor: pointer;
+                                transition: 0.2s ease-in-out;
+                                .delTextImg {
+                                    width: 18px;
+                                    height: 18px;
+                                    opacity: 0.8;
+                                }
                             }
                         }
                     }
@@ -1218,7 +1282,7 @@ section {
     overflow-y: scroll;
     overflow-x: hidden;
     @include RWD(lg) {
-        height: 855px;
+        height: unset;
         overflow-y: unset;
         overflow-x: unset;
     }
@@ -1240,22 +1304,32 @@ section {
             display: flex;
             flex-direction: column;
             align-items: center;
+            @include RWD(ss) {
+                width: 330px;
+            }
             .purchaseContent {
                 // border: 1px solid #7e9c23;
                 // background-color: #7e9c23;
                 background-color: rgba(0, 0, 0, 0.7);
-                height: 50px;
+                height: 45px;
                 // margin-top: 30px;
                 margin: 60px 0px 30px 0px;
                 width: 100%;
                 display: flex;
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: center;
                 border-radius: 25px;
+                @include RWD(ss) {
+                    margin: 30px 0px;
+                }
                 #purchaseCount {
+                    // border: 1px solid red;
                     display: flex;
-                    margin-left: 80px;
+                    margin-left: 95px;
                     align-items: center;
+                    @include RWD(ss) {
+                        margin-left: 65px;
+                    }
                     .countBtn {
                         border: 0px solid #67801e;
                         width: 30px;
@@ -1280,10 +1354,10 @@ section {
                         }
                     }
                 }
-            }
-            #totalPrice {
-                &::before {
-                    content: "$";
+                #totalPrice {
+                    &::before {
+                        content: "$";
+                    }
                 }
             }
             .orderDetails {
@@ -1332,6 +1406,9 @@ Form
     .form {
         //   border: 1px solid red;
         margin-bottom: 50px;
+        @include RWD(ss) {
+            width: 330px;
+        }
         fieldset {
             border: none;
             padding: 0;
@@ -1372,6 +1449,9 @@ Form
                     width: 82px;
                     display: inline-block;
                     margin-right: 8px;
+                    @include RWD(ss) {
+                        width: 73px;
+                    }
                     &:last-child {
                         margin-right: 0;
                     }
@@ -1419,6 +1499,10 @@ Form
         perspective: 1000px;
         position: relative;
         // overflow: hidden;
+        @include RWD(ss) {
+            width: 320px;
+            height: 200px;
+        }
         &:hover .flip,
         &.hover .flip {
             transform: rotateY(180deg);
@@ -1441,6 +1525,10 @@ Form
             font-family: Inconsolata;
             top: 0;
             left: 0;
+            @include RWD(ss) {
+                width: 320px;
+                height: 200px;
+            }
             &::before {
                 content: "";
                 position: absolute;
@@ -1465,6 +1553,11 @@ Form
             top: 9px;
             right: 20px;
             width: 60px;
+            @include RWD(ss) {
+                top: 7.2px;
+                right: 16px;
+                width: 48px;
+            }
             svg {
                 width: 100%;
                 height: auto;
@@ -1479,6 +1572,9 @@ Form
             transform: rotateY(180deg);
             .logo {
                 top: 185px;
+                @include RWD(ss) {
+                    top: 148px;
+                }
             }
         }
         .chip {
@@ -1489,6 +1585,13 @@ Form
             left: 20px;
             background: linear-gradient(135deg, hsl(269, 54%, 87%) 0%, hsl(200, 64%, 89%) 44%, hsl(18, 55%, 94%) 100%);
             border-radius: 8px;
+            @include RWD(ss) {
+                width: 48px;
+                height: 36px;
+                top: 16px;
+                left: 16px;
+                border-radius: 6.4px;
+            }
             &::before {
                 content: "";
                 position: absolute;
@@ -1501,6 +1604,10 @@ Form
                 width: 80%;
                 height: 70%;
                 border-radius: 5px;
+                @include RWD(ss) {
+                    border: 3.2px solid hsla(0, 0, 50, 0.1);
+                    border-radius: 4px;
+                }
             }
         }
         .strip {
@@ -1510,6 +1617,10 @@ Form
             height: 50px;
             top: 30px;
             left: 0;
+            @include RWD(ss) {
+                height: 40px;
+                top: 24px;
+            }
         }
         .number {
             position: absolute;
@@ -1518,6 +1629,11 @@ Form
             left: 19px;
             font-size: 1.5rem;
             color: white;
+            @include RWD(ss) {
+                top: 82.4px;
+                left: 15.2;
+                font-size: 1.2rem;
+            }
         }
         label {
             font-size: 10px;
@@ -1528,6 +1644,10 @@ Form
             opacity: 0.5;
             display: block;
             margin-bottom: 3px;
+            @include RWD(ss) {
+                font-size: 8px;
+                margin-bottom: 2.4px;
+            }
         }
         .card-holder,
         .card-expiration-date {
@@ -1536,6 +1656,11 @@ Form
             top: 180px;
             left: 19px;
             font-size: 22px;
+            @include RWD(ss) {
+                top: 144px;
+                left: 15.2px;
+                font-size: 17.8px;
+            }
             div {
                 color: white;
             }
@@ -1544,6 +1669,9 @@ Form
             text-align: right;
             left: auto;
             right: 20px;
+            @include RWD(ss) {
+                right: 16px;
+            }
         }
         .ccv {
             height: 36px;
@@ -1558,9 +1686,16 @@ Form
             color: #000;
             text-align: right;
             padding: 1%;
+            @include RWD(ss) {
+                height: 28.8px;
+                border-radius: 2.4px;
+            }
             label {
                 margin: -25px 0 14px;
                 color: #fff;
+                @include RWD(ss) {
+                    margin: -20px 0 11.2px;
+                }
             }
         }
     }

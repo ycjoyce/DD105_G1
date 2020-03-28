@@ -1924,7 +1924,8 @@ footer {
   text-decoration: none; }
 
 .post3buttoncollection {
-  display: flex;
+  display: none;
+  /* display: flex; */
   justify-content: flex-end;
   margin-bottom: 25px; }
 
@@ -1994,7 +1995,7 @@ footer {
 
 .cpc_contentpic2 {
   float: left;
-  width: 50%;
+  width: 35%;
   margin-right: 15px; }
 
 .cpc_contentpic3 {

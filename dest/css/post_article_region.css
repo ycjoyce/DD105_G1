@@ -2286,11 +2286,11 @@ footer {
   .cpc_writecontentpic2 {
       border-right: 1px solid #000;
       float: left;
-      width: 50%;
+      width: 35%;
       margin-right: 15px; }
 
   .cpc_contentflex>input {
-      width: 50%;
+      width: 35%;
       height: 24px;
       max-height: 100%;
       /* margin-right: 15px;

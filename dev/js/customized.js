@@ -14,7 +14,7 @@ function dofirst() {
     var sliderBtnLeft = document.getElementById('sliderBtnLeft');
     var sliderBtnRight = document.getElementById('sliderBtnRight');
     var collarTagWrap = document.getElementById('collarTagWrap');
-    tagImg2 = document.getElementById('tagImg2');
+    var tagImg2 = document.getElementById('tagImg2');
     var collarImg = new Image();
     collarImg.src = "./img/customized_collar/leather_png/1.png";
     var collarImg2 = new Image();
@@ -29,7 +29,6 @@ function dofirst() {
     //     console.log(canvasbase64);
     //     localStorage.setItem("test123", canvasbase64);
     // })
-
     var HideControls = {
         'tl': true, //左上   top left
         'tr': true, //右上   top right          
@@ -42,7 +41,12 @@ function dofirst() {
         'mtr': true, //中上控制角度     middle top rotate 
     };
     delTextBtn.addEventListener('click', function() {
-        canvas.remove(canvas.getActiveObject());
+        if (canvas.getActiveObject() == null) {
+            alert("請先選取一組文字");
+        } else {
+            canvas.remove(canvas.getActiveObject());
+        }
+
     });
     // var textStyle1 = document.getElementById('textStyle1');
     var textStyle2 = document.getElementById('textStyle2');
@@ -317,7 +321,6 @@ function dofirst() {
         collarImg.src = "./img/customized_collar/leather_png/27.png";
         resizeCanvas();
     });
-
     resizeCanvas();
 
     function resizeCanvas() {
