@@ -119,7 +119,7 @@
                 </div>
                 <hr class="cpchr">
                 <div class="postautherregion">
-                    <img class="postautherimg" src="./img/memImg/<?php echo $prodRow->memPic;?>" class="memberhead" />
+                    <img class="postautherimg" style="background-image:url(./img/memImg/<?php echo $prodRow->memPic;?>)" class="memberhead" />
                     <div class="postauthercontent">
                         <p>私信作者 : <?php echo $prodRow->memName;?></p>
                         <img src="./img/icon_private_message.svg" id="forumMsg" class="No<?=$prodRow->memNo?>">
