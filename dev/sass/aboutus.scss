@@ -15,14 +15,13 @@
 @import "layout/rwd";
 @import "layout/hamburger";
 
-
 @mixin bg_image($url_files, $pic_type) {
   background-image: url("../img/#{$url_files}.#{$pic_type}");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-body{
+body {
   overflow-x: hidden;
   .wrapper {
     width: 100%;
@@ -262,8 +261,8 @@ article {
       width: 80%;
       margin: 30px auto;
     }
-    .address_tel{
-      h4{
+    .address_tel {
+      h4 {
         padding-left: 10%;
       }
     }
@@ -272,9 +271,9 @@ article {
   .contactRight {
     padding: 50px 200px;
     // border: 1px solid red;
-    
-    form{
-      #msgPanel{
+
+    form {
+      #msgPanel {
         color: $darkgreen;
       }
       .set_box_border {
@@ -287,67 +286,67 @@ article {
           border: none;
           background-color: transparent;
         }
-        .border{
-          position:absolute;
-          background:none;
-          transition:all .5s ease-in-out;
+        .border {
+          position: absolute;
+          background: none;
+          transition: all 0.5s ease-in-out;
         }
-        .border:nth-child(1){
-            top:0;
-            left:0;
-            width:0;
-            height:0;
-            border-top:1px solid $gray;
+        .border:nth-child(1) {
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-top: 1px solid $gray;
         }
-        .border:nth-child(2){
-            top:0;
-            right:0;
-            width:0;
-            height:0;
-            border-right:1px solid $gray;
+        .border:nth-child(2) {
+          top: 0;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-right: 1px solid $gray;
         }
-        .border:nth-child(3){
-            bottom:0;
-            right:0;
-            width:0;
-            height:0;
-            border-bottom:1px solid $gray;
+        .border:nth-child(3) {
+          bottom: 0;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 1px solid $gray;
         }
-        .border:last-child{
-            bottom:0;
-            left:0;
-            width:0;
-            height:0;
-            border-left:1px solid $gray;
+        .border:last-child {
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-left: 1px solid $gray;
         }
-        &:hover{
-            .border:nth-child(1){
-                width:100%;
-            }
-            .border:nth-child(2){
-                height:100%;
-            }
-            .border:nth-child(3){
-                width:100%;
-            }
-            .border:last-child{
-                height:100%;
-            }
+        &:hover {
+          .border:nth-child(1) {
+            width: 100%;
+          }
+          .border:nth-child(2) {
+            height: 100%;
+          }
+          .border:nth-child(3) {
+            width: 100%;
+          }
+          .border:last-child {
+            height: 100%;
+          }
         }
       }
-      label{
+      label {
         display: block;
         margin-top: 10px;
-        img{
+        img {
           width: 25px;
           position: relative;
           top: 6px;
         }
-        input{
+        input {
           display: none;
         }
       }
-      a.btn{
+      a.btn {
         display: block;
         margin-top: 30px;
       }
@@ -483,13 +482,13 @@ article {
     .toggleWrapper {
       .option_height {
         width: 100%;
-        h3{
+        h3 {
           font-size: 1rem;
         }
       }
-      .qa_content{
+      .qa_content {
         width: 100%;
-        p{
+        p {
           font-size: 0.8rem;
         }
       }
@@ -507,9 +506,9 @@ article {
       .blackLine {
         width: 70%;
       }
-.address_tel{
-  padding-left: 5%;
-}
+      .address_tel {
+        padding-left: 5%;
+      }
     }
 
     .contactRight {
@@ -530,5 +529,43 @@ article {
       width: 100%;
       margin: 30px auto;
     }
+  }
+}
+
+.actMargin {
+  margin-bottom: 100px;
+  #app {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .actImg {
+      width: 70%;
+      display:block;
+      margin: auto;
+    }
+
+    .titleText {
+      text-align: center;
+    }
+    .actText {
+      padding: 20px;
+      margin: 0 auto;
+      h3 {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .actSize {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .actSize {
+    width: 100%;
   }
 }

@@ -42,7 +42,12 @@ function dofirst() {
         'mtr': true, //中上控制角度     middle top rotate 
     };
     delTextBtn.addEventListener('click', function() {
-        canvas.remove(canvas.getActiveObject());
+        if (canvas.getActiveObject() == null) {
+            alert("請先選取一組文字");
+        } else {
+            canvas.remove(canvas.getActiveObject());
+        }
+
     });
     // var textStyle1 = document.getElementById('textStyle1');
     var textStyle2 = document.getElementById('textStyle2');
