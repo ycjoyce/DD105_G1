@@ -210,7 +210,7 @@ footer {
 }
 .cpc_contentpic3 {
     width: 100%;
-    height: 135px;
+    // height: 135px;
 }
 .cpc_content1 {
     clear: right;
@@ -228,6 +228,17 @@ footer {
     margin-top: 50px;
     display: flex;
     align-items: center;
+    div.postauthercontent{
+        p{
+            display: inline-block;
+        }
+        img{
+            display: inline-block;
+            width: 20px;
+            position: relative;
+            top: 5px;
+        }
+    }
 }
 .postautherimg {
     border-radius: 50%;

@@ -51,7 +51,7 @@ function getMember(){
                             <li><a href="./map.html" id="navMap">浪浪在哪裡</a></li>
                             <li><a href="./donation.html" id="navDonate">愛心助浪浪</a></li>
                             <li><a href="./customized.html" id="navCus">客製化項圈</a></li>
-                            <li><a href="./post_article_region.html" id="navPost">毛孩交流區</a></li>
+                            <li><a href="./post_article_region.php" id="navPost">毛孩交流區</a></li>
                             <li><a href="./aboutus.html" id="navAbout">關於我們</a></li>
                             <li class="rwd"><a href="./memberCenter.html" id="navMem">會員中心</a></li>
                             <li class="rwd"><a href="./message.html" id="navMsg">我的信箱</a></li>
@@ -151,7 +151,7 @@ function signOut(){
                             <li><a href="./map.html" id="navMap">浪浪在哪裡</a></li>
                             <li><a href="./donation.html" id="navDonate">愛心助浪浪</a></li>
                             <li><a href="./customized.html" id="navCus">客製化項圈</a></li>
-                            <li><a href="./post_article_region.html" id="navPost">毛孩交流區</a></li>
+                            <li><a href="./post_article_region.php" id="navPost">毛孩交流區</a></li>
                             <li><a href="./aboutus.html" id="navAbout">關於我們</a></li>
                             <li><a class="login" href="./login.html" id="navLogin">登入 / 註冊</a></li>
                         </ul>
