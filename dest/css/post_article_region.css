@@ -1969,17 +1969,15 @@ footer {
 
 .post_write_form > *:nth-child(-n+2) {
   margin-bottom: 40px;
-<<<<<<< HEAD
-  height: 30px; }
-=======
 /* height: 30px; */ }
->>>>>>> 230135d4ef1c5bd92fdddcab12084ba4a99f3016
 
 .pwfselectkeyword {
-  display: flex; }
+/* display: flex; */
+  display: none; }
 
 .pwfselectkeywordtitle {
-  width: 65px; }
+  display: none;
+/* width: 65px; */ }
 
 .pwfselectkeywordregion {
   display: flex;
@@ -2082,7 +2080,7 @@ footer {
 
 .post_write_form > label > input {
   margin-right: 0;
-  width: calc(100% - 60px - 20px);
+  width: calc(100% - 87px);
   font-size: 16px; }
 
 .postwritecontentregion {
@@ -2206,8 +2204,9 @@ footer {
   background-color: #414040; }
 
 .writecontent {
-  display: flex;
-  height: calc( 100% - 70px - 70px); }
+  display: none;
+  /* display: flex; */
+  /* height: calc( 100% - 70px - 70px); */ }
 
 .postwritetitle {
   outline: none;
@@ -2218,8 +2217,6 @@ footer {
   outline: none;
   border: 1px solid #000; }
 
-<<<<<<< HEAD
-=======
   .postwritecontentregion {
       border: solid 2px #000;
       height: calc( 100% - 70px - 55px );
@@ -2289,11 +2286,11 @@ footer {
   .cpc_writecontentpic2 {
       border-right: 1px solid #000;
       float: left;
-      width: 50%;
+      width: 35%;
       margin-right: 15px; }
 
   .cpc_contentflex>input {
-      width: 50%;
+      width: 35%;
       height: 24px;
       max-height: 100%;
       /* margin-right: 15px;
@@ -2328,7 +2325,6 @@ footer {
       align-self: flex-end;
   }
 
->>>>>>> 230135d4ef1c5bd92fdddcab12084ba4a99f3016
 .select {
   margin-right: 10px; }
 
@@ -2414,7 +2410,7 @@ span.hide2 {
   background-color: #fff;
   border: 1px solid #000;
   display: none;
-  z-index: 3; }
+  z-index: 4; }
 
 .select ul > li {
   color: #000;
@@ -2565,6 +2561,7 @@ input {
 .buttononlinefix {
   position: absolute;
   right: 15px;
+  bottom: -25px;
   z-index: 3; }
 
 @media screen and (min-width: 1631px) and (max-width: 1950px) {
@@ -2652,17 +2649,18 @@ input {
     width: 100%; }
   .buttononlinefix {
     position: absolute;
-    bottom: 25px; } }
+    bottom: 8px; } }
 
 @media screen and (min-width: 582px) and (max-width: 715px) {
   .post_write_form {
     padding: 20px 20px; }
   .post_write_form > *:nth-child(2) {
     margin-bottom: 40px;
-    height: 30px; }
+/* height: 30px; */ }
   .writecontent {
-    display: flex;
-    height: calc( 100% - 70px - 70px); }
+    display: none;
+    /* display: flex;
+height: calc( 100% - 70px - 70px); */ }
   .pwfselectkeywordregion {
     display: flex;
     margin-left: 15px;
@@ -2673,20 +2671,23 @@ input {
     padding: 0px 20px 20px; }
   .post_write_form > *:nth-child(-n+2) {
     margin-bottom: 22px;
-    height: 30px; }
+/* height: 30px; */ }
   .post_write_form > *:nth-child(2) {
+    /* display: none;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-    height: 65px; }
+height: 65px; */ }
   .writecontent {
-    display: flex;
-    height: calc( 100% - 52px - 95px); }
+    display: none;
+    /* display: flex;
+height: calc( 100% - 52px - 95px); */ }
   .pwfselectkeywordregion {
-    display: block;
+    display: none;
+    /* display: block;
     margin-left: 0px;
     margin-top: 10px;
-    width: 100%; }
+    width: 100%; */ }
   .pwfselectkeywordregion > div {
     display: inline-flex;
     justify-content: center;
@@ -2709,19 +2710,22 @@ input {
     padding: 0px 20px 20px; }
   .post_write_form > *:nth-child(-n+2) {
     margin-bottom: 22px;
-    height: 30px; }
+/* height: 30px; */ }
   .post_write_form > *:nth-child(2) {
+    /* display: none;
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
-    height: 65px; }
+height: 65px; */ }
   .writecontent {
-    display: flex;
-    height: calc( 100% - 52px - 95px); }
+    display: none;
+    /* display: flex;
+height: calc( 100% - 52px - 95px); */ }
   .pwfselectkeywordregion {
-    display: block;
+    display: none;
+    /* display: block;
     margin-left: 15px;
-    width: calc( 100% - 65px - 15px); }
+width: calc( 100% - 65px - 15px); */ }
   .pwfselectkeywordregion > div {
     display: inline-flex;
     justify-content: center;
@@ -2747,13 +2751,14 @@ input {
     padding: 0px 20px 20px; }
   .post_write_form > *:nth-child(-n+2) {
     margin-bottom: 22px;
-    height: 30px; }
+/* height: 30px; */ }
   .post_write_form > *:nth-child(2) {
     margin-bottom: 30px;
-    height: 75px; }
+/* height: 75px; */ }
   .writecontent {
-    display: flex;
-    height: calc( 100% - 52px - 105px); }
+    display: none;
+    /* display: flex;
+height: calc( 100% - 52px - 105px); */ }
   .pwfselectkeywordregion {
     display: block;
     margin-left: 15px;
@@ -2788,18 +2793,20 @@ input {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    height: 60px; }
+/* height: 60px; */ }
   .post_write_form > label > input {
     width: 100%;
     margin-top: 10px; }
   .post_write_form > *:nth-child(2) {
+    /* display: none;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-    height: 107px; }
+height: 107px; */ }
   .writecontent {
-    display: flex;
-    height: calc( 100% - 20px - 60px - 30px - 107px); }
+    display: none;
+    /* display: flex;
+height: calc( 100% - 20px - 60px - 30px - 107px); */ }
   .pwfselectkeywordregion {
     display: block;
     margin-left: 0px;
@@ -2832,18 +2839,20 @@ input {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
-    height: 60px; }
+/* height: 60px; */ }
   .post_write_form > label > input {
     width: 100%;
     margin-top: 10px; }
   .post_write_form > *:nth-child(2) {
+    /* display: none;
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-    height: 107px; }
+height: 107px; */ }
   .writecontent {
-    display: flex;
-    height: calc( 100% - 20px - 60px - 30px - 107px); }
+    display: none;
+    /* display: flex;
+height: calc( 100% - 20px - 60px - 30px - 107px); */ }
   .pwfselectkeywordregion {
     display: block;
     margin-left: 0px;
@@ -2964,13 +2973,8 @@ input {
     width: 100%; } }
 
 @media screen and (max-width: 291px) {
-<<<<<<< HEAD
-  body {
-    overflow-x: scroll; }
-=======
   /* body {
     overflow-x: scroll; } */
->>>>>>> 230135d4ef1c5bd92fdddcab12084ba4a99f3016
   .postwritecrossbutton {
     display: block; }
   .inlinerightfix {
