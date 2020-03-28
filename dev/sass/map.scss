@@ -77,7 +77,6 @@
 //例如 ----- @include scrollbar('div.top');
 @include scrollbar("div.friendContent");
 
-
 //=======================================================
 
 // 燈箱
@@ -1121,21 +1120,23 @@ body {
       }
       .friendContent,
       .lostContent {
+        position: relative;
         width: 300px;
         background-color: rgba(255, 255, 255, 0.7);
         img {
           max-width: 290px;
         }
-        .cardContentIcon{
+        .cardContentIcon {
           max-width: 30px;
           margin-top: 5px;
         }
-        span{
+        span {
           vertical-align: super;
-          margin-left:5px;
+          margin-left: 5px;
         }
-        hr{
+        hr {
           margin-top: 7px;
+          border: 1px solid #8fc8ce;
         }
         ul {
           list-style: none;
@@ -1294,7 +1295,6 @@ body {
 }
 
 @media (max-width: 576px) {
-
 }
 
 @media (max-width: 500px) {

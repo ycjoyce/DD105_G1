@@ -443,7 +443,7 @@
                                     <td style="text-align: center;">{{ item.inforContent }}</td>
                                     <td style="text-align: center;">
                                         <a href="#" @click.prevent="get_edit(item.inforNo);update = true">
-                                            編輯</a> / <a href="#" @click.prevent="get_delete(item.activity_no)">下架</a>
+                                            編輯</a> / <a href="#" @click.prevent="get_delete(item.inforNo)">下架</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -494,7 +494,7 @@
           document.getElementById('actForm').reset();
         },
 
-        get_activity() { //取得已經建立的活動資訊
+        get_activity() { //取得目前有建立的活動資訊
           var vm = this;
           axios.post('./php/NewsAndActivity.php').then(function (res) {
             console.log(res.data);
@@ -576,6 +576,18 @@
             console.log(err)
           })
         },
+
+        get_delete(no) {
+          var ans = confirm('確定要刪除嗎?');
+          var vm = this;
+          vm.clean_form();
+          if (ans) {
+            axios.get('./php/delete_activity.php?id=' + no).then(res => {
+              alert("刪除成功!");
+              vm.get_activity();
+            })
+          }
+        }
 
       },
       mounted() {

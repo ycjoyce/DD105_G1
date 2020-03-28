@@ -203,7 +203,7 @@
         </header>
 
 
-        <div style="height:15vh"></div>
+        <div class="headerHeight"></div>
         <!-- header 的高度 -->
 
 
@@ -304,7 +304,7 @@ order by piTime desc";
                             $align = "right";
                         }
                     ?>
-                    <div class="card-item svg-wrapper card-item-<?=$align?>">
+                    <div class="card-item svg-wrapper card-item-<?=$align?> No<?=$prodRow["piNo"]?>">
                         <input class="cardItemSetpiNoSpan" type="hidden" value="<?=$prodRow["piNo"]?>" />   <!-- card-item-left -->
                         <div class="ripple"></div>
                         <div class="card-img">
@@ -334,7 +334,7 @@ order by piTime desc";
 
                                     <span class="titleFont">
                                         READ MORE
-                                        <img src="">  <!-- img/button_arrow_white.svg -->
+                                        <img src="./img/button_arrow_white.svg">
                                     </span>
                                     <div class="border"></div>
                                     <div class="border"></div>
@@ -367,7 +367,7 @@ order by piTime desc";
                 © 2020 Bring Love Home
             </p>
         </footer>
-<!-- <script src="./js/page_top.js"></script> -->
+<script src="./js/page_top.js"></script>
 
     </div>
     <script>
@@ -440,5 +440,11 @@ order by piTime desc";
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
     <script src="./js/signInOut.js"></script>
+    <script>
+        let headerHeight= document.querySelector("div.headerHeight");
+        let header= document.querySelector('nav');
+        headerHeight.style.height= header.offsetHeight + "px";
+        headerHeight.style.marginBottom= "30px";
+    </script>
 </body>
 </html>

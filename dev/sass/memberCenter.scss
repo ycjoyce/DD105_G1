@@ -653,6 +653,12 @@ label.uploadimgbtn {
 // 寵物遺失結束
 
 // 會員資訊
+div.clickToShow{
+  display: none;
+  &.show{
+    display: block;
+  }
+}
 .memInfo {
   .note {
     border-radius: 10px;

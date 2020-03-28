@@ -1,9 +1,12 @@
 <?php
 
+session_start();
+$memno = $_SESSION["memNo"];
+
 try{
     require_once('./connectDB.php');
 
-    $sql= "select * from `lostpetreport` ORDER BY `lostPetRpNo` DESC";    
+    $sql= "select * from `lostpetreport` where memNo = $memno ORDER BY `lostPetRpNo` DESC";    
     $lostRp = $pdo->query($sql);
     $lostRp->execute();
 

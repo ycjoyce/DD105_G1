@@ -60,6 +60,8 @@ try{
         $fine= $update->execute();
         if(isset($fine)){
             echo "success";
+            $_SESSION["memName"]= $_REQUEST["memName"];
+            $_SESSION["memPsw"]= $_REQUEST["memPsw"];
         }else{
             echo "error";
         }

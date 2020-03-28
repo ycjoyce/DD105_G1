@@ -43,7 +43,7 @@
 </header>
 
 
-        <div style="height:15vh"></div>
+        <div class="headerHeight"></div>
         <!-- header 的高度 -->
 
         <div>  <!-- 內文的高度 -->
@@ -56,7 +56,7 @@
               // select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memName, m.memId 'E-mail'
               // from postinfo p join memInfo m on (p.memNo = m.memNo)
               // where p.piNo = 2;
-              $sql = "select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memPic , m.memName, m.memId 'Email'
+              $sql = "select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memPic , m.memName, m.memId 'Email', m.memNo
               from postinfo p join memInfo m on (p.memNo = m.memNo)
               where p.piNo = :piNo";
               // $sql = "select piTitle, piTitlePic, piTitleContent, piFloatLeftPic, piFloatLeftContent, piFloatRightPic, piFloatRightContent from postinfo where piNo = :piNo";
@@ -119,10 +119,10 @@
                 </div>
                 <hr class="cpchr">
                 <div class="postautherregion">
-                    <img class="postautherimg" src="<?php echo $prodRow->memPic;?>" class="memberhead" />
+                    <img class="postautherimg" src="./img/memImg/<?php echo $prodRow->memPic;?>" class="memberhead" />
                     <div class="postauthercontent">
-                        <p>作者姓名 : <?php echo $prodRow->memName;?></p>
-                        <p>聯絡信箱 : <?php echo $prodRow->Email;?></p>
+                        <p>私信作者 : <?php echo $prodRow->memName;?></p>
+                        <img src="./img/icon_private_message.svg" id="forumMsg" class="No<?=$prodRow->memNo?>">
                     </div>
                 </div>
                 <!-- <hr class="cpchr"> -->
@@ -215,5 +215,6 @@
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
     <script src="./js/signInOut.js"></script>
+
 </body>
 </html>
