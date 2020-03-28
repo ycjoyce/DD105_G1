@@ -99,7 +99,7 @@ $('ul.u2 input[type="checkbox"]').on('click', function() {
     // console.log($('ul.u2 input[type="checkbox"]').is(':checked'));
     // console.log($(this).is(':checked'));
     if($('ul.u2 input[type="checkbox"]').is(':checked') == false) {
-      console.log($('ul.u2 input[type="checkbox"]').is(':checked'));
+      // console.log($('ul.u2 input[type="checkbox"]').is(':checked'));
       $("span.displayfont2").show();
     }
 
@@ -152,6 +152,17 @@ $('.selectpostgalleryregion').on('click', function() {
     window.location.href = "./post_gallery_region.html";
 });
 
-$('.card-item').on('click', function() {
-    setTimeout(function(){window.location.href="./post_content.html"} , 400);
+// 點擊 card-item 轉 post_content
+window.addEventListener("load",function(){
+    let cardItems = document.getElementsByClassName('card-item');
+    // console.log(cardItems.length);
+    for( var i=0; i<cardItems.length; i++ ){
+        let cardItem = cardItems[i];
+        let cardItemSetpiNoSpan = cardItem.firstElementChild;
+        let piNo = cardItemSetpiNoSpan.value;
+        // console.log(piNo);
+        cardItem.onclick = function(){
+            location.href = './post_content.php?piNo=' + piNo;
+        }
+    }
 });
