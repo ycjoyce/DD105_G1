@@ -153,5 +153,6 @@ $('.selectpostgalleryregion').on('click', function() {
 });
 
 $('.card-item').on('click', function() {
-    setTimeout(function(){window.location.href="./post_content.html"} , 400);
+    var piNo= this.classList[3].substr(2);
+    setTimeout(function(){window.location.href=`./post_content.php?piNo=${piNo}`} , 400);
 });
