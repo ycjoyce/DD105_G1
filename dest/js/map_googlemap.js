@@ -671,7 +671,6 @@ function changeMarker() {
   };
 }
 window.addEventListener("load", function() {
-  // changeMarker();
   let area = document.querySelector("#fr_area");
   area.onchange = function(e) {
     search_area = e.target.value;
@@ -724,20 +723,7 @@ function loadfriendlyData(
 ) {
   var contentString = `
     <div class="friendContent">
-        <!-- Swiper -->
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    
+    <img src="./img/map_friendly/${pic}">
       <ul>
         <li>店名：${title}</li>
         <li>電話：${tel}</li>
@@ -783,14 +769,14 @@ function addFav() {
   // console.log($(".addfriendlyFav").attr("fav"));
   var fav = $(".addfriendlyFav").attr("fav");
   if ($(".addfriendlyFav").prop("checked") == true) {
-    console.log(fav);
     $.ajax({
       type: "POST",
       url: "./php/map_favAdd.php",
       data: { friendlyNo: fav },
       success: function(data) {
         if (data.indexOf("ok") != -1) {
-          alert("新增成功");
+          alert("新增到最愛");
+          console.log(fav + "新增到最愛");
         } else {
           alert("新增失敗");
         }
@@ -800,14 +786,14 @@ function addFav() {
       }
     });
   } else {
-    console.log("error");
     $.ajax({
       type: "POST",
       url: "./php/map_favRemove.php",
       data: { friendlyNo: fav },
       success: function(data) {
         if (data.indexOf("ok") != -1) {
-          alert("刪除成功");
+          alert("已從最愛移除");
+          console.log(fav + "從最愛移除");
         } else {
           alert("新增失敗");
         }
@@ -818,3 +804,107 @@ function addFav() {
     });
   }
 }
+
+// 我的最愛更換類別
+let favorite_type;
+
+function showFav() {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("get", "./php/map_favShow.php");
+  xhr.send(null);
+  xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
+    console.log(data);
+    for (var i = 0; data.length > i; i++) {
+      if (favorite_type) {
+        if (data[i].friendlyTypeNo == favorite_type[0]) {
+          loadfriendlyData(
+            data[i].friendlyNo,
+            data[i].friendlylat,
+            data[i].friendlylng,
+            data[i].friendlyName,
+            data[i].friendlyPic,
+            data[i].friendlyTel,
+            data[i].friendlyAddress,
+            data[i].friendlyIntro_1,
+            data[i].friendlyIntro_2,
+            data[i].friendlyIntro_3,
+            data[i].friendlyIntro_4,
+            data[i].friendlyTypeNo,
+            data[i].friendlyTypeName
+          );
+        }
+        if (data[i].friendlyTypeNo == favorite_type[1]) {
+          loadfriendlyData(
+            data[i].friendlyNo,
+            data[i].friendlylat,
+            data[i].friendlylng,
+            data[i].friendlyName,
+            data[i].friendlyPic,
+            data[i].friendlyTel,
+            data[i].friendlyAddress,
+            data[i].friendlyIntro_1,
+            data[i].friendlyIntro_2,
+            data[i].friendlyIntro_3,
+            data[i].friendlyIntro_4,
+            data[i].friendlyTypeNo,
+            data[i].friendlyTypeName
+          );
+        }
+        if (data[i].friendlyTypeNo == favorite_type[2]) {
+          loadfriendlyData(
+            data[i].friendlyNo,
+            data[i].friendlylat,
+            data[i].friendlylng,
+            data[i].friendlyName,
+            data[i].friendlyPic,
+            data[i].friendlyTel,
+            data[i].friendlyAddress,
+            data[i].friendlyIntro_1,
+            data[i].friendlyIntro_2,
+            data[i].friendlyIntro_3,
+            data[i].friendlyIntro_4,
+            data[i].friendlyTypeNo,
+            data[i].friendlyTypeName
+          );
+        }
+      }
+    }
+  };
+}
+
+// 讀取我的最愛點選
+window.addEventListener("load", function() {
+  let fatype = document.getElementsByName("favoritetypes");
+  for (let i = 0; i < fatype.length; i++) {
+    fatype[i].onchange = function(e) {
+      document.getElementById('favoH3').style.color="red";
+      var type = document.getElementsByName("favoritetypes");
+      let arrB = [];
+      //檢查全部的checkbox有誰被勾選
+      for (var i = 0; i < type.length; i++) {
+        if (type[i].checked == true) {
+          //有勾選就去看他的值
+          console.log(type[i].value);
+
+          //假設撈出來的資料是以下的arr陣列
+          var arr = new Array(1, 2, 3);
+          //假設在陣列找不到
+          if (arr.indexOf(parseInt(type[i].value)) != -1) {
+            //顯示資料們
+            arrB.push(type[i].value);
+          }
+        }
+      }
+      favorite_type = arrB;
+      // alert(favorite_type);
+      showFav();
+    };
+  }
+});
