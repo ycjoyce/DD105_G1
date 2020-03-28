@@ -783,16 +783,31 @@ function addFav() {
   // console.log($(".addfriendlyFav").attr("fav"));
   var fav = $(".addfriendlyFav").attr("fav");
   if ($(".addfriendlyFav").prop("checked") == true) {
-    console.log("OK");
-  } else {
     console.log(fav);
     $.ajax({
       type: "POST",
-      url: "./php/map_addFav.php",
+      url: "./php/map_favAdd.php",
       data: { friendlyNo: fav },
       success: function(data) {
         if (data.indexOf("ok") != -1) {
           alert("新增成功");
+        } else {
+          alert("新增失敗");
+        }
+      },
+      error: function(xhr) {
+        alert(xhr.Message);
+      }
+    });
+  } else {
+    console.log("error");
+    $.ajax({
+      type: "POST",
+      url: "./php/map_favRemove.php",
+      data: { friendlyNo: fav },
+      success: function(data) {
+        if (data.indexOf("ok") != -1) {
+          alert("刪除成功");
         } else {
           alert("新增失敗");
         }
