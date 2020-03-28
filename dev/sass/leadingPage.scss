@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,900");
-@import 'layout/font';
 
 html {
   margin: 0;
@@ -71,7 +70,18 @@ body {
   }
 }
 /* HEADER */
-
+header {
+  /* background-color: #ffffff;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 68px;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 998;
+  transition: background-color 0.35s ease-in-out; */
+}
 header .header-inner {
   padding: 16px 1.5%;
 }
@@ -85,7 +95,52 @@ header .header-inner {
     padding: 16px 16px 0 16px;
   }
 }
-
+header .header-inner .language {
+  position: relative;
+  display: inline;
+  width: auto;
+  height: auto;
+  float: left;
+}
+header .header-inner .language a {
+  position: relative;
+  display: inline;
+  width: auto;
+  height: auto;
+  color: #000000;
+  outline: 0px none;
+  outline: 0px;
+  text-decoration: none;
+  transition: all 0.35s ease-in-out;
+  text-transform: uppercase;
+}
+header .header-inner .language a:hover {
+  color: rgba(36, 36, 36, 0.45);
+}
+header .header-inner .language a span {
+  font-weight: 700;
+}
+header .header-inner .logo {
+  position: relative;
+  display: inline;
+  width: auto;
+  height: auto;
+  float: left;
+  text-align: center;
+}
+header .header-inner .logo a {
+  position: relative;
+  display: inline;
+  width: auto;
+  height: auto;
+  color: #000000;
+  outline: 0px none;
+  outline: 0px;
+  text-decoration: none;
+  transition: all 0.35s ease-in-out;
+  text-transform: uppercase;
+  line-height: 44px;
+}
 @media screen and (max-width: 360px) {
   header .header-inner .logo a {
     line-height: 24px;
@@ -124,7 +179,8 @@ header .header-inner nav {
   display: inline;
   margin: 0;
   padding: 0;
-  
+  list-type-style: none;
+  float: right;
 }
 header .header-inner nav li {
   position: relative;
@@ -278,7 +334,7 @@ main.coidea-fullpage section.wrapper .bg .el .content .description {
   opacity: 0;
   visibility: hidden;
   margin-top: 64px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 @media screen and (max-width: 768px) {
   main.coidea-fullpage section.wrapper .bg .el .content .description {
@@ -374,27 +430,30 @@ article {
 }
 
 .circle {
-  width: 150px;
-  height: 150px;
+  width: 145px;
+  height: 145px;
   /* border: 1px solid red; */
   border-radius: 50%;
   background-color: rgba(220, 241, 194, 0.7);
   display: inline-block;
   mix-blend-mode: normal;
   line-height: 150px;
-  animation: cir 5s linear infinite alternate; 
+  animation: cir 5s linear infinite alternate;
   transition: 0.6s linear;
 }
 
-.circle:hover{
-  background-color:rgba(143, 185, 92, 0.9); 
+.circle:hover {
+  background-color: rgba(143, 185, 92, 0.9);
 }
 
-@keyframes cir{
-  from{margin-top:0px}
-  to{margin-top:100px}
+@keyframes cir {
+  from {
+    margin-top: 40px;
+  }
+  to {
+    margin-top: 90px;
+  }
 }
-
 
 .circle h1 {
   margin: 0 auto;
@@ -402,7 +461,6 @@ article {
   font-size: 1.3rem;
   font-family: "DM Serif Text", "Noto Serif TC";
 }
-
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
   main.coidea-fullpage section.wrapper .bg .el .content span {
@@ -419,5 +477,53 @@ article {
 @media screen and (max-width: 474px) {
   main.coidea-fullpage section.wrapper .bg .el .content span {
     font-size: 1.5rem !important;
+  }
+}
+
+.doggif {
+  position: absolute;
+
+  top: 110%;
+  right: 85%;
+}
+
+.dialog-border-bottom {
+  border: 3px solid #353535;
+  border-radius: 15px;
+  height: 10%;
+  position: relative;
+  width: 80px;
+  padding: 10px;
+  width: 100px;
+}
+.dialog-border-bottom:before {
+  border-color: #353535 transparent transparent;
+  border-style: solid solid solid;
+  border-width: 10px 10px 10px 10px;
+  bottom: -20px;
+  content: "";
+  height: 0px;
+  left: 70px;
+  position: absolute;
+  width: 0px;
+}
+.dialog-border-bottom span {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(53, 53, 53);
+  animation: colorchange 8s linear infinite;
+}
+@keyframes colorchange {
+  0% {
+    color: rgb(53, 53, 53);
+  }
+  25% {
+    color: rgb(194, 57, 98);
+  }
+  50% {
+    color: rgb(238, 220, 58);
+  }
+  100% {
+    color: rgb(53, 53, 53);
   }
 }
