@@ -103,7 +103,7 @@
         }
         echo $errMsg;
     }else{
-        echo "{}";
+        echo "您尚未登入，請登入後再發文";
     }
     ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
