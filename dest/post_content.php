@@ -47,12 +47,41 @@
         <!-- header 的高度 -->
 
         <div>  <!-- 內文的高度 -->
-
+            <?php
+            $piNo = $_REQUEST["piNo"];
+            $errMsg = "";
+            //連線資料庫
+            try{
+              require './php/connectDB.php';
+              // select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memName, m.memId 'E-mail'
+              // from postinfo p join memInfo m on (p.memNo = m.memNo)
+              // where p.piNo = 2;
+              $sql = "select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memPic , m.memName, m.memId 'Email'
+              from postinfo p join memInfo m on (p.memNo = m.memNo)
+              where p.piNo = :piNo";
+              // $sql = "select piTitle, piTitlePic, piTitleContent, piFloatLeftPic, piFloatLeftContent, piFloatRightPic, piFloatRightContent from postinfo where piNo = :piNo";
+              $products = $pdo->prepare($sql);
+              $products->bindValue(":piNo", $piNo);
+              $products->execute();
+            }catch(PDOException $e){
+              $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
+              $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+            }
+            ?>
+            <?php
+            if( $errMsg != ""){ //例外
+              echo "<div><center>$errMsg</center></div>";
+            }elseif($products->rowCount()==0){
+                  echo "<div><center>查無此貼文資料</center></div>";
+            }else{
+                  $prodRow = $products->fetchObject();
+            }
+            ?>
             <div class="col-8 centerfix">
                 <div class="breadcrumb">
-                    <a href="#">貼文區or浪浪在哪裡</a>
+                    <a href="./post_article_region.php">貼文區</a>
                     <span>></span>
-                    <a href="#">內文標題 or 寵物有善空間 : 店家-內文標題</a>
+                    <a href="#"><?php echo $prodRow->piTitle;?></a>
                 </div>
             </div>
 
@@ -71,91 +100,33 @@
             </div>
 
             <div class="col-8 centerfix">
-                <?php
-                $piNo = $_REQUEST["piNo"];
-                $errMsg = "";
-                //連線資料庫
-                try{
-                  require './php/connectDB.php';
-                  $sql = "select piTitle, piContent from postinfo where piNo = :piNo";
-                  $products = $pdo->prepare($sql);
-                  $products->bindValue(":piNo", $piNo);
-                  $products->execute();
-                }catch(PDOException $e){
-                  $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-                  $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
-                }
-                ?>
-                <?php
-                if( $errMsg != ""){ //例外
-                  echo "<div><center>$errMsg</center></div>";
-                }elseif($products->rowCount()==0){
-                      echo "<div><center>查無此商品資料</center></div>";
-                }else{
-                      $prodRow = $products->fetchObject();
-                }
-                ?>
                 <h2 class="titleFont inlinefix"><?php echo $prodRow->piTitle;?></h2>  <!-- 原內容 : 內文標題 -->
-                <div class="cpc_content">
-                    <?php echo $prodRow->piContent;?>
-                    <!-- <div class="cpc_content1">
-                        <img class="cpc_contentpic1" src="https://media.istockphoto.com/photos/bad-cat-hates-people-picture-id609827900" alt="An Image" style="">
-                        <p>圖片可以放在左邊</p>
-                        <p>內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容。
-                        </p>
-                        <p>內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容。
-                        </p>
+                <div class="cpc_contentregion">
+                    <div class="cpc_content">
+                        <img class="cpc_contentpic1" src="<?php echo $prodRow->piTitlePic;?>" alt="An Image" style="">
+                        <p><?php echo $prodRow->piTitleContent;?></p>
                     </div>
                     <br><br>
-                    <div class="cpc_content2">
-                        <img class="cpc_contentpic2" src="https://www.catster.com/wp-content/uploads/2017/08/A-fluffy-cat-looking-funny-surprised-or-concerned.jpg" alt="An Image" style="">
-                        <p class="cpc_contentfont2 firstline">文字可以置右擺放。</p>
-                        <p class="cpc_contentfont2 secondline">圖片也可以放在右邊 + 文字置左。</p>
-                        <p>內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容。
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容。
-                        </p>
+                    <div class="cpc_content cpc_contentflex">
+                        <img class="cpc_contentpic2" src="<?php echo $prodRow->piFloatLeftPic;?>" alt="An Image" style="">
+                        <p><?php echo $prodRow->piFloatLeftContent;?></p>
                     </div>
                     <br><br>
-                        <img class="cpc_contentpic3" src="https://vcahospitals.com/-/media/vca/images/lifelearn-images/fatcatsidevieworange201801scaler.jpg?la=en&hash=CEE356351395E59DA13B9C69AA77D692" alt="An Image" style="">
-                        <p>圖片也可以放在上面或下面。</p>
-                        <p>內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                            內容內容內容內容內容內容內容內容內容內容。
-                        </p>
-                        <br><br>
-                        <p>可以只有純文字。</p>
-                        <p>內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                           內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                           內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                           內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
-                           內容內容內容內容內容內容內容內容內容內容。
-                        </p> -->
-                </div>
-                <div class="postautherregion">
-                    <img class="postautherimg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSf1BFE7_Gdnaou0lcz9NTHwZZaSIFd_jOXBcGIZsMnBxS1NdIX" class="memberhead" />
-                    <div class="postauthercontent">
-                        <p>作者姓名 : xxx</p>
-                        <p>聯絡方式 : xxxxxxxxxxxxxxxxxxx 作者不想顯示就只有姓名這樣</p>
+                    <div class="cpc_content cpc_contentflexreverse">
+                        <img class="cpc_contentpic3" src="<?php echo $prodRow->piFloatRightPic;?>" alt="An Image" style="">
+                        <p class="cpc_contentfont2 lineright"><?php echo $prodRow->piFloatRightContent;?></p>
                     </div>
                 </div>
                 <hr class="cpchr">
-                <div class="leftmessage">
+                <div class="postautherregion">
+                    <img class="postautherimg" src="<?php echo $prodRow->memPic;?>" class="memberhead" />
+                    <div class="postauthercontent">
+                        <p>作者姓名 : <?php echo $prodRow->memName;?></p>
+                        <p>聯絡信箱 : <?php echo $prodRow->Email;?></p>
+                    </div>
+                </div>
+                <!-- <hr class="cpchr"> -->
+                <!-- <div class="leftmessage">
                     <h2 class="titleFont inlinefix">留言區</h2>
                     <div class="postmessageregion">
                         <ul class="postmessenger">
@@ -212,9 +183,6 @@
                                 </div>
                                 <div class="responsemember"><a href="#">檢舉</a><a href="#">回覆</a></div>
                             </li>
-                            <!-- <li class="leaveamessage"> -->
-
-                            <!-- </li> -->
                         </ul>
                         <div class="leaveamessage">
                             <label for="leaveamessage" class="labelleaveamessage">
@@ -224,7 +192,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -246,5 +214,6 @@
     <script src="./js/post_article_region.js"></script>
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
+    <script src="./js/signInOut.js"></script>
 </body>
 </html>
