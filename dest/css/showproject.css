@@ -317,12 +317,21 @@ h4 {
   }
 }
 
+<<<<<<< HEAD
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
  * @author Jonathan Suh @jonsuh
  * @site https://jonsuh.com/hamburgers
  * @link https://github.com/jonsuh/hamburgers
+=======
+/*!
+ * Hamburgers
+ * @description Tasty CSS-animated hamburgers
+ * @author Jonathan Suh @jonsuh
+ * @site https://jonsuh.com/hamburgers
+ * @link https://github.com/jonsuh/hamburgers
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
  */
 .hamburger {
   padding: 15px 15px;
@@ -401,8 +410,13 @@ h4 {
   bottom: -10px;
 }
 
+<<<<<<< HEAD
 /*
      * 3DX
+=======
+/*
+     * 3DX
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--3dx .hamburger-box {
   -webkit-perspective: 80px;
@@ -439,8 +453,13 @@ h4 {
           transform: translate3d(0, -10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * 3DX Reverse
+=======
+/*
+     * 3DX Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--3dx-r .hamburger-box {
   -webkit-perspective: 80px;
@@ -477,8 +496,13 @@ h4 {
           transform: translate3d(0, -10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * 3DY
+=======
+/*
+     * 3DY
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--3dy .hamburger-box {
   -webkit-perspective: 80px;
@@ -515,8 +539,13 @@ h4 {
           transform: translate3d(0, -10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * 3DY Reverse
+=======
+/*
+     * 3DY Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--3dy-r .hamburger-box {
   -webkit-perspective: 80px;
@@ -553,8 +582,13 @@ h4 {
           transform: translate3d(0, -10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * 3DXY
+=======
+/*
+     * 3DXY
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--3dxy .hamburger-box {
   -webkit-perspective: 80px;
@@ -591,8 +625,13 @@ h4 {
           transform: translate3d(0, -10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * 3DXY Reverse
+=======
+/*
+     * 3DXY Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--3dxy-r .hamburger-box {
   -webkit-perspective: 80px;
@@ -629,8 +668,13 @@ h4 {
           transform: translate3d(0, -10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * Arrow
+=======
+/*
+     * Arrow
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--arrow.is-active .hamburger-inner::before {
   -webkit-transform: translate3d(-8px, 0, 0) rotate(-45deg) scale(0.7, 1);
@@ -642,8 +686,13 @@ h4 {
           transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Arrow Right
+=======
+/*
+     * Arrow Right
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--arrow-r.is-active .hamburger-inner::before {
   -webkit-transform: translate3d(8px, 0, 0) rotate(45deg) scale(0.7, 1);
@@ -655,8 +704,13 @@ h4 {
           transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Arrow Alt
+=======
+/*
+     * Arrow Alt
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--arrowalt .hamburger-inner::before {
   -webkit-transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -692,8 +746,13 @@ h4 {
   transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22), -webkit-transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
 }
 
+<<<<<<< HEAD
 /*
      * Arrow Alt Right
+=======
+/*
+     * Arrow Alt Right
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--arrowalt-r .hamburger-inner::before {
   -webkit-transition: top 0.1s 0.1s ease, -webkit-transform 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -729,8 +788,13 @@ h4 {
   transition: bottom 0.1s ease, transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22), -webkit-transform 0.1s 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22);
 }
 
+<<<<<<< HEAD
 /*
      * Arrow Turn
+=======
+/*
+     * Arrow Turn
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--arrowturn.is-active .hamburger-inner {
   -webkit-transform: rotate(-180deg);
@@ -747,8 +811,13 @@ h4 {
           transform: translate3d(8px, 0, 0) rotate(-45deg) scale(0.7, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Arrow Turn Right
+=======
+/*
+     * Arrow Turn Right
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--arrowturn-r.is-active .hamburger-inner {
   -webkit-transform: rotate(-180deg);
@@ -765,8 +834,13 @@ h4 {
           transform: translate3d(-8px, 0, 0) rotate(45deg) scale(0.7, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Boring
+=======
+/*
+     * Boring
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--boring .hamburger-inner, .hamburger--boring .hamburger-inner::before, .hamburger--boring .hamburger-inner::after {
   -webkit-transition-property: none;
@@ -789,8 +863,13 @@ h4 {
           transform: rotate(-90deg);
 }
 
+<<<<<<< HEAD
 /*
      * Collapse
+=======
+/*
+     * Collapse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--collapse .hamburger-inner {
   top: auto;
@@ -842,8 +921,13 @@ h4 {
   transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Collapse Reverse
+=======
+/*
+     * Collapse Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--collapse-r .hamburger-inner {
   top: auto;
@@ -895,8 +979,13 @@ h4 {
   transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Elastic
+=======
+/*
+     * Elastic
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--elastic .hamburger-inner {
   top: 2px;
@@ -940,8 +1029,13 @@ h4 {
           transition-delay: 0.075s;
 }
 
+<<<<<<< HEAD
 /*
      * Elastic Reverse
+=======
+/*
+     * Elastic Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--elastic-r .hamburger-inner {
   top: 2px;
@@ -985,8 +1079,13 @@ h4 {
           transition-delay: 0.075s;
 }
 
+<<<<<<< HEAD
 /*
      * Emphatic
+=======
+/*
+     * Emphatic
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--emphatic {
   overflow: hidden;
@@ -1044,8 +1143,13 @@ h4 {
   transition: right 0.125s ease-out, top 0.05s 0.125s linear, transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Emphatic Reverse
+=======
+/*
+     * Emphatic Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--emphatic-r {
   overflow: hidden;
@@ -1103,8 +1207,13 @@ h4 {
   transition: right 0.125s ease-out, top 0.05s 0.125s linear, transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1), -webkit-transform 0.125s 0.175s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Minus
+=======
+/*
+     * Minus
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--minus .hamburger-inner::before, .hamburger--minus .hamburger-inner::after {
   -webkit-transition: bottom 0.08s 0s ease-out, top 0.08s 0s ease-out, opacity 0s linear;
@@ -1125,8 +1234,13 @@ h4 {
   bottom: 0;
 }
 
+<<<<<<< HEAD
 /*
      * Slider
+=======
+/*
+     * Slider
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--slider .hamburger-inner {
   top: 2px;
@@ -1164,8 +1278,13 @@ h4 {
           transform: translate3d(0, -20px, 0) rotate(-90deg);
 }
 
+<<<<<<< HEAD
 /*
      * Slider Reverse
+=======
+/*
+     * Slider Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--slider-r .hamburger-inner {
   top: 2px;
@@ -1203,8 +1322,13 @@ h4 {
           transform: translate3d(0, -20px, 0) rotate(90deg);
 }
 
+<<<<<<< HEAD
 /*
      * Spin
+=======
+/*
+     * Spin
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--spin .hamburger-inner {
   -webkit-transition-duration: 0.22s;
@@ -1251,8 +1375,13 @@ h4 {
   transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Spin Reverse
+=======
+/*
+     * Spin Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--spin-r .hamburger-inner {
   -webkit-transition-duration: 0.22s;
@@ -1299,8 +1428,13 @@ h4 {
   transition: bottom 0.1s ease-out, transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Spring
+=======
+/*
+     * Spring
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--spring .hamburger-inner {
   top: 2px;
@@ -1350,8 +1484,13 @@ h4 {
           transform: translate3d(0, 10px, 0) rotate(-45deg);
 }
 
+<<<<<<< HEAD
 /*
      * Spring Reverse
+=======
+/*
+     * Spring Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--spring-r .hamburger-inner {
   top: auto;
@@ -1403,8 +1542,13 @@ h4 {
   transition: top 0.1s 0.15s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.13s 0.22s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Stand
+=======
+/*
+     * Stand
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--stand .hamburger-inner {
   -webkit-transition: background-color 0s 0.075s linear, -webkit-transform 0.075s 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -1457,8 +1601,13 @@ h4 {
   transition: bottom 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Stand Reverse
+=======
+/*
+     * Stand Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--stand-r .hamburger-inner {
   -webkit-transition: background-color 0s 0.075s linear, -webkit-transform 0.075s 0.15s cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -1511,8 +1660,13 @@ h4 {
   transition: bottom 0.075s 0.1s ease-out, transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.075s 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Squeeze
+=======
+/*
+     * Squeeze
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--squeeze .hamburger-inner {
   -webkit-transition-duration: 0.075s;
@@ -1559,8 +1713,13 @@ h4 {
   transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+<<<<<<< HEAD
 /*
      * Vortex
+=======
+/*
+     * Vortex
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--vortex .hamburger-inner {
   -webkit-transition-duration: 0.2s;
@@ -1613,8 +1772,13 @@ h4 {
           transform: rotate(90deg);
 }
 
+<<<<<<< HEAD
 /*
      * Vortex Reverse
+=======
+/*
+     * Vortex Reverse
+>>>>>>> 99411a18a996b6edce9443a50ac9f5a889dc4c40
      */
 .hamburger--vortex-r .hamburger-inner {
   -webkit-transition-duration: 0.2s;
