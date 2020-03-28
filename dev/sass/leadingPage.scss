@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,900");
-
+@import "layout/font";
 html {
   margin: 0;
   padding: 0;
@@ -70,19 +70,7 @@ body {
   }
 }
 /* HEADER */
-header {
-  /* background-color: #ffffff;
-  position: fixed;
-  display: block;
-  width: 100%;
-  height: 68px;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 998;
-  transition: background-color 0.35s ease-in-out; */
-}
-header .header-inner {
+.header-inner {
   padding: 16px 1.5%;
 }
 @media screen and (max-width: 768px) {
@@ -95,52 +83,7 @@ header .header-inner {
     padding: 16px 16px 0 16px;
   }
 }
-header .header-inner .language {
-  position: relative;
-  display: inline;
-  width: auto;
-  height: auto;
-  float: left;
-}
-header .header-inner .language a {
-  position: relative;
-  display: inline;
-  width: auto;
-  height: auto;
-  color: #000000;
-  outline: 0px none;
-  outline: 0px;
-  text-decoration: none;
-  transition: all 0.35s ease-in-out;
-  text-transform: uppercase;
-}
-header .header-inner .language a:hover {
-  color: rgba(36, 36, 36, 0.45);
-}
-header .header-inner .language a span {
-  font-weight: 700;
-}
-header .header-inner .logo {
-  position: relative;
-  display: inline;
-  width: auto;
-  height: auto;
-  float: left;
-  text-align: center;
-}
-header .header-inner .logo a {
-  position: relative;
-  display: inline;
-  width: auto;
-  height: auto;
-  color: #000000;
-  outline: 0px none;
-  outline: 0px;
-  text-decoration: none;
-  transition: all 0.35s ease-in-out;
-  text-transform: uppercase;
-  line-height: 44px;
-}
+
 @media screen and (max-width: 360px) {
   header .header-inner .logo a {
     line-height: 24px;
@@ -174,14 +117,7 @@ header .header-inner .header-headline p {
   font-weight: 600;
   transition: all 0.35s ease-in-out;
 }
-header .header-inner nav {
-  position: relative;
-  display: inline;
-  margin: 0;
-  padding: 0;
-  list-type-style: none;
-  float: right;
-}
+
 header .header-inner nav li {
   position: relative;
   display: inline;
@@ -344,7 +280,7 @@ main.coidea-fullpage section.wrapper .bg .el .content .description {
 }
 @media screen and (max-width: 640px) {
   main.coidea-fullpage section.wrapper .bg .el .content .description {
-    margin-top: -29px;
+    margin-top: 37px;
     transform: matrix(1, 0, 0, 1, 0, 102) !important;
   }
   .title {
@@ -437,7 +373,7 @@ article {
   background-color: rgba(220, 241, 194, 0.7);
   display: inline-block;
   mix-blend-mode: normal;
-  line-height: 150px;
+  line-height: 145px;
   animation: cir 5s linear infinite alternate;
   transition: 0.6s linear;
 }
@@ -459,7 +395,8 @@ article {
   margin: 0 auto;
   color: rgb(255, 255, 255);
   font-size: 1.3rem;
-  font-family: "DM Serif Text", "Noto Serif TC";
+  font-family: 'DM Serif Text','Noto Serif TC' ;
+  letter-spacing: 5px;
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
@@ -481,20 +418,30 @@ article {
 }
 
 .doggif {
+  width: 13%;
   position: absolute;
-
   top: 110%;
-  right: 85%;
+  right: 83%;
+  animation: run 3s linear 1s backwards;
 }
-
+@keyframes run{
+  from{right: 110%;}
+  to{right: 83%;}
+}
 .dialog-border-bottom {
-  border: 3px solid #353535;
+  border: 4px solid #353535;
   border-radius: 15px;
   height: 10%;
   position: relative;
-  width: 80px;
   padding: 10px;
   width: 100px;
+  margin-left: 7%;
+  animation: text_border  1.9s linear 4s infinite backwards;
+}
+
+@keyframes text_border{
+  from{opacity: 0;}
+  to{opacity: 100%;}
 }
 .dialog-border-bottom:before {
   border-color: #353535 transparent transparent;
@@ -526,4 +473,22 @@ article {
   100% {
     color: rgb(53, 53, 53);
   }
+}
+
+@media screen and (max-width: 474px) {
+  main.coidea-fullpage section.wrapper .bg .el .content {
+    bottom: -104%;
+  }
+  .doggif{
+    width: 17%;
+  }
+  .dialog-border-bottom{
+
+    padding: 3px;
+    margin-left: 6px;
+  }
+
+  .dialog-border-bottom span{
+    font-size: 15px;
+}
 }
