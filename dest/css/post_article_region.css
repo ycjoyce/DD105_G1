@@ -2561,7 +2561,7 @@ input {
 .buttononlinefix {
   position: absolute;
   right: 15px;
-  bottom: 8px;
+  bottom: -25px;
   z-index: 3; }
 
 @media screen and (min-width: 1631px) and (max-width: 1950px) {
@@ -2649,7 +2649,7 @@ input {
     width: 100%; }
   .buttononlinefix {
     position: absolute;
-    bottom: 25px; } }
+    bottom: 8px; } }
 
 @media screen and (min-width: 582px) and (max-width: 715px) {
   .post_write_form {
