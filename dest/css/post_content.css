@@ -1990,53 +1990,55 @@ footer {
   margin-bottom: 20px; }
 
 .cpc_contentpic1 {
-  float: left;
-  width: 35%;
-  margin-right: 15px;
-  margin-bottom: 15px; }
-
-.cpc_contentpic2 {
-  float: right;
-  width: 46%;
-  margin-left: 15px;
-  margin-bottom: 15px; }
-
-.cpc_contentpic3 {
   width: 100%; }
 
-.cpc_content1 {
-  clear: right;
+.cpc_contentpic2 {
+  float: left;
+  width: 50%;
+  margin-right: 15px; }
+
+.cpc_contentpic3 {
+  float: right;
+  width: 50%;
+  margin-left: 15px; }
+
+.cpc_content {
   margin-bottom: 15px; }
 
-.cpc_content2 {
-  clear: left;
-  margin-bottom: 15px; }
+.cpc_contentflex {
+  /* display: flex; */
+  display: flow-root;
+  clear: right; }
 
-.cpc_contentfont2.firstline {
-  display: flex;
-  flex-direction: row-reverse; }
+.cpc_contentflexreverse {
+  /* display: flex; */
+  /* flex-direction: row-reverse; */
+  display: flow-root;
+  clear: left; }
 
 .postautherregion {
+  clear: both;
   margin-top: 50px;
   display: flex;
   align-items: center; }
-  .postautherregion div.postauthercontent p {
-    display: inline-block; }
-  .postautherregion div.postauthercontent img {
-    display: inline-block;
-    width: 20px;
-    position: relative;
-    top: 5px; }
 
 .postautherimg {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
   margin-right: 10px; }
-  
+
+.postautherregion div.postauthercontent p {
+  display: inline-block;
+}
+
+.postautherregion div.postauthercontent img {
+    display: inline-block;
+    width: 20px;
+    position: relative;
+    top: 5px;
+}
+
 .cpchr {
   margin: 50px 0; }
 
@@ -2119,10 +2121,9 @@ footer {
     float: none;
     width: 100%;
     margin: 0; }
-  .cpc_content1,
-  .cpc_content2 {
-    clear: none;
-    margin-bottom: 15px; }
+  .cpc_contentflex,
+  .cpc_contentflexreverse {
+    clear: none; }
   .cpc_contentfont2.firstline {
     display: flex;
     flex-direction: row; } }
@@ -2134,11 +2135,10 @@ footer {
     float: none;
     width: 100%;
     margin: 0; }
-  .cpc_content1,
-  .cpc_content2 {
-    clear: none;
-    margin-bottom: 15px; }
-  .cpc_contentfont2.firstline {
+  .cpc_contentflex,
+  .cpc_contentflexreverse {
+    clear: none; }
+  .cpc_contentfont2.lineright {
     display: flex;
     flex-direction: row; }
   .leftedmessageinfo {
@@ -2160,11 +2160,10 @@ footer {
     float: none;
     width: 100%;
     margin: 0; }
-  .cpc_content1,
-  .cpc_content2 {
-    clear: none;
-    margin-bottom: 15px; }
-  .cpc_contentfont2.firstline {
+  .cpc_contentflex,
+  .cpc_contentflexreverse {
+    clear: none; }
+  .lineright {
     display: flex;
     flex-direction: row; }
   .leftedmessageinfo {
