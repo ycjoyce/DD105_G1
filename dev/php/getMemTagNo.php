@@ -1,9 +1,13 @@
 <?php
+
+session_start();
+$memNo = $_SESSION["memNo"];
+
 try{
     require_once('connectDB.php');
-    $sql = "select `memTagNo` from `memInfo` where memNo=:memNo";
+    $sql = "select `memTagNo` from `memInfo` where memNo=$memNo";
     $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement->bindValue(":memNo",$_POST["memNo"]);
+    // $pdoStatement->bindValue(":memNo",$_POST["memNo"]);
     $pdoStatement->execute();
 
     //如果找得資料，取回資料，送出JSON字串

@@ -254,12 +254,12 @@
                             </div>
                             <script>
                                 function updateMemPoint(sendNewPoint) {
-                                    var memNo = member.memNo;
+                                    // var memNo = member.memNo;
                                     var xhr = new XMLHttpRequest();
                                     var url = "php/updateMemPoint.php";
                                     xhr.open("POST", url, true);
                                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    var data_info = `memNo=${memNo}&memPoint=${sendNewPoint}`;
+                                    var data_info = `memPoint=${sendNewPoint}`;
                                     xhr.send(data_info);
                                 }
 
@@ -376,13 +376,13 @@
                                 }
 
                                 window.addEventListener('load', function() {
-                                    var memNo = member.memNo;
+                                    // var memNo = member.memNo;
                                     var xhr = new XMLHttpRequest();
                                     var url = "php/getMemPoint.php";
                                     xhr.open("POST", url, true);
                                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    var data_info = `memNo=${memNo}`;
-                                    xhr.send(data_info);
+                                    // var data_info = `memNo=${memNo}`;
+                                    xhr.send();
 
                                     xhr.onload = function() {
                                         newStr = JSON.parse(this.responseText)[0].memPoint; //取回點數值
@@ -398,8 +398,7 @@
                                         var url = "php/getMemTagNo.php";
                                         xhr.open("POST", url, true);
                                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                        var data_info = `memNo=${memNo}`;
-                                        xhr.send(data_info);
+                                        xhr.send();
                                         xhr.onload = function() {
                                             let newTagStr = JSON.parse(this.responseText)[0].memTagNo; //取回會員解鎖過的吊牌編號
                                             document.getElementById('memTagNo').innerText = newTagStr; //把吊牌編號寫進隱藏欄位
@@ -407,7 +406,6 @@
                                             member.memTagNo = document.getElementById('memTagNo').innerText; //session裡的member.memTagNo資料更新
                                             // console.log("已解鎖過的吊牌編號 : ", document.getElementById('memTagNo').innerText);
                                             // console.log("資料庫有的吊牌編號 : ", document.getElementById('lockTagNo').innerText);
-
                                             lockTagNo();
                                         }
                                     }
@@ -690,7 +688,7 @@
         <div class="dialog__content">
             <h3 style="color: #313131; margin-top: 20px;">確認明細</h3>
             <div id="collarDetail">
-                <img src="" id="testImg" width="220" alt="" style="border: 0px solid red;">
+                <img src="" id="testImg" width="220" height="138.5" alt="" style="border: 0px solid red;">
                 <div id="orderTotal">
                     <span id="orderQTY"></span>
                     <span id="orderPrice"></span>
