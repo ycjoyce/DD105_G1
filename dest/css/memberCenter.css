@@ -2733,6 +2733,12 @@ div.clickToShow {
     width: 100%;
     margin-bottom: 10px; } }
 
+@media (max-width: 415px) {
+  .tab-content section table tr, .tab-content section table th, .tab-content section table td {
+    padding: 2px 5px; }
+  .tab-content section .updatebtn_s {
+    width: 55px; } }
+
 @media screen and (min-width: 411px) and (max-width: 575px) {
   .col-ss-1 {
     width: 8.33333%; }

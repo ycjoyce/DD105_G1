@@ -3561,7 +3561,8 @@ body {
         background-size: 30px; }
       .map_container #gmaps #infoBox div h6 {
         color: #2d2d2d;
-        font: 1.6em "Microsoft YaHei", "LiHei Pro", "Microsoft JhengHei", "Helvetica Neue", Helvetica, sans-serif;
+        font: 1.6em "Microsoft YaHei", "LiHei Pro", "Microsoft JhengHei",
+ "Helvetica Neue", Helvetica, sans-serif;
         letter-spacing: 1px;
         white-space: nowrap;
         padding-left: 0.1em; }

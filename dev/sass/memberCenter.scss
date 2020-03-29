@@ -813,6 +813,14 @@ div.clickToShow {
     }
   }
 }
+@media (max-width: 415px){
+  .tab-content section table tr, .tab-content section table th, .tab-content section table td{
+    padding: 2px 5px;
+  }
+  .tab-content section .updatebtn_s{
+    width:55px;
+  }
+}
 
 // 管理黑名單
 @import "layout/rwd";
