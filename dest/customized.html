@@ -244,7 +244,7 @@
                                 <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-2" class="tab-content tab2_content" style="background-color: #fff9e4; overflow-y: scroll;">
+                        <div id="tab-2" class="tab-content tab2_content" style="background-color: #fff9e4;">
                             <div id="collarTagSlider">
                                 <div id="collarTagWrap">
 
@@ -746,7 +746,6 @@
 
                 xhr.onload = function() {
                     if (xhr.status == 200) {
-                        $("#somedialog").removeClass("dialog--open");
                         alert("訂單已成功送出");
                         window.location.reload();
                     } else {
