@@ -2281,7 +2281,7 @@ footer {
 
   .cpc_writecontentpic1 {
       width: 100%;
-      height: 135px; }
+  /* height: 135px; */ }
 
   .cpc_writecontentpic2 {
       border-right: 1px solid #000;
