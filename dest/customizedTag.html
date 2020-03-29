@@ -386,27 +386,27 @@
                         <tr>
                             <th>吊牌名稱</th>
                             <td>
-                                <input type="text" name="tagName" id="tagName">
+                                <input type="text" name="tagName" id="tagName" maxlength="15">
                             </td>
                         </tr>
                         <tr>
                             <th>輪播預覽圖</th>
                             <td>
-                                <img src="">
+                                <img src="" id="tagImage1" style="max-width: 100px;">
                                 <input type="file" name="tagSrc1" id="tagSrc1">
                             </td>
                         </tr>
                         <tr>
                             <th>客製化預覽圖</th>
                             <td>
-                                <img src="">
+                                <img src="" id="tagImage2" style="max-width: 100px;">
                                 <input type="file" name="tagSrc2" id="tagSrc2">
                             </td>
                         </tr>
                         <tr>
                             <th>吊牌所需點數</th>
                             <td>
-                                <input type="text" name="tagPoint" id="tagPoint">
+                                <input type="text" name="tagPoint" id="tagPoint" maxlength="15">
                             </td>
                         </tr>
                     </table>
@@ -423,6 +423,33 @@
         </div>
     </div>
 </div>
+<script>
+    function doFirst() {
+        document.getElementById('tagSrc1').onchange = fileChange1;
+        document.getElementById('tagSrc2').onchange = fileChange2;
+    }
+
+    function fileChange1() {
+        let fileA = document.getElementById('tagSrc1').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(fileA);
+        readFile.addEventListener('load', function() {
+            imageData = document.getElementById('tagImage1');
+            imageData.src = this.result;
+        })
+    }
+
+    function fileChange2() {
+        let fileB = document.getElementById('tagSrc2').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(fileB);
+        readFile.addEventListener('load', function() {
+            imageData = document.getElementById('tagImage2');
+            imageData.src = this.result;
+        })
+    }
+    window.addEventListener('load', doFirst);
+</script>
 
 <script>
     function addTag() {
@@ -459,63 +486,123 @@
             success: function(data) {
                 msg = "";
                 for (i = 0; i < data.length; i++) {
-                    msg += `
-                <div class="col-xl-6 col-md-12" tagabc="abc">
-                    <div class="card" style="margin: 10px;">
-                        <div class="card-header" tagNo="${i + 1}">吊牌${i + 1}號</div>
-                        <div class="card-body">
-                            <form action="" method="POST" enctype="multipart/form-data">
-                                <table class="table">
-                                    <tr>
-                                        <th>吊牌名稱</th>
-                                        <td>
-                                            <input type="text" name="tagName" id="tagName${data[i].tagNo}" value="${data[i].tagName}">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>輪播預覽圖</th>
-                                        <td>
-                                            <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
-                                            <input type="file" name="tagSrc1" id="">
-                                            <input type="text" name="tagSrc1_old" value="${data[i].tagSrc1}">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>客製化預覽圖</th>
-                                        <td>
-                                            <img src="./img/customized_collar/new1/${data[i].tagSrc2}" style="max-width: 100px;">
-                                            <input type="file" name="tagSrc2" id="">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>吊牌所需點數</th>
-                                        <td>
-                                            <input type="text" name="tagPoint" id="tagPoint${data[i].tagNo}" value="${data[i].tagPoint}">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>上下架狀態</th>
-                                        <td>
-                                            <label class="switch switch-3d switch-success">
-                                            <input class="switch-input equipStatus" type="checkbox">
-                                            <span class="switch-slider"></span>
-                                            </label>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="row">
-                                    <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                                        <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-primary updateTagBtn" type="button" value="確認修改">
-                                    </div>
-                                    <div class=" col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
-                                        <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="button" value="刪除吊牌">
+                    if (data[i].tagStatus == 1) {
+                        msg += `
+                            <div class="col-xl-6 col-md-12" tagabc="abc">
+                                <div class="card" style="margin: 10px;">
+                                    <div class="card-header" tagNo="${i + 1}">吊牌${i + 1}號</div>
+                                    <div class="card-body">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>吊牌名稱</th>
+                                                    <td>
+                                                        <input type="text" name="tagName" id="tagName${data[i].tagNo}" value="${data[i].tagName}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>輪播預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
+                                                        <input type="file" name="tagSrc1" id="">
+                                                        <input type="text" name="tagSrc1_old" value="${data[i].tagSrc1}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>客製化預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc2}" style="max-width: 100px;">
+                                                        <input type="file" name="tagSrc2" id="">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>吊牌所需點數</th>
+                                                    <td>
+                                                        <input type="text" name="tagPoint" id="tagPoint${data[i].tagNo}" value="${data[i].tagPoint}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>上下架狀態</th>
+                                                    <td>
+                                                        <label class="switch switch-3d switch-success">
+                                                        <input class="switch-input equipStatus tagSwitch" type="checkbox" tagNo="${data[i].tagNo}" status="0" checked>
+                                                        <span class="switch-slider"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-primary updateTagBtn" type="button" value="確認修改">
+                                                </div>
+                                                <div class=" col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="button" value="刪除吊牌">
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>`;
-
+                            </div>
+                        `;
+                    } else if (data[i].tagStatus == 0) {
+                        msg += `
+                            <div class="col-xl-6 col-md-12" tagabc="abc">
+                                <div class="card" style="margin: 10px;">
+                                    <div class="card-header" tagNo="${i + 1}">吊牌${i + 1}號</div>
+                                    <div class="card-body">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>吊牌名稱</th>
+                                                    <td>
+                                                        <input type="text" name="tagName" id="tagName${data[i].tagNo}" value="${data[i].tagName}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>輪播預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
+                                                        <input type="file" name="tagSrc1" id="">
+                                                        <input type="text" name="tagSrc1_old" value="${data[i].tagSrc1}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>客製化預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc2}" style="max-width: 100px;">
+                                                        <input type="file" name="tagSrc2" id="">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>吊牌所需點數</th>
+                                                    <td>
+                                                        <input type="text" name="tagPoint" id="tagPoint${data[i].tagNo}" value="${data[i].tagPoint}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>上下架狀態</th>
+                                                    <td>
+                                                        <label class="switch switch-3d switch-success">
+                                                        <input class="switch-input equipStatus tagSwitch" type="checkbox" tagNo="${data[i].tagNo}" status="1">
+                                                        <span class="switch-slider"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-primary updateTagBtn" type="button" value="確認修改">
+                                                </div>
+                                                <div class=" col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="button" value="刪除吊牌">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
                 }
                 // $("#tagContent").empty();
                 $("#tagContent").append(msg);
@@ -583,6 +670,34 @@
                 alert("更新成功");
             } else {
                 return;
+            }
+        })
+    });
+
+
+
+    function updateTagRecord(sendTagNo, newTagStatus) {
+        var xhr = new XMLHttpRequest();
+        var url = "./php/updateTagStatus.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `tagNo=${sendTagNo}&tagStatus=${newTagStatus}`;
+        xhr.send(data_info);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {}
+        }
+    }
+
+    $(document).ready(function() {
+        $('.tagSwitch').change(function() {
+            updateTagRecord($(this).attr("tagNo"), $(this).attr("status"))
+            if ($(this).attr("status") == 1) {
+                $(this).attr("status", "0");
+                alert("吊牌狀態更新成功 , 吊牌已成功上架");
+            } else {
+                $(this).attr("status", "1");
+                alert("吊牌狀態更新成功 , 吊牌已成功下架");
             }
         })
     });

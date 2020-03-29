@@ -262,6 +262,7 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    background-image: url(../img/map_uploadimg.png);
   }
 
   #rpbtn {
@@ -415,10 +416,10 @@
   }
   #lostform {
     label {
-      margin-bottom: 3px;
+      margin-bottom: 0px;
     }
     p {
-      margin: 8px 0;
+      margin: 3px 0;
     }
     fieldset {
       padding: 25px 30px 20px;
@@ -430,23 +431,13 @@
       margin-bottom: 15px;
     }
   }
+  #lostform #imageShow{
+    display: none;
+  }
 }
 
 @media (max-width: 375px) {
   .dialog__content {
     max-width: 300px;
-  }
-  #lostform {
-    label {
-      margin-bottom: 2px;
-    }
-    fieldset {
-      p {
-        margin: 12px 0;
-      }
-    }
-    .uploadimg_btn {
-      margin-bottom: 10px;
-    }
   }
 }
