@@ -74,6 +74,9 @@ body{
     @include rwd(ss){
         font: 20px 'Candelia';
     }
+    @include rwd(mini){
+        font: 20px 'Candelia';
+    }
 }
 
 section.intro{
@@ -98,6 +101,10 @@ section.intro{
             left: 30px;
             top: 50%;
         }
+        @include rwd(mini){
+            left: 30px;
+            top: 60%;
+        }
         h1{
             font-size: 40px;
             color: rgb(100, 100, 100);
@@ -111,6 +118,9 @@ section.intro{
                 font-size: 20px;
             }
             @include rwd(ss){
+                font-size: 20px;
+            }
+            @include rwd(mini){
                 font-size: 20px;
             }
         }
@@ -132,6 +142,10 @@ section.intro{
                     height: 50px;
                     margin-bottom: 10px;
                 }
+                @include rwd(mini){
+                    height: 50px;
+                    margin-bottom: 10px;
+                }
             }
             div{
                 position: relative;
@@ -143,6 +157,10 @@ section.intro{
                     width: 80px;
                     z-index: 4;
                     @include rwd(ss){
+                        // top: 100px;
+                        display: none;
+                    }
+                    @include rwd(mini){
                         // top: 100px;
                         display: none;
                     }
@@ -163,6 +181,11 @@ section.intro{
                         left: 220px;
                     }
                     @include rwd(ss){
+                        // left: 80vw;
+                        // top: 100px;
+                        display: none;
+                    }
+                    @include rwd(mini){
                         // left: 80vw;
                         // top: 100px;
                         display: none;
@@ -189,6 +212,11 @@ section.intro{
                         // top: 120px;
                         display: none;
                     }
+                    @include rwd(mini){
+                        // left: 80vw;
+                        // top: 120px;
+                        display: none;
+                    }
                 }
             }
         }
@@ -210,6 +238,10 @@ section.intro{
             margin: 10vh 0 20vh 0;
         }
         @include rwd(ss){
+            margin: 5vh 0 15vh 0;
+            height: 70vh;
+        }
+        @include rwd(mini){
             margin: 5vh 0 15vh 0;
             height: 70vh;
         }
@@ -264,6 +296,11 @@ section.intro{
             transform: translateX(-90%);
             bottom: 4vh;
         }
+        @include rwd(mini){
+            left: 100%;
+            transform: translateX(-90%);
+            bottom: 4vh;
+        }
         p{
             color: #fff;
             text-shadow: #333 0px 0px 5px;
@@ -302,9 +339,15 @@ section.intro{
         @include rwd(ss){
             height: 50%;
         }
+        @include rwd(mini){
+            height: 50%;
+        }
         img{
             position: absolute;
             @include rwd(ss){
+                display: none;
+            }
+            @include rwd(mini){
                 display: none;
             }
             &:first-child{
@@ -370,6 +413,11 @@ section.about{
             position: relative;
             z-index: 2;
         }
+        @include rwd(mini){
+            margin: 0 0 0 30px;
+            position: relative;
+            z-index: 2;
+        }
     }
     div.aboutCard{
         border-radius: 10px 0 0 10px;
@@ -389,6 +437,10 @@ section.about{
                 float: none;
                 margin: 0 auto;
              }
+             @include rwd(mini){
+                float: none;
+                margin: 0 auto;
+             }
             div.about{
                 width: 80%;
                 height: 70%;
@@ -402,6 +454,9 @@ section.about{
                 @include rwd(ss){
                     width: 60%;
                 }
+                @include rwd(mini){
+                    width: 60%;
+                }
                 h2{
                     margin-bottom: 50px;
                     @include rwd(md){
@@ -413,6 +468,9 @@ section.about{
                     @include rwd(ss){
                         white-space: nowrap;
                     }
+                    @include rwd(mini){
+                        white-space: nowrap;
+                    }
                     img{
                         height: 45px;
                         display: inline-block;
@@ -422,11 +480,17 @@ section.about{
                         @include rwd(ss){
                             margin-right: 10px;
                         }
+                        @include rwd(mini){
+                            display: none;
+                        }
                     }
                 }
                 .btn.gray{
                     margin-top: 70px;
                     @include rwd(ss){
+                        margin-top: 50px;
+                    }
+                    @include rwd(mini){
                         margin-top: 50px;
                     }
                 }
@@ -441,6 +505,9 @@ section.about{
                 display: none;
             }
             @include rwd(ss){
+                display: none;
+            }
+            @include rwd(mini){
                 display: none;
             }
             video{
@@ -464,6 +531,9 @@ section.about{
                 display: none;
             }
             @include rwd(ss){
+                display: none;
+            }
+            @include rwd(mini){
                 display: none;
             }
             &.left{
@@ -502,6 +572,10 @@ section.about{
                     font-size: 2.5rem;
                 }
                 @include rwd(ss){
+                    font-size: 2rem;
+                    white-space: nowrap;
+                }
+                @include rwd(mini){
                     font-size: 2rem;
                     white-space: nowrap;
                 }
@@ -635,6 +709,11 @@ section.where{
             top: -230px;
             width: 100%;
         }
+        @include rwd(mini){
+            padding:25px;
+            top: -230px;
+            width: 100%;
+        }
         #mapCardBtn{
             width: 40px;
             height: 40px;
@@ -650,6 +729,9 @@ section.where{
             color: rgb(237, 251, 229);
             display: none;
             @include rwd(ss){
+                display: block;
+            }
+            @include rwd(mini){
                 display: block;
             }
             img{
@@ -684,6 +766,9 @@ section.where{
                 opacity: 1;
                 transition: opacity 0.5s;
                 @include rwd(ss){
+                    display: none;
+                }
+                @include rwd(mini){
                     display: none;
                 }
             }
@@ -793,6 +878,9 @@ section.where{
             @include rwd(ss){
                 margin-left: 0;
             }
+            @include rwd(mini){
+                margin-left: 0;
+            }
             button{
                 transform: translateY(0);
                 transition: all 0.5s ease;
@@ -800,6 +888,9 @@ section.where{
                     transform: translateY(3px);
                 }
                 @include rwd(ss){
+                    width: 40px;
+                }
+                @include rwd(mini){
                     width: 40px;
                 }
             }
@@ -812,6 +903,9 @@ section.where{
         @include rwd(ss){
             width: 100%;
         }
+        @include rwd(mini){
+            width: 100%;
+        }
         img.cat{
             position: absolute;
             left: 0;
@@ -820,6 +914,9 @@ section.where{
                 left: -70px;
             }
             @include rwd(ss){
+                left: -180px;
+            }
+            @include rwd(mini){
                 left: -180px;
             }
         }
@@ -850,6 +947,9 @@ section.donation{
     @include rwd(ss){
         padding-bottom: 0;
     }
+    @include rwd(mini){
+        padding-bottom: 0;
+    }
     h3.enSpecialFont{
         font-size: 3rem;
         color: rgba(11, 100, 33, 0.123);
@@ -877,6 +977,13 @@ section.donation{
             top: 30px;
             left: 30px;
         }
+        @include rwd(mini){
+            font-size: 2.5rem;
+            z-index: 2;
+            color: rgba(228, 235, 230, 0.075);
+            top: 30px;
+            left: 30px;
+        }
     }
     div.rightSide{
         position: absolute;
@@ -892,6 +999,10 @@ section.donation{
             float: right;
         }
         @include rwd(ss){
+            position: relative;
+            float: right;
+        }
+        @include rwd(mini){
             position: relative;
             float: right;
         }
@@ -915,6 +1026,11 @@ section.donation{
                 top: 120px;
             }
             @include rwd(ss){
+                left: 20px;
+                top: 120px;
+                width: 90%;
+            }
+            @include rwd(mini){
                 left: 20px;
                 top: 120px;
                 width: 90%;
@@ -944,6 +1060,11 @@ section.donation{
                     right: 10px;
                 }
                 @include rwd(ss){
+                    position: absolute;
+                    top: 220px;
+                    right: 10px;
+                }
+                @include rwd(mini){
                     position: absolute;
                     top: 220px;
                     right: 10px;
@@ -988,6 +1109,10 @@ section.donation{
                 margin: 0 auto;
                 padding-top: 0;
             }
+            @include rwd(mini){
+                margin: 0 auto;
+                padding-top: 0;
+            }
             div.img{
                 border-radius: 10px;
                 height: 600px;
@@ -996,6 +1121,9 @@ section.donation{
                     border-radius: 10px 0 0 10px;
                 }
                 @include rwd(ss){
+                    border-radius: 10px 0 0 10px;
+                }
+                @include rwd(mini){
                     border-radius: 10px 0 0 10px;
                 }
                 img{
@@ -1047,6 +1175,10 @@ section.donation{
                     border-radius: 10px 0 0 10px;
                 }
                 @include rwd(ss){
+                    padding: 20px 20px 20px 30px;
+                    border-radius: 10px 0 0 10px;
+                }
+                @include rwd(mini){
                     padding: 20px 20px 20px 30px;
                     border-radius: 10px 0 0 10px;
                 }
@@ -1120,6 +1252,9 @@ section.donation{
                     @include rwd(ss){
                         width: 100px;
                     }
+                    @include rwd(mini){
+                        display: none;
+                    }
                     &.active{
                         filter: hue-rotate(90deg);
                     }
@@ -1132,9 +1267,15 @@ section.donation{
                     @include rwd(ss){
                         width: 150px;
                     }
+                    @include rwd(mini){
+                        width: 100%;
+                    }
                     div.cur{
                         position: relative;
                         right: -10px;
+                        @include rwd(mini){
+                            right: 0px;
+                        }
                         span{
                             display:block;
                             &.peoNum{
@@ -1169,6 +1310,9 @@ section.donation{
                             top: -8px;
                         }
                         @include rwd(ss){
+                            top: -5px;
+                        }
+                        @include rwd(mini){
                             top: -5px;
                         }
                         span{
@@ -1206,6 +1350,9 @@ section.donation{
                     right: 0px;
                 }
                 @include rwd(ss){
+                    right: 20px;
+                }
+                @include rwd(mini){
                     right: 20px;
                 }
             }
@@ -1253,6 +1400,9 @@ section.donation{
             display:none;
         }
         @include rwd(ss){
+            display:none;
+        }
+        @include rwd(mini){
             display:none;
         }
         div.card{
@@ -1370,6 +1520,9 @@ section.collar{
         @include rwd(ss){
             height: 350px;
         }
+        @include rwd(mini){
+            height: 350px;
+        }
         h3.enSpecialFont{
             font-size: 5rem;
             color: rgba(100, 61, 11, 0.055);
@@ -1386,9 +1539,14 @@ section.collar{
                 top: 150px;
             }
             @include rwd(ss){
-                font-size: 5rem;
-                right: 30px;
-                top: 150px;
+                font-size: 3rem;
+                right: 0px;
+                top: 100px;
+            }
+            @include rwd(mini){
+                font-size: 3rem;
+                right: 0px;
+                top: 0px;
             }
         }
         div.title{
@@ -1412,12 +1570,19 @@ section.collar{
                 padding-left: 30px;
                 transform: translateY(-130%);
             }
+            @include rwd(mini){
+                padding-left: 30px;
+                transform: translateY(-130%);
+            }
             h2{
                 margin-bottom: 30px;
                 @include rwd(sm){
                     margin-bottom: 20px;
                 }
                 @include rwd(ss){
+                    margin-bottom: 20px;
+                }
+                @include rwd(mini){
                     margin-bottom: 20px;
                 }
             }
@@ -1438,6 +1603,10 @@ section.collar{
             }
             @include rwd(ss){
                 transform: translateY(-330%);
+                width: 190px;
+            }
+            @include rwd(mini){
+                transform: translateY(20%);
                 width: 190px;
             }
         }
@@ -1493,6 +1662,9 @@ section.collar{
             @include rwd(ss){
                 width: 75%;
             }
+            @include rwd(mini){
+                width: 75%;
+            }
         }
         div.left{
             padding-left: 110px;
@@ -1510,6 +1682,9 @@ section.collar{
                 padding-left: 30px;
             }
             @include rwd(ss){
+                padding-left: 30px;
+            }
+            @include rwd(mini){
                 padding-left: 30px;
             }
             span{
@@ -1536,6 +1711,9 @@ section.collar{
                         @include rwd(ss){
                             display:none;
                         }
+                        @include rwd(mini){
+                            display:none;
+                        }
                     }
                 }
                 &:nth-child(2){
@@ -1546,6 +1724,9 @@ section.collar{
                         right: -20px;
                     }
                     @include rwd(ss){
+                        right: -20px;
+                    }
+                    @include rwd(mini){
                         right: -20px;
                     }
                 }
@@ -1578,6 +1759,10 @@ section.collar{
                 margin-right: 30px;
                 top: -20px;
             }
+            @include rwd(mini){
+                margin-right: 30px;
+                top: -20px;
+            }
             &:hover{
                 &::after{
                     transform: translateX(5px) scaleX(1.3);
@@ -1598,6 +1783,10 @@ section.collar{
                     left: 50px;
                 }
                 @include rwd(ss){
+                    display:block;
+                    left: 50px;
+                }
+                @include rwd(mini){
                     display:block;
                     left: 50px;
                 }
@@ -1637,6 +1826,10 @@ section.collar{
             overflow-x: scroll;
             overflow-y: hidden;
         }
+        @include rwd(mini){
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
         div.option{
             width: calc(100% / 7);
             height: 150px;
@@ -1645,6 +1838,9 @@ section.collar{
                 min-width: 100px;
             }
             @include rwd(ss){
+                min-width: 100px;
+            }
+            @include rwd(mini){
                 min-width: 100px;
             }
             div{
@@ -1725,6 +1921,9 @@ section.forum{
     @include rwd(ss){
         padding-bottom: 80px;
     }
+    @include rwd(mini){
+        padding-bottom: 80px;
+    }
     div.title{
         display: flex;
         justify-content: space-between;
@@ -1744,6 +1943,11 @@ section.forum{
             flex-direction: column;
             align-items: flex-start;
         }
+        @include rwd(mini){
+            padding-top: 150px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         h3.enSpecialFont{
             font-size: 5rem;
             color: rgba(255, 255, 255, 0.5);
@@ -1757,6 +1961,11 @@ section.forum{
                 left: 10px;
             }
             @include rwd(ss){
+                left: 10px;
+            }
+            @include rwd(mini){
+                bottom: -80px;
+                font-size: 4rem;
                 left: 10px;
             }
         }
@@ -1775,6 +1984,10 @@ section.forum{
                 margin-left: 30px;
                 margin-bottom: 10px;
             }
+            @include rwd(mini){
+                margin-left: 30px;
+                margin-bottom: 10px;
+            }
         }
         p{
             margin-right: 110px;
@@ -1785,6 +1998,11 @@ section.forum{
                 margin-left: 30px;
             }
             @include rwd(ss){
+                margin-left: 30px;
+                position: relative;
+                z-index: 2;
+            }
+            @include rwd(mini){
                 margin-left: 30px;
                 position: relative;
                 z-index: 2;
@@ -1804,6 +2022,9 @@ section.forum{
             @include rwd(ss){
                 right: 30px;
             }
+            @include rwd(mini){
+                right: 30px;
+            }
         }
     }
     @include scrollbar('div.cards');
@@ -1811,6 +2032,9 @@ section.forum{
         overflow-x: scroll;
         padding: 90px 30px 50px 30px;
         display: flex;
+        @include rwd(mini){
+            padding: 50px 30px 50px 30px;
+        }
         div.card{
             @include card();
             flex-direction: row;
@@ -1828,6 +2052,11 @@ section.forum{
                 height: 350px;
                 margin-right: 30px;
             }
+            @include rwd(mini){
+                width: 250px;
+                height: 350px;
+                margin-right: 30px;
+            }
             &:hover{
                 a.img{
                     img{
@@ -1841,6 +2070,9 @@ section.forum{
                 height: 60%;
                 overflow: hidden;
                 @include rwd(ss){
+                    height: 55%;
+                }
+                @include rwd(mini){
                     height: 55%;
                 }
                 img{
@@ -1874,6 +2106,9 @@ section.forum{
         position: relative;
         z-index:2;
         @include rwd(ss){
+            margin-top: 50px;
+        }
+        @include rwd(mini){
             margin-top: 50px;
         }
     }
@@ -1933,4 +2168,8 @@ section.forum{
     // *{
     //     border: 1px solid red;
     // }
+}
+
+@include rwd(mini) {
+	@include grid(mini, 12);
 }

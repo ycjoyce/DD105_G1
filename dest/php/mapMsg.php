@@ -3,7 +3,7 @@ session_start();
 try{
     require_once("./connectDB.php");
 
-    $sql="insert into `message` (sendMemNo, getMemNo, msgTime, msgText, msgPic) values ( {$_SESSION['memNo']} , (select memno from `lostpetreport` where lostpetrpno = {$_REQUEST['lostNo']} ) , date_format(now(),'%Y.%m.%d  %H:%i') , null , null );";
+    $sql="insert into `message` (sendMemNo, getMemNo, msgTime, msgText, msgPic, readOrNot) values ( {$_SESSION['memNo']} , (select memno from `lostpetreport` where lostpetrpno = {$_REQUEST['lostNo']} ) , date_format(now(),'%Y.%m.%d  %H:%i') , null , null , 1);";
     
     $msg= $pdo->exec($sql);
 

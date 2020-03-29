@@ -39,6 +39,9 @@ section{
         @include rwd(ss){
             width: 100%;
         }
+        @include rwd(mini){
+            width: 100%;
+        }
         div.title{
             position: absolute;
             display: flex;
@@ -83,6 +86,10 @@ section{
                 padding:30px;
                 width: 75%;
             }
+            @include rwd(mini){
+                padding:30px;
+                width: 80%;
+            }
             h2{
                 position: absolute;
                 right: 0;
@@ -96,6 +103,9 @@ section{
                 opacity: 0.5;
                 @include rwd(ss){
                     left: -50px;
+                }
+                @include rwd(mini){
+                    left: -10px;
                 }
             }
             label{
@@ -143,6 +153,10 @@ section{
                         @include rwd(ss){
                             margin-right: 10px;
                         }
+                        @include rwd(mini){
+                            margin-right: 10px;
+                            top: 12px;
+                        }
                         &::after{
                             content: '';
                             display: inline-block;
@@ -173,6 +187,9 @@ section{
                     color: #fff;
                     transition: all 0.5s ease-in-out;
                     @include rwd(ss){
+                        width: 80px;
+                    }
+                    @include rwd(mini){
                         width: 80px;
                     }
                     &:hover{
@@ -222,6 +239,9 @@ section{
         @include rwd(ss){
             display: none;
         }
+        @include rwd(mini){
+            display: none;
+        }
         div.title{
             display: flex;
             max-width: 100%;
@@ -258,6 +278,9 @@ section{
             @include rwd(ss){
                 width: 90%;
             }
+            @include rwd(mini){
+                width: 90%;
+            }
             @include rwd(sm){
                 width: 70%;
             }
@@ -267,6 +290,9 @@ section{
                 bottom: 180px;
                 color: rgb(26, 26, 26);
                 @include rwd(ss){
+                    display:none;
+                }
+                @include rwd(mini){
                     display:none;
                 }
                 @include rwd(sm){
@@ -284,6 +310,9 @@ section{
                 opacity: 0.6;
                 color: rgb(26, 26, 26);
                 @include rwd(ss){
+                    display:none;
+                }
+                @include rwd(mini){
                     display:none;
                 }
                 @include rwd(sm){
@@ -371,6 +400,9 @@ section{
                     @include rwd(ss){
                         width: 80px;
                     }
+                    @include rwd(mini){
+                        width: 80px;
+                    }
                     &:hover{
                         background-color: #fff;
                         color: $gray;
@@ -434,4 +466,8 @@ section{
 // ss (min-width: 414px)
 @include rwd(ss) {
     @include grid(ss, 12);
+}
+
+@include rwd(mini) {
+	@include grid(mini, 12);
 }

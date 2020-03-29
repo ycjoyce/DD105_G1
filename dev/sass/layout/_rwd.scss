@@ -17,7 +17,7 @@
 
 @mixin rwd($media) {
 	@if $media == ss {
-		@media screen and (max-width: 575px) { @content; }
+		@media screen and (min-width: 411px) and (max-width: 575px) { @content; }
 	} @else if $media == sm {
 		@media screen and (min-width: 576px) and (max-width: 767px) { @content; }
 	} @else if $media == md {
@@ -26,7 +26,9 @@
 		@media screen and (min-width: 992px) and (max-width: 1199px) { @content; }
 	} @else if $media == xl {
 		@media screen and (min-width: 1200px) { @content; }
-	}
+    } @else if $media == mini {
+        @media screen and (max-width: 410px) { @content; }
+    }
 }
 
 
