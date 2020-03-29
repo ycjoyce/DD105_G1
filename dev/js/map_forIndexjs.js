@@ -257,9 +257,10 @@ function mapMsg(id) {
       type: "POST",
       data: { lostNo: id.substr(4) },
       success(data) {
-        if (member.memNo == data) {
+        if (member.memNo.trim() == data.trim()) {
           alert("此寵物主人為您本人");
-        } else {
+        } 
+        else {
           petLostOwner = data;
 
           $.ajax({
