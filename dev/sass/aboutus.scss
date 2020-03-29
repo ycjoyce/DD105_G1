@@ -263,10 +263,12 @@ article {
     }
     .address_tel {
       h4 {
-        padding-left: 10%;
+        padding:5% 5% 5% 10%;
       }
     }
   }
+
+
 
   .contactRight {
     padding: 50px 200px;
@@ -358,6 +360,7 @@ article {
   .bgimg {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 
     .aboutusbox {
       width: 100%;
@@ -507,7 +510,7 @@ article {
         width: 70%;
       }
       .address_tel {
-        padding-left: 5%;
+        padding: 12%;
       }
     }
 
@@ -564,8 +567,15 @@ article {
   }
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 576px) {
   .actSize {
     width: 100%;
+    margin-bottom: 50px;
+    .actText{
+      h3{
+        font-size: 1rem;
+      }
+    }
   }
+   
 }
