@@ -107,7 +107,7 @@ imagesLoaded( '#coidea', { background: true }, function() {
         .set(box.querySelector('.bcg'), { force3D:true })
         .set(box.querySelector('.content'), { className: '+=active' })
         .to(box.querySelector('.bg'), 1, { height: "100%", marginTop: '0', ease: Cubic.easeInOut })
-        .to(box.querySelector('.bcg'), 1.2, { maxWidth: "100%", ease: Cubic.easeInOut }, '-=0.7')
+        .to(box.querySelector('.bcg'), 1.2, { minWidth: "100vw", ease: Cubic.easeInOut }, '-=0.7')
         .to(box.querySelector('span'), 1, { fontSize: "64px", letterSpacing: '0px', ease: Cubic.easeInOut }, '-=0.7')
         .to(box.querySelector('.description'), 0.7, { autoAlpha: 1, height: 260, y: -48, ease: Cubic.easeInOut }, '-=0.7')
       
@@ -116,6 +116,8 @@ imagesLoaded( '#coidea', { background: true }, function() {
         header.classList.toggle('active-header');
         footer.classList.toggle('active-footer');
         showTimeline.reversed(!showTimeline.reversed());
+        document.getElementById("light").classList.toggle("click");
+        document.querySelector("video").classList.toggle("click");
       });
     }
 

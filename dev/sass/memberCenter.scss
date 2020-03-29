@@ -184,6 +184,9 @@
   @include rwd(ss) {
     margin: 10px 0 15px 0;
   }
+  @include rwd(mini) {
+    margin: 10px 0 15px 0;
+  }
 }
 
 label.uploadimgbtn {
@@ -203,6 +206,11 @@ label.uploadimgbtn {
     margin-left: 15px;
   }
   @include rwd(ss) {
+    position: absolute;
+    bottom: 40px;
+    margin-left: 15px;
+  }
+  @include rwd(mini) {
     position: absolute;
     bottom: 40px;
     margin-left: 15px;
@@ -893,11 +901,9 @@ section.blacklistTable {
       border-radius: 50%;
       display: inline-block;
       margin-right: 10%;
-      overflow: hidden;
-      img {
-        max-width: 50px;
-        max-height: 50px;
-      }
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
     }
     span {
       align-self: center;
@@ -936,4 +942,8 @@ section.blacklistTable {
       }
     }
   }
+}
+
+@include rwd(mini) {
+	@include grid(mini, 12);
 }

@@ -1372,3 +1372,7 @@ body {
     max-width: 215px;
   }
 }
+
+@include rwd(mini) {
+	@include grid(mini, 12);
+}
