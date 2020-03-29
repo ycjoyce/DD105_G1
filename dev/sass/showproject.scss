@@ -77,12 +77,37 @@
 //=======================================================
 
 @import 'layout/rwd';
-//使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
 
 //=======================================================
 
 @import 'layout/rwd2';
 //使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
+//電腦  960↑
+// @mixin pc-width() {
+//     @media all and (min-width: $pc-media) {
+//                  @content;
+//            }
+//       }
+  //平板 959~768
+//    @mixin pad-width() {
+//   @media all and (min-width:$pad-media) and (max-width: $pcs-media) {
+//                   @content;
+//             }
+//   }
+  //小平板 767~375
+//    @mixin small-pad-width() {
+//           @media all and (min-width: $phone-media) and (max-width:$pads-media) {
+//                   @content;
+//             }
+//    }
+  //手機 374↓
+//    @mixin phone-width() {
+//           @media all and (max-width: $phones-media) {
+//                   @content;
+//             }
+//    }
 
 //=======================================================
  
@@ -136,7 +161,9 @@ html,body{
 
 
 .col-8.projectcontentbox{
-    margin: 0 auto;
+  margin: 0 auto;
+
+    
 }
 
 
@@ -212,7 +239,7 @@ html,body{
         .progressbar{
           height: 15px;
           margin-bottom: 10px;
-          background-color: lightblue;
+          background-color: darken($color_grey,6);
           overflow: hidden;
       
           .valuebar{
@@ -257,53 +284,23 @@ html,body{
 
           ul{
               list-style: none;
-              li.heart{
-                  display: inline-block;
-                  // border: 1px solid salmon;
-                  background-color: #ffffff;
-                  border-radius: 100%;
-                  width: 40px;
-                  height: 40px;
-                  box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-                  margin-right: 10px;
-                  cursor: pointer;
-                  i{
-                      font-size: 1em;
-                      position: absolute;
-                      left: 50%;
-                      top: 50%;
-                      transform: translate(-50%,-50%);
-                      color: #EE7785;
-                  }
-  
               
-              }
               li.share{
                   display: inline-block;
-                  // border: 1px solid salmon;
-                  background-color: #ffffff;
-                  border-radius: 100%;
-                  width: 40px;
-                  height: 40px;
-                  box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-                  margin-right: 10px;
                   cursor: pointer;
-                  i{
-                      font-size: 1em;
-                      position: absolute;
-                      left: 50%;
-                      top: 50%;
-                      transform: translate(-50%,-50%);
-                      color: #84B1ED;
+                  .line-it-button{
+                    filter: saturate(0.8);
                   }
+                  
   
               
               }
               li#donationMsg{
                 display: inline-block;
+                margin-left: 10px;
                 cursor: pointer;
                 img{
-                  width: 40px;
+                  width: 30px;
                   display: block;
                 }
 
@@ -425,6 +422,7 @@ button[type=submit].fakeformbtn{
     text-align: left;
     padding: 0;
     border: 0px;
+    width: 260px;
     background-color: transparent;
     border-radius: 5px;
     color: #555;
@@ -467,6 +465,7 @@ button[type=submit].fakeformbtn{
     border-radius: 50%;
     background-size: cover;
     border: solid 2px white;
+    background-color: white;
     z-index: 5;
   }
   
@@ -506,15 +505,15 @@ button[type=submit].fakeformbtn{
     position: absolute;
     left: $padding_class;
     bottom: -50px;
-    background-color: #fff;
+    background-color: #EE7785;
     box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: .3s;
     
     &:hover{
-      background-color: $color_blue;
+      background-color: white;
       i{
-        color: white;
+        color: #EE7785;
         
       }
       
@@ -526,7 +525,7 @@ button[type=submit].fakeformbtn{
       top: 50%;
       transform: translate(-50%,-50%);
       font-size: $size_icon;
-      color: $color_blue;
+      color: white;
       
     }
     
@@ -692,14 +691,16 @@ button[type=submit].fakeformbtn{
     height: 500px;
     margin: auto;
     overflow: hidden;
+    
 
     
 
     .wrap{
         position: absolute;
         margin-top: 20px;
-        width:100%;
+        width:2170px;
         transition:left 1s;
+        // border: 1px solid skyblue;
 
     }
 }
@@ -753,7 +754,7 @@ button[type=submit].fakeformbtn{
 .-on{
   
   opacity: 1;
-  z-index: 1;
+  z-index: 10;
 }
 
 .-opacity-zero{
@@ -1146,6 +1147,396 @@ close Button
     width: 15px;
   }
 }
+
+
+
+
+
+// // rwd
+
+// //rwd 959~768px==============================
+
+
+//專案狀態
+
+.projectcontentbox.col-8{
+  
+  
+
+  @include pad-width{
+    width: 90%;
+    .imgrow{
+      #small{
+        display: flex;
+        flex-wrap: wrap;
+        img{
+          width: 45%;
+          margin: 5px;
+        }
+      }
+    }
+    
+
+  }
+
+}
+
+.artcontent.col-12{
+  @include pad-width{
+      .artcontentbox{
+        width: 90%;
+
+        .titleimg{
+          img{
+            width: 50%;
+          }
+        }
+        
+    }
+
+
+
+  }
+
+}
+
+.newprojectrow.col-8{
+  
+  @include pad-width{
+    width: 77%;
+    
+  }
+
+}
+
+.overlay{
+  width: 100%;
+  @include pad-width{
+    .lightboxcontent{
+      width: 100%;
+      .col-12.lightbox{
+        width: 100%;
+        .content{
+          width: 70%;
+          height: 90%;
+          overflow-x: scroll;
+          .checkout{
+            display: flex;
+            flex-direction: column;
+            .credit-card-box{
+              margin-left: 0;
+              margin-top: 30px;
+            }
+            .form{
+              width: 366px;
+              margin-top: 20px;
+              margin-right: 0px;
+              .fieldset{
+                input{
+                  width: 90px;
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    
+  }
+
+}
+
+
+//rwd 767~375px==============================
+
+//slider
+.projectcontentbox.col-8{
+
+  @include small-pad-width{
+
+    .imgchange{
+      flex-direction: column-reverse;
+
+      .imgrow{
+        width: 100%;
+        margin-top: 20px;
+
+        #small{
+          flex-wrap: wrap;
+          margin-top: 5px;
+          img{
+            width: 45%;
+            margin: 5px;
+
+          }
+          
+        }
+      }
+
+      .status{
+        width: 100%;
+
+        .titlename{
+
+          h3:nth-child(2){
+            margin-left: 0px;
+          }
+
+        }
+      }
+    }
+      
+
+
+  }
+
+}
+
+
+.artcontent.col-12{
+  
+  @include small-pad-width{
+    margin-top: 20px;
+      .artcontentbox{
+        padding: 20px;
+        width: 90%;
+
+        .titleimg{
+          margin-top: -70px;
+          img{
+            width: 90%;
+          }
+        }
+        h3{
+          padding: 10px;
+          font-size: 1.3rem;
+        }
+        
+    }
+
+
+
+  }
+
+}
+
+.overlay{
+  
+  @include small-pad-width{
+    width: 100%;
+    .lightboxcontent{
+      width: 100%;
+      .col-12.lightbox{
+        width: 100%;
+        .content{
+          width: 90%;
+          height: 70%;
+          overflow-x: scroll;
+          .checkout{
+            display: flex;
+            flex-direction: column;
+            .credit-card-box{
+              display: none;
+            }
+            .form{
+              width: 280px;
+              margin-top: 20px;
+              margin-right: 0px;
+              fieldset{
+                input#card-number.input-cart-number{
+                 width: 60px;
+            
+                }
+                input#card-number-1.input-cart-number{
+                  width: 60px;
+             
+                }
+                input#card-number-2.input-cart-number{
+                  width: 60px;
+             
+                }
+                input#card-number-3.input-cart-number{
+                  width: 60px;
+             
+                }
+                  
+              }
+              fieldset.fieldset-expiration{
+
+                .select{
+                  width: 70px;
+                }
+
+              }
+              .btns button[type=submit].su{
+                margin-right: 20px;
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    
+  }
+
+}
+
+
+
+
+
+
+
+
+//rwd 374px↓==============================
+
+//slider
+.projectcontentbox.col-8{
+
+  @include phone-width{
+
+    .imgchange{
+      flex-direction: column-reverse;
+
+      .imgrow{
+        width: 100%;
+        margin-top: 20px;
+
+        #small{
+          flex-wrap: wrap;
+          margin-top: 5px;
+          img{
+            width: 45%;
+            margin: 5px;
+
+          }
+          
+        }
+      }
+
+      .status{
+        width: 100%;
+
+        .titlename{
+
+          h3:nth-child(2){
+            margin-left: 0px;
+          }
+
+        }
+      }
+    }
+      
+
+
+  }
+
+}
+
+
+.artcontent.col-12{
+  
+  @include phone-width{
+    margin-top: 20px;
+      .artcontentbox{
+        padding: 20px;
+        width: 90%;
+
+        .titleimg{
+          margin-top: -70px;
+          img{
+            width: 90%;
+          }
+        }
+        h3{
+          padding: 10px;
+          font-size: 1.3rem;
+        }
+        
+    }
+
+
+
+  }
+
+}
+
+.overlay{
+  width: 100%;
+  @include phone-width{
+    .lightboxcontent{
+      width: 100%;
+      .col-12.lightbox{
+        width: 100%;
+        .content{
+          width: 90%;
+          height: 70%;
+          overflow-x: scroll;
+          .checkout{
+            display: flex;
+            flex-direction: column;
+            .credit-card-box{
+              display: none;
+            }
+            .form{
+              width: 280px;
+              margin-top: 20px;
+              margin-right: 0px;
+              fieldset{
+                input#card-number.input-cart-number{
+                 width: 60px;
+            
+                }
+                input#card-number-1.input-cart-number{
+                  width: 60px;
+             
+                }
+                input#card-number-2.input-cart-number{
+                  width: 60px;
+             
+                }
+                input#card-number-3.input-cart-number{
+                  width: 60px;
+             
+                }
+                  
+              }
+              fieldset.fieldset-expiration{
+
+                .select{
+                  width: 70px;
+                }
+
+              }
+              .btns button[type=submit].su{
+                margin-right: 20px;
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    
+  }
+
+}
+
+
+
+
+
+
+
+  
+
+
+
 
 
 

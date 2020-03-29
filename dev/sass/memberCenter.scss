@@ -87,11 +87,12 @@
       height: 40px;
       border-radius: 100%;
       border: none;
-      background-image: url(../img/pawprint-01.svg);
-      background-size: 25px;
+      background-image: url(../img/icon_member_edit.png);
+      background-size: 51px;
       background-repeat: no-repeat;
-      background-position: center;
-      background-color: darkgreen;
+      background-position: center 40%;
+      background-color: rgb(116,175,91);
+      border: 1px solid rgb(116,175,91);
       padding: 0;
       position: absolute;
       right: -45px;
@@ -440,6 +441,12 @@ label.uploadimgbtn {
   img {
     max-width: 50px;
   }
+}
+#rpbtn {
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  outline: none;
 }
 
 #lostform_cus {
@@ -813,12 +820,14 @@ div.clickToShow {
     }
   }
 }
-@media (max-width: 415px){
-  .tab-content section table tr, .tab-content section table th, .tab-content section table td{
+@media (max-width: 415px) {
+  .tab-content section table tr,
+  .tab-content section table th,
+  .tab-content section table td {
     padding: 2px 5px;
   }
-  .tab-content section .updatebtn_s{
-    width:55px;
+  .tab-content section .updatebtn_s {
+    width: 55px;
   }
 }
 
@@ -953,5 +962,5 @@ section.blacklistTable {
 }
 
 @include rwd(mini) {
-	@include grid(mini, 12);
+  @include grid(mini, 12);
 }

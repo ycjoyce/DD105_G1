@@ -5,18 +5,26 @@
 */
 
 // 分隔線
-$(".btn.darkgreen.nav__link").on('click', function() {
-    $(".postwritebackblock").css({"display":"block"});
-    $(".post_write_region").css({"display":"block"});
-    $(".postwritebackblock").click(function() {
-        $(".postwritebackblock").css({"display":"none"});
-        $(".post_write_region").css({"display":"none"});
-    });
-    $(".postwritecrossbutton").click(function() {
-        $(".postwritebackblock").css({"display":"none"});
-        $(".post_write_region").css({"display":"none"});
-    });
-});
+document.getElementById("par_postarticlebutton").onclick = function(){
+    var postregionloginornot = document.getElementsByClassName("container")[0].getElementsByTagName("ul")[0].getElementsByTagName("li")[5].innerText;
+    if( postregionloginornot == "登入 / 註冊") {
+        console.log(postregionloginornot);
+        alert("您尚未登入，請登入後再發文");
+    } else {
+        document.getElementsByClassName("postwritebackblock")[0].style.display = "block";
+        document.getElementsByClassName("post_write_region")[0].style.display = "block";
+
+        document.getElementsByClassName("postwritebackblock")[0].onclick = function(){
+            document.getElementsByClassName("postwritebackblock")[0].style.display = "none";
+            document.getElementsByClassName("post_write_region")[0].style.display = "none";
+        };
+        document.getElementsByClassName("postwritecrossbutton")[0].onclick = function(){
+            document.getElementsByClassName("postwritebackblock")[0].style.display = "none";
+            document.getElementsByClassName("post_write_region")[0].style.display = "none";
+        };
+    }
+}
+
 // 分隔線
 
 $(".postregionsort div.aa1").on('click', function() {
@@ -163,6 +171,104 @@ window.addEventListener("load",function(){
         // console.log(piNo);
         cardItem.onclick = function(){
             location.href = './post_content.php?piNo=' + piNo;
+        }
+    }
+
+
+    //這邊切 keyword
+    let keywords = document.getElementsByClassName("keyword");
+    var keywordItemSplit;
+    var keywordItemString = "";
+    for(var keywordIndex=0; keywordIndex<keywords.length; keywordIndex++) {
+        var keywordItem = keywords[keywordIndex];
+        keywordItemString = keywordItem.innerText;
+        // console.log(keywordItemString);
+        keywordItem.innerText="";
+        //取出字串後，字串依逗點分段放入陣列
+        //取出的字串沒有逗點則直接轉陣列
+        if(keywordItemString != "") {
+            if(keywordItemString.indexOf(",") ){
+                keywordItemSplit = keywordItemString.split(",");
+                // console.log(keywordItemSplit);
+            } else {
+                keywordItemSplit = keywordItemString.toArray();
+                // console.log(keywordItemSplit);
+            }
+            // 加上#字號
+            for(var keywordItemSplitIndex=0; keywordItemSplitIndex<keywordItemSplit.length; keywordItemSplitIndex++ ){
+                var keywordItemSplitItem = keywordItemSplit[keywordItemSplitIndex];
+                // console.log(keywordItemSplitItem);
+                var setkeywordItemSplitItem = document.createElement("span");
+                setkeywordItemSplitItem.innerText = "#" + keywordItemSplitItem;
+                // console.log(setkeywordItemSplitItem);
+                keywordItem.appendChild(setkeywordItemSplitItem);
+            }
+        }
+    }
+
+
+    // 前端畫面處理 : input file 圖片預覽
+    let reader = new FileReader();
+    let cpcWriteContentUpfile0 = document.getElementsByClassName("cpc_writecontentupfile")[0];
+    let cpcWriteContentUpfile1 = document.getElementsByClassName("cpc_writecontentupfile")[1];
+    let cpcWriteContentUpfile2 = document.getElementsByClassName("cpc_writecontentupfile")[2];
+    let file;
+    cpcWriteContentUpfile0.onchange = function(e){
+        file = e.target.files[0];
+        reader.onload = function(e){
+            document.getElementById("cpc_writecontentpic1").src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
+    cpcWriteContentUpfile1.onchange = function(e){
+        file = e.target.files[0];
+        // 1. input 選取後發出的event
+        // 2. 從event中取得檔案
+        // 3. 把檔案跟<img>做連結
+        reader.onload = function(e){
+            document.getElementById("cpc_writecontentpic2").src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
+    cpcWriteContentUpfile2.onchange = function(e){
+        file = e.target.files[0];
+        reader.onload = function(e){
+            document.getElementById("cpc_writecontentpic3").src = reader.result;
+        }
+        reader.readAsDataURL(file);
+    }
+
+
+    //這邊放將文字框 值 放入 input value值傳到後台
+    let postwriteregionbutton = document.getElementsByClassName("postwriteregionbutton")[0];
+    // console.log(postwriteregionbutton);
+    // 將文字框 值 放入 input value值
+    postwriteregionbutton.onclick = function(){
+        console.log(document.getElementsByClassName("postwriteregionbutton")[0].getAttribute("type"));
+        // console.log(document.getElementById("cpc_writecontentpic1").getAttribute("src"));
+        // console.log(document.getElementById("cpc_writecontentpic2").getAttribute("src"));
+        // console.log(document.getElementById("cpc_writecontentpic3").getAttribute("src"));
+        if ( document.getElementById("cpc_writecontentpic1").getAttribute("src")!="" && document.getElementById("cpc_writecontentpic2").getAttribute("src")!="" && document.getElementById("cpc_writecontentpic3").getAttribute("src")!="" &&
+             document.getElementsByClassName("contenteditabletext")[0].innerText!="" && document.getElementsByClassName("contenteditabletext")[1].innerText!="" && document.getElementsByClassName("contenteditabletext")[2].innerText!="" &&
+             document.getElementsByClassName("postwritetitle")[0].value!="" ) {
+             // alert("全部都填了");
+             // var contenteditabletext1innerText = document.getElementsByClassName("contenteditabletext")[0].innerText;
+             // var contenteditabletext2innerText = document.getElementsByClassName("contenteditabletext")[1].innerText;
+             // var contenteditabletext3innerText = document.getElementsByClassName("contenteditabletext")[2].innerText;
+             // var cpcWriteContentTextRecord1value = document.getElementsByClassName("cpc_writecontenttextrecord")[0].value;
+             // var cpcWriteContentTextRecord2value = document.getElementsByClassName("cpc_writecontenttextrecord")[1].value;
+             // var cpcWriteContentTextRecord3value = document.getElementsByClassName("cpc_writecontenttextrecord")[2].value;
+             document.getElementsByClassName("cpc_writecontenttextrecord")[0].value = document.getElementsByClassName("contenteditabletext")[0].innerText;
+             document.getElementsByClassName("cpc_writecontenttextrecord")[1].value = document.getElementsByClassName("contenteditabletext")[1].innerText;
+             document.getElementsByClassName("cpc_writecontenttextrecord")[2].value = document.getElementsByClassName("contenteditabletext")[2].innerText;
+             document.getElementsByClassName("cpc_writecontenttextrecordgeneral")[0].value = document.getElementsByClassName("contenteditabletext")[0].innerText.substr( 0 , 50 ) + " ...";
+             // console.log(contenteditabletext1innerText, contenteditabletext2innerText, contenteditabletext3innerText);
+             // console.log(cpcWriteContentTextRecord1value);
+             // console.log(cpcWriteContentTextRecord2value);
+             // console.log(cpcWriteContentTextRecord3value);
+             document.getElementsByClassName("postwriteregionbutton")[0].type = "submit";
+        } else {
+            alert("請確認已輸入所有資料");
         }
     }
 });

@@ -7,6 +7,12 @@
 </head>
 <body>
     <?php
+    session_start();
+    // if($_REQUEST['memNo'] != ''){
+    //     $_SESSION['memNo'] = $_REQUEST['memNo'];
+    // }
+    
+
     $fundNo = $_REQUEST["fundNo"];
     $errMsg = "";
     try{
@@ -27,13 +33,14 @@
         
 
     
-        if ($count !=0) {
-            $sql = "insert into `attend_fundraising` (`memNo`,`fundNo`,`fundNowAmount`,`atFundDate`) values(:memNo,:fundNo,:fundNowAmount,NOW())";
+        if (isset($_SESSION["memNo"])) {
+            $sql = "insert into `attend_fundraising` (`memNo`,`fundNo`,`fundNowAmount`,`atFundDate`) values( :memNo,:fundNo,:fundNowAmount,NOW())";
             $fundraising = $pdo->prepare($sql);
             $fundraising -> bindValue(":fundNowAmount", $_POST["fundNowAmount"]);
             $fundraising->bindValue(":fundNo",$fundNo);
-            $fundraising->bindValue(":memNo",$_POST["memNo"]);
+            $fundraising->bindValue(":memNo",$_SESSION['memNo']);
             $fundraising -> execute();
+            $atNo = $pdo->lastInsertId();
             echo "新增成功~";
         }
 

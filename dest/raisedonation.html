@@ -4,46 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>浪愛回家 | 愛心助浪浪 | 發起募款</title>
     <link rel="stylesheet" href="./css/raisedonation.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
     <!-- 頁籤標題 -->
-    <title>浪愛回家 | 愛心助浪浪 | 發起募款</title>
-<link rel="icon" href="./img/logo.ico" type="image/x-icon">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-
+    <!-- @@include('./layout/head.html',{
+        "title": "浪愛回家 | 愛心助浪浪 | 發起募款"
+    }) -->
 </head>
 
 <body>
     <header class="header-navigation" id="header">
-    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
-        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
-            <h1>
-                <a href="./main.html">
-                    <img src="./img/logo-wide.png" alt="logo">
-                </a>
-            </h1>
-            <ul class="col-xl-9 col-lg-9 col-md-9">
-                <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
-                <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
-                <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
-                <li><a id="navPost" href="./post_article_region.php">毛孩交流區</a></li>
-                <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
-                <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
-            </ul>
-            <button class="hamburger hamburger--spring" type="button">
-                <span class="hamburger-box">
-                  <span class="hamburger-inner"></span> 
-                </span>
-            </button>
-        </div>
-    </nav>
-</header>
-
+        <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+                <h1>
+                    <a href="./main.html">
+                        <img src="./img/logo-wide.png" alt="logo">
+                    </a>
+                </h1>
+                <ul class="col-xl-9 col-lg-9 col-md-9">
+                    <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                    <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                    <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                    <li><a id="navPost" href="./post_article_region.php">毛孩交流區</a></li>
+                    <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                    <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
+                </ul>
+                <button class="hamburger hamburger--spring" type="button">
+                    <span class="hamburger-box">
+                      <span class="hamburger-inner"></span> 
+                    </span>
+                </button>
+            </div>
+        </nav>
+    </header>
     <div style="height:10vh"></div>
 <!---------------- banner ---------------->
     <div class="col-10 topimg">
@@ -80,30 +77,30 @@
                 <div class="second_step wow fadeInDown">
                     <h1>02</h1>
                     <h2>STEP</h2>
-                    <p>等待審核通知</p>
+                    <p>內容確認</p>
                 </div>
                 <div class="third_step wow fadeInDown">
                     <h1>03</h1>
                     <h2>STEP</h2>
-                    <p>最終內容確認</p>
+                    <p>確認發起募款</p>
                 </div>
                 <div class="forth_step wow fadeInDown">
                     <h1>04</h1>
                     <h2>STEP</h2>
-                    <p>確認發起募款</p>
+                    <p>專案上線</p>
                 </div>
-                <div class="complete wow fadeInDown">
+                <!-- <div class="complete wow fadeInDown">
                     <h3>專案上線</h3>
                     <div class="sparkle">
                         <img src="./img/sparkle.png" alt="">
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 <!---------------- 發起募款表單 ---------------->
     <div class="formbox col-12">
-        <form action="./php/projectinsert.php" method="post" enctype="multipart/form-data" class="col-8">
+        <form action="./php/projectinsert.php" id="raisedonationform" method="post" enctype="multipart/form-data" class="col-8">
             <div id="app">
                 <!---------------- 卡片填寫 ---------------->
                 <div class="stepone">
@@ -112,19 +109,19 @@
                             <label>專案標題</label>
                             <span> 9字以內</span>
                         </div>
-                        <input name="fundTitle" v-model="title">
+                        <input name="fundTitle" v-model="title" id="fundTitle" maxlength="9">
                         <div class="name">
                             <label>毛孩名稱</label>
                             <span> 9字以內</span>
                         </div>
-                        <input name="fundName" v-model="name">
+                        <input name="fundName" v-model="name" id="fundName"  maxlength="9">
                         <!---------------- 專案目標和開始日期 ---------------->
                         <div class="fundGoal">
                             <label>目標金額</label>
                             <span>2萬以內</span>
                         </div>
                         <div class="select">
-                            <select v-model="goal" class="select" name="fundGoal">
+                            <select v-model="goal" class="select" name="fundGoal" id="fundGoal">
                                 <option selected>1000</option>
                                 <option>2000</option>
                                 <option>3000</option>
@@ -214,24 +211,25 @@
                     </div>
                     <div class="firstarticlerow">
                         <label>毛孩介紹</label>
-                        <span> 100字以內</span>
+                        <span> 180字以內</span>
                     </div>
-                    <textarea class="firstarticlerow" v-model="firstarticlerow"></textarea>
+                    <textarea class="firstarticlerow" v-model="firstarticlerow" maxlength="180"></textarea>
                     <div class="secondarticlerow">
                         <label>募款目的</label>
-                        <span> 100字以內</span>
+                        <span> 180字以內</span>
                     </div>
-                    <textarea class="secondarticlerow" v-model="secondarticlerow"></textarea>
+                    <textarea class="secondarticlerow" v-model="secondarticlerow" maxlength="180"></textarea>
                     <div class="thirdarticlerow">
                         <label>拉票文宣</label>
-                        <span> 100字以內</span>
+                        <span> 180字以內</span>
                     </div>
-                    <textarea class="thirdarticlerow" v-model="thirdarticlerow"></textarea>
+                    <textarea class="thirdarticlerow" v-model="thirdarticlerow" maxlength="180"></textarea>
+                    <input type="hidden" name="memPoint" id="memPoint" value="300">
                     <div class="gosubmit">
                         <div class="steptwobtn">
                             <button type="button" id="step2" class="titleFont">上一步</button>
                         </div>
-                        <button type="submit" name="submit" class="su">
+                        <button type="submit" name="submit" class="su" id="submitbtn">
                             <a class="btn darkgreen nav__link">
                                 <span class="titleFont">發起募款</span>
                                 <div class="border"></div>
@@ -242,6 +240,7 @@
                         </button>
                     </div>                         
                 </div>
+            
                 
             
             <!---------------- 專案內容確認 ---------------->
@@ -285,7 +284,6 @@
         </form><!-- form結束標籤 -->
     </div>
 
-<!-- footer -->
 <footer>
     <div class="page_top" id="page_top">
         <span class="titleFont smalltext">PAGE TOP</span>
@@ -298,8 +296,33 @@
 <script src="./js/page_top.js"></script>
 
 
-
 <script src="./js/raisedonation.js"></script>
+<script src="./js/signInOut.js"></script>
+
+<script>
+    //判斷會員是否登入
+    function checkLoginStatus(e) {
+                var xhr = new XMLHttpRequest();
+                var url = "./php/checkMem.php";
+                xhr.open("GET", url, true);
+                xhr.send(null);
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        member = JSON.parse(xhr.responseText);
+                        if (!member.memName) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            alert('請先登入');
+                            window.location = './raisedonation.html';
+                        }else{
+                            alert('成功發起募款');
+
+                        }
+                    }
+                }
+            }
+        document.getElementById("submitbtn").addEventListener("click", checkLoginStatus);
+</script>
 </body>
 
 </html>

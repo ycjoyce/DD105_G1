@@ -50,7 +50,7 @@ $(document).ready(function() {
             html += `
                 <tr>
                     <td>${data[i].lostPetRpNo}</td>
-                    <td class="memRWD_992>${data[i].lostPetRpDate}</td>
+                    <td class="memRWD_992">${data[i].lostPetRpDate}</td>
                     <td class="memRWD_992">${data[i].lostPetRpLoc}</td>
                     <td class="memRWD_992">${data[i].lostPetRpLDate}</td>
                     <td>${data[i].lostPetRpName}</td>
