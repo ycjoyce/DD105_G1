@@ -1,4 +1,5 @@
 function dofirst() {
+    // alert(window.innerWidth);
     WebFont.load({
         google: {
             families: ['DFKai-sb', 'Microsoft JhengHei', 'Arial', 'Pacifico', 'Coming Soon', 'Quicksand', 'Inconsolata']
@@ -435,64 +436,12 @@ function dofirst() {
 
             canvas.add(tagImg);
         });
-        // defaultImg = new fabric.Image(collarImg, {
-        //     left: imgOffsetX,
-        //     top: imgOffsetY,
-        //     angle: 0,
-        //     opacity: 1,
-        //     scaleX: (previewArea.clientWidth / 1000) * 0.7,
-        //     scaleY: (previewArea.clientWidth / 1000) * 0.7,
-        //     selectable: false,
-        //     hoverCursor: "default",
-        // });
-        // canvas.clear();
-        // canvas.add(defaultImg);
-        // // 輸出主要圖片----------------------------------------------------------------------
-        // collarImg.addEventListener('load', function() {
-        //     context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // });
-        // context.drawImage(collarImg, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // //-----------------------------------------------------------------------------------
 
-
-
-        // // 輸出背景圖片----------------------------------------------------------------------
-        // collarImg2.addEventListener('load', function() {
-        //     context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // });
-        // context2.drawImage(collarImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // //-----------------------------------------------------------------------------------
-
-
-
-        // 輸出吊環圖片----------------------------------------------------------------------
         tagImg1.addEventListener('load', function() {
             context2.drawImage(tagImg1, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
         });
         context2.drawImage(tagImg1, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        //-----------------------------------------------------------------------------------
 
-
-
-        // // 輸出吊牌圖片----------------------------------------------------------------------
-        // tagImg2.addEventListener('load', function() {
-        //     context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // });
-        // context.drawImage(tagImg2, imgOffsetX, imgOffsetY, imgWidth, imgHeight);
-        // //-----------------------------------------------------------------------------------
-
-
-        // let textContent1 = document.getElementById('textContent1');
-        // var textWithBackground = new fabric.IText(textContent1.value || '點兩下進行編輯', {
-        //     fontFamily: 'arial black',
-        //     left: imgOffsetX,
-        //     top: imgOffsetY,
-        //     textBackgroundColor: 'rgba(255,255,255,0)'
-        // }).setControlsVisibility(HideControls);
-        // canvas.add(textWithBackground);
-        // textContent1.value = "";
-        // var dataURL = canvas.toDataURL();
-        // console.log(dataURL);
     }
     window.addEventListener('resize', resizeCanvas);
 }

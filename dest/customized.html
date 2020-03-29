@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>浪愛回家 ｜ 客製化項圈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> <title>浪愛回家 ｜ 客製化項圈</title>
 <link rel="icon" href="./img/logo.ico" type="image/x-icon">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
@@ -24,10 +24,6 @@
 </head>
 
 <body>
-    <div id="memberPoint">
-        會員點數 :
-        <span id="showPoint"></span> 點
-    </div>
     <div style="display: none; position: fixed; right: 100px; top: 150px; z-index: 100;">
         解鎖吊牌:
         <span id="memTagNo"></span>
@@ -126,6 +122,10 @@
                     <input type="checkbox" id="chkbox" />
                     <label for="chkbox"></label>
                 </div> -->
+                <div id="memberPoint">
+                    紅利點數 :
+                    <span id="showPoint"></span> 點
+                </div>
             </div>
             <script>
                 function saveImage() {
@@ -254,13 +254,12 @@
                             </div>
                             <script>
                                 function updateMemPoint(sendNewPoint) {
-                                    // var memNo = member.memNo;
                                     var xhr = new XMLHttpRequest();
                                     var url = "php/updateMemPoint.php";
                                     xhr.open("POST", url, true);
                                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                     var data_info = `memPoint=${sendNewPoint}`;
-                                    xhr.send(data_info);
+                                    xhr.send();
                                 }
 
 
@@ -366,22 +365,19 @@
 
 
                                 function updateMemTagNo(sendMemTagNo) {
-                                    var memNo = member.memNo;
                                     var xhr = new XMLHttpRequest();
                                     var url = "php/updateMemTagNo.php";
                                     xhr.open("POST", url, true);
                                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    var data_info = `memNo=${memNo}&memTagNo=${sendMemTagNo}`;
+                                    var data_info = `memTagNo=${sendMemTagNo}`;
                                     xhr.send(data_info);
                                 }
 
                                 window.addEventListener('load', function() {
-                                    // var memNo = member.memNo;
                                     var xhr = new XMLHttpRequest();
                                     var url = "php/getMemPoint.php";
                                     xhr.open("POST", url, true);
                                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                                    // var data_info = `memNo=${memNo}`;
                                     xhr.send();
 
                                     xhr.onload = function() {
@@ -406,6 +402,7 @@
                                             member.memTagNo = document.getElementById('memTagNo').innerText; //session裡的member.memTagNo資料更新
                                             // console.log("已解鎖過的吊牌編號 : ", document.getElementById('memTagNo').innerText);
                                             // console.log("資料庫有的吊牌編號 : ", document.getElementById('lockTagNo').innerText);
+
                                             lockTagNo();
                                         }
                                     }
@@ -414,7 +411,7 @@
                             </script>
                             <div class="changePage sliderBtns">
                                 <!-- <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button> -->
-                                <div id="tagTotal">
+                                <div id="tagTotal" style="visibility: hidden;">
                                     <span class="titleFont" style="font-size: 20px;" id="nowTag">1</span>
                                     <span class="titleFont" style="font-size: 20px;">/</span>
                                     <span class="titleFont" style="font-size: 20px;"></span>
@@ -688,7 +685,7 @@
         <div class="dialog__content">
             <h3 style="color: #313131; margin-top: 20px;">確認明細</h3>
             <div id="collarDetail">
-                <img src="" id="testImg" width="220" height="138.5" alt="" style="border: 0px solid red;">
+                <img src="" id="testImg">
                 <div id="orderTotal">
                     <span id="orderQTY"></span>
                     <span id="orderPrice"></span>
@@ -715,7 +712,6 @@
     </div>
     <script>
         $('#orderBtn').click(function() {
-            var memNo = member.memNo;
             var sendOrderDate = document.getElementById('orderDate').innerText;
             var sendOrderName = document.getElementById('orderName').innerText;
             var sendOrderPhone = document.getElementById('orderPhone').innerText;
@@ -739,7 +735,7 @@
                 var url = "php/addOrderList.php";
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                var data_info = `memNo=${memNo}&orderDate=${sendOrderDate}&orderName=${sendOrderName}&orderPhone=${sendOrderPhone}&orderAddress=${sendOrderAddress}&orderQty=${sendOrderQty}&orderPrice=${sendOrderPrice}&image=${canvas.toDataURL("image/png")}`;
+                var data_info = `orderDate=${sendOrderDate}&orderName=${sendOrderName}&orderPhone=${sendOrderPhone}&orderAddress=${sendOrderAddress}&orderQty=${sendOrderQty}&orderPrice=${sendOrderPrice}&image=${canvas.toDataURL("image/png")}`;
                 xhr.send(data_info);
 
                 xhr.onload = function() {
@@ -767,6 +763,7 @@
     </script>
     <script src="./js/signInOut.js"></script>
     <script src="./js/card.js"></script>
+
 </body>
 
 </html>

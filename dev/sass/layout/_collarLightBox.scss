@@ -53,18 +53,30 @@
         width: 400px;
         display: flex;
         margin-top: 30px;
+        #testImg {
+            // border: 1px solid red;
+            min-width: 220px;
+            margin-left: 20px;
+            height: 138.5px;
+        }
         #orderTotal {
-            width: 180px;
             // border: 1px solid blue;
+            width: 180px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             justify-content: space-around;
+            @include RWD(ss) {
+                width: 130px;
+            }
             #orderQTY {
                 margin-left: 20px;
                 font-size: 1rem;
                 &::before {
                     content: "購買數量 : ";
+                }
+                @include RWD(ss) {
+                    margin-left: 10px;
                 }
             }
             #orderPrice {
@@ -72,6 +84,9 @@
                 font-size: 1rem;
                 &::before {
                     content: "總金額 : $";
+                }
+                @include RWD(ss) {
+                    margin-left: 10px;
                 }
             }
         }
@@ -96,17 +111,17 @@
         }
         #orderName {
             &::before {
-                content: "寄件人姓名 : ";
+                content: "收件人姓名 : ";
             }
         }
         #orderPhone {
             &::before {
-                content: "寄件人電話 : ";
+                content: "收件人電話 : ";
             }
         }
         #orderAddress {
             &::before {
-                content: "寄件人地址 : ";
+                content: "收件人地址 : ";
             }
         }
     }

@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#bigTab1').click(function() { //step1圓圈
         let status = document.getElementsByClassName('status');
-        let nowTag = document.getElementById('nowTag').innerText;
+        let nowTag = parseInt($('#nowTag').text());
         if (status[nowTag - 1].innerText == "未解鎖") {
             return;
         } else {
@@ -21,7 +21,7 @@ $(document).ready(function() {
     });
     $('#bigTab3').click(function() { //step3圓圈
         let status = document.getElementsByClassName('status');
-        let nowTag = document.getElementById('nowTag').innerText;
+        let nowTag = parseInt($('#nowTag').text());
         if (status[nowTag - 1].innerText == "未解鎖") {
             return;
         } else {
@@ -36,7 +36,7 @@ $(document).ready(function() {
     });
     $('#bigTab4').click(function() { //step4圓圈
         let status = document.getElementsByClassName('status');
-        let nowTag = document.getElementById('nowTag').innerText;
+        let nowTag = parseInt($('#nowTag').text());
         if (status[nowTag - 1].innerText == "未解鎖") {
             return;
         } else {
@@ -50,7 +50,7 @@ $(document).ready(function() {
     $('ul.tabs li').click(function() {
         let tab_id = $(this).attr('data-tab');
         let status = document.getElementsByClassName('status');
-        let nowTag = document.getElementById('nowTag').innerText;
+        let nowTag = parseInt($('#nowTag').text());
         if (status[nowTag - 1].innerText == "未解鎖") {
             alert("請先解鎖此吊牌");
         } else {
@@ -86,27 +86,26 @@ $(document).ready(function() {
         }
     });
     $('#step2NextBtn').click(function() { //step2下一步按鈕
-        // let status = document.getElementsByClassName('status');
-        // let nowTag = document.getElementById('nowTag').innerText;
-        // if (status[nowTag - 1].innerText == "未解鎖") {
-        //     alert("請先解鎖此吊牌");
-        // } else {
+        let status = document.getElementsByClassName('status');
+        let nowTag = parseInt($('#nowTag').text());
+        if (status[nowTag - 1].innerText == "未解鎖") {
+            alert("請先解鎖此吊牌");
+        } else {
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
 
-        // }
-        $('ul.tabs li').removeClass('current');
-        $('.tab-content').removeClass('current');
-
-        $(this).parent().parent().next().addClass('current');
-        $('#bigTab3').addClass('current');
-        $('#bigTab3').css('pointer-events', 'unset');
-        $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
-        $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
-        $('.tabLine2').css("opacity", "1");
-        $('.fakeCircles').css("opacity", "0");
-        $('.fakeCircle9').css("opacity", "1");
-        $('.fakeCircle10').css("opacity", "1");
-        $('.fakeCircle11').css("opacity", "1");
-        $('.fakeCircle12').css("opacity", "1");
+            $(this).parent().parent().next().addClass('current');
+            $('#bigTab3').addClass('current');
+            $('#bigTab3').css('pointer-events', 'unset');
+            $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
+            $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
+            $('.tabLine2').css("opacity", "1");
+            $('.fakeCircles').css("opacity", "0");
+            $('.fakeCircle9').css("opacity", "1");
+            $('.fakeCircle10').css("opacity", "1");
+            $('.fakeCircle11').css("opacity", "1");
+            $('.fakeCircle12').css("opacity", "1");
+        }
     });
     $('#step2BackBtn').click(function() { //step2上一步按鈕
 
@@ -221,35 +220,20 @@ $(document).ready(function() {
 
 
 window.addEventListener('load', function() {
-    let curIndex = -1;
+    let curIndex = 0;
     let collarTagWrap = document.getElementById('collarTagWrap');
     let sliderBtnLeft = document.getElementById('sliderBtnLeft');
     let sliderBtnRight = document.getElementById('sliderBtnRight');
     let tagItems = document.getElementsByClassName('tagItems');
     let tagTotal = document.getElementById('tagTotal');
-    nowTag = document.getElementById('nowTag');
+    // nowTag = document.getElementById('nowTag');
     let tagImages = document.getElementsByClassName('tagImages');
     let lockPoint = document.getElementsByClassName('lockPoint');
     let lockStatus = document.getElementsByClassName('lockStatus');
     let todayDate = document.getElementById('todayDate');
     let orderDate = document.getElementById('orderDate');
     let tab2_content = document.getElementsByClassName('tab2_content')[0];
-    // newItemsWidth = $('.tab2_content').width() / 3;
-    // let newItemsWidth = $('#collarTagSlider').width() / 3;
 
-    // if ($('.tab2_content').width() > 600) {
-    //     $('.tagItems').css("width", 200);
-    // } else {
-    //     $('.tagItems').css("width", newItemsWidth);
-    // }
-    // window.addEventListener('resize', function() {
-    //     let newItemsWidth = $('#collarTagSlider').width() / 3;
-    //     if ($('.tab2_content').width() > 600) {
-    //         $('.tagItems').css("width", 200);
-    //     } else {
-    //         $('.tagItems').css("width", newItemsWidth);
-    //     }
-    // })
 
     let today = new Date();
     todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
@@ -258,87 +242,139 @@ window.addEventListener('load', function() {
 
 
     $('#tagTotal span:last-child').text(tagItems.length);
-    $('.tagImages').click(function() {
-        let newItemsWidth = $('#collarTagSlider').width() / 3;
-        let nowIndex = (parseFloat($('#collarTagWrap').css("left")) / -200) + 1;
-        console.log("nowIndex = ", nowIndex);
-        let clickTagIndex = $(this).parent().index();
-        // alert(clickTagIndex);
-        let clickOffset = -200 * (clickTagIndex - 1) + 'px';
-        $('#collarTagWrap').css("left", clickOffset);
+    // $('.tagImages').click(function() {
+    //     let newItemsWidth = $('#collarTagSlider').width() / 3;
+    //     let nowIndex = (parseFloat($('#collarTagWrap').css("left")) / -200) + 1;
+    //     console.log("nowIndex = ", nowIndex);
+    //     let clickTagIndex = $(this).parent().index();
+    //     // alert(clickTagIndex);
+    //     let clickOffset = -200 * (clickTagIndex - 1) + 'px';
+    //     $('#collarTagWrap').css("left", clickOffset);
 
-        if (clickTagIndex == 0) {
-            $('#sliderBtnLeft').attr("disabled", true);
-        } else if (clickTagIndex == (tagImages.length - 1)) {
-            $('#sliderBtnRight').attr("disabled", true);
-        }
-        if (clickTagIndex > nowIndex) {
-            curIndex = (clickTagIndex - nowIndex) + curIndex;
-            tagIndex = (clickTagIndex - nowIndex) + tagIndex;
-            $('#sliderBtnLeft').attr("disabled", false);
-        } else if (clickTagIndex < nowIndex) {
-            curIndex = (clickTagIndex - nowIndex) + curIndex;
-            tagIndex = (clickTagIndex - nowIndex) + tagIndex;
-            $('#sliderBtnRight').attr("disabled", false);
-        }
-        $('.tagImages').css("transform", "scale(1)");
-        $(this).css("transform", "scale(2.5)");
-        $(this).parent().parent().children().children().nextAll().css("visibility", "hidden");
-        $(this).nextAll().css("visibility", "visible");
-        $(this).parent().parent().children().children().nextAll().css("opacity", "0");
-        $(this).nextAll().css("opacity", "1");
-        $(this).parent().parent().children().children().css("filter", "brightness(0.6)");
-        $(this).css("filter", "brightness(1)");
-        $('#tagTotal span:first-child').text(clickTagIndex + 1);
-    });
+    //     if (clickTagIndex == 0) {
+    //         $('#sliderBtnLeft').attr("disabled", true);
+    //     } else if (clickTagIndex == (tagImages.length - 1)) {
+    //         $('#sliderBtnRight').attr("disabled", true);
+    //     }
+    //     if (clickTagIndex > nowIndex) {
+    //         curIndex = (clickTagIndex - nowIndex) + curIndex;
+    //         tagIndex = (clickTagIndex - nowIndex) + tagIndex;
+    //         $('#sliderBtnLeft').attr("disabled", false);
+    //     } else if (clickTagIndex < nowIndex) {
+    //         curIndex = (clickTagIndex - nowIndex) + curIndex;
+    //         tagIndex = (clickTagIndex - nowIndex) + tagIndex;
+    //         $('#sliderBtnRight').attr("disabled", false);
+    //     }
+    //     $('.tagImages').css("transform", "scale(1)");
+    //     $(this).css("transform", "scale(2.5)");
+    //     $(this).parent().parent().children().children().nextAll().css("visibility", "hidden");
+    //     $(this).nextAll().css("visibility", "visible");
+    //     $(this).parent().parent().children().children().nextAll().css("opacity", "0");
+    //     $(this).nextAll().css("opacity", "1");
+    //     $(this).parent().parent().children().children().css("filter", "brightness(0.6)");
+    //     $(this).css("filter", "brightness(1)");
+    //     $('#tagTotal span:first-child').text(clickTagIndex + 1);
+    // });
 
     // $('#sliderBtnLeft').click(function() {
     //     curIndex--;
 
     // });
-    sliderBtnLeft.addEventListener('click', function() {
-        curIndex--;
-        collarTagWrap.style.left = -200 * curIndex + 'px';
-        sliderBtnRight.disabled = false;
-        if (parseFloat(collarTagWrap.style.left) == 200) {
-            sliderBtnLeft.disabled = true;
+    // function leftOffset() {
+    //     alert($('.tagItems').css('width'));
+    // }
+    // leftOffset();
+    // alert($(this.window).width());
+    // tagResize();
+
+    // function tagResize() {
+
+    // }
+    $('#collarTagWrap').css('width', tagItems.length * 600);
+    if ($(this.window).width() < 600) {
+        $('.tagItems').css('width', $(this.window).width());
+    } else {
+        $('.tagItems').css('width', 600);
+    }
+    window.addEventListener('resize', function() {
+        let tagNum = document.getElementsByClassName('tagItems').length;
+        if ($(this.window).width() < 600) {
+            $('.tagItems').css('width', $(this.window).width());
+            $('#collarTagWrap').css('left', -$(this.window).width() * (parseInt($('#nowTag').text()) - 1));
+        } else {
+            $('.tagItems').css('width', 600);
+            $('#collarTagWrap').css('left', -600 * (parseInt($('#nowTag').text()) - 1));
         }
-        let offset = (parseFloat(collarTagWrap.style.left) / -200) + 1;
-        tagImages[offset + 1].style.transform = "scale(1)";
-        tagImages[offset].style.transform = "scale(2.5)";
-        tagImages[offset + 1].style.filter = "brightness(0.7)";
-        tagImages[offset].style.filter = "brightness(1)";
-        lockPoint[offset + 1].style.visibility = "hidden";
-        lockPoint[offset].style.visibility = "visible";
-        lockPoint[offset + 1].style.opacity = "0";
-        lockPoint[offset].style.opacity = "1";
-        lockStatus[offset + 1].style.visibility = "hidden";
-        lockStatus[offset].style.visibility = "visible";
-        lockStatus[offset + 1].style.opacity = "0";
-        lockStatus[offset].style.opacity = "1";
-        nowTag.innerText = offset + 1;
+    });
+
+
+    sliderBtnLeft.style.opacity = "0";
+    sliderBtnRight.style.cursor = "pointer";
+    sliderBtnLeft.addEventListener('click', function() {
+        let abc = parseInt($('#nowTag').text());
+        abc -= 1;
+        $('#nowTag').text(abc);
+
+        sliderBtnRight.style.opacity = "1";
+        sliderBtnRight.style.cursor = "pointer";
+        let tagWidth = parseFloat($('.tagItems').css('width'));
+        // alert(tagWidth);
+        curIndex--;
+        collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+        sliderBtnRight.disabled = false;
+        if (parseFloat(collarTagWrap.style.left) == 0) {
+            sliderBtnLeft.disabled = true;
+            sliderBtnLeft.style.opacity = "0";
+            sliderBtnLeft.style.cursor = "default";
+        }
+        let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+        // alert(offset);
+        tagImages[offset].style.transform = "scale(1)";
+        tagImages[offset - 1].style.transform = "scale(2.5)";
+        tagImages[offset].style.filter = "brightness(0.7)";
+        tagImages[offset - 1].style.filter = "brightness(1)";
+        lockPoint[offset].style.visibility = "hidden";
+        lockPoint[offset - 1].style.visibility = "visible";
+        lockPoint[offset].style.opacity = "0";
+        lockPoint[offset - 1].style.opacity = "1";
+        lockStatus[offset].style.visibility = "hidden";
+        lockStatus[offset - 1].style.visibility = "visible";
+        lockStatus[offset].style.opacity = "0";
+        lockStatus[offset - 1].style.opacity = "1";
+        // nowTag.innerText = offset + 1;
     });
 
     sliderBtnRight.addEventListener('click', function() {
+        let abc = parseInt($('#nowTag').text());
+        abc += 1;
+        $('#nowTag').text(abc);
+
+        sliderBtnLeft.style.opacity = "1";
+        sliderBtnLeft.style.cursor = "pointer";
+        let tagWidth = parseFloat($('.tagItems').css('width'));
+
         curIndex++;
-        collarTagWrap.style.left = -200 * curIndex + 'px';
+        collarTagWrap.style.left = -tagWidth * curIndex + 'px';
         sliderBtnLeft.disabled = false;
-        if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 2) * -200) {
+        if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 1) * -tagWidth) {
             sliderBtnRight.disabled = true;
+            sliderBtnRight.style.opacity = "0";
+            sliderBtnRight.style.cursor = "default";
         }
-        let offset = (parseFloat(collarTagWrap.style.left) / -200) + 1;
-        tagImages[offset - 1].style.transform = "scale(1)";
-        tagImages[offset].style.transform = "scale(2.5)";
-        tagImages[offset - 1].style.filter = "brightness(0.7)";
-        tagImages[offset].style.filter = "brightness(1)";
-        lockPoint[offset - 1].style.visibility = "hidden";
-        lockPoint[offset].style.visibility = "visible";
-        lockPoint[offset - 1].style.opacity = "0";
-        lockPoint[offset].style.opacity = "1";
-        lockStatus[offset - 1].style.visibility = "hidden";
-        lockStatus[offset].style.visibility = "visible";
-        lockStatus[offset - 1].style.opacity = "0";
-        lockStatus[offset].style.opacity = "1";
-        nowTag.innerText = offset + 1;
+        let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+        // alert(offset);
+        tagImages[offset - 2].style.transform = "scale(1)";
+        tagImages[offset - 1].style.transform = "scale(2.5)";
+        tagImages[offset - 2].style.filter = "brightness(0.7)";
+        tagImages[offset - 1].style.filter = "brightness(1)";
+        lockPoint[offset - 2].style.visibility = "hidden";
+        lockPoint[offset - 1].style.visibility = "visible";
+        lockPoint[offset - 2].style.opacity = "0";
+        lockPoint[offset - 1].style.opacity = "1";
+        lockStatus[offset - 2].style.visibility = "hidden";
+        lockStatus[offset - 1].style.visibility = "visible";
+        lockStatus[offset - 2].style.opacity = "0";
+        lockStatus[offset - 1].style.opacity = "1";
+        // nowTag.innerText = offset + 1;
     });
 })
