@@ -7,6 +7,8 @@
 </head>
 <body>
     <?php
+    session_start();
+    $memNo = $_SESSION['memNo'];
     $errMsg = "";
     try{
 
@@ -17,25 +19,19 @@
         if($_FILES["upFile"]["error"] == UPLOAD_ERR_OK){
             
             // $sql = "INSERT INTO `fundraising` (`fundNo`, `fundTitle`, `fundImg`) values(null, :fundTitle, '' )";
-            $sql = "INSERT INTO `fundraising` (`fundName`, `fundNo`, `memNo`, `fundContent`, `fundTitle`, `fundImg`, `fundArticleImg1`, `fundArticleImg2`,`fundStatus`, `fundStartDate`, `fundEndDate`, `fundGoal`, `fundNowAmount`, `fundAttendPeople`, `fundReportArticle`, `fundReportImg`) values(:fundName, null, null, null, :fundTitle, ' ', ' ', ' ', :fundStatus, :fundStartDate, :fundEndDate, :fundGoal, :fundNowAmount, :fundAttendPeople, :fundReportArticle, :fundReportImg)";
+            $sql = "INSERT INTO `fundraising` (`fundName`, `memNo`, `fundTitle`, `fundImg`, `fundArticleImg1`, `fundArticleImg2`, `fundArticleImg3`, `fundStartDate`, `fundEndDate`, `fundGoal`, `fundNowAmount`, `fundAttendPeople`) 
+            values(:fundName, :memNo,:fundTitle, ' ', ' ', ' ', ' ', now(),  DATE_ADD(now(), INTERVAL 100 DAY)   , :fundGoal, 0, 0)";
             $fundraising = $pdo -> prepare( $sql );
             // $fundraising -> bindValue(":fundContent", $_POST["fundContent"]);
-            $fundraising -> bindValue(":fundTitle", $_REQUEST["fundTitle"]);
             $fundraising -> bindValue(":fundName", $_REQUEST["fundName"]);
-            // $fundraising -> bindValue(":memNo", $_REQUEST["memNo"]);
-            $fundraising -> bindValue(":fundStatus", $_REQUEST["fundStatus"]);
-            $fundraising -> bindValue(":fundStartDate", $_REQUEST["fundStartDate"]);
-            $fundraising -> bindValue(":fundEndDate", $_REQUEST["fundEndDate"]);
+            $fundraising -> bindValue(":memNo", $memNo);
+            $fundraising -> bindValue(":fundTitle", $_REQUEST["fundTitle"]);
             $fundraising -> bindValue(":fundGoal", $_REQUEST["fundGoal"]);
-            $fundraising -> bindValue(":fundNowAmount", $_REQUEST["fundNowAmount"]);
-            $fundraising -> bindValue(":fundAttendPeople", $_REQUEST["fundAttendPeople"]);
-            $fundraising -> bindValue(":fundReportArticle", $_REQUEST["fundReportArticle"]);
-            $fundraising -> bindValue(":fundReportImg", $_REQUEST["fundReportImg"]);
             $fundraising -> execute();
 
             //取得自動創號的key值
             $fundNo = $pdo->lastInsertId();
-            $memNo = $pdo->lastInsertId();
+            // $memNo = $pdo->lastInsertId();
             
             //檢查img資料夾是否存在
             if(file_exists("../img/donation/projectImg") === false){
@@ -99,13 +95,22 @@
                 $fundraising -> execute();
                 
                 header("Location: http://localhost:8888/raisedonation.html"); 
-                echo "<script>alert('成功發起募款！');</script>"; 
                 
                 $pdo->commit();
         }else{
             echo "錯誤代碼 : {$_FILES["upFile1"]["error"]}<br>";
             echo "新增失敗<br>";
         }
+
+        // if(isset($memNo)){
+        //     $sql = "update meminfo set memPoint = :memPoint + 300  where memNo = $memNo";
+        //     $fundraising  = $pdo->prepare($sql);
+        //     $fundraising -> bindValue(":memNo", $memNo);
+        //     $fundraising -> bindValue(":memPoint", $_REQUEST["memPoint"]);
+        //     $fundraising -> execute();
+        // }else{
+        //     echo "錯誤代碼 :<br>";
+        // }
 
     
         

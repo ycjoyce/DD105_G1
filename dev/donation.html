@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>浪愛回家 | 愛心助浪浪</title>
   <link rel="stylesheet" href="./css/donation.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
@@ -21,8 +21,31 @@
 </head>
 
 <body>
-  @@include('./layout/header.html')
-  <div style="height:15vh"></div>
+  <header class="header-navigation" id="header">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+            <h1>
+                <a href="./main.html">
+                    <img src="./img/logo-wide.png" alt="logo">
+                </a>
+            </h1>
+            <ul class="col-xl-9 col-lg-9 col-md-9">
+                <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                <li><a id="navPost" href="./post_article_region.php">毛孩交流區</a></li>
+                <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
+            </ul>
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span> 
+                </span>
+            </button>
+        </div>
+    </nav>
+</header>
+  <div class ="hei" style="height:15vh"></div>
   <!---------------- maru輪播 ---------------->
   <div class="col-12 first_row">
     <div class="col-10 wow fadeIn">
@@ -39,12 +62,14 @@
       <div class="bubblepink">
         <img src="./img/donation/big_pink_bubble.png" alt="">
       </div>
-      <!-- <img src="./img/marusakurasmile2_3.jpg" alt="" class="mobile"> -->
-      <!-- <div class="article">
-              <p class="wow fadeInDown" data-wow-duration="2s">只要有愛，一億噸的黑暗也能綻放出一兆的光芒</p>
-              <h1 class="first wow fadeInDown" data-wow-duration="2s">愛心助浪浪</h1>
-              <img src="./img/sparkle.png" alt="">
-          </div> -->
+      <img src="./img/donation/maru_mobile.jpg" alt="" class="mobile">
+      <div class="article">
+          <p class="wow fadeInDown" data-wow-duration="2s">只要有愛，一億噸的黑暗也能綻放出一兆的光芒</p>
+          <h1 class="first wow fadeInDown" data-wow-duration="2s">愛心助浪浪</h1>
+          <div class="sparkle">
+            <img src="./img/donation/sparkle.png" alt="">
+          </div>
+      </div>
     </div>
   </div>
 
@@ -93,8 +118,8 @@
         <!---------------- 最新專案 ---------------->
         <div class="tab tab1 -on">
           <div id="app">
-              <div class="donationcardbox" v-for="newdo in newdonationdatas">
-                <form action="./php/showproject.php" method="post">
+              <div class="donationcardbox wow fadeIn" v-for="newdo in newdonationdatas">
+                <form action="./php/showproject.php" method="get">
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
@@ -134,8 +159,8 @@
         <!---------------- 倒數專案 ---------------->
         <div class="tab tab2">
           <div id="app2">
-            <div class="donationcardbox" v-for="deaddo in deadlinedonationdatas">
-              <form action="./php/showproject.php" method="post">
+            <div class="donationcardbox wow fadeIn" v-for="deaddo in deadlinedonationdatas">
+              <form action="./php/showproject.php" method="get">
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
@@ -175,8 +200,8 @@
         <!---------------- 歷史專案 ---------------->
         <div class="tab tab3">
           <div id="app3">
-            <div class="donationcardbox" v-for="hisdo in historydonationdatas">
-              <form action="./php/showproject.php" method="post">
+            <div class="donationcardbox wow fadeIn" v-for="hisdo in historydonationdatas">
+              <form action="./php/showproject.php" method="get">
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
@@ -194,8 +219,8 @@
                   <div class="texts">
                     <div class="statusrow">
                       <div class="nowpeople">捐款<span class="orange">{{hisdo .fundAttendPeople}}人</span></div>
-                      <div class="lastday">剩<span
-                          class="orange">{{ parseInt((new Date(hisdo .fundEndDate) - new Date()) / 1000 / 60 / 60 / 24) }}天</span>
+                      <div class="lastday">已結束募款<!-- span
+                          class="orange">{{ parseInt((new Date(hisdo .fundEndDate) - new Date()) / 1000 / 60 / 60 / 24) }}天</span> -->
                       </div>
                     </div>
                     <div class="progressbar">
@@ -220,12 +245,12 @@
   <div class="col-12 fromme">
     <div class="col-8 content">
       <div class="col-5 article">
-        <h2 class="wow fadeInRight">浪愛回家<br>從我開始</h2>
-        <p class="first wow fadeInRight">在狗狗單純的世界裡，你的離去只是在玩遊戲。</p>
-        <p class="wow fadeInRight">牠們不停在人群裡搜索，只期盼看見你的身影。</p>
-        <p class="wow fadeInRight">然而，牠們不知道，這個遊戲叫做「遺棄」。</p>
-        <p class="wow fadeInRight">牠們只能一直等待嗎？</p>
-        <p class="wow fadeInRight">你，能做些什麼嗎？</p>
+        <h2 class="wow fadeInLeft">浪愛回家<br>從我開始</h2>
+        <p class="first wow fadeInLeft">在狗狗單純的世界裡，你的離去只是在玩遊戲。</p>
+        <p class="wow fadeInLeft">牠們不停在人群裡搜索，只期盼看見你的身影。</p>
+        <p class="wow fadeInLeft">然而，牠們不知道，這個遊戲叫做「遺棄」。</p>
+        <p class="wow fadeInLeft">牠們只能一直等待嗎？</p>
+        <p class="wow fadeInLeft">你，能做些什麼嗎？</p>
         <div class="frommebutton">
           <a class="btn darkgreen nav__link" href='raisedonation.html'>
             <span class="titleFont">發起募款</span>
@@ -314,12 +339,21 @@
 
   </div>
 
-  <!-- footer -->
-  @@include('./layout/footer.html')
+  <footer>
+    <div class="page_top" id="page_top">
+        <span class="titleFont smalltext">PAGE TOP</span>
+    </div>
+    <p class="titleFont smalltext">
+        © 2020 Bring Love Home
+    </p>
+</footer>
+
   <script src="./js/signInOut.js"></script>
   <script src="./js/hamburger.js"></script>
   <script src="./js/header_slide.js"></script>
   <script src="./js/donation.js"></script>
+  <script src="./js/jquery.numscroll.js"></script>
+  <script src="./js/page_top.js"></script>
 
   <script>
     $(".num").numScroll({

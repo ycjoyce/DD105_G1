@@ -77,12 +77,37 @@
 //=======================================================
 
 @import 'layout/rwd';
-//使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
 
 //=======================================================
 
 @import 'layout/rwd2';
 //使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
+//電腦  960↑
+// @mixin pc-width() {
+//     @media all and (min-width: $pc-media) {
+//                  @content;
+//            }
+//       }
+  //平板 959~768
+//    @mixin pad-width() {
+//   @media all and (min-width:$pad-media) and (max-width: $pcs-media) {
+//                   @content;
+//             }
+//   }
+  //小平板 767~375
+//    @mixin small-pad-width() {
+//           @media all and (min-width: $phone-media) and (max-width:$pads-media) {
+//                   @content;
+//             }
+//    }
+  //手機 374↓
+//    @mixin phone-width() {
+//           @media all and (max-width: $phones-media) {
+//                   @content;
+//             }
+//    }
 
 //=======================================================
 
@@ -293,6 +318,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 4000ms greenbubbleAnimation infinite;
                 animation-delay:1s;
+                width: 80%;
 
                 @keyframes greenbubbleAnimation {
                     0% { transform:translateY(0px);}
@@ -310,6 +336,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 6000ms bluebubbleAnimation infinite;
                 animation-delay:3s;
+                width: 80%;
 
                 @keyframes bluebubbleAnimation {
                     0% { transform:translateY(2px);}
@@ -330,6 +357,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 8000ms yellowbubbleAnimation infinite;
                 animation-delay:1s;
+                width: 80%;
 
                 @keyframes yellowbubbleAnimation {
                     0% { transform:translateY(0px);} 
@@ -350,6 +378,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 5000ms pinkbubbleAnimation infinite;
                 animation-delay:2s;
+                width: 80%;
 
                 @keyframes pinkbubbleAnimation {
                     0% { transform:translateY(0px);}
@@ -383,46 +412,46 @@ body{
                 }
             }
 
-            .complete{
-                width: 100%;
-                background-image: url(../img/donation/big_green_bubble.png);
-                background-size: contain;
-                background-repeat: no-repeat;
-                position: relative;
-                animation: 4000ms greenbubbleAnimation infinite;
-                animation-delay:1s;
+            // .complete{
+            //     width: 100%;
+            //     background-image: url(../img/donation/big_green_bubble.png);
+            //     background-size: contain;
+            //     background-repeat: no-repeat;
+            //     position: relative;
+            //     animation: 4000ms greenbubbleAnimation infinite;
+            //     animation-delay:1s;
 
-                @keyframes greenbubbleAnimation {
-                    0% { transform:translateY(0px);}
-                    50% {transform:translateY(3px);}
-                    100% {transform:translateY(0px);}
+            //     @keyframes greenbubbleAnimation {
+            //         0% { transform:translateY(0px);}
+            //         50% {transform:translateY(3px);}
+            //         100% {transform:translateY(0px);}
 
-                }
+            //     }
                
                 
                 
-                h3{
-                    color: #76912E;
-                    line-height: 180px;
-                    text-align: center;
+            //     h3{
+            //         color: #76912E;
+            //         line-height: 180px;
+            //         text-align: center;
                 
-                }
+            //     }
 
-                .sparkle{
-                    position: absolute;
-                    top: -3%;
-                    left: 50%;
-                    img{
-                        display: block;
-                        width: 100%;
+            //     .sparkle{
+            //         position: absolute;
+            //         top: -3%;
+            //         left: 50%;
+            //         img{
+            //             display: block;
+            //             width: 100%;
                         
-                    }
-                }
+            //         }
+            //     }
 
                 
 
                 
-            }
+            // }
 
         }
     }
@@ -917,7 +946,214 @@ form{
 //=======================================================
 
 
- 
+
+// rwd
+
+//rwd 959~768px==============================
+
+.col-12.step{
+
+    @include pad-width{
+
+        .col-8.stepcontent{
+            width: 70%;
+
+            .col-12.steps{
+
+                align-items: center;
+    
+                .first_step,.second_step,.third_step,.forth_step{
+                    width: 135px;
+                    height: 135px;
+
+                    h1{
+                        font-size: 2rem;
+                    }
+                    h2{
+                        font-size: 1.6rem;
+                        
+                    }
+                }   
+    
+            }
+        }
+        
+
+    }
+
+}
+
+#raisedonationform{
+
+    @include pad-width{
+        width: 90%;;
+
+        .col-8.form_content{
+            width: 100%;
+        }
 
 
-		
+    }
+
+}
+
+
+
+//rwd 767~375px==============================
+
+.col-12.step{
+
+    @include small-pad-width{
+        display: none;
+    }
+
+}
+
+
+#raisedonationform{
+
+    @include small-pad-width{
+
+
+            .stepone{
+                display: flex;
+                flex-direction: column;
+
+                .cardfill{
+                    width: 100%;
+                }
+
+                .coverimgbox{
+                    display: flex;
+                    flex-direction: column;
+                    .coverimg{
+                        display: block;
+                        text-align: center;
+                    }
+                    p{
+                        position: static;
+                        margin-top: 10px;
+                    }
+                    
+                }
+                #app2{
+                    width: 100%;
+                    padding-left: 0;
+                    margin-top: 0px;
+                    margin-bottom: 10px;
+                }
+                
+            }
+
+            .detailbox{
+
+                .imgboxrow{
+                    flex-direction: column;
+
+                    .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                        width: 100%;
+                    }
+                }
+                .gosubmit{
+                    flex-direction: column;
+                    margin-top: 20px;
+
+                    .steptwobtn{
+                        margin-right: 0px;;
+                        margin-bottom: 20px;
+                    }
+                    button[type=submit].su{
+                        margin-left: 0px;
+                    }
+                }
+
+            }
+
+
+
+
+    }
+
+}
+
+
+
+//rwd 374px==============================
+
+.col-12.step{
+
+    @include phone-width{
+        display: none;
+    }
+
+}
+
+
+#raisedonationform{
+
+    @include phone-width{
+
+
+            .stepone{
+                display: flex;
+                flex-direction: column;
+
+                .cardfill{
+                    width: 100%;
+                }
+
+                .coverimgbox{
+                    display: flex;
+                    flex-direction: column;
+                    .coverimg{
+                        display: block;
+                        text-align: center;
+                    }
+                    p{
+                        position: static;
+                        margin-top: 10px;
+                    }
+                    
+                }
+                #app2{
+                    width: 100%;
+                    padding-left: 0;
+                    margin-top: 0px;
+                    margin-bottom: 10px;
+                }
+                
+            }
+
+            .detailbox{
+
+                .imgboxrow{
+                    flex-direction: column;
+
+                    .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                        width: 100%;
+                    }
+                }
+                .gosubmit{
+                    flex-direction: column;
+                    margin-top: 20px;
+
+                    .steptwobtn{
+                        margin-right: 0px;;
+                        margin-bottom: 20px;
+                    }
+                    button[type=submit].su{
+                        margin-left: 0px;
+                    }
+                }
+
+            }
+
+
+
+
+    }
+
+}
+
+
+
