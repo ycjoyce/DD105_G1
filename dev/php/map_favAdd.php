@@ -13,6 +13,7 @@ try{
     }else{
         echo "wrong";
     }
+    
 }catch(PDOException $e){
     echo "錯誤訊息: ".$e->getMessage();
 }

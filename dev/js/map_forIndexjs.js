@@ -261,21 +261,36 @@ function mapMsg(id) {
           alert("此寵物主人為您本人");
         } else {
           petLostOwner = data;
+
           $.ajax({
-            url: "./php/mapMsg.php",
+            url: "./php/checkBlackMsg.php",
             type: "POST",
-            data: { lostNo: id.substr(4) },
-            success(data) {
-              if (data.indexOf("error") == -1) {
-                sessionStorage.setItem("now-on", petLostOwner);
-                location.href = "./message.html";
-              } else {
-                alert("操作失敗");
+            data: {petLostOwner: petLostOwner},
+            success(data){
+              if(data.indexOf("success")==-1){
+                alert("已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
+              }else{
+                $.ajax({
+                  url: "./php/mapMsg.php",
+                  type: "POST",
+                  data: { lostNo: id.substr(4) },
+                  success(data) {
+                    if (data.indexOf("error") == -1) {
+                      sessionStorage.setItem("now-on",petLostOwner.trim());
+                      location.href = "./message.html";
+                    } else {
+                      alert("操作失敗");
+                    }
+                  },
+                  error(data) {
+                    alert(data);
+                  }
+                });
               }
             },
-            error(data) {
+            error(data){
               alert(data);
-            }
+            },
           });
         }
       },

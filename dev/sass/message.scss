@@ -385,6 +385,9 @@ section{
         @include rwd(ss){
             display:none;
         }
+        @include rwd(mini){
+            display:none;
+        }
         @include scrollbar('ul');
 
         ul{
@@ -465,6 +468,9 @@ section{
                 @include rwd(ss){
                     display:inline-block;
                 }
+                @include rwd(mini){
+                    display:inline-block;
+                }
             }
             li{
                 display:flex;
@@ -480,6 +486,9 @@ section{
                     overflow: hidden;
                     flex-shrink: 0;
                     margin-right: 20px;
+                    @include rwd(mini){
+                        display: none;
+                    }
                     img{
                         display: inline-block;
                         height: 100%;
@@ -497,6 +506,9 @@ section{
                     @include rwd(ss){
                         display: none;
                     }
+                    @include rwd(mini){
+                        display: none;
+                    }
                 }
                 div.text{
                     background-color: #e4e8eb;
@@ -509,6 +521,10 @@ section{
                         margin-left: 10px;
                     }
                     @include rwd(ss){
+                        padding: 15px 30px 15px 25px;
+                        margin-left: 10px;
+                    }
+                    @include rwd(mini){
                         padding: 15px 30px 15px 25px;
                         margin-left: 10px;
                     }
@@ -531,6 +547,10 @@ section{
                             display: block;
                         }
                         @include rwd(ss){
+                            top: 0px;
+                            display: block;
+                        }
+                        @include rwd(mini){
                             top: 0px;
                             display: block;
                         }
@@ -654,5 +674,10 @@ section{
 // ss (min-width: 414px)
 @include rwd(ss) {
     @include grid(ss, 12);
+
+}
+
+@include rwd(mini) {
+    @include grid(mini, 12);
 
 }

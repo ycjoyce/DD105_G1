@@ -453,7 +453,7 @@ if($errMsg != ""){
             data: {getMemNo: authorNo},
             success(data){
               if(data.indexOf("error")==-1){
-                sessionStorage.setItem("now-on",authorNo);
+                sessionStorage.setItem("now-on",authorNo.trim());
                 location.href="./message.html";
               }else{
                 alert("操作失敗");

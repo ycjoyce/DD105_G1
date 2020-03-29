@@ -65,7 +65,7 @@
                 <a href="" download=""></a>
             </div>
         </div>
-        <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12">
+        <aside class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-ss-12 col-mini-12">
             <div class="myMessage">
                 <h2>我的信箱</h2>
                 <span class="titleFont"></span><!--幾則未讀-->
@@ -74,7 +74,7 @@
                 
             </ul>
         </aside>
-        <main class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-ss-12">
+        <main class="col-xl-8 col-lg-8 col-md-7 col-sm-12 col-ss-12 col-mini-12">
             <ul>
                 <button class="back titleFont"></button>
             </ul>
@@ -115,7 +115,7 @@
             }
         }
 
-        window.addEventListener('resize',function(){
+        function windowSize(){
             //md
             if(document.body.clientWidth>=768 && document.body.clientWidth<=991){
                 aside.style.width= 'calc(100% / 12 * 5)';
@@ -146,7 +146,9 @@
                 main.style.display= 'none';
                 main.style.width= '100%';
             }
-        });
+        }
+        windowSize();
+        window.addEventListener('resize',windowSize);
 
 
         //我的信箱右邊顯示共幾則未讀
@@ -223,7 +225,7 @@
             
             var data_info= `getMemNo=${getMemNo}&msgText=${encodeURIComponent(inputVal)}`;
             xhr.send(data_info);
-            console.log(encodeURIComponent(inputVal));
+            // console.log(encodeURIComponent(inputVal));
             xhr.onload=function(){
                 if(xhr.status==200){
                     showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
@@ -254,6 +256,11 @@
                 if(xhr.status==200){
                     theAmt= xhr.responseText;
                     document.querySelector(`li.No${sendMemNo}.unRead div.text p span`).innerText= theAmt;
+                    if(theAmt==0){
+                        document.querySelector(`li.No${sendMemNo}.unRead div.text p span`).style.display="none";
+                    }else{
+                        document.querySelector(`li.No${sendMemNo}.unRead div.text p span`).style.display="inline-block";
+                    }
                     showTotalUnread();
                 }else{
                     alert(xhr.status);
@@ -263,13 +270,13 @@
 
             
         //秀出左邊列表
-        function showMsgList(xmlDoc){
-            var fields= xmlDoc.documentElement.childNodes;//members>member
-            for(var i=0; i<fields.length; i++){
+        function showMsgList(res){
+            
+            for(var i=0; i<res.length; i++){
                 var li= document.createElement("li");
-                var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
-                var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
-                var getMemNo= fields[i].getElementsByTagName("getMemNo")[0].firstChild.nodeValue;
+                var myMemNo= res[i].myMemNo;
+                var sendMemNo= res[i].sendMemNo;
+                var getMemNo= res[i].getMemNo;
                 if(myMemNo==sendMemNo){
                     li.className= "No"+getMemNo;
                 }else{
@@ -277,8 +284,10 @@
                 }
 
                 if(myMemNo!=sendMemNo){
-                    var readOrNot= fields[i].getElementsByTagName("readOrNot")[0].firstChild.nodeValue;
+                    var readOrNot= res[i].readOrNot;
                     if(readOrNot==0){
+                        li.classList.add("unRead");
+                    }else if(!res[i].msgText && !res[i].msgPic){
                         li.classList.add("unRead");
                     }
                 }
@@ -289,9 +298,9 @@
                 var img= document.createElement("img");
                 var listMemPic;
                 if(myMemNo==sendMemNo){
-                    listMemPic= fields[i].getElementsByTagName("getMemPic")[0].firstChild.nodeValue;
+                    listMemPic= res[i].getMemPic;
                 }else{
-                    listMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
+                    listMemPic= res[i].sendMemPic;
                 }
                 img.src=`./img/memImg/${listMemPic}`;
                 divImg.appendChild(img);
@@ -305,37 +314,39 @@
 
                 var listMemName;
                 if(myMemNo==sendMemNo){
-                    listMemName= fields[i].getElementsByTagName("getMemName")[0].firstChild.nodeValue;
+                    listMemName= res[i].getMemName;
                 }else{
-                    listMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                    listMemName= res[i].sendMemName;
                 }
                 var h4Text= document.createTextNode(listMemName);
                 h4.appendChild(h4Text);
 
                 var span= document.createElement("span");
-                var sendTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
+                var sendTime= res[i].msgTime;
                 var spanText= document.createTextNode(sendTime.split(" ")[0]+"　"+sendTime.split(" ")[1].split(":")[0]+":"+sendTime.split(" ")[1].split(":")[1]);
                 span.appendChild(spanText);
                 span.className="smalltext";
                 divTitle.appendChild(h4);
                 divTitle.appendChild(span);
                 var p= document.createElement("p");
-                if(!fields[i].getElementsByTagName("msgText")[0].firstChild && !fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                if(!res[i].msgText && !res[i].msgPic){
                     var latestMsg= "";
-                }else if (fields[i].getElementsByTagName("msgText")[0].firstChild && !fields[i].getElementsByTagName("msgPic")[0].firstChild){
-                    var latestMsg=fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
-                }else if (!fields[i].getElementsByTagName("msgText")[0].firstChild && fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                    p.style.height="22px";
+                }else if (res[i].msgText && !res[i].msgPic){
+                    var latestMsg=res[i].msgText;
+                }else if (!res[i].msgText && res[i].msgPic){
                     var latestMsg= "傳送一張圖片";
                 }
-                var pText= document.createTextNode(latestMsg);
-                p.appendChild(pText);
+                // var pText= document.createTextNode(latestMsg);
+                // p.appendChild(pText);
+                p.innerHTML=latestMsg;
 
                 if(li.classList.contains("unRead")){
                     var unSpan= document.createElement("span");
                     if(myMemNo==sendMemNo){
-                        unReadAmt(fields[i].getElementsByTagName("getMemNo")[0].firstChild.nodeValue);
+                        unReadAmt(res[i].getMemNo);
                     }else{
-                        unReadAmt(fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue);
+                        unReadAmt(res[i].sendMemNo);
                     }
                     unSpan.innerText= theAmt;
                     p.appendChild(unSpan);
@@ -405,7 +416,9 @@
             xhr.onload=function (){
                 if(xhr.status==200){
                     if(xhr.responseText.indexOf("notFound")==-1){
-                        showMsgList(xhr.responseXML);
+                        var res= JSON.parse(xhr.responseText);
+                        
+                        showMsgList(res);
                         if(sessionStorage.getItem("now-on")){
                             var nowOn= document.querySelector(`aside ul li.No${sessionStorage.getItem("now-on")}`);
                             nowOn.classList.add("on");
@@ -437,8 +450,7 @@
         getMsg();
 
         //右邊的顯示內容
-        function showPanel(xmlDoc){
-            var fields= xmlDoc.documentElement.childNodes;//members>member
+        function showPanel(res){
             var ulMain= document.querySelector('main ul');
             ulMain.innerHTML=`
             <button class="back titleFont"></button>
@@ -495,6 +507,9 @@
                                 <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
                                 <input type="submit" id="submitText" value="">
                             </form>`;
+                            document.getElementById("inputText").disabled=true;
+                            document.getElementById("submitText").disabled=true;
+
                             document.querySelector("aside ul").innerHTML="";
                             getMsg();
                             if(document.querySelector("aside ul li.on")){
@@ -511,11 +526,11 @@
                 }
             };
             btnBack.addEventListener('click',changeSide);
-            for(var i=0; i<fields.length; i++){
-                if(fields[i].getElementsByTagName("msgText")[0].firstChild || fields[i].getElementsByTagName("msgPic")[0].firstChild){
+            for(var i=0; i<res.length; i++){
+                if(res[i].msgText || res[i].msgPic){
                     var li= document.createElement("li");
-                    var myMemNo= fields[i].getElementsByTagName("myMemNo")[0].firstChild.nodeValue;
-                    var sendMemNo= fields[i].getElementsByTagName("sendMemNo")[0].firstChild.nodeValue;
+                    var myMemNo= res[i].myMemNo;
+                    var sendMemNo= res[i].sendMemNo;
 
                     if(myMemNo != sendMemNo){
                         li.className="otherSide";
@@ -527,11 +542,11 @@
                         divImg.className="img";
                         li.appendChild(divImg);
                         var img= document.createElement("img");
-                        var sendMemPic= fields[i].getElementsByTagName("sendMemPic")[0].firstChild.nodeValue;
+                        var sendMemPic= res[i].sendMemPic;
                         img.src=`./img/memImg/${sendMemPic}`;//寄件人的圖片
                         divImg.appendChild(img);
                         var h4= document.createElement("h4");
-                        var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                        var sendMemName= res[i].sendMemName;
                         var h4Text= document.createTextNode(sendMemName);
                         h4.appendChild(h4Text);
                         li.appendChild(h4);
@@ -541,33 +556,33 @@
                     li.appendChild(divText);
                     if(li.className=="otherSide"){
                         var h4= document.createElement("h4");
-                        var sendMemName= fields[i].getElementsByTagName("sendMemName")[0].firstChild.nodeValue;
+                        var sendMemName= res[i].sendMemName;
                         var h4Text= document.createTextNode(sendMemName);
                         h4.appendChild(h4Text);
                         divText.appendChild(h4);
                     }
-                    if(!fields[i].getElementsByTagName("msgPic")[0].firstChild){
+                    if(!res[i].msgPic){
                         var p= document.createElement("p");
-                        var pText= fields[i].getElementsByTagName("msgText")[0].firstChild.nodeValue;
+                        var pText= res[i].msgText;
                         var pNode= document.createTextNode(pText);
                         p.appendChild(pNode);
                         divText.appendChild(p);
                     }else{
                         var img= document.createElement("img");
-                        img.src= `./img/msgPic/${fields[i].getElementsByTagName("msgPic")[0].firstChild.nodeValue}`;
+                        img.src= `./img/msgPic/${res[i].msgPic}`;
                         img.width= 200;
                         img.className="msgPic";
                         divText.appendChild(img);
                     }
                     var span= document.createElement("span");
                     span.className="smalltext";
-                    var msgTime= fields[i].getElementsByTagName("msgTime")[0].firstChild.nodeValue;
+                    var msgTime= res[i].msgTime;
                     var spanText= document.createTextNode(msgTime.split(" ")[0]+"　"+msgTime.split(" ")[1].split(":")[0]+":"+msgTime.split(" ")[1].split(":")[1]);
                     span.appendChild(spanText);
                     divText.appendChild(span);
                     var button= document.createElement("button");
                     button.className="closeBtn";
-                    button.classList.add(`No${fields[i].getElementsByTagName("msgNo")[0].firstChild.nodeValue}`);
+                    button.classList.add(`No${res[i].msgNo}`);
                     divText.appendChild(button);
                     ulMain.appendChild(li);
 
@@ -643,9 +658,27 @@
                         xhr.onload= function(){
                             if(xhr.status==200){
                                 // alert("成功刪除一筆私信");
-                                showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
-                                document.querySelector("aside ul").innerHTML="";
-                                getMsg();
+                                if(document.querySelector("aside ul li.on")){
+                                    showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                                    document.querySelector("aside ul").innerHTML="";
+                                    getMsg();
+                                }
+                                
+                                //如果空了的話
+                                else{
+                                    sessionStorage.removeItem("now-on");
+                                    main.innerHTML=`<ul>
+                                    <button class="back titleFont"></button>
+                                    </ul>
+                                    <form method="POST" class="edit" enctype="multipart/form-data">
+                                        <label for="upload">
+                                            <input type="file" id="upload" name="upload" accept="image/*">
+                                        </label>
+                                        <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
+                                        <input type="submit" id="submitText" value="">
+                                    </form>`;
+                                }
+                                
                             }else{
                                 alert(xhr.status);
                             }
@@ -669,7 +702,8 @@
 
             xhr.onload=function(){
                 if(xhr.status==200){
-                    showPanel(xhr.responseXML);
+                    var res= JSON.parse(xhr.responseText);
+                    showPanel(res);
                 }else{
                     alert(xhr.status);
                 }

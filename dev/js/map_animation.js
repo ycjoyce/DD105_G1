@@ -12,7 +12,7 @@ $(document).ready(function() {
     triggerElement: "#trigger01"
   })
     .setTween(lostdogDog)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
   // ------ Girl ------
@@ -24,7 +24,7 @@ $(document).ready(function() {
     triggerElement: "#trigger01"
   })
     .setTween(lostdogGirl)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
   // ------ Hurry Girl ------
@@ -36,7 +36,7 @@ $(document).ready(function() {
     triggerElement: "#trigger01"
   })
     .setTween(lostdogGirlSweat)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
   // ====== TweenMax & ScrollMagic (Boy&Dog)
@@ -84,7 +84,7 @@ $(document).ready(function() {
     triggerElement: "#trigger02"
   })
     .setTween(t1)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
   // ------ Dog ------
@@ -111,7 +111,7 @@ $(document).ready(function() {
     triggerElement: "#trigger02"
   })
     .setTween(t2)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
   // ====== TweenMax & ScrollMagic (Lostdog)
@@ -125,7 +125,7 @@ $(document).ready(function() {
     lostdogDog.delay(0.5);
     new ScrollMagic.Scene({ triggerElement: "#trigger01" })
       .setTween(lostdogDog)
-      .addIndicators()
+      // .addIndicators()
       .addTo(controller);
     var lostdogGirl = TweenMax.to("#lostdogGirl", 5, { x: -100 });
     lostdogGirl.delay(0.5);
@@ -133,7 +133,7 @@ $(document).ready(function() {
       triggerElement: "#trigger01"
     })
       .setTween(lostdogGirl)
-      .addIndicators()
+      // .addIndicators()
       .addTo(controller);
   }
 
