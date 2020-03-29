@@ -265,18 +265,20 @@ function mapMsg(id) {
           $.ajax({
             url: "./php/checkBlackMsg.php",
             type: "POST",
-            data: {petLostOwner: petLostOwner},
-            success(data){
-              if(data.indexOf("success")==-1){
-                alert("已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
-              }else{
+            data: { petLostOwner: petLostOwner },
+            success(data) {
+              if (data.indexOf("success") == -1) {
+                alert(
+                  "已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信"
+                );
+              } else {
                 $.ajax({
                   url: "./php/mapMsg.php",
                   type: "POST",
                   data: { lostNo: id.substr(4) },
                   success(data) {
                     if (data.indexOf("error") == -1) {
-                      sessionStorage.setItem("now-on",petLostOwner.trim());
+                      sessionStorage.setItem("now-on", petLostOwner.trim());
                       location.href = "./message.html";
                     } else {
                       alert("操作失敗");
@@ -288,9 +290,9 @@ function mapMsg(id) {
                 });
               }
             },
-            error(data){
+            error(data) {
               alert(data);
-            },
+            }
           });
         }
       },
@@ -375,6 +377,7 @@ function getFriendly() {
     // console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadfriendlyData(
+        data[i].friendlyNo,
         data[i].friendlylat,
         data[i].friendlylng,
         data[i].friendlyName,
@@ -404,6 +407,7 @@ $(".friendlyFather").click(function() {
 
 // 讀取地標
 function loadfriendlyData(
+  no,
   lat,
   lng,
   title,
@@ -430,7 +434,8 @@ function loadfriendlyData(
         <li>環境服務：${intro4}</li>
       </ul>
       <hr>
-      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon"><span>${typename}</span>
+      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon" PSN="A"><span>${typename}</span>
+      <input type="checkbox" fav="${no}" name="addfriendlyFav" class="addfriendlyFav" onchange="addFav()">
     </div>
   `;
   var infowindow = new google.maps.InfoWindow({
@@ -477,6 +482,7 @@ type.click(function() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyTypeNo == "1") {
         loadfriendlyData(
+          data[i].friendlyNo,
           data[i].friendlylat,
           data[i].friendlylng,
           data[i].friendlyName,
@@ -514,6 +520,7 @@ type.click(function() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyTypeNo == "2") {
         loadfriendlyData(
+          data[i].friendlyNo,
           data[i].friendlylat,
           data[i].friendlylng,
           data[i].friendlyName,
@@ -551,6 +558,7 @@ type.click(function() {
     for (var i = 0; data.length > i; i++) {
       if (data[i].friendlyTypeNo == "3") {
         loadfriendlyData(
+          data[i].friendlyNo,
           data[i].friendlylat,
           data[i].friendlylng,
           data[i].friendlyName,
@@ -693,3 +701,45 @@ $(document).ready(function() {
     });
   });
 });
+
+// ======================================新增最愛=============================================//
+
+function addFav() {
+  // console.log($(".addfriendlyFav").attr("fav"));
+  var fav = $(".addfriendlyFav").attr("fav");
+  if ($(".addfriendlyFav").prop("checked") == true) {
+    $.ajax({
+      type: "POST",
+      url: "./php/map_favAdd.php",
+      data: { friendlyNo: fav },
+      success: function(data) {
+        if (data.indexOf("ok") != -1) {
+          alert("新增到最愛");
+          console.log(fav + "新增到最愛");
+        } else {
+          alert("新增失敗");
+        }
+      },
+      error: function(xhr) {
+        alert(xhr.Message);
+      }
+    });
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "./php/map_favRemove.php",
+      data: { friendlyNo: fav },
+      success: function(data) {
+        if (data.indexOf("ok") != -1) {
+          alert("已從最愛移除");
+          console.log(fav + "從最愛移除");
+        } else {
+          alert("新增失敗");
+        }
+      },
+      error: function(xhr) {
+        alert(xhr.Message);
+      }
+    });
+  }
+}
