@@ -1092,6 +1092,10 @@ body {
   background-image: url(../img/pawprint-white.svg);
   transition: all 0.3s;
   &:checked {
+    -webkit-appearance: none;
+    -o-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-image: url(../img/pawprint-01.svg);
   }
 }
