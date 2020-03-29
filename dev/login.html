@@ -119,7 +119,7 @@
         signIn.addEventListener('click', signInOpen);
         signInBtn.addEventListener('click', signInOpen);
 
-        window.addEventListener('resize',function(){
+        function windowSize(){
             //md
             if(document.body.clientWidth>=768 && document.body.clientWidth<=991){
                 signUp.style.display= 'none';
@@ -174,7 +174,9 @@
                 signInCloseTitle.classList.remove("open");
                 signUpCloseTitle.classList.remove("close");
             }
-        });
+        }
+        windowSize();
+        window.addEventListener('resize',windowSize);
 
         function getMember(){
             if(document.getElementById("signInAccount").value==""){

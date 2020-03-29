@@ -86,26 +86,27 @@ $(document).ready(function() {
         }
     });
     $('#step2NextBtn').click(function() { //step2下一步按鈕
-        let status = document.getElementsByClassName('status');
-        let nowTag = document.getElementById('nowTag').innerText;
-        if (status[nowTag - 1].innerText == "未解鎖") {
-            alert("請先解鎖此吊牌");
-        } else {
-            $('ul.tabs li').removeClass('current');
-            $('.tab-content').removeClass('current');
+        // let status = document.getElementsByClassName('status');
+        // let nowTag = document.getElementById('nowTag').innerText;
+        // if (status[nowTag - 1].innerText == "未解鎖") {
+        //     alert("請先解鎖此吊牌");
+        // } else {
 
-            $(this).parent().parent().next().addClass('current');
-            $('#bigTab3').addClass('current');
-            $('#bigTab3').css('pointer-events', 'unset');
-            $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
-            $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
-            $('.tabLine2').css("opacity", "1");
-            $('.fakeCircles').css("opacity", "0");
-            $('.fakeCircle9').css("opacity", "1");
-            $('.fakeCircle10').css("opacity", "1");
-            $('.fakeCircle11').css("opacity", "1");
-            $('.fakeCircle12').css("opacity", "1");
-        }
+        // }
+        $('ul.tabs li').removeClass('current');
+        $('.tab-content').removeClass('current');
+
+        $(this).parent().parent().next().addClass('current');
+        $('#bigTab3').addClass('current');
+        $('#bigTab3').css('pointer-events', 'unset');
+        $('#bigTab3').removeClass("tabClose").addClass("tabOpen");
+        $('#bigTab3').children().removeClass("tabSpanClose").addClass("tabSpanOpen");
+        $('.tabLine2').css("opacity", "1");
+        $('.fakeCircles').css("opacity", "0");
+        $('.fakeCircle9').css("opacity", "1");
+        $('.fakeCircle10').css("opacity", "1");
+        $('.fakeCircle11').css("opacity", "1");
+        $('.fakeCircle12').css("opacity", "1");
     });
     $('#step2BackBtn').click(function() { //step2上一步按鈕
 

@@ -20,13 +20,13 @@ $(document).ready(function() {
             html += `
             <tr>
                 <td>${data[i].lostPetRpNo}</td>
-                <td>${data[i].lostPetRpDate}</td>
+                <td class="memRWD_992">${data[i].lostPetRpDate}</td>
                 <td class="memRWD_992">${data[i].lostPetRpLoc}</td>
                 <td class="memRWD_992">${data[i].lostPetRpLDate}</td>
                 <td>${data[i].lostPetRpName}</td>
                 <td class="memRWD_992">${data[i].lostPetRpType}</td>
                 <td class="memRWD_992">進行中</td>
-                <td class="memRWD_992"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
+                <td class="memRWD_992_img"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
                 <td>
                 <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                 </td>
@@ -35,13 +35,13 @@ $(document).ready(function() {
             html += `
             <tr>
                 <td>${data[i].lostPetRpNo}</td>
-                <td>${data[i].lostPetRpDate}</td>
+                <td class="memRWD_992">${data[i].lostPetRpDate}</td>
                 <td class="memRWD_992">${data[i].lostPetRpLoc}</td>
                 <td class="memRWD_992">${data[i].lostPetRpLDate}</td>
                 <td>${data[i].lostPetRpName}</td>
                 <td class="memRWD_992">${data[i].lostPetRpType}</td>
                 <td class="memRWD_992">已找到</td>
-                <td class="memRWD_992"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
+                <td class="memRWD_992_img"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
                 <td>
                 <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                 </td>
@@ -50,13 +50,13 @@ $(document).ready(function() {
             html += `
                 <tr>
                     <td>${data[i].lostPetRpNo}</td>
-                    <td>${data[i].lostPetRpDate}</td>
+                    <td class="memRWD_992>${data[i].lostPetRpDate}</td>
                     <td class="memRWD_992">${data[i].lostPetRpLoc}</td>
                     <td class="memRWD_992">${data[i].lostPetRpLDate}</td>
                     <td>${data[i].lostPetRpName}</td>
                     <td class="memRWD_992">${data[i].lostPetRpType}</td>
                     <td class="memRWD_992">未找到，結案</td>
-                    <td class="memRWD_992"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
+                    <td class="memRWD_992_img"><img src="./img/lostrp/${data[i].lostPetRpImg}"></td>
                     <td>
                     <a href="#" class="lostform_edit updatebtn_s" psn="${data[i].lostPetRpNo}">編輯 / 結案</a>
                     </td>

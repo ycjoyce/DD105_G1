@@ -24,7 +24,7 @@
     <!-- 跟tweenmax結合 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
     <!-- 開發時debug用(標示觸發點)，上線時移除 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
 
 </head>
@@ -32,8 +32,8 @@
 <body>
     <!--------------------- 導覽列 --------------------->
     <header class="header-navigation" id="header">
-    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
             <h1>
                 <a href="./main.html">
                     <img src="./img/logo-wide.png" alt="logo">
@@ -185,9 +185,9 @@
         </Section>
 
         <!--------------------- 第五屏map --------------------->
-        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12">
+        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12 col-mini-12">
             <!-- 左側篩選區 -->
-            <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12">
+            <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12 col-mini-12">
 
                 <!-- 快速搜尋－案件申請按鈕 -->
                 <form action="post" class="map_lostapply">
@@ -213,7 +213,7 @@
                 <div class="map_selector">
 
                     <!-- 寵物遺失 -->
-                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 map_Fav">
+                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 col-mini-6 map_Fav">
                         <div id="map_option_lost" class="map_option">寵物遺失地點</div>
                         <div class="map_filter_lost">
                             <h3>
@@ -251,7 +251,7 @@
                     </div>
 
                     <!-- 友善空間 -->
-                    <div class="map_filter col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6">
+                    <div class="map_filter col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 col-mini-6">
                         <div id="map_option_fil" class="map_option">寵物友善空間</div>
                         <div class="map_filter_filter">
                             <!-- 寵物友善空間－快速搜尋 -->
@@ -330,7 +330,7 @@
             </div>
 
             <!-- 右側地圖區 -->
-            <div id="gmaps" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 map_area">
+            <div id="gmaps" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 col-mini-12 map_area">
                 <div id="map-viewport">
                     <div class="map" id="googleMap"></div>
                     <div id="map-control">
