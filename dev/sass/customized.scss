@@ -1120,7 +1120,7 @@ section {
                                 text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
                                 margin-right: 15px;
                                 @include RWD(xs) {
-                                    font-size: 1.2rem;
+                                    font-size: 1.3rem;
                                 }
                             }
                             #textStyle3 {
@@ -1128,6 +1128,9 @@ section {
                             }
                             #showStyle3 {
                                 font-size: 24px;
+                                @include RWD(xs) {
+                                    font-size: 1.3rem;
+                                }
                             }
                         }
                         #textColor {
@@ -1724,4 +1727,14 @@ Form
             padding: 5%;
         }
     }
+}
+
+.pcr-app {
+    @include RWD(ss) {
+        left: 43px !important;
+    }
+}
+
+.pcr-app[data-theme=classic] {
+    width: unset !important;
 }
