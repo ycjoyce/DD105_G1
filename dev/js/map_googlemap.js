@@ -836,58 +836,62 @@ function showFav() {
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     console.log(data);
-    for (var i = 0; data.length > i; i++) {
-      if (favorite_type) {
-        if (data[i].friendlyTypeNo == favorite_type[0]) {
-          loadfriendlyData(
-            data[i].friendlyNo,
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
-        }
-        if (data[i].friendlyTypeNo == favorite_type[1]) {
-          loadfriendlyData(
-            data[i].friendlyNo,
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
-        }
-        if (data[i].friendlyTypeNo == favorite_type[2]) {
-          loadfriendlyData(
-            data[i].friendlyNo,
-            data[i].friendlylat,
-            data[i].friendlylng,
-            data[i].friendlyName,
-            data[i].friendlyPic,
-            data[i].friendlyTel,
-            data[i].friendlyAddress,
-            data[i].friendlyIntro_1,
-            data[i].friendlyIntro_2,
-            data[i].friendlyIntro_3,
-            data[i].friendlyIntro_4,
-            data[i].friendlyTypeNo,
-            data[i].friendlyTypeName
-          );
+    if (data == false) {
+      alert("目前沒有最愛的友善空間喔!");
+    } else {
+      for (var i = 0; data.length > i; i++) {
+        if (favorite_type) {
+          if (data[i].friendlyTypeNo == favorite_type[0]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == favorite_type[1]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == favorite_type[2]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
         }
       }
     }
@@ -899,7 +903,7 @@ window.addEventListener("load", function() {
   let fatype = document.getElementsByName("favoritetypes");
   for (let i = 0; i < fatype.length; i++) {
     fatype[i].onchange = function(e) {
-      document.getElementById('favoH3').style.color="red";
+      document.getElementById("favoH3").style.color = "red";
       var type = document.getElementsByName("favoritetypes");
       let arrB = [];
       //檢查全部的checkbox有誰被勾選

@@ -613,19 +613,25 @@ label.uploadimgbtn {
     #lostform {
       max-width: 350px;
       label {
-        margin-bottom: 3px;
+        margin-bottom: 0;
       }
       p {
-        margin: 8px 0;
+        margin: 3px 0;
       }
       fieldset {
         padding: 25px 30px 20px;
         h3 {
           margin-bottom: 15px;
         }
+        #imageShow {
+          display: none;
+        }
       }
       .uploadimg_btn {
         margin-bottom: 15px;
+      }
+      input[type="date"] {
+        width: 290px;
       }
     }
   }
@@ -635,13 +641,8 @@ label.uploadimgbtn {
   #lostform_cus {
     #lostform {
       max-width: 300px;
-      label {
-        margin-bottom: 2px;
-      }
-      fieldset {
-        p {
-          margin: 12px 0;
-        }
+      input[type="date"] {
+        width: 240px;
       }
       .uploadimg_btn {
         margin-bottom: 10px;
@@ -650,12 +651,20 @@ label.uploadimgbtn {
   }
 }
 
+// 我的寵物遺失回報
+.lostPetRp_icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: bottom;
+  margin-right: 3px;
+}
+
 // 寵物遺失結束
 
 // 會員資訊
-div.clickToShow{
+div.clickToShow {
   display: none;
-  &.show{
+  &.show {
     display: block;
   }
 }
@@ -795,14 +804,6 @@ div.clickToShow{
       }
     }
   }
-}
-
-// 我的寵物遺失回報
-.lostPetRp_icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: bottom;
-  margin-right: 3px;
 }
 
 // 管理黑名單

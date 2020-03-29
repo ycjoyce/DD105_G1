@@ -361,6 +361,10 @@
   }
 }
 .map_container #gmaps input[type="checkbox"]:checked {
+  -webkit-appearance: none;
+  -o-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   background-image: url(../img/heart-solid.svg);
   background-color: white;
   border: 1px solid #8fc8ce;
