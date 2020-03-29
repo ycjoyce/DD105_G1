@@ -296,14 +296,16 @@
                 alert("請填寫正確E-mail");
             }else{
                 $.ajax({
-                    url: './php/findPsw.php',
-                    data: {email:email},
+                    url: './php/forgotPassword.php',
+                    data: {"email":email},
                     type: 'POST',
+                    dataType: 'json',
                     success(data){
-                        if(data.indexOf("notFound")!=-1){
+                        if(data == "沒查詢到該郵件"){
                             alert("此E-mail尚未註冊");
                         }else{
-                            console.log(data);
+                            console.log(data); 
+                            alert("已發送，請至信箱收取您的新密碼!");
                         }
                     },
                     error(data){
