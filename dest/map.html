@@ -10,7 +10,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> -->
     <link rel="stylesheet" href="./css/map.css">
     <script src="./js/modernizr.custom.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -24,7 +24,7 @@
     <!-- 跟tweenmax結合 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
     <!-- 開發時debug用(標示觸發點)，上線時移除 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
 
 </head>
@@ -32,8 +32,8 @@
 <body>
     <!--------------------- 導覽列 --------------------->
     <header class="header-navigation" id="header">
-    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
             <h1>
                 <a href="./main.html">
                     <img src="./img/logo-wide.png" alt="logo">
@@ -185,9 +185,9 @@
         </Section>
 
         <!--------------------- 第五屏map --------------------->
-        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12">
+        <section id="mapArea" class="map_content col-xl-11 col-lg-11 col-md-12 col-sm-12 col-ss-12 col-mini-12">
             <!-- 左側篩選區 -->
-            <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12">
+            <div class="map_search col-xl-4 col-lg-4 col-md-12 col-sm-12 col-ss-12 col-mini-12">
 
                 <!-- 快速搜尋－案件申請按鈕 -->
                 <form action="post" class="map_lostapply">
@@ -209,11 +209,11 @@
 
                 </form>
 
-                <!-- 快速搜尋+我的收藏 -->
+                <!-- 寵物遺失+友善空間 -->
                 <div class="map_selector">
 
-                    <!-- 我的收藏 -->
-                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 map_Fav">
+                    <!-- 寵物遺失 -->
+                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 col-mini-6 map_Fav">
                         <div id="map_option_lost" class="map_option">寵物遺失地點</div>
                         <div class="map_filter_lost">
                             <h3>
@@ -250,8 +250,8 @@
                         </div>
                     </div>
 
-                    <!-- 快速搜尋 -->
-                    <div class="map_filter col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6">
+                    <!-- 友善空間 -->
+                    <div class="map_filter col-xl-12 col-lg-12 col-md-6 col-sm-6 col-ss-6 col-mini-6">
                         <div id="map_option_fil" class="map_option">寵物友善空間</div>
                         <div class="map_filter_filter">
                             <!-- 寵物友善空間－快速搜尋 -->
@@ -308,20 +308,20 @@
 
                             <!-- 寵物友善空間－我的收藏 -->
                             <!-- <div class="map_filter_lost"> -->
-                            <h3>
+                            <h3 id="favoH3">
                                 <!-- <input type="checkbox" name="favorite" id="favorite"> -->
                                 <label for="favorite">我的最愛</label>
                             </h3>
                             <p>
-                                <input type="checkbox" name="fa_rest" id="fa_rest">
+                                <input type="checkbox" name="favoritetypes" id="fa_rest" value="1">
                                 <label for="fa_rest">友善餐廳</label>
                             </p>
                             <p>
-                                <input type="checkbox" name="fa_stay" id="fa_stay">
+                                <input type="checkbox" name="favoritetypes" id="fa_stay" value="2">
                                 <label for="fa_stay">友善住宿</label>
                             </p>
                             <p>
-                                <input type="checkbox" name="fa_point" id="fa_point">
+                                <input type="checkbox" name="favoritetypes" id="fa_point" value="3">
                                 <label for="fa_point">友善景點</label>
                             </p>
                         </div>
@@ -330,7 +330,7 @@
             </div>
 
             <!-- 右側地圖區 -->
-            <div id="gmaps" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 map_area">
+            <div id="gmaps" class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-ss-12 col-mini-12 map_area">
                 <div id="map-viewport">
                     <div class="map" id="googleMap"></div>
                     <div id="map-control">
@@ -468,41 +468,64 @@
             var winWidth = $(window).width();
             var winHeight = $(window).height();
 
-            function mem_No() {
-                var mem_No = member.memNo;
-                var mem_Id = member.memName;
-                document.getElementById('memNo').value = mem_No;
-                document.getElementById('lostPetRpmemName').value = mem_Id;
-            };
-            mem_No();
-
             // [展開/關閉] 快速搜尋/我的收藏
-            $('#map_option_fil').click(function () {
-                // 取得遠端資料並渲染
-                getFriendly();
-                $(this).siblings('.map_filter_filter').slideToggle('slow');
-                $(this).toggleClass('is-active');
+            if (winWidth > 415) {
+                $('#map_option_fil').click(function () {
+                    // 取得遠端資料並渲染
+                    getFriendly();
+                    $(this).siblings('.map_filter_filter').slideToggle('slow');
+                    $(this).toggleClass('is-active');
 
-                if ($(this).hasClass('is-active')) {
-                    $(this).parent('div').parent('div').children('.map_Fav').children('.map_filter_lost').hide();
-                    $(this).parent('div').parent('div').children('.map_Fav').children('#map_option_lost').removeClass('is-active');
-                };
-            });
-            $('#map_option_lost').click(function () {
-                // 取得遠端資料並渲染
-                getLost();
-                $(this).siblings('.map_filter_lost').slideToggle('slow');
-                $(this).toggleClass('is-active');
+                    if ($(this).hasClass('is-active')) {
+                        $(this).parent('div').parent('div').children('.map_Fav').children('.map_filter_lost').hide();
+                        $(this).parent('div').parent('div').children('.map_Fav').children('#map_option_lost').removeClass('is-active');
+                    };
+                });
+                $('#map_option_lost').click(function () {
+                    // 取得遠端資料並渲染
+                    getLost();
+                    $(this).siblings('.map_filter_lost').slideToggle('slow');
+                    $(this).toggleClass('is-active');
 
-                if ($(this).hasClass('is-active')) {
-                    $(this).parent('div').parent('div').children('.map_filter').children('.map_filter_filter').hide();
-                    $(this).parent('div').parent('div').children('.map_filter').children('#map_option_fil').removeClass('is-active');
-                };
-            });
-
+                    if ($(this).hasClass('is-active')) {
+                        $(this).parent('div').parent('div').children('.map_filter').children('.map_filter_filter').hide();
+                        $(this).parent('div').parent('div').children('.map_filter').children('#map_option_fil').removeClass('is-active');
+                    };
+                });
+            };
+            
             // 小於992px, 移除is-active
             if (winWidth > 992) {
                 $('#map_option_lost').addClass('is-active');
+            };
+
+            // 小於414px, 點地圖篩選不要先撈資料
+            if (winWidth < 415) {
+                $('#fr_rest').prop("checked", false);
+                $('#fr_stay').prop("checked", false);
+                $('#fr_point').prop("checked", false);
+                $('#map_option_fil').click(function () {
+                    // 取得遠端資料並渲染
+                    // getFriendly();
+                    $(this).siblings('.map_filter_filter').slideToggle('slow');
+                    $(this).toggleClass('is-active');
+
+                    if ($(this).hasClass('is-active')) {
+                        $(this).parent('div').parent('div').children('.map_Fav').children('.map_filter_lost').hide();
+                        $(this).parent('div').parent('div').children('.map_Fav').children('#map_option_lost').removeClass('is-active');
+                    };
+                });
+                $('#map_option_lost').click(function () {
+                    // 取得遠端資料並渲染
+                    // getLost();
+                    $(this).siblings('.map_filter_lost').slideToggle('slow');
+                    $(this).toggleClass('is-active');
+
+                    if ($(this).hasClass('is-active')) {
+                        $(this).parent('div').parent('div').children('.map_filter').children('.map_filter_filter').hide();
+                        $(this).parent('div').parent('div').children('.map_filter').children('#map_option_fil').removeClass('is-active');
+                    };
+                });
             };
 
             //判斷會員登入

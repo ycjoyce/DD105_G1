@@ -1,10 +1,12 @@
 <?php
 
-ini_set("display_errors","On");
-error_reporting(E_ALL);
+// ini_set("display_errors","On");
+// error_reporting(E_ALL);
 
 
 $errMsg = "";
+session_start();
+$memno = $_SESSION["memNo"];
 
 try{
     require_once("connectDB.php");
@@ -13,11 +15,11 @@ try{
     
     if( $_FILES["lostPetRpImg"]["error"] == UPLOAD_ERR_OK){
 
-    $sql= "INSERT INTO `lostpetreport` (memNo, memName, lostPetRpName, lostPetRpCh, lostPetRpLoc, lostPetRpLDate, lostPetRpType, lostPetRpStat, lostPetRpImg, lostPetRpLoclat, lostPetRpLoclng, lostPetRpLocAdd) values(:memNo, :memName, :lostPetRpName, :lostPetRpCh, :lostPetRpLoc, :lostPetRpLDate, :lostPetRpType,:lostPetRpStat, null, :lostPetRpLoclat,:lostPetRpLoclng ,:lostPetRpLocAdd)";
+    $sql= "INSERT INTO `lostpetreport` (memNo, lostPetRpName, lostPetRpCh, lostPetRpLoc, lostPetRpLDate, lostPetRpType, lostPetRpStat, lostPetRpImg, lostPetRpLoclat, lostPetRpLoclng, lostPetRpLocAdd) values(:memNo, :lostPetRpName, :lostPetRpCh, :lostPetRpLoc, :lostPetRpLDate, :lostPetRpType,:lostPetRpStat, null, :lostPetRpLoclat,:lostPetRpLoclng ,:lostPetRpLocAdd)";
    
 	$lostRp= $pdo->prepare($sql);
-	$lostRp->bindValue(":memNo", $_POST["memNo"]);
-	$lostRp->bindValue(":memName", $_POST["memName"]);
+	$lostRp->bindValue(":memNo", $memno);
+	// $lostRp->bindValue(":memName", $_POST["memName"]);
     $lostRp->bindValue(":lostPetRpName", $_POST["lostPetRpName"]);
     $lostRp->bindValue(":lostPetRpCh", $_POST["lostPetRpCh"]);
     $lostRp->bindValue(":lostPetRpLoc", $_POST["lostPetRpLoc"]);

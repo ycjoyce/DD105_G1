@@ -148,14 +148,14 @@
             <thead">
                 <tr>
                     <th class="titleFont">編號</th>
-                    <th class="titleFont">刊登日期</th>
+                    <th class="titleFont memRWD_992">刊登日期</th>
                     <th class="titleFont memRWD_992">遺失地點</th>
                     <th class="titleFont memRWD_992">遺失時間</th>
                     <th class="titleFont">寵物名稱</th>
                     <th class="titleFont memRWD_992">寵物類型</th>
                     <!-- <th class="titleFont">寵物特徵</th> -->
                     <th class="titleFont memRWD_992">案件狀態</th>
-                    <th class="titleFont memRWD_992">寵物圖片</th>
+                    <th class="titleFont memRWD_992_img">寵物圖片</th>
                     <th class="titleFont"></th>
                 </tr>
                 </thead>
@@ -610,13 +610,13 @@
             <tr>
                 <th class="titleFont">訂單編號</th>
                 <th class="titleFont">商品圖案</th>
-                <th class="titleFont">購買日期</th>
-                <th class="titleFont">收件人姓名</th>
-                <th class="titleFont">收件人電話</th>
-                <th class="titleFont">收件人地址</th>
+                <th class="titleFont memRWD_992">購買日期</th>
+                <th class="titleFont memRWD_992">收件人姓名</th>
+                <th class="titleFont memRWD_992">收件人電話</th>
+                <th class="titleFont memRWD_992">收件人地址</th>
                 <th class="titleFont memRWD_992">商品數量</th>
                 <th class="titleFont memRWD_992">訂單金額</th>
-                <th class="titleFont memRWD_992">訂單狀態</th>
+                <th class="titleFont">訂單狀態</th>
             </tr>
         </table>
     </div>
@@ -645,13 +645,13 @@
                                 <tr>
                                     <td>${i+1}</td>
                                     <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
-                                    <td>${data[i].orderDate}</td>
-                                    <td>${data[i].orderName}</td>
-                                    <td>${data[i].orderPhone}</td>
-                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
                                     <td class="memRWD_992">${data[i].orderQty}</td>
                                     <td class="memRWD_992">${data[i].orderPrice}</td>
-                                    <td class="memRWD_992 orderStatus">待出貨</td>
+                                    <td class="orderStatus">待出貨</td>
                                 </tr>
                             `;
                         } else if (data[i].orderStatus == 1) {
@@ -660,13 +660,13 @@
                                 <tr>
                                     <td>${i+1}</td>
                                     <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
-                                    <td>${data[i].orderDate}</td>
-                                    <td>${data[i].orderName}</td>
-                                    <td>${data[i].orderPhone}</td>
-                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
                                     <td class="memRWD_992">${data[i].orderQty}</td>
                                     <td class="memRWD_992">${data[i].orderPrice}</td>
-                                    <td class="memRWD_992 orderStatus">已出貨</td>
+                                    <td orderStatus">已出貨</td>
                                 </tr>
                             `;
                         } else if (data[i].orderStatus == 2) {
@@ -675,13 +675,13 @@
                                 <tr>
                                     <td>${i+1}</td>
                                     <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
-                                    <td>${data[i].orderDate}</td>
-                                    <td>${data[i].orderName}</td>
-                                    <td>${data[i].orderPhone}</td>
-                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
                                     <td class="memRWD_992">${data[i].orderQty}</td>
                                     <td class="memRWD_992">${data[i].orderPrice}</td>
-                                    <td class="memRWD_992 orderStatus">待收貨</td>
+                                    <td orderStatus">待收貨</td>
                                 </tr>
                             `;
                         } else {
@@ -690,13 +690,13 @@
                                 <tr>
                                     <td>${i+1}</td>
                                     <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
-                                    <td>${data[i].orderDate}</td>
-                                    <td>${data[i].orderName}</td>
-                                    <td>${data[i].orderPhone}</td>
-                                    <td>${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
                                     <td class="memRWD_992">${data[i].orderQty}</td>
                                     <td class="memRWD_992">${data[i].orderPrice}</td>
-                                    <td class="memRWD_992 orderStatus">已收貨</td>
+                                    <td orderStatus">已收貨</td>
                                 </tr>
                             `;
                         }

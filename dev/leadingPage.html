@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <link rel="stylesheet" type="text/css" href="./css/leadingPage.css" />
   @@include('./layout/head.html',{"title": "浪愛回家"})
 </head>
@@ -12,34 +13,34 @@
 <body>
   <!-- coidea:loader START -->
   <div class="loader">
-    <div class="lds-ripple">
+    <div class="lds-ripple"> 
       <div></div>
       <div></div>
     </div>
   </div>
-  
+
   <header>
 
   </header>
 
   <main id="coidea" class="coidea-fullpage">
 
- 
+
     <section class="wrapper" id="section-1">
       <div class="bg">
 
         <div class="el">
 
-          <div class="bcg"  >
+          <div class="bcg">
             <video src="./img/Girl playing with dog.mp4" muted loop autoplay
               style=" width: 100% ;height: 100%;"></video>
           </div>
           <div class="content">
-            <div class="title"  id="scene">
-              <span data-depth="0.3">Bring Love Home</span>
+            <div class="title" id="scene">
+              <span class="tit" data-in-effect="fadeInDownBig" data-depth="0.3">Bring Love Home</span>
             </div>
             <div class="description">
-              
+
               <div class="container">
                 <a href="main.html">
                   <div class="circle">
@@ -53,12 +54,16 @@
                 </a></div>
             </div>
           </div>
+          <div>
+            <div class="dialog-border-bottom"><span>click anywhere</span></div>
+            <img src="./img/dog_and_text.gif" alt="" class="doggif">
+          </div>
         </div>
       </div>
     </section>
-    
+
   </main>
-  
+
   <footer class="active-footer">
     <nav class="anchor-nav" role="navigation">
       <!-- <a href="#section-1" class="active" id="anchor1"></a> -->
@@ -82,7 +87,17 @@
         var scene = document.getElementById('scene');
         var parallaxInstance = new Parallax(scene);
       </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+      <script>
+        $(".tit").textillate({
 
+          initialDelay: 400,
+          autoStart: true,
+        }
+        );
+      </script>
 </body>
 
 </html>

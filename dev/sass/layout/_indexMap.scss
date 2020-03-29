@@ -144,3 +144,12 @@
   }
 }
 
+
+@media (max-width: 415px) {
+  #mapZone #googleMap .friendContent, #mapZone #googleMap .lostContent{
+    width: 215px;
+  }
+  #mapZone #googleMap .friendContent img, #mapZone #googleMap .lostContent img{
+    max-width: 215px;
+  }
+}

@@ -220,7 +220,7 @@ function zoomControl() {
   });
 }
 
-// ===========================================================================================//
+// ======================================輸入地址=============================================//
 
 /// 輸入地址
 document.getElementById("lostPetRpLoc").onchange = getAddress;
@@ -248,6 +248,8 @@ function getAddress() {
     }
   });
 }
+
+// ======================================寵物遺失=============================================//
 
 /*** 寵物遺失載入地標 ***/
 function getLost() {
@@ -294,21 +296,36 @@ function mapMsg(id) {
           alert("此寵物主人為您本人");
         } else {
           petLostOwner = data;
+
           $.ajax({
-            url: "./php/mapMsg.php",
+            url: "./php/checkBlackMsg.php",
             type: "POST",
-            data: { lostNo: id.substr(4) },
-            success(data) {
-              if (data.indexOf("error") == -1) {
-                sessionStorage.setItem("now-on", petLostOwner);
-                location.href = "./message.html";
-              } else {
-                alert("操作失敗");
+            data: {petLostOwner: petLostOwner},
+            success(data){
+              if(data.indexOf("success")==-1){
+                alert("已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
+              }else{
+                $.ajax({
+                  url: "./php/mapMsg.php",
+                  type: "POST",
+                  data: { lostNo: id.substr(4) },
+                  success(data) {
+                    if (data.indexOf("error") == -1) {
+                      sessionStorage.setItem("now-on",petLostOwner.trim());
+                      location.href = "./message.html";
+                    } else {
+                      alert("操作失敗");
+                    }
+                  },
+                  error(data) {
+                    alert(data);
+                  }
+                });
               }
             },
-            error(data) {
+            error(data){
               alert(data);
-            }
+            },
           });
         }
       },
@@ -380,7 +397,7 @@ var dist = document.querySelector("#lost_area");
 dist.addEventListener("change", changeDist);
 function changeDist() {
   var distVal = dist.value;
-  alert(distVal);
+  // alert(distVal);
   // 清除資料
   for (i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
@@ -413,7 +430,7 @@ function changeDist() {
   };
 }
 
-// ===================================================================================//
+// ======================================友善空間=============================================//
 /*** 友善空間載入地標 ***/
 function getFriendly() {
   for (i = 0; i < markers.length; i++) {
@@ -430,6 +447,7 @@ function getFriendly() {
     console.log(data);
     for (var i = 0; data.length > i; i++) {
       loadfriendlyData(
+        data[i].friendlyNo,
         data[i].friendlylat,
         data[i].friendlylng,
         data[i].friendlyName,
@@ -444,27 +462,6 @@ function getFriendly() {
         data[i].friendlyTypeName
       );
     }
-    var mySwiper = new Swiper(".swiper-container", {
-      // Optional parameters
-      direction: "vertical",
-      loop: true,
-
-      // If we need pagination
-      pagination: {
-        el: ".swiper-pagination"
-      },
-
-      // Navigation arrows
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      },
-
-      // And if we need scrollbar
-      scrollbar: {
-        el: ".swiper-scrollbar"
-      }
-    });
   };
 }
 
@@ -493,6 +490,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -512,6 +510,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -531,6 +530,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -548,6 +548,7 @@ function changeMarker() {
         } else {
           if (data[i].friendlyLocNo == search_area) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -571,6 +572,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -590,6 +592,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -609,6 +612,7 @@ function changeMarker() {
             data[i].friendlyLocNo == search_area
           ) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -626,6 +630,7 @@ function changeMarker() {
         } else {
           if (data[i].friendlyTypeNo == search_type[0]) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -642,6 +647,7 @@ function changeMarker() {
           }
           if (data[i].friendlyTypeNo == search_type[1]) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -658,6 +664,7 @@ function changeMarker() {
           }
           if (data[i].friendlyTypeNo == search_type[2]) {
             loadfriendlyData(
+              data[i].friendlyNo,
               data[i].friendlylat,
               data[i].friendlylng,
               data[i].friendlyName,
@@ -679,7 +686,6 @@ function changeMarker() {
   };
 }
 window.addEventListener("load", function() {
-  // changeMarker();
   let area = document.querySelector("#fr_area");
   area.onchange = function(e) {
     search_area = e.target.value;
@@ -716,6 +722,7 @@ window.addEventListener("load", function() {
 
 /*** 讀取友善空間地標 ***/
 function loadfriendlyData(
+  no,
   lat,
   lng,
   title,
@@ -729,43 +736,9 @@ function loadfriendlyData(
   typeno,
   typename
 ) {
-  var mySwiper = new Swiper(".swiper-container", {
-    // Optional parameters
-    direction: "vertical",
-    loop: true,
-
-    // If we need pagination
-    pagination: {
-      el: ".swiper-pagination"
-    },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-      el: ".swiper-scrollbar"
-    }
-  });
   var contentString = `
     <div class="friendContent">
-        <!-- Swiper -->
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-          <div class="swiper-slide"><img src="./img/map_friendly/${pic}"></div>
-        </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    
+    <img src="./img/map_friendly/${pic}">
       <ul>
         <li>店名：${title}</li>
         <li>電話：${tel}</li>
@@ -776,7 +749,8 @@ function loadfriendlyData(
         <li>環境服務：${intro4}</li>
       </ul>
       <hr>
-      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon"><span>${typename}</span>
+      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon" PSN="A"><span>${typename}</span>
+      <input type="checkbox" fav="${no}" name="addfriendlyFav" class="addfriendlyFav" onchange="addFav()">
     </div>
   `;
   var infowindow = new google.maps.InfoWindow({
@@ -804,25 +778,152 @@ function loadfriendlyData(
   markers.push(marker);
 }
 
+// ======================================新增最愛=============================================//
 
-var mySwiper = new Swiper ('.swiper-container', {
-  // Optional parameters
-  direction: 'vertical',
-  loop: true,
+function addFav() {
+  // console.log($(".addfriendlyFav").attr("fav"));
+  var fav = $(".addfriendlyFav").attr("fav");
+  if ($(".addfriendlyFav").prop("checked") == true) {
+    $.ajax({
+      type: "POST",
+      url: "./php/map_favAdd.php",
+      data: { friendlyNo: fav },
+      success: function(data) {
+        if (data.indexOf("ok") != -1) {
+          alert("新增到最愛");
+          console.log(fav + "新增到最愛");
+        } else {
+          alert("新增失敗");
+        }
+      },
+      error: function(xhr) {
+        alert(xhr.Message);
+      }
+    });
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "./php/map_favRemove.php",
+      data: { friendlyNo: fav },
+      success: function(data) {
+        if (data.indexOf("ok") != -1) {
+          alert("已從最愛移除");
+          console.log(fav + "從最愛移除");
+        } else {
+          alert("新增失敗");
+        }
+      },
+      error: function(xhr) {
+        alert(xhr.Message);
+      }
+    });
+  }
+}
 
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
+// 我的最愛更換類別
+let favorite_type;
 
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+function showFav() {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
 
-  // And if we need scrollbar
-  scrollbar: {
-    el: '.swiper-scrollbar',
-  },
-})
+  var xhr = new XMLHttpRequest();
+  xhr.open("get", "./php/map_favShow.php");
+  xhr.send(null);
+  xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
+    console.log(data);
+    if (data == false) {
+      alert("目前沒有最愛的友善空間喔!");
+    } else {
+      for (var i = 0; data.length > i; i++) {
+        if (favorite_type) {
+          if (data[i].friendlyTypeNo == favorite_type[0]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == favorite_type[1]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == favorite_type[2]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        }
+      }
+    }
+  };
+}
+
+// 讀取我的最愛點選
+window.addEventListener("load", function() {
+  let fatype = document.getElementsByName("favoritetypes");
+  for (let i = 0; i < fatype.length; i++) {
+    fatype[i].onchange = function(e) {
+      document.getElementById("favoH3").style.color = "red";
+      var type = document.getElementsByName("favoritetypes");
+      let arrB = [];
+      //檢查全部的checkbox有誰被勾選
+      for (var i = 0; i < type.length; i++) {
+        if (type[i].checked == true) {
+          //有勾選就去看他的值
+          console.log(type[i].value);
+
+          //假設撈出來的資料是以下的arr陣列
+          var arr = new Array(1, 2, 3);
+          //假設在陣列找不到
+          if (arr.indexOf(parseInt(type[i].value)) != -1) {
+            //顯示資料們
+            arrB.push(type[i].value);
+          }
+        }
+      }
+      favorite_type = arrB;
+      // alert(favorite_type);
+      showFav();
+    };
+  }
+});

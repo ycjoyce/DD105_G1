@@ -14,8 +14,8 @@
 </head>
 <body>
     <header class="header-navigation" id="header">
-    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
             <h1>
                 <a href="./main.html">
                     <img src="./img/logo-wide.png" alt="logo">
@@ -145,7 +145,7 @@
         signIn.addEventListener('click', signInOpen);
         signInBtn.addEventListener('click', signInOpen);
 
-        window.addEventListener('resize',function(){
+        function windowSize(){
             //md
             if(document.body.clientWidth>=768 && document.body.clientWidth<=991){
                 signUp.style.display= 'none';
@@ -200,7 +200,9 @@
                 signInCloseTitle.classList.remove("open");
                 signUpCloseTitle.classList.remove("close");
             }
-        });
+        }
+        windowSize();
+        window.addEventListener('resize',windowSize);
 
         function getMember(){
             if(document.getElementById("signInAccount").value==""){
@@ -294,14 +296,16 @@
                 alert("請填寫正確E-mail");
             }else{
                 $.ajax({
-                    url: './php/findPsw.php',
-                    data: {email:email},
+                    url: './php/forgotPassword.php',
+                    data: {"email":email},
                     type: 'POST',
+                    dataType: 'json',
                     success(data){
-                        if(data.indexOf("notFound")!=-1){
+                        if(data == "沒查詢到該郵件"){
                             alert("此E-mail尚未註冊");
                         }else{
-                            console.log(data);
+                            console.log(data); 
+                            alert("已發送，請至信箱收取您的新密碼!");
                         }
                     },
                     error(data){

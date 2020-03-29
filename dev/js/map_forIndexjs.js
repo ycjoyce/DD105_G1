@@ -261,21 +261,36 @@ function mapMsg(id) {
           alert("此寵物主人為您本人");
         } else {
           petLostOwner = data;
+
           $.ajax({
-            url: "./php/mapMsg.php",
+            url: "./php/checkBlackMsg.php",
             type: "POST",
-            data: { lostNo: id.substr(4) },
-            success(data) {
-              if (data.indexOf("error") == -1) {
-                sessionStorage.setItem("now-on", petLostOwner);
-                location.href = "./message.html";
-              } else {
-                alert("操作失敗");
+            data: {petLostOwner: petLostOwner},
+            success(data){
+              if(data.indexOf("success")==-1){
+                alert("已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
+              }else{
+                $.ajax({
+                  url: "./php/mapMsg.php",
+                  type: "POST",
+                  data: { lostNo: id.substr(4) },
+                  success(data) {
+                    if (data.indexOf("error") == -1) {
+                      sessionStorage.setItem("now-on",petLostOwner.trim());
+                      location.href = "./message.html";
+                    } else {
+                      alert("操作失敗");
+                    }
+                  },
+                  error(data) {
+                    alert(data);
+                  }
+                });
               }
             },
-            error(data) {
+            error(data){
               alert(data);
-            }
+            },
           });
         }
       },
@@ -559,13 +574,13 @@ type.click(function() {
 // ===================================================================
 
 $(document).ready(function() {
-  function mem_No() {
-    var mem_No = member.memNo;
-    var mem_Id = member.memName;
-    document.getElementById("memNo").value = mem_No;
-    document.getElementById("memName").value = mem_Id;
-  }
-  mem_No();
+  // function mem_No() {
+  //   var mem_No = member.memNo;
+  //   var mem_Id = member.memName;
+  //   document.getElementById("memNo").value = mem_No;
+  //   document.getElementById("memName").value = mem_Id;
+  // }
+  // mem_No();
 });
 
 //判斷會員登入
@@ -598,8 +613,8 @@ var lostPetRpImg = document.getElementById("lostPetRpImg");
 $("#rpbtn").click(function(e) {
   e.preventDefault();
   var formData = new FormData();
-  formData.append("memNo", $("#memNo").val());
-  formData.append("memName", $("#memName").val());
+  // formData.append("memNo", $("#memNo").val());
+  // formData.append("memName", $("#memName").val());
   formData.append("lostPetRpName", $("#lostPetRpName").val());
   formData.append("lostPetRpCh", $("#lostPetRpCh").val());
   formData.append("lostPetRpLoc", $("#lostPetRpLoc").val());
@@ -622,7 +637,7 @@ $("#rpbtn").click(function(e) {
         alert("新增成功");
         $("#somedialog").removeClass("dialog--open");
         $(
-          "#memNo,#memName,#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd"
+          "#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd"
         ).val("");
         getLost();
       } else {

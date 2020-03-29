@@ -4,27 +4,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/donation.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+  
+  
   <!-- 頁籤標題 -->
   <title>浪愛回家 | 愛心助浪浪</title>
 <link rel="icon" href="./img/logo.ico" type="image/x-icon">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-  <link rel="stylesheet" href="./css/donation.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
-
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script> -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
-  <script src="./js/jquery.numscroll.js"></script>
-  
 </head>
 
 <body>
   <header class="header-navigation" id="header">
-    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
             <h1>
                 <a href="./main.html">
                     <img src="./img/logo-wide.png" alt="logo">
@@ -109,9 +110,9 @@
     <div class="tab_container">
       <div class="tab_list_block">
         <ul class="tab_list">
-          <li><a href="#" data-target="tab1" class="tab titleFont -on ">最新專案</a></li>
-          <li><a href="#" data-target="tab2" class="tab titleFont">倒數專案</a></li>
-          <li><a href="#" data-target="tab3" class="tab titleFont">歷史專案</a></li>
+          <li><a href="#" data-target="tab1" class="titleFont tab -on">最新專案</a></li>
+          <li><a href="#" data-target="tab2" class="titleFont tab">倒數專案</a></li>
+          <li><a href="#" data-target="tab3" class="titleFont tab">歷史專案</a></li>
         </ul>
       </div>
       <div class="tab_contents">
@@ -119,20 +120,21 @@
         <div class="tab tab1 -on">
           <div id="app">
               <div class="donationcardbox" v-for="newdo in newdonationdatas">
-                <form action="./showproject.php" method="post">
+                <form action="./php/showproject.php" method="post">
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
-                    <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + newdo.memPic +')'"></div>
+                    <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + newdo.memPic + ')'"></div>
                     <div class="top">
                       <div class="donationpic"
-                        v-bind:style="'background-image:url(./img/donation/' + newdo.fundImg + '.jpg)'">
+                        v-bind:style="'background-image:url(/img/donation/projectImg/' + newdo.fundImg + ')'">
                       </div>
                       <div class="tag">募資中</div>
                       <div class="heartbtn"><i class="fas fa-heart"></i></div>
                     </div>
                     <div class="bottom">
-                      <h1 class="donationtitle">{{newdo.fundTitle}}</h1>
+                      <h3 class="donationtitle">{{newdo.fundTitle}}</h3>
+                      <h3 class="donationtitle">{{newdo.fundName}}</h3>
                       <div class="texts">
                         <div class="statusrow">
                           <div class="nowpeople">捐款<span class="orange">{{newdo.fundAttendPeople}}人</span></div>
@@ -159,20 +161,21 @@
         <div class="tab tab2">
           <div id="app2">
             <div class="donationcardbox" v-for="deaddo in deadlinedonationdatas">
-              <form action="./showproject.php" method="post">
+              <form action="./php/showproject.php" method="post">
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + deaddo .memPic +')'">
+                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + deaddo .memPic + ')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(./img/donation/' + deaddo .fundImg + '.jpg)'"></div>
+                    v-bind:style="'background-image:url(/img/donation/projectImg/' + deaddo .fundImg + ')'"></div>
                   <div class="tag">最後倒數</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
                 <div class="bottom">
-                  <h1 class="donationtitle">{{deaddo .fundTitle}}</h1>
+                  <h3 class="donationtitle">{{deaddo .fundTitle}}</h3>
+                  <h3 class="donationtitle">{{deaddo.fundName}}</h3>
                   <div class="texts">
                     <div class="statusrow">
                       <div class="nowpeople">捐款<span class="orange">{{deaddo .fundAttendPeople}}人</span></div>
@@ -199,20 +202,21 @@
         <div class="tab tab3">
           <div id="app3">
             <div class="donationcardbox" v-for="hisdo in historydonationdatas">
-              <form action="./showproject.php" method="post">
+              <form action="./php/showproject.php" method="post">
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + hisdo .memPic + ')'">
+                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + hisdo .memPic + ')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(./img/donation/' + hisdo .fundImg + '.jpg)'"></div>
+                    v-bind:style="'background-image:url(/img/donation/projectImg/' + hisdo .fundImg + ')'"></div>
                   <div class="tag">已結束</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
                 <div class="bottom">
-                  <h1 class="donationtitle">{{hisdo .fundTitle}}</h1>
+                  <h3 class="donationtitle">{{hisdo .fundTitle}}</h3>
+                  <h3 class="donationtitle">{{hisdo.fundName}}</h3>
                   <div class="texts">
                     <div class="statusrow">
                       <div class="nowpeople">捐款<span class="orange">{{hisdo .fundAttendPeople}}人</span></div>
@@ -278,10 +282,10 @@
       <h1 class="titleFont">捐款常見問題</h1>
     </div>
     <div class="littlebubbleblue">
-      <img src="./img/littleblue2.png" alt="">
+      <img src="./img/donation/little_blue_bubble.png" alt="">
     </div>
     <div class="bubbleyellow">
-      <img src="./img/sub1-2.png" alt="">
+      <img src="./img/donation/little_lightyellow_bubble.png" alt="">
     </div>
     <div class="col-8 faqcontent">
       <div class="zoneQA wow fadeInDown">
@@ -328,14 +332,11 @@
         <img src="./img/donation/big_orange_bubble.png" alt="">
       </div>
     </div>
-
-
     <div class="col-12 footercar">
 
-      <div class="footercarimg">
-        <img src="./img/donation/footercar.png" alt="">
-      </div>
-    </div>
+  <div class="footercarimg">
+    <img src="./img/donation/footercar.png" alt="">
+  </div>
 
   </div>
 
@@ -351,25 +352,19 @@
 
 <script src="./js/page_top.js"></script>
 
-
-
-
   <script src="./js/signInOut.js"></script>
-  <script src="./js/donation_test.js"></script>
-  <script src="./js/donation.js"></script>
   <script src="./js/hamburger.js"></script>
   <script src="./js/header_slide.js"></script>
   <script src="./js/donation.js"></script>
-  <!-- <script src="./donation_deadline.js"></script> -->
+
   <script>
-      $(".num").numScroll({
-          time: 10000
-      }); 
+    $(".num").numScroll({
+        time: 10000
+    }); 
 
 
-      new WOW().init();
+    new WOW().init();
   </script>
-
 
   <!--相宏打法 <script>
                 $(document).ready(function(){
@@ -379,6 +374,7 @@
                 })
                 })
               </script> -->
+
   
 </body>
 

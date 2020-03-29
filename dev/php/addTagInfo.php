@@ -1,7 +1,7 @@
 <?php
 try{
     require_once('connectDB.php');
-    $sql = "insert into `customizedtag`(`tagName`,`tagSrc1`,`tagSrc2`,`tagPoint`) values ('$_POST[tagName]','','','$_POST[tagPoint]')";
+    $sql = "insert into `customizedtag`(`tagName`,`tagSrc1`,`tagSrc2`,`tagPoint`,`tagStatus`) values ('$_POST[tagName]','','','$_POST[tagPoint]','1')";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->execute();
     $last_id = $pdo->lastInsertId();  //取得當前psn

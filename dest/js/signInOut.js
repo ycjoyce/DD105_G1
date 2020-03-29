@@ -40,8 +40,8 @@ function getMember(){
             if(member.memId){
                 var header = document.getElementById("header");
                 header.innerHTML=`
-                <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
+                <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+                    <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12  col-ss-12 col-mini-12 container">
                         <h1>
                             <a href="./main.html">
                                 <img src="./img/logo-wide.png" alt="logo">
@@ -140,8 +140,8 @@ function signOut(){
         if(xhr.status==200){
             var header = document.getElementById("header");
                 header.innerHTML=`
-                <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+                <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+                    <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12 col-mini-12">
                         <h1>
                             <a href="./main.html">
                                 <img src="./img/logo-wide.png" alt="logo">
