@@ -20,7 +20,10 @@
 @include header(fixed);
 
 body{
-    overflow-x: hidden !important;
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
+    // overflow-x: hidden !important;
 }
 #loading{
     position: absolute;
@@ -674,24 +677,59 @@ section.where{
         position: relative;
     }
     
+  
+    #mapCardBtn{
+        &.hide{
+            left: 100%;
+            top: 35%;
+            transform: translate(calc(-100% - 20px),-50%);
+        }
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        background-color: $darkgreen;
+        border: none;
+        outline: none;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        top: 35%;
+        transition: all 0.5s;
+        color: rgb(237, 251, 229);
+        display: none;
+        @include rwd(ss){
+            display: block;
+        }
+        @include rwd(mini){
+            display: block;
+        }
+        img{
+            transition: all 0.5s;
+            width: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-53%);
+            &.rotate{
+                transform: translate(-50%,-53%) rotate(180deg);
+            }
+        }
+    }
     div.card{
         transition: all 0.5s;
         &.hide{
-            left: 105%;
-            #mapCardBtn{
-                left: -50px;
-                top: -50px;
-            }
+            display: none;
         }
         float:right;
         position: relative;
         top: -200px;
-        z-index: 2;
+        z-index: 4;
         background: #fff;
         border-radius: 10px 0 0 10px;
         box-shadow: #999 0px 0px 5px;
         padding: 30px 80px 30px 60px;
         max-width: 100%;
+        display: block;
         @include rwd(lg){
             padding: 30px 50px 30px 30px;
             top: -230px;
@@ -714,38 +752,7 @@ section.where{
             top: -230px;
             width: 100%;
         }
-        #mapCardBtn{
-            width: 40px;
-            height: 40px;
-            border-radius: 100%;
-            background-color: $darkgreen;
-            border: none;
-            outline: none;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: -50px;
-            transition: all 0.5s;
-            color: rgb(237, 251, 229);
-            display: none;
-            @include rwd(ss){
-                display: block;
-            }
-            @include rwd(mini){
-                display: block;
-            }
-            img{
-                transition: all 0.5s;
-                width: 20px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-53%);
-                &.rotate{
-                    transform: translate(-50%,-53%) rotate(180deg);
-                }
-            }
-        }
+        
         h3{
             position: relative;
             a{
@@ -2090,6 +2097,10 @@ section.forum{
                     h4{
                         margin-bottom: 10px;
                         text-decoration: none;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
                     }
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
