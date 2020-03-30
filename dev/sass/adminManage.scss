@@ -139,3 +139,17 @@
     display: inline-block;
   }
 }
+
+
+@media (max-width: 576px) {
+  .mr-3{
+    margin: 0 !important;
+  }
+  .app-header .nav-item {
+    font-size: 1rem;
+  }
+  .img-avatar{
+    width: 34px;
+  }
+}
+
