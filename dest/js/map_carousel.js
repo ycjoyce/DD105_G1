@@ -38,7 +38,9 @@ function mapCarousel() {
                                 看見疑似走失的貓狗也來聯繫主人確認吧。<br>`;
     cardBtn.innerText = "我的寵物遺失了";
     cardBtnOutside.style.display = "inline-block";
-    document.querySelector("section.where div.card a.btn").classList.add("lostPet");
+    document
+      .querySelector("section.where div.card a.btn")
+      .classList.add("lostPet");
     changeNum.innerText = "01/05";
     if (mapLost.classList.contains("on") == false) {
       mapLost.classList.add("on");
@@ -61,8 +63,14 @@ function mapCarousel() {
                                 蒐集全台友善寵物空間，<br>
                                 讓您能夠輕鬆和毛小孩一同出遊！<br>`;
     cardBtnOutside.style.display = "none";
-    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
-      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    if (
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.contains("lostPet")
+    ) {
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.remove("lostPet");
     }
     changeNum.innerText = "02/05";
     if (mapFriendly.classList.contains("on") == false) {
@@ -86,8 +94,14 @@ function mapCarousel() {
                                 蒐集全台友善寵物餐廳，<br>
                                 讓您能夠輕鬆和毛小孩一同約會去！<br>`;
     cardBtnOutside.style.display = "none";
-    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
-      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    if (
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.contains("lostPet")
+    ) {
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.remove("lostPet");
     }
     changeNum.innerText = "03/05";
     if (mapFriendly1.classList.contains("on") == false) {
@@ -113,6 +127,7 @@ function mapCarousel() {
       for (var i = 0; data.length > i; i++) {
         if (data[i].friendlyTypeNo == "1") {
           loadfriendlyData(
+            data[i].friendlyNo,
             data[i].friendlylat,
             data[i].friendlylng,
             data[i].friendlyName,
@@ -129,6 +144,7 @@ function mapCarousel() {
         }
       }
     };
+
     //=====地圖圖標結束=====//
   } else if (curVal == 4) {
     cardTitle.innerText = "寵物友善住宿";
@@ -136,8 +152,14 @@ function mapCarousel() {
                                 蒐集全台友善寵物住宿，<br>
                                 讓您和毛小孩都睡得安穩！<br>`;
     cardBtnOutside.style.display = "none";
-    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
-      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    if (
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.contains("lostPet")
+    ) {
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.remove("lostPet");
     }
     changeNum.innerText = "04/05";
     if (mapFriendly2.classList.contains("on") == false) {
@@ -162,6 +184,7 @@ function mapCarousel() {
       for (var i = 0; data.length > i; i++) {
         if (data[i].friendlyTypeNo == "2") {
           loadfriendlyData(
+            data[i].friendlyNo,
             data[i].friendlylat,
             data[i].friendlylng,
             data[i].friendlyName,
@@ -185,8 +208,14 @@ function mapCarousel() {
                                 蒐集全台友善寵物景點，<br>
                                 讓您能夠輕鬆和毛小孩在台灣各地留下足跡！<br>`;
     cardBtnOutside.style.display = "none";
-    if(document.querySelector("section.where div.card a.btn").classList.contains("lostPet")){
-      document.querySelector("section.where div.card a.btn").classList.remove("lostPet");
+    if (
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.contains("lostPet")
+    ) {
+      document
+        .querySelector("section.where div.card a.btn")
+        .classList.remove("lostPet");
     }
     changeNum.innerText = "05/05";
     if (mapFriendly3.classList.contains("on") == false) {
@@ -211,6 +240,7 @@ function mapCarousel() {
       for (var i = 0; data.length > i; i++) {
         if (data[i].friendlyTypeNo == "3") {
           loadfriendlyData(
+            data[i].friendlyNo,
             data[i].friendlylat,
             data[i].friendlylng,
             data[i].friendlyName,
@@ -342,37 +372,36 @@ mapLost.onclick = function() {
 };
 
 //地圖展開選項
-$(".friendlyFather").click(function () {
+$(".friendlyFather").click(function() {
   $(".mapOption").toggleClass("open");
   $(".friendlyChild").toggleClass("open");
 
-    //標題轉場
-    var cardTitle = document.querySelector("section.where div.card h3");
-    cardTitle.classList.add("active");
-    cardTitle.addEventListener("animationend", function() {
-      cardTitle.classList.remove("active");
-    });
-  
-    //內文轉場
-    var cardContent = document.querySelector("section.where div.card p");
-    cardContent.classList.add("active");
-    cardContent.addEventListener("animationend", function() {
-      cardContent.classList.remove("active");
-    });
-  
-    //按鈕轉場
-    var greenBtn = document.querySelector("section.where div.card a.btn");
-    var btnTimer;
-    greenBtn.classList.add("active");
-    clearTimeout(btnTimer);
-    btnTimer = setTimeout(function() {
-      greenBtn.classList.remove("active");
-    }, 500);
-  
-    curVal = 2;
-    mapCarousel();
-});
+  //標題轉場
+  var cardTitle = document.querySelector("section.where div.card h3");
+  cardTitle.classList.add("active");
+  cardTitle.addEventListener("animationend", function() {
+    cardTitle.classList.remove("active");
+  });
 
+  //內文轉場
+  var cardContent = document.querySelector("section.where div.card p");
+  cardContent.classList.add("active");
+  cardContent.addEventListener("animationend", function() {
+    cardContent.classList.remove("active");
+  });
+
+  //按鈕轉場
+  var greenBtn = document.querySelector("section.where div.card a.btn");
+  var btnTimer;
+  greenBtn.classList.add("active");
+  clearTimeout(btnTimer);
+  btnTimer = setTimeout(function() {
+    greenBtn.classList.remove("active");
+  }, 500);
+
+  curVal = 2;
+  mapCarousel();
+});
 
 mapFriendly1.onclick = function() {
   //標題轉場
