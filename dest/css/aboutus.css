@@ -4045,12 +4045,61 @@ article .checked {
       .contactWrapper .contactRight form label img {
         width: 25px;
         position: relative;
-        top: 6px; }
-      .contactWrapper .contactRight form label input {
-        display: none; }
-    .contactWrapper .contactRight form a.btn {
-      display: block;
-      margin-top: 30px; }
+        display: inline-block;
+        background-color: #fff; }
+        .contactWrapper .contactRight form .set_box_border textarea {
+          border-radius: 5px;
+          outline: none;
+          border: none;
+          background-color: transparent; }
+        .contactWrapper .contactRight form .set_box_border .border {
+          position: absolute;
+          background: none;
+          transition: all 0.5s ease-in-out; }
+        .contactWrapper .contactRight form .set_box_border .border:nth-child(1) {
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-top: 1px solid #414040; }
+        .contactWrapper .contactRight form .set_box_border .border:nth-child(2) {
+          top: 0;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-right: 1px solid #414040; }
+        .contactWrapper .contactRight form .set_box_border .border:nth-child(3) {
+          bottom: 0;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 1px solid #414040; }
+        .contactWrapper .contactRight form .set_box_border .border:last-child {
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-left: 1px solid #414040; }
+        .contactWrapper .contactRight form .set_box_border:hover .border:nth-child(1) {
+          width: 100%; }
+        .contactWrapper .contactRight form .set_box_border:hover .border:nth-child(2) {
+          height: 100%; }
+        .contactWrapper .contactRight form .set_box_border:hover .border:nth-child(3) {
+          width: 100%; }
+        .contactWrapper .contactRight form .set_box_border:hover .border:last-child {
+          height: 100%; }
+      .contactWrapper .contactRight form label {
+        display: block;
+        margin-top: 10px; }
+        .contactWrapper .contactRight form label img {
+          width: 25px;
+          position: relative;
+          top: 6px; }
+        .contactWrapper .contactRight form label input {
+          display: none; }
+      .contactWrapper .contactRight form a.btn {
+        display: block;
+        margin: 30px auto 0; }
 
 @media screen and (max-width: 1200px) {
   .bgimg {

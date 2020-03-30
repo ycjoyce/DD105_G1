@@ -94,7 +94,7 @@
                 $fundraising -> bindValue(":fundArticleImg3", $fileName3);
                 $fundraising -> execute();
                 
-                header("Location: http://localhost:8888/raisedonation.html"); 
+                header("Location: http://140.115.236.71/demo-projects/DD105/DD105G1/raisedonation.html"); 
                 
                 $pdo->commit();
         }else{

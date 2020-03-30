@@ -1,4 +1,4 @@
-var apiurl = "../php/donation_new.php";
+var apiurl = "./php/donation_new.php";
 var vm = new Vue({
   el: "#app",
   data: {

@@ -278,6 +278,7 @@ article {
     // border: 1px solid red;
 
     form {
+      text-align: center;
       #msgPanel {
         color: $darkgreen;
       }
@@ -357,7 +358,7 @@ article {
       }
       a.btn {
         display: block;
-        margin-top: 30px;
+        margin:30px auto 0 ;
       }
     }
   }
