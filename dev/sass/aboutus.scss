@@ -262,8 +262,11 @@ article {
       margin: 30px auto;
     }
     .address_tel {
-      h4 {
-        padding:5% 5% 5% 10%;
+      
+      p {
+        margin: 30px auto;
+        width: 80%;
+        
       }
     }
   }
@@ -271,7 +274,7 @@ article {
 
 
   .contactRight {
-    padding: 50px 200px;
+    padding: 50px;
     // border: 1px solid red;
 
     form {
@@ -282,11 +285,15 @@ article {
         position: relative;
         display: inline-block;
         background-color: #fff;
+        width: 80%;
+        height: 200px;
         textarea {
           border-radius: 5px;
           outline: none;
           border: none;
           background-color: transparent;
+          width: 100%;
+          height: 100%;
         }
         .border {
           position: absolute;
@@ -510,13 +517,22 @@ article {
         width: 70%;
       }
       .address_tel {
-        padding: 12%;
+        width: 400px;
+        margin: 0 auto;
+        text-align: center;
+        @include rwd(mini){
+          width: 100%;
+        }
       }
     }
 
     .contactRight {
       width: 100%;
       margin: 0 auto;
+      form{
+        margin: 0 auto;
+        padding-left: 20%;
+      }
     }
   }
 }
@@ -528,9 +544,15 @@ article {
     }
 
     .contactRight {
-      padding: 0 60px;
       width: 100%;
       margin: 30px auto;
+      form{
+        margin: 0 auto;
+        padding-left: 0%;
+        .set_box_border{
+          width: 100%;
+        }
+      }
     }
   }
 }
