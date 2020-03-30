@@ -20,7 +20,7 @@ $errMsg = "";
 
 try{
 
-    require_once("connectDB.php");
+    require_once("./php/connectDB.php");
     $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundImg, f.fundName, f.fundArticleImg1, f.fundArticleImg2, f.fundArticleImg3, f.fundArticleF, f.fundArticleS, f.fundArticleT, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic, to_days(f.fundEndDate)-to_days(CURRENT_DATE()+1) dead,round((f.fundNowAmount / f.fundGoal)*100) pas from fundraising f join meminfo m on f.memNo = m.memNo
     where fundNo = :fundNo";
     
@@ -484,8 +484,8 @@ if($errMsg != ""){
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-<script src="../js/showproject.js"></script>
-<script src="../js/creditcard.js"></script>
+<script src="./js/showproject.js"></script>
+<script src="./js/creditcard.js"></script>
 <script src="./js/signInOut.js"></script>
 <script src="./js/hamburger.js"></script>
 <script src="./js/header_slide.js"></script>

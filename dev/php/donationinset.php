@@ -57,7 +57,7 @@
 
     <?php 
     // 重定向瀏覽器 
-    header("Location: http://localhost:8888/donation.html"); 
+    header("Location: http://140.115.236.71/demo-projects/DD105/DD105G1/donation.html"); 
     // 確保重定向後，後續代碼不會被執行 
     exit;
     ?>
