@@ -13,7 +13,7 @@
     try{
 
         require_once("connectDB.php");
-        $pdo->beginTransaction();
+        // $pdo->beginTransaction();
         // 確定是否上傳成功
 
         if($_FILES["upFile"]["error"] == UPLOAD_ERR_OK){
@@ -52,10 +52,10 @@
                 $fundraising -> bindValue(":fundImg", $fileName);
                 $fundraising -> execute();
                 // echo "新增成功~";
-                $pdo->commit();
+                // $pdo->commit();
 
-            }else{
-                $pdo->rollBack();
+            // }else{
+            //     $pdo->rollBack();
             }
 
         }else{
@@ -96,7 +96,7 @@
                 
                 header("Location: http://140.115.236.71/demo-projects/DD105/DD105G1/raisedonation.html"); 
                 
-                $pdo->commit();
+                // $pdo->commit();
         }else{
             echo "錯誤代碼 : {$_FILES["upFile1"]["error"]}<br>";
             echo "新增失敗<br>";
@@ -116,7 +116,7 @@
         
 
     } catch (PDOException $e) {
-        $pdo->rollBack();
+        // $pdo->rollBack();
         $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
         $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";	
     }
