@@ -78,25 +78,6 @@ body {
     background: #747474;
 }
 
-#memberPoint {
-    // border       : 1px solid red;
-    width: 140px;
-    height: 35px;
-    text-align: center;
-    position: fixed;
-    display: none;
-    top: 106.438px;
-    right: 0px;
-    z-index: 5;
-    // background-color: #647926;
-    background-color: #717171;
-    color: white;
-    #showPoint {
-        line-height: 35px;
-        color: white;
-    }
-}
-
 nav {
     // display: none;
     // border : 1px solid red;
@@ -135,6 +116,7 @@ section {
             transition: all 0.5s ease-in-out;
             display: flex;
             align-items: center;
+            position: relative;
             @include RWD(lg) {
                 width: 100%;
                 min-height: 610px;
@@ -146,7 +128,42 @@ section {
                 min-height: 362px;
             }
             @include RWD(ss) {
-                min-height: 300px;
+                min-height: 261px;
+            }
+            @include RWD(xs) {
+                min-height: 237px;
+            }
+            #memberPoint {
+                // border       : 1px solid red;
+                width: 140px;
+                height: 35px;
+                text-align: center;
+                position: fixed;
+                display: none;
+                top: 106.438px;
+                right: 0px;
+                z-index: 5;
+                // background-color: #647926;
+                background-color: #717171;
+                color: white;
+                // @include RWD(md) {
+                //     top: 75px;
+                // }
+                @include RWD(md) {
+                    position: absolute;
+                    top: 0px;
+                    // top: 75px;
+                }
+                @include RWD(ss) {
+                    right: unset;
+                    left: 0px;
+                    top: unset;
+                    bottom: 0px;
+                }
+                #showPoint {
+                    line-height: 35px;
+                    color: white;
+                }
             }
         }
         .edit_area {
@@ -955,7 +972,7 @@ section {
                         }
                     }
                     #collarTagSlider {
-                        border: 1px solid red;
+                        // border: 1px solid red;
                         width: 100%;
                         height: 400px;
                         position: relative;
@@ -965,27 +982,29 @@ section {
                         flex-direction: column;
                         justify-content: flex-end;
                         align-items: center;
-                        // @include RWD(lg) {
-                        //     height: 300px;
-                        // }
+                        @include RWD(ss) {
+                            height: 300px;
+                        }
                         @include RWD(lg) {
                             max-width: 600px;
                         }
                         #collarTagWrap {
-                            border: 1px solid red;
-                            width: 1800px;
+                            // border: 1px solid red;
+                            // width: 3000px;
                             position: absolute;
-                            left: 200px;
+                            left: 0px;
                             display: flex;
                             justify-content: flex-start;
                             align-items: center;
-                            transition: left 0.5s ease-in-out;
+                            transition: left 0.5s ease-in-out 0s;
                             // @include RWD(lg) {
                             //     left: 400px;
                             // }
                             .tagItems {
                                 // border: 1px solid #747474;
-                                width: 200px;
+                                // width: 200px;
+                                width: 100%;
+                                // width: auto;
                                 display: flex;
                                 flex-direction: column;
                                 align-items: center;
@@ -994,9 +1013,16 @@ section {
                                 .tagImages {
                                     width: 80px;
                                     max-height: 200px;
-                                    transition: all 0.7s ease-in-out 0.1s;
+                                    transition-property: transform, filter;
+                                    transition-duration: 0.6s, 0.6s;
+                                    transition-timing-function: ease-in-out;
+                                    transition-delay: 0.4s, 0.4s;
                                     cursor: pointer;
                                     filter: brightness(0.6);
+                                    @include RWD(ss) {
+                                        width: 53px;
+                                        // max-height: 70px;
+                                    }
                                 }
                                 #tagImages1 {
                                     filter: brightness(1);
@@ -1009,7 +1035,7 @@ section {
                                     margin: 100px auto 15px auto;
                                     visibility: hidden;
                                     opacity: 0;
-                                    transition: all 0.2s ease-in-out 0.3s;
+                                    transition: all 0.8s ease-in-out 0.5s;
                                 }
                                 #lockPoint1 {
                                     visibility: visible;
@@ -1018,7 +1044,7 @@ section {
                                 .lockStatus {
                                     visibility: hidden;
                                     opacity: 0;
-                                    transition: all 0.2s ease-in-out 0.3s;
+                                    transition: all 0.8s ease-in-out 0.5s;
                                     .unlock {
                                         border: 1px solid #313131;
                                         background: transparent;
@@ -1028,7 +1054,6 @@ section {
                                         justify-content: center;
                                         align-items: center;
                                         cursor: pointer;
-                                        transition: all 0.2s ease-in-out;
                                         &:hover {
                                             background: #313131;
                                             color: white;
@@ -1047,19 +1072,27 @@ section {
                             height: 40px;
                             background-color: rgba(0, 0, 0, 0.3);
                             border-radius: 50%;
-                            cursor: pointer;
+                            // cursor: pointer;
                         }
                         #sliderBtnLeft {
                             position: absolute;
                             top: 50%;
                             left: 10px;
                             transform: translate(0%, -50%);
+                            transition: 0.3s ease-in-out;
+                            &:focus {
+                                outline-style: none;
+                            }
                         }
                         #sliderBtnRight {
                             position: absolute;
                             top: 50%;
                             right: 10px;
                             transform: translate(0%, -50%);
+                            transition: 0.3s ease-in-out;
+                            &:focus {
+                                outline-style: none;
+                            }
                         }
                     }
                     .addText {
@@ -1071,6 +1104,9 @@ section {
                         flex-direction: column;
                         align-items: center;
                         margin: 30px auto 50px auto;
+                        @include RWD(ss) {
+                            margin: 15px auto 50px auto;
+                        }
                         // justify-content: space-around;
                         .collarTextTitles {
                             margin: 0px 20px 0px 90px;
@@ -1120,7 +1156,7 @@ section {
                                 text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
                                 margin-right: 15px;
                                 @include RWD(xs) {
-                                    font-size: 1.2rem;
+                                    font-size: 1.3rem;
                                 }
                             }
                             #textStyle3 {
@@ -1128,6 +1164,9 @@ section {
                             }
                             #showStyle3 {
                                 font-size: 24px;
+                                @include RWD(xs) {
+                                    font-size: 1.3rem;
+                                }
                             }
                         }
                         #textColor {
@@ -1137,6 +1176,9 @@ section {
                             justify-content: flex-start;
                             align-items: center;
                             margin-top: 30px;
+                            @include RWD(ss) {
+                                margin-top: 10px;
+                            }
                             .pickr {
                                 .pcr-button {
                                     width: 35px;
@@ -1152,6 +1194,9 @@ section {
                             justify-content: flex-start;
                             align-items: center;
                             margin-top: 30px;
+                            @include RWD(ss) {
+                                margin-top: 10px;
+                            }
                             #fontFamilySelect {
                                 width: 150px;
                                 height: 30px;
@@ -1174,9 +1219,16 @@ section {
                             justify-content: flex-start;
                             align-items: center;
                             margin-top: 30px;
+                            @include RWD(ss) {
+                                margin-top: 10px;
+                            }
                             #textContent1 {
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
                                 border: 0px solid red;
                                 border-bottom: 1px solid #313131;
+                                border-radius: 0px;
                                 background-color: transparent;
                                 width: 150px;
                                 height: 30px;
@@ -1237,6 +1289,9 @@ section {
                     position: unset;
                     margin-top: 40px;
                 }
+                @include RWD(ss) {
+                    margin-top: 20px;
+                }
                 .stepNextBtn {
                     border: 0px solid red;
                     width: 100%;
@@ -1245,11 +1300,15 @@ section {
                     cursor: pointer;
                 }
                 .stepBackBtn {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
                     border: 0px solid red;
                     background: #313131;
                     color: white;
                     width: 100%;
                     cursor: pointer;
+                    border-radius: 0px;
                 }
             }
             #purchaseBtn {
@@ -1513,10 +1572,10 @@ Form
             width: 400px;
             height: 250px;
             border-radius: 15px;
-            // -webkit-backface-visibility: visible;
-            // -webkit-backface-visibility: hidden;
-            // backface-visibility: hidden;
+            -webkit-backface-visibility: visible;
             backface-visibility: visible;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
             background: linear-gradient(135deg, #7cbfc2, #0b5fad);
             //   background-image: url(../img/bg-01.png);
             //   background-size : cover;
@@ -1724,4 +1783,14 @@ Form
             padding: 5%;
         }
     }
+}
+
+.pcr-app {
+    @include RWD(ss) {
+        left: 43px !important;
+    }
+}
+
+.pcr-app[data-theme=classic] {
+    width: unset !important;
 }

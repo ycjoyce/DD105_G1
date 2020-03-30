@@ -81,11 +81,37 @@
 
 //=======================================================
 
+
 @import 'layout/rwd2';
 //使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
 
+//電腦  960↑
+// @mixin pc-width() {
+//     @media all and (min-width: $pc-media) {
+//                  @content;
+//            }
+//       }
+  //平板 959~768
+//    @mixin pad-width() {
+//   @media all and (min-width:$pad-media) and (max-width: $pcs-media) {
+//                   @content;
+//             }
+//   }
+  //小平板 767~375
+//    @mixin small-pad-width() {
+//           @media all and (min-width: $phone-media) and (max-width:$pads-media) {
+//                   @content;
+//             }
+//    }
+  //手機 374↓
+//    @mixin phone-width() {
+//           @media all and (max-width: $phones-media) {
+//                   @content;
+//             }
+//    }
+
 //=======================================================
-  
+ 
 
 //顏色定義區(橘/灰/深橘)
 $color_orange: #FA8B00;
@@ -112,8 +138,10 @@ $height_progressbar: 10px;
 $height_pricerow: 22px;
 $height_bottomorange: 5px;
 
-//尺寸
+//卡片bottom尺寸
 $padding_class: 15px;
+
+//=======================================================
 
 
 
@@ -135,6 +163,7 @@ html,body{
 button[type=submit].fakeformbtn{
     margin: 0;
     text-align: left;
+    width:100%;
     padding: 0;
     border: 0px;
     background-color: transparent;
@@ -154,9 +183,7 @@ button[type=submit].fakeformbtn{
  
 
   .col-10{
-
       position: relative;
-      border: 1px solid salmon;
       margin: 0 auto;
       
      
@@ -282,7 +309,7 @@ button[type=submit].fakeformbtn{
       }
       
 
-      .article{
+        .article{
 
           position: absolute;
           top:8%;
@@ -314,7 +341,7 @@ button[type=submit].fakeformbtn{
   }
 
 
-
+        
           // img{
           //     width: 15%;
           //     position: absolute;
@@ -359,18 +386,63 @@ button[type=submit].fakeformbtn{
 }
 
 
+.sparkle{
+    position: absolute;
+    right: 0;
+    bottom: 100px;
+    animation: 3000ms sparkleAnimation infinite;
+    animation-delay:2s;
+    img{
+        display: block;
+        width: 100%;
+    }
+    @keyframes sparkleAnimation {
+        0%{
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        25%{
+            opacity: 0.3;
+            transform: scale(0.5);
+            
+        }
+
+
+        50%{
+            opacity: 0.5;
+            transform: scale(0.7);
+            
+        }
+
+        75%{
+            opacity: 0.8;
+            transform: scale(0.7);
+            
+        }
+        100%{
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+}
+
+img.mobile{
+    display: none;
+}
+
+
 //流浪不是牠們的錯
 
 .second_row{
   display: flex;
-  border: 1px solid sandybrown;
   margin-top: 20%;
 
   .col-8{
       display: flex;
       margin: 0 auto;
       flex-direction: row-reverse;
-      border: 1px solid salmon;
       max-width: 1200px;
       .col-6.content{
           .article{
@@ -548,7 +620,6 @@ button[type=submit].fakeformbtn{
 #app,#app2,#app3{
     max-width: 1200px;
     margin: 0 auto;
-    border: 1px solid saddlebrown;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -587,6 +658,7 @@ button[type=submit].fakeformbtn{
     background-size: cover;
     border: solid 2px white;
     z-index: 5;
+    background-color: white;
   }
   
 
@@ -625,15 +697,15 @@ button[type=submit].fakeformbtn{
     position: absolute;
     left: $padding_class;
     bottom: -50px;
-    background-color: #fff;
+    background-color: #EE7785;
     box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: .3s;
     
     &:hover{
-      background-color: $color_blue;
+      background-color: white;
       i{
-        color: white;
+        color: #EE7785;
         
       }
       
@@ -645,7 +717,7 @@ button[type=submit].fakeformbtn{
       top: 50%;
       transform: translate(-50%,-50%);
       font-size: $size_icon;
-      color: $color_blue;
+      color: white;
       
     }
     
@@ -659,16 +731,21 @@ button[type=submit].fakeformbtn{
 .bottom{
   height: $height_bottompart;
   padding: $padding_class;
+
+  h3{
+      border: 1px solid transparent;
+  }
   
   .donationtitle{
-    font-size: $size_title;
     margin-top: 0;
+    letter-spacing: 2.5px;
       
   }
   
   .texts{
     font-size: $size_para;
     letter-spacing: 1px;
+    margin-top: 5px;
       .orange{
         padding-left: 5px;
         color: $color_blue;
@@ -738,7 +815,7 @@ button[type=submit].fakeformbtn{
 //=======================================================浪愛回家從我開始
 .col-12.fromme{
     display: flex;
-    margin-top: 5%;
+    margin-top: 10%;
     padding-bottom: 15%;
     overflow: hidden;
     height: 100%;
@@ -750,7 +827,6 @@ button[type=submit].fakeformbtn{
         margin: 0 auto;
         display: flex;
         position: relative;
-        border: 1px solid saddlebrown;
          
 
         .col-7.img{
@@ -1036,7 +1112,7 @@ button[type=submit].fakeformbtn{
               
               .ans{
                 margin: 0;
-                padding: 30px 0 30px 55px;
+                padding: 30px 55px 30px 55px;
                 border: 1px solid #76912E;
                 border-top:none;
                 display: none;
@@ -1055,7 +1131,11 @@ button[type=submit].fakeformbtn{
 
     }
 
-    .col-12.footercar{
+    
+}
+
+
+.col-12.footercar{
         position: relative;
         width: 100%;
         height: 100px;
@@ -1088,4 +1168,464 @@ button[type=submit].fakeformbtn{
             100% { left:100%; }	
          }
     }
+
+
+// rwd
+
+//rwd 959~768px==============================
+.col-12.first_row{
+
+    @include pad-width{
+
+        .col-10{
+
+            width: 100%;
+
+            .bubbleblue{
+                bottom: 40px;
+    
+            }
+
+        }
+        
+
+    }
+
 }
+
+.col-12.second_row{
+    @include pad-width{
+        margin-top: 100px;
+        .col-8{
+            width: 90%;
+        }
+        .col-6.content{
+            .article{
+                margin-left: 0px;
+
+            }
+
+        }
+
+    }
+
+}
+
+.projectrow.col-12{
+    @include pad-width{
+        .tab_contents{
+            padding-top: 60px;
+
+            .donationcardbox{
+                margin: 40px 55px;
+            }
+        }
+        
+
+    }
+
+}
+
+.col-12.fromme{
+
+    @include pad-width{
+        .col-8.content{
+            width: 80%;
+            .col-7.img{
+                margin-top: 80px;
+            }
+            .bubblepink{
+                top:150px;
+                
+            }
+        }
+    }
+
+}
+
+.col-12.faq{
+    @include pad-width{
+        .col-12.faqtitle{
+            margin-bottom: 100px;
+    
+        }
+        .col-8.faqcontent{
+            width: 82%;
+        }
+
+    }
+
+    
+}
+
+
+//rwd 767~375px==============================
+.hei{
+    @include small-pad-width{
+        display: none;
+    }
+
+}
+
+.col-12.first_row{
+
+    @include small-pad-width{
+
+        .col-10{
+
+            width: 100%;
+
+            .cover{
+                display: none;
+            }
+
+            .bubbleblue{
+                bottom: 40px;
+    
+            }
+            img.mobile{
+                display: block;
+                width: 100%;
+            }
+            .article{
+                right: 30px;
+            }
+
+        }
+        
+
+    }
+
+}
+
+.col-12.second_row{
+    @include small-pad-width{
+        margin-top: 100px;
+        .col-8{
+            width: 90%;
+            flex-direction: column;
+        }
+        .col-6.content{
+            width: 100%;
+            .article{
+                margin-left: 0px;
+                h2,p{
+                    margin-left: 0px;
+                    
+
+                }
+                
+
+            }
+
+        }
+        .col-6.img{
+            width: 90%;
+            margin-top: 30px;
+        }
+
+    }
+
+}
+
+.projectrow.col-12{
+    @include small-pad-width{
+        .tab_container{
+            margin-top: 50px;
+
+            .tab_list_block{
+                padding-left: 0px;
+
+                ul.tab_list{
+                    li{
+                        margin-left: 2px;
+                    }
+
+                }
+    
+            }
+            .tab_contents{
+                padding-top: 20px;
+    
+                .donationcardbox{
+                    margin: 40px 55px;
+                }
+            }
+
+        }
+        
+        
+        
+
+    }
+
+}
+
+.col-12.fromme{
+
+    @include small-pad-width{
+        .col-8.content{
+            width: 90%;
+            display: flex;
+            flex-direction: column-reverse;
+            .col-5.article{
+                width: 100%;
+                .irasuto{
+                    right: 25%;
+
+                }
+            }
+            .col-7.img{
+                width: 100%;
+            }
+            .bubblepink{
+                img{
+                    width: 40%;
+                }
+                top:65px;
+                right: -150px;
+                
+            }
+        }
+    }
+
+}
+
+.col-12.faq{
+    @include small-pad-width{
+        .col-12.faqtitle{
+            margin-bottom: 30px;
+            margin-top: 30px;
+
+            h1{
+                font-size: 2em;
+            }
+    
+        }
+        .littlebubbleblue{
+            top: 1%;
+        }
+        .bubbleyellow{
+            top: 2%;
+        }
+        .col-8.faqcontent{
+            width: 85%;
+            .zoneQA{
+                padding: 10px 0 10px 10px;
+                h3.ques{
+                    font-size: 1em;
+                    padding: 15px 0 15px 15px;
+                    background-color: #76912E;
+                    color: white;
+                    span{
+                        display: none;
+                    }
+                    
+                }
+                p.ans{
+                    display: block;
+                    padding: 15px 0 15px 15px;
+                }
+
+            }
+            .irasutoqadog{
+                display: none;
+            }
+        }
+
+    }
+
+    
+}
+
+
+//rwd 374px==============================
+.hei{
+    @include phone-width{
+        display: none;
+    }
+
+}
+
+.col-12.first_row{
+
+    @include phone-width{
+
+        .col-10{
+
+            width: 100%;
+
+            .cover{
+                display: none;
+            }
+
+            .bubbleblue{
+                bottom: 40px;
+    
+            }
+            img.mobile{
+                display: block;
+                width: 100%;
+            }
+            .article{
+                right: 30px;
+            }
+
+        }
+        
+
+    }
+
+}
+
+.col-12.second_row{
+    @include phone-width{
+        margin-top: 100px;
+        .col-8{
+            width: 90%;
+            flex-direction: column;
+        }
+        .col-6.content{
+            width: 100%;
+            .article{
+                margin-left: 0px;
+                h2,p{
+                    margin-left: 0px;
+                    
+
+                }
+                
+
+            }
+
+        }
+        .col-6.img{
+            width: 90%;
+            margin-top: 30px;
+        }
+
+    }
+
+}
+
+.projectrow.col-12{
+    @include phone-width{
+        .tab_container{
+            margin-top: 50px;
+
+            .tab_list_block{
+                padding-left: 0px;
+
+                ul.tab_list{
+                    li{
+                        margin-left: 2px;
+                    }
+
+                }
+    
+            }
+            .tab_contents{
+                padding-top: 20px;
+    
+                .donationcardbox{
+                    margin: 40px 55px;
+                }
+            }
+
+        }
+        
+        
+        
+
+    }
+
+}
+
+.col-12.fromme{
+
+    @include phone-width{
+        .col-8.content{
+            width: 90%;
+            display: flex;
+            flex-direction: column-reverse;
+            .col-5.article{
+                width: 100%;
+                .irasuto{
+                    right: 25%;
+
+                }
+            }
+            .col-7.img{
+                width: 100%;
+            }
+            .bubblepink{
+                img{
+                    width: 40%;
+                }
+                top:65px;
+                right: -150px;
+                
+            }
+        }
+    }
+
+}
+
+.col-12.faq{
+    @include phone-width{
+        .col-12.faqtitle{
+            margin-bottom: 30px;
+            margin-top: 30px;
+
+            h1{
+                font-size: 2em;
+            }
+    
+        }
+        .littlebubbleblue{
+            top: 1%;
+        }
+        .bubbleyellow{
+            top: 2%;
+        }
+        .col-8.faqcontent{
+            width: 85%;
+            .zoneQA{
+                padding: 10px 0 10px 10px;
+                h3.ques{
+                    font-size: 1em;
+                    padding: 15px 0 15px 15px;
+                    background-color: #76912E;
+                    color: white;
+                    span{
+                        display: none;
+                    }
+                    
+                }
+                p.ans{
+                    display: block;
+                    padding: 15px 0 15px 15px;
+                }
+
+            }
+            .irasutoqadog{
+                display: none;
+            }
+        }
+
+    }
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+    

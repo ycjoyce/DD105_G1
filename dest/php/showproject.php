@@ -1,4 +1,18 @@
 <?php
+session_start();
+if(isset($_SESSION["memId"])){
+    $member= ["memNo"=>$_SESSION["memNo"],"memId"=>$_SESSION["memId"],"memName"=>$_SESSION["memName"],"memPsw"=>$_SESSION["memPsw"],"memPic"=>$_SESSION["memPic"],"memPoint"=>$_SESSION["memPoint"],"memStatus"=>$_SESSION["memStatus"],"memTagNo"=>$_SESSION["memTagNo"]];
+    // echo json_encode($member);
+}else{
+    // echo "{}";
+}
+
+
+
+?>
+
+<?php
+
 
 $fundNo = $_REQUEST["fundNo"];
 $errMsg = "";
@@ -7,7 +21,7 @@ $errMsg = "";
 try{
 
     require_once("connectDB.php");
-    $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundContent, f.fundImg, f.fundName, f.fundArticleImg1, f.fundArticleImg2, f.fundArticleImg3, f.fundArticleF, f.fundArticleS, f.fundArticleT, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic, to_days(f.fundEndDate)-to_days(CURRENT_DATE()+1) dead,round((f.fundNowAmount / f.fundGoal)*100) pas from fundraising f join meminfo m on f.memNo = m.memNo
+    $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundImg, f.fundName, f.fundArticleImg1, f.fundArticleImg2, f.fundArticleImg3, f.fundArticleF, f.fundArticleS, f.fundArticleT, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic, to_days(f.fundEndDate)-to_days(CURRENT_DATE()+1) dead,round((f.fundNowAmount / f.fundGoal)*100) pas from fundraising f join meminfo m on f.memNo = m.memNo
     where fundNo = :fundNo";
     
     
@@ -83,7 +97,7 @@ if($errMsg != ""){
         </nav>
     </header>
     
-    <div style="height:15vh"></div>
+    <!-- <div style="height:5vh"></div> -->
 
    
     <div class="projectcontentbox col-8">
@@ -113,14 +127,13 @@ if($errMsg != ""){
                     <div class="nowpeople"><span
                           class="green"><?php echo $fundraisingrows->fundAttendPeople;?></span>&nbsp;人捐款
                     </div>
-                    <div class="lastday"><span
-                          class="green"><?php echo $fundraisingrows->dead;?></span>&nbsp;天後結束
+                    <div class="lastday" ><span
+                          class="green" id="daycheck"><?php echo $fundraisingrows->dead;?></span>&nbsp;天後結束
                     </div>
                     <div class="socialbtnbox">
                         <div class="social">
-                            <ul class="socialbtn">
-                                <li class="heart"><i class="fas fa-heart"></i></li>
-                                <li class="share"><i class="fas fa-share-alt"></i></li>
+                            <ul class="socialbtn">                                                                                                                     
+                                <li class="share"><div class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="3" data-url="http://localhost:8888/php/showproject.php?fundNo=<?="{$fundraisingrows->fundNo}"?>" data-color="default" data-size="small" data-count="false" style="display: none;"></div></li>
                                 <li id="donationMsg" class="No<?=$fundraisingrows->memNo?>">
                                     <img src="../img/donation/icon_private_message.svg" alt="">
                                 </li>
@@ -143,6 +156,9 @@ if($errMsg != ""){
             </div>
         </div>
     </div>
+    
+    
+    
     <!---------------- 專案文章  ---------------->
     <div class="artcontent col-12">
             <div class="artcontentbox col-8">
@@ -220,6 +236,7 @@ if($errMsg != ""){
         </div>
        
     </div>
+    
     <!---------------- 燈箱 ---------------->
     <div class="overlay">
         <div class="lightboxcontent">
@@ -297,7 +314,7 @@ if($errMsg != ""){
                                 </div>
                             </div>
                         </div>
-                        <form class="form" action="donationinset.php" method="post" enctype="multipart/form-data">
+                        <form class="form" action="./donationinset.php" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <label for="card-number">卡號</label>
                                 <input type="num" id="card-number" class="input-cart-number" maxlength="4" />
@@ -353,7 +370,7 @@ if($errMsg != ""){
                                 <label for="camount">捐款金額</label>
                                 <!-- <input type="text" name="fundNowAmount"> -->
                                 <input type="hidden" name="fundNo" value="<?php echo $fundraisingrows->fundNo;?>">
-                                <input type="hidden" name="memNo" value="2">
+                                <input type="hidden" name="memNo" value="<?php echo $_SESSION["memNo"];?>">
                                 <div class="select">
                                     <select id="amount" name="fundNowAmount">
                                         <option></option>
@@ -372,7 +389,7 @@ if($errMsg != ""){
                             </fieldset>
                             <!-- <input type="submit" name="submit">確定捐款 -->
                             <div class="btns">
-                                <button type="submit" name="submit" class="su">
+                                <button type="submit" name="submit" class="su" id="submitbtn">
                                     <a class="btn darkgreen nav__link">
                                         <span class="titleFont">確定捐款</span>
                                         <div class="border"></div>
@@ -392,6 +409,14 @@ if($errMsg != ""){
             
         </div><!-- lightboxcontent結束-->
     </div> <!-- overlay結束 -->
+    <footer>
+    <div class="page_top" id="page_top">
+        <span class="titleFont smalltext">PAGE TOP</span>
+    </div>
+    <p class="titleFont smalltext">
+        © 2020 Bring Love Home
+    </p>
+    </footer>
     <script>
         function $id(id){
         return document.getElementById(id);
@@ -407,9 +432,10 @@ if($errMsg != ""){
                 curIndex++;
                 wrap.style.left = -310 * curIndex + "px";
                 $id("btnLeft").disabled = false;//可點擊
-                if(curIndex =="5"){
+                if(curIndex =="4"){
                     $id("btnRight").disabled = true;
                 }
+                // alert(curIndex);
             }
 
             $id("btnLeft").onclick = function(){
@@ -422,7 +448,30 @@ if($errMsg != ""){
                 
             }
         })
+            //判斷會員是否登入
+            function checkLoginStatus(e) {
+                        // alert('判斷');
+                        // e.stopPropagation();
+                        var xhr = new XMLHttpRequest();
+                        var url = "./checkMem.php";
+                        xhr.open("GET", url, true);
+                        xhr.send(null);
+                        xhr.onload = function () {
+                            if (xhr.status == 200) {
+                                member = JSON.parse(xhr.responseText);
+                                if (!member.memName) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    alert('請先登入');
+                                }else{
+                                    alert('捐款成功');
+                                }
+                            }
+                        }
+                    }
+                document.getElementById("submitbtn").addEventListener("click", checkLoginStatus);
     </script>
+    
     <!---------------- 燈箱 ---------------->
     
     <?php
@@ -434,11 +483,13 @@ if($errMsg != ""){
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
-<script src="./js/showproject.js"></script>
-<script src="./js/creditcard.js"></script>
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+<script src="../js/showproject.js"></script>
+<script src="../js/creditcard.js"></script>
 <script src="./js/signInOut.js"></script>
 <script src="./js/hamburger.js"></script>
 <script src="./js/header_slide.js"></script>
+<script src="./js/page_top.js"></script>
 <script>
     //連結私信=================================
     $("#donationMsg").click(function(){
@@ -453,7 +504,7 @@ if($errMsg != ""){
             data: {getMemNo: authorNo},
             success(data){
               if(data.indexOf("error")==-1){
-                sessionStorage.setItem("now-on",authorNo.trim());
+                sessionStorage.setItem("now-on",authorNo);
                 location.href="./message.html";
               }else{
                 alert("操作失敗");

@@ -13,6 +13,11 @@
   <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
+  <style>
+    .smallnone {
+      display: none;
+    }
+  </style>
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
@@ -349,7 +354,7 @@
                     <!-- <th>地區編號</th> -->
                     <th>店家名稱</th>
                     <!-- <th>店家電話</th> -->
-                    <th>店家地址</th>
+                    <th class="smallnone">店家地址</th>
                     <!-- <th>緯度</th> -->
                     <!-- <th>經度</th> -->
                     <!-- <th>友善物種</th> -->
@@ -783,7 +788,7 @@
                 html += `<tr>
                     <td>${data[i].friendlyNo}</td>
                     <td>${data[i].friendlyName}</td>
-                    <td>${data[i].friendlyAddress}</td>
+                    <td class="smallnone">${data[i].friendlyAddress}</td>
                     <td>
                       <label class="switch switch-3d switch-success">
                         <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" checked psn="${data[i].friendlyNo}">
@@ -796,7 +801,7 @@
                   `<tr>
                 <td>${data[i].friendlyNo}</td>
                 <td>${data[i].friendlyName}</td>
-                <td>${data[i].friendlyAddress}</td>
+                <td class="smallnone">${data[i].friendlyAddress}</td>
                 <td>
                   <label class="switch switch-3d switch-success">
                     <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" psn="${data[i].friendlyNo}">

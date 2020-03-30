@@ -41,7 +41,7 @@
                             <span class="displayfont3 hide3">寵物有善空間</span>
                             <p class="multiSel ms3"></p>
                         </div>
-                        <ul class="u3">
+                        <!-- <ul class="u3">
                             <li>
                                 <p class="friendlyrestaurant">友善餐廳</p>
                                 <label for="friendlyrestaurant1"><input type="checkbox" name="friendlyrestaurant1" value="friendlyrestaurant1" />餐廳名稱1</label>
@@ -62,14 +62,14 @@
                                 <label for="friendlyviewpoint2"><input type="checkbox" name="friendlyviewpoint2" value="friendlyviewpoint2" />景點名稱2</label>
                                 <label for="friendlyviewpoint3"><input type="checkbox" name="friendlyviewpoint3" value="friendlyviewpoint3" />景點名稱3</label>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>
             <div class="postwritecontentregion">
                 <div class="cpc_writecontent">
-                    <img id="cpc_writecontentpic1" class="cpc_writecontentpic1" alt="點擊這裡上傳圖片">
-                    <input class="cpc_writecontentupfile" type="file" name="upFile[]">
+                    <img src=""  id="cpc_writecontentpic1" class="cpc_writecontentpic1" alt="點擊這裡上傳圖片">
+                    <input class="cpc_writecontentupfile" type="file" name="upFile[]"  accept="image/gif, image/jpeg, image/png" />
                     <div class="contenteditabletext" contenteditable="true" data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piTitleContent" />
                     <input class="cpc_writecontenttextrecordgeneral" type="hidden" value="" name="piGeneralContent" />
@@ -77,103 +77,20 @@
                 <br><br>
                 <div class="cpc_writecontent cpc_contentflex">
                     <img  src=""  id="cpc_writecontentpic2" class="cpc_writecontentpic2" alt="點擊這裡上傳圖片">
-                    <input  class="cpc_writecontentupfile" type="file" name="upFile[]" accept="image/gif, image/jpeg, image/png">
+                    <input  class="cpc_writecontentupfile" type="file" name="upFile[]" accept="image/gif, image/jpeg, image/png" />
                     <div class="contenteditabletext" contenteditable="true"  data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piFloatLeftContent" />
                 </div>
                 <br><br>
                 <div class="cpc_writecontent cpc_contentflexreverse">
                     <img  src=""  id="cpc_writecontentpic3" class="cpc_writecontentpic3" alt="點擊這裡上傳圖片">
-                    <input class="cpc_writecontentupfile" type="file" name="upFile[]" accept="image/gif, image/jpeg, image/png">
+                    <input class="cpc_writecontentupfile" type="file" name="upFile[]" accept="image/gif, image/jpeg, image/png" />
                     <div class="contenteditabletext" contenteditable="true"  data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piFloatRightContent" />
                 </div>
             </div>
-            <input class="postwriteregionbutton" type="submit" value="送出" />  <!-- submit -->
+            <input class="postwriteregionbutton" type="button" value="送出" />  <!-- submit -->
         </form>
-
-            <script type="text/javascript">
-            window.addEventListener("load", function(){
-                let reader = new FileReader();
-                let cpcWriteContentUpfile0 = document.getElementsByClassName("cpc_writecontentupfile")[0];
-                let cpcWriteContentUpfile1 = document.getElementsByClassName("cpc_writecontentupfile")[1];
-                let cpcWriteContentUpfile2 = document.getElementsByClassName("cpc_writecontentupfile")[2];
-                cpcWriteContentUpfile0.onchange = function(e){
-                	let file0 = e.target.files[0];
-                	reader.onload = function(e){
-                        // console.log(document.getElementById("cpc_writecontentpic1").getAttribute("src"));  // null
-                        document.getElementById("cpc_writecontentpic1").src = reader.result;
-                        // console.log(x);
-                        document.getElementsByClassName("cpc_writecontentpic1").src = reader.result;
-                    }
-                	reader.readAsDataURL(file0);
-                }
-                cpcWriteContentUpfile1.onchange = function(e){
-                    let file1 = e.target.files[0];
-                    // 1. input 選取後發出的event
-                    // 2. 從event中取得檔案
-                    // 3. 把檔案跟<img>做連結
-                    reader.onload = function(e){
-                        document.getElementById("cpc_writecontentpic2").src = reader.result;
-                        document.getElementsByClassName("cpc_writecontentpic1").src = reader.result;
-                    }
-                    reader.readAsDataURL(file1);
-                }
-                cpcWriteContentUpfile2.onchange = function(e){
-                    let file2 = e.target.files[0];
-                    reader.onload = function(e){
-                        document.getElementById("cpc_writecontentpic3").src = reader.result;
-                        document.getElementsByClassName("cpc_writecontentpic1").src = reader.result;
-                    }
-                    reader.readAsDataURL(file2);
-                }
-            });
-
-            window.addEventListener("load", function(){
-                // console.log(document.getElementsByClassName("cpc_contentflex").innerText);
-                var postwriteregionbutton = document.getElementsByClassName("postwriteregionbutton")[0];
-                // console.log(postwriteregionbutton);
-                postwriteregionbutton.onclick = function(){
-                    // console.log(document.getElementsByClassName("postwritecontentregion"));
-                    let cpcWriteContent0 = document.getElementsByClassName("cpc_writecontent")[0];
-                    let cpcWriteContent1 = document.getElementsByClassName("cpc_writecontent")[1];
-                    let cpcWriteContent2 = document.getElementsByClassName("cpc_writecontent")[2];
-                    console.log(cpcWriteContent0);
-                    console.log(cpcWriteContent1);
-                    console.log(cpcWriteContent2);
-
-                    // console.log(document.getElementsByClassName("cpc_contentflex")[""0""].childNodes[5].textContent); 有東西
-                }
-
-            });
-            </script>
-            <!-- <label for="writecontent" class="titleFont writecontent">
-                <div class="postwritecontentregion">
-                    <div class="pwccontroltool">
-                        <div class="pwc_font_left_tool">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div class="pwc_font_center_tool">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div class="pwc_font_right_tool">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div class="pwc_upload_img_tool">
-                            <i class="fas fa-image"></i>
-                        </div>
-                    </div>
-                    <div class="postwritecontent" contenteditable="true" placeholder="請輸入內容">
-                        <img src="./img/postarticleregion/1.png" />
-                    </div>
-                </div>
-            </label> -->
     </div>
     <div class="postregionwrapper">
     <!-- 導覽列 -->
@@ -260,7 +177,7 @@
                             </div>
                         </div> -->
                         <!-- 綠色按鈕 -->
-                        <a class="btn darkgreen nav__link" >
+                        <a id="par_postarticlebutton" class="btn darkgreen nav__link" >
                             <span class="titleFont">
                                 我要發文
                             </span>
@@ -367,74 +284,9 @@ order by piTime desc";
                 © 2020 Bring Love Home
             </p>
         </footer>
-<script src="./js/page_top.js"></script>
+        <script src="./js/page_top.js"></script>
 
     </div>
-    <script>
-        window.addEventListener("load", function(){
-            //這邊切 keyword
-            let keywords = document.getElementsByClassName("keyword");
-            var keywordItemSplit;
-            var keywordItemString = "";
-            for(var keywordIndex=0; keywordIndex<keywords.length; keywordIndex++) {
-                var keywordItem = keywords[keywordIndex];
-                keywordItemString = keywordItem.innerText;
-                // console.log(keywordItemString);
-                keywordItem.innerText="";
-                //取出字串後，字串依逗點分段放入陣列
-                //取出的字串沒有逗點則直接轉陣列
-                if(keywordItemString != "") {
-                    if(keywordItemString.indexOf(",") ){
-                        keywordItemSplit = keywordItemString.split(",");
-                        // console.log(keywordItemSplit);
-                    } else {
-                        keywordItemSplit = keywordItemString.toArray();
-                        // console.log(keywordItemSplit);
-                    }
-
-                    // 加上#字號
-                    for(var keywordItemSplitIndex=0; keywordItemSplitIndex<keywordItemSplit.length; keywordItemSplitIndex++ ){
-                        var keywordItemSplitItem = keywordItemSplit[keywordItemSplitIndex];
-                        // console.log(keywordItemSplitItem);
-                        var setkeywordItemSplitItem = document.createElement("span");
-                        setkeywordItemSplitItem.innerText = "#" + keywordItemSplitItem;
-                        // console.log(setkeywordItemSplitItem);
-                        keywordItem.appendChild(setkeywordItemSplitItem);
-                    }
-                }
-            }
-
-            //這邊放 cpc_writecontenttextrecord
-            let postwriteregionbutton = document.getElementsByClassName("postwriteregionbutton")[0];
-            // console.log(postwriteregionbutton);
-            postwriteregionbutton.onclick = function(){
-                var contenteditabletext1innerText = document.getElementsByClassName("contenteditabletext")[0].innerText;
-                var contenteditabletext2innerText = document.getElementsByClassName("contenteditabletext")[1].innerText;
-                var contenteditabletext3innerText = document.getElementsByClassName("contenteditabletext")[2].innerText;
-
-                var cpcWriteContentTextRecord1value = document.getElementsByClassName("cpc_writecontenttextrecord")[0].value;
-                var cpcWriteContentTextRecord2value = document.getElementsByClassName("cpc_writecontenttextrecord")[1].value;
-                var cpcWriteContentTextRecord3value = document.getElementsByClassName("cpc_writecontenttextrecord")[2].value;
-
-
-                document.getElementsByClassName("cpc_writecontenttextrecord")[0].value = document.getElementsByClassName("contenteditabletext")[0].innerText;
-                document.getElementsByClassName("cpc_writecontenttextrecord")[1].value = document.getElementsByClassName("contenteditabletext")[1].innerText;
-                document.getElementsByClassName("cpc_writecontenttextrecord")[2].value = document.getElementsByClassName("contenteditabletext")[2].innerText;
-                document.getElementsByClassName("cpc_writecontenttextrecordgeneral")[0].value = document.getElementsByClassName("contenteditabletext")[0].innerText.substr( 0 , 50 ) + " ...";
-                // console.log();
-                // console.log(contenteditabletext1innerText, contenteditabletext2innerText, contenteditabletext3innerText);
-                // console.log(cpcWriteContentTextRecord1value);
-                // console.log(cpcWriteContentTextRecord2value);
-                // console.log(cpcWriteContentTextRecord3value);
-                // cpcWriteContentTextRecord1value = contenteditabletext1innerText;
-                // cpcWriteContentTextRecord2value = contenteditabletext2innerText;
-                // cpcWriteContentTextRecord3value = contenteditabletext3innerText;
-                // console.log(cpcWriteContentTextRecord1value);
-                // console.log(cpcWriteContentTextRecord2value);
-                // console.log(cpcWriteContentTextRecord3value);
-            }
-        });
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="./js/post_article_region.js"></script>
     <script src="./js/hamburger.js"></script>
