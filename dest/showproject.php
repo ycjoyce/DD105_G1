@@ -20,7 +20,7 @@ $errMsg = "";
 
 try{
 
-    require_once("connectDB.php");
+    require_once("./php/connectDB.php");
     $sql = "SELECT f.fundNo, f.memNo, f.fundTitle, f.fundImg, f.fundName, f.fundArticleImg1, f.fundArticleImg2, f.fundArticleImg3, f.fundArticleF, f.fundArticleS, f.fundArticleT, f.fundStartDate, f.fundEndDate, f.fundGoal, f.fundNowAmount ,f.fundAttendPeople, m.memPic, to_days(f.fundEndDate)-to_days(CURRENT_DATE()+1) dead,round((f.fundNowAmount / f.fundGoal)*100) pas from fundraising f join meminfo m on f.memNo = m.memNo
     where fundNo = :fundNo";
     
@@ -62,7 +62,7 @@ if($errMsg != ""){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= "愛心助浪浪 | Project&nbsp;{$fundraisingrows->fundNo}"?></title>
     <link rel="icon" href="./img/logo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/showproject.css">
+    <link rel="stylesheet" href="./css/showproject.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
 
     <!-- 頁籤標題 -->
@@ -104,13 +104,13 @@ if($errMsg != ""){
         <div class="imgchange">
             <div class="imgrow">
                 <div class="bigimg">
-                    <img id="big" src="/img/donation/projectImg/<?php echo $fundraisingrows->fundImg;?>" >
+                    <img id="big" src="./img/donation/projectImg/<?php echo $fundraisingrows->fundImg;?>" >
                 </div>
                 <div class="smallimg" id="small">
-                    <img src="/img/donation/projectImg/<?php echo $fundraisingrows->fundImg;?>" class="smallimages">
-                    <img src="/img/donation/projectImg/<?php echo $fundraisingrows->fundArticleImg1;?>" class="smallimages">
-                    <img src="/img/donation/projectImg/<?php echo $fundraisingrows->fundArticleImg2;?>" class="smallimages" >
-                    <img src="/img/donation/projectImg/<?php echo $fundraisingrows->fundArticleImg3;?>" class="smallimages" >
+                    <img src="./img/donation/projectImg/<?php echo $fundraisingrows->fundImg;?>" class="smallimages">
+                    <img src="./img/donation/projectImg/<?php echo $fundraisingrows->fundArticleImg1;?>" class="smallimages">
+                    <img src="./img/donation/projectImg/<?php echo $fundraisingrows->fundArticleImg2;?>" class="smallimages" >
+                    <img src="./img/donation/projectImg/<?php echo $fundraisingrows->fundArticleImg3;?>" class="smallimages" >
                 </div>
             </div>
             <div class="status">
@@ -135,7 +135,7 @@ if($errMsg != ""){
                             <ul class="socialbtn">                                                                                                                     
                                 <li class="share"><div class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="3" data-url="http://localhost:8888/php/showproject.php?fundNo=<?="{$fundraisingrows->fundNo}"?>" data-color="default" data-size="small" data-count="false" style="display: none;"></div></li>
                                 <li id="donationMsg" class="No<?=$fundraisingrows->memNo?>">
-                                    <img src="../img/donation/icon_private_message.svg" alt="">
+                                    <img src="./img/donation/icon_private_message.svg" alt="">
                                 </li>
                             </ul>
                         </div>
@@ -163,13 +163,13 @@ if($errMsg != ""){
     <div class="artcontent col-12">
             <div class="artcontentbox col-8">
             <div class="titleimg">
-                <img src="../img/donation/title.png" alt="">
+                <img src="./img/donation/title.png" alt="">
             </div>
-            <h3 style="background-image: url(../img/donation/big_bule_bubble.png);background-repeat:no-repeat;background-size:contain;">毛孩介紹</h3>
+            <h3 style="background-image: url(./img/donation/big_bule_bubble.png);background-repeat:no-repeat;background-size:contain;">毛孩介紹</h3>
             <div class="fundArticleF"><?php echo nl2br($fundraisingrows->fundArticleF);?></div>
-            <h3 style="background-image: url(../img/donation/big_pink_bubble.png);background-repeat:no-repeat;background-size:contain;">捐款目的</h3>
+            <h3 style="background-image: url(./img/donation/big_pink_bubble.png);background-repeat:no-repeat;background-size:contain;">捐款目的</h3>
             <div class="fundArticleS"><?php echo nl2br($fundraisingrows->fundArticleS);?></div>
-            <h3 style="background-image: url(../img/donation/big_green_bubble.png);background-repeat:no-repeat;background-size:contain;">拉票文宣</h3>
+            <h3 style="background-image: url(./img/donation/big_green_bubble.png);background-repeat:no-repeat;background-size:contain;">拉票文宣</h3>
             <div class="fundArticleT"><?php echo nl2br($fundraisingrows->fundArticleT);?></div>
             <div class="btn">
                 <button class="btn_lightbox" >
@@ -199,10 +199,10 @@ if($errMsg != ""){
                         <input type="hidden" :value="newdo.fundNo" name="fundNo">
                         <button type="submit" class="fakeformbtn">
                             <!-- <a class="cardbox"> -->
-                            <div class="raiser" v-bind:style="'background-image:url(../img/donation/' + newdo.memPic + ')'"></div>
+                            <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + newdo.memPic + ')'"></div>
                             <div class="top">
                                 <div class="donationpic"
-                                v-bind:style="'background-image:url(../img/donation/projectImg/' + newdo.fundImg + ')'">
+                                v-bind:style="'background-image:url(./img/donation/projectImg/' + newdo.fundImg + ')'">
                                 </div>
                                 <div class="tag">募資中</div>
                                 <div class="heartbtn"><i class="fas fa-heart"></i></div>
@@ -243,7 +243,7 @@ if($errMsg != ""){
             <div class="col-12 lightbox">
                 <div class="content">
                     <button class="btn_light_close">
-                        <img src="../img/donation/lightBoxClose.png" alt="">
+                        <img src="./img/donation/lightBoxClose.png" alt="">
                     </button>
                     <div class="checkout">
                         <div class="credit-card-box">
@@ -314,7 +314,7 @@ if($errMsg != ""){
                                 </div>
                             </div>
                         </div>
-                        <form class="form" action="./donationinset.php" method="POST" enctype="multipart/form-data">
+                        <form class="form" action="./php/donationinset.php" method="POST" enctype="multipart/form-data">
                             <fieldset>
                                 <label for="card-number">卡號</label>
                                 <input type="num" id="card-number" class="input-cart-number" maxlength="4" />
@@ -484,12 +484,13 @@ if($errMsg != ""){
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-<script src="../js/showproject.js"></script>
-<script src="../js/creditcard.js"></script>
+<script src="./js/showproject.js"></script>
+<script src="./js/creditcard.js"></script>
 <script src="./js/signInOut.js"></script>
 <script src="./js/hamburger.js"></script>
 <script src="./js/header_slide.js"></script>
 <script src="./js/page_top.js"></script>
+<script></script>
 <script>
     //連結私信=================================
     $("#donationMsg").click(function(){

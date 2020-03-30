@@ -13,11 +13,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
   
-  
-  <!-- 頁籤標題 -->
-  <!-- @@include('./layout/head.html',{
-    "title": "浪愛回家 | 愛心助浪浪"
-    }) -->
+
 </head>
 
 <body>
@@ -119,14 +115,14 @@
         <div class="tab tab1 -on">
           <div id="app">
               <div class="donationcardbox wow fadeIn" v-for="newdo in newdonationdatas">
-                <form action="./php/showproject.php" method="get">
+                <form action="showproject.php" method="get">
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
-                    <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + newdo.memPic + ')'"></div>
+                    <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + newdo.memPic + ')'"></div>
                     <div class="top">
                       <div class="donationpic"
-                        v-bind:style="'background-image:url(/img/donation/projectImg/' + newdo.fundImg + ')'">
+                        v-bind:style="'background-image:url(./img/donation/projectImg/' + newdo.fundImg + ')'">
                       </div>
                       <div class="tag">募資中</div>
                       <div class="heartbtn"><i class="fas fa-heart"></i></div>
@@ -164,11 +160,11 @@
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + deaddo .memPic + ')'">
+                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + deaddo .memPic + ')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(/img/donation/projectImg/' + deaddo .fundImg + ')'"></div>
+                    v-bind:style="'background-image:url(./img/donation/projectImg/' + deaddo .fundImg + ')'"></div>
                   <div class="tag">最後倒數</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
@@ -205,11 +201,11 @@
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
-                <div class="raiser" v-bind:style="'background-image:url(/img/donation/' + hisdo .memPic + ')'">
+                <div class="raiser" v-bind:style="'background-image:url(./img/memImg/' + hisdo .memPic + ')'">
                 </div>
                 <div class="top">
                   <div class="donationpic"
-                    v-bind:style="'background-image:url(/img/donation/projectImg/' + hisdo .fundImg + ')'"></div>
+                    v-bind:style="'background-image:url(./img/donation/projectImg/' + hisdo .fundImg + ')'"></div>
                   <div class="tag">已結束</div>
                   <div class="heartbtn"><i class="fas fa-heart"></i></div>
                 </div>
