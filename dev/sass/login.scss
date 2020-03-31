@@ -150,6 +150,7 @@ section{
                         transition: all 0.5s;
                         text-decoration: none;
                         position:relative;
+                        cursor: pointer;
                         @include rwd(ss){
                             margin-right: 10px;
                         }
@@ -186,6 +187,7 @@ section{
                     background-color: $gray;
                     color: #fff;
                     transition: all 0.5s ease-in-out;
+                    cursor: pointer;
                     @include rwd(ss){
                         width: 80px;
                     }
@@ -369,6 +371,7 @@ section{
                     transition: all 0.5s;
                     text-decoration: none;
                     position:relative;
+                    cursor: pointer;
                     &::after{
                         content: '';
                         display: inline-block;
@@ -397,6 +400,7 @@ section{
                     background-color: $gray;
                     color: #fff;
                     transition: all 0.5s ease-in-out;
+                    cursor: pointer;
                     @include rwd(ss){
                         width: 80px;
                     }

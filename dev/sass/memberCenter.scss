@@ -91,8 +91,8 @@
       background-size: 51px;
       background-repeat: no-repeat;
       background-position: center 40%;
-      background-color: rgb(116,175,91);
-      border: 1px solid rgb(116,175,91);
+      background-color: rgb(116, 175, 91);
+      border: 1px solid rgb(116, 175, 91);
       padding: 0;
       position: absolute;
       right: -45px;
@@ -173,6 +173,7 @@
 // 右邊視窗基本設定
 
 #showPsw {
+  cursor: pointer;
   @include rwd(lg) {
     margin: 10px 0 15px 0;
   }
@@ -264,6 +265,9 @@ label.uploadimgbtn {
       margin-top: 50px;
       text-align: center;
       font-family: "DM Serif Text", "Noto Serif TC";
+      a{
+        cursor: pointer;
+      }
     }
     .updatebtn {
       display: inline-block;
@@ -826,8 +830,12 @@ div.clickToShow {
   .tab-content section table td {
     padding: 2px 5px;
   }
-  .tab-content section .updatebtn_s {
-    width: 55px;
+  .tab-content section {
+    .lostrptable {
+      .updatebtn_s {
+        width: 60px;
+      }
+    }
   }
 }
 

@@ -62,10 +62,10 @@
                 //        now(), '0' );
                 $sql = "INSERT INTO postinfo ( memNo, piTitle, piGeneralContent,
         			   piTitlePic, piTitleContent, piFloatLeftPic, piFloatLeftContent, piFloatRightPic, piFloatRightContent,
-                       piTime, piStatus)
+                       pkkString, piTime, piStatus)
                 values('{$_SESSION["memNo"]}', :piTitle, :piGeneralContent,
                        '', :piTitleContent, '', :piFloatLeftContent, '', :piFloatRightContent,
-                       now(), '0' )";  // :piGeneralContent,
+                       :pkkString, now(), '0' )";  // :piGeneralContent,
                 // $sql = "INSERT INTO `products` (`psn`, `pname`, `price`, `author`, `pages`, `image`) values(null, :pname, :price, :author, :pages, '' )";
                 $products = $pdo->prepare( $sql );
                 $products -> bindValue(":piTitle", $_POST["piTitle"]);
@@ -73,41 +73,43 @@
                 $products -> bindValue(":piTitleContent", $_POST["piTitleContent"]);
                 $products -> bindValue(":piFloatLeftContent", $_POST["piFloatLeftContent"]);
                 $products -> bindValue(":piFloatRightContent", $_POST["piFloatRightContent"]);
+                $products -> bindValue(":pkkString", $_POST["pkkString"]);
                 $products -> execute();
                     //取得自動創號的key值
                 $piNo = $pdo->lastInsertId();
 
                 foreach ($_FILES["upFile"]["error"] as $i => $errorCode) {
-               //.......確定是否上傳成功
-                if( $_FILES["upFile"]["error"][$i] == UPLOAD_ERR_OK){
-                    //先檢查images資料夾存不存在
-                    if( file_exists("img") === false){
-                        mkdir("img");
-                    }
-                    //將檔案copy到要放的路徑
-                    // $fileInfoArr = pathinfo($_FILES["upFile"]["name"][$i]);
-                    // $fileName = "{$psn}.{$fileInfoArr["extension"]}";  //8.gif
-                    $fileName = "{$_FILES['upFile']['name'][$i]}";
-                    $from = $_FILES["upFile"]["tmp_name"][$i];
-                    $to = "img/postarticleregion/$fileName";
-                        if(copy( $from, $to)===true){
-                        //將檔案名稱寫回資料庫
-                        // update postinfo set piTitlePic='11.jpg', piFloatLeftPic='12.jpg', piFloatRightPic='13.jpg' where piNo = 1;
-                        // $sql = "update postinfo set piTitlePic = :piTitlePic where piNo = $piNo";
+                //.......確定是否上傳成功
+                    if( $_FILES["upFile"]["error"][$i] == UPLOAD_ERR_OK){
+                        //先檢查images資料夾存不存在
+                        if( file_exists("img") === false){
+                            mkdir("img");
+                        }
+                        //將檔案copy到要放的路徑
+                        // $fileInfoArr = pathinfo($_FILES["upFile"]["name"][$i]);
+                        // $fileName = "{$piNo}_{$i}.{$fileInfoArr["extension"]}";  //8.gif
+                        $fileName = "{$_FILES['upFile']['name'][$i]}";
+                        $from = $_FILES["upFile"]["tmp_name"][$i];
+                        $to = "img/postarticleregion/$fileName";
+                            if(copy( $from, $to)===true){
+                            //將檔案名稱寫回資料庫
+                            // update postinfo set piTitlePic='11.jpg', piFloatLeftPic='12.jpg', piFloatRightPic='13.jpg' where piNo = 1;
+                            // $sql = "update postinfo set piTitlePic = :piTitlePic where piNo = $piNo";
+                        }else{
+                            $pdo->rollBack();
+                        }
                     }else{
-                        $pdo->rollBack();
+                        echo "錯誤代碼 : {$_FILES["upFile"]["error"][$i]} <br>";
+                        echo "新增失敗<br>";
                     }
-                }else{
-                    echo "錯誤代碼 : {$_FILES["upFile"]["error"][$i]} <br>";
-                    echo "新增失敗<br>";
-                }
-            }//foreach
+                }//foreach
 
                 $sql = "update postinfo set piTitlePic = :piTitlePic, piFloatLeftPic=:piFloatLeftPic, piFloatRightPic=:piFloatRightPic where piNo = $piNo";
                 // $sql = "update products set image = :image where psn = 7";
-
+                // $fileLocation0 = "img/postarticleregion/{$piNo}_0.{$fileInfoArr["extension"]}";
+                // $fileLocation1 = "img/postarticleregion/{$piNo}_1.{$fileInfoArr["extension"]}";
+                // $fileLocation2 = "img/postarticleregion/{$piNo}_2.{$fileInfoArr["extension"]}";
                 $fileLocation0 = "img/postarticleregion/{$_FILES['upFile']['name'][0]}";
-                // $fileLocation0 = "img/postarticleregion/{$_FILES['upFile']['name'][0]}";
                 $fileLocation1 = "img/postarticleregion/{$_FILES['upFile']['name'][1]}";
                 $fileLocation2 = "img/postarticleregion/{$_FILES['upFile']['name'][2]}";
                 $products = $pdo->prepare($sql);
@@ -115,13 +117,20 @@
                 $products -> bindValue(":piFloatLeftPic", $fileLocation1);
                 $products -> bindValue(":piFloatRightPic", $fileLocation2);
                 $products -> execute();
-
-
                 echo $fileLocation0, "<br>";
                 echo $fileLocation1, "<br>";
                 echo $fileLocation2, "<br>";
                 // echo $fileName, "<br>";
                 echo "新增成功~";
+                // $pdo->commit();
+
+                $sql = "update meminfo set memPoint = memPoint + :memPoint where memNo = {$_SESSION["memNo"]}";
+                // $sql = "update meminfo set memPoint = memPoint+300 where memNo = 1";
+
+                $meminfo = $pdo->prepare($sql);
+                $meminfo -> bindValue(":memPoint", $_POST["memPoint"]);
+                $meminfo -> execute();
+                // echo $fileName, "<br>";
                 $pdo->commit();
                 header("Location:./post_article_region.php");
             } catch (PDOException $e) {

@@ -13,6 +13,17 @@
         window.addEventListener("load",function(){
             play();
             dogAniSize();
+            
+            //貼文rwd
+            if(document.body.clientWidth<=575){
+                let forumTitle= document.querySelectorAll("section.forum div.card a h4");
+                let forumText= document.querySelectorAll("section.forum div.card div.text a:last-child");
+                if(forumTitle.innerText.length>8){
+                    forumTitle.innerText= forumTitle.innerText.substr(8)+"...";
+                }else if(forumText.innerText.length>27){
+                    forumText.innerText= forumText.innerText.substr(27)+"...";
+                }
+            }
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
@@ -43,7 +54,6 @@
         </div>
         
     </div> -->
-    <div id="dog_backhome"></div>
     <section class="intro">
         <div class="title">
             <h1 class="enSpecialFont parallax2" id="theText">Bring Love Home</h1>
@@ -58,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="carousel wow zoomIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11 col-mini-12" data-wow-duration="1s">
+        <div class="carousel wow zoomIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11 col-mini-11" data-wow-duration="1s">
             <div class="bg parallax1">
                 <img src="./img/shabon_l.png" class="bubble" id="bubble1">
                 <img src="./img/shabon_l.png" class="bubble" id="bubble2">
@@ -376,7 +386,7 @@
             <h3 class="enSpecialFont wow fadeInUp">Forum</h3>
             <h2 class="wow fadeInUp" data-wow-delay=".2s">毛孩交流區</h2>
             <p class="col-ss-12 col-mini-10 wow fadeInUp" data-wow-delay=".5s">與愛爸愛媽們一同交流飼寵心得和對毛孩的滿滿愛意吧！</p>
-
+            <p class="col-ss-12 col-mini-10 wow fadeInUp hide" data-wow-delay=".5s">與愛爸愛媽們一同交流<br>飼寵心得和對毛孩的滿滿愛意吧！</p>
         </div>
         <div class="cards col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
             <div class="card wow fadeInUp" data-wow-delay=".7s">
@@ -769,16 +779,7 @@
         });
     
     
-        //貼文rwd
-        if(document.body.clientWidth<=575){
-            let forumTitle= document.querySelectorAll("section.forum div.card a h4");
-            let forumText= document.querySelectorAll("section.forum div.card div.text a:last-child");
-            if(forumTitle.innerText.length>8){
-                forumTitle.innerText= forumTitle.innerText.substr(8)+"...";
-            }else if(forumText.innerText.length>27){
-                forumText.innerText= forumText.innerText.substr(27)+"...";
-            }
-        }
+        
     </script>
 
     <!-- 燈箱JS -->    

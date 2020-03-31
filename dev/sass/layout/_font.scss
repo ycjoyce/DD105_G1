@@ -1,5 +1,6 @@
 @import './color';
 @import './rwd';
+
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC|Noto+Serif+TC&display=swap');
 @import url('https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap');
 @font-face {
@@ -13,6 +14,23 @@
     font-weight: 400;
     letter-spacing: 0.05rem;
     font-size: 0.95rem;
+    @include rwd(ss){
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    @include rwd(mini){
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    
+}
+
+a,input[type="submit"],input[type="button"],button,a span,a img{
+    cursor: pointer;
+}
+
+input[type="text"],input[type="password"]{
+    cursor: text;
 }
 
 .titleFont{
@@ -32,6 +50,14 @@ h1{
     font-family: 'DM Serif Text','Noto Serif TC';
     font-weight: 500;
     letter-spacing: 0.6rem;
+    @include rwd(ss){
+        font-size: 40px;
+        letter-spacing: 8px;
+    }
+    @include rwd(mini){
+        font-size: 40px;
+        letter-spacing: 8px;
+    }
 }
 h2{
     font-size: 2.3rem;
@@ -39,8 +65,12 @@ h2{
     font-weight: 500;
     letter-spacing: 0.4rem;
     @include rwd(ss){
-        font-size: 2rem;
-        letter-spacing: 0.2rem;
+        font-size: 32px;
+        letter-spacing: 3px;
+    }
+    @include rwd(mini){
+        font-size: 32px;
+        letter-spacing: 3px;
     }
 }
 h3{
@@ -48,13 +78,35 @@ h3{
     font-family: 'DM Serif Text','Noto Serif TC';
     font-weight: 500;
     letter-spacing: 0.2rem;
+    @include rwd(ss){
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+    @include rwd(mini){
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
 }
 h4{
     font-size: 1.3rem;
     font-family: 'DM Serif Text','Noto Serif TC';
     font-weight: 500;
     letter-spacing: 0.1rem;
+    @include rwd(ss){
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+    @include rwd(mini){
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
 }
 .smalltext{
     font-size: 0.8rem;
+    @include rwd(ss){
+        font-size: 12.8px;
+    }
+    @include rwd(mini){
+        font-size: 12.8px;
+    }
 }
