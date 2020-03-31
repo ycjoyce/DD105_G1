@@ -14,8 +14,51 @@
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
   <style>
+    label {
+      width: 70px;
+    }
+
     .smallnone {
       display: none;
+    }
+
+    .pWidth {
+      display: inline-block;
+      width: 45%;
+    }
+
+    input,
+    select {
+      width: calc(100% - 85px);
+      border-radius: 5px;
+      border: 0.5px solid rgb(181, 181, 181);
+      padding-left: 5px;
+    }
+
+    input[type="file"] {
+      padding-left: 0;
+    }
+
+    .newTable {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .btn-warning {
+      width: 100px;
+    }
+
+    .forbtn {
+      width: 100%;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 767px) {
+      .pWidth {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -149,7 +192,7 @@
         <i class="nav-icon icon-drop"></i>GPS地圖管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="petFriendly.html">寵物友善空間管理</a>
+          <a class="nav-link" href="petFriendly.html">↪ 寵物友善空間管理</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="petFriendlyScore.html">寵物友善空間評論管理</a>
@@ -217,7 +260,7 @@
       <ul class="nav-dropdown-items">
         <li class="nav-item">
           <a class="nav-link" href="fundRaising.html">
-            <i class="nav-icon icon-cursor"></i> 募款專案管理</a>
+            <i class="nav-icon icon-cursor"></i>↪ 募款專案管理</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="buttons/button-group.html">
@@ -249,10 +292,10 @@
           <a class="nav-link" href="icons/font-awesome.html">客製化字型管理</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="customizedTag.html">客製化吊牌管理</a>
+          <a class="nav-link" href="customizedTag.html">↪ 客製化吊牌管理</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="orderRecord.html">客製化訂單紀錄管理</a>
+          <a class="nav-link" href="orderRecord.html">↪ 客製化訂單紀錄管理</a>
         </li>
 
       </ul>
@@ -301,7 +344,7 @@
       <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon icon-pie-chart"></i>會員管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="memInfo.html" target="_top">會員資料管理</a>
+          <a class="nav-link" href="memInfo.html" target="_top">↪ 會員資料管理</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="blacklist.html" target="_top">黑名單管理</a>
@@ -340,34 +383,112 @@
       <div class="container-fluid">
 
         <!-- 中間內容 -->
-        <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <!-- <div class="card-header">Card title</div> -->
-            <div class="card-body">
-              <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
-              <table class="table table-responsive-sm table-sm">
-                <thead>
-                  <tr>
-                    <th>店家編號</th>
-                    <!-- <th>類別編號</th> -->
-                    <!-- <th>地區編號</th> -->
-                    <th>店家名稱</th>
-                    <!-- <th>店家電話</th> -->
-                    <th class="smallnone">店家地址</th>
-                    <!-- <th>緯度</th> -->
-                    <!-- <th>經度</th> -->
-                    <!-- <th>友善物種</th> -->
-                    <!-- <th>入內規定</th> -->
-                    <!-- <th>周邊服務</th> -->
-                    <!-- <th>環境服務</th> -->
-                    <!-- <th>店家圖片</th> -->
-                    <!-- <th>上下架狀態</th> -->
-                    <th>店家上下架管理</th>
-                  </tr>
-                </thead>
-                <tbody id="friendlyinfo">
-                  <!-- <tr>
+        <div class="row" style="margin-bottom:20px">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">寵物友善空間新增</div>
+      <div class="card-body newTable">
+        <p class="pWidth">
+          <label for="friendlyNo">店家編號</label>
+          <input type="text" name="friendlyNo" id="friendlyNo" placeholder="ex. 類別編號(1)+地區編號(01)+流水號(001)">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyName">店家名稱</label>
+          <input type="text" name="friendlyName" id="friendlyName" placeholder="ex. 浪愛回家">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyTypeNo">類別編號</label>
+          <select name="friendlyTypeNo" id="friendlyTypeNo">
+            <option value="1">寵物友善餐廳</option>
+            <option value="2">寵物友善住宿</option>
+            <option value="3">寵物友善景點</option>
+          </select>
+        </p>
+        <p class="pWidth">
+          <label for="friendlyLocNo">地區編號</label>
+          <select name="friendlyLocNo" id="friendlyLocNo">
+            <option value="1">士林區</option>
+            <option value="2">大同區</option>
+            <option value="3">大安區</option>
+            <option value="4">中山區</option>
+            <option value="5">中正區</option>
+            <option value="6">內湖區</option>
+            <option value="7">文山區</option>
+            <option value="8">北投區</option>
+            <option value="9">松山區</option>
+            <option value="10">信義區</option>
+            <option value="11">南港區</option>
+            <option value="12">萬華區</option>
+          </select>
+        </p>
+        <p class="pWidth">
+          <label for="friendlyTel">店家電話</label>
+          <input type="text" name="friendlyTel" id="friendlyTel" placeholder="ex. 2345-6789">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyAdd">店家地點</label>
+          <input type="text" name="friendlyAdd" id="friendlyAdd" placeholder="ex. 桃園市中壢區中大路300號">
+          <input type="hidden" name="friendlyAddress" id="friendlyAddress">
+          <input type="hidden" name="friendlylat" id="friendlylat">
+          <input type="hidden" name="friendlylng" id="friendlylng">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_1">友善物種</label>
+          <input type="text" name="friendlyIntro_1" id="friendlyIntro_1" placeholder="ex. 犬(大/中/小型)、貓">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_2">入內規定</label>
+          <input type="text" name="friendlyIntro_2" id="friendlyIntro_2" placeholder="ex. 可落地、需著禮貌帶/生理褲">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_3">周邊服務</label>
+          <input type="text" name="friendlyIntro_3" id="friendlyIntro_3" placeholder="ex. 提供寵物餐、提供寵物專用餐具">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_4">環境服務</label>
+          <input type="text" name="friendlyIntro_4" id="friendlyIntro_4" placeholder="ex. 協助清潔便溺物">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyPic">店家照片</label>
+          <input type="file" name="friendlyPic" id="friendlyPic" placeholder="ex. 編號_(檔案格式)">
+        </p>
+        <div class="pWidth"></div>
+        <div class="forbtn">
+          <button type="button" class="btn btn-warning" id="newfriendlybtn">新增</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">友善空間上下架</div>
+      <div class="card-body">
+        <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
+        <table class="table table-responsive-sm table-sm">
+          <thead>
+            <tr>
+              <th>店家編號</th>
+              <!-- <th>類別編號</th> -->
+              <!-- <th>地區編號</th> -->
+              <th>店家名稱</th>
+              <!-- <th>店家電話</th> -->
+              <th class="smallnone">店家地址</th>
+              <!-- <th>緯度</th> -->
+              <!-- <th>經度</th> -->
+              <!-- <th>友善物種</th> -->
+              <!-- <th>入內規定</th> -->
+              <!-- <th>周邊服務</th> -->
+              <!-- <th>環境服務</th> -->
+              <!-- <th>店家圖片</th> -->
+              <!-- <th>上下架狀態</th> -->
+              <th>店家上下架管理</th>
+            </tr>
+          </thead>
+          <tbody id="friendlyinfo">
+            <!-- <tr>
                     <td>Carwyn Fachtna</td>
                     <td>2012/01/01</td>
                     <td>Member</td>
@@ -388,7 +509,7 @@
                     </label>
                     </td>
                   </tr> -->
-                  <!-- <tr>
+            <!-- <tr>
                     <td>Nehemiah Tatius</td>
                     <td>2012/02/01</td>
                     <td>Staff</td>
@@ -439,12 +560,12 @@
                     </label>
                     </td>
                   </tr> -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
+</div>
         <!-- end -->
       </div>
     </main>
@@ -750,7 +871,7 @@
     </aside>
   </div>
 
-  
+
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -759,13 +880,94 @@
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
   <script src="./js/backend-managerName.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
 
   <script>
 
     $(document).ready(function () {
-      // 把寵物遺失從資料庫撈回來
-      getfriendly();
 
+      getfriendly(); // 把寵物遺失從資料庫撈回來
+
+
+      /// 輸入地址
+      document.getElementById("friendlyAdd").onchange = getAddress;
+      var geocoder = new google.maps.Geocoder();
+      function getAddress() {
+        // alert("測試");
+        var address = document.getElementById("friendlyAdd").value;
+        geocoder.geocode({ address: address }, function (results, status) {
+          if (status == "OK") {
+            console.log(
+              `${
+              results[0].formatted_address
+              } | ${results[0].geometry.location.lat()} | ${results[0].geometry.location.lng()}`
+            );
+            document.getElementById("friendlyAddress").value =
+              results[0].formatted_address;
+            document.getElementById(
+              "friendlylat"
+            ).value = results[0].geometry.location.lat();
+            document.getElementById(
+              "friendlylng"
+            ).value = results[0].geometry.location.lng();
+          } else {
+            console.log(status);
+          }
+        });
+      }
+
+
+      // 新增友善空間
+      var friendlyPic = document.getElementById("friendlyPic");
+      var friendlyTypeNo=$("#friendlyTypeNo option:selected")
+
+      $("#newfriendlybtn").click(function (e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("friendlyNo", $("#friendlyNo").val());
+        formData.append("friendlyName", $("#friendlyName").val());
+        formData.append("friendlyTypeNo", $("#friendlyTypeNo").val());
+        formData.append("friendlyLocNo", $("#friendlyLocNo").val());
+        formData.append("friendlyTel", $("#friendlyTel").val());
+        formData.append("friendlyAddress", $("#friendlyAddress").val());
+        formData.append("friendlylat", $("#friendlylat").val());
+        formData.append("friendlylng", $("#friendlylng").val());
+        formData.append("friendlyIntro_1", $("#friendlyIntro_1").val());
+        formData.append("friendlyIntro_2", $("#friendlyIntro_2").val());
+        formData.append("friendlyIntro_3", $("#friendlyIntro_3").val());
+        formData.append("friendlyIntro_4", $("#friendlyIntro_4").val());
+        formData.append("friendlyTypeName", friendlyTypeNo.text());
+        formData.append("friendlyPic", friendlyPic.files[0]);
+        $.ajax({
+          type: "POST",
+          url: "./php/back_friendlyAdd.php",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          success: function (data) {
+            if (data.indexOf("成功") != -1) {
+              alert("新增成功");
+              $("#somedialog").removeClass("dialog--open");
+              $("#friendlyNo,#friendlyName,#friendlyTypeNo,#friendlyLocNo,#friendlyTel,#friendlyAdd, #friendlyAddress,#friendlylat,#friendlylng, #friendlyIntro_1, #friendlyIntro_2, #friendlyIntro_3,#friendlyIntro_4").val("");
+              // getLost();
+            }
+            else {
+              alert("新增失敗");
+            }
+          },
+          error: function (xhr, status, error) {
+            // alert("請上傳圖片");
+            // var err = eval("(" + xhr.responseText + ")");
+            alert(xhr.Message);
+          }
+        })
+      })
+
+
+
+      // 把寵物遺失從資料庫撈回來
       function getfriendly() {
         $.ajax({
           url: './php/back_friendly.php',

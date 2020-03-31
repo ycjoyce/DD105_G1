@@ -14,8 +14,51 @@
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
   <style>
+    label {
+      width: 70px;
+    }
+
     .smallnone {
       display: none;
+    }
+
+    .pWidth {
+      display: inline-block;
+      width: 45%;
+    }
+
+    input,
+    select {
+      width: calc(100% - 85px);
+      border-radius: 5px;
+      border: 0.5px solid rgb(181, 181, 181);
+      padding-left: 5px;
+    }
+
+    input[type="file"] {
+      padding-left: 0;
+    }
+
+    .newTable {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .btn-warning {
+      width: 100px;
+    }
+
+    .forbtn {
+      width: 100%;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 767px) {
+      .pWidth {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -360,7 +403,7 @@
     </aside>
   </div>
 
-  
+
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -369,13 +412,94 @@
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
   <script src="./js/backend-managerName.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
 
   <script>
 
     $(document).ready(function () {
-      // 把寵物遺失從資料庫撈回來
-      getfriendly();
 
+      getfriendly(); // 把寵物遺失從資料庫撈回來
+
+
+      /// 輸入地址
+      document.getElementById("friendlyAdd").onchange = getAddress;
+      var geocoder = new google.maps.Geocoder();
+      function getAddress() {
+        // alert("測試");
+        var address = document.getElementById("friendlyAdd").value;
+        geocoder.geocode({ address: address }, function (results, status) {
+          if (status == "OK") {
+            console.log(
+              `${
+              results[0].formatted_address
+              } | ${results[0].geometry.location.lat()} | ${results[0].geometry.location.lng()}`
+            );
+            document.getElementById("friendlyAddress").value =
+              results[0].formatted_address;
+            document.getElementById(
+              "friendlylat"
+            ).value = results[0].geometry.location.lat();
+            document.getElementById(
+              "friendlylng"
+            ).value = results[0].geometry.location.lng();
+          } else {
+            console.log(status);
+          }
+        });
+      }
+
+
+      // 新增友善空間
+      var friendlyPic = document.getElementById("friendlyPic");
+      var friendlyTypeNo=$("#friendlyTypeNo option:selected")
+
+      $("#newfriendlybtn").click(function (e) {
+        e.preventDefault();
+        var formData = new FormData();
+        formData.append("friendlyNo", $("#friendlyNo").val());
+        formData.append("friendlyName", $("#friendlyName").val());
+        formData.append("friendlyTypeNo", $("#friendlyTypeNo").val());
+        formData.append("friendlyLocNo", $("#friendlyLocNo").val());
+        formData.append("friendlyTel", $("#friendlyTel").val());
+        formData.append("friendlyAddress", $("#friendlyAddress").val());
+        formData.append("friendlylat", $("#friendlylat").val());
+        formData.append("friendlylng", $("#friendlylng").val());
+        formData.append("friendlyIntro_1", $("#friendlyIntro_1").val());
+        formData.append("friendlyIntro_2", $("#friendlyIntro_2").val());
+        formData.append("friendlyIntro_3", $("#friendlyIntro_3").val());
+        formData.append("friendlyIntro_4", $("#friendlyIntro_4").val());
+        formData.append("friendlyTypeName", friendlyTypeNo.text());
+        formData.append("friendlyPic", friendlyPic.files[0]);
+        $.ajax({
+          type: "POST",
+          url: "./php/back_friendlyAdd.php",
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          success: function (data) {
+            if (data.indexOf("成功") != -1) {
+              alert("新增成功");
+              $("#somedialog").removeClass("dialog--open");
+              $("#friendlyNo,#friendlyName,#friendlyTypeNo,#friendlyLocNo,#friendlyTel,#friendlyAdd, #friendlyAddress,#friendlylat,#friendlylng, #friendlyIntro_1, #friendlyIntro_2, #friendlyIntro_3,#friendlyIntro_4").val("");
+              // getLost();
+            }
+            else {
+              alert("新增失敗");
+            }
+          },
+          error: function (xhr, status, error) {
+            // alert("請上傳圖片");
+            // var err = eval("(" + xhr.responseText + ")");
+            alert(xhr.Message);
+          }
+        })
+      })
+
+
+
+      // 把寵物遺失從資料庫撈回來
       function getfriendly() {
         $.ajax({
           url: './php/back_friendly.php',
