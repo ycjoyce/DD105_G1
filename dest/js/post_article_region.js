@@ -61,24 +61,6 @@ $(".postregionkeyword div.aa2").on('click', function() {
   // $("ul.u1").hide();
 });
 
-// $("div.aa2").on('click', function() {
-//     $("ul.u1").hide();
-// });
-// $("div.aa1").on('click', function() {
-//     $("ul.u2").hide();
-// });
-
-// function getSelectedValue(id) {
-//   return $("#" + id).find("dt div span.value").html();
-// }
-
-// $(document).bind('click', function(e) {
-//     var $clicked = $(e.target);
-//     if (!$clicked.parents().hasClass("select")) {
-//         $(".select ul").hide();
-//     }
-// });
-
 $('ul.u1 input[type="checkbox"]').on('click', function() {
     $("span.displayfont1").show();
     $('p.ms1 span[title]').remove();
@@ -125,6 +107,9 @@ $('ul.u2 input[type="checkbox"]').on('click', function() {
     }
 });
 
+
+
+
 // ripple 點擊 circle
 $('.card-item').on('click', '.ripple', function(e) {
 
@@ -160,8 +145,64 @@ $('.selectpostgalleryregion').on('click', function() {
     window.location.href = "./post_gallery_region.html";
 });
 
-// 點擊 card-item 轉 post_content
+
 window.addEventListener("load",function(){
+    // post region : keyword 選擇按鈕
+    var pwfkeyworditem = document.getElementsByClassName("pwfkeyworditem");
+
+    pwfkeyworditem[0].onclick = function() {
+        console.log(pwfkeyworditem[0]);
+        if(document.getElementsByClassName("pwfkeyworditem")[0].classList.contains("pwfselectkeywordregiondaily")) {
+            document.getElementsByClassName("pwfkeyworditem")[0].classList.remove("pwfselectkeywordregiondaily");
+            document.getElementsByClassName("pwfkeyworditem")[0].classList.add("pwfselectkeywordregionclick");
+        } else {
+            document.getElementsByClassName("pwfkeyworditem")[0].classList.remove("pwfselectkeywordregionclick");
+            document.getElementsByClassName("pwfkeyworditem")[0].classList.add("pwfselectkeywordregiondaily");
+        }
+    }
+    pwfkeyworditem[1].onclick = function() {
+        console.log(pwfkeyworditem[1]);
+        if(document.getElementsByClassName("pwfkeyworditem")[1].classList.contains("pwfselectkeywordregiontoy")) {
+            document.getElementsByClassName("pwfkeyworditem")[1].classList.remove("pwfselectkeywordregiontoy");
+            document.getElementsByClassName("pwfkeyworditem")[1].classList.add("pwfselectkeywordregionclick");
+        } else {
+            document.getElementsByClassName("pwfkeyworditem")[1].classList.remove("pwfselectkeywordregionclick");
+            document.getElementsByClassName("pwfkeyworditem")[1].classList.add("pwfselectkeywordregiontoy");
+        }
+    }
+    pwfkeyworditem[2].onclick = function() {
+        console.log(pwfkeyworditem[2]);
+        if(document.getElementsByClassName("pwfkeyworditem")[2].classList.contains("pwfselectkeywordregioncare")) {
+            document.getElementsByClassName("pwfkeyworditem")[2].classList.remove("pwfselectkeywordregioncare");
+            document.getElementsByClassName("pwfkeyworditem")[2].classList.add("pwfselectkeywordregionclick");
+        } else {
+            document.getElementsByClassName("pwfkeyworditem")[2].classList.remove("pwfselectkeywordregionclick");
+            document.getElementsByClassName("pwfkeyworditem")[2].classList.add("pwfselectkeywordregioncare");
+        }
+    }
+    pwfkeyworditem[3].onclick = function() {
+        console.log(pwfkeyworditem[3]);
+        if(document.getElementsByClassName("pwfkeyworditem")[3].classList.contains("pwfselectkeywordregioncute")) {
+            document.getElementsByClassName("pwfkeyworditem")[3].classList.remove("pwfselectkeywordregioncute");
+            document.getElementsByClassName("pwfkeyworditem")[3].classList.add("pwfselectkeywordregionclick");
+        } else {
+            document.getElementsByClassName("pwfkeyworditem")[3].classList.remove("pwfselectkeywordregionclick");
+            document.getElementsByClassName("pwfkeyworditem")[3].classList.add("pwfselectkeywordregioncute");
+        }
+    }
+    pwfkeyworditem[4].onclick = function() {
+        console.log(pwfkeyworditem[4]);
+        if(document.getElementsByClassName("pwfkeyworditem")[4].classList.contains("pwfselectkeywordregionpetspaceitem")) {
+            document.getElementsByClassName("pwfkeyworditem")[4].classList.remove("pwfselectkeywordregionpetspaceitem");
+            document.getElementsByClassName("pwfkeyworditem")[4].classList.add("pwfselectkeywordregionpetspaceitemclick");
+        } else {
+            document.getElementsByClassName("pwfkeyworditem")[4].classList.remove("pwfselectkeywordregionpetspaceitemclick");
+            document.getElementsByClassName("pwfkeyworditem")[4].classList.add("pwfselectkeywordregionpetspaceitem");
+        }
+    }
+
+
+    // 點擊 card-item 轉 post_content
     let cardItems = document.getElementsByClassName('card-item');
     // console.log(cardItems.length);
     for( var i=0; i<cardItems.length; i++ ){
@@ -170,7 +211,7 @@ window.addEventListener("load",function(){
         let piNo = cardItemSetpiNoSpan.value;
         // console.log(piNo);
         cardItem.onclick = function(){
-            location.href = './post_content.php?piNo=' + piNo;
+            setTimeout(function(){location.href = './post_content.php?piNo=' + piNo}, 500);
         }
     }
 
@@ -213,34 +254,64 @@ window.addEventListener("load",function(){
     let cpcWriteContentUpfile1 = document.getElementsByClassName("cpc_writecontentupfile")[1];
     let cpcWriteContentUpfile2 = document.getElementsByClassName("cpc_writecontentupfile")[2];
     let file;
+    document.getElementById("cpc_writecontentpic1").onclick = function(){
+        // console.log( document.getElementById("cpc_writecontentpic1") );
+        cpcWriteContentUpfile0.click();
+    }
+    document.getElementById("cpc_writecontentpic2").onclick = function(){
+        // console.log( document.getElementById("cpc_writecontentpic1") );
+        cpcWriteContentUpfile1.click();
+    }
+    document.getElementById("cpc_writecontentpic3").onclick = function(){
+        // console.log( document.getElementById("cpc_writecontentpic1") );
+        cpcWriteContentUpfile2.click();
+    }
     cpcWriteContentUpfile0.onchange = function(e){
         file = e.target.files[0];
-        reader.onload = function(e){
-            document.getElementById("cpc_writecontentpic1").src = reader.result;
+        // console.log(file);
+        if( file == undefined ) {
+            document.getElementById("cpc_writecontentpic1").src = "./img/map_uploadimg.png";
+        } else {
+            reader.onload = function(e){
+                document.getElementById("cpc_writecontentpic1").src = reader.result;
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
+
     }
     cpcWriteContentUpfile1.onchange = function(e){
         file = e.target.files[0];
+        // console.log(file);
         // 1. input 選取後發出的event
         // 2. 從event中取得檔案
         // 3. 把檔案跟<img>做連結
-        reader.onload = function(e){
-            document.getElementById("cpc_writecontentpic2").src = reader.result;
+        if( file == undefined ) {
+            document.getElementById("cpc_writecontentpic2").src = "./img/map_uploadimg.png";
+
+        } else {
+            reader.onload = function(e){
+                document.getElementById("cpc_writecontentpic2").src = reader.result;
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
     }
     cpcWriteContentUpfile2.onchange = function(e){
         file = e.target.files[0];
-        reader.onload = function(e){
-            document.getElementById("cpc_writecontentpic3").src = reader.result;
+        // console.log(file);
+        if( file == undefined ) {
+            document.getElementById("cpc_writecontentpic3").src = "./img/map_uploadimg.png";
+        } else {
+            reader.onload = function(e){
+                document.getElementById("cpc_writecontentpic3").src = reader.result;
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(file);
     }
 
 
     //這邊放將文字框 值 放入 input value值傳到後台
     let postwriteregionbutton = document.getElementsByClassName("postwriteregionbutton")[0];
+    document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已輸入標題、放上所有照片、及輸入所有內容";
     // console.log(postwriteregionbutton);
     // 將文字框 值 放入 input value值
     postwriteregionbutton.onclick = function(){
@@ -248,16 +319,11 @@ window.addEventListener("load",function(){
         // console.log(document.getElementById("cpc_writecontentpic1").getAttribute("src"));
         // console.log(document.getElementById("cpc_writecontentpic2").getAttribute("src"));
         // console.log(document.getElementById("cpc_writecontentpic3").getAttribute("src"));
-        if ( document.getElementById("cpc_writecontentpic1").getAttribute("src")!="" && document.getElementById("cpc_writecontentpic2").getAttribute("src")!="" && document.getElementById("cpc_writecontentpic3").getAttribute("src")!="" &&
-             document.getElementsByClassName("contenteditabletext")[0].innerText!="" && document.getElementsByClassName("contenteditabletext")[1].innerText!="" && document.getElementsByClassName("contenteditabletext")[2].innerText!="" &&
-             document.getElementsByClassName("postwritetitle")[0].value!="" ) {
+        if ( (document.getElementById("cpc_writecontentpic1").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic2").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic3").getAttribute("src")!="./img/map_uploadimg.png") &&
+             (document.getElementsByClassName("contenteditabletext")[0].innerText!="") && (document.getElementsByClassName("contenteditabletext")[1].innerText!="") && (document.getElementsByClassName("contenteditabletext")[2].innerText!="") &&
+             (document.getElementsByClassName("postwritetitle")[0].value!="") ) {
              // alert("全部都填了");
-             // var contenteditabletext1innerText = document.getElementsByClassName("contenteditabletext")[0].innerText;
-             // var contenteditabletext2innerText = document.getElementsByClassName("contenteditabletext")[1].innerText;
-             // var contenteditabletext3innerText = document.getElementsByClassName("contenteditabletext")[2].innerText;
-             // var cpcWriteContentTextRecord1value = document.getElementsByClassName("cpc_writecontenttextrecord")[0].value;
-             // var cpcWriteContentTextRecord2value = document.getElementsByClassName("cpc_writecontenttextrecord")[1].value;
-             // var cpcWriteContentTextRecord3value = document.getElementsByClassName("cpc_writecontenttextrecord")[2].value;
+             document.getElementsByClassName("postwriteregionhint")[0].style.display="none";
              document.getElementsByClassName("cpc_writecontenttextrecord")[0].value = document.getElementsByClassName("contenteditabletext")[0].innerText;
              document.getElementsByClassName("cpc_writecontenttextrecord")[1].value = document.getElementsByClassName("contenteditabletext")[1].innerText;
              document.getElementsByClassName("cpc_writecontenttextrecord")[2].value = document.getElementsByClassName("contenteditabletext")[2].innerText;
@@ -266,9 +332,66 @@ window.addEventListener("load",function(){
              // console.log(cpcWriteContentTextRecord1value);
              // console.log(cpcWriteContentTextRecord2value);
              // console.log(cpcWriteContentTextRecord3value);
+             var pwfkeyworditemgetString = document.getElementsByClassName("pwfkeyworditemgetString").value;
+             var pwfkeyworditemChooseSetString = "";
+
+             for( var pwfkeyworditemIndex=0; pwfkeyworditemIndex<pwfkeyworditem.length; pwfkeyworditemIndex++ ){
+                 var pwfkeyworditemChoose = pwfkeyworditem[pwfkeyworditemIndex];
+                 // console.log(pwfkeyworditemChoose);
+                 if( pwfkeyworditemChoose.classList.contains("pwfselectkeywordregionclick") ){
+                     // console.log(pwfkeyworditemChoose.innerText);
+                     pwfkeyworditemChooseSetString += ( pwfkeyworditemChoose.innerText + ',');
+                 }
+                 if( pwfkeyworditemChoose.classList.contains("pwfselectkeywordregionpetspaceitemclick") ){
+                     console.log(pwfkeyworditemChoose.innerText);
+                     pwfkeyworditemChooseSetString += document.getElementsByClassName("pwfselectkeywordregionpetspaceitemclick")[0].innerText;
+                 }
+             }
+             // console.log(pwfkeyworditemChooseSetString);
+             // console.log(pwfkeyworditemChooseSetString.substring(pwfkeyworditemChooseSetString.length-1));
+             if( pwfkeyworditemChooseSetString.substring(pwfkeyworditemChooseSetString.length-1) == "," ) {
+                 pwfkeyworditemChooseSetString=pwfkeyworditemChooseSetString.substring(0,pwfkeyworditemChooseSetString.length-1);
+             }
+             document.getElementsByClassName("pwfkeyworditemgetString")[0].value = pwfkeyworditemChooseSetString;
+             console.log(document.getElementsByClassName("pwfkeyworditemgetString")[0].value);
              document.getElementsByClassName("postwriteregionbutton")[0].type = "submit";
-        } else {
-            alert("請確認已輸入所有資料");
+             document.getElementById("postwriteregionbuttonConnect").submit();
+
+        }
+        if ( (document.getElementsByClassName("postwritetitle")[0].value=="") &&
+             (document.getElementById("cpc_writecontentpic1").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic2").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic3").getAttribute("src")!="./img/map_uploadimg.png") &&
+             (document.getElementsByClassName("contenteditabletext")[0].innerText!="") && (document.getElementsByClassName("contenteditabletext")[1].innerText!="") && (document.getElementsByClassName("contenteditabletext")[2].innerText!="") ) {
+                document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已輸入標題";
+        }
+        if ( (document.getElementsByClassName("postwritetitle")[0].value!="") ||
+             (document.getElementById("cpc_writecontentpic1").getAttribute("src")=="./img/map_uploadimg.png") || (document.getElementById("cpc_writecontentpic2").getAttribute("src")=="./img/map_uploadimg.png") || (document.getElementById("cpc_writecontentpic3").getAttribute("src")=="./img/map_uploadimg.png") ||
+             (document.getElementsByClassName("contenteditabletext")[0].innerText=="") || (document.getElementsByClassName("contenteditabletext")[1].innerText=="") || (document.getElementsByClassName("contenteditabletext")[2].innerText=="") ) {
+                 document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已放上所有照片、及輸入所有內容";
+        }
+        if ( ((document.getElementById("cpc_writecontentpic1").getAttribute("src")=="./img/map_uploadimg.png") || (document.getElementById("cpc_writecontentpic2").getAttribute("src")=="./img/map_uploadimg.png") || (document.getElementById("cpc_writecontentpic3").getAttribute("src")=="./img/map_uploadimg.png")) ) {
+            if( (document.getElementsByClassName("contenteditabletext")[0].innerText!="") && (document.getElementsByClassName("contenteditabletext")[1].innerText!="") && (document.getElementsByClassName("contenteditabletext")[2].innerText!="") &&
+                (document.getElementsByClassName("postwritetitle")[0].value!="") ) {
+                    document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已放上所有照片";
+                }
+            if( (document.getElementsByClassName("contenteditabletext")[0].innerText!="") && (document.getElementsByClassName("contenteditabletext")[1].innerText!="") && (document.getElementsByClassName("contenteditabletext")[2].innerText!="") &&
+                (document.getElementsByClassName("postwritetitle")[0].value=="") ) {
+                    document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已輸入標題、及放上所有照片";
+            }
+        }
+        if ( ((document.getElementsByClassName("contenteditabletext")[0].innerText=="") || (document.getElementsByClassName("contenteditabletext")[1].innerText=="") || (document.getElementsByClassName("contenteditabletext")[2].innerText=="")) ) {
+            if( (document.getElementById("cpc_writecontentpic1").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic2").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic3").getAttribute("src")!="./img/map_uploadimg.png") &&
+                (document.getElementsByClassName("postwritetitle")[0].value!="") ) {
+                document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已輸入所有內容";
+            }
+            if( (document.getElementById("cpc_writecontentpic1").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic2").getAttribute("src")!="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic3").getAttribute("src")!="./img/map_uploadimg.png") &&
+                (document.getElementsByClassName("postwritetitle")[0].value=="") ) {
+                    document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已輸入標題、及輸入所有內容";
+            }
+        }
+        if ( (document.getElementById("cpc_writecontentpic1").getAttribute("src")=="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic2").getAttribute("src")=="./img/map_uploadimg.png") && (document.getElementById("cpc_writecontentpic3").getAttribute("src")=="./img/map_uploadimg.png") &&
+             (document.getElementsByClassName("contenteditabletext")[0].innerText=="") && (document.getElementsByClassName("contenteditabletext")[1].innerText=="") && (document.getElementsByClassName("contenteditabletext")[2].innerText=="") &&
+             (document.getElementsByClassName("postwritetitle")[0].value=="") ) {
+                 document.getElementsByClassName("postwriteregionhint")[0].innerText = "※請確認已輸入標題、放上所有照片、及輸入所有內容";
         }
     }
 });

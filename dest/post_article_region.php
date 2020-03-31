@@ -24,7 +24,7 @@
                 <div></div>
             </div>
         </div>
-        <form class="post_write_form" action="post_contentPreview.php" method="post" enctype="multipart/form-data">  <!--  action="post_contentPreview.php" -->
+        <form id="postwriteregionbuttonConnect" class="post_write_form" action="post_contentPreview.php" method="post" enctype="multipart/form-data">  <!--  action="post_contentPreview.php" -->
             <label for="writetitle" class="titleFont">
                 <span class="postwritetitlefont">Title</span>
                 <input class="postwritetitle" type="text" name="piTitle" placeholder="請輸入標題" value="" />
@@ -32,43 +32,42 @@
             <div class="pwfselectkeyword">
                 <span class="pwfselectkeywordtitle">Keyword</span>
                 <div class="pwfselectkeywordregion">
-                    <div class="pwfselectkeywordregiondaily">日常</div>
-                    <div class="pwfselectkeywordregiontoy">玩具</div>
-                    <div class="pwfselectkeywordregioncare">照顧</div>
-                    <div class="pwfselectkeywordregioncute">可愛</div>
-                    <div class="aa3 pwfselectkeywordregionpetspaceitem">
-                        <div class="pwfselectkeywordregionpetspacetitle">
-                            <span class="displayfont3 hide3">寵物有善空間</span>
-                            <p class="multiSel ms3"></p>
-                        </div>
+                    <div class="pwfkeyworditem pwfselectkeywordregiondaily">日常</div>
+                    <div class="pwfkeyworditem pwfselectkeywordregiontoy">玩具</div>
+                    <div class="pwfkeyworditem pwfselectkeywordregioncare">照顧</div>
+                    <div class="pwfkeyworditem pwfselectkeywordregioncute">可愛</div>
+                    <div class="pwfkeyworditem pwfselectkeywordregionpetspaceitem">寵物有善空間</div>
+                    <input class="pwfkeyworditemgetString" type="hidden" value="" name="pkkString" />
+                    <!-- <div class="pwfkeyworditem pwfselectkeywordregionpetspaceitem"> -->
+                        <!-- <div class="pwfselectkeywordregionpetspacetitle">
+                            <span class="displayfont3 hide3">
+                                寵物有善空間
+                            </span>
+                        </div> -->
                         <!-- <ul class="u3">
                             <li>
                                 <p class="friendlyrestaurant">友善餐廳</p>
-                                <label for="friendlyrestaurant1"><input type="checkbox" name="friendlyrestaurant1" value="friendlyrestaurant1" />餐廳名稱1</label>
-                                <label for="friendlyrestaurant2"><input type="checkbox" name="friendlyrestaurant2" value="friendlyrestaurant2" />餐廳名稱2</label>
-                                <label for="friendlyrestaurant3"><input type="checkbox" name="friendlyrestaurant3" value="friendlyrestaurant3" />餐廳名稱3</label>
+                                <label for="friendlyrestaurant1"><input class="pwfkeyworditem" type="checkbox" name="friendlyrestaurant1" value="friendlyrestaurant1" />金屋藏車食堂</label>
+                                <label for="friendlyrestaurant2"><input class="pwfkeyworditem" type="checkbox" name="friendlyrestaurant2" value="friendlyrestaurant2" />戲咖啡Café</label>
+                                <label for="friendlyrestaurant3"><input class="pwfkeyworditem" type="checkbox" name="friendlyrestaurant3" value="friendlyrestaurant3" />兜味咖啡</label>
+                                <label for="friendlyrestaurant3"><input class="pwfkeyworditem" type="checkbox" name="friendlyrestaurant3" value="friendlyrestaurant3" />彼克蕾友善咖啡館</label>
                             </li>
-                            <li><hr class="pwfpetspaceitemhr"></li>
                             <li>
                                 <p class="friendlyrest">友善住宿</p>
-                                <label for="friendlyrest1"><input type="checkbox" name="friendlyrest1" value="friendlyrest1" />住宿名稱1</label>
-                                <label for="friendlyrest2"><input type="checkbox" name="friendlyrest2" value="friendlyrest2" />住宿名稱2</label>
-                                <label for="friendlyrest3"><input type="checkbox" name="friendlyrest3" value="friendlyrest3" />住宿名稱3</label>
+                                <label for="friendlyrest1"><input class="pwfkeyworditem" type="checkbox" name="friendlyrest1" value="friendlyrest1" />金普頓大安酒店</label>
+                                <label for="friendlyrest2"><input class="pwfkeyworditem" type="checkbox" name="friendlyrest2" value="friendlyrest2" />台北君悅酒店-寵物套房</label>
                             </li>
-                            <li> <hr class="pwfpetspaceitemhr"></li>
                             <li>
                                 <p class="friendlyviewpoint">友善景點</p>
-                                <label for="friendlyviewpoint1"><input type="checkbox" name="friendlyviewpoint1" value="friendlyviewpoint1" />景點名稱1</label>
-                                <label for="friendlyviewpoint2"><input type="checkbox" name="friendlyviewpoint2" value="friendlyviewpoint2" />景點名稱2</label>
-                                <label for="friendlyviewpoint3"><input type="checkbox" name="friendlyviewpoint3" value="friendlyviewpoint3" />景點名稱3</label>
+                                <label for="friendlyviewpoint1"><input class="pwfkeyworditem" type="checkbox" name="friendlyviewpoint1" value="friendlyviewpoint1" />花博公園-圓山廣場</label>
                             </li>
                         </ul> -->
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
             <div class="postwritecontentregion">
                 <div class="cpc_writecontent">
-                    <img src=""  id="cpc_writecontentpic1" class="cpc_writecontentpic1" alt="點擊這裡上傳圖片">
+                    <img src="./img/map_uploadimg.png"  id="cpc_writecontentpic1" class="cpc_writecontentpic1" title="點擊這裡上傳圖片">
                     <input class="cpc_writecontentupfile" type="file" name="upFile[]"  accept="image/gif, image/jpeg, image/png" />
                     <div class="contenteditabletext" contenteditable="true" data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piTitleContent" />
@@ -76,20 +75,32 @@
                 </div>
                 <br><br>
                 <div class="cpc_writecontent cpc_contentflex">
-                    <img  src=""  id="cpc_writecontentpic2" class="cpc_writecontentpic2" alt="點擊這裡上傳圖片">
+                    <img  src="./img/map_uploadimg.png"  id="cpc_writecontentpic2" class="cpc_writecontentpic2" title="點擊這裡上傳圖片">
                     <input  class="cpc_writecontentupfile" type="file" name="upFile[]" accept="image/gif, image/jpeg, image/png" />
                     <div class="contenteditabletext" contenteditable="true"  data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piFloatLeftContent" />
                 </div>
                 <br><br>
                 <div class="cpc_writecontent cpc_contentflexreverse">
-                    <img  src=""  id="cpc_writecontentpic3" class="cpc_writecontentpic3" alt="點擊這裡上傳圖片">
+                    <img  src="./img/map_uploadimg.png"  id="cpc_writecontentpic3" class="cpc_writecontentpic3" title="點擊這裡上傳圖片">
                     <input class="cpc_writecontentupfile" type="file" name="upFile[]" accept="image/gif, image/jpeg, image/png" />
                     <div class="contenteditabletext" contenteditable="true"  data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piFloatRightContent" />
                 </div>
             </div>
-            <input class="postwriteregionbutton" type="button" value="送出" />  <!-- submit -->
+            <!--<input class="postwriteregionbutton" type="button" value="送出" />-->  <!-- submit -->
+            <div class="postwriteregionsendaddhint">
+                <p class="postwriteregionhint"></p>
+                <a class="postwriteregionbutton btn darkgreen nav__link" >
+                    <span class="titleFont">
+                        送出
+                    </span>
+                    <div class="border"></div>
+                    <div class="border"></div>
+                    <div class="border"></div>
+                    <div class="border"></div>
+                </a>
+            </div>
         </form>
     </div>
     <div class="postregionwrapper">
