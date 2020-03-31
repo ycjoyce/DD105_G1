@@ -949,9 +949,7 @@
           success: function (data) {
             if (data.indexOf("成功") != -1) {
               alert("新增成功");
-              $("#somedialog").removeClass("dialog--open");
               $("#friendlyNo,#friendlyName,#friendlyTypeNo,#friendlyLocNo,#friendlyTel,#friendlyAdd, #friendlyAddress,#friendlylat,#friendlylng, #friendlyIntro_1, #friendlyIntro_2, #friendlyIntro_3,#friendlyIntro_4").val("");
-              // getLost();
             }
             else {
               alert("新增失敗");

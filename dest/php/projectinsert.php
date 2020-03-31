@@ -19,8 +19,8 @@
         if($_FILES["upFile"]["error"] == UPLOAD_ERR_OK){
             
             // $sql = "INSERT INTO `fundraising` (`fundNo`, `fundTitle`, `fundImg`) values(null, :fundTitle, '' )";
-            $sql = "INSERT INTO `fundraising` (`fundName`, `memNo`, `fundTitle`, `fundImg`, `fundArticleImg1`, `fundArticleImg2`, `fundArticleImg3`, `fundStartDate`, `fundEndDate`, `fundGoal`, `fundNowAmount`, `fundAttendPeople`) 
-            values(:fundName, :memNo,:fundTitle, ' ', ' ', ' ', ' ', now(),  DATE_ADD(now(), INTERVAL 100 DAY)   , :fundGoal, 0, 0)";
+            $sql = "INSERT INTO `fundraising` (`fundName`, `memNo`, `fundTitle`, `fundImg`, `fundArticleImg1`, `fundArticleImg2`, `fundArticleImg3`, `fundStartDate`, `fundEndDate`, `fundGoal`, `fundNowAmount`, `fundAttendPeople`,`fundStatus`) 
+            values(:fundName, :memNo,:fundTitle, ' ', ' ', ' ', ' ', now(),  DATE_ADD(now(), INTERVAL 100 DAY)   , :fundGoal, 0, 0, 1)";
             $fundraising = $pdo -> prepare( $sql );
             // $fundraising -> bindValue(":fundContent", $_POST["fundContent"]);
             $fundraising -> bindValue(":fundName", $_REQUEST["fundName"]);
@@ -89,7 +89,7 @@
 
             $sql = "update fundraising set fundArticleImg1 = :fundArticleImg1 , fundArticleImg2 = :fundArticleImg2, fundArticleImg3 = :fundArticleImg3 where fundNo = $fundNo";
                 $fundraising = $pdo->prepare($sql);
-                $fundraising -> bindValue(":fundArticleImg1", $fileName);
+                $fundraising -> bindValue(":fundArticleImg1", $fileName1);
                 $fundraising -> bindValue(":fundArticleImg2", $fileName2);
                 $fundraising -> bindValue(":fundArticleImg3", $fileName3);
                 $fundraising -> execute();

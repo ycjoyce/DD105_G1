@@ -405,6 +405,7 @@ section{
                     top: 45px;
                     color: rgb(246, 246, 246);
                     display: none;
+                    cursor: pointer;
                     &.on{
                         display: block;
                     }
@@ -555,6 +556,9 @@ section{
                             display: block;
                         }
                     }
+                    img{
+                        cursor: pointer;
+                    }
                     span{
                         color: $lightgray;
                         display:block;
@@ -606,6 +610,7 @@ section{
             display: flex;
             background-color: #fff;
             label[for="upload"]{
+                cursor: pointer;
                 display: inline-block;
                 height: 100%;
                 width:50px;
