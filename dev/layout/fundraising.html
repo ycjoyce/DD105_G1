@@ -6,7 +6,7 @@
     <div id="small-tab-1" class="small-tab-content current">
         <section class="memTable">
             <h3>我發起的募款</h3>
-            <div class="memTable_content" id="app">
+            <div class="memTable_content" id="app2">
                 <table>
                     <tr>
                         <th class="titleFont">編號</th>
@@ -16,19 +16,19 @@
                         <th class="titleFont memRWD_992">專案結束日期</th>
                         <th class="titleFont memRWD_992">目標金額</th>
                         <th class="titleFont memRWD_992">目前金額</th>
-                        <th></th>
+                        <!-- <th></th> -->
                     </tr>
                     <tr v-for="rado in radonationdatas">
                         <td>{{rado.fundNo}}</td>
-                        <td><img v-bind:src="'/img/donation/projectImg/'+ rado.fundImg" style="width: 50%; display: block;"> </td>
+                        <td style="width: 10%;"><img v-bind:src="'./img/donation/projectImg/'+ rado.fundImg" style="width: 100%; display: block;"> </td>
                         <td>{{rado.fundTitle}} {{rado.fundName}}</td>
                         <td class="memRWD_992">{{rado.fundStartDate}}</td>
                         <td class="memRWD_992">{{rado.fundEndDate}}</td>
                         <td class="memRWD_992">NT${{rado.fundGoal}}</td>
                         <td class="memRWD_992">NT${{rado.fundNowAmount}}</td>
-                        <td><a href="#" class="updatebtn_s titleFont">編輯</a></td>
+                        <!-- <td><a href="#" class="updatebtn_s titleFont">編輯</a></td> -->
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>34</td>
                         <td><img src="https://picsum.photos/80/110"></td>
                         <td>對每個人都笑開懷的天真浪浪小黃</td>
@@ -39,8 +39,8 @@
                         <td class="memRWD_992">進行中</td>
                         <td class="memRWD_992">進行中</td>
                         <td><a href="#" class="updatebtn_s titleFont">修改</a></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>33</td>
                         <td><img src="https://picsum.photos/80/110"></td>
                         <td>棲息處遭破壞，短尾的可愛小橘</td>
@@ -51,8 +51,8 @@
                         <td class="memRWD_992">進行中</td>
                         <td class="memRWD_992">進行中</td>
                         <td><a href="#" class="updatebtn_s titleFont">修改</a></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>33</td>
                         <td><img src="https://picsum.photos/80/110"></td>
                         <td>短小害怕受傷的魯肉在床底下才會安心</td>
@@ -63,7 +63,7 @@
                         <td class="memRWD_992">進行中</td>
                         <td class="memRWD_992">進行中</td>
                         <td><a href="#" class="updatebtn_s titleFont">修改</a></td>
-                    </tr>
+                    </tr> -->
                 </table>                
             </div>
         </section>
@@ -71,7 +71,7 @@
     <div id="small-tab-2" class="small-tab-content">
         <section class="memTable">
             <h3>我參與的募款</h3>
-            <div class="memTable_content">
+            <div class="memTable_content" id="app">
                 <table>
                     <tr>
                         <th class="titleFont">編號</th>
@@ -80,22 +80,21 @@
                         <th class="titleFont memRWD_992">專案發起日期</th>
                         <th class="titleFont memRWD_992">專案結束日期</th>
                         <th class="titleFont memRWD_992">目標金額</th>
-                        <th class="titleFont memRWD_992">專案狀態</th>
+                        <!-- <th class="titleFont memRWD_992">專案狀態</th> -->
                         <th class="titleFont memRWD_992">捐款日期</th>
                         <th class="titleFont">捐款金額</th>
                     </tr>
-                    <tr>
-                        <td>04</td>
-                        <td><img src="https://picsum.photos/80/110"></td>
-                        <td>愛吃餅乾的微笑天使-邦妮</td>
-                        <td class="memRWD_992">2020-02-01</td>
-                        <td class="memRWD_992">2020-04-30</td>
-                        <td class="memRWD_992">$5000</td>
-                        <td class="memRWD_992">進行中</td>
-                        <td class="memRWD_992">2020-02-20</td>
-                        <td>$300</td>
+                    <tr v-for="atdo in atdonationdatas">
+                        <td>{{atdo.fundNo}} {{atdo.fundName}}</td>
+                        <td><img v-bind:src="'./img/donation/projectImg/'+ atdo.fundImg" style="width: 50%; display: block;"> </td>
+                        <td>{{atdo.fundTitle}}</td>
+                        <td class="memRWD_992">{{atdo.fundStartDate}}</td>
+                        <td class="memRWD_992">{{atdo.fundEndDate}}</td>
+                        <td class="memRWD_992">NT${{atdo.fundGoal}}</td>
+                        <td class="memRWD_992">{{atdo.atFundDate}}</td>
+                        <td>NT${{atdo.fundNowAmount}}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>03</td>
                         <td><img src="https://picsum.photos/80/110"></td>
                         <td>對每個人都笑開懷的天真浪浪小黃</td>
@@ -105,8 +104,8 @@
                         <td class="memRWD_992">進行中</td>
                         <td class="memRWD_992">2020-02-20</td>
                         <td>$700</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>02</td>
                         <td><img src="https://picsum.photos/80/110"></td>
                         <td>棲息處遭破壞，短尾的可愛小橘</td>
@@ -116,8 +115,8 @@
                         <td class="memRWD_992">進行中</td>
                         <td class="memRWD_992">2020-02-20</td>
                         <td>$200</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>01</td>
                         <td><img src="https://picsum.photos/80/110"></td>
                         <td>短小害怕受傷的魯肉在床底下才會安心</td>
@@ -127,7 +126,7 @@
                         <td class="memRWD_992">進行中</td>
                         <td class="memRWD_992">2020-02-20</td>
                         <td>$500</td>
-                    </tr>
+                    </tr> -->
                 </table>                
             </div>
         </section>
