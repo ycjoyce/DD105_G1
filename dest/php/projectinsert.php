@@ -89,7 +89,7 @@
 
             $sql = "update fundraising set fundArticleImg1 = :fundArticleImg1 , fundArticleImg2 = :fundArticleImg2, fundArticleImg3 = :fundArticleImg3 where fundNo = $fundNo";
                 $fundraising = $pdo->prepare($sql);
-                $fundraising -> bindValue(":fundArticleImg1", $fileName);
+                $fundraising -> bindValue(":fundArticleImg1", $fileName1);
                 $fundraising -> bindValue(":fundArticleImg2", $fileName2);
                 $fundraising -> bindValue(":fundArticleImg3", $fileName3);
                 $fundraising -> execute();
