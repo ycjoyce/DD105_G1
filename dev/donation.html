@@ -115,7 +115,7 @@
         <div class="tab tab1 -on">
           <div id="app">
               <div class="donationcardbox wow fadeIn" v-for="newdo in newdonationdatas">
-                <form action="showproject.php" method="get">
+                <form action="./showproject.php" method="get">
                 <input type="hidden" :value="newdo.fundNo" name="fundNo">
                 <button type="submit" class="fakeformbtn">
                   <!-- <a class="cardbox"> -->
@@ -156,7 +156,7 @@
         <div class="tab tab2">
           <div id="app2">
             <div class="donationcardbox wow fadeIn" v-for="deaddo in deadlinedonationdatas">
-              <form action="./php/showproject.php" method="get">
+              <form action="./showproject.php" method="get">
               <input type="hidden" :value="deaddo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->
@@ -197,7 +197,7 @@
         <div class="tab tab3">
           <div id="app3">
             <div class="donationcardbox wow fadeIn" v-for="hisdo in historydonationdatas">
-              <form action="./php/showproject.php" method="get">
+              <form action="./showproject.php" method="get">
               <input type="hidden" :value="hisdo.fundNo" name="fundNo">
               <button type="submit" class="fakeformbtn">
               <!-- <a class="cardbox"> -->

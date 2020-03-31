@@ -345,34 +345,33 @@
                   <tr>
                     <th>專案編號</th>
                     <th>會員編號</th>
-                    <th>專案內容</th>
-                    <th>專案名稱</th>
-                    <th>專案圖片</th>
-                    <th>專案狀態</th>
+                    <th>專案名稱</th>                   
                     <th>專案發起日期</th>
                     <th>專案結束日期</th>
                     <th>目標金額</th>
                     <th>目前金額</th>
-                    <th>結案報告文字內容</th>
-                    <th>結結案報告圖片內容</th>
+                    <th>專案狀態</th>
+                    <!-- <th>專案內容</th> -->
+                    <!-- <th>專案圖片</th> -->
+                    <!-- <th>結案報告文字內容</th> -->
+                    <!-- <th>結結案報告圖片內容</th> -->
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
+                <tbody id="donationproject">
+                  <!-- <tr>
                     <td>Carwyn Fachtna</td>
                     <td>2012/01/01</td>
                     <td>Member</td>
                     <td></td>
                     <td></td>
+                    <td></td>
+                    <td></td>
                     <td>
-                        <label class="switch switch-3d switch-success">
-                            <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                            <span class="switch-slider"></span>
-                        </label>
+                      <label class="switch switch-3d switch-success">
+                          <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
+                          <span class="switch-slider"></span>
+                      </label>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -433,15 +432,16 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
-
-
             </div>
           </div>
         </div>
       </div>
+
+
+
        <!-- end -->
       </div>
     </main>
@@ -755,5 +755,89 @@
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
   <script src="./js/backend-managerName.js"></script>
+
+  <script>
+
+    $(document).ready(function(){
+      //把募款專案全部撈出來
+      getdonationproject();
+
+      function getdonationproject(){
+        $.ajax({
+          url:'./php/getdonationproject.php',
+          type:'GET',
+          dataType:"json",
+          success: function(data){
+            let html = "";
+            for(var i = 0; i < data.length; i++){
+              if(data[i].fundStatus == 1){
+                html += `<tr>
+                  <td>${data[i].fundNo}</td>
+                  <td>${data[i].fundTitle}</td>
+                  <td>${data[i].memNo}</td>
+                  <td>${data[i].fundStartDate}</td>
+                  <td>${data[i].fundEndDate}</td>
+                  <td>${data[i].fundGoal}</td>
+                  <td>${data[i].fundNowAmount}</td>
+                  <td>
+                      <label class="switch switch-3d switch-success">
+                        <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" checked psn="${data[i].fundNo}">
+                        <span class="switch-slider"></span>
+                      </label>
+                  </td>
+                </tr>`
+              }else{
+                html += `<tr>
+                  <td>${data[i].fundNo}</td>
+                  <td>${data[i].fundTitle}</td>
+                  <td>${data[i].memNo}</td>
+                  <td>${data[i].fundStartDate}</td>
+                  <td>${data[i].fundEndDate}</td>
+                  <td>${data[i].fundGoal}</td>
+                  <td>${data[i].fundNowAmount}</td>
+                  <td>
+                      <label class="switch switch-3d switch-success">
+                        <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" psn="${data[i].fundNo}">
+                        <span class="switch-slider"></span>
+                      </label>
+                  </td>
+                </tr>`
+                }; 
+              }
+              $("#donationproject").append(html);
+
+              changeStatus();
+            },
+            error: function(xhr){
+              alert (xhr.Message);
+            }
+          });
+        }
+        function changeStatus(){
+          $(".switch-input").click(function(){
+            var psn = $(this).attr("psn");
+            //alert(no)
+            $.ajax({
+              url: './php/donationproject_change.php',
+              type: 'POST',
+              data: {fundNo: psn},
+              success(data){
+                if(data.indexOf("erro") != -1){
+                  alert("修改失敗");
+                }
+              },
+              error(data){
+                alert(data);
+              },
+            });
+          })
+        };
+    });
+
+
+
+  </script>
+ 
+
 </body>
 </html>

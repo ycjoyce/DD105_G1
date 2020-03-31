@@ -1,4 +1,3 @@
-
 var apiurl = "./php/memberdonation.php";
 var vm = new Vue({
   el: "#app",

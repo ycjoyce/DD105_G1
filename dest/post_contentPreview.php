@@ -62,10 +62,10 @@
                 //        now(), '0' );
                 $sql = "INSERT INTO postinfo ( memNo, piTitle, piGeneralContent,
         			   piTitlePic, piTitleContent, piFloatLeftPic, piFloatLeftContent, piFloatRightPic, piFloatRightContent,
-                       piTime, piStatus)
+                       pkkString, piTime, piStatus)
                 values('{$_SESSION["memNo"]}', :piTitle, :piGeneralContent,
                        '', :piTitleContent, '', :piFloatLeftContent, '', :piFloatRightContent,
-                       now(), '0' )";  // :piGeneralContent,
+                       :pkkString, now(), '0' )";  // :piGeneralContent,
                 // $sql = "INSERT INTO `products` (`psn`, `pname`, `price`, `author`, `pages`, `image`) values(null, :pname, :price, :author, :pages, '' )";
                 $products = $pdo->prepare( $sql );
                 $products -> bindValue(":piTitle", $_POST["piTitle"]);
@@ -73,6 +73,7 @@
                 $products -> bindValue(":piTitleContent", $_POST["piTitleContent"]);
                 $products -> bindValue(":piFloatLeftContent", $_POST["piFloatLeftContent"]);
                 $products -> bindValue(":piFloatRightContent", $_POST["piFloatRightContent"]);
+                $products -> bindValue(":pkkString", $_POST["pkkString"]);
                 $products -> execute();
                     //取得自動創號的key值
                 $piNo = $pdo->lastInsertId();
