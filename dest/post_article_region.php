@@ -24,7 +24,7 @@
                 <div></div>
             </div>
         </div>
-        <form id="postwriteregionbuttonConnect" class="post_write_form" action="post_contentPreview.php" method="post" enctype="multipart/form-data">  <!--  action="post_contentPreview.php" -->
+        <form id="postwriteregionbuttonConnect" class="post_write_form" action="postRegionInsert.php" method="post" enctype="multipart/form-data">  <!--  action="post_contentPreview.php" -->
             <label for="writetitle" class="titleFont">
                 <span class="postwritetitlefont">Title</span>
                 <input class="postwritetitle" type="text" name="piTitle" placeholder="請輸入標題" value="" />
@@ -87,6 +87,7 @@
                     <div class="contenteditabletext" contenteditable="true"  data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piFloatRightContent" />
                 </div>
+                <input class="cpcwritecontenttextrecordWordTotalNumber" type="hidden" value="" name="memPoint" />
             </div>
             <!--<input class="postwriteregionbutton" type="button" value="送出" />-->  <!-- submit -->
             <div class="postwriteregionsendaddhint">
@@ -151,8 +152,8 @@
                 <div class="col-8 centerfix">
                     <!-- 下拉選單 -->
                     <div class="inlinerightfix">
-                        <!-- <div class="selectors inlinefix">
-                            <div id="postregionSort" class="select postregionsort">
+                        <div class="selectors inlinefix">
+                            <!-- <div id="postregionSort" class="select postregionsort">
                                 <div class="select-styled aa1">
                                   <span class="displayfont1 hide1">-- 排序方式 --</span>
                                   <p class="multiSel ms1"></p>
@@ -165,28 +166,31 @@
                                         <input type="checkbox" name="postsort" value="Popular" />最受歡迎</li>
                                 </ul>
 
-                            </div>
-                            <br>
-                            <div class="select postregionkeyword">
+                            </div> -->
+                            <!-- <br> -->
+                            <!-- <div class="select postregionkeyword">
                                 <div class="select-styled aa2">
                                   <span class="displayfont2 hide2">-- 關鍵字篩選 --</span>
                                   <p class="multiSel ms2"></p>
                                 </div>
-
+                                <form id="pkkSelectorConnect" class="pkkSelector_form" action="post_article_region_select.php" method="post" enctype="multipart/form-data">
                                 <ul class="u2">
                                     <li>
-                                        <input type="checkbox" value="petspace" />寵物有善空間</li>
+                                        <input type="checkbox" value="寵物有善空間" />寵物有善空間</li>
                                     <li>
-                                        <input type="checkbox" value="daily" />日常</li>
+                                        <input type="checkbox" value="日常" />日常</li>
                                     <li>
-                                        <input type="checkbox" value="toy" />玩具</li>
+                                        <input type="checkbox" value="玩具" />玩具</li>
                                     <li>
-                                        <input type="checkbox" value="care" />照顧</li>
+                                        <input type="checkbox" value="照顧" />照顧</li>
                                     <li>
-                                        <input type="checkbox" value="cute" />可愛</li>
+                                        <input type="checkbox" value="可愛" />可愛</li>
                                 </ul>
-                            </div>
-                        </div> -->
+                                    <input class="pkkSelector" type="hidden" value="" name="pkkSelector" />
+                                    <input class="pkkSelectorButton" type="Search" value="送出" />
+                                </form>
+                            </div> -->
+                        </div>
                         <!-- 綠色按鈕 -->
                         <a id="par_postarticlebutton" class="btn darkgreen nav__link" >
                             <span class="titleFont">
@@ -213,7 +217,7 @@
                     <?php
                     try {
                         require_once('./php/connectDB.php');
-                    	// $sql = "select piNo, piTitle, piContent, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset from postinfo order by piTime desc";
+                    	$sql = "select piNo, piTitle, piContent, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset from postinfo order by piTime desc";
                         $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus from postinfo
 order by piTime desc";
                         $products = $pdo->query($sql);
@@ -221,7 +225,7 @@ order by piTime desc";
                     } catch (PDOException $e) {
                     	echo "錯誤行號 : " . $e->getLine() . "<br>";
                     	echo "錯誤訊息 : " . $e->getMessage() . "<br>";
-                    	// echo "系統暫時連不上請聯絡維護人員";
+                    	echo "系統暫時連不上請聯絡維護人員";
                     }
                     ?>
                     <?php
