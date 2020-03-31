@@ -1,4 +1,4 @@
-<?php]
+<?php
 
 $errMsg = "";
 
@@ -7,13 +7,10 @@ try{
     
     if( $_FILES["friendlyPic"]["error"] == UPLOAD_ERR_OK){
     $sql= "INSERT INTO `petfriendly` (
-    friendlyNo, friendlyName, friendlyTypeNo, friendlyLocNo, friendlyTel, 
-    friendlyAddress, friendlylat, friendlylng, friendlyIntro_1, friendlyIntro_2, 
-    friendlyIntro_3, friendlyIntro_4, friendlyStatus, friendlyTypeName)
-    values(:friendlyNo, :friendlyName, :friendlyTypeNo, :friendlyLocNo,
-    :friendlyTel, :friendlyAddress, :friendlylat, :friendlylng,
-    :friendlyIntro_1, :friendlyIntro_2, :friendlyIntro_3, :friendlyIntro_4,
-    :friendlyStatus, friendlyTypeName)";
+    friendlyNo, friendlyName, friendlyTypeNo, friendlyLocNo, friendlyTel, friendlyAddress, friendlylat, friendlylng,
+    friendlyIntro_1, friendlyIntro_2, friendlyIntro_3, friendlyIntro_4, friendlyStatus, friendlyTypeName) values(
+    :friendlyNo, :friendlyName, :friendlyTypeNo, :friendlyLocNo,:friendlyTel, :friendlyAddress, :friendlylat, :friendlylng,
+    :friendlyIntro_1, :friendlyIntro_2, :friendlyIntro_3, :friendlyIntro_4, 1, :friendlyTypeName)";
    
 	$friend= $pdo->prepare($sql);
     $friend->bindValue(":friendlyNo", $_POST["friendlyNo"]);
@@ -28,7 +25,7 @@ try{
 	$friend->bindValue(":friendlyIntro_2", $_POST["friendlyIntro_2"]);
 	$friend->bindValue(":friendlyIntro_3", $_POST["friendlyIntro_3"]);
     $friend->bindValue(":friendlyIntro_4", $_POST["friendlyIntro_4"]);
-    $friend->bindValue(":friendlyStatus", 1);
+    // $friend->bindValue(":friendlyStatus", 1);
     $friend->bindValue(":friendlyTypeName", $_POST["friendlyTypeName"]);
     $friend->execute();
 
@@ -58,12 +55,11 @@ try{
 		echo "錯誤代碼 : {$_FILES["friendlyPic"]["error"]} <br>";
 		echo "新增失敗<br>";
     }
+
 }
 catch(PDOException $e) {
 	$errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
 	$errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";	
 }
 echo $errMsg;
-
-
 ?>
