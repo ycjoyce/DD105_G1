@@ -3593,6 +3593,7 @@ body {
 }
 
 .col-12.step .col-8.stepcontent .col-12.steps .first_step h1, .col-12.step .col-8.stepcontent .col-12.steps .second_step h1, .col-12.step .col-8.stepcontent .col-12.steps .third_step h1, .col-12.step .col-8.stepcontent .col-12.steps .forth_step h1, .col-12.step .col-8.stepcontent .col-12.steps .complete h1 {
+  border: 1px solid salmon;
   color: #76912E;
 }
 
