@@ -173,6 +173,7 @@
 // 右邊視窗基本設定
 
 #showPsw {
+  cursor: pointer;
   @include rwd(lg) {
     margin: 10px 0 15px 0;
   }
@@ -264,6 +265,9 @@ label.uploadimgbtn {
       margin-top: 50px;
       text-align: center;
       font-family: "DM Serif Text", "Noto Serif TC";
+      a{
+        cursor: pointer;
+      }
     }
     .updatebtn {
       display: inline-block;
