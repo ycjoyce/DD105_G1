@@ -86,9 +86,9 @@
                             mkdir("img");
                         }
                         //將檔案copy到要放的路徑
-                        $fileInfoArr = pathinfo($_FILES["upFile"]["name"][$i]);
-                        $fileName = "{$piNo}_$i.{$fileInfoArr["extension"]}";  //8.gif
-                        // $fileName = "{$_FILES['upFile']['name'][$i]}";
+                        // $fileInfoArr = pathinfo($_FILES["upFile"]["name"][$i]);
+                        // $fileName = "{$piNo}_{$i}.{$fileInfoArr["extension"]}";  //8.gif
+                        $fileName = "{$_FILES['upFile']['name'][$i]}";
                         $from = $_FILES["upFile"]["tmp_name"][$i];
                         $to = "img/postarticleregion/$fileName";
                             if(copy( $from, $to)===true){
@@ -106,12 +106,12 @@
 
                 $sql = "update postinfo set piTitlePic = :piTitlePic, piFloatLeftPic=:piFloatLeftPic, piFloatRightPic=:piFloatRightPic where piNo = $piNo";
                 // $sql = "update products set image = :image where psn = 7";
-                $fileLocation0 = "img/postarticleregion/{$piNo}_0.{$fileInfoArr["extension"]}";
-                $fileLocation1 = "img/postarticleregion/{$piNo}_1.{$fileInfoArr["extension"]}";
-                $fileLocation2 = "img/postarticleregion/{$piNo}_2.{$fileInfoArr["extension"]}";
-                // $fileLocation0 = "img/postarticleregion/{$_FILES['upFile']['name'][0]}";
-                // $fileLocation1 = "img/postarticleregion/{$_FILES['upFile']['name'][1]}";
-                // $fileLocation2 = "img/postarticleregion/{$_FILES['upFile']['name'][2]}";
+                // $fileLocation0 = "img/postarticleregion/{$piNo}_0.{$fileInfoArr["extension"]}";
+                // $fileLocation1 = "img/postarticleregion/{$piNo}_1.{$fileInfoArr["extension"]}";
+                // $fileLocation2 = "img/postarticleregion/{$piNo}_2.{$fileInfoArr["extension"]}";
+                $fileLocation0 = "img/postarticleregion/{$_FILES['upFile']['name'][0]}";
+                $fileLocation1 = "img/postarticleregion/{$_FILES['upFile']['name'][1]}";
+                $fileLocation2 = "img/postarticleregion/{$_FILES['upFile']['name'][2]}";
                 $products = $pdo->prepare($sql);
                 $products -> bindValue(":piTitlePic", $fileLocation0);
                 $products -> bindValue(":piFloatLeftPic", $fileLocation1);
