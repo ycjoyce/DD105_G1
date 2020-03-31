@@ -643,11 +643,13 @@ $("#rpbtn").click(function(e) {
     data: formData,
     success: function(data) {
       if (data.indexOf("成功") != -1) {
+        console.log(data);
         alert("新增成功");
         $("#somedialog").removeClass("dialog--open");
         $(
           "#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd"
         ).val("");
+       
         getLost();
       } else {
         alert("新增失敗");
