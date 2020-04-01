@@ -88,7 +88,7 @@ section {
     // border: 1px solid red;
     width: 100%;
     .content {
-        // border: 1px solid green;
+        // border: 1px solid red;
         width: 100%;
         // height          : 831px;
         height: calc(100vh - 106.438px);
@@ -97,12 +97,13 @@ section {
         position: relative;
         @include RWD(lg) {
             flex-direction: column;
+            height: unset;
         }
         #signInFirstBlock {
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
             position: absolute;
@@ -139,7 +140,7 @@ section {
                 height: 35px;
                 text-align: center;
                 position: fixed;
-                display: none;
+                display: block;
                 top: 106.438px;
                 right: 0px;
                 z-index: 5;
@@ -149,7 +150,7 @@ section {
                 // @include RWD(md) {
                 //     top: 75px;
                 // }
-                @include RWD(md) {
+                @include RWD(lg) {
                     position: absolute;
                     top: 0px;
                     // top: 75px;
@@ -211,6 +212,7 @@ section {
                     position: relative;
                     overflow-x: hidden;
                     overflow-y: hidden;
+                    background-color: #fff9e4;
                     @include RWD(lg) {
                         align-items: center;
                     }
@@ -974,19 +976,22 @@ section {
                     #collarTagSlider {
                         // border: 1px solid red;
                         width: 100%;
-                        height: 400px;
+                        min-height: 360px;
                         position: relative;
                         margin: 0px auto;
-                        overflow: hidden;
+                        overflow-x: hidden;
+                        overflow-y: scroll;
                         display: flex;
                         flex-direction: column;
                         justify-content: flex-end;
                         align-items: center;
+                        @include RWD(lg) {
+                            min-height: unset;
+                            height: 400px;
+                            max-width: 600px;
+                        }
                         @include RWD(ss) {
                             height: 300px;
-                        }
-                        @include RWD(lg) {
-                            max-width: 600px;
                         }
                         #collarTagWrap {
                             // border: 1px solid red;
@@ -1054,6 +1059,7 @@ section {
                                         justify-content: center;
                                         align-items: center;
                                         cursor: pointer;
+                                        transition: 0.3s ease-in-out;
                                         &:hover {
                                             background: #313131;
                                             color: white;
@@ -1067,12 +1073,17 @@ section {
                             }
                         }
                         .sliderBtns {
-                            border: 0px solid black;
-                            width: 40px;
-                            height: 40px;
-                            background-color: rgba(0, 0, 0, 0.3);
+                            border: 1px solid #555555;
+                            width: 50px;
+                            height: 50px;
+                            background-color: #fff9e498;
                             border-radius: 50%;
                             // cursor: pointer;
+                            color: #555555;
+                            &:hover {
+                                border: 1px solid #6da316;
+                                color: #6da316;
+                            }
                         }
                         #sliderBtnLeft {
                             position: absolute;
@@ -1080,8 +1091,21 @@ section {
                             left: 10px;
                             transform: translate(0%, -50%);
                             transition: 0.3s ease-in-out;
+                            visibility: visible;
                             &:focus {
                                 outline-style: none;
+                            }
+                            &:hover {
+                                border: 1px solid #6da316;
+                            }
+                            &:hover .fa-chevron-left::before {
+                                color: #6da316;
+                            }
+                            .fa-chevron-left {
+                                &::before {
+                                    transition: 0.3s ease-in-out;
+                                    content: "\f053";
+                                }
                             }
                         }
                         #sliderBtnRight {
@@ -1090,8 +1114,21 @@ section {
                             right: 10px;
                             transform: translate(0%, -50%);
                             transition: 0.3s ease-in-out;
+                            visibility: visible;
                             &:focus {
                                 outline-style: none;
+                            }
+                            &:hover {
+                                border: 1px solid #6da316;
+                            }
+                            &:hover .fa-chevron-right::before {
+                                color: #6da316;
+                            }
+                            .fa-chevron-right {
+                                &::before {
+                                    transition: 0.3s ease-in-out;
+                                    content: "\f054";
+                                }
                             }
                         }
                     }
@@ -1175,7 +1212,7 @@ section {
                             display: flex;
                             justify-content: flex-start;
                             align-items: center;
-                            margin-top: 30px;
+                            margin-top: 20px;
                             @include RWD(ss) {
                                 margin-top: 10px;
                             }
@@ -1193,7 +1230,7 @@ section {
                             display: flex;
                             justify-content: flex-start;
                             align-items: center;
-                            margin-top: 30px;
+                            margin-top: 20px;
                             @include RWD(ss) {
                                 margin-top: 10px;
                             }
@@ -1218,7 +1255,7 @@ section {
                             display: flex;
                             justify-content: flex-start;
                             align-items: center;
-                            margin-top: 30px;
+                            margin-top: 20px;
                             @include RWD(ss) {
                                 margin-top: 10px;
                             }

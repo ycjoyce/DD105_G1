@@ -91,8 +91,8 @@
       background-size: 51px;
       background-repeat: no-repeat;
       background-position: center 40%;
-      background-color: rgb(116,175,91);
-      border: 1px solid rgb(116,175,91);
+      background-color: rgb(116, 175, 91);
+      border: 1px solid rgb(116, 175, 91);
       padding: 0;
       position: absolute;
       right: -45px;
@@ -830,8 +830,12 @@ div.clickToShow {
   .tab-content section table td {
     padding: 2px 5px;
   }
-  .tab-content section .updatebtn_s {
-    width: 55px;
+  .tab-content section {
+    .lostrptable {
+      .updatebtn_s {
+        width: 60px;
+      }
+    }
   }
 }
 

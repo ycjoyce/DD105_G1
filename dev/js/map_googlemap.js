@@ -119,7 +119,7 @@ $(function() {
 /*** Gmaps initialize ***/
 function initialize() {
   // 獲取設備當前的位置
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  navigator.geolocation.watchPosition(geoSuccess, geoError);
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
     center: { lat: lat, lng: lng },
@@ -192,13 +192,13 @@ function centerMarker(latitude, longitude) {
     position: new google.maps.LatLng(latitude, longitude)
   });
   marker.setMap();
-}
-//   //click event
-//   google.maps.event.addDomListener(center, "click", function() {
-//     map.setZoom(15);
-//     map.setCenter(new google.maps.LatLng(latitude, longitude));
-//   });
 // }
+  //click event
+  google.maps.event.addDomListener(center, "click", function() {
+    map.setZoom(11);
+    map.setCenter(new google.maps.LatLng(latitude, longitude));
+  });
+}
 
 /*** Zoom control ***/
 function zoomControl() {
@@ -300,18 +300,20 @@ function mapMsg(id) {
           $.ajax({
             url: "./php/checkBlackMsg.php",
             type: "POST",
-            data: {petLostOwner: petLostOwner},
-            success(data){
-              if(data.indexOf("success")==-1){
-                alert("已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
-              }else{
+            data: { petLostOwner: petLostOwner },
+            success(data) {
+              if (data.indexOf("success") == -1) {
+                alert(
+                  "已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信"
+                );
+              } else {
                 $.ajax({
                   url: "./php/mapMsg.php",
                   type: "POST",
                   data: { lostNo: id.substr(4) },
                   success(data) {
                     if (data.indexOf("error") == -1) {
-                      sessionStorage.setItem("now-on",petLostOwner.trim());
+                      sessionStorage.setItem("now-on", petLostOwner.trim());
                       location.href = "./message.html";
                     } else {
                       alert("操作失敗");
@@ -323,9 +325,9 @@ function mapMsg(id) {
                 });
               }
             },
-            error(data){
+            error(data) {
               alert(data);
-            },
+            }
           });
         }
       },
@@ -780,44 +782,63 @@ function loadfriendlyData(
 
 // ======================================新增最愛=============================================//
 
+// 新增我的最愛
 function addFav() {
-  // console.log($(".addfriendlyFav").attr("fav"));
-  var fav = $(".addfriendlyFav").attr("fav");
-  if ($(".addfriendlyFav").prop("checked") == true) {
-    $.ajax({
-      type: "POST",
-      url: "./php/map_favAdd.php",
-      data: { friendlyNo: fav },
-      success: function(data) {
-        if (data.indexOf("ok") != -1) {
-          alert("新增到最愛");
-          console.log(fav + "新增到最愛");
+  // alert("先判斷");
+  // 先判斷有沒有登入
+  var xhr = new XMLHttpRequest();
+  var url = "./php/checkMem.php";
+  xhr.open("GET", url, true);
+  xhr.send(null);
+  xhr.onload = function(e) {
+    if (xhr.status == 200) {
+      member = JSON.parse(xhr.responseText);
+      if (!member.memName) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert("請先登入");
+        return;
+      } else {
+        // console.log($(".addfriendlyFav").attr("fav"));
+        var fav = $(".addfriendlyFav").attr("fav");
+        if ($(".addfriendlyFav").prop("checked") == true) {
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favAdd.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("新增到最愛");
+                console.log(fav + "新增到最愛");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
         } else {
-          alert("新增失敗");
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favRemove.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("已從最愛移除");
+                console.log(fav + "從最愛移除");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
         }
-      },
-      error: function(xhr) {
-        alert(xhr.Message);
       }
-    });
-  } else {
-    $.ajax({
-      type: "POST",
-      url: "./php/map_favRemove.php",
-      data: { friendlyNo: fav },
-      success: function(data) {
-        if (data.indexOf("ok") != -1) {
-          alert("已從最愛移除");
-          console.log(fav + "從最愛移除");
-        } else {
-          alert("新增失敗");
-        }
-      },
-      error: function(xhr) {
-        alert(xhr.Message);
-      }
-    });
-  }
+    }
+  };
 }
 
 // 我的最愛更換類別

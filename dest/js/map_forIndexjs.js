@@ -259,8 +259,7 @@ function mapMsg(id) {
       success(data) {
         if (member.memNo.trim() == data.trim()) {
           alert("此寵物主人為您本人");
-        } 
-        else {
+        } else {
           petLostOwner = data;
 
           $.ajax({
@@ -649,7 +648,7 @@ $("#rpbtn").click(function(e) {
         $(
           "#lostPetRpName,#lostPetRpCh,#lostPetRpLoc,#lostPetRpLDate,#lostPetRpType,#lostPetRpStat,#lostPetRpLoclat,#lostPetRpLoclng,#lostPetRpLocAdd"
         ).val("");
-       
+
         getLost();
       } else {
         alert("新增失敗");
@@ -707,42 +706,61 @@ $(document).ready(function() {
 
 // ======================================新增最愛=============================================//
 
+// 新增我的最愛
 function addFav() {
-  // console.log($(".addfriendlyFav").attr("fav"));
-  var fav = $(".addfriendlyFav").attr("fav");
-  if ($(".addfriendlyFav").prop("checked") == true) {
-    $.ajax({
-      type: "POST",
-      url: "./php/map_favAdd.php",
-      data: { friendlyNo: fav },
-      success: function(data) {
-        if (data.indexOf("ok") != -1) {
-          alert("新增到最愛");
-          console.log(fav + "新增到最愛");
+  // alert("先判斷");
+  // 先判斷有沒有登入
+  var xhr = new XMLHttpRequest();
+  var url = "./php/checkMem.php";
+  xhr.open("GET", url, true);
+  xhr.send(null);
+  xhr.onload = function(e) {
+    if (xhr.status == 200) {
+      member = JSON.parse(xhr.responseText);
+      if (!member.memName) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert("請先登入");
+        return;
+      } else {
+        // console.log($(".addfriendlyFav").attr("fav"));
+        var fav = $(".addfriendlyFav").attr("fav");
+        if ($(".addfriendlyFav").prop("checked") == true) {
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favAdd.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("新增到最愛");
+                console.log(fav + "新增到最愛");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
         } else {
-          alert("新增失敗");
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favRemove.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("已從最愛移除");
+                console.log(fav + "從最愛移除");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
         }
-      },
-      error: function(xhr) {
-        alert(xhr.Message);
       }
-    });
-  } else {
-    $.ajax({
-      type: "POST",
-      url: "./php/map_favRemove.php",
-      data: { friendlyNo: fav },
-      success: function(data) {
-        if (data.indexOf("ok") != -1) {
-          alert("已從最愛移除");
-          console.log(fav + "從最愛移除");
-        } else {
-          alert("新增失敗");
-        }
-      },
-      error: function(xhr) {
-        alert(xhr.Message);
-      }
-    });
-  }
+    }
+  };
 }

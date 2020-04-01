@@ -2269,6 +2269,11 @@ footer {
       font-weight: 600;
       font-size: 16px;
   }
+
+.pkkSelectorButton {
+    display: none;
+}
+
 .select {
   margin-right: 10px; }
 
@@ -2280,7 +2285,7 @@ div.change2 {
   outline: none;
   font-size: 16px;
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #414040;
   padding: 8px 20px 5px 10px;
   min-height: 30px;
   line-height: 24px;
@@ -2294,18 +2299,19 @@ div.change2 {
     top: 9px;
     right: 10px;
     border: 7px solid transparent;
-    border-color: transparent transparent #000 transparent; }
+    border-color: transparent transparent #414040 transparent; }
   div.change1:hover,
   div.change2:hover {
-    background-color: black;
-    color: #fff; }
+    border-color: #647926;
+    background-color: #fff;
+    color: #647926; }
     div.change1:hover span,
     div.change2:hover span {
-      background-color: black;
-      color: #fff; }
+      background-color: #fff;
+      color: #647926; }
     div.change1:hover:after,
     div.change2:hover:after {
-      border-color: transparent transparent #fff transparent; }
+      border-color: transparent transparent #647926 transparent; }
 
 .select-styled {
   display: flex;
@@ -2314,7 +2320,7 @@ div.change2 {
   outline: none;
   font-size: 16px;
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #414040;
   padding: 8px 20px 5px 10px;
   min-height: 30px;
   line-height: 24px;
@@ -2323,28 +2329,29 @@ div.change2 {
   transition: all 0.2s ease-in; }
   .select-styled span {
     background-color: #fff;
-    color: #000; }
+    color: #414040; }
   .select-styled:after {
     content: "";
     position: absolute;
     top: calc( 37px / 2);
     right: 10px;
     border: 7px solid transparent;
-    border-color: #000 transparent transparent transparent; }
+    border-color: #414040 transparent transparent transparent; }
   .select-styled:hover {
-    background-color: black;
-    color: #fff; }
+    border-color: #647926;
+    background-color: #fff;
+    color: #647926; }
     .select-styled:hover span {
-      background-color: black;
-      color: #fff; }
+      background-color: #fff;
+      color: #647926; }
     .select-styled:hover:after {
-      border-color: #fff transparent transparent transparent; }
+      border-color: #647926 transparent transparent transparent; }
 
 span.hide1,
 span.hide2 {
   cursor: pointer;
   background-color: #fff;
-  color: #000;
+  color: #414040;
   overflow: hidden;
   width: 165px;
   transition: all 0.2s ease-in; }
@@ -2352,20 +2359,20 @@ span.hide2 {
 .select ul {
   position: absolute;
   background-color: #fff;
-  border: 1px solid #000;
+  border: 1px solid #414040;
   display: none;
   z-index: 4; }
 
 .select ul > li {
-  color: #000;
+  color: #414040;
   padding: 15px 20px 15px 10px;
   margin-top: -1px;
   width: 163px;
   list-style: none;
+  cursor: pointer;
   transition: all 0.20s ease-in; }
   .select ul > li:hover {
-    background-color: #000;
-    background: #333333;
+    background-color: #647926;
     color: #fff; }
 
 input {
@@ -2383,7 +2390,7 @@ input {
   .ripple .rippling {
     position: absolute;
     border-radius: 50%;
-    background-color: #000;
+    background-color: #414040;
     pointer-events: none;
     opacity: .3;
     transform: translate3d(-50%, -50%, 0);
@@ -2438,7 +2445,7 @@ input {
       font-size: 1.2em;
       font-weight: 800;
       padding-bottom: 15px;
-      border-bottom: 1px solid #2e2e2e;
+      border-bottom: 1px solid #414040;
       margin-bottom: 20px; }
     .card-item .card-details .subtitle {
       padding-right: 15px;
@@ -2478,7 +2485,7 @@ input {
 
 .svg-wrapper .shape {
   fill: transparent;
-  stroke: #333333;
+  stroke: #414040;
   stroke-dasharray: 100 2060;
   stroke-dashoffset: -890;
   stroke-width: 4px;
@@ -2500,7 +2507,7 @@ input {
 
 .selectpostgalleryregion {
   cursor: pointer;
-  color: #000; }
+  color: #414040; }
 
 .buttononlinefix {
   position: absolute;

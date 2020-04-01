@@ -70,7 +70,7 @@ function donationCarousel(){
     if(Math.floor(curVal/goalVal*100)>100){
         wave.style.bottom="0%";
         wave.style.height="110%";
-        wave.style.width="120%";
+        wave.style.width="10%";
     }else{
         wave.style.bottom= Math.floor(curVal/goalVal*100)*0.8-80 +"%";
         wave.style.height="100%";
