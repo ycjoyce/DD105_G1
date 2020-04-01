@@ -25,7 +25,7 @@ function leftSideCards(){
                 //project number
                 leftCards[i].querySelector("div.text span:first-child").innerText=`PROJECT ${content[i].fundNo}`;
                 //title
-                leftCards[i].querySelector("div.text h4 a").innerText=content[i].fundTitle;
+                leftCards[i].querySelector("div.text h4 a").innerText=`${content[i].fundTitle} ${content[i].fundName}`;
                 //date
                 leftCards[i].querySelector("div.text span.date").innerText=content[i].fundStartDate;
                 //目前金額
