@@ -93,6 +93,11 @@
                 $fundraising -> bindValue(":fundArticleImg2", $fileName2);
                 $fundraising -> bindValue(":fundArticleImg3", $fileName3);
                 $fundraising -> execute();
+
+                $sql = "update meminfo set memPoint = memPoint + 300  where memNo = $memNo";
+                $fundraising  = $pdo->prepare($sql);
+                $fundraising -> bindValue(":memNo", $memNo);
+                $fundraising -> execute();
                 
                 header("Location: http://140.115.236.71/demo-projects/DD105/DD105G1/raisedonation.html"); 
                 
