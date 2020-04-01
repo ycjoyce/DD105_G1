@@ -2205,6 +2205,10 @@ footer {
   .cpc_writecontent>div:not(:empty) .cpc_writecontent>div:focus:before{
       content:none; }
 
+  .subtitle {
+      word-wrap: break-word;
+  }
+
   .cpc_contentflex {
       display: flow-root;
       clear: right; }
@@ -2449,7 +2453,8 @@ input {
       margin-bottom: 20px; }
     .card-item .card-details .subtitle {
       padding-right: 15px;
-      margin-bottom: 15px; }
+      margin-bottom: 15px;
+      word-wrap: break-word; }
     .card-item .card-details .keyword {
       font-size: 0.9em;
       margin-bottom: 15px; }

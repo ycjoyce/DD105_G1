@@ -107,15 +107,7 @@
             echo "新增失敗<br>";
         }
 
-        // if(isset($memNo)){
-        //     $sql = "update meminfo set memPoint = :memPoint + 300  where memNo = $memNo";
-        //     $fundraising  = $pdo->prepare($sql);
-        //     $fundraising -> bindValue(":memNo", $memNo);
-        //     $fundraising -> bindValue(":memPoint", $_REQUEST["memPoint"]);
-        //     $fundraising -> execute();
-        // }else{
-        //     echo "錯誤代碼 :<br>";
-        // }
+        
 
     
         

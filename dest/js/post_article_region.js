@@ -361,23 +361,22 @@ window.addEventListener("load",function(){
              //在這邊順便計算總字數，用來增加會員點數
              //1000 字以上點數 * 2 ， 2000 字以上點數 * 3 ， 3000字以上點數 * 4
              // console.log(contenteditabletext1innerText, contenteditabletext2innerText, contenteditabletext3innerText);
-             console.log(document.getElementsByClassName("cpc_writecontenttextrecord")[0].value.length); //測試desu，,qwe! = 12 個字
-             console.log(document.getElementsByClassName("cpc_writecontenttextrecord")[1].value.length);
-             console.log(document.getElementsByClassName("cpc_writecontenttextrecord")[2].value.length);
+             // console.log(document.getElementsByClassName("cpc_writecontenttextrecord")[0].value.length); //測試desu，,qwe! = 12 個字
+             // console.log(document.getElementsByClassName("cpc_writecontenttextrecord")[1].value.length);
+             // console.log(document.getElementsByClassName("cpc_writecontenttextrecord")[2].value.length);
              var cpcwritecontenttextrecordWordTotal = (  document.getElementsByClassName("cpc_writecontenttextrecord")[0].value.length
                                                        + document.getElementsByClassName("cpc_writecontenttextrecord")[1].value.length
                                                        + document.getElementsByClassName("cpc_writecontenttextrecord")[2].value.length);
-             console.log(cpcwritecontenttextrecordWordTotal);
+             // console.log(cpcwritecontenttextrecordWordTotal);
+             var postWriteRegionWordTotal = 0;
              if(cpcwritecontenttextrecordWordTotal<1000){
-                 cpcwritecontenttextrecordWordTotal = cpcwritecontenttextrecordWordTotal;
-             } else if(cpcwritecontenttextrecordWordTotal>=1000 && cpcwritecontenttextrecordWordTotal<2000){
-                 cpcwritecontenttextrecordWordTotal = cpcwritecontenttextrecordWordTotal*2;
-             } else if(cpcwritecontenttextrecordWordTotal>=2000 && cpcwritecontenttextrecordWordTotal<3000) {
-                 cpcwritecontenttextrecordWordTotal = cpcwritecontenttextrecordWordTotal*3;
+                 postWriteRegionWordTotal = cpcwritecontenttextrecordWordTotal;
              } else {
-                 cpcwritecontenttextrecordWordTotal = cpcwritecontenttextrecordWordTotal*4;
+                 postWriteRegionWordTotal = cpcwritecontenttextrecordWordTotal*2;
              }
-             console.log(cpcwritecontenttextrecordWordTotal);
+             console.log("總字數 : ", cpcwritecontenttextrecordWordTotal);
+             console.log("點數 : ", postWriteRegionWordTotal);
+             alert(`您目前輸入的「總字數」為 : ${cpcwritecontenttextrecordWordTotal}\n獲得的「點數」為 : ${postWriteRegionWordTotal}\n請至 [ 會員中心 ] - [ 會員資訊 ] 選項中的 "紅利點數" 欄位做確認。`);
              document.getElementsByClassName("cpcwritecontenttextrecordWordTotalNumber")[0].value = cpcwritecontenttextrecordWordTotal;
 
              // 這邊就送出資料了
