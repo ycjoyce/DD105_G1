@@ -2004,7 +2004,8 @@ footer {
   margin-left: 15px; }
 
 .cpc_content {
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  word-wrap: break-word; }
 
 .cpc_contentflex {
   /* display: flex; */
