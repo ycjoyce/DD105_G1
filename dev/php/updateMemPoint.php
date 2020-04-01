@@ -5,7 +5,7 @@ $memNo = $_SESSION["memNo"];
 
 try{
     require_once('connectDB.php');
-    $sql = "update `meminfo` set memPoint=:memPoint where memNo=$memNo";
+    $sql = "update `meminfo` set memPoint=:memPoint where memNo=${memNo}";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->bindValue(":memPoint",$_POST["memPoint"]);
     // $pdoStatement->bindValue(":memNo",$_POST["memNo"]);

@@ -47,10 +47,12 @@ $(document).ready(function() {
             $('.fakeCircle16').css("opacity", "1");
         }
     });
+
     $('ul.tabs li').click(function() {
         let tab_id = $(this).attr('data-tab');
         let status = document.getElementsByClassName('status');
         let nowTag = parseInt($('#nowTag').text());
+
         if (status[nowTag - 1].innerText == "未解鎖") {
             alert("請先解鎖此吊牌");
         } else {
@@ -63,8 +65,6 @@ $(document).ready(function() {
 
             $("#" + tab_id).addClass('current'); //內容換
         }
-
-
     });
     $('#step1NextBtn').click(function() { //step1下一步按鈕
         if (($('.collarImages').hasClass("imageApplying")) == false) {
@@ -220,161 +220,121 @@ $(document).ready(function() {
 
 
 window.addEventListener('load', function() {
-    let curIndex = 0;
-    let collarTagWrap = document.getElementById('collarTagWrap');
-    let sliderBtnLeft = document.getElementById('sliderBtnLeft');
-    let sliderBtnRight = document.getElementById('sliderBtnRight');
-    let tagItems = document.getElementsByClassName('tagItems');
-    let tagTotal = document.getElementById('tagTotal');
-    // nowTag = document.getElementById('nowTag');
-    let tagImages = document.getElementsByClassName('tagImages');
-    let lockPoint = document.getElementsByClassName('lockPoint');
-    let lockStatus = document.getElementsByClassName('lockStatus');
-    let todayDate = document.getElementById('todayDate');
-    let orderDate = document.getElementById('orderDate');
-    let tab2_content = document.getElementsByClassName('tab2_content')[0];
+    // let curIndex = 0;
+    // let collarTagWrap = document.getElementById('collarTagWrap');
+    // let sliderBtnLeft = document.getElementById('sliderBtnLeft');
+    // let sliderBtnRight = document.getElementById('sliderBtnRight');
+    // tagItems = document.getElementsByClassName('tagItems');
+    // let tagTotal = document.getElementById('tagTotal');
+    // // nowTag = document.getElementById('nowTag');
+    // let tagImages = document.getElementsByClassName('tagImages');
+    // let lockPoint = document.getElementsByClassName('lockPoint');
+    // let lockStatus = document.getElementsByClassName('lockStatus');
+    // let todayDate = document.getElementById('todayDate');
+    // let orderDate = document.getElementById('orderDate');
+    // let tab2_content = document.getElementsByClassName('tab2_content')[0];
 
 
-    let today = new Date();
-    todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
-    orderDate.innerText = `${todayDate.innerText}`;
-    tagImages[0].style.transform = "scale(2.5)";
+    // let today = new Date();
+    // todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+    // orderDate.innerText = `${todayDate.innerText}`;
 
 
-    $('#tagTotal span:last-child').text(tagItems.length);
-    // $('.tagImages').click(function() {
-    //     let newItemsWidth = $('#collarTagSlider').width() / 3;
-    //     let nowIndex = (parseFloat($('#collarTagWrap').css("left")) / -200) + 1;
-    //     console.log("nowIndex = ", nowIndex);
-    //     let clickTagIndex = $(this).parent().index();
-    //     // alert(clickTagIndex);
-    //     let clickOffset = -200 * (clickTagIndex - 1) + 'px';
-    //     $('#collarTagWrap').css("left", clickOffset);
 
-    //     if (clickTagIndex == 0) {
-    //         $('#sliderBtnLeft').attr("disabled", true);
-    //     } else if (clickTagIndex == (tagImages.length - 1)) {
-    //         $('#sliderBtnRight').attr("disabled", true);
+    // $('#tagTotal span:last-child').text(tagItems.length);
+
+    // alert("當前顯示器寬度" + $(window).width() + "px");
+    // alert("輪播圖數量" + tagItems.length);
+    // $('#collarTagWrap').css('width', tagItems.length * 600);
+    // if ($(window).width() < 600) {
+    //     $('.tagItems').css('width', $(window).width());
+    // } else {
+    //     $('.tagItems').css('width', 600);
+    // }
+
+    // // alert($(window).width());
+    // alert("單一屏寬" + $('.tagItems').css('width'));
+    // alert("輪播全部寬" + $('#collarTagWrap').css('width'));
+    // window.addEventListener('resize', function() {
+    //     let tagNum = document.getElementsByClassName('tagItems').length;
+    //     if ($(window).width() < 600) {
+    //         $('.tagItems').css('width', $(window).width());
+    //         $('#collarTagWrap').css('left', -$(window).width() * (parseInt($('#nowTag').text()) - 1));
+    //     } else {
+    //         $('.tagItems').css('width', 600);
+    //         $('#collarTagWrap').css('left', -600 * (parseInt($('#nowTag').text()) - 1));
     //     }
-    //     if (clickTagIndex > nowIndex) {
-    //         curIndex = (clickTagIndex - nowIndex) + curIndex;
-    //         tagIndex = (clickTagIndex - nowIndex) + tagIndex;
-    //         $('#sliderBtnLeft').attr("disabled", false);
-    //     } else if (clickTagIndex < nowIndex) {
-    //         curIndex = (clickTagIndex - nowIndex) + curIndex;
-    //         tagIndex = (clickTagIndex - nowIndex) + tagIndex;
-    //         $('#sliderBtnRight').attr("disabled", false);
-    //     }
-    //     $('.tagImages').css("transform", "scale(1)");
-    //     $(this).css("transform", "scale(2.5)");
-    //     $(this).parent().parent().children().children().nextAll().css("visibility", "hidden");
-    //     $(this).nextAll().css("visibility", "visible");
-    //     $(this).parent().parent().children().children().nextAll().css("opacity", "0");
-    //     $(this).nextAll().css("opacity", "1");
-    //     $(this).parent().parent().children().children().css("filter", "brightness(0.6)");
-    //     $(this).css("filter", "brightness(1)");
-    //     $('#tagTotal span:first-child').text(clickTagIndex + 1);
     // });
+    // // alert("測試1");
+    // // tagImages[0].style.transform = "scale(2.5)";
+    // // alert("測試2");
+    // sliderBtnLeft.style.opacity = "0";
+    // sliderBtnRight.style.cursor = "pointer";
+    // sliderBtnLeft.addEventListener('click', function() {
+    //     let abc = parseInt($('#nowTag').text());
+    //     abc -= 1;
+    //     $('#nowTag').text(abc);
 
-    // $('#sliderBtnLeft').click(function() {
+    //     sliderBtnRight.style.opacity = "1";
+    //     sliderBtnRight.style.cursor = "pointer";
+    //     let tagWidth = parseFloat($('.tagItems').css('width'));
+    //     // alert(tagWidth);
     //     curIndex--;
-
+    //     collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+    //     sliderBtnRight.disabled = false;
+    //     if (parseFloat(collarTagWrap.style.left) == 0) {
+    //         sliderBtnLeft.disabled = true;
+    //         sliderBtnLeft.style.opacity = "0";
+    //         sliderBtnLeft.style.cursor = "default";
+    //     }
+    //     let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+    //     // alert(offset);
+    //     tagImages[offset].style.transform = "scale(1)";
+    //     tagImages[offset - 1].style.transform = "scale(2.5)";
+    //     tagImages[offset].style.filter = "brightness(0.7)";
+    //     tagImages[offset - 1].style.filter = "brightness(1)";
+    //     lockPoint[offset].style.visibility = "hidden";
+    //     lockPoint[offset - 1].style.visibility = "visible";
+    //     lockPoint[offset].style.opacity = "0";
+    //     lockPoint[offset - 1].style.opacity = "1";
+    //     lockStatus[offset].style.visibility = "hidden";
+    //     lockStatus[offset - 1].style.visibility = "visible";
+    //     lockStatus[offset].style.opacity = "0";
+    //     lockStatus[offset - 1].style.opacity = "1";
+    //     // nowTag.innerText = offset + 1;
     // });
-    // function leftOffset() {
-    //     alert($('.tagItems').css('width'));
-    // }
-    // leftOffset();
-    // alert($(this.window).width());
-    // tagResize();
 
-    // function tagResize() {
+    // sliderBtnRight.addEventListener('click', function() {
+    //     let abc = parseInt($('#nowTag').text());
+    //     abc += 1;
+    //     $('#nowTag').text(abc);
 
-    // }
-    $('#collarTagWrap').css('width', tagItems.length * 600);
-    if ($(this.window).width() < 600) {
-        $('.tagItems').css('width', $(this.window).width());
-    } else {
-        $('.tagItems').css('width', 600);
-    }
-    window.addEventListener('resize', function() {
-        let tagNum = document.getElementsByClassName('tagItems').length;
-        if ($(this.window).width() < 600) {
-            $('.tagItems').css('width', $(this.window).width());
-            $('#collarTagWrap').css('left', -$(this.window).width() * (parseInt($('#nowTag').text()) - 1));
-        } else {
-            $('.tagItems').css('width', 600);
-            $('#collarTagWrap').css('left', -600 * (parseInt($('#nowTag').text()) - 1));
-        }
-    });
+    //     sliderBtnLeft.style.opacity = "1";
+    //     sliderBtnLeft.style.cursor = "pointer";
+    //     let tagWidth = parseFloat($('.tagItems').css('width'));
 
-
-    sliderBtnLeft.style.opacity = "0";
-    sliderBtnRight.style.cursor = "pointer";
-    sliderBtnLeft.addEventListener('click', function() {
-        let abc = parseInt($('#nowTag').text());
-        abc -= 1;
-        $('#nowTag').text(abc);
-
-        sliderBtnRight.style.opacity = "1";
-        sliderBtnRight.style.cursor = "pointer";
-        let tagWidth = parseFloat($('.tagItems').css('width'));
-        // alert(tagWidth);
-        curIndex--;
-        collarTagWrap.style.left = -tagWidth * curIndex + 'px';
-        sliderBtnRight.disabled = false;
-        if (parseFloat(collarTagWrap.style.left) == 0) {
-            sliderBtnLeft.disabled = true;
-            sliderBtnLeft.style.opacity = "0";
-            sliderBtnLeft.style.cursor = "default";
-        }
-        let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
-        // alert(offset);
-        tagImages[offset].style.transform = "scale(1)";
-        tagImages[offset - 1].style.transform = "scale(2.5)";
-        tagImages[offset].style.filter = "brightness(0.7)";
-        tagImages[offset - 1].style.filter = "brightness(1)";
-        lockPoint[offset].style.visibility = "hidden";
-        lockPoint[offset - 1].style.visibility = "visible";
-        lockPoint[offset].style.opacity = "0";
-        lockPoint[offset - 1].style.opacity = "1";
-        lockStatus[offset].style.visibility = "hidden";
-        lockStatus[offset - 1].style.visibility = "visible";
-        lockStatus[offset].style.opacity = "0";
-        lockStatus[offset - 1].style.opacity = "1";
-        // nowTag.innerText = offset + 1;
-    });
-
-    sliderBtnRight.addEventListener('click', function() {
-        let abc = parseInt($('#nowTag').text());
-        abc += 1;
-        $('#nowTag').text(abc);
-
-        sliderBtnLeft.style.opacity = "1";
-        sliderBtnLeft.style.cursor = "pointer";
-        let tagWidth = parseFloat($('.tagItems').css('width'));
-
-        curIndex++;
-        collarTagWrap.style.left = -tagWidth * curIndex + 'px';
-        sliderBtnLeft.disabled = false;
-        if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 1) * -tagWidth) {
-            sliderBtnRight.disabled = true;
-            sliderBtnRight.style.opacity = "0";
-            sliderBtnRight.style.cursor = "default";
-        }
-        let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
-        // alert(offset);
-        tagImages[offset - 2].style.transform = "scale(1)";
-        tagImages[offset - 1].style.transform = "scale(2.5)";
-        tagImages[offset - 2].style.filter = "brightness(0.7)";
-        tagImages[offset - 1].style.filter = "brightness(1)";
-        lockPoint[offset - 2].style.visibility = "hidden";
-        lockPoint[offset - 1].style.visibility = "visible";
-        lockPoint[offset - 2].style.opacity = "0";
-        lockPoint[offset - 1].style.opacity = "1";
-        lockStatus[offset - 2].style.visibility = "hidden";
-        lockStatus[offset - 1].style.visibility = "visible";
-        lockStatus[offset - 2].style.opacity = "0";
-        lockStatus[offset - 1].style.opacity = "1";
-        // nowTag.innerText = offset + 1;
-    });
+    //     curIndex++;
+    //     collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+    //     sliderBtnLeft.disabled = false;
+    //     if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 1) * -tagWidth) {
+    //         sliderBtnRight.disabled = true;
+    //         sliderBtnRight.style.opacity = "0";
+    //         sliderBtnRight.style.cursor = "default";
+    //     }
+    //     let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+    //     // alert(offset);
+    //     tagImages[offset - 2].style.transform = "scale(1)";
+    //     tagImages[offset - 1].style.transform = "scale(2.5)";
+    //     tagImages[offset - 2].style.filter = "brightness(0.7)";
+    //     tagImages[offset - 1].style.filter = "brightness(1)";
+    //     lockPoint[offset - 2].style.visibility = "hidden";
+    //     lockPoint[offset - 1].style.visibility = "visible";
+    //     lockPoint[offset - 2].style.opacity = "0";
+    //     lockPoint[offset - 1].style.opacity = "1";
+    //     lockStatus[offset - 2].style.visibility = "hidden";
+    //     lockStatus[offset - 1].style.visibility = "visible";
+    //     lockStatus[offset - 2].style.opacity = "0";
+    //     lockStatus[offset - 1].style.opacity = "1";
+    //     // nowTag.innerText = offset + 1;
+    // });
 })
