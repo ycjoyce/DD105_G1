@@ -168,7 +168,7 @@
 
                             </div> -->
                             <!-- <br> -->
-                            <div class="select postregionkeyword">
+                            <!-- <div class="select postregionkeyword">
                                 <div class="select-styled aa2">
                                   <span class="displayfont2 hide2">-- 關鍵字篩選 --</span>
                                   <p class="multiSel ms2"></p>
@@ -189,7 +189,7 @@
                                     <input class="pkkSelector" type="hidden" value="" name="pkkSelector" />
                                     <input class="pkkSelectorButton" type="Search" value="送出" />
                                 </form>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- 綠色按鈕 -->
                         <a id="par_postarticlebutton" class="btn darkgreen nav__link" >
