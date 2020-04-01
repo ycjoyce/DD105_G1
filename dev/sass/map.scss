@@ -1305,6 +1305,9 @@ body {
 }
 
 @media (max-width: 576px) {
+  .map_container .map_intro .map_introcontent .map_introCircle{
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 500px) {
