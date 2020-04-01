@@ -1922,6 +1922,10 @@ footer {
 
 .breadcrumb > a {
   text-decoration: none; }
+.breadcrumbLastChild {
+    color: #647926;
+    cursor: text;
+}
 
 .post3buttoncollection {
   display: none;
