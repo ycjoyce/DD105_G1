@@ -81,7 +81,7 @@
                 <div class="breadcrumb">
                     <a href="./post_article_region.php">貼文區</a>
                     <span>></span>
-                    <a href="#"><?php echo $prodRow->piTitle;?></a>
+                    <a class="breadcrumbLastChild" href="#"><?php echo $prodRow->piTitle;?></a>
                 </div>
             </div>
 
