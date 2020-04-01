@@ -6,7 +6,7 @@ try{
     
     $content=[];
     while($leftCard= $leftCards->fetch(PDO::FETCH_ASSOC)){
-        $content[]=array("fundNo"=>$leftCard["fundNo"],"fundName"=>$leftCard["fundName"],"fundTitle"=>$leftCard["fundTitle"],"fundImg"=>$leftCard["fundImg"],"fundStartDate"=>$leftCard["fundStartDate"],"fundGoal"=>$leftCard["fundGoal"],"fundNowAmount"=>$leftCard["fundNowAmount"]);
+        $content[]=array("fundNo"=>$leftCard["fundNo"],"fundTitle"=>$leftCard["fundTitle"],"fundImg"=>$leftCard["fundImg"],"fundStartDate"=>$leftCard["fundStartDate"],"fundGoal"=>$leftCard["fundGoal"],"fundNowAmount"=>$leftCard["fundNowAmount"]);
     }
     echo json_encode($content);
 }catch(PDOException $e){
