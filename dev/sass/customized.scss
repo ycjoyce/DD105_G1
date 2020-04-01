@@ -1,8 +1,9 @@
 // 基本設定
 @import "layout/header";
 @import "layout/collarLightBox";
-@include header(relative);
+// @include header(relative);
 // @include header(sticky);
+@include header(fixed);
 @import "layout/wrapper";
 @import "layout/grid";
 @import "layout/font";
@@ -95,9 +96,13 @@ section {
         display: flex;
         // background-color: #eae0bf;
         position: relative;
+        margin-top: 106.438px;
         @include RWD(lg) {
             flex-direction: column;
             height: unset;
+        }
+        @include RWD(md) {
+            margin-top: 75px;
         }
         #signInFirstBlock {
             width: 100%;
@@ -129,11 +134,11 @@ section {
                 min-height: 362px;
             }
             @include RWD(ss) {
-                min-height: 261px;
+                min-height: 320px;
             }
-            @include RWD(xs) {
-                min-height: 237px;
-            }
+            // @include RWD(xs) {
+            //     min-height: 237px;
+            // }
             #memberPoint {
                 // border       : 1px solid red;
                 width: 140px;
@@ -160,10 +165,14 @@ section {
                     left: 0px;
                     top: unset;
                     bottom: 0px;
+                    font-size: 0.8rem;
                 }
                 #showPoint {
                     line-height: 35px;
                     color: white;
+                    @include RWD(ss) {
+                        font-size: 0.8rem;
+                    }
                 }
             }
         }
@@ -750,7 +759,8 @@ section {
                         transition: all 0.2s ease-in-out;
                         .stepNum {
                             color: #ffffff;
-                            text-shadow: -0.5px -0.5px 0px black, 0.5px 0.5px 0px black;
+                            text-shadow: 0px 0px 1px black;
+                            // text-shadow: -0.5px -0.5px 0px black, 0.5px 0.5px 0px black;
                         }
                         .stepTitle {
                             color: #ffffff;
@@ -973,337 +983,352 @@ section {
                             }
                         }
                     }
-                    #collarTagSlider {
-                        // border: 1px solid red;
-                        width: 100%;
-                        min-height: 360px;
-                        position: relative;
-                        margin: 0px auto;
-                        overflow-x: hidden;
+                    .tab2_content {
+                        // border: 1px solid blue;
+                        height: calc(100vh - 106.438px - 280px);
                         overflow-y: scroll;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-end;
-                        align-items: center;
-                        @include RWD(lg) {
-                            min-height: unset;
-                            height: 400px;
-                            max-width: 600px;
-                        }
                         @include RWD(ss) {
-                            height: 300px;
+                            height: unset;
+                            overflow-y: unset;
                         }
-                        #collarTagWrap {
+                        #collarTagSlider {
                             // border: 1px solid red;
-                            // width: 3000px;
-                            position: absolute;
-                            left: 0px;
+                            width: 100%;
+                            min-height: 400px;
+                            position: relative;
+                            margin: 0px auto;
+                            overflow-x: hidden;
+                            overflow-y: scroll;
                             display: flex;
-                            justify-content: flex-start;
+                            flex-direction: column;
+                            justify-content: flex-end;
                             align-items: center;
-                            transition: left 0.5s ease-in-out 0s;
-                            // @include RWD(lg) {
-                            //     left: 400px;
-                            // }
-                            .tagItems {
-                                // border: 1px solid #747474;
-                                // width: 200px;
-                                width: 100%;
-                                // width: auto;
+                            @include RWD(lg) {
+                                max-width: 600px;
+                            }
+                            @include RWD(ss) {
+                                min-height: 300px;
+                                // height: 300px;
+                            }
+                            #collarTagWrap {
+                                // border: 1px solid red;
+                                // width: 3000px;
+                                position: absolute;
+                                left: 0px;
                                 display: flex;
-                                flex-direction: column;
+                                justify-content: flex-start;
                                 align-items: center;
-                                justify-content: center;
-                                position: relative;
-                                .tagImages {
-                                    width: 80px;
-                                    max-height: 200px;
-                                    transition-property: transform, filter;
-                                    transition-duration: 0.6s, 0.6s;
-                                    transition-timing-function: ease-in-out;
-                                    transition-delay: 0.4s, 0.4s;
-                                    cursor: pointer;
-                                    filter: brightness(0.6);
-                                    @include RWD(ss) {
-                                        width: 53px;
-                                        // max-height: 70px;
-                                    }
-                                }
-                                #tagImages1 {
-                                    filter: brightness(1);
-                                }
-                                .lockPoint {
+                                transition: left 0.5s ease-in-out 0s;
+                                // @include RWD(lg) {
+                                //     left: 400px;
+                                // }
+                                .tagItems {
+                                    // border: 1px solid #747474;
+                                    // width: 200px;
                                     width: 100%;
+                                    // width: auto;
                                     display: flex;
-                                    justify-content: center;
+                                    flex-direction: column;
                                     align-items: center;
-                                    margin: 100px auto 15px auto;
-                                    visibility: hidden;
-                                    opacity: 0;
-                                    transition: all 0.8s ease-in-out 0.5s;
-                                }
-                                #lockPoint1 {
-                                    visibility: visible;
-                                    opacity: 1;
-                                }
-                                .lockStatus {
-                                    visibility: hidden;
-                                    opacity: 0;
-                                    transition: all 0.8s ease-in-out 0.5s;
-                                    .unlock {
-                                        border: 1px solid #313131;
-                                        background: transparent;
-                                        width: 120px;
-                                        height: 35px;
+                                    justify-content: center;
+                                    position: relative;
+                                    .tagImages {
+                                        width: 80px;
+                                        max-height: 200px;
+                                        transition-property: transform, filter;
+                                        transition-duration: 0.6s, 0.6s;
+                                        transition-timing-function: ease-in-out;
+                                        transition-delay: 0.4s, 0.4s;
+                                        cursor: pointer;
+                                        filter: brightness(0.6);
+                                        @include RWD(ss) {
+                                            width: 53px;
+                                            // max-height: 70px;
+                                        }
+                                    }
+                                    #tagImages1 {
+                                        filter: brightness(1);
+                                    }
+                                    .lockPoint {
+                                        width: 100%;
                                         display: flex;
                                         justify-content: center;
                                         align-items: center;
-                                        cursor: pointer;
-                                        transition: 0.3s ease-in-out;
-                                        &:hover {
-                                            background: #313131;
-                                            color: white;
+                                        margin: 100px auto 15px auto;
+                                        visibility: hidden;
+                                        opacity: 0;
+                                        transition: all 0.8s ease-in-out 0.5s;
+                                    }
+                                    #lockPoint1 {
+                                        visibility: visible;
+                                        opacity: 1;
+                                    }
+                                    .lockStatus {
+                                        visibility: hidden;
+                                        opacity: 0;
+                                        transition: all 0.8s ease-in-out 0.5s;
+                                        .unlock {
+                                            border: 1px solid #313131;
+                                            background: transparent;
+                                            width: 120px;
+                                            height: 35px;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            cursor: pointer;
+                                            transition: 0.3s ease-in-out;
+                                            &:hover {
+                                                background: #313131;
+                                                color: white;
+                                            }
                                         }
                                     }
-                                }
-                                #unlock1 {
-                                    visibility: visible;
-                                    opacity: 1;
-                                }
-                            }
-                        }
-                        .sliderBtns {
-                            border: 1px solid #555555;
-                            width: 50px;
-                            height: 50px;
-                            background-color: #fff9e498;
-                            border-radius: 50%;
-                            // cursor: pointer;
-                            color: #555555;
-                            &:hover {
-                                border: 1px solid #6da316;
-                                color: #6da316;
-                            }
-                        }
-                        #sliderBtnLeft {
-                            position: absolute;
-                            top: 50%;
-                            left: 10px;
-                            transform: translate(0%, -50%);
-                            transition: 0.3s ease-in-out;
-                            visibility: visible;
-                            &:focus {
-                                outline-style: none;
-                            }
-                            &:hover {
-                                border: 1px solid #6da316;
-                            }
-                            &:hover .fa-chevron-left::before {
-                                color: #6da316;
-                            }
-                            .fa-chevron-left {
-                                &::before {
-                                    transition: 0.3s ease-in-out;
-                                    content: "\f053";
+                                    #unlock1 {
+                                        visibility: visible;
+                                        opacity: 1;
+                                    }
                                 }
                             }
-                        }
-                        #sliderBtnRight {
-                            position: absolute;
-                            top: 50%;
-                            right: 10px;
-                            transform: translate(0%, -50%);
-                            transition: 0.3s ease-in-out;
-                            visibility: visible;
-                            &:focus {
-                                outline-style: none;
+                            .sliderBtns {
+                                border: 1px solid #555555;
+                                width: 50px;
+                                height: 50px;
+                                background-color: #fff9e498;
+                                border-radius: 50%;
+                                // cursor: pointer;
+                                color: #555555;
+                                &:hover {
+                                    border: 1px solid #6da316;
+                                    color: #6da316;
+                                }
                             }
-                            &:hover {
-                                border: 1px solid #6da316;
+                            #sliderBtnLeft {
+                                position: absolute;
+                                top: 50%;
+                                left: 10px;
+                                transform: translate(0%, -50%);
+                                transition: 0.3s ease-in-out;
+                                visibility: visible;
+                                &:focus {
+                                    outline-style: none;
+                                }
+                                &:hover {
+                                    border: 1px solid #6da316;
+                                }
+                                &:hover .fa-chevron-left::before {
+                                    color: #6da316;
+                                }
+                                .fa-chevron-left {
+                                    &::before {
+                                        transition: 0.3s ease-in-out;
+                                        content: "\f053";
+                                    }
+                                }
                             }
-                            &:hover .fa-chevron-right::before {
-                                color: #6da316;
-                            }
-                            .fa-chevron-right {
-                                &::before {
-                                    transition: 0.3s ease-in-out;
-                                    content: "\f054";
+                            #sliderBtnRight {
+                                position: absolute;
+                                top: 50%;
+                                right: 10px;
+                                transform: translate(0%, -50%);
+                                transition: 0.3s ease-in-out;
+                                visibility: visible;
+                                &:focus {
+                                    outline-style: none;
+                                }
+                                &:hover {
+                                    border: 1px solid #6da316;
+                                }
+                                &:hover .fa-chevron-right::before {
+                                    color: #6da316;
+                                }
+                                .fa-chevron-right {
+                                    &::before {
+                                        transition: 0.3s ease-in-out;
+                                        content: "\f054";
+                                    }
                                 }
                             }
                         }
                     }
-                    .addText {
-                        // border: 1px solid red;
-                        max-width: 600px;
-                        // width: 100%;
-                        // height     : 300px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        margin: 30px auto 50px auto;
+                    .tab3_content {
+                        // border: 1px solid blue;
+                        height: calc(100vh - 106.438px - 280px);
+                        overflow-y: scroll;
                         @include RWD(ss) {
-                            margin: 15px auto 50px auto;
+                            height: unset;
+                            overflow-y: unset;
                         }
-                        // justify-content: space-around;
-                        .collarTextTitles {
-                            margin: 0px 20px 0px 90px;
-                            color: #555555;
-                            font-weight: bold;
-                            font-size: 1rem;
-                            @include RWD(sm) {
-                                margin: 0px 20px 0px 20px;
-                            }
-                            @include RWD(ss) {
-                                margin: 0px 20px 0px 10px;
-                            }
-                            @include RWD(xs) {
-                                margin: 0px 10px 0px 10px;
-                            }
-                        }
-                        #textStyle {
+                        .addText {
                             // border: 1px solid red;
-                            width: 100%;
-                            height: 60px;
+                            max-width: 600px;
                             display: flex;
-                            justify-content: flex-start;
+                            flex-direction: column;
                             align-items: center;
-                            // margin-top: 30px;
-                            // margin: 0px 20px 0px 90px;
-                            // @include RWD(sm) {
-                            //     margin: 0px 20px 0px 10px;
-                            // }
-                            // #textStyle1 {
-                            //     margin-right: 10px;
-                            // }
-                            #showStyle1 {
-                                font-size: 1.5rem;
-                                color: #f0ebd7;
-                                text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
-                                margin-right: 15px;
-                                @include RWD(xs) {
-                                    font-size: 1.1rem;
-                                }
-                            }
-                            #textStyle2 {
-                                margin-right: 10px;
-                            }
-                            #showStyle2 {
-                                font-size: 1.5rem;
-                                color: #fff9e4;
-                                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-                                margin-right: 15px;
-                                @include RWD(xs) {
-                                    font-size: 1.3rem;
-                                }
-                            }
-                            #textStyle3 {
-                                margin-right: 10px;
-                            }
-                            #showStyle3 {
-                                font-size: 24px;
-                                @include RWD(xs) {
-                                    font-size: 1.3rem;
-                                }
-                            }
-                        }
-                        #textColor {
-                            width: 100%;
-                            height: 60px;
-                            display: flex;
-                            justify-content: flex-start;
-                            align-items: center;
-                            margin-top: 20px;
+                            margin: 30px auto 50px auto;
                             @include RWD(ss) {
-                                margin-top: 10px;
+                                margin: 15px auto 50px auto;
                             }
-                            .pickr {
-                                .pcr-button {
-                                    width: 35px;
-                                    height: 35px;
+                            // justify-content: space-around;
+                            .collarTextTitles {
+                                margin: 0px 20px 0px 90px;
+                                color: #555555;
+                                font-weight: bold;
+                                font-size: 1rem;
+                                @include RWD(sm) {
+                                    margin: 0px 20px 0px 20px;
                                 }
-                            }
-                        }
-                        #textFontFamily {
-                            // border      : 1px solid red;
-                            width: 100%;
-                            height: 60px;
-                            display: flex;
-                            justify-content: flex-start;
-                            align-items: center;
-                            margin-top: 20px;
-                            @include RWD(ss) {
-                                margin-top: 10px;
-                            }
-                            #fontFamilySelect {
-                                width: 150px;
-                                height: 30px;
+                                @include RWD(ss) {
+                                    margin: 0px 20px 0px 10px;
+                                }
                                 @include RWD(xs) {
-                                    width: 130px;
+                                    margin: 0px 10px 0px 10px;
                                 }
-                                .fontFamilys {
-                                    font-size: 20px;
+                            }
+                            #textStyle {
+                                // border: 1px solid red;
+                                width: 100%;
+                                height: 60px;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                // margin-top: 30px;
+                                // margin: 0px 20px 0px 90px;
+                                // @include RWD(sm) {
+                                //     margin: 0px 20px 0px 10px;
+                                // }
+                                // #textStyle1 {
+                                //     margin-right: 10px;
+                                // }
+                                #showStyle1 {
+                                    font-size: 1.5rem;
+                                    color: #f0ebd7;
+                                    text-shadow: -1px -1px 1px #000, 1px 1px 1px #fff;
+                                    margin-right: 15px;
+                                    @include RWD(xs) {
+                                        font-size: 1.1rem;
+                                    }
+                                }
+                                #textStyle2 {
+                                    margin-right: 10px;
+                                }
+                                #showStyle2 {
+                                    font-size: 24px;
+                                    color: #fff9e4;
+                                    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+                                    margin-right: 15px;
                                     @include RWD(ss) {
-                                        font-size: 16px;
+                                        font-size: 1.3rem;
+                                    }
+                                }
+                                #textStyle3 {
+                                    margin-right: 10px;
+                                }
+                                #showStyle3 {
+                                    font-size: 24px;
+                                    @include RWD(ss) {
+                                        font-size: 1.3rem;
                                     }
                                 }
                             }
-                        }
-                        #textContent {
-                            // border      : 1px solid red;
-                            width: 100%;
-                            height: 60px;
-                            display: flex;
-                            justify-content: flex-start;
-                            align-items: center;
-                            margin-top: 20px;
-                            @include RWD(ss) {
-                                margin-top: 10px;
-                            }
-                            #textContent1 {
-                                -webkit-appearance: none;
-                                -moz-appearance: none;
-                                appearance: none;
-                                border: 0px solid red;
-                                border-bottom: 1px solid #313131;
-                                border-radius: 0px;
-                                background-color: transparent;
-                                width: 150px;
-                                height: 30px;
-                                @include RWD(xs) {
-                                    width: 130px;
+                            #textColor {
+                                width: 100%;
+                                height: 60px;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+                                margin-top: 30px;
+                                @include RWD(ss) {
+                                    margin-top: 10px;
+                                }
+                                .pickr {
+                                    .pcr-button {
+                                        width: 35px;
+                                        height: 35px;
+                                    }
                                 }
                             }
-                            #addTextBtn {
-                                border: 1px solid #555555;
-                                width: 35px;
-                                height: 35px;
-                                border-radius: 3px;
-                                margin: 0px 10px 0px 20px;
+                            #textFontFamily {
+                                // border      : 1px solid red;
+                                width: 100%;
+                                height: 60px;
                                 display: flex;
-                                justify-content: center;
+                                justify-content: flex-start;
                                 align-items: center;
-                                cursor: pointer;
-                                transition: 0.2s ease-in-out;
-                                .plusTextImg {
-                                    width: 18px;
-                                    height: 18px;
-                                    opacity: 0.8;
+                                margin-top: 30px;
+                                @include RWD(ss) {
+                                    margin-top: 10px;
+                                }
+                                #fontFamilySelect {
+                                    width: 150px;
+                                    height: 30px;
+                                    @include RWD(xs) {
+                                        width: 130px;
+                                    }
+                                    .fontFamilys {
+                                        font-size: 20px;
+                                        @include RWD(ss) {
+                                            font-size: 16px;
+                                        }
+                                    }
                                 }
                             }
-                            #delTextBtn {
-                                border: 1px solid #555555;
-                                width: 35px;
-                                height: 35px;
-                                border-radius: 3px;
+                            #textContent {
+                                // border      : 1px solid red;
+                                width: 100%;
+                                height: 60px;
                                 display: flex;
-                                justify-content: center;
+                                justify-content: flex-start;
                                 align-items: center;
-                                cursor: pointer;
-                                transition: 0.2s ease-in-out;
-                                .delTextImg {
-                                    width: 18px;
-                                    height: 18px;
-                                    opacity: 0.8;
+                                margin-top: 30px;
+                                @include RWD(ss) {
+                                    margin-top: 10px;
+                                }
+                                #textContent1 {
+                                    -webkit-appearance: none;
+                                    -moz-appearance: none;
+                                    appearance: none;
+                                    border: 0px solid red;
+                                    border-bottom: 1px solid #313131;
+                                    border-radius: 0px;
+                                    background-color: transparent;
+                                    width: 150px;
+                                    height: 30px;
+                                    @include RWD(xs) {
+                                        width: 130px;
+                                    }
+                                }
+                                #addTextBtn {
+                                    border: 1px solid #555555;
+                                    width: 35px;
+                                    height: 35px;
+                                    border-radius: 3px;
+                                    margin: 0px 10px 0px 20px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    cursor: pointer;
+                                    transition: 0.2s ease-in-out;
+                                    .plusTextImg {
+                                        width: 18px;
+                                        height: 18px;
+                                        opacity: 0.8;
+                                    }
+                                }
+                                #delTextBtn {
+                                    border: 1px solid #555555;
+                                    width: 35px;
+                                    height: 35px;
+                                    border-radius: 3px;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    cursor: pointer;
+                                    transition: 0.2s ease-in-out;
+                                    .delTextImg {
+                                        width: 18px;
+                                        height: 18px;
+                                        opacity: 0.8;
+                                    }
                                 }
                             }
                         }
@@ -1424,7 +1449,7 @@ section {
                     margin-left: 95px;
                     align-items: center;
                     @include RWD(ss) {
-                        margin-left: 65px;
+                        margin-left: 60px;
                     }
                     .countBtn {
                         border: 0px solid #67801e;
@@ -1500,13 +1525,13 @@ Buttons
 Form
 --------------------*/
     .form {
-        //   border: 1px solid red;
+        // border: 1px solid red;
         margin-bottom: 50px;
         @include RWD(ss) {
             width: 330px;
         }
         fieldset {
-            border: none;
+            border: 0px solid red;
             padding: 0;
             padding: 10px 0;
             position: relative;
@@ -1546,7 +1571,7 @@ Form
                     display: inline-block;
                     margin-right: 8px;
                     @include RWD(ss) {
-                        width: 73px;
+                        width: 72px;
                     }
                     &:last-child {
                         margin-right: 0;
