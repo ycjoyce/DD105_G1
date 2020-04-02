@@ -314,7 +314,7 @@
     pointer-events: none;
     background-color: white;
   }
-  .imageText{
+  .imageText {
     display: inline-block;
     text-align: center;
     width: calc(100% - 155px);
@@ -478,8 +478,28 @@
         margin-bottom: 15px;
       }
     }
+    .imgSelect{
+      padding-bottom: 40px;
+    }
     .uploadimg_btn {
       margin-bottom: 15px;
+      height: 28px;
+      line-height: 28px;
+      vertical-align: top;
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.05rem;
+      font-size: 0.95rem;
+      color: #fff;
+      background-color: $gray;
+      text-align: center;
+      margin-bottom: 30px;
+      top: 30px;
+      left: 0;
+      border-radius: 5px;
+    }
+    .imageText {
+      display: none;
     }
   }
   #lostform #imageShow {

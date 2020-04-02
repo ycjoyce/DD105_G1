@@ -518,7 +518,7 @@ label.uploadimgbtn {
         pointer-events: none;
         background-color: white;
       }
-      .imageText{
+      .imageText {
         display: inline-block;
         text-align: center;
         width: calc(100% - 155px);
@@ -576,7 +576,7 @@ label.uploadimgbtn {
       text-align: center;
       margin: 30px 0 10px;
     }
-    .uploadimgbtn_brfore {     
+    .uploadimgbtn_brfore {
       position: relative;
     }
     .uploadimg_btn {
@@ -692,10 +692,31 @@ label.uploadimgbtn {
         #imageShow {
           display: none;
         }
+        .imageText {
+          display: none;
+        }
+        .uploadimgbtn_brfore {
+          padding-bottom: 40px;
+        }
+        .uploadimg_btn {
+          margin-bottom: 15px;
+          height: 28px;
+          line-height: 28px;
+          vertical-align: top;
+          font-family: "Noto Sans TC", sans-serif;
+          font-weight: 400;
+          letter-spacing: 0.05rem;
+          font-size: 0.95rem;
+          color: #fff;
+          background-color: $gray;
+          text-align: center;
+          margin-bottom: 30px;
+          top: 30px;
+          left: 0;
+          padding: 0;
+        }
       }
-      .uploadimg_btn {
-        margin-bottom: 15px;
-      }
+
       input[type="date"] {
         width: 290px;
       }
@@ -733,7 +754,7 @@ div.clickToShow {
   &.show {
     display: block;
   }
-  input{
+  input {
     width: 180px;
   }
 }

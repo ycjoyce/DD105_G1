@@ -356,7 +356,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li><img src="./img/icon_private_message.svg"> 主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}</a></li>
       </ul>
     </div>
   `;
@@ -790,3 +790,13 @@ function addFav() {
     }
   };
 }
+
+$(document).ready(function() {
+  var winWidth = $(window).width();
+  if (winWidth < 415) {
+    $(".uploadimg_btn")
+      .html(`請上傳圖片<input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                      accept="image/*">
+                  <i class="fa fa-photo"></i>`);
+  }
+});

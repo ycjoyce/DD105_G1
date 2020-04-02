@@ -479,12 +479,18 @@
             var winWidth = $(window).width();
             var winHeight = $(window).height();
             new WOW().init();
-            $( ".map_CH_title" ).textillate();
-            $( ".map_EN_title" ).textillate();
-            // $( ".map_lostdog>div" ).textillate();
 
-            
-            
+            // 地圖狗狗
+            $('#gmaps').on('mouseenter mouseleave', function () {
+                // $(".mapDog").toggleClass('noDog');
+                $(".mapDog").fadeToggle();
+            });
+
+            if (winWidth > 415) {
+                $(".map_CH_title").textillate();
+                $(".map_EN_title").textillate();
+            };
+
 
             // [展開/關閉] 快速搜尋/我的收藏
             if (winWidth > 415) {
@@ -546,11 +552,16 @@
                 });
             };
 
-            // 地圖狗狗
-            $('#gmaps').on('mouseenter mouseleave', function () {
-                // $(".mapDog").toggleClass('noDog');
-                $(".mapDog").fadeToggle();
-            });
+            if (winWidth < 415) {
+                $(".map_introcontent div").removeClass("wow bounceInLeft");
+                $(".map_CH_title").removeData();
+                $(".mapdog").css("display", "none");
+                $(".uploadimg_btn").html(`請上傳圖片<input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                                    accept="image/*">
+                                <i class="fa fa-photo"></i>`);
+            }
+
+
 
             // 發文判斷會員登入
             function checkLoginStatus(e) {

@@ -204,6 +204,9 @@
 
     .ui-article[data-active] {
       transform: translateX(0%);
+      @media (max-width: 414px) {
+        margin-bottom: 30px;
+      }
     }
     .ui-article[data-active]:before {
       opacity: 0;

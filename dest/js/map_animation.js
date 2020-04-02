@@ -120,27 +120,36 @@ $(document).ready(function() {
     .addTo(controller);
 
   // ====== TweenMax & ScrollMagic (Lostdog)
-  if ($(window).width() < 415) {
-    var controller = new ScrollMagic.Controller();
-    var lostdogDog = TweenMax.to("#lostdogDog", 5, {
-      x: -400,
-      y: 20,
-      alpha: 0.2
-    });
-    lostdogDog.delay(0.5);
-    new ScrollMagic.Scene({ triggerElement: "#trigger01" })
-      .setTween(lostdogDog)
-      // .addIndicators()
-      .addTo(controller);
-    var lostdogGirl = TweenMax.to("#lostdogGirl", 5, { x: -100 });
-    lostdogGirl.delay(0.5);
-    new ScrollMagic.Scene({
-      triggerElement: "#trigger01"
-    })
-      .setTween(lostdogGirl)
-      // .addIndicators()
-      .addTo(controller);
-  }
+  // if (winWidth < 415) {
+  //   var t2dog = new TimelineMax({
+  //     repeat: -1
+  //   });
+
+  //   t2dog.to("#map_hurryDog", 3, {
+  //     x: 50,
+  //     startAt: { x: 0 },
+  //     ease: Power0.easeIn
+  //   })
+  //     .to("#map_hurryDog", 0.5, {
+  //       rotationY: 180
+  //     })
+  //     .to("#map_hurryDog", 3, {
+  //       x: 0,
+  //       ease: Power0.easeIn
+  //     })
+  //     .to("#map_hurryDog", 0.5, {
+  //       rotationY: 0
+  //     });
+
+  //   var lostdogGirl = TweenMax.to("#lostdogGirl", 5, { x: -100 });
+  //   lostdogGirl.delay(0.5);
+  //   new ScrollMagic.Scene({
+  //     triggerElement: "#trigger01"
+  //   })
+  //     .setTween(lostdogGirl)
+  //     // .addIndicators()
+  //     .addTo(controller);
+  // }
 
   // ====== (Dog on map)
 

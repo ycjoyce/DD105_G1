@@ -162,16 +162,23 @@ body {
       height: 200px;
       .map_EN_title {
         margin-top: 50px;
-        margin-right: -27%;
+        margin-right: -30%;
         font-size: 1rem;
         text-align: center;
         color: rgba(255, 211, 115, 0.8);
+        span{
+          font-size: 1rem;
+          color: rgba(255, 211, 115, 0.8);
+        }
       }
       .map_CH_title {
         margin-top: -40px;
-        margin-right: -55%;
+        margin-right: -60%;
         text-align: center;
         font-size: 1.6rem;
+        span{
+          font-size: 1.6rem;
+        }
       }
     }
   }
@@ -1144,6 +1151,7 @@ body {
     -moz-appearance: none;
     appearance: none;
     background-image: url(../img/pawprint-01.svg);
+    background-repeat: no-repeat;
   }
 }
 
@@ -1392,7 +1400,7 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 6;
+    z-index: 20;
     animation: none;
     .lostbtnx_xl {
       display: none;
@@ -1432,7 +1440,7 @@ body {
 
   .map_container .map_filter_filter,
   .map_container .map_filter_lost {
-    padding: 20px 10% 30px;
+    padding: 20px 7% 30px;
   }
   .map_container #gmaps #googleMap .friendContent,
   .map_container #gmaps #googleMap .lostContent {
@@ -1441,6 +1449,9 @@ body {
   .map_container #gmaps #googleMap .friendContent img,
   .map_container #gmaps #googleMap .lostContent img {
     max-width: 215px;
+  }
+  .map_container #gmaps .mapDog {
+    display: none;
   }
 }
 
