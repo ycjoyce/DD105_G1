@@ -436,7 +436,7 @@
                                 <p>立即前往</p>
                                 <div>
                                     <a href="./map.html">浪浪在哪裡</a><img src="./img/pawprint-01.svg">
-                                    <a href="./post_article_region.html">毛孩交流區</a>
+                                    <a href="./post_article_region.php">毛孩交流區</a>
                                 </div>
                                 <p>開始體驗私信吧！</p>
                             </div>
@@ -526,9 +526,12 @@
                 }
             };
             btnBack.addEventListener('click',changeSide);
+            
             for(var i=0; i<res.length; i++){
+                // console.log(`${i}: ${res[i].msgText}`);
                 if(res[i].msgText || res[i].msgPic){
                     var li= document.createElement("li");
+                    ulMain.appendChild(li);
                     var myMemNo= res[i].myMemNo;
                     var sendMemNo= res[i].sendMemNo;
 
@@ -584,109 +587,107 @@
                     button.className="closeBtn";
                     button.classList.add(`No${res[i].msgNo}`);
                     divText.appendChild(button);
-                    ulMain.appendChild(li);
+                }
+            }
 
-                    //下載圖片
-                    var liImgs= document.querySelectorAll("img.msgPic");
-                    var showImgAlert= document.getElementById("showImgAlert");
-                    function browserIsIe() {
-                        if (!!window.ActiveXObject || "ActiveXObject" in window){
-                            return true;
-                        }
-                        else{
-                            return false;
-                        }
-                    }
-                    function createIframe(imgSrc) {
-                        if ($("#IframeReportImg").length === 0){
-                            $('<iframe style="display:none;" id="IframeReportImg" name="IframeReportImg" onload="downloadImg();" width="0" height="0" src="about:blank"></iframe>').appendTo("body");
-                        }
-                        if ($('#IframeReportImg').attr("src") != imgSrc) {
-                            $('#IframeReportImg').attr("src",imgSrc);
-                        } else {
-                            downloadImg();
-                        }
-                    }
-                    function downloadImg() {
-                        if ($('#IframeReportImg').src != "about:blank") {
-                            window.frames["IframeReportImg"].document.execCommand("SaveAs");
-                        }
-                    }
-                    
-                   
-                    for(var i=0; i<liImgs.length; i++){
-                        liImgs[i].onclick=function(e){
-                            showImgAlert.style.display="block";
-                            showImgAlert.querySelector("img").src=this.src;
-                            if (browserIsIe()) {
-                                var imgSrc = $(this).attr("src");
-                                createIframe(imgSrc);
-                            } else {
-                                showImgAlert.querySelector("a").href=this.src;
-                                showImgAlert.querySelector("a").download=this.split("_").pop();
-                            }
-                        }
-                    }
-                    showImgAlert.querySelector("button").onclick=function(){
-                        showImgAlert.style.display="none";
-                    }
-
-
-
-                    //刪除訊息
-                    var closeBtns= document.querySelectorAll('button.closeBtn');
-                    var deleteAlert= document.getElementById("deleteAlert");
-                    for(var i=0; i<closeBtns.length; i++){
-                        closeBtns[i].onclick=function(){
-                            deleteAlert.style.display="block";
-                            sessionStorage.setItem("delMsgNo",this.classList[1].substr(2));
-                        }
-                    }
-                    deleteAlert.querySelector('button.cancel').onclick=function(e){
-                        e.preventDefault();
-                        deleteAlert.style.display="none";
-                    }
-                    deleteAlert.querySelector('button.yes').onclick=function(e){
-                        e.preventDefault();
-                        deleteAlert.style.display="none";
-                        var xhr= new XMLHttpRequest();
-                        var url= "./php/deleteMsg.php";
-                        xhr.open("POST",url,true);
-                        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-                        var data_info=`delMsgNo=${sessionStorage.getItem("delMsgNo")}`;
-                        xhr.send(data_info);
-                        xhr.onload= function(){
-                            if(xhr.status==200){
-                                // alert("成功刪除一筆私信");
-                                if(document.querySelector("aside ul li.on")){
-                                    showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
-                                    document.querySelector("aside ul").innerHTML="";
-                                    getMsg();
-                                }
-                                
-                                //如果空了的話
-                                else{
-                                    sessionStorage.removeItem("now-on");
-                                    main.innerHTML=`<ul>
-                                    <button class="back titleFont"></button>
-                                    </ul>
-                                    <form method="POST" class="edit" enctype="multipart/form-data">
-                                        <label for="upload">
-                                            <input type="file" id="upload" name="upload" accept="image/*">
-                                        </label>
-                                        <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
-                                        <input type="submit" id="submitText" value="">
-                                    </form>`;
-                                }
-                                
-                            }else{
-                                alert(xhr.status);
-                            }
-                        }
+            //下載圖片=======================================================
+            var liImgs= document.querySelectorAll("img.msgPic");
+            var showImgAlert= document.getElementById("showImgAlert");
+            function browserIsIe() {
+                if (!!window.ActiveXObject || "ActiveXObject" in window){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            function createIframe(imgSrc) {
+                if ($("#IframeReportImg").length === 0){
+                    $('<iframe style="display:none;" id="IframeReportImg" name="IframeReportImg" onload="downloadImg();" width="0" height="0" src="about:blank"></iframe>').appendTo("body");
+                }
+                if ($('#IframeReportImg').attr("src") != imgSrc) {
+                    $('#IframeReportImg').attr("src",imgSrc);
+                } else {
+                    downloadImg();
+                }
+            }
+            function downloadImg() {
+                if ($('#IframeReportImg').src != "about:blank") {
+                    window.frames["IframeReportImg"].document.execCommand("SaveAs");
+                }
+            }
+            
+            for(var i=0; i<liImgs.length; i++){
+                liImgs[i].onclick=function(e){
+                    showImgAlert.style.display="block";
+                    showImgAlert.querySelector("img").src=this.src;
+                    if (browserIsIe()) {
+                        var imgSrc = $(this).attr("src");
+                        createIframe(imgSrc);
+                    } else {
+                        showImgAlert.querySelector("a").href=this.src;
+                        showImgAlert.querySelector("a").download=this.split("_").pop();
                     }
                 }
-                
             }
+            showImgAlert.querySelector("button").onclick=function(){
+                showImgAlert.style.display="none";
+            }//下載圖片結束===================================================
+
+            //刪除訊息=======================================================
+            var closeBtns= document.querySelectorAll('button.closeBtn');
+            var deleteAlert= document.getElementById("deleteAlert");
+            for(var i=0; i<closeBtns.length; i++){
+                closeBtns[i].onclick=function(){
+                    deleteAlert.style.display="block";
+                    sessionStorage.setItem("delMsgNo",this.classList[1].substr(2));
+                }
+            }
+            deleteAlert.querySelector('button.cancel').onclick=function(e){
+                e.preventDefault();
+                deleteAlert.style.display="none";
+            }
+            deleteAlert.querySelector('button.yes').onclick=function(e){
+                e.preventDefault();
+                deleteAlert.style.display="none";
+                var xhr= new XMLHttpRequest();
+                var url= "./php/deleteMsg.php";
+                xhr.open("POST",url,true);
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                var data_info=`delMsgNo=${sessionStorage.getItem("delMsgNo")}`;
+                xhr.send(data_info);
+                xhr.onload= function(){
+                    if(xhr.status==200){
+                        // alert("成功刪除一筆私信");
+                        if(document.querySelector("aside ul li.on")){
+                            showAllMsg(document.querySelector("aside ul li.on").classList[0].substr(2));
+                            document.querySelector("aside ul").innerHTML="";
+                            getMsg();
+                        }
+                        
+                        //如果空了的話
+                        else{
+                            sessionStorage.removeItem("now-on");
+                            main.innerHTML=`<ul>
+                            <button class="back titleFont"></button>
+                            </ul>
+                            <form method="POST" class="edit" enctype="multipart/form-data">
+                                <label for="upload">
+                                    <input type="file" id="upload" name="upload" accept="image/*">
+                                </label>
+                                <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
+                                <input type="submit" id="submitText" value="">
+                            </form>`;
+                        }
+                        
+                    }else{
+                        alert(xhr.status);
+                    }
+                }
+            }
+            //刪除訊息結束================================================
+
+
             var mainUl= document.querySelector("main ul");
             mainUl.scroll(0,mainUl.scrollHeight);
         }
@@ -704,6 +705,7 @@
                 if(xhr.status==200){
                     var res= JSON.parse(xhr.responseText);
                     showPanel(res);
+                    // console.log(res);
                 }else{
                     alert(xhr.status);
                 }

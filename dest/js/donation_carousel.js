@@ -6,6 +6,7 @@ let changeArea= document.querySelector('section.donation div.rightSide div.carou
 let timerId;
 var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
 
+
 function dogAniSize(){
     let dogAnimate= document.querySelector('section.donation div.dogAnimate');
     let upImg= dogAnimate.querySelector("img");
@@ -25,7 +26,7 @@ function leftSideCards(){
                 //project number
                 leftCards[i].querySelector("div.text span:first-child").innerText=`PROJECT ${content[i].fundNo}`;
                 //title
-                leftCards[i].querySelector("div.text h4 a").innerText=content[i].fundTitle;
+                leftCards[i].querySelector("div.text h4 a").innerText=`${content[i].fundTitle} ${content[i].fundName}`;
                 //date
                 leftCards[i].querySelector("div.text span.date").innerText=content[i].fundStartDate;
                 //目前金額
@@ -47,13 +48,14 @@ function leftSideCards(){
             alert(data);
         },
     });
+    
 }
 leftSideCards();
 
 
 
 function donationCarousel(){
-    var bigImg= document.querySelector('div.carousel_donation div.img img');
+    
     var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
     var date= document.querySelector('div.carousel_donation div.card span.date');
     var cardTitle= document.querySelector('div.carousel_donation div.card h4 a');
@@ -70,7 +72,7 @@ function donationCarousel(){
     if(Math.floor(curVal/goalVal*100)>100){
         wave.style.bottom="0%";
         wave.style.height="110%";
-        wave.style.width="10%";
+        wave.style.width="120%";
     }else{
         wave.style.bottom= Math.floor(curVal/goalVal*100)*0.8-80 +"%";
         wave.style.height="100%";
@@ -85,13 +87,6 @@ function donationCarousel(){
     complete.innerText= comVal;
     changeNum.innerText= `0${now}/03`;
 
-    // alert(`${projectNum.innerText}|${date.innerText}|${cardTitle.innerText}`);
-    // console.log(now);
-    // console.log(projectNum.innerText);
-    // console.log(date.innerText);
-    // console.log(cardTitle.innerText);
-    // console.log(goal.innerText);
-    // console.log(complete.innerText);
 
     for(let i=1; i<=3; i++){
         if(i!=now){
@@ -103,8 +98,19 @@ function donationCarousel(){
             leftCards[i-1].classList.add("on");
         }
     }
-    //換大圖
-    bigImg.src=`./img/donation/projectImg/${now}_fundImg.jpg`;
+    
+        //換大圖
+        var bigImg= document.querySelector('div.carousel_donation div.img img');
+        bigImg.src=document.querySelectorAll("div.leftSide div.card div.img img")[now-1].src;
+        
+        
+
+        //a標籤
+        var href= document.querySelectorAll("div.carousel_donation div.card a");
+        for(var j=0; j<href.length; j++){
+            href[j].href=document.querySelectorAll("div.leftSide div.card")[now-1].querySelector("a:first-child").href;
+        }
+        
 }
 
 donationCarousel();

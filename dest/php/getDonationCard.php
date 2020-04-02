@@ -1,7 +1,7 @@
 <?php
 try{
     require_once("./connectDB.php");
-    $sql="select * from `fundraising` order by (fundNowAmount / fundGoal) desc limit 0,3;";
+    $sql="select * from `fundraising` where `fundStatus` = 1 order by `fundraising`.`fundNo` desc limit 3;";
     $leftCards=$pdo->query($sql);
     
     $content=[];

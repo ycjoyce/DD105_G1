@@ -733,6 +733,9 @@ div.clickToShow {
   &.show {
     display: block;
   }
+  input{
+    width: 180px;
+  }
 }
 .memInfo {
   .note {

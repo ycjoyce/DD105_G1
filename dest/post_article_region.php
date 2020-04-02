@@ -111,7 +111,7 @@
                 <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
                     <h1>
                         <a href="./index.html">
-                            <img src="" alt="logo">  <!-- ./img/logo-wide.png -->
+                            <img src="./img/logo-wide.png" alt="logo">  <!-- ./img/logo-wide.png -->
                         </a>
                     </h1>
                     <ul class="col-xl-9 col-lg-9 col-md-9">
@@ -176,15 +176,15 @@
                                 <form id="pkkSelectorConnect" class="pkkSelector_form" action="post_article_region_select.php" method="post" enctype="multipart/form-data">
                                 <ul class="u2">
                                     <li>
-                                        <input type="checkbox" value="寵物有善空間" />寵物有善空間</li>
+                                        <input type="checkbox" value="寵物有善空間" name="petSpace"/>寵物有善空間</li>
                                     <li>
-                                        <input type="checkbox" value="日常" />日常</li>
+                                        <input type="checkbox" value="日常" name="daily"/>日常</li>
                                     <li>
-                                        <input type="checkbox" value="玩具" />玩具</li>
+                                        <input type="checkbox" value="玩具" name="toy"/>玩具</li>
                                     <li>
-                                        <input type="checkbox" value="照顧" />照顧</li>
+                                        <input type="checkbox" value="照顧" name="care"/>照顧</li>
                                     <li>
-                                        <input type="checkbox" value="可愛" />可愛</li>
+                                        <input type="checkbox" value="可愛" name="cute"/>可愛</li>
                                 </ul>
                                     <input class="pkkSelector" type="hidden" value="" name="pkkSelector" />
                                     <input class="pkkSelectorButton" type="Search" value="送出" />
@@ -217,9 +217,24 @@
                     <?php
                     try {
                         require_once('./php/connectDB.php');
-                    	$sql = "select piNo, piTitle, piContent, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset from postinfo order by piTime desc";
+                    	// $sql = "select piNo, piTitle, piContent, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset from postinfo order by piTime desc";
                         $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus from postinfo
 order by piTime desc";
+                        // $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus
+                        //         from postinfo
+                        //         where (pkkString like '%:petSpace%') and (pkkString like '%:daily%') and (pkkString like '%:toy%') and (pkkString like '%:care%') and (pkkString like '%cute%')
+                        //         order by piTime desc";
+                        // $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus
+                        //         from postinfo
+                        //         where (pkkString like '%:petSpace%') and (pkkString like '%:daily%') and (pkkString like '%:toy%') and (pkkString like '%:care%') and (pkkString like '%cute%')
+                        //         order by piTime desc";
+                        // $products = $pdo->prepare($sql);
+                        // $products->bindValue(":petSpace", $_POST["petSpace"]);
+                        // $products->bindValue(":daily", $_POST["daily"]);
+                        // $products->bindValue(":toy", $_POST["toy"]);
+                        // $products->bindValue(":care", $_POST["care"]);
+                        // $products->bindValue(":cute", $_POST["cute"]);
+                        // $products->execute();
                         $products = $pdo->query($sql);
                     	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
                     } catch (PDOException $e) {
@@ -302,11 +317,12 @@ order by piTime desc";
         <script src="./js/page_top.js"></script>
 
     </div>
+    <script src="./js/signInOut.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="./js/post_article_region.js"></script>
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
-    <script src="./js/signInOut.js"></script>
+    
     <script>
         let headerHeight= document.querySelector("div.headerHeight");
         let header= document.querySelector('nav');
