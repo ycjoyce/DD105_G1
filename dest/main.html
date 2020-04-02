@@ -273,9 +273,9 @@
                     <img src="img/donation_card_1.jpg">
                 </div>
                 <div class="card col-xl-9 col-lg-10 col-md-8 col-sm-10 col-ss-10 col-mini-10">
-                    <span class="titleFont smalltext projectNum">PROJECT 32</span>
-                    <span class="titleFont smalltext date">2020.02.01</span>
-                    <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
+                    <span class="titleFont smalltext projectNum"></span>
+                    <span class="titleFont smalltext date"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
                     <a class="btn darkgreen nav__link"  href='./donation.html'>
     <span class="titleFont">
         了解更多
@@ -288,10 +288,10 @@
 
                     <div class="showNum">
                         <div class="cur col-mini-5">
-                            <span class="titleFont peoNum">目標金額<span class="titleFont">30000</span>元</span>
+                            <span class="titleFont peoNum">目標金額<span class="titleFont"></span>元</span>
                         </div>
                         <div class="dogAnimate col-xl-8 col-lg-8 col-md-8 col-sm-8 col-ss-8 col-mini-5">
-                            <span class="titleFont">58%</span>
+                            <span class="titleFont"></span>
                             <img src="./img/percent.png">
                             <div id="wave"></div>
                         </div>
@@ -313,47 +313,47 @@
         <div class="leftSide col-xl-6 col-lg-5">
             <div class="card on first wow fadeInLeft col-xl-8" data-wow-delay=".2s">
                 <div class="col-xl-5 col-lg-5 img">
-                    <img src="img/donation_card_1.jpg">
+                    <img src="">
                 </div>
                 <div class="col-xl-7 col-lg-7 text">
-                    <span class="titleFont smalltext">PROJECT 32</span>
-                    <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
-                    <span class="titleFont smalltext date">2020.02.01</span>
+                    <span class="titleFont smalltext"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
+                    <span class="titleFont smalltext date"></span>
                     <div class="amount">
-                        <span class="smalltext titleFont now">目前金額17500元</span>
-                        <a href="#" class="titleFont goal">目標金額30000元</a>
+                        <span class="smalltext titleFont now"></span>
+                        <a href="#" class="titleFont goal"></a>
                     </div>
-                    <input type="hidden" name="cur" value="17500">
-                    <input type="hidden" name="goal" value="30000">
+                    <input type="hidden" name="cur" value="2000">
+                    <input type="hidden" name="goal" value="4000">
                 </div>
             </div>
             <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".4s">
                 <div class="col-xl-5 col-lg-5 img">
-                    <img src="img/donation_card_2.jpg">
+                    <img src="">
                 </div>
                 <div class="col-xl-7 col-lg-7 text">
-                    <span class="titleFont smalltext">PROJECT 33</span>
-                    <h4><a href="#" class="titleFont">棲息處遭破壞，短尾的可愛小橘</a></h4>
-                    <span class="titleFont smalltext date">2020.02.06</span>
+                    <span class="titleFont smalltext"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
+                    <span class="titleFont smalltext date"></span>
                     <div class="amount">
-                        <span class="smalltext titleFont now">目前金額12500元</span>
-                        <a href="#" class="titleFont goal">目標金額20000元</a>
+                        <span class="smalltext titleFont now"></span>
+                        <a href="#" class="titleFont goal"></a>
                     </div>
-                    <input type="hidden" name="cur" value="12500">
-                    <input type="hidden" name="goal" value="20000">
+                    <input type="hidden" name="cur" value="">
+                    <input type="hidden" name="goal" value="">
                 </div>
             </div>
             <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".6s">
                 <div class="col-xl-5 col-lg-5 img">
-                    <img src="img/donation_card_3.jpg">
+                    <img src="">
                 </div>
                 <div class="col-xl-7 col-lg-7 text">
-                    <span class="titleFont smalltext">PROJECT 34</span>
-                    <h4><a href="#" class="titleFont">令人心疼!被外勞用利刃從臉貫穿至嘴，天真浪浪小黃依然對人類笑開懷</a></h4>
-                    <span class="titleFont smalltext date">2020.02.08</span>
+                    <span class="titleFont smalltext"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
+                    <span class="titleFont smalltext date"></span>
                     <div class="amount">
-                        <span class="smalltext titleFont now">目前金額30500元</span>
-                        <a href="#" class="titleFont goal">目標金額40000元</a>
+                        <span class="smalltext titleFont now"></span>
+                        <a href="#" class="titleFont goal"></a>
                     </div>
                     <input type="hidden" name="cur" value="30500">
                     <input type="hidden" name="goal" value="40000">
@@ -748,10 +748,11 @@
             decimal: '.',
         }
         let demo = new CountUp(target, startVal, endVal, decimals, duration, options);
-        var nowScroll, groupToTop;
-        var windowHeight = $(window).height();
-        var group = $("section.donation");
-        $(window).scroll(function () {
+        
+        window.addEventListener("scroll",function(){
+            var nowScroll, groupToTop;
+            var windowHeight = $(window).height();
+            var group = $("section.donation");
             nowScroll = $(this).scrollTop();
             groupToTop = group.offset().top;
             if (windowHeight + nowScroll > groupToTop) {
