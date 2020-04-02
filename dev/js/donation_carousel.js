@@ -5,6 +5,7 @@ let carouselArea= document.querySelector('section.donation div.rightSide div.car
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
 let timerId;
 var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
+let content;
 
 
 function dogAniSize(){
@@ -21,7 +22,8 @@ function leftSideCards(){
         type:"GET",
         success(data){
             console.log(data);
-            var content= JSON.parse(data);
+            content= JSON.parse(data);
+            console.log(content);
             for(let i=0; i<leftCards.length; i++){
                 //project number
                 leftCards[i].querySelector("div.text span:first-child").innerText=`PROJECT ${content[i].fundNo}`;
@@ -42,6 +44,7 @@ function leftSideCards(){
                 for(var j=0; j<href.length; j++){
                     href[j].href=`./showproject.php?fundNo=${content[i].fundNo}`;
                 }
+                
             }
         },
         error(data){
@@ -51,6 +54,8 @@ function leftSideCards(){
     
 }
 leftSideCards();
+
+
 
 
 
@@ -88,15 +93,28 @@ function donationCarousel(){
     changeNum.innerText= `0${now}/03`;
 
 
+    
+    //換大圖
+    
+   
     for(let i=1; i<=3; i++){
+
+   
         if(i!=now){
             progressBar.querySelector(`span:nth-child(${i})`).classList.remove("on");
             leftCards[i-1].classList.remove("on");
+            
+             
         }
         else{
             progressBar.querySelector(`span:nth-child(${i})`).classList.add("on");
             leftCards[i-1].classList.add("on");
         }
+
+        
+        
+        
+       
     }
     
         //換大圖
