@@ -76,9 +76,11 @@ $(document).ready(function() {
       x: -300,
       startAt: { x: 200 },
       ease: Power0.easeIn
-    }).to('#map_hurryGirl', 0.5, {
-        rotationY: 0,});
-  
+    })
+    .to("#map_hurryGirl", 0.5, {
+      rotationY: 0
+    });
+
   t1.delay(1.5);
   new ScrollMagic.Scene({
     triggerElement: "#trigger02"
@@ -97,15 +99,18 @@ $(document).ready(function() {
     x: 280,
     startAt: { x: -120 },
     ease: Power0.easeIn
-    }).to("#map_hurryDog", 0.5, {
-      rotationY: 180,
-    }).to("#map_hurryDog", 3, {
+  })
+    .to("#map_hurryDog", 0.5, {
+      rotationY: 180
+    })
+    .to("#map_hurryDog", 3, {
       x: -120,
       ease: Power0.easeIn
-    }).to("#map_hurryDog", 0.5, {
+    })
+    .to("#map_hurryDog", 0.5, {
       rotationY: 0
     });
-    // t2.restart(true, false).delay(1.5);
+  // t2.restart(true, false).delay(1.5);
 
   new ScrollMagic.Scene({
     triggerElement: "#trigger02"
@@ -136,6 +141,62 @@ $(document).ready(function() {
       // .addIndicators()
       .addTo(controller);
   }
+
+  // ====== (Dog on map)
+
+  var t3 = new TimelineMax({
+    repeat: -1
+  });
+
+  t3.to(".mapDog", 2, {
+    x: -150,
+    y: -15,
+    scale: 0.8,
+    ease: Power0.easeIn
+  })
+    .to(".mapDog", 2.5, {
+      x: -300,
+      y: 15,
+      scale: 1.1,
+      ease: Power0.easeIn
+    })
+    .to(".mapDog", 2, {
+      x: -450,
+      y: 0,
+      scale: 1,
+      ease: Power0.easeIn
+    })
+    .to(".mapDog", 1, {
+      rotationY: 180
+    })
+    .to(".mapDog", 2, {
+      x: -300,
+      y: -15,
+      scale: 0.8,
+      ease: Power0.easeIn
+    })
+    .to(".mapDog", 2.5, {
+      x: -150,
+      y: 15,
+      scale: 1.1,
+      ease: Power0.easeIn
+    })
+    .to(".mapDog", 2, {
+      x: 0,
+      y: 0,
+      scale: 1,
+      ease: Power0.easeIn
+    })
+    .to(".mapDog", 1, {
+      rotationY: 0
+    });
+
+  // TweenMax.to(".mapDog", 1, {
+  //   x: -200,
+  //   rotation: 3,
+  //   repeat: -1,
+  //   rotationY: 180
+  // });
 
   // Parallax
   var mapBanner = document.querySelector(".map_banner");

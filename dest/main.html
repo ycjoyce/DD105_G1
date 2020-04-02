@@ -12,18 +12,18 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
     <script>
-        window.addEventListener("load",function(){
+        window.addEventListener("load", function () {
             play();
             dogAniSize();
-            
+
             //貼文rwd
-            if(document.body.clientWidth<=575){
-                let forumTitle= document.querySelectorAll("section.forum div.card a h4");
-                let forumText= document.querySelectorAll("section.forum div.card div.text a:last-child");
-                if(forumTitle.innerText.length>8){
-                    forumTitle.innerText= forumTitle.innerText.substr(8)+"...";
-                }else if(forumText.innerText.length>27){
-                    forumText.innerText= forumText.innerText.substr(27)+"...";
+            if (document.body.clientWidth <= 575) {
+                let forumTitle = document.querySelectorAll("section.forum div.card a h4");
+                let forumText = document.querySelectorAll("section.forum div.card div.text a:last-child");
+                if (forumTitle.innerText.length > 8) {
+                    forumTitle.innerText = forumTitle.innerText.substr(8) + "...";
+                } else if (forumText.innerText.length > 27) {
+                    forumText.innerText = forumText.innerText.substr(27) + "...";
                 }
             }
         });
@@ -94,7 +94,8 @@
                 </div>
             </div>
         </div>
-        <div class="carousel wow zoomIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11 col-mini-11" data-wow-duration="1s">
+        <div class="carousel wow zoomIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11 col-mini-11"
+            data-wow-duration="1s">
             <div class="bg parallax1">
                 <img src="./img/shabon_l.png" class="bubble" id="bubble1">
                 <img src="./img/shabon_l.png" class="bubble" id="bubble2">
@@ -115,8 +116,8 @@
 
     <section class="about">
         <h3 class="enSpecialFont" id="trigger01">About</h3>
-        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11 col-mini-11" data-wow-duration="1s"
-            data-wow-delay=".5s">
+        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11 col-mini-11"
+            data-wow-duration="1s" data-wow-delay=".5s">
             <div class="text col-xl-6 col-lg-6 col-md-7 col-sm-12 col-ss12 col-mini-12">
                 <div class="about">
                     <!-- <div id="trigger01"></div> -->
@@ -205,7 +206,7 @@
             <img src="./img/back.png">
         </button>
         <div class=" hide card wow fadeInRight" data-wow-duration="1s">
-            
+
             <h3 class="wow fadeInUp" data-wow-delay=".2s"><a href="#" class="titleFont">寵物遺失地點</a></h3>
             <p class="wow fadeInUp" data-wow-delay=".4s">
                 心愛的毛孩走丟了也別驚慌，<br>
@@ -223,9 +224,9 @@
     <div class="border"></div>
     <div class="border"></div>
 </a>
-                
+
             </div>
-                <div class="changePage">
+            <div class="changePage">
     <button class="to_left"></button>
     <span class="titleFont">01/02</span>
     <button class="to_right"></button>
@@ -250,7 +251,8 @@
 
     <section class="donation col-xl-12">
         <h3 class="enSpecialFont">Donation</h3>
-        <div class="rightSide wow fadeInRight col-xl-6 col-lg-6 col-md-11 col-sm-11 col-ss-11 col-mini-11" data-wow-duration="1s">
+        <div class="rightSide wow fadeInRight col-xl-6 col-lg-6 col-md-11 col-sm-11 col-ss-11 col-mini-11"
+            data-wow-duration="1s">
             <div class="title">
                 <div class="text">
                     <h2>愛心助浪浪</h2>
@@ -589,9 +591,9 @@
                         <h3>寵物遺失地點登記</h3>
                         <p>
                             <label for="lostPetRpLoc">寵物遺失地點</label>
-                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc" placeholder="ex. 中央大學">
                             <input type="hidden" id="memNo" name="memNo" value="">
-                            <input type="hidden" id="memName" name="memName" value="">
+                            <input type="hidden" id="lostPetRpmemName" name="lostPetRpmemName" value="">
                             <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
                             <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
                             <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
@@ -602,15 +604,15 @@
                         </p>
                         <p>
                             <label for="lostPetRpName">寵物名稱</label>
-                            <input type="text" name="lostPetRpName" id="lostPetRpName">
+                            <input type="text" name="lostPetRpName" id="lostPetRpName" placeholder="ex. 多多">
                         </p>
                         <p>
                             <label for="lostPetRpType">寵物類型</label>
-                            <input type="text" name="lostPetRpType" id="lostPetRpType">
+                            <input type="text" name="lostPetRpType" id="lostPetRpType" placeholder="ex. 柴犬">
                         </p>
                         <p>
                             <label for="lostPetRpCh">寵物特徵</label>
-                            <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                            <input type="text" name="lostPetRpCh" id="lostPetRpCh" placeholder="ex. 帶著紅色項圈">
                         </p>
                         <p>
                             <label for="lostPetRpStat">案件狀態</label>
@@ -621,14 +623,15 @@
                                 <option value="2">未找到，已結案</option>
                             </select>
                         </p>
-                        <p>
-                            <label for="">上傳寵物照片</label>
+                        <p class="imgSelect">
+                            <label for="">上傳寵物照片</label>                            
                             <label class="uploadimg_btn">
                                 <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
                                     accept="image/*">
-                                <i class="fa fa-photo"></i> 上傳圖片
-                            </label>
-                            <div id="imageShow"></div>
+                                <i class="fa fa-photo"></i> 
+                            </label>    
+                            <span id="imageShow"></span>
+                            <span class="imageText">請上傳圖片</span>                      
                         </p>
                         <div>
                             <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
@@ -731,7 +734,7 @@
         }
 
 
-        
+
 
 
         //數字跳動
@@ -813,65 +816,65 @@
         //     autoStart: true,
         //     type: 'char'
         // });     
-        
+
 
         //地圖rwd
-        var mapCardBtn= document.getElementById("mapCardBtn");
-        var mapCard= document.querySelector("section.where div.card");
-        mapCardBtn.addEventListener("click",function(){
-            if(mapCard.classList.contains("hide")){
+        var mapCardBtn = document.getElementById("mapCardBtn");
+        var mapCard = document.querySelector("section.where div.card");
+        mapCardBtn.addEventListener("click", function () {
+            if (mapCard.classList.contains("hide")) {
                 mapCardBtn.classList.remove("hide");
                 mapCard.classList.remove("hide");
-                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (!mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.add("rotate");
                 }
-            }else{
+            } else {
                 mapCardBtn.classList.add("hide");
                 mapCard.classList.add("hide");
-                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.remove("rotate");
                 }
             }
         });
-        
-        if(document.body.clientWidth>575){
-            if(mapCard.classList.contains("hide")){
+
+        if (document.body.clientWidth > 575) {
+            if (mapCard.classList.contains("hide")) {
                 mapCard.classList.remove("hide");
             }
-            if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+            if (!mapCardBtn.querySelector("img").classList.contains("rotate")) {
                 mapCardBtn.querySelector("img").classList.add("rotate");
             }
-        }else{
-            if(!mapCard.classList.contains("hide")){
+        } else {
+            if (!mapCard.classList.contains("hide")) {
                 mapCard.classList.add("hide");
             }
-            if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+            if (mapCardBtn.querySelector("img").classList.contains("rotate")) {
                 mapCardBtn.querySelector("img").classList.remove("rotate");
             }
         }
-        window.addEventListener("resize",function(){
-            if(document.body.clientWidth>575){
-                if(mapCard.classList.contains("hide")){
+        window.addEventListener("resize", function () {
+            if (document.body.clientWidth > 575) {
+                if (mapCard.classList.contains("hide")) {
                     mapCard.classList.remove("hide");
                 }
-                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (!mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.add("rotate");
                 }
-            }else{
-                if(!mapCard.classList.contains("hide")){
+            } else {
+                if (!mapCard.classList.contains("hide")) {
                     mapCard.classList.add("hide");
                 }
-                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.remove("rotate");
                 }
             }
         });
-    
-    
-        
+
+
+
     </script>
 
-    <!-- 燈箱JS -->    
+    <!-- 燈箱JS -->
     <script src="./js/modernizr.custom.js"></script>
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
