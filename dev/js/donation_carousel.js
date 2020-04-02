@@ -5,6 +5,7 @@ let carouselArea= document.querySelector('section.donation div.rightSide div.car
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
 let timerId;
 var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
+let content;
 
 function dogAniSize(){
     let dogAnimate= document.querySelector('section.donation div.dogAnimate');
@@ -20,7 +21,8 @@ function leftSideCards(){
         type:"GET",
         success(data){
             console.log(data);
-            var content= JSON.parse(data);
+            content= JSON.parse(data);
+            console.log(content);
             for(let i=0; i<leftCards.length; i++){
                 //project number
                 leftCards[i].querySelector("div.text span:first-child").innerText=`PROJECT ${content[i].fundNo}`;
@@ -41,6 +43,7 @@ function leftSideCards(){
                 for(var j=0; j<href.length; j++){
                     href[j].href=`./showproject.php?fundNo=${content[i].fundNo}`;
                 }
+                
             }
         },
         error(data){
@@ -52,7 +55,10 @@ leftSideCards();
 
 
 
+
+
 function donationCarousel(){
+  
     var bigImg= document.querySelector('div.carousel_donation div.img img');
     var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
     var date= document.querySelector('div.carousel_donation div.card span.date');
@@ -93,18 +99,68 @@ function donationCarousel(){
     // console.log(goal.innerText);
     // console.log(complete.innerText);
 
+    
+    //換大圖
+    
+   
     for(let i=1; i<=3; i++){
+
+   
         if(i!=now){
             progressBar.querySelector(`span:nth-child(${i})`).classList.remove("on");
             leftCards[i-1].classList.remove("on");
+            
+             
         }
         else{
             progressBar.querySelector(`span:nth-child(${i})`).classList.add("on");
             leftCards[i-1].classList.add("on");
         }
+
+        
+        
+        
+       
     }
-    //換大圖
-    bigImg.src=`./img/donation/projectImg/${now}_fundImg.jpg`;
+
+    
+
+    // bigImg.src=`./img/donation/projectImg/${content}_fundImg.jpg`; 
+
+
+    
+
+    
+    
+    
+
+    $.ajax({
+        url:"./php/getDonationCard.php",
+        type:"GET",
+        success(funddata){
+            // console.log(funddata);
+            var funddata= JSON.parse(funddata);
+            
+            for(var k=0; k<=2; k++){
+                bigImg.src=`./img/donation/projectImg/${content[now-1].fundNo}_fundImg.jpg`;
+                
+                
+                console.log(k);
+                // console.log(funddata[k].fundNo);
+                
+        
+            }
+           
+
+            
+            
+        }
+
+    });
+
+    // bigImg.src=`./img/donation/projectImg/${now}_fundImg.jpg`;
+    console.log(content);
+    
 }
 
 donationCarousel();
