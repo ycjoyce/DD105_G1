@@ -452,7 +452,7 @@
 
       // 新增友善空間
       var friendlyPic = document.getElementById("friendlyPic");
-      var friendlyTypeNo=$("#friendlyTypeNo option:selected")
+      var friendlyTypeNo = $("#friendlyTypeNo option:selected")
 
       $("#newfriendlybtn").click(function (e) {
         e.preventDefault();
@@ -482,6 +482,7 @@
             if (data.indexOf("成功") != -1) {
               alert("新增成功");
               $("#friendlyNo,#friendlyName,#friendlyTypeNo,#friendlyLocNo,#friendlyTel,#friendlyAdd, #friendlyAddress,#friendlylat,#friendlylng, #friendlyIntro_1, #friendlyIntro_2, #friendlyIntro_3,#friendlyIntro_4").val("");
+              getfriendly()
             }
             else {
               alert("新增失敗");

@@ -14,9 +14,15 @@ function checkPage(){
         document.getElementById("navMap").classList.add("active");
     }else if(location.pathname.split("/").pop()=="donation.html"){
         document.getElementById("navDonate").classList.add("active");
+    }else if(location.pathname.split("/").pop()=="raisedonation.html"){
+        document.getElementById("navDonate").classList.add("active");
+    }else if(location.pathname.match("showproject.php")){
+        document.getElementById("navDonate").classList.add("active");
     }else if(location.pathname.split("/").pop()=="customized.html"){
         document.getElementById("navCus").classList.add("active");
-    }else if(location.pathname.split("/").pop()=="post_article_region.html"){
+    }else if(location.pathname.split("/").pop()=="post_article_region.php"){
+        document.getElementById("navPost").classList.add("active");
+    }else if(location.pathname.match("post_content.php")){
         document.getElementById("navPost").classList.add("active");
     }else if(location.pathname.split("/").pop()=="aboutus.html"){
         document.getElementById("navAbout").classList.add("active");

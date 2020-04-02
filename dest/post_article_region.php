@@ -317,11 +317,12 @@ order by piTime desc";
         <script src="./js/page_top.js"></script>
 
     </div>
+    <script src="./js/signInOut.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="./js/post_article_region.js"></script>
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
-    <script src="./js/signInOut.js"></script>
+    
     <script>
         let headerHeight= document.querySelector("div.headerHeight");
         let header= document.querySelector('nav');

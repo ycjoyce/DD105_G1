@@ -105,7 +105,7 @@ section{
                     left: -50px;
                 }
                 @include rwd(mini){
-                    left: -10px;
+                    left: -25px;
                 }
             }
             label{
@@ -156,7 +156,12 @@ section{
                         }
                         @include rwd(mini){
                             margin-right: 10px;
-                            top: 12px;
+                            display: block;
+                        }
+                        &:last-child{
+                            @include rwd(mini){
+                                margin-top: 10px;
+                            }
                         }
                         &::after{
                             content: '';
@@ -282,6 +287,7 @@ section{
             }
             @include rwd(mini){
                 width: 90%;
+                padding: 30px;
             }
             @include rwd(sm){
                 width: 70%;
