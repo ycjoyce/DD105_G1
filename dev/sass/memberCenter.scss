@@ -509,7 +509,7 @@ label.uploadimgbtn {
         overflow: hidden;
         width: calc(100% - 155px);
         height: 150px;
-        background-size: contain;
+        background-size: cover;
         background-position: top center;
         background-repeat: no-repeat;
         background-image: url(../img/map_icon_upload.gif);
@@ -528,8 +528,10 @@ label.uploadimgbtn {
         left: 155px;
         top: 78%;
         transition: 1s;
-        color: gray;
+        color: $gray;
+        text-shadow: 1px 1px 10px white;
         opacity: 0;
+        font-weight: 600;
       }
     }
     label {
@@ -552,7 +554,6 @@ label.uploadimgbtn {
       font-weight: 400;
       letter-spacing: 0.05rem;
       font-size: 0.95rem;
-      color: #414040;
       border: none;
       border-radius: 5px;
       padding: 4px 5px;
@@ -729,7 +730,7 @@ label.uploadimgbtn {
     #lostform {
       max-width: 300px;
       input[type="date"] {
-        width: 240px;
+        width: 250px;
       }
       .uploadimg_btn {
         margin-bottom: 10px;

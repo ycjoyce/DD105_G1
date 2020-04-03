@@ -166,7 +166,7 @@ body {
         font-size: 1rem;
         text-align: center;
         color: rgba(255, 211, 115, 0.8);
-        span{
+        span {
           font-size: 1rem;
           color: rgba(255, 211, 115, 0.8);
         }
@@ -176,7 +176,7 @@ body {
         margin-right: -60%;
         text-align: center;
         font-size: 1.6rem;
-        span{
+        span {
           font-size: 1.6rem;
         }
       }
@@ -829,7 +829,7 @@ body {
       //   color: #414040;
       //   font-size: 0.95rem;
       //   text-align: center;
-      // }      
+      // }
     }
   }
 
@@ -1051,15 +1051,22 @@ body {
   margin-bottom: 40px;
 }
 
-.map_container h3 label {
-  color: $darkgreen;
-  font-size: 1.2rem;
-  img{
-    height: 23px;
-    width: 23px;
-    transform: rotate(-30deg);
-    margin-right: 12px;
-    opacity: 0;
+.map_container {
+  h3 {
+    label {
+      color: $darkgreen;
+      font-size: 1.2rem;
+      img {
+        height: 23px;
+        width: 23px;
+        transform: rotate(-30deg);
+        margin-right: 12px;
+        opacity: 0;
+      }
+    }
+  }
+  h3:nth-child(1) label img {
+    opacity: 1;
   }
 }
 
@@ -1188,9 +1195,9 @@ body {
         position: relative;
         max-width: 300px;
         background-color: rgba(255, 255, 255, 0.7);
-        text-align: center;
+        // text-align: center;
         img {
-          max-width: 290px;
+          width: 300px;
         }
         .cardContentIcon {
           max-width: 30px;
@@ -1453,6 +1460,10 @@ body {
   .map_container #gmaps .mapDog {
     display: none;
   }
+
+  .map_container h3:nth-child(1) label img {
+    opacity: 0;
+}
 }
 
 @include rwd(mini) {
