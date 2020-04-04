@@ -364,6 +364,7 @@
                         changeUnRead(this.classList[0].substr(2));
                         this.classList.add("on");
                         sessionStorage.setItem("now-on",this.classList[0].substr(2));
+
                         $("aside ul li").not(this).removeClass("on");
                         if(this.classList.contains("unRead")){ 
                             this.querySelector("div.text p").removeChild(this.querySelector("div.text p span"));
@@ -371,7 +372,11 @@
                         }
                         showTotalUnread();
                         document.getElementById("upload").disabled=false;
-                        
+                        if(document.getElementById("inputText").value==""){
+                            submitText.disabled=true;
+                        }else{
+                            submitText.disabled=false;
+                        }
                         document.getElementById("inputText").addEventListener("input",function(){
                             if(document.getElementById("inputText").value==""){
                                 submitText.disabled=true;
@@ -507,8 +512,7 @@
                                 <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
                                 <input type="submit" id="submitText" value="">
                             </form>`;
-                            document.getElementById("inputText").disabled=true;
-                            document.getElementById("submitText").disabled=true;
+                            
 
                             document.querySelector("aside ul").innerHTML="";
                             getMsg();
@@ -516,7 +520,7 @@
                                 document.querySelector("aside ul li.on").className.remove("on");
                             }
                             sessionStorage.removeItem("now-on");
-                            
+
                         }else{  
                             alert("設定失敗，請再試一次");
                         }
@@ -566,9 +570,7 @@
                     }
                     if(!res[i].msgPic){
                         var p= document.createElement("p");
-                        var pText= res[i].msgText;
-                        var pNode= document.createTextNode(pText);
-                        p.appendChild(pNode);
+                        p.innerHTML= res[i].msgText;
                         divText.appendChild(p);
                     }else{
                         var img= document.createElement("img");
@@ -678,6 +680,7 @@
                                 <input type="text" id="inputText" name="inputText" placeholder="請輸入私信內容">
                                 <input type="submit" id="submitText" value="">
                             </form>`;
+                            
                         }
                         
                     }else{
@@ -705,13 +708,14 @@
                 if(xhr.status==200){
                     var res= JSON.parse(xhr.responseText);
                     showPanel(res);
-                    // console.log(res);
+
                 }else{
                     alert(xhr.status);
                 }
             };
         }
 
+       
 
 
     </script>
