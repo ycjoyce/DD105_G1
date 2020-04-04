@@ -118,7 +118,7 @@ $color_orange: #FA8B00;
 $color_grey: #f3f3f1;
 $color_blue: rgb(143, 200, 206);
 $color_dark_blue: rgb(92, 157, 177);
-$color_pink: rgb(229, 149, 181);
+$color_pink: rgb(228, 168, 193);
 $color_yellow: #FFE18D;
 $color_dark_yellow: #FFDA71;
 $color_dark_grey: #4F4C4B;
@@ -638,9 +638,9 @@ img.mobile{
   cursor: pointer;
   
   &:hover{
-    .heartbtn{
-      bottom: 10px;
-    }
+    // .heartbtn{
+    //   bottom: 10px;
+    // }
     .donationpic{
       transform: scale(1.13);
     }
@@ -691,40 +691,40 @@ img.mobile{
     
   }
   
-  .heartbtn{
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    position: absolute;
-    left: $padding_class;
-    bottom: -50px;
-    background-color: #EE7785;
-    box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
-    cursor: pointer;
-    transition: .3s;
+//   .heartbtn{
+//     width: 42px;
+//     height: 42px;
+//     border-radius: 50%;
+//     position: absolute;
+//     left: $padding_class;
+//     bottom: -50px;
+//     background-color: #EE7785;
+//     box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+//     cursor: pointer;
+//     transition: .3s;
     
-    &:hover{
-      background-color: white;
-      i{
-        color: #EE7785;
+//     &:hover{
+//       background-color: white;
+//       i{
+//         color: #EE7785;
         
-      }
+//       }
       
-    }
+//     }
     
-    i{
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      font-size: $size_icon;
-      color: white;
+//     i{
+//       position: absolute;
+//       left: 50%;
+//       top: 50%;
+//       transform: translate(-50%,-50%);
+//       font-size: $size_icon;
+//       color: white;
       
-    }
+//     }
     
    
 
-  }
+//   }
   
 
 }
@@ -805,13 +805,29 @@ img.mobile{
   
 }
 
-// #app3{
-//     .tag{
-//         background-color: $color_pink;
+#app2{
+    .tag, .bottombar,.valuebar{
+        background-color: $color_pink;
       
-//       }
+    }
+    .orange{
+        color: $color_pink;
+    }
 
-// }
+
+}
+
+#app3{
+    .tag, .bottombar,.valuebar{
+        background-color: #aad38f;
+      
+    }
+    .orange{
+        color: #aad38f;
+    }
+
+
+}
 
 //=======================================================浪愛回家從我開始
 .col-12.fromme{

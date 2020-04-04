@@ -668,9 +668,9 @@ form{
   
     
     &:hover{
-      .heartbtn{
-        bottom: 10px;
-      }
+    //   .heartbtn{
+    //     bottom: 10px;
+    //   }
       .donationpic{
         transform: scale(1.13);
       }
@@ -688,7 +688,7 @@ form{
       border-radius: 50%;
       background-size: cover;
       border: solid 2px white;
-      z-index: 100;
+      z-index: 5;
     }
     
   

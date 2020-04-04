@@ -7,9 +7,12 @@
     <title>浪愛回家 | 愛心助浪浪 | 發起募款</title>
     <link rel="stylesheet" href="./css/raisedonation.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
+
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <!-- 頁籤標題 -->
     @@include('./layout/head.html',{
         "title": "浪愛回家 | 愛心助浪浪 | 發起募款"
@@ -61,33 +64,33 @@
     <div class="col-12 step">
         <div class="col-8 stepcontent">
             <div class="col-12 title">
-                <h2>浪愛回家 從我開始</h2>
+                <h2 class="wow fadeInDown">浪愛回家 從我開始</h2>
                 <div class="article">
-                    <p>幫助流浪動物其實很簡單，</p>
-                    <p>有愛，任何人都能為浪浪盡一份心力。</p>
-                    <p>我們的一點心意，能為浪浪帶來曙光。</p>
+                    <p class="wow fadeInDown">幫助流浪動物其實很簡單，</p>
+                    <p class="wow fadeInDown">有愛，任何人都能為浪浪盡一份心力。</p>
+                    <p class="wow fadeInDown">我們的一點心意，能為浪浪帶來曙光。</p>
                 </div>
             </div>
             <div class="col-12 steps">
-                <div class="first_step wow fadeInDown">
-                    <h1>01</h1>
-                    <h2>STEP</h2>
-                    <p>填寫表單</p>
+                <div class="first_step wow fadeInLeft">
+                    <h1 class="wow fadeInLeft">01</h1>
+                    <h2 class="wow fadeInLeft">STEP</h2>
+                    <p class="wow fadeInLeft">填寫表單</p>
                 </div>
-                <div class="second_step wow fadeInDown">
-                    <h1>02</h1>
-                    <h2>STEP</h2>
-                    <p>內容確認</p>
+                <div class="second_step wow fadeInLeft">
+                    <h1 class="wow fadeInLeft">02</h1>
+                    <h2 class="wow fadeInLeft">STEP</h2>
+                    <p class="wow fadeInLeft">內容確認</p>
                 </div>
-                <div class="third_step wow fadeInDown">
-                    <h1>03</h1>
-                    <h2>STEP</h2>
-                    <p>確認發起募款</p>
+                <div class="third_step wow fadeInLeft">
+                    <h1 class="wow fadeInLeft">03</h1>
+                    <h2 class="wow fadeInLeft">STEP</h2>
+                    <p class="wow fadeInLeft">確認發起募款</p>
                 </div>
-                <div class="forth_step wow fadeInDown">
-                    <h1>04</h1>
-                    <h2>STEP</h2>
-                    <p>專案上線</p>
+                <div class="forth_step wow fadeInLeft">
+                    <h1 class="wow fadeInLeft">04</h1>
+                    <h2 class="wow fadeInLeft">STEP</h2>
+                    <p class="wow fadeInLeft">專案上線</p>
                 </div>
                 <!-- <div class="complete wow fadeInDown">
                     <h3>專案上線</h3>
@@ -105,22 +108,22 @@
                 <!---------------- 卡片填寫 ---------------->
                 <div class="stepone">
                     <div class="cardfill">
-                        <div class="title">
+                        <div class="title wow fadeInDown">
                             <label>專案標題</label>
                             <span> 9字以內</span>
                         </div>
                         <input name="fundTitle" v-model="title" id="fundTitle" maxlength="9">
-                        <div class="name">
+                        <div class="name wow fadeInDown">
                             <label>毛孩名稱</label>
                             <span> 9字以內</span>
                         </div>
                         <input name="fundName" v-model="name" id="fundName"  maxlength="9">
                         <!---------------- 專案目標和開始日期 ---------------->
-                        <div class="fundGoal">
+                        <div class="fundGoal wow fadeInDown">
                             <label>目標金額</label>
                             <span>2萬以內</span>
                         </div>
-                        <div class="select">
+                        <div class="select wow fadeInDown">
                             <select v-model="goal" class="select" name="fundGoal" id="fundGoal">
                                 <option value="-1" selected>選擇金額</option>
                                 <option >1000</option>
@@ -145,7 +148,7 @@
                                 <option>20000</option>
                             </select>
                         </div>
-                        <div class="coverimgbox">
+                        <div class="coverimgbox wow fadeInDown">
                             <div class="coverimg"><i class="far fa-image"></i>上傳封面照片
                                 <input type='file' class="upl" name="upFile">
                             </div>
@@ -155,7 +158,7 @@
                     
                     <!---------------- 卡片顯示區塊 ---------------->
                     <div id="app2">
-                        <div class="donationcardbox">
+                        <div class="donationcardbox wow fadeInDown">
                             <div class="raiser" style="background-image:url(./img/donation/logo.jpg)"></div>
                             <div class="top">
                                 <div class="donationpic preview" style="background-image:url(./img/donation/watercolorbg.png)"><img class="preview" style="max-width: 400px; max-height: 620px;">
@@ -186,11 +189,11 @@
                 </div>
                 <!---------------- 專案詳細內容排版 ---------------->
                 <div class="detailbox">
-                    <div class="articletitlebox">
+                    <div class="articletitlebox wow fadeInDown">
                         <h3>{{title}}</h3>
                         <h3>{{name}}</h3>
                     </div>
-                    <div class="imgboxrow">
+                    <div class="imgboxrow wow fadeInDown">
                         <div class="imgbox">
                             <label id="img_upload">
                                 <input type="file" name="upFile1" onchange="img_load(this);"/>
@@ -210,17 +213,17 @@
                             </label>
                         </div>
                     </div>
-                    <div class="firstarticlerow">
+                    <div class="firstarticlerow wow fadeInDown">
                         <label>毛孩介紹</label>
                         <span> 180字以內</span>
                     </div>
                     <textarea class="firstarticlerow" name="fundArticleF" id="fundArticleF" v-model="firstarticlerow" maxlength="180"></textarea>
-                    <div class="secondarticlerow">
+                    <div class="secondarticlerow wow fadeInDown">
                         <label>募款目的</label>
                         <span> 180字以內</span>
                     </div>
                     <textarea class="secondarticlerow" name="fundArticleS" id="fundArticleS" v-model="secondarticlerow" maxlength="180"></textarea>
-                    <div class="thirdarticlerow">
+                    <div class="thirdarticlerow wow fadeInDown">
                         <label>拉票文宣</label>
                         <span> 180字以內</span>
                     </div>
@@ -323,6 +326,9 @@
                 }
             }
         document.getElementById("submitbtn").addEventListener("click", checkLoginStatus);
+</script>
+<script>
+    new WOW().init();
 </script>
 </body>
 
