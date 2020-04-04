@@ -306,7 +306,7 @@
     overflow: hidden;
     width: calc(100% - 155px);
     height: 150px;
-    background-size: contain;
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
     background-image: url(../img/map_icon_upload.gif);
@@ -314,7 +314,7 @@
     pointer-events: none;
     background-color: white;
   }
-  .imageText{
+  .imageText {
     display: inline-block;
     text-align: center;
     width: calc(100% - 155px);
@@ -324,7 +324,8 @@
     left: 155px;
     top: 78%;
     transition: 1s;
-    color: rgb(170, 170, 170);
+    color: $gray;
+    text-shadow: 0 0 10px white;
     opacity: 0;
   }
 
@@ -478,8 +479,28 @@
         margin-bottom: 15px;
       }
     }
+    .imgSelect{
+      padding-bottom: 40px;
+    }
     .uploadimg_btn {
       margin-bottom: 15px;
+      height: 28px;
+      line-height: 28px;
+      vertical-align: top;
+      font-family: "Noto Sans TC", sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.05rem;
+      font-size: 0.95rem;
+      color: #fff;
+      background-color: $gray;
+      text-align: center;
+      margin-bottom: 30px;
+      top: 30px;
+      left: 0;
+      border-radius: 5px;
+    }
+    .imageText {
+      display: none;
     }
   }
   #lostform #imageShow {

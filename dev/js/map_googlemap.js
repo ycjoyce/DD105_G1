@@ -371,7 +371,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li><a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img src="./img/icon_private_message.svg"> 主人：<img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}</a></li>
       </ul>
     </div>
   `;
