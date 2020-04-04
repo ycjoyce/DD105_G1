@@ -102,7 +102,7 @@
     </div>
 <!---------------- 發起募款表單 ---------------->
     <div class="formbox col-12">
-        <form action="./php/projectinsert.php" id="raisedonationform" method="post" enctype="multipart/form-data" class="col-8">
+        <form action="./php/projectinsert.php" id="raisedonationform" name="raisedonationform" method="post" enctype="multipart/form-data" class="col-8" >
             <div id="app">
                 <!---------------- 卡片填寫 ---------------->
                 <div class="stepone">
@@ -124,7 +124,8 @@
                         </div>
                         <div class="select">
                             <select v-model="goal" class="select" name="fundGoal" id="fundGoal">
-                                <option selected>1000</option>
+                                <option value="-1" selected>選擇金額</option>
+                                <option >1000</option>
                                 <option>2000</option>
                                 <option>3000</option>
                                 <option>4000</option>
@@ -215,17 +216,17 @@
                         <label>毛孩介紹</label>
                         <span> 180字以內</span>
                     </div>
-                    <textarea class="firstarticlerow" v-model="firstarticlerow" maxlength="180"></textarea>
+                    <textarea class="firstarticlerow" name="fundArticleF" id="fundArticleF" v-model="firstarticlerow" maxlength="180"></textarea>
                     <div class="secondarticlerow">
                         <label>募款目的</label>
                         <span> 180字以內</span>
                     </div>
-                    <textarea class="secondarticlerow" v-model="secondarticlerow" maxlength="180"></textarea>
+                    <textarea class="secondarticlerow" name="fundArticleS" id="fundArticleS" v-model="secondarticlerow" maxlength="180"></textarea>
                     <div class="thirdarticlerow">
                         <label>拉票文宣</label>
                         <span> 180字以內</span>
                     </div>
-                    <textarea class="thirdarticlerow" v-model="thirdarticlerow" maxlength="180"></textarea>
+                    <textarea class="thirdarticlerow" name="fundArticleT" id="fundArticleT" v-model="thirdarticlerow" maxlength="180"></textarea>
                     <input type="hidden" name="memPoint" id="memPoint" value="300">
                     <div class="gosubmit">
                         <div class="steptwobtn">
@@ -316,10 +317,10 @@
                             alert('請先登入');
                             window.location = './raisedonation.html';
                         }else{
-                            alert('成功發起募款 獲得紅利點數300');
-                            window.location = './raisedonation.html';
+                            //  alert('成功發起募款 獲得紅利點數300');
+                             window.location = './raisedonation.html';
 
-                        }
+                         }
                     }
                 }
             }
