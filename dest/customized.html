@@ -438,7 +438,7 @@
 
                                                 $('.unlock').click(function() {
                                                     let point = parseInt($(this).attr('point'));
-                                                    let nowPoint = parseInt($('#showPoint').text());
+                                                    let nowPoint = parseInt(member.memPoint);
                                                     let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
                                                     if (result) {
                                                         if (nowPoint >= point) {
@@ -457,7 +457,7 @@
                                                             member.memTagNo = document.getElementById('memTagNo').innerText;
                                                             lockTagNo();
                                                         } else {
-                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點`);
+                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點\n\n可以去討論區發起貼文或是募款區發起募款賺取點數哦`);
                                                         }
                                                     } else {
                                                         return;
