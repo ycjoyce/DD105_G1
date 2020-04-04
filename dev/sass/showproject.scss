@@ -445,9 +445,9 @@ button[type=submit].fakeformbtn{
   
   
   &:hover{
-    .heartbtn{
-      bottom: 10px;
-    }
+    // .heartbtn{
+    //   bottom: 10px;
+    // }
     .donationpic{
       transform: scale(1.13);
     }
@@ -1255,6 +1255,7 @@ close Button
 .projectcontentbox.col-8{
 
   @include small-pad-width{
+    width: 90%;
 
     .imgchange{
       flex-direction: column-reverse;
@@ -1267,8 +1268,7 @@ close Button
           flex-wrap: wrap;
           margin-top: 5px;
           img{
-            width: 45%;
-            margin: 5px;
+            width: 80px;
 
           }
           
@@ -1277,14 +1277,22 @@ close Button
 
       .status{
         width: 100%;
+        .shortcontent{
 
-        .titlename{
+          h2{
+            margin-bottom: 10px;
+          }
+          .titlename{
 
-          h3:nth-child(2){
-            margin-left: 0px;
+            h3:nth-child(2){
+              margin-left: 5px;
+            }
+  
           }
 
         }
+
+        
       }
     }
       
@@ -1301,7 +1309,7 @@ close Button
     margin-top: 20px;
       .artcontentbox{
         padding: 20px;
-        width: 90%;
+        width: 100%;
 
         .titleimg{
           margin-top: -70px;
@@ -1383,6 +1391,18 @@ close Button
     
   }
 
+}
+
+.newprojectrow.col-8{
+
+  @include small-pad-width{
+    width: 80%;
+    .donationcardbox{
+      h3{
+        font-size: 20px;
+      }
+    }
+  }
 }
 
 

@@ -1531,7 +1531,7 @@ header.header-navigation {
               background-image: url("../img/message_mem_1.jpg");
               background-size: cover;
               background-repeat: no-repeat;
-              background-position: right center;
+              background-position: center center;
               display: inline-block;
               padding: 0;
               margin-right: 20px; }

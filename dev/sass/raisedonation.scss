@@ -290,7 +290,7 @@ body{
 
                 h1{
                     // letter-spacing: 10px;
-                    border: 1px solid salmon;
+                    // border: 1px solid salmon;
                     color: #76912E;
                     
 
@@ -300,6 +300,7 @@ body{
                 h2{
                     text-align: center;
                     color: #76912E;
+                    // border: 1px solid salmon;
                 }
 
                 p{
@@ -314,11 +315,11 @@ body{
 
             .first_step{
                 background-image: url(../img/donation/big_green_bubble.png);
-                background-size: contain;
+                background-size: cover;
                 background-repeat: no-repeat;
                 animation: 4000ms greenbubbleAnimation infinite;
                 animation-delay:1s;
-                width: 80%;
+                max-width: 200px;
 
                 @keyframes greenbubbleAnimation {
                     0% { transform:translateY(0px);}
@@ -336,7 +337,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 6000ms bluebubbleAnimation infinite;
                 animation-delay:3s;
-                width: 80%;
+                max-width: 200px;
 
                 @keyframes bluebubbleAnimation {
                     0% { transform:translateY(2px);}
@@ -357,7 +358,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 8000ms yellowbubbleAnimation infinite;
                 animation-delay:1s;
-                width: 80%;
+                max-width: 200px;
 
                 @keyframes yellowbubbleAnimation {
                     0% { transform:translateY(0px);} 
@@ -378,7 +379,7 @@ body{
                 background-repeat: no-repeat;
                 animation: 5000ms pinkbubbleAnimation infinite;
                 animation-delay:2s;
-                width: 80%;
+                max-width: 200px;
 
                 @keyframes pinkbubbleAnimation {
                     0% { transform:translateY(0px);}
@@ -667,9 +668,9 @@ form{
   
     
     &:hover{
-      .heartbtn{
-        bottom: 10px;
-      }
+    //   .heartbtn{
+    //     bottom: 10px;
+    //   }
       .donationpic{
         transform: scale(1.13);
       }
@@ -687,7 +688,7 @@ form{
       border-radius: 50%;
       background-size: cover;
       border: solid 2px white;
-      z-index: 100;
+      z-index: 5;
     }
     
   
@@ -1000,160 +1001,372 @@ form{
 
 
 //rwd 767~375px==============================
+.col-10.topimg{
 
-.col-12.step{
 
     @include small-pad-width{
-        display: none;
+        width: 100%;
+
+        .greenbubble{
+            right: -40%;
+        }
+        .bluebubble{
+            right: -10%;
+            width: 30%;
+            top: 40%;
+        }
+        .littleyellowbubble{
+            bottom: 25%;
+            width: 36%;
+            top: 40%;
+        }
+
+
     }
+
 
 }
 
 
-#raisedonationform{
+.col-12.step{
 
     @include small-pad-width{
 
+        .col-8.stepcontent {
+            width: 90%;
+            .col-12.title{
 
-            .stepone{
-                display: flex;
-                flex-direction: column;
-
-                .cardfill{
-                    width: 100%;
+                h2{
+                    font-size: 24px;
                 }
 
-                .coverimgbox{
+            }
+           
+
+            .col-12.steps{
+                display: none;
+    
+            }
+        }
+
+        
+        
+
+        
+    }
+
+}
+
+.formbox{
+
+    @include small-pad-width{
+        margin-top: 0px;
+
+        form.col-8{
+            width: 90%;
+            margin: 50 auto;
+
+            #app{
+                padding: 0px;
+                padding-bottom: 30px;
+                .stepone{
                     display: flex;
                     flex-direction: column;
-                    .coverimg{
-                        display: block;
-                        text-align: center;
-                    }
-                    p{
-                        position: static;
-                        margin-top: 10px;
+                    .cardfill{
+                        width: 90%;
+                        margin-top: 0px;
+                        .coverimgbox{
+                            display: flex;
+                            flex-direction: column;
+                            .coverimg{
+                                display: block;
+                                text-align: center;
+                            }
+                            p{
+                                position: static;
+                                margin-top: 10px;
+                            }
+        
+                        }
                     }
                     
-                }
-                #app2{
-                    width: 100%;
-                    padding-left: 0;
-                    margin-top: 0px;
-                    margin-bottom: 10px;
-                }
-                
-            }
-
-            .detailbox{
-
-                .imgboxrow{
-                    flex-direction: column;
-
-                    .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                    #app2{
                         width: 100%;
-                    }
-                }
-                .gosubmit{
-                    flex-direction: column;
-                    margin-top: 20px;
-
-                    .steptwobtn{
-                        margin-right: 0px;;
-                        margin-bottom: 20px;
-                    }
-                    button[type=submit].su{
-                        margin-left: 0px;
+                        padding-left: 0;
+                        margin-top: 0px;
+                        margin-bottom: 10px;
+                        h3{
+                            font-size: 20px;
+                        }
                     }
                 }
 
+                .detailbox{
+                        h3{
+                            font-size: 20px;
+                        }
+
+                        .imgboxrow{
+                            flex-direction: column;
+                            margin-top: 0px;
+        
+                            .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                                width: 100%;
+                            }
+                        }
+                        .gosubmit{
+                            flex-direction: column;
+                            margin-top: 20px;
+        
+                            .steptwobtn{
+                                margin-right: 0px;;
+                                margin-bottom: 20px;
+                            }
+                            button[type=submit].su{
+                                margin-left: 0px;
+                            }
+                        }
+        
+                    }
             }
-
-
-
-
+        }
     }
+
+}
+
+.form{
+
+    @include small-pad-width{
+            margin: 50 auto;
+
+        }
+    
 
 }
 
 
 
 //rwd 374px==============================
+.col-10.topimg{
+
+
+    @include phone-width{
+        width: 100%;
+
+        .greenbubble{
+            right: -40%;
+        }
+        .bluebubble{
+            right: -10%;
+            width: 30%;
+            top: 40%;
+        }
+        .littleyellowbubble{
+            bottom: 25%;
+            width: 36%;
+            top: 40%;
+        }
+
+
+    }
+
+
+}
+
 
 .col-12.step{
 
     @include phone-width{
-        display: none;
+
+        .col-8.stepcontent {
+            width: 90%;
+            .col-12.title{
+
+                h2{
+                    font-size: 24px;
+                }
+
+            }
+           
+
+            .col-12.steps{
+                display: none;
+    
+            }
+        }
+
+        
+        
+
+        
     }
 
 }
 
-
-#raisedonationform{
+.formbox{
 
     @include phone-width{
+        margin-top: 0px;
 
+        form.col-8{
+            width: 90%;
+            margin: 50 auto;
 
-            .stepone{
-                display: flex;
-                flex-direction: column;
-
-                .cardfill{
-                    width: 100%;
-                }
-
-                .coverimgbox{
+            #app{
+                padding: 0px;
+                padding-bottom: 30px;
+                .stepone{
                     display: flex;
                     flex-direction: column;
-                    .coverimg{
-                        display: block;
-                        text-align: center;
-                    }
-                    p{
-                        position: static;
-                        margin-top: 10px;
+                    .cardfill{
+                        width: 90%;
+                        margin-top: 0px;
+                        .coverimgbox{
+                            display: flex;
+                            flex-direction: column;
+                            .coverimg{
+                                display: block;
+                                text-align: center;
+                            }
+                            p{
+                                position: static;
+                                margin-top: 10px;
+                            }
+        
+                        }
                     }
                     
-                }
-                #app2{
-                    width: 100%;
-                    padding-left: 0;
-                    margin-top: 0px;
-                    margin-bottom: 10px;
-                }
-                
-            }
-
-            .detailbox{
-
-                .imgboxrow{
-                    flex-direction: column;
-
-                    .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                    #app2{
                         width: 100%;
-                    }
-                }
-                .gosubmit{
-                    flex-direction: column;
-                    margin-top: 20px;
-
-                    .steptwobtn{
-                        margin-right: 0px;;
-                        margin-bottom: 20px;
-                    }
-                    button[type=submit].su{
-                        margin-left: 0px;
+                        padding-left: 0;
+                        margin-top: 0px;
+                        margin-bottom: 10px;
+                        h3{
+                            font-size: 20px;
+                        }
                     }
                 }
 
+                .detailbox{
+                        h3{
+                            font-size: 20px;
+                        }
+
+                        .imgboxrow{
+                            flex-direction: column;
+                            margin-top: 0px;
+        
+                            .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                                width: 100%;
+                            }
+                        }
+                        .gosubmit{
+                            flex-direction: column;
+                            margin-top: 20px;
+        
+                            .steptwobtn{
+                                margin-right: 0px;;
+                                margin-bottom: 20px;
+                            }
+                            button[type=submit].su{
+                                margin-left: 0px;
+                            }
+                        }
+        
+                    }
             }
-
-
-
-
+        }
     }
 
 }
+
+.form{
+
+    @include phone-width{
+            margin: 50 auto;
+
+        }
+    
+
+}
+
+
+
+
+// .col-12.step{
+
+//     @include phone-width{
+//         display: none;
+//     }
+
+// }
+
+
+// #raisedonationform{
+
+//     @include phone-width{
+
+
+//             .stepone{
+//                 display: flex;
+//                 flex-direction: column;
+
+//                 .cardfill{
+//                     width: 100%;
+//                 }
+
+//                 .coverimgbox{
+//                     display: flex;
+//                     flex-direction: column;
+//                     .coverimg{
+//                         display: block;
+//                         text-align: center;
+//                     }
+//                     p{
+//                         position: static;
+//                         margin-top: 10px;
+//                     }
+                    
+//                 }
+//                 #app2{
+//                     width: 100%;
+//                     padding-left: 0;
+//                     margin-top: 0px;
+//                     margin-bottom: 10px;
+//                 }
+                
+//             }
+
+//             .detailbox{
+
+//                 .imgboxrow{
+//                     flex-direction: column;
+
+//                     .imgbox,.imgbox1,.imgbox2,.imgbox3{
+//                         width: 100%;
+//                     }
+//                 }
+//                 .gosubmit{
+//                     flex-direction: column;
+//                     margin-top: 20px;
+
+//                     .steptwobtn{
+//                         margin-right: 0px;;
+//                         margin-bottom: 20px;
+//                     }
+//                     button[type=submit].su{
+//                         margin-left: 0px;
+//                     }
+//                 }
+
+//             }
+
+
+
+
+//     }
+
+// }
 
 
 

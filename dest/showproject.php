@@ -65,11 +65,6 @@ if($errMsg != ""){
     <link rel="stylesheet" href="./css/showproject.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
 
-    <!-- 頁籤標題 -->
-    @@include('./layout/header.html',{
-        "title": "愛心助浪浪"
-
-    })
 </head>
 <body>
     <header class="header-navigation" id="header">
@@ -97,7 +92,7 @@ if($errMsg != ""){
         </nav>
     </header>
     
-    <!-- <div style="height:5vh"></div> -->
+    <div style="height:5vh"></div>
 
    
     <div class="projectcontentbox col-8">
@@ -133,7 +128,7 @@ if($errMsg != ""){
                     <div class="socialbtnbox">
                         <div class="social">
                             <ul class="socialbtn">                                                                                                                     
-                                <li class="share"><div class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="3" data-url="http://localhost:8888/php/showproject.php?fundNo=<?="{$fundraisingrows->fundNo}"?>" data-color="default" data-size="small" data-count="false" style="display: none;"></div></li>
+                                <li class="share"><div class="line-it-button" data-lang="zh_Hant" data-type="share-c" data-ver="3" data-url="http://140.115.236.71/demo-projects/DD105/DD105G1/showproject.php?fundNo=<?="{$fundraisingrows->fundNo}"?>" data-color="default" data-size="small" data-count="false" style="display: none;"></div></li>
                                 <li id="donationMsg" class="No<?=$fundraisingrows->memNo?>">
                                     <img src="./img/donation/icon_private_message.svg" alt="">
                                 </li>
@@ -465,6 +460,7 @@ if($errMsg != ""){
                                     alert('請先登入');
                                 }else{
                                     alert('捐款成功');
+                                    window.location = './donation.html';
                                 }
                             }
                         }
