@@ -53,7 +53,7 @@ function leftSideCards(){
     });
     
 }
-leftSideCards();
+
 
 
 
@@ -93,28 +93,15 @@ function donationCarousel(){
     changeNum.innerText= `0${now}/03`;
 
 
-    
-    //換大圖
-    
-   
     for(let i=1; i<=3; i++){
-
-   
         if(i!=now){
             progressBar.querySelector(`span:nth-child(${i})`).classList.remove("on");
             leftCards[i-1].classList.remove("on");
-            
-             
         }
         else{
             progressBar.querySelector(`span:nth-child(${i})`).classList.add("on");
             leftCards[i-1].classList.add("on");
         }
-
-        
-        
-        
-       
     }
     
         //換大圖
@@ -131,7 +118,7 @@ function donationCarousel(){
         
 }
 
-donationCarousel();
+
 
 nextBtn.onclick=function(){
     //箭頭動畫
