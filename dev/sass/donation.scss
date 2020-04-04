@@ -1069,18 +1069,19 @@ img.mobile{
                     i{
                         transform: rotate(-45deg);
                         font-size: 0.8em;
+                        color: #76912E;
                     }
                 }
                
     
               }
         
-              .ques:hover{
-                background: #76912E;
-                color: white;
-                transition: ease-in 0.3s;
+            //   .ques:hover{
+            //     background: #76912E;
+            //     color: white;
+            //     transition: ease-in 0.3s;
                       
-              }
+            //   }
     
               .ques.active{
                 background: #76912E;
@@ -1119,12 +1120,10 @@ img.mobile{
                 display: none;
 
                 color: #555555;
-                background-color: white;
+                // background-color: white;
               }
         
-              .questions:checked ~ .plus {
-                transform: rotate(45deg);
-              }
+              
         
     
         }
@@ -1261,12 +1260,12 @@ img.mobile{
 
 
 //rwd 767~375px==============================
-.hei{
-    @include small-pad-width{
-        display: none;
-    }
+// .hei{
+//     @include small-pad-width{
+//         display: none;
+//     }
 
-}
+// }
 
 .col-12.first_row{
 
@@ -1301,7 +1300,7 @@ img.mobile{
 
 .col-12.second_row{
     @include small-pad-width{
-        margin-top: 100px;
+        margin-top: 50px;
         .col-8{
             width: 90%;
             flex-direction: column;
@@ -1336,10 +1335,16 @@ img.mobile{
 
             .tab_list_block{
                 padding-left: 0px;
+                
 
                 ul.tab_list{
                     li{
-                        margin-left: 2px;
+                        margin-left: 0px;
+                        a{
+                            padding-left: 8px;
+                            padding-right: 8px;
+                            font-size: 20px;
+                        }
                     }
 
                 }
@@ -1350,6 +1355,10 @@ img.mobile{
     
                 .donationcardbox{
                     margin: 40px 55px;
+                    h3{
+                        font-size: 20px;
+
+                    }
                 }
             }
 
@@ -1412,10 +1421,10 @@ img.mobile{
         .col-8.faqcontent{
             width: 85%;
             .zoneQA{
-                padding: 10px 0 10px 10px;
+                padding: 10px 10px 10px 10px;
                 h3.ques{
                     font-size: 1em;
-                    padding: 15px 0 15px 15px;
+                    padding: 15px 15px 15px 15px;
                     background-color: #76912E;
                     color: white;
                     span{
@@ -1425,7 +1434,7 @@ img.mobile{
                 }
                 p.ans{
                     display: block;
-                    padding: 15px 0 15px 15px;
+                    padding: 15px 15px 15px 15px;
                 }
 
             }
@@ -1441,12 +1450,12 @@ img.mobile{
 
 
 //rwd 374px==============================
-.hei{
-    @include phone-width{
-        display: none;
-    }
+// .hei{
+//     @include phone-width{
+//         display: none;
+//     }
 
-}
+// }
 
 .col-12.first_row{
 
@@ -1481,7 +1490,7 @@ img.mobile{
 
 .col-12.second_row{
     @include phone-width{
-        margin-top: 100px;
+        margin-top: 50px;
         .col-8{
             width: 90%;
             flex-direction: column;
@@ -1516,10 +1525,16 @@ img.mobile{
 
             .tab_list_block{
                 padding-left: 0px;
+                
 
                 ul.tab_list{
                     li{
-                        margin-left: 2px;
+                        margin-left: 0px;
+                        a{
+                            padding-left: 8px;
+                            padding-right: 8px;
+                            font-size: 18px;
+                        }
                     }
 
                 }
@@ -1530,6 +1545,9 @@ img.mobile{
     
                 .donationcardbox{
                     margin: 40px 55px;
+                    h3{
+                        font-size: 20px;
+                    }
                 }
             }
 
@@ -1541,6 +1559,8 @@ img.mobile{
     }
 
 }
+
+
 
 .col-12.fromme{
 

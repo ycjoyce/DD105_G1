@@ -106,4 +106,35 @@ $(document).ready(function(){
 
 
 
+$(document).ready(function(){
+  $("#submitbtn").click(function(){
+      if($("#fundTitle").val()==""){
+          alert("尚未填寫專案標題"); 
+          return false;    
+      }else if($("#fundName").val()==""){
+          alert("尚未填寫毛孩名稱");  
+          return false;
+      }else if($("#fundGoal").val()=="-1"){
+          alert("尚未選擇目標金額");  
+          return false;   
+      }else if($("#fundArticleF").val()==""){
+        alert("尚未填寫毛孩介紹");  
+        return false;   
+      }else if($("#fundArticleS").val()==""){
+        alert("尚未填寫募款目的");  
+        return false;   
+      }else if($("#fundArticleT").val()==""){
+        alert("尚未填寫拉票文宣");  
+        return false;    
+      }else{
+          alert('成功發起募款 獲得紅利點數300');
+          document.raisedonationform.submit();
+          
+      }
+  })
+})
+
+
+
+
 
