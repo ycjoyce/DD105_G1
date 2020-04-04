@@ -1,9 +1,9 @@
 // 基本設定
 @import "layout/header";
 @import "layout/collarLightBox";
-// @include header(relative);
+@include header(relative);
 // @include header(sticky);
-@include header(fixed);
+// @include header(fixed);
 @import "layout/wrapper";
 @import "layout/grid";
 @import "layout/font";
@@ -79,6 +79,12 @@ body {
     background: #747474;
 }
 
+header.header-navigation {
+    @include RWD(ss) {
+        position: fixed;
+    }
+}
+
 nav {
     // display: none;
     // border : 1px solid red;
@@ -96,12 +102,12 @@ section {
         display: flex;
         // background-color: #eae0bf;
         position: relative;
-        margin-top: 106.438px;
+        // margin-top: 106.438px;
         @include RWD(lg) {
             flex-direction: column;
             height: unset;
         }
-        @include RWD(md) {
+        @include RWD(ss) {
             margin-top: 75px;
         }
         #signInFirstBlock {
@@ -987,7 +993,7 @@ section {
                         // border: 1px solid blue;
                         height: calc(100vh - 106.438px - 280px);
                         overflow-y: scroll;
-                        @include RWD(ss) {
+                        @include RWD(lg) {
                             height: unset;
                             overflow-y: unset;
                         }
@@ -1154,7 +1160,7 @@ section {
                         // border: 1px solid blue;
                         height: calc(100vh - 106.438px - 280px);
                         overflow-y: scroll;
-                        @include RWD(ss) {
+                        @include RWD(lg) {
                             height: unset;
                             overflow-y: unset;
                         }
@@ -1175,10 +1181,11 @@ section {
                                 font-weight: bold;
                                 font-size: 1rem;
                                 @include RWD(sm) {
-                                    margin: 0px 20px 0px 20px;
+                                    margin: 0px 20px 0px 10px;
+                                    font-size: 0.95rem;
                                 }
                                 @include RWD(ss) {
-                                    margin: 0px 20px 0px 10px;
+                                    margin: 0px 20px 0px 15px;
                                 }
                                 @include RWD(xs) {
                                     margin: 0px 10px 0px 10px;
@@ -1219,6 +1226,9 @@ section {
                                     @include RWD(ss) {
                                         font-size: 1.3rem;
                                     }
+                                    @include RWD(xs) {
+                                        font-size: 1.2rem;
+                                    }
                                 }
                                 #textStyle3 {
                                     margin-right: 10px;
@@ -1227,6 +1237,9 @@ section {
                                     font-size: 24px;
                                     @include RWD(ss) {
                                         font-size: 1.3rem;
+                                    }
+                                    @include RWD(xs) {
+                                        font-size: 1.2rem;
                                     }
                                 }
                             }
