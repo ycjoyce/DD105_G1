@@ -6,6 +6,7 @@ let changeArea = document.querySelector('section.donation div.rightSide div.caro
 let timerId;
 var leftCards = document.querySelectorAll('section.donation div.leftSide div.card');
 var bigImg = document.querySelector('div.carousel_donation div.img img');
+let fundNo;
 
 
 function dogAniSize() {
@@ -44,9 +45,13 @@ function leftSideCards() {
                 for (var j = 0; j < href.length; j++) {
                     href[j].href = `./showproject.php?fundNo=${content[i].fundNo}`;
                     fundNo = `${content[i].fundNo}`;
+                    // bigImg.src = `./img/donation/projectImg/${content[i].fundNo}_fundImg.jpg`;
                 }
                 
+                fundNo = content;
+                
             }
+            console.log(fundNo);
         },
         error(data) {
             alert(data);
@@ -108,7 +113,12 @@ function donationCarousel() {
         }
     }
     //換大圖
-    bigImg.src = `./img/donation/projectImg/${now}_fundImg.jpg`;
+    for (var k = 0; k < bigImg.length; k++){
+        bigImg[k].src = `./img/donation/projectImg/${content[i].fundNo}_fundImg.jpg`;
+
+    }
+    
+    
 
 
 }
