@@ -22,11 +22,20 @@
             if (document.body.clientWidth <= 575) {
                 let forumTitle = document.querySelectorAll("section.forum div.card a h4");
                 let forumText = document.querySelectorAll("section.forum div.card div.text a:last-child");
-                if (forumTitle.innerText.length > 8) {
-                    forumTitle.innerText = forumTitle.innerText.substr(8) + "...";
-                } else if (forumText.innerText.length > 27) {
-                    forumText.innerText = forumText.innerText.substr(27) + "...";
+                // alert(forumTitle[0].innerText.length);
+                
+                for(var i=0; i<=7; i++){
+                    if (forumTitle[i].innerText.length > 7) {
+                        // console.log("標題太長");
+                        forumTitle[i].innerText = forumTitle[i].innerText.substr(0,7) + "...";
+                    } else if (forumText[i].innerText.length > 21) {
+                        // console.log("內文太長");
+                        forumText[i].innerText = forumText[i].innerText.substr(0,21) + "...";
+                    }else{
+                        console.log("nothing");
+                    }
                 }
+                
             }
         });
     </script>

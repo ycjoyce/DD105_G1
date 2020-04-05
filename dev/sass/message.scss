@@ -350,6 +350,9 @@ section{
                         @include rwd(mini){
                             width: 210px;
                         }
+                        @include rwd(ss){
+                            width: 210px;
+                        }
                         img{
                             transition: all 0.5s;
                             display: inline-block;
