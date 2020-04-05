@@ -10,18 +10,20 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
     <script>
-        window.addEventListener("load",function(){
-            play();
+        window.addEventListener("load", function () {
+            leftSideCards();
+            donationCarousel();
             dogAniSize();
-            
+            play();
+
             //貼文rwd
-            if(document.body.clientWidth<=575){
-                let forumTitle= document.querySelectorAll("section.forum div.card a h4");
-                let forumText= document.querySelectorAll("section.forum div.card div.text a:last-child");
-                if(forumTitle.innerText.length>8){
-                    forumTitle.innerText= forumTitle.innerText.substr(8)+"...";
-                }else if(forumText.innerText.length>27){
-                    forumText.innerText= forumText.innerText.substr(27)+"...";
+            if (document.body.clientWidth <= 575) {
+                let forumTitle = document.querySelectorAll("section.forum div.card a h4");
+                let forumText = document.querySelectorAll("section.forum div.card div.text a:last-child");
+                if (forumTitle.innerText.length > 8) {
+                    forumTitle.innerText = forumTitle.innerText.substr(8) + "...";
+                } else if (forumText.innerText.length > 27) {
+                    forumText.innerText = forumText.innerText.substr(27) + "...";
                 }
             }
         });
@@ -68,7 +70,8 @@
                 </div>
             </div>
         </div>
-        <div class="carousel wow zoomIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11 col-mini-11" data-wow-duration="1s">
+        <div class="carousel wow zoomIn col-xl-10 col-lg-10 col-md-10 col-sm-10 col-ss-11 col-mini-11"
+            data-wow-duration="1s">
             <div class="bg parallax1">
                 <img src="./img/shabon_l.png" class="bubble" id="bubble1">
                 <img src="./img/shabon_l.png" class="bubble" id="bubble2">
@@ -89,8 +92,8 @@
 
     <section class="about">
         <h3 class="enSpecialFont" id="trigger01">About</h3>
-        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11 col-mini-11" data-wow-duration="1s"
-            data-wow-delay=".5s">
+        <div class="aboutCard wow fadeInRight col-xl-8 col-lg-11 col-md-11 col-sm-11 col-ss-11 col-mini-11"
+            data-wow-duration="1s" data-wow-delay=".5s">
             <div class="text col-xl-6 col-lg-6 col-md-7 col-sm-12 col-ss12 col-mini-12">
                 <div class="about">
                     <!-- <div id="trigger01"></div> -->
@@ -172,7 +175,7 @@
             <img src="./img/back.png">
         </button>
         <div class=" hide card wow fadeInRight" data-wow-duration="1s">
-            
+
             <h3 class="wow fadeInUp" data-wow-delay=".2s"><a href="#" class="titleFont">寵物遺失地點</a></h3>
             <p class="wow fadeInUp" data-wow-delay=".4s">
                 心愛的毛孩走丟了也別驚慌，<br>
@@ -184,11 +187,11 @@
                 @@include('./layout/btn_darkgreen.html',{
                 "innerText": "我的寵物遺失了",
                 "connect": ""
-                })                
-            </div>
-                @@include('./layout/change.html',{
-                "total": "01/02"
                 })
+            </div>
+            @@include('./layout/change.html',{
+            "total": "01/02"
+            })
         </div>
         <div class="readMore">
             <img src="img/map_readmore_cat.png" class="cat">
@@ -201,7 +204,8 @@
 
     <section class="donation col-xl-12">
         <h3 class="enSpecialFont">Donation</h3>
-        <div class="rightSide wow fadeInRight col-xl-6 col-lg-6 col-md-11 col-sm-11 col-ss-11 col-mini-11" data-wow-duration="1s">
+        <div class="rightSide wow fadeInRight col-xl-6 col-lg-6 col-md-11 col-sm-11 col-ss-11 col-mini-11"
+            data-wow-duration="1s">
             <div class="title">
                 <div class="text">
                     <h2>愛心助浪浪</h2>
@@ -224,19 +228,19 @@
                     <img src="img/donation_card_1.jpg">
                 </div>
                 <div class="card col-xl-9 col-lg-10 col-md-8 col-sm-10 col-ss-10 col-mini-10">
-                    <span class="titleFont smalltext projectNum">PROJECT 32</span>
-                    <span class="titleFont smalltext date">2020.02.01</span>
-                    <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
+                    <span class="titleFont smalltext projectNum"></span>
+                    <span class="titleFont smalltext date"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
                     @@include('./layout/btn_darkgreen.html',{
                     "innerText": "了解更多",
                     "connect": " href='./donation.html'"
                     })
                     <div class="showNum">
                         <div class="cur col-mini-5">
-                            <span class="titleFont peoNum">目標金額<span class="titleFont">30000</span>元</span>
+                            <span class="titleFont peoNum">目標金額<span class="titleFont"></span>元</span>
                         </div>
                         <div class="dogAnimate col-xl-8 col-lg-8 col-md-8 col-sm-8 col-ss-8 col-mini-5">
-                            <span class="titleFont">58%</span>
+                            <span class="titleFont"></span>
                             <img src="./img/percent.png">
                             <div id="wave"></div>
                         </div>
@@ -255,47 +259,47 @@
         <div class="leftSide col-xl-6 col-lg-5">
             <div class="card on first wow fadeInLeft col-xl-8" data-wow-delay=".2s">
                 <div class="col-xl-5 col-lg-5 img">
-                    <img src="img/donation_card_1.jpg">
+                    <img src="">
                 </div>
                 <div class="col-xl-7 col-lg-7 text">
-                    <span class="titleFont smalltext">PROJECT 32</span>
-                    <h4><a href="#" class="titleFont">膽小害怕受傷的魯肉在床底下才會安心</a></h4>
-                    <span class="titleFont smalltext date">2020.02.01</span>
+                    <span class="titleFont smalltext"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
+                    <span class="titleFont smalltext date"></span>
                     <div class="amount">
-                        <span class="smalltext titleFont now">目前金額17500元</span>
-                        <a href="#" class="titleFont goal">目標金額30000元</a>
+                        <span class="smalltext titleFont now"></span>
+                        <a href="#" class="titleFont goal"></a>
                     </div>
-                    <input type="hidden" name="cur" value="17500">
-                    <input type="hidden" name="goal" value="30000">
+                    <input type="hidden" name="cur" value="2000">
+                    <input type="hidden" name="goal" value="4000">
                 </div>
             </div>
             <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".4s">
                 <div class="col-xl-5 col-lg-5 img">
-                    <img src="img/donation_card_2.jpg">
+                    <img src="">
                 </div>
                 <div class="col-xl-7 col-lg-7 text">
-                    <span class="titleFont smalltext">PROJECT 33</span>
-                    <h4><a href="#" class="titleFont">棲息處遭破壞，短尾的可愛小橘</a></h4>
-                    <span class="titleFont smalltext date">2020.02.06</span>
+                    <span class="titleFont smalltext"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
+                    <span class="titleFont smalltext date"></span>
                     <div class="amount">
-                        <span class="smalltext titleFont now">目前金額12500元</span>
-                        <a href="#" class="titleFont goal">目標金額20000元</a>
+                        <span class="smalltext titleFont now"></span>
+                        <a href="#" class="titleFont goal"></a>
                     </div>
-                    <input type="hidden" name="cur" value="12500">
-                    <input type="hidden" name="goal" value="20000">
+                    <input type="hidden" name="cur" value="">
+                    <input type="hidden" name="goal" value="">
                 </div>
             </div>
             <div class="card wow fadeInLeft col-xl-8" data-wow-delay=".6s">
                 <div class="col-xl-5 col-lg-5 img">
-                    <img src="img/donation_card_3.jpg">
+                    <img src="">
                 </div>
                 <div class="col-xl-7 col-lg-7 text">
-                    <span class="titleFont smalltext">PROJECT 34</span>
-                    <h4><a href="#" class="titleFont">令人心疼!被外勞用利刃從臉貫穿至嘴，天真浪浪小黃依然對人類笑開懷</a></h4>
-                    <span class="titleFont smalltext date">2020.02.08</span>
+                    <span class="titleFont smalltext"></span>
+                    <h4><a href="#" class="titleFont"></a></h4>
+                    <span class="titleFont smalltext date"></span>
                     <div class="amount">
-                        <span class="smalltext titleFont now">目前金額30500元</span>
-                        <a href="#" class="titleFont goal">目標金額40000元</a>
+                        <span class="smalltext titleFont now"></span>
+                        <a href="#" class="titleFont goal"></a>
                     </div>
                     <input type="hidden" name="cur" value="30500">
                     <input type="hidden" name="goal" value="40000">
@@ -510,9 +514,9 @@
                         <h3>寵物遺失地點登記</h3>
                         <p>
                             <label for="lostPetRpLoc">寵物遺失地點</label>
-                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc" placeholder="ex. 中央大學">
                             <input type="hidden" id="memNo" name="memNo" value="">
-                            <input type="hidden" id="memName" name="memName" value="">
+                            <input type="hidden" id="lostPetRpmemName" name="lostPetRpmemName" value="">
                             <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
                             <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
                             <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
@@ -523,15 +527,15 @@
                         </p>
                         <p>
                             <label for="lostPetRpName">寵物名稱</label>
-                            <input type="text" name="lostPetRpName" id="lostPetRpName">
+                            <input type="text" name="lostPetRpName" id="lostPetRpName" placeholder="ex. 多多">
                         </p>
                         <p>
                             <label for="lostPetRpType">寵物類型</label>
-                            <input type="text" name="lostPetRpType" id="lostPetRpType">
+                            <input type="text" name="lostPetRpType" id="lostPetRpType" placeholder="ex. 柴犬">
                         </p>
                         <p>
                             <label for="lostPetRpCh">寵物特徵</label>
-                            <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                            <input type="text" name="lostPetRpCh" id="lostPetRpCh" placeholder="ex. 帶著紅色項圈">
                         </p>
                         <p>
                             <label for="lostPetRpStat">案件狀態</label>
@@ -542,14 +546,15 @@
                                 <option value="2">未找到，已結案</option>
                             </select>
                         </p>
-                        <p>
-                            <label for="">上傳寵物照片</label>
+                        <p class="imgSelect">
+                            <label for="">上傳寵物照片</label>                            
                             <label class="uploadimg_btn">
                                 <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
                                     accept="image/*">
-                                <i class="fa fa-photo"></i> 上傳圖片
-                            </label>
-                            <div id="imageShow"></div>
+                                <i class="fa fa-photo"></i> 
+                            </label>    
+                            <span id="imageShow"></span>
+                            <span class="imageText">請上傳圖片</span>                      
                         </p>
                         <div>
                             <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
@@ -642,7 +647,7 @@
         }
 
 
-        
+
 
 
         //數字跳動
@@ -659,10 +664,11 @@
             decimal: '.',
         }
         let demo = new CountUp(target, startVal, endVal, decimals, duration, options);
-        var nowScroll, groupToTop;
-        var windowHeight = $(window).height();
-        var group = $("section.donation");
-        $(window).scroll(function () {
+        
+        window.addEventListener("scroll",function(){
+            var nowScroll, groupToTop;
+            var windowHeight = $(window).height();
+            var group = $("section.donation");
             nowScroll = $(this).scrollTop();
             groupToTop = group.offset().top;
             if (windowHeight + nowScroll > groupToTop) {
@@ -724,65 +730,65 @@
         //     autoStart: true,
         //     type: 'char'
         // });     
-        
+
 
         //地圖rwd
-        var mapCardBtn= document.getElementById("mapCardBtn");
-        var mapCard= document.querySelector("section.where div.card");
-        mapCardBtn.addEventListener("click",function(){
-            if(mapCard.classList.contains("hide")){
+        var mapCardBtn = document.getElementById("mapCardBtn");
+        var mapCard = document.querySelector("section.where div.card");
+        mapCardBtn.addEventListener("click", function () {
+            if (mapCard.classList.contains("hide")) {
                 mapCardBtn.classList.remove("hide");
                 mapCard.classList.remove("hide");
-                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (!mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.add("rotate");
                 }
-            }else{
+            } else {
                 mapCardBtn.classList.add("hide");
                 mapCard.classList.add("hide");
-                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.remove("rotate");
                 }
             }
         });
-        
-        if(document.body.clientWidth>575){
-            if(mapCard.classList.contains("hide")){
+
+        if (document.body.clientWidth > 575) {
+            if (mapCard.classList.contains("hide")) {
                 mapCard.classList.remove("hide");
             }
-            if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+            if (!mapCardBtn.querySelector("img").classList.contains("rotate")) {
                 mapCardBtn.querySelector("img").classList.add("rotate");
             }
-        }else{
-            if(!mapCard.classList.contains("hide")){
+        } else {
+            if (!mapCard.classList.contains("hide")) {
                 mapCard.classList.add("hide");
             }
-            if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+            if (mapCardBtn.querySelector("img").classList.contains("rotate")) {
                 mapCardBtn.querySelector("img").classList.remove("rotate");
             }
         }
-        window.addEventListener("resize",function(){
-            if(document.body.clientWidth>575){
-                if(mapCard.classList.contains("hide")){
+        window.addEventListener("resize", function () {
+            if (document.body.clientWidth > 575) {
+                if (mapCard.classList.contains("hide")) {
                     mapCard.classList.remove("hide");
                 }
-                if(!mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (!mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.add("rotate");
                 }
-            }else{
-                if(!mapCard.classList.contains("hide")){
+            } else {
+                if (!mapCard.classList.contains("hide")) {
                     mapCard.classList.add("hide");
                 }
-                if(mapCardBtn.querySelector("img").classList.contains("rotate")){
+                if (mapCardBtn.querySelector("img").classList.contains("rotate")) {
                     mapCardBtn.querySelector("img").classList.remove("rotate");
                 }
             }
         });
-    
-    
-        
+
+
+
     </script>
 
-    <!-- 燈箱JS -->    
+    <!-- 燈箱JS -->
     <script src="./js/modernizr.custom.js"></script>
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>

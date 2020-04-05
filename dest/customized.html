@@ -20,6 +20,7 @@
     <script src="./js/sweet-alert.js"></script>
     <script src="./js/customizedTabsEvent.js"></script>
     <script src="./js/customized.js"></script>
+    <script src="./js/mobileDoubleClick.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Coming+Soon&display=swap" rel="stylesheet">
 
 
@@ -273,7 +274,7 @@
                                     for (i = 0; i < newArray.length; i++) {
                                         for (j = 0; j < lockPoint.length; j++) {
                                             if (lockPoint[j].getAttribute('tagNo') == newArray[i]) {
-                                                console.log(lockPoint[j].getAttribute('tagNo'));
+                                                // console.log(lockPoint[j].getAttribute('tagNo'));
                                                 // lockPoint[j].style.display = "none";
                                                 lockPoint[j].innerHTML =
                                                     `
@@ -437,7 +438,7 @@
 
                                                 $('.unlock').click(function() {
                                                     let point = parseInt($(this).attr('point'));
-                                                    let nowPoint = parseInt($('#showPoint').text());
+                                                    let nowPoint = parseInt(member.memPoint);
                                                     let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
                                                     if (result) {
                                                         if (nowPoint >= point) {
@@ -456,7 +457,7 @@
                                                             member.memTagNo = document.getElementById('memTagNo').innerText;
                                                             lockTagNo();
                                                         } else {
-                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點`);
+                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點\n\n可以去討論區發起貼文或是募款區發起募款賺取點數哦`);
                                                         }
                                                     } else {
                                                         return;
@@ -540,7 +541,7 @@
                                 <button class="stepNextBtn" id="step2NextBtn">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-3" class="tab-content" style="background-color: #fff9e4;">
+                        <div id="tab-3" class="tab-content tab3_content" style="background-color: #fff9e4;">
                             <div class="addText">
                                 <div id="textStyle">
                                     <span class="collarTextTitles">選擇文字風格： </span>
@@ -857,7 +858,7 @@
 
                 xhr.onload = function() {
                     if (xhr.status == 200) {
-                        alert("訂單已成功送出");
+                        alert("訂單已成功送出,訂單紀錄能在會員中心進行查看!");
                         window.location.reload();
                     } else {
                         alert("錯誤");

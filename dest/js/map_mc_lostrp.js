@@ -129,14 +129,12 @@ $(document).ready(function() {
                       <p class="uploadimgbtn_brfore">
                           <label>寵物照片</label>
                           <span id="imageShow" style="background-image: url('./img/lostrp/${data.lostPetRpImg}');"></span>
-                      </p>
-                      <p class="uploadimgbtn_after">
-                          <label></label>
                           <label class="uploadimg_btn">
                               <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
                                   accept="image/*">
                               <i class="fa fa-photo"></i> 更改圖片
                           </label>
+                          <span class="imageText">更換圖片</span>
                       </p>
                       <div>
                           <button id="rpbtn" class="btn darkgreen nav__link"  ><span class="titleFont">

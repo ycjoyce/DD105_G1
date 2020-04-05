@@ -10,9 +10,11 @@ var data;
 let markers = [];
 // 記錄當前點擊 google window
 var currentInfoWindow = "";
-
 // 輸入地址找經緯度
 var geocoder;
+// googlemap取得當下位置
+var geolocation =
+  "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk";
 
 // Custom style
 var styleCustom = [
@@ -123,7 +125,8 @@ $(function() {
 /*** Gmaps initialize ***/
 function initialize() {
   // 獲取設備當前的位置
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  centerMarker();
+  // navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
     center: { lat: lat, lng: lng },
@@ -149,16 +152,18 @@ function initialize() {
   // map.mapTypes.set("Basic", basicType);
 }
 
-function geoSuccess(pos) {
-  var crd = pos.coords;
-  //Add center marker
-  centerMarker(crd.latitude, crd.longitude);
-}
+// HTML 5 getCurrentPosition================================================
+// function geoSuccess(pos) {
+//   var crd = pos.coords;
+//   //Add center marker
+//   centerMarker(crd.latitude, crd.longitude);
+// }
 
-function geoError(err) {
-  $center.style.display = "none";
-  console.warn("ERROR(" + err.code + "): " + err.message);
-}
+// function geoError(err) {
+//   $center.style.display = "none";
+//   console.warn("ERROR(" + err.code + "): " + err.message);
+// }
+// ================================================HTML 5 getCurrentPosition
 
 /*** Center marker ***/
 function centerMarker(latitude, longitude) {
@@ -175,13 +180,32 @@ function centerMarker(latitude, longitude) {
     position: new google.maps.LatLng(latitude, longitude)
   });
   marker.setMap();
+
+  //click event
+  xhr = new XMLHttpRequest();
+  xhr.open("POST", geolocation);
+  xhr.onload = function() {
+    var response = JSON.parse(this.responseText);
+    console.log(response);
+    // console.log(response.location.lat);
+    google.maps.event.addDomListener(center, "click", function() {
+      map.setZoom(12);
+      map.setCenter(
+        new google.maps.LatLng(response.location.lat, response.location.lng)
+      );
+    });
+  };
+  xhr.send();
 }
+
+// HTML 5 getCurrentPosition================================================
 //   //click event
 //   google.maps.event.addDomListener(center, "click", function() {
 //     map.setZoom(15);
 //     map.setCenter(new google.maps.LatLng(latitude, longitude));
 //   });
 // }
+// ================================================HTML 5 getCurrentPosition
 
 /*** Zoom control ***/
 function zoomControl() {
@@ -231,7 +255,8 @@ function getLost() {
         data[i].lostPetRpType,
         data[i].lostPetRpCh,
         data[i].lostPetRpLocAdd,
-        data[i].memName
+        data[i].memName,
+        data[i].memPic
       );
     }
   };
@@ -319,7 +344,8 @@ function loadLostData(
   type,
   character,
   add,
-  memName
+  memName,
+  memPic
 ) {
   var contentString = `
     <div class="lostContent">
@@ -330,7 +356,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li><img src="./img/icon_private_message.svg"> 主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}</a></li>
       </ul>
     </div>
   `;
@@ -764,3 +790,13 @@ function addFav() {
     }
   };
 }
+
+$(document).ready(function() {
+  var winWidth = $(window).width();
+  if (winWidth < 415) {
+    $(".uploadimg_btn")
+      .html(`請上傳圖片<input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                      accept="image/*">
+                  <i class="fa fa-photo"></i>`);
+  }
+});

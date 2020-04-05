@@ -87,7 +87,7 @@ function dofirst() {
         });
         pickr.on('change', (...args) => {
                 let color = args[0].toRGBA();
-                console.log(color);
+                // console.log(color);
                 if (textStyle2.classList.contains("-on") == true) {
                     defaultColor = `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
                     textColor = "rgba(0,0,0,0)";
@@ -329,8 +329,8 @@ function dofirst() {
             canvasRatio = 831 / 1320;
             canvas.setWidth(previewArea.clientWidth);
             canvas.setHeight(previewArea.clientWidth * canvasRatio);
-            console.log("寬", previewArea.clientWidth, "px");
-            console.log("高", previewArea.clientWidth * canvasRatio, "px");
+            // console.log("寬", previewArea.clientWidth, "px");
+            // console.log("高", previewArea.clientWidth * canvasRatio, "px");
             canvas2.width = previewArea.clientWidth; //第二個canvas的寬 = 父層div的寬
             canvas2.height = previewArea.clientWidth * canvasRatio; //第二個canvas的高 = 父層div的高
             imgRatio = 1000 / 1000; //圖片寬高比例
@@ -531,7 +531,7 @@ function dofirst() {
         });
         pickr.on('change', (...args) => {
                 let color = args[0].toRGBA();
-                console.log(color);
+                // console.log(color);
                 if (textStyle2.classList.contains("-on") == true) {
                     defaultColor = `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
                     textColor = "rgba(0,0,0,0)";
@@ -773,8 +773,8 @@ function dofirst() {
             canvasRatio = 831 / 1320;
             canvas.setWidth(previewArea.clientWidth);
             canvas.setHeight(previewArea.clientWidth * canvasRatio);
-            console.log("寬", previewArea.clientWidth, "px");
-            console.log("高", previewArea.clientWidth * canvasRatio, "px");
+            // console.log("寬", previewArea.clientWidth, "px");
+            // console.log("高", previewArea.clientWidth * canvasRatio, "px");
             canvas2.width = previewArea.clientWidth; //第二個canvas的寬 = 父層div的寬
             canvas2.height = previewArea.clientWidth * canvasRatio; //第二個canvas的高 = 父層div的高
             imgRatio = 1000 / 1000; //圖片寬高比例

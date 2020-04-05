@@ -11,7 +11,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
     <link rel="stylesheet" href="./css/map.css">
     <script src="./js/modernizr.custom.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
@@ -19,6 +19,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
     <!-- scrollmagic -->
     <!-- 主程式 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
@@ -27,6 +28,11 @@
     <!-- 開發時debug用(標示觸發點)，上線時移除 -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+    <!-- Textillate.js -->
+    <!-- lettering.js v0.7.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+    <!-- Textillate.js v0.4.0 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
 
 </head>
 
@@ -62,8 +68,8 @@
         <!--------------------- 第一屏banner --------------------->
         <section class="map_banner">
             <div class="map_banner_bg"></div>
-            <h2 class="enSpecialFont map_EN_title" data-depth="0.4">Where are they</h2>
-            <h2 class="map_CH_title" data-depth="0.5">浪浪在哪裡</h2>
+            <h2 class="enSpecialFont map_EN_title" data-depth="0.4" data-in-effect="fadeInRightBig">Where are they</h2>
+            <h2 class="map_CH_title" data-depth="0.5" data-in-effect="fadeInRightBig">浪浪在哪裡</h2>
         </section>
 
         <!--------------------- 第二屏introduction --------------------->
@@ -76,9 +82,9 @@
             </div>
             <div class="map_introcontent">
                 <img src="./img/map_intro_boyndog.png" class="map_intro_boyndog">
-                <div>
+                <div class="wow bounceInLeft" data-wow-duration="3s">
                     浪愛回家提供一個整合資訊的平台，分享遺失或拾獲寵物資料、即時更新寵物遺失的資訊，並可透過網站聯絡失主，為失主帶來多一分希望，也讓在外流浪的毛小孩儘早回到溫暖的家。</div>
-                <div>
+                <div class="wow bounceInLeft" data-wow-duration="3s" data-wow-delay="0.5s">
                     我們也了解很多主人出門遊樂時，不想將毛小孩丟在外面自己進去餐廳吃飯、飯店住宿或者景點玩樂，因此花了很多時間收集寵物友善店家、寵物友善環境狀況，針對寵物服務和設施的寵物友善商家或景點記錄，希望帶給您與毛孩子更豐富的回憶！
                 </div>
                 <a href="#mapArea" class="map_introCircle map_introCircle_1">寵物遺失通報</a>
@@ -129,7 +135,7 @@
                             <h4 class="ui-heading">寵物遺失地點</h4>
                             <p class="ui-paragraph">
                                 心愛的毛孩走丟了也別驚慌，<br>
-                                快來回報遺失的地點讓大家一同協尋！<br>
+                                快來回報遺失地點讓大家一同協尋！<br>
                                 看見疑似走失的貓狗也來聯繫主人確認吧。
                             </p>
                         </article>
@@ -152,7 +158,7 @@
                         <article class="ui-article" data-key="3">
                             <h4 class="ui-heading">寵物友善景點</h4>
                             <p class="ui-paragraph">
-                                苦於找不到合適的景點無法帶毛孩出門嗎?<br>
+                                找不到合適的景點無法帶毛孩出門嗎?<br>
                                 蒐集全台友善寵物景點，<br>
                                 讓您能夠輕鬆和毛小孩在台灣各地留下足跡！
                             </p>
@@ -173,10 +179,10 @@
         <!--------------------- 第三屏過場 --------------------->
         <section class="map_lostdog">
             <img src="./img/map_lostdog_hurrygirl.png" id="map_hurryGirl">
-            <div>
-                <p class="titleFont">您也遺失了您的寵物嗎?</p>
-                <p class="titleFont">我們了解您的心急如焚，讓我們來幫助您!</p>
-                <p class="titleFont">您也可以在這邊找到更多友善動物的資訊!</p>
+            <div class="wow slideInDown">
+                <p class="titleFont" data-in-effect="fadeInRight">您也遺失了您的寵物嗎?</p>
+                <p class="titleFont" data-in-effect="fadeInRight">我們了解您的心急如焚，讓我們來幫助您!</p>
+                <p class="titleFont" data-in-effect="fadeInRight">您也可以在這邊找到更多友善動物的資訊!</p>
             </div>
             <img src="./img/map_lostdog_hurrydog.png" id="map_hurryDog">
         </section>
@@ -193,7 +199,7 @@
                 <!-- 快速搜尋－案件申請按鈕 -->
                 <form action="post" class="map_lostapply">
                     <p class="map_btnClick">Click!</p>
-                    <div data-dialog="somedialog" class="trigger">
+                    <div data-dialog="somedialog" class="trigger wow bounce">
                         <a class="btn red nav__link" id="lostform_btn">
                             <span class="titleFont lostbtnx_xl">
                                 我的寵物遺失了
@@ -259,7 +265,7 @@
                             <div class="map_filter_friendly">
                                 <h3>
                                     <!-- <input type="checkbox" name="friendly" id="friendly"> -->
-                                    <label for="friendly">寵物友善空間</label>
+                                    <label for="friendly"><img src="./img/pawprint-01.svg" alt="">寵物友善空間</label>
                                 </h3>
                                 <p>
                                     <input type="checkbox" name="friendtypes" id="fr_rest" value="1" checked>
@@ -311,7 +317,7 @@
                             <!-- <div class="map_filter_lost"> -->
                             <h3 id="favoH3">
                                 <!-- <input type="checkbox" name="favorite" id="favorite"> -->
-                                <label for="favorite">我的最愛</label>
+                                <label for="favorite"><img src="./img/pawprint-01.svg" alt="">我的最愛</label>
                             </h3>
                             <p>
                                 <input type="checkbox" name="favoritetypes" id="fa_rest" value="1">
@@ -343,6 +349,7 @@
                                 alt="" /></button>
                     </div>
                 </div>
+                <div class="mapDog"></div>
             </div>
         </section>
     </div>
@@ -358,7 +365,7 @@
                         <h3>寵物遺失地點登記</h3>
                         <p>
                             <label for="lostPetRpLoc">寵物遺失地點</label>
-                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                            <input type="text" name="lostPetRpLoc" id="lostPetRpLoc" placeholder="ex. 中央大學">
                             <input type="hidden" id="memNo" name="memNo" value="">
                             <input type="hidden" id="lostPetRpmemName" name="lostPetRpmemName" value="">
                             <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
@@ -371,15 +378,15 @@
                         </p>
                         <p>
                             <label for="lostPetRpName">寵物名稱</label>
-                            <input type="text" name="lostPetRpName" id="lostPetRpName">
+                            <input type="text" name="lostPetRpName" id="lostPetRpName" placeholder="ex. 多多">
                         </p>
                         <p>
                             <label for="lostPetRpType">寵物類型</label>
-                            <input type="text" name="lostPetRpType" id="lostPetRpType">
+                            <input type="text" name="lostPetRpType" id="lostPetRpType" placeholder="ex. 柴犬">
                         </p>
                         <p>
                             <label for="lostPetRpCh">寵物特徵</label>
-                            <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                            <input type="text" name="lostPetRpCh" id="lostPetRpCh" placeholder="ex. 帶著紅色項圈">
                         </p>
                         <p>
                             <label for="lostPetRpStat">案件狀態</label>
@@ -390,14 +397,15 @@
                                 <option value="2">未找到，已結案</option>
                             </select>
                         </p>
-                        <p>
+                        <p class="imgSelect">
                             <label for="">上傳寵物照片</label>
                             <label class="uploadimg_btn">
                                 <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
                                     accept="image/*">
-                                <i class="fa fa-photo"></i> 上傳圖片
+                                <i class="fa fa-photo"></i>
                             </label>
-                            <div id="imageShow"></div>
+                            <span id="imageShow"></span>
+                            <span class="imageText">請上傳圖片</span>
                         </p>
                         <div>
                             <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
@@ -417,6 +425,7 @@
             </div>
         </div>
     </div>
+
     <!-- 燈箱JS -->
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
@@ -466,8 +475,22 @@
 
     <script>
         $(document).ready(function () {
+
             var winWidth = $(window).width();
             var winHeight = $(window).height();
+            new WOW().init();
+
+            // 地圖狗狗
+            $('#gmaps').on('mouseenter mouseleave', function () {
+                // $(".mapDog").toggleClass('noDog');
+                $(".mapDog").fadeToggle();
+            });
+
+            if (winWidth > 415) {
+                $(".map_CH_title").textillate();
+                $(".map_EN_title").textillate();
+            };
+
 
             // [展開/關閉] 快速搜尋/我的收藏
             if (winWidth > 415) {
@@ -494,7 +517,7 @@
                     };
                 });
             };
-            
+
             // 小於992px, 移除is-active
             if (winWidth > 992) {
                 $('#map_option_lost').addClass('is-active');
@@ -528,6 +551,17 @@
                     };
                 });
             };
+
+            if (winWidth < 415) {
+                $(".map_introcontent div").removeClass("wow bounceInLeft");
+                $(".map_CH_title").removeData();
+                $(".mapdog").css("display", "none");
+                $(".uploadimg_btn").html(`請上傳圖片<input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                                    accept="image/*">
+                                <i class="fa fa-photo"></i>`);
+            }
+
+
 
             // 發文判斷會員登入
             function checkLoginStatus(e) {
@@ -607,29 +641,6 @@
                 });
             });
         });
-
-
-            // var mySwiper = new Swiper('.swiper-container', {
-            //     // Optional parameters
-            //     direction: 'vertical',
-            //     loop: true,
-
-            //     // If we need pagination
-            //     pagination: {
-            //         el: '.swiper-pagination',
-            //     },
-
-            //     // Navigation arrows
-            //     navigation: {
-            //         nextEl: '.swiper-button-next',
-            //         prevEl: '.swiper-button-prev',
-            //     },
-
-            //     // And if we need scrollbar
-            //     scrollbar: {
-            //         el: '.swiper-scrollbar',
-            //     },
-            // })
     </script>
 
     <!-- -------------------------------------------------- -->
