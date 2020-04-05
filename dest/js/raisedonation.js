@@ -127,7 +127,7 @@ $(document).ready(function(){
         alert("尚未填寫拉票文宣");  
         return false;    
       }else{
-          alert('成功發起募款 獲得紅利點數300');
+          // alert('成功發起募款 獲得紅利點數300');
           document.raisedonationform.submit();
           
       }
