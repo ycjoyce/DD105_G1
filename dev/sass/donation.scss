@@ -1188,11 +1188,7 @@ img.mobile{
 
 // rwd
 
-@media screen and (max-width: 1235px) {
-    #app, #app2, #app3 {
-      text-align: center;
-    }
-}
+
   
 
 //rwd 959~768px==============================
@@ -1279,6 +1275,12 @@ img.mobile{
     }
 
     
+}
+
+@media screen and (max-width: 1235px) {
+    #app, #app2, #app3 {
+      text-align: center;
+    }
 }
 
 
