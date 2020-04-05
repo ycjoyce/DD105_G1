@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
     <script>
         window.addEventListener("load", function () {
+            
             leftSideCards();
             donationCarousel();
             dogAniSize();
@@ -26,11 +27,29 @@
                     if (forumTitle[i].innerText.length > 7) {
                         // console.log("標題太長");
                         forumTitle[i].innerText = forumTitle[i].innerText.substr(0,7) + "...";
-                    } else if (forumText[i].innerText.length > 21) {
+                    }
+                    if (forumText[i].innerText.length > 21) {
                         // console.log("內文太長");
                         forumText[i].innerText = forumText[i].innerText.substr(0,21) + "...";
-                    }else{
-                        console.log("nothing");
+                    }
+                }
+                
+            }
+        });
+        window.addEventListener("resize",function(){
+            if (document.body.clientWidth <= 575) {
+                let forumTitle = document.querySelectorAll("section.forum div.card a h4");
+                let forumText = document.querySelectorAll("section.forum div.card div.text a:last-child");
+                // alert(forumTitle[0].innerText.length);
+                
+                for(var i=0; i<=7; i++){
+                    if (forumTitle[i].innerText.length > 7) {
+                        // console.log("標題太長");
+                        forumTitle[i].innerText = forumTitle[i].innerText.substr(0,7) + "...";
+                    }
+                    if (forumText[i].innerText.length > 21) {
+                        // console.log("內文太長");
+                        forumText[i].innerText = forumText[i].innerText.substr(0,21) + "...";
                     }
                 }
                 
