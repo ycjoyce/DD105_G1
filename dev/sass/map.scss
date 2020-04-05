@@ -1084,6 +1084,7 @@ body {
   position: relative;
   // background-color: #fff;
   .map_btnClick {
+    z-index: 1;
     display: inline-block;
     width: 40px;
     height: 40px;

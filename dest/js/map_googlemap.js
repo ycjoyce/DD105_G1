@@ -487,7 +487,7 @@ function changeMarker() {
   infoWindows = [];
 
   var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_googleMap.php");
+  xhr.open("get", "./php/map_GMgetFriendly.php");
   xhr.send(null);
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
@@ -691,6 +691,7 @@ function changeMarker() {
         }
       }
     }
+    
     // }
   };
 }
