@@ -4,14 +4,8 @@ let nextBtn= document.querySelector('div.carousel_donation div.changePage button
 let carouselArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.card');
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
 let timerId;
-<<<<<<< HEAD
-var leftCards = document.querySelectorAll('section.donation div.leftSide div.card');
-var bigImg = document.querySelector('div.carousel_donation div.img img');
-let fundNo;
-=======
 var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
 let content;
->>>>>>> cee77f62b140536ca2f48d5cea1c4579e82d623c
 
 
 function dogAniSize(){
@@ -46,23 +40,12 @@ function leftSideCards(){
                 //圖片
                 leftCards[i].querySelector("div.img img").src=`./img/donation/projectImg/${content[i].fundImg}`;
                 //a連結
-<<<<<<< HEAD
-                var href = leftCards[i].querySelectorAll("a");
-                for (var j = 0; j < href.length; j++) {
-                    href[j].href = `./showproject.php?fundNo=${content[i].fundNo}`;
-                    fundNo = `${content[i].fundNo}`;
-                    // bigImg.src = `./img/donation/projectImg/${content[i].fundNo}_fundImg.jpg`;
-=======
                 var href= leftCards[i].querySelectorAll("a");
                 for(var j=0; j<href.length; j++){
                     href[j].href=`./showproject.php?fundNo=${content[i].fundNo}`;
->>>>>>> cee77f62b140536ca2f48d5cea1c4579e82d623c
                 }
                 
-                fundNo = content;
-                
             }
-            console.log(fundNo);
         },
         error(data){
             alert(data);
@@ -120,17 +103,6 @@ function donationCarousel(){
             leftCards[i-1].classList.add("on");
         }
     }
-<<<<<<< HEAD
-    //換大圖
-    for (var k = 0; k < bigImg.length; k++){
-        bigImg[k].src = `./img/donation/projectImg/${content[i].fundNo}_fundImg.jpg`;
-
-    }
-    
-    
-
-
-=======
     
         //換大圖
         var bigImg= document.querySelector('div.carousel_donation div.img img');
@@ -144,7 +116,6 @@ function donationCarousel(){
             href[j].href=document.querySelectorAll("div.leftSide div.card")[now-1].querySelector("a:first-child").href;
         }
         
->>>>>>> cee77f62b140536ca2f48d5cea1c4579e82d623c
 }
 
 
