@@ -276,7 +276,7 @@
                     </tr>
                     <tr v-for="rado in radonationdatas">
                         <td>{{rado.fundNo}}</td>
-                        <td style="width: 10%;"><img v-bind:src="'./img/donation/projectImg/'+ rado.fundImg" style="width: 100%; display: block;"> </td>
+                        <td style="width: 20%;"><img v-bind:src="'./img/donation/projectImg/'+ rado.fundImg" style="width: 100%; display: block;"> </td>
                         <td>{{rado.fundTitle}} {{rado.fundName}}</td>
                         <td class="memRWD_992">{{rado.fundStartDate}}</td>
                         <td class="memRWD_992">{{rado.fundEndDate}}</td>
@@ -341,9 +341,9 @@
                         <th class="titleFont">捐款金額</th>
                     </tr>
                     <tr v-for="atdo in atdonationdatas">
-                        <td>{{atdo.fundNo}} {{atdo.fundName}}</td>
-                        <td><img v-bind:src="'./img/donation/projectImg/'+ atdo.fundImg" style="width: 50%; display: block;"> </td>
-                        <td>{{atdo.fundTitle}}</td>
+                        <td>{{atdo.fundNo}}</td>
+                        <td style="width: 20%;"><img v-bind:src="'./img/donation/projectImg/'+ atdo.fundImg" style="width: 100%; display: block;"> </td>
+                        <td>{{atdo.fundTitle}} {{atdo.fundName}}</td>
                         <td class="memRWD_992">{{atdo.fundStartDate}}</td>
                         <td class="memRWD_992">{{atdo.fundEndDate}}</td>
                         <td class="memRWD_992">NT${{atdo.fundGoal}}</td>
@@ -444,7 +444,7 @@
                                 `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
                                     <td class="memRWD_992">${data[i].orderDate}</td>
                                     <td class="memRWD_992">${data[i].orderName}</td>
                                     <td class="memRWD_992">${data[i].orderPhone}</td>
@@ -459,7 +459,7 @@
                                 `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
                                     <td class="memRWD_992">${data[i].orderDate}</td>
                                     <td class="memRWD_992">${data[i].orderName}</td>
                                     <td class="memRWD_992">${data[i].orderPhone}</td>
@@ -474,7 +474,7 @@
                                 `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
                                     <td class="memRWD_992">${data[i].orderDate}</td>
                                     <td class="memRWD_992">${data[i].orderName}</td>
                                     <td class="memRWD_992">${data[i].orderPhone}</td>
@@ -489,14 +489,14 @@
                                 `
                                 <tr>
                                     <td>${i+1}</td>
-                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200"></td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
                                     <td class="memRWD_992">${data[i].orderDate}</td>
                                     <td class="memRWD_992">${data[i].orderName}</td>
                                     <td class="memRWD_992">${data[i].orderPhone}</td>
                                     <td class="memRWD_992">${data[i].orderAddress}</td>
                                     <td class="memRWD_992">${data[i].orderQty}</td>
                                     <td class="memRWD_992">${data[i].orderPrice}</td>
-                                    <td orderStatus">已收貨</td>
+                                    <td orderStatus">已取貨</td>
                                 </tr>
                             `;
                         }

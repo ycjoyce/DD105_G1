@@ -347,11 +347,9 @@ section{
                     div{
                         margin: 10px auto;
                         width: 190px;
-                        // &:hover{
-                        //     img{
-                        //         transform: rotate(10deg);
-                        //     }
-                        // }
+                        @include rwd(mini){
+                            width: 210px;
+                        }
                         img{
                             transition: all 0.5s;
                             display: inline-block;
@@ -405,6 +403,15 @@ section{
                     top: 45px;
                     color: rgb(246, 246, 246);
                     display: none;
+                    cursor: pointer;
+                    @include rwd(ss){
+                        width: 110px;
+                        text-align: center;
+                    }
+                    @include rwd(mini){
+                        width: 110px;
+                        text-align: center;
+                    }
                     &.on{
                         display: block;
                     }
@@ -555,6 +562,9 @@ section{
                             display: block;
                         }
                     }
+                    img{
+                        cursor: pointer;
+                    }
                     span{
                         color: $lightgray;
                         display:block;
@@ -606,6 +616,7 @@ section{
             display: flex;
             background-color: #fff;
             label[for="upload"]{
+                cursor: pointer;
                 display: inline-block;
                 height: 100%;
                 width:50px;

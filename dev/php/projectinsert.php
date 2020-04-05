@@ -19,14 +19,17 @@
         if($_FILES["upFile"]["error"] == UPLOAD_ERR_OK){
             
             // $sql = "INSERT INTO `fundraising` (`fundNo`, `fundTitle`, `fundImg`) values(null, :fundTitle, '' )";
-            $sql = "INSERT INTO `fundraising` (`fundName`, `memNo`, `fundTitle`, `fundImg`, `fundArticleImg1`, `fundArticleImg2`, `fundArticleImg3`, `fundStartDate`, `fundEndDate`, `fundGoal`, `fundNowAmount`, `fundAttendPeople`,`fundStatus`) 
-            values(:fundName, :memNo,:fundTitle, ' ', ' ', ' ', ' ', now(),  DATE_ADD(now(), INTERVAL 100 DAY)   , :fundGoal, 0, 0, 1)";
+            $sql = "INSERT INTO `fundraising` (`fundName`, `memNo`, `fundTitle`, `fundImg`, `fundArticleImg1`, `fundArticleImg2`, `fundArticleImg3`, `fundStartDate`, `fundEndDate`, `fundGoal`, `fundNowAmount`, `fundAttendPeople`,`fundStatus`,`fundArticleF`,`fundArticleS`,`fundArticleT`) 
+            values(:fundName, :memNo,:fundTitle, ' ', ' ', ' ', ' ', now(),  DATE_ADD(now(), INTERVAL 100 DAY)   , :fundGoal, 0, 0, 1,:fundArticleF,:fundArticleS,:fundArticleT)";
             $fundraising = $pdo -> prepare( $sql );
             // $fundraising -> bindValue(":fundContent", $_POST["fundContent"]);
             $fundraising -> bindValue(":fundName", $_REQUEST["fundName"]);
             $fundraising -> bindValue(":memNo", $memNo);
             $fundraising -> bindValue(":fundTitle", $_REQUEST["fundTitle"]);
             $fundraising -> bindValue(":fundGoal", $_REQUEST["fundGoal"]);
+            $fundraising -> bindValue(":fundArticleF", $_REQUEST["fundArticleF"]);
+            $fundraising -> bindValue(":fundArticleS", $_REQUEST["fundArticleS"]);
+            $fundraising -> bindValue(":fundArticleT", $_REQUEST["fundArticleT"]);
             $fundraising -> execute();
 
             //取得自動創號的key值
@@ -93,8 +96,13 @@
                 $fundraising -> bindValue(":fundArticleImg2", $fileName2);
                 $fundraising -> bindValue(":fundArticleImg3", $fileName3);
                 $fundraising -> execute();
+
+                $sql = "update meminfo set memPoint = memPoint + 300  where memNo = $memNo";
+                $fundraising  = $pdo->prepare($sql);
+                $fundraising -> bindValue(":memNo", $memNo);
+                $fundraising -> execute();
                 
-                header("Location: http://140.115.236.71/demo-projects/DD105/DD105G1/raisedonation.html"); 
+                // header("Location: http://140.115.236.71/demo-projects/DD105/DD105G1/raisedonation.html"); 
                 
                 // $pdo->commit();
         }else{
@@ -102,15 +110,7 @@
             echo "新增失敗<br>";
         }
 
-        // if(isset($memNo)){
-        //     $sql = "update meminfo set memPoint = :memPoint + 300  where memNo = $memNo";
-        //     $fundraising  = $pdo->prepare($sql);
-        //     $fundraising -> bindValue(":memNo", $memNo);
-        //     $fundraising -> bindValue(":memPoint", $_REQUEST["memPoint"]);
-        //     $fundraising -> execute();
-        // }else{
-        //     echo "錯誤代碼 :<br>";
-        // }
+        
 
     
         

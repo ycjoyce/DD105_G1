@@ -8,7 +8,9 @@ var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var sourcemaps = require('gulp-sourcemaps');
 var babel = require('gulp-babel');
-
+//========== bobo
+// var connectPHP =require('gulp-connect-php');
+//==========
 
 //打包
 //=================================================================
@@ -47,6 +49,16 @@ var web={
     ]
 };
 
+// ======================== PHP
+// var options = {
+//     base: './dest',
+//     debug:true,
+//     bin:'C:/php-7.4.2-nts-Win32-vc15-x64/php.exe',
+//     ini:'C:/php-7.4.2-nts-Win32-vc15-x64/php.ini',
+//     port:8080,
+// }
+
+//=========================
 
 gulp.task('concat', function(){
     gulp.src(web.js).pipe(gulp.dest('./dest/js'));
@@ -99,17 +111,26 @@ gulp.task('image-min',function(){
 //終端機呼叫時不用gulp default
 //直接打gulp就可以了
 gulp.task('default',function(){
-    browserSync.init({
-        server:{
-            baseDir: "./dest/",
-            index: "main.html",
-        }
-    });
+    //======bobo
+    // browserSync.init({
+    //     server:{
+    //         baseDir: "./dest/",
+    //         proxy:'localhost:8080',
+    //         port:3000,
+    //         watch:true,
+    //         index: "main.html",
+    //     }
+    // });    
+    // connectPHP.server(options)
+    //======bobo
     gulp.watch(web.js,['js']).on('change',reload);
     gulp.watch(web.html,['fileinclude']).on('change',reload);
     gulp.watch(web.sass,['sass']).on('change',reload);
     gulp.watch(web.css).on('change',reload);
     gulp.watch([web.js,web.php,web.font,web.img],['concat']).on('change',reload);
+    //====== BOBO
+    // gulp.watch(web.php,['concatphp']).on('change',reload);
+    //======
 });
 
 

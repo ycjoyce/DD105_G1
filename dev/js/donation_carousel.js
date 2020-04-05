@@ -4,6 +4,9 @@ let nextBtn= document.querySelector('div.carousel_donation div.changePage button
 let carouselArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.card');
 let changeArea= document.querySelector('section.donation div.rightSide div.carousel_donation div.changePage');
 let timerId;
+var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
+let content;
+
 
 function dogAniSize(){
     let dogAnimate= document.querySelector('section.donation div.dogAnimate');
@@ -13,8 +16,51 @@ function dogAniSize(){
 window.addEventListener("resize",dogAniSize);
 
 
+function leftSideCards(){
+    $.ajax({
+        url:"./php/getDonationCard.php",
+        type:"GET",
+        success(data){
+            console.log(data);
+            content= JSON.parse(data);
+            console.log(content);
+            for(let i=0; i<leftCards.length; i++){
+                //project number
+                leftCards[i].querySelector("div.text span:first-child").innerText=`PROJECT ${content[i].fundNo}`;
+                //title
+                leftCards[i].querySelector("div.text h4 a").innerText=`${content[i].fundTitle} ${content[i].fundName}`;
+                //date
+                leftCards[i].querySelector("div.text span.date").innerText=content[i].fundStartDate;
+                //目前金額
+                leftCards[i].querySelector("div.amount span.now").innerText=`目前金額${content[i].fundNowAmount}`;
+                leftCards[i].querySelector("input[name='cur']").value=`${content[i].fundNowAmount}`;
+                //目標金額
+                leftCards[i].querySelector("div.amount a.goal").innerText=`目標金額${content[i].fundGoal}`;
+                leftCards[i].querySelector("input[name='goal']").value=`${content[i].fundGoal}`;
+                //圖片
+                leftCards[i].querySelector("div.img img").src=`./img/donation/projectImg/${content[i].fundImg}`;
+                //a連結
+                var href= leftCards[i].querySelectorAll("a");
+                for(var j=0; j<href.length; j++){
+                    href[j].href=`./showproject.php?fundNo=${content[i].fundNo}`;
+                }
+                
+            }
+        },
+        error(data){
+            alert(data);
+        },
+    });
+    
+}
+
+
+
+
+
+
 function donationCarousel(){
-    var bigImg= document.querySelector('div.carousel_donation div.img img');
+    
     var projectNum= document.querySelector('div.carousel_donation div.card span.projectNum');
     var date= document.querySelector('div.carousel_donation div.card span.date');
     var cardTitle= document.querySelector('div.carousel_donation div.card h4 a');
@@ -23,12 +69,21 @@ function donationCarousel(){
     var changeNum= document.querySelector('div.carousel_donation div.changePage span');
     var progressBar= document.querySelector('div.carousel_donation div.progress_bar');
 
-    var leftCards= document.querySelectorAll('section.donation div.leftSide div.card');
+    
     var goalVal= leftCards[now-1].querySelector("div.text input[name='goal']").value;
     var curVal= leftCards[now-1].querySelector("div.text input[name='cur']").value;
     var comVal= Math.floor(curVal/goalVal*100)+"%";
     var wave= document.getElementById("wave");
-    wave.style.bottom= Math.floor(curVal/goalVal*100)*0.8-80 +"%";
+    if(Math.floor(curVal/goalVal*100)>100){
+        wave.style.bottom="0%";
+        wave.style.height="110%";
+        wave.style.width="120%";
+    }else{
+        wave.style.bottom= Math.floor(curVal/goalVal*100)*0.8-80 +"%";
+        wave.style.height="100%";
+        wave.style.width="100%";
+    }
+    
 
     projectNum.innerText= leftCards[now-1].querySelector('div.text span:first-child').innerText;
     date.innerText= leftCards[now-1].querySelector('div.text span.date').innerText;
@@ -37,13 +92,6 @@ function donationCarousel(){
     complete.innerText= comVal;
     changeNum.innerText= `0${now}/03`;
 
-    // alert(`${projectNum.innerText}|${date.innerText}|${cardTitle.innerText}`);
-    // console.log(now);
-    // console.log(projectNum.innerText);
-    // console.log(date.innerText);
-    // console.log(cardTitle.innerText);
-    // console.log(goal.innerText);
-    // console.log(complete.innerText);
 
     for(let i=1; i<=3; i++){
         if(i!=now){
@@ -55,11 +103,22 @@ function donationCarousel(){
             leftCards[i-1].classList.add("on");
         }
     }
-    //換大圖
-    bigImg.src=`img/donation_card_${now}.jpg`;
+    
+        //換大圖
+        var bigImg= document.querySelector('div.carousel_donation div.img img');
+        bigImg.src=document.querySelectorAll("div.leftSide div.card div.img img")[now-1].src;
+        
+        
+
+        //a標籤
+        var href= document.querySelectorAll("div.carousel_donation div.card a");
+        for(var j=0; j<href.length; j++){
+            href[j].href=document.querySelectorAll("div.leftSide div.card")[now-1].querySelector("a:first-child").href;
+        }
+        
 }
 
-donationCarousel();
+
 
 nextBtn.onclick=function(){
     //箭頭動畫

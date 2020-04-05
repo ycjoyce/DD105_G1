@@ -54,6 +54,10 @@ var styleCustom = [
   }
 ];
 
+// googlemap取得當下位置
+var geolocation =
+  "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk";
+
 // Gmaps style
 var styleBasic = [
   { featureType: "all", elementType: "all", stylers: [{ visibility: "off" }] },
@@ -119,7 +123,8 @@ $(function() {
 /*** Gmaps initialize ***/
 function initialize() {
   // 獲取設備當前的位置
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  centerMarker();
+  // navigator.geolocation.watchPosition(geoSuccess, geoError);
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
     center: { lat: lat, lng: lng },
@@ -143,39 +148,20 @@ function initialize() {
   // Gmap skin
   // map.mapTypes.set("Custom", customType);
   // map.mapTypes.set("Basic", basicType);
-  var mySwiper = new Swiper(".swiper-container", {
-    // Optional parameters
-    direction: "vertical",
-    loop: true,
-
-    // If we need pagination
-    pagination: {
-      el: ".swiper-pagination"
-    },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    },
-
-    // And if we need scrollbar
-    scrollbar: {
-      el: ".swiper-scrollbar"
-    }
-  });
 }
 
-function geoSuccess(pos) {
-  var crd = pos.coords;
-  //Add center marker
-  centerMarker(crd.latitude, crd.longitude);
-}
+// HTML 5 getCurrentPosition================================================
+// function geoSuccess(pos) {
+//   var crd = pos.coords;
+//   //Add center marker
+//   centerMarker(crd.latitude, crd.longitude);
+// }
 
-function geoError(err) {
-  $center.style.display = "none";
-  console.warn("ERROR(" + err.code + "): " + err.message);
-}
+// function geoError(err) {
+//   $center.style.display = "none";
+//   console.warn("ERROR(" + err.code + "): " + err.message);
+// }
+// ================================================HTML 5 getCurrentPosition
 
 /*** Center marker ***/
 function centerMarker(latitude, longitude) {
@@ -192,13 +178,31 @@ function centerMarker(latitude, longitude) {
     position: new google.maps.LatLng(latitude, longitude)
   });
   marker.setMap();
+
+  //click event
+  xhr = new XMLHttpRequest();
+  xhr.open("POST", geolocation);
+  xhr.onload = function() {
+    var response = JSON.parse(this.responseText);
+    console.log(response);
+    // console.log(response.location.lat);
+    google.maps.event.addDomListener(center, "click", function() {
+      map.setZoom(12);
+      map.setCenter(
+        new google.maps.LatLng(response.location.lat, response.location.lng)
+      );
+    });
+  };
+  xhr.send();
+
+  // HTML 5 getCurrentPosition================================================
+  //   //click event
+  // google.maps.event.addDomListener(center, "click", function() {
+  // map.setZoom(11);
+  // map.setCenter(new google.maps.LatLng(latitude, longitude));
+  // });
+  // ================================================HTML 5 getCurrentPosition
 }
-//   //click event
-//   google.maps.event.addDomListener(center, "click", function() {
-//     map.setZoom(15);
-//     map.setCenter(new google.maps.LatLng(latitude, longitude));
-//   });
-// }
 
 /*** Zoom control ***/
 function zoomControl() {
@@ -277,7 +281,8 @@ function getLost() {
         data[i].lostPetRpType,
         data[i].lostPetRpCh,
         data[i].lostPetRpLocAdd,
-        data[i].memName
+        data[i].memName,
+        data[i].memPic
       );
     }
   };
@@ -300,18 +305,20 @@ function mapMsg(id) {
           $.ajax({
             url: "./php/checkBlackMsg.php",
             type: "POST",
-            data: {petLostOwner: petLostOwner},
-            success(data){
-              if(data.indexOf("success")==-1){
-                alert("已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信");
-              }else{
+            data: { petLostOwner: petLostOwner },
+            success(data) {
+              if (data.indexOf("success") == -1) {
+                alert(
+                  "已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信"
+                );
+              } else {
                 $.ajax({
                   url: "./php/mapMsg.php",
                   type: "POST",
                   data: { lostNo: id.substr(4) },
                   success(data) {
                     if (data.indexOf("error") == -1) {
-                      sessionStorage.setItem("now-on",petLostOwner.trim());
+                      sessionStorage.setItem("now-on", petLostOwner.trim());
                       location.href = "./message.html";
                     } else {
                       alert("操作失敗");
@@ -323,9 +330,9 @@ function mapMsg(id) {
                 });
               }
             },
-            error(data){
+            error(data) {
               alert(data);
-            },
+            }
           });
         }
       },
@@ -352,7 +359,8 @@ function loadLostData(
   type,
   character,
   add,
-  memName
+  memName,
+  memPic
 ) {
   var contentString = `
     <div class="lostContent">
@@ -363,7 +371,7 @@ function loadLostData(
         <li>寵物遺失地點：${loc}</li>
         <li>寵物類型：${type}</li>
         <li>寵物特徵：${character}</li>
-        <li>私信主人：<a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')">${memName}<img src="./img/icon_private_message.svg"></a></li>
+        <li><a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img src="./img/icon_private_message.svg"> 主人：<img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}</a></li>
       </ul>
     </div>
   `;
@@ -423,7 +431,8 @@ function changeDist() {
           data[i].lostPetRpType,
           data[i].lostPetRpCh,
           data[i].lostPetRpLocAdd,
-          data[i].memName
+          data[i].memName,
+          data[i].memPic
         );
       }
     }
@@ -688,6 +697,10 @@ function changeMarker() {
 window.addEventListener("load", function() {
   let area = document.querySelector("#fr_area");
   area.onchange = function(e) {
+    $(".map_filter_friendly h3 label").css("fontWeight", "600");
+    $(".map_filter_friendly h3 label img").css("opacity", "1");
+    $("#favoH3 label").css("fontWeight", "400");
+    $("#favoH3 label img").css("opacity", "0");
     search_area = e.target.value;
     // alert(search_area);
     changeMarker();
@@ -696,6 +709,10 @@ window.addEventListener("load", function() {
   let type = document.getElementsByName("friendtypes");
   for (let i = 0; i < type.length; i++) {
     type[i].onchange = function(e) {
+      $(".map_filter_friendly h3 label").css("fontWeight", "600");
+      $(".map_filter_friendly h3 label img").css("opacity", "1");
+      $("#favoH3 label").css("fontWeight", "400");
+      $("#favoH3 label img").css("opacity", "0");
       var type = document.getElementsByName("friendtypes");
       let arrA = [];
       //檢查全部的checkbox有誰被勾選
@@ -780,44 +797,63 @@ function loadfriendlyData(
 
 // ======================================新增最愛=============================================//
 
+// 新增我的最愛
 function addFav() {
-  // console.log($(".addfriendlyFav").attr("fav"));
-  var fav = $(".addfriendlyFav").attr("fav");
-  if ($(".addfriendlyFav").prop("checked") == true) {
-    $.ajax({
-      type: "POST",
-      url: "./php/map_favAdd.php",
-      data: { friendlyNo: fav },
-      success: function(data) {
-        if (data.indexOf("ok") != -1) {
-          alert("新增到最愛");
-          console.log(fav + "新增到最愛");
+  // alert("先判斷");
+  // 先判斷有沒有登入
+  var xhr = new XMLHttpRequest();
+  var url = "./php/checkMem.php";
+  xhr.open("GET", url, true);
+  xhr.send(null);
+  xhr.onload = function(e) {
+    if (xhr.status == 200) {
+      member = JSON.parse(xhr.responseText);
+      if (!member.memName) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert("請先登入");
+        return;
+      } else {
+        // console.log($(".addfriendlyFav").attr("fav"));
+        var fav = $(".addfriendlyFav").attr("fav");
+        if ($(".addfriendlyFav").prop("checked") == true) {
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favAdd.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("新增到最愛");
+                console.log(fav + "新增到最愛");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
         } else {
-          alert("新增失敗");
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favRemove.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("已從最愛移除");
+                console.log(fav + "從最愛移除");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
         }
-      },
-      error: function(xhr) {
-        alert(xhr.Message);
       }
-    });
-  } else {
-    $.ajax({
-      type: "POST",
-      url: "./php/map_favRemove.php",
-      data: { friendlyNo: fav },
-      success: function(data) {
-        if (data.indexOf("ok") != -1) {
-          alert("已從最愛移除");
-          console.log(fav + "從最愛移除");
-        } else {
-          alert("新增失敗");
-        }
-      },
-      error: function(xhr) {
-        alert(xhr.Message);
-      }
-    });
-  }
+    }
+  };
 }
 
 // 我的最愛更換類別
@@ -903,6 +939,10 @@ window.addEventListener("load", function() {
   let fatype = document.getElementsByName("favoritetypes");
   for (let i = 0; i < fatype.length; i++) {
     fatype[i].onchange = function(e) {
+      $("#favoH3 label").css("fontWeight", "600");
+      $("#favoH3 label img").css("opacity", "1");
+      $(".map_filter_friendly h3 label").css("fontWeight", "400");
+      $(".map_filter_friendly h3 label img").css("opacity", "0");
       document.getElementById("favoH3").style.color = "red";
       var type = document.getElementsByName("favoritetypes");
       let arrB = [];

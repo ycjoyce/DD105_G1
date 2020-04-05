@@ -9,6 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
     <link rel="stylesheet" href="./css/customized.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <!-- <link rel="stylesheet" href="./css/dialog.css"> -->
@@ -19,7 +20,9 @@
     <script src="./js/sweet-alert.js"></script>
     <script src="./js/customizedTabsEvent.js"></script>
     <script src="./js/customized.js"></script>
+    <script src="./js/mobileDoubleClick.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Coming+Soon&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -92,9 +95,9 @@
                         xhr.onload = function() {
                             if (xhr.status == 200) {
                                 member = JSON.parse(xhr.responseText);
-                                if (member.memId) {
-                                    memberPoint.style.display = "block";
-                                    signInFirstBlock.style.display = "none";
+                                if (member.memId == null) {
+                                    memberPoint.style.display = "none";
+                                    signInFirstBlock.style.display = "flex";
                                 }
                             }
                         }
@@ -249,8 +252,8 @@
                                 <div id="collarTagWrap">
 
                                 </div>
-                                <button class="sliderBtns" id="sliderBtnLeft" disabled><</button>
-                                <button class="sliderBtns" id="sliderBtnRight">></button>
+                                <button class="sliderBtns" id="sliderBtnLeft" disabled><i class="fas fa-chevron-left"></i></button>
+                                <button class="sliderBtns" id="sliderBtnRight"><i class="fas fa-chevron-right"></i></button>
                             </div>
                             <script>
                                 function updateMemPoint(sendNewPoint) {
@@ -259,7 +262,7 @@
                                     xhr.open("POST", url, true);
                                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                                     var data_info = `memPoint=${sendNewPoint}`;
-                                    xhr.send();
+                                    xhr.send(data_info);
                                 }
 
 
@@ -271,7 +274,7 @@
                                     for (i = 0; i < newArray.length; i++) {
                                         for (j = 0; j < lockPoint.length; j++) {
                                             if (lockPoint[j].getAttribute('tagNo') == newArray[i]) {
-                                                console.log(lockPoint[j].getAttribute('tagNo'));
+                                                // console.log(lockPoint[j].getAttribute('tagNo'));
                                                 // lockPoint[j].style.display = "none";
                                                 lockPoint[j].innerHTML =
                                                     `
@@ -316,11 +319,126 @@
                                             document.getElementById('lockTagNo').innerText = allTagNoStr;
                                             $("#collarTagWrap").append(msg);
                                             $(document).ready(function() {
+                                                let curIndex = 0;
+                                                let collarTagWrap = document.getElementById('collarTagWrap');
+                                                let sliderBtnLeft = document.getElementById('sliderBtnLeft');
+                                                let sliderBtnRight = document.getElementById('sliderBtnRight');
+                                                tagItems = document.getElementsByClassName('tagItems');
+                                                let tagTotal = document.getElementById('tagTotal');
+                                                // nowTag = document.getElementById('nowTag');
+                                                let tagImages = document.getElementsByClassName('tagImages');
+                                                let lockPoint = document.getElementsByClassName('lockPoint');
+                                                let lockStatus = document.getElementsByClassName('lockStatus');
+                                                let todayDate = document.getElementById('todayDate');
+                                                let orderDate = document.getElementById('orderDate');
+                                                let tab2_content = document.getElementsByClassName('tab2_content')[0];
+
+                                                let today = new Date();
+                                                todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+                                                orderDate.innerText = `${todayDate.innerText}`;
+
+                                                $('#tagTotal span:last-child').text(tagItems.length);
+                                                // alert("當前顯示器寬度" + $(window).width() + "px");
+                                                // alert("輪播圖數量" + tagItems.length);
+                                                $('#collarTagWrap').css('width', tagItems.length * 600);
+                                                if ($(window).width() < 600) {
+                                                    $('.tagItems').css('width', $(window).width());
+                                                } else {
+                                                    $('.tagItems').css('width', 600);
+                                                }
+                                                // alert("單一屏寬" + $('.tagItems').css('width'));
+                                                // alert("輪播全部寬" + $('#collarTagWrap').css('width'));
+                                                window.addEventListener('resize', function() {
+                                                    let tagNum = document.getElementsByClassName('tagItems').length;
+                                                    if ($(window).width() < 600) {
+                                                        $('.tagItems').css('width', $(window).width());
+                                                        $('#collarTagWrap').css('left', -$(window).width() * (parseInt($('#nowTag').text()) - 1));
+                                                    } else {
+                                                        $('.tagItems').css('width', 600);
+                                                        $('#collarTagWrap').css('left', -600 * (parseInt($('#nowTag').text()) - 1));
+                                                    }
+                                                });
+
+                                                tagImages[0].style.transform = "scale(2.5)";
+
+                                                sliderBtnLeft.style.opacity = "0";
+                                                sliderBtnRight.style.cursor = "pointer";
+                                                sliderBtnLeft.addEventListener('click', function() {
+                                                    let abc = parseInt($('#nowTag').text());
+                                                    abc -= 1;
+                                                    $('#nowTag').text(abc);
+
+                                                    sliderBtnRight.style.opacity = "1";
+                                                    sliderBtnRight.style.cursor = "pointer";
+                                                    sliderBtnRight.style.visibility = "visible";
+                                                    let tagWidth = parseFloat($('.tagItems').css('width'));
+                                                    // alert(tagWidth);
+                                                    curIndex--;
+                                                    collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+                                                    sliderBtnRight.disabled = false;
+                                                    if (parseFloat(collarTagWrap.style.left) == 0) {
+                                                        sliderBtnLeft.disabled = true;
+                                                        sliderBtnLeft.style.opacity = "0";
+                                                        sliderBtnLeft.style.cursor = "default";
+                                                        sliderBtnLeft.style.visibility = "hidden";
+                                                    }
+                                                    let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+                                                    // alert(offset);
+                                                    tagImages[offset].style.transform = "scale(1)";
+                                                    tagImages[offset - 1].style.transform = "scale(2.5)";
+                                                    tagImages[offset].style.filter = "brightness(0.7)";
+                                                    tagImages[offset - 1].style.filter = "brightness(1)";
+                                                    lockPoint[offset].style.visibility = "hidden";
+                                                    lockPoint[offset - 1].style.visibility = "visible";
+                                                    lockPoint[offset].style.opacity = "0";
+                                                    lockPoint[offset - 1].style.opacity = "1";
+                                                    lockStatus[offset].style.visibility = "hidden";
+                                                    lockStatus[offset - 1].style.visibility = "visible";
+                                                    lockStatus[offset].style.opacity = "0";
+                                                    lockStatus[offset - 1].style.opacity = "1";
+                                                    // nowTag.innerText = offset + 1;
+                                                });
+
+                                                sliderBtnRight.addEventListener('click', function() {
+                                                    let abc = parseInt($('#nowTag').text());
+                                                    abc += 1;
+                                                    $('#nowTag').text(abc);
+
+                                                    sliderBtnLeft.style.opacity = "1";
+                                                    sliderBtnLeft.style.cursor = "pointer";
+                                                    sliderBtnLeft.style.visibility = "visible";
+                                                    let tagWidth = parseFloat($('.tagItems').css('width'));
+
+                                                    curIndex++;
+                                                    collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+                                                    sliderBtnLeft.disabled = false;
+                                                    if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 1) * -tagWidth) {
+                                                        sliderBtnRight.disabled = true;
+                                                        sliderBtnRight.style.opacity = "0";
+                                                        sliderBtnRight.style.cursor = "default";
+                                                        sliderBtnRight.style.visibility = "hidden";
+                                                    }
+                                                    let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+                                                    // alert(offset);
+                                                    tagImages[offset - 2].style.transform = "scale(1)";
+                                                    tagImages[offset - 1].style.transform = "scale(2.5)";
+                                                    tagImages[offset - 2].style.filter = "brightness(0.7)";
+                                                    tagImages[offset - 1].style.filter = "brightness(1)";
+                                                    lockPoint[offset - 2].style.visibility = "hidden";
+                                                    lockPoint[offset - 1].style.visibility = "visible";
+                                                    lockPoint[offset - 2].style.opacity = "0";
+                                                    lockPoint[offset - 1].style.opacity = "1";
+                                                    lockStatus[offset - 2].style.visibility = "hidden";
+                                                    lockStatus[offset - 1].style.visibility = "visible";
+                                                    lockStatus[offset - 2].style.opacity = "0";
+                                                    lockStatus[offset - 1].style.opacity = "1";
+                                                    // nowTag.innerText = offset + 1;
+                                                });
                                                 newArray = document.getElementById('memTagNo').innerText.split(",");
 
                                                 $('.unlock').click(function() {
                                                     let point = parseInt($(this).attr('point'));
-                                                    let nowPoint = parseInt($('#showPoint').text());
+                                                    let nowPoint = parseInt(member.memPoint);
                                                     let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
                                                     if (result) {
                                                         if (nowPoint >= point) {
@@ -339,7 +457,7 @@
                                                             member.memTagNo = document.getElementById('memTagNo').innerText;
                                                             lockTagNo();
                                                         } else {
-                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點`);
+                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點\n\n可以去討論區發起貼文或是募款區發起募款賺取點數哦`);
                                                         }
                                                     } else {
                                                         return;
@@ -423,7 +541,7 @@
                                 <button class="stepNextBtn" id="step2NextBtn">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-3" class="tab-content" style="background-color: #fff9e4;">
+                        <div id="tab-3" class="tab-content tab3_content" style="background-color: #fff9e4;">
                             <div class="addText">
                                 <div id="textStyle">
                                     <span class="collarTextTitles">選擇文字風格： </span>
@@ -740,7 +858,7 @@
 
                 xhr.onload = function() {
                     if (xhr.status == 200) {
-                        alert("訂單已成功送出");
+                        alert("訂單已成功送出,訂單紀錄能在會員中心進行查看!");
                         window.location.reload();
                     } else {
                         alert("錯誤");

@@ -17,30 +17,31 @@
 <body>
     <div class="postregionwrapper">
     <!-- 導覽列 -->
-        <header class="header-navigation" id="header">
-    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
+    <header class="header-navigation" id="header">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
             <h1>
-                <a href="./index.html">
+                <a href="./main.html">
                     <img src="./img/logo-wide.png" alt="logo">
                 </a>
             </h1>
             <ul class="col-xl-9 col-lg-9 col-md-9">
-                <li><a href="./map.html">浪浪在哪裡</a></li>
-                <li><a href="./donation.html">愛心助浪浪</a></li>
-                <li><a href="./customized.html">客製化項圈</a></li>
-                <li><a href="./post_article_region.php">毛孩交流區</a></li>
-                <li><a href="./aboutus.html">關於我們</a></li>
-                <li><a class="login" href="./login.html">登入 / 註冊</a></li>
+                <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                <li><a id="navPost" href="./post_article_region.php">毛孩交流區</a></li>
+                <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
             </ul>
             <button class="hamburger hamburger--spring" type="button">
                 <span class="hamburger-box">
-                  <span class="hamburger-inner"></span>
+                  <span class="hamburger-inner"></span> 
                 </span>
             </button>
         </div>
     </nav>
 </header>
+
 
 
         <div class="headerHeight"></div>
@@ -81,7 +82,7 @@
                 <div class="breadcrumb">
                     <a href="./post_article_region.php">貼文區</a>
                     <span>></span>
-                    <a href="#"><?php echo $prodRow->piTitle;?></a>
+                    <a class="breadcrumbLastChild" href="#"><?php echo $prodRow->piTitle;?></a>
                 </div>
             </div>
 

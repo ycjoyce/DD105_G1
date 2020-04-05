@@ -24,7 +24,7 @@
                 <div></div>
             </div>
         </div>
-        <form id="postwriteregionbuttonConnect" class="post_write_form" action="post_contentPreview.php" method="post" enctype="multipart/form-data">  <!--  action="post_contentPreview.php" -->
+        <form id="postwriteregionbuttonConnect" class="post_write_form" action="postRegionInsert.php" method="post" enctype="multipart/form-data">  <!--  action="post_contentPreview.php" -->
             <label for="writetitle" class="titleFont">
                 <span class="postwritetitlefont">Title</span>
                 <input class="postwritetitle" type="text" name="piTitle" placeholder="請輸入標題" value="" />
@@ -87,6 +87,7 @@
                     <div class="contenteditabletext" contenteditable="true"  data-placeholder="請輸入內容"></div>
                     <input class="cpc_writecontenttextrecord" type="hidden" value="" name="piFloatRightContent" />
                 </div>
+                <input class="cpcwritecontenttextrecordWordTotalNumber" type="hidden" value="" name="memPoint" />
             </div>
             <!--<input class="postwriteregionbutton" type="button" value="送出" />-->  <!-- submit -->
             <div class="postwriteregionsendaddhint">
@@ -105,30 +106,31 @@
     </div>
     <div class="postregionwrapper">
     <!-- 導覽列 -->
-        <header class="header-navigation" id="header">
-            <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
-                    <h1>
-                        <a href="./index.html">
-                            <img src="" alt="logo">  <!-- ./img/logo-wide.png -->
-                        </a>
-                    </h1>
-                    <ul class="col-xl-9 col-lg-9 col-md-9">
-                        <li><a href="./map.html">浪浪在哪裡</a></li>
-                        <li><a href="./donation.html">愛心助浪浪</a></li>
-                        <li><a href="./customized.html">客製化項圈</a></li>
-                        <li><a href="./post_article_region.php">毛孩交流區</a></li>
-                        <li><a href="./aboutus.html">關於我們</a></li>
-                        <li><a class="login" href="./login.html">登入 / 註冊</a></li>
-                    </ul>
-                    <button class="hamburger hamburger--spring" type="button">
-                        <span class="hamburger-box">
-                          <span class="hamburger-inner"></span>
-                        </span>
-                    </button>
-                </div>
-            </nav>
-        </header>
+    <header class="header-navigation" id="header">
+    <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-ss-12 col-mini-12">
+        <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12 col-ss-12  col-mini-12">
+            <h1>
+                <a href="./main.html">
+                    <img src="./img/logo-wide.png" alt="logo">
+                </a>
+            </h1>
+            <ul class="col-xl-9 col-lg-9 col-md-9">
+                <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                <li><a id="navPost" href="./post_article_region.php">毛孩交流區</a></li>
+                <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
+            </ul>
+            <button class="hamburger hamburger--spring" type="button">
+                <span class="hamburger-box">
+                  <span class="hamburger-inner"></span> 
+                </span>
+            </button>
+        </div>
+    </nav>
+</header>
+
 
 
         <div class="headerHeight"></div>
@@ -151,8 +153,8 @@
                 <div class="col-8 centerfix">
                     <!-- 下拉選單 -->
                     <div class="inlinerightfix">
-                        <!-- <div class="selectors inlinefix">
-                            <div id="postregionSort" class="select postregionsort">
+                        <div class="selectors inlinefix">
+                            <!-- <div id="postregionSort" class="select postregionsort">
                                 <div class="select-styled aa1">
                                   <span class="displayfont1 hide1">-- 排序方式 --</span>
                                   <p class="multiSel ms1"></p>
@@ -165,28 +167,31 @@
                                         <input type="checkbox" name="postsort" value="Popular" />最受歡迎</li>
                                 </ul>
 
-                            </div>
-                            <br>
-                            <div class="select postregionkeyword">
+                            </div> -->
+                            <!-- <br> -->
+                            <!-- <div class="select postregionkeyword">
                                 <div class="select-styled aa2">
                                   <span class="displayfont2 hide2">-- 關鍵字篩選 --</span>
                                   <p class="multiSel ms2"></p>
                                 </div>
-
+                                <form id="pkkSelectorConnect" class="pkkSelector_form" action="post_article_region_select.php" method="post" enctype="multipart/form-data">
                                 <ul class="u2">
                                     <li>
-                                        <input type="checkbox" value="petspace" />寵物有善空間</li>
+                                        <input type="checkbox" value="寵物有善空間" name="petSpace"/>寵物有善空間</li>
                                     <li>
-                                        <input type="checkbox" value="daily" />日常</li>
+                                        <input type="checkbox" value="日常" name="daily"/>日常</li>
                                     <li>
-                                        <input type="checkbox" value="toy" />玩具</li>
+                                        <input type="checkbox" value="玩具" name="toy"/>玩具</li>
                                     <li>
-                                        <input type="checkbox" value="care" />照顧</li>
+                                        <input type="checkbox" value="照顧" name="care"/>照顧</li>
                                     <li>
-                                        <input type="checkbox" value="cute" />可愛</li>
+                                        <input type="checkbox" value="可愛" name="cute"/>可愛</li>
                                 </ul>
-                            </div>
-                        </div> -->
+                                    <input class="pkkSelector" type="hidden" value="" name="pkkSelector" />
+                                    <input class="pkkSelectorButton" type="Search" value="送出" />
+                                </form>
+                            </div> -->
+                        </div>
                         <!-- 綠色按鈕 -->
                         <a id="par_postarticlebutton" class="btn darkgreen nav__link" >
                             <span class="titleFont">
@@ -216,12 +221,27 @@
                     	// $sql = "select piNo, piTitle, piContent, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset from postinfo order by piTime desc";
                         $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus from postinfo
 order by piTime desc";
+                        // $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus
+                        //         from postinfo
+                        //         where (pkkString like '%:petSpace%') and (pkkString like '%:daily%') and (pkkString like '%:toy%') and (pkkString like '%:care%') and (pkkString like '%cute%')
+                        //         order by piTime desc";
+                        // $sql = "select piNo, piTitle, piGeneralContent, piTitlePic, piFloatLeftPic, pkkString, DATE_FORMAT(piTime,'%Y<br>%m<br>%d') piTimereset, piStatus
+                        //         from postinfo
+                        //         where (pkkString like '%:petSpace%') and (pkkString like '%:daily%') and (pkkString like '%:toy%') and (pkkString like '%:care%') and (pkkString like '%cute%')
+                        //         order by piTime desc";
+                        // $products = $pdo->prepare($sql);
+                        // $products->bindValue(":petSpace", $_POST["petSpace"]);
+                        // $products->bindValue(":daily", $_POST["daily"]);
+                        // $products->bindValue(":toy", $_POST["toy"]);
+                        // $products->bindValue(":care", $_POST["care"]);
+                        // $products->bindValue(":cute", $_POST["cute"]);
+                        // $products->execute();
                         $products = $pdo->query($sql);
                     	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
                     } catch (PDOException $e) {
                     	echo "錯誤行號 : " . $e->getLine() . "<br>";
                     	echo "錯誤訊息 : " . $e->getMessage() . "<br>";
-                    	// echo "系統暫時連不上請聯絡維護人員";
+                    	echo "系統暫時連不上請聯絡維護人員";
                     }
                     ?>
                     <?php
@@ -298,11 +318,12 @@ order by piTime desc";
         <script src="./js/page_top.js"></script>
 
     </div>
+    <script src="./js/signInOut.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="./js/post_article_region.js"></script>
     <script src="./js/hamburger.js"></script>
     <script src="./js/header_slide.js"></script>
-    <script src="./js/signInOut.js"></script>
+    
     <script>
         let headerHeight= document.querySelector("div.headerHeight");
         let header= document.querySelector('nav');

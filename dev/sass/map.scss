@@ -91,7 +91,7 @@ body {
 
 .map_container {
   p {
-    margin: 15px 0;
+    margin: 12.5px 0;
   }
   label {
     font-size: 1.1rem;
@@ -128,6 +128,14 @@ body {
       text-align: right;
       top: 35% !important;
       right: 20%;
+      span {
+        font-size: 2.3rem;
+        font-family: "Candelia";
+        font-weight: 500;
+        letter-spacing: 0.4rem;
+        color: rgba(255, 211, 115, 0.2);
+        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.1);
+      }
     }
     .map_CH_title {
       text-align: right;
@@ -136,6 +144,14 @@ body {
       top: 60% !important;
       right: 25%;
       color: white;
+      span {
+        font-size: 2.3rem;
+        font-family: "DM Serif Text", "Noto Serif TC";
+        font-weight: 500;
+        letter-spacing: 0.4rem;
+        text-shadow: 2px 2px 2px rgba(77, 77, 77, 0.5);
+        color: white;
+      }
     }
     @media (max-width: 1200px) {
       .map_banner_bg {
@@ -146,16 +162,23 @@ body {
       height: 200px;
       .map_EN_title {
         margin-top: 50px;
-        margin-right: -27%;
+        margin-right: -30%;
         font-size: 1rem;
         text-align: center;
         color: rgba(255, 211, 115, 0.8);
+        span {
+          font-size: 1rem;
+          color: rgba(255, 211, 115, 0.8);
+        }
       }
       .map_CH_title {
         margin-top: -40px;
-        margin-right: -55%;
+        margin-right: -60%;
         text-align: center;
         font-size: 1.6rem;
+        span {
+          font-size: 1.6rem;
+        }
       }
     }
   }
@@ -784,9 +807,6 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    // #map_hurryGirl {
-    //   opacity: 0;
-    // }
     div {
       display: inline-block;
       padding: 50px 100px;
@@ -794,10 +814,22 @@ body {
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
       transition: width 0.5s;
+      text-align: center;
       p {
         line-height: 1.5rem;
         font-weight: 600;
+        text-align: center;
       }
+      // span{
+      //   line-height: 1.5rem;
+      //   font-weight: 600;
+      //   margin: 7px 0;
+      //   font-family: 'DM Serif Text','Noto Serif TC';
+      //   letter-spacing: 0.1rem;
+      //   color: #414040;
+      //   font-size: 0.95rem;
+      //   text-align: center;
+      // }
     }
   }
 
@@ -1006,7 +1038,7 @@ body {
 
 .map_container .map_filter_filter,
 .map_container .map_filter_lost {
-  padding: 20px 10% 30px;
+  padding: 20px 10%;
   transition: width 0.5s;
   background-color: rgba(255, 255, 255, 0.9);
 }
@@ -1019,9 +1051,23 @@ body {
   margin-bottom: 40px;
 }
 
-.map_container h3 label {
-  color: $darkgreen;
-  font-size: 1.2rem;
+.map_container {
+  h3 {
+    label {
+      color: $darkgreen;
+      font-size: 1.2rem;
+      img {
+        height: 23px;
+        width: 23px;
+        transform: rotate(-30deg);
+        margin-right: 12px;
+        opacity: 0;
+      }
+    }
+  }
+  h3:nth-child(1) label img {
+    opacity: 1;
+  }
 }
 
 .map_container input[type="checkbox"] {
@@ -1075,6 +1121,21 @@ body {
   }
 }
 
+.map_container .map_search::before {
+  width: 33%;
+  height: 40%;
+  content: "";
+  display: block;
+  background-image: url(../img/map_searchguy.gif);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 7%;
+  left: 0;
+  z-index: -1;
+}
+
 .map_container .map_search select {
   margin-left: 10px;
   padding: 0 20px;
@@ -1097,6 +1158,7 @@ body {
     -moz-appearance: none;
     appearance: none;
     background-image: url(../img/pawprint-01.svg);
+    background-repeat: no-repeat;
   }
 }
 
@@ -1131,10 +1193,11 @@ body {
       .friendContent,
       .lostContent {
         position: relative;
-        width: 300px;
+        max-width: 300px;
         background-color: rgba(255, 255, 255, 0.7);
+        // text-align: center;
         img {
-          max-width: 290px;
+          width: 300px;
         }
         .cardContentIcon {
           max-width: 30px;
@@ -1146,10 +1209,11 @@ body {
         }
         hr {
           margin-top: 7px;
-          border: 1px solid #8fc8ce;
+          border: 1.5px solid #8fc8ce;
         }
         ul {
           list-style: none;
+          text-align: left;
           li {
             margin: 5px;
             font-size: 0.9rem;
@@ -1162,6 +1226,11 @@ body {
               width: 20px;
               vertical-align: bottom;
               margin-left: 5px;
+            }
+            .mapMemPic {
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
             }
           }
         }
@@ -1248,6 +1317,17 @@ body {
         }
       }
     }
+    .mapDog {
+      height: 100px;
+      width: 100px;
+      display: inline-block;
+      background-image: url(../img/map_mapDog.gif);
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 10%;
+      bottom: 5%;
+    }
   }
 }
 
@@ -1305,6 +1385,9 @@ body {
 }
 
 @media (max-width: 576px) {
+  .map_container .map_intro .map_introcontent .map_introCircle {
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -1324,7 +1407,7 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 6;
+    z-index: 20;
     animation: none;
     .lostbtnx_xl {
       display: none;
@@ -1358,21 +1441,31 @@ body {
   .map_container .map_lostapply .map_btnClick {
     display: none;
   }
-  .map_container .map_search p{
+  .map_container .map_search p {
     margin-left: 15px;
   }
 
-  .map_container .map_filter_filter, .map_container .map_filter_lost{
-    padding: 20px 10% 30px
+  .map_container .map_filter_filter,
+  .map_container .map_filter_lost {
+    padding: 20px 7% 30px;
   }
-  .map_container #gmaps #googleMap .friendContent, .map_container #gmaps #googleMap .lostContent{
+  .map_container #gmaps #googleMap .friendContent,
+  .map_container #gmaps #googleMap .lostContent {
     width: 215px;
   }
-  .map_container #gmaps #googleMap .friendContent img, .map_container #gmaps #googleMap .lostContent img{
+  .map_container #gmaps #googleMap .friendContent img,
+  .map_container #gmaps #googleMap .lostContent img {
     max-width: 215px;
   }
+  .map_container #gmaps .mapDog {
+    display: none;
+  }
+
+  .map_container h3:nth-child(1) label img {
+    opacity: 0;
+}
 }
 
 @include rwd(mini) {
-	@include grid(mini, 12);
+  @include grid(mini, 12);
 }

@@ -1531,7 +1531,7 @@ header.header-navigation {
               background-image: url("../img/message_mem_1.jpg");
               background-size: cover;
               background-repeat: no-repeat;
-              background-position: right center;
+              background-position: center center;
               display: inline-block;
               padding: 0;
               margin-right: 20px; }
@@ -1922,6 +1922,10 @@ footer {
 
 .breadcrumb > a {
   text-decoration: none; }
+.breadcrumbLastChild {
+    color: #647926;
+    cursor: text;
+}
 
 .post3buttoncollection {
   display: none;
@@ -2004,7 +2008,8 @@ footer {
   margin-left: 15px; }
 
 .cpc_content {
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  word-wrap: break-word; }
 
 .cpc_contentflex {
   /* display: flex; */
