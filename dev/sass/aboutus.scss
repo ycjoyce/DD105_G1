@@ -565,6 +565,14 @@ article {
     justify-content: space-around;
     flex-wrap: wrap;
 
+.actSize{
+&:last-child:nth-child(3n - 1) {
+  margin-right:33.333% ;
+}
+&:last-child:nth-child(3n - 2) {
+  margin-right: 66.666%;
+}
+
     .actImg {
       width: 70%;
       display:block;
@@ -581,6 +589,7 @@ article {
         font-size: 1.3rem;
       }
     }
+  }
   }
 }
 

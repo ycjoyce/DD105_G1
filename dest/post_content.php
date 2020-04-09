@@ -1,3 +1,33 @@
+<?php
+$piNo = $_REQUEST["piNo"];
+$errMsg = "";
+//連線資料庫
+try{
+    require './php/connectDB.php';
+    // select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memName, m.memId 'E-mail'
+    // from postinfo p join memInfo m on (p.memNo = m.memNo)
+    // where p.piNo = 2;
+    $sql = "select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memPic , m.memName, m.memId 'Email', m.memNo
+    from postinfo p join memInfo m on (p.memNo = m.memNo)
+    where p.piNo = :piNo";
+    // $sql = "select piTitle, piTitlePic, piTitleContent, piFloatLeftPic, piFloatLeftContent, piFloatRightPic, piFloatRightContent from postinfo where piNo = :piNo";
+    $products = $pdo->prepare($sql);
+    $products->bindValue(":piNo", $piNo);
+    $products->execute();
+}catch(PDOException $e){
+    $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
+    $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+}
+?>
+<?php
+if( $errMsg != ""){ //例外
+    echo "<div><center>$errMsg</center></div>";
+}elseif($products->rowCount()==0){
+        echo "<div><center>查無此貼文資料</center></div>";
+}else{
+        $prodRow = $products->fetchObject();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 頁籤標題 -->
-    <title>毛孩交流區</title>
+    <title>毛孩交流區 | <?=$prodRow->piTitle;?></title>
 <link rel="icon" href="img/logo.ico" type="image/x-icon">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
@@ -48,36 +78,7 @@
         <!-- header 的高度 -->
 
         <div>  <!-- 內文的高度 -->
-            <?php
-            $piNo = $_REQUEST["piNo"];
-            $errMsg = "";
-            //連線資料庫
-            try{
-              require './php/connectDB.php';
-              // select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memName, m.memId 'E-mail'
-              // from postinfo p join memInfo m on (p.memNo = m.memNo)
-              // where p.piNo = 2;
-              $sql = "select p.piNo, p.piTitle, p.piTitlePic, p.piTitleContent, p.piFloatLeftPic, p.piFloatLeftContent, p.piFloatRightPic, p.piFloatRightContent, m.memPic , m.memName, m.memId 'Email', m.memNo
-              from postinfo p join memInfo m on (p.memNo = m.memNo)
-              where p.piNo = :piNo";
-              // $sql = "select piTitle, piTitlePic, piTitleContent, piFloatLeftPic, piFloatLeftContent, piFloatRightPic, piFloatRightContent from postinfo where piNo = :piNo";
-              $products = $pdo->prepare($sql);
-              $products->bindValue(":piNo", $piNo);
-              $products->execute();
-            }catch(PDOException $e){
-              $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-              $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
-            }
-            ?>
-            <?php
-            if( $errMsg != ""){ //例外
-              echo "<div><center>$errMsg</center></div>";
-            }elseif($products->rowCount()==0){
-                  echo "<div><center>查無此貼文資料</center></div>";
-            }else{
-                  $prodRow = $products->fetchObject();
-            }
-            ?>
+            
             <div class="col-8 centerfix">
                 <div class="breadcrumb">
                     <a href="./post_article_region.php">貼文區</a>

@@ -128,7 +128,7 @@ $(document).ready(function(){
         return false;    
       }else{
           // alert('成功發起募款 獲得紅利點數300');
-          // document.raisedonationform.submit();
+          document.raisedonationform.submit();
           
       }
   })

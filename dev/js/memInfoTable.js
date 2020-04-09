@@ -32,7 +32,7 @@ function getMemInfo(){
         }
     });
 }
-getMemInfo();
+
 
 //修改密碼按鈕
 showPsw.addEventListener("click",function(){

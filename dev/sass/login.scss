@@ -153,6 +153,7 @@ section{
                         cursor: pointer;
                         @include rwd(ss){
                             margin-right: 10px;
+                            display: block;
                         }
                         @include rwd(mini){
                             margin-right: 10px;

@@ -116,6 +116,7 @@ function donationCarousel(){
             href[j].href=document.querySelectorAll("div.leftSide div.card")[now-1].querySelector("a:first-child").href;
         }
         
+        dogAniSize();
 }
 
 

@@ -50,6 +50,7 @@ try {
         $memRow = $mem->fetch(PDO::FETCH_ASSOC);
         $memPsw = $memRow["memPsw"];
         $memName = $memRow["memName"];
+        $memId = $memRow["memId"];
 
 
 
@@ -61,13 +62,13 @@ try {
             $mail->Host = 'smtp.gmail.com'; // SMTP server 位址
             $mail->SMTPAuth = true;  // 開啟SMTP驗證
             $mail->Username = 's954716@gmail.com'; // SMTP 帳號
-            $mail->Password = 'ss890307'; // SMTP 密碼
+            $mail->Password = 'knight890307'; // SMTP 密碼
             $mail->SMTPSecure = "ssl"; // Gmail要透過SSL連線
             $mail->Port       = 465; // SMTP TCP port 
 
             //設定收件人資料
             $mail->setFrom('s954716@gmail.com', '浪愛回家團隊'); // 寄件人(透過Gmail發送會顯示Gmail帳號為寄件者)
-            $mail->addAddress('s954716@yahoo.com.tw', $memName); // 收件人會顯示 Apple User<apple@example.com>(*註2)
+            $mail->addAddress($memId, $memName); // 收件人會顯示 Apple User<apple@example.com>(*註2)
             // $mail->addAddress('banana@example.com'); // 名字非必填
             // $mail->addReplyTo('info@example.com', 'Information'); //回信的收件人
             // $mail->addCC('cc@example.com'); //副本

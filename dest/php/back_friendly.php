@@ -3,7 +3,7 @@
 try{
     require_once('./connectDB.php');
 
-    $sql= "select * from `petfriendly`";    
+    $sql= "select * from `petfriendly` ORDER BY `friendlyNo` DESC";    
     $lostRp = $pdo->query($sql);
     $lostRp->execute();
 
