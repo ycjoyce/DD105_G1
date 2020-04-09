@@ -1276,12 +1276,12 @@ img.mobile{
 
 
 //rwd 767~375px==============================
-// .hei{
-//     @include small-pad-width{
-//         display: none;
-//     }
+.hei{
+    @include small-pad-width{
+        display: none;
+    }
 
-// }
+}
 
 .col-12.first_row{
 
