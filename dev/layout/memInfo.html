@@ -10,34 +10,48 @@
     <div class="memInfo_content">
         <div class="left">
             <div>
-                <label for="">會員編號</label>
-                <span>123112</span>
+                <label>會員帳號</label>
+                <span id="memId"></span>
             </div>
             <div>
-                <label for="">會員帳號</label>
-                <span>handsome@gmail.com</span>
+                <label for="memName">會員暱稱</label>
+                <input type="text" id="memName" minlength="1" maxlength="8" placeholder="最長8字" required>
             </div>
             <div>
-                <label for="">會員暱稱</label>
-                <input type="text" value="帥帥">
-            </div>
-            <div>
-                <label for="">會員密碼</label>
+                <label for="memPsw">會員密碼</label>
                 <div class="mempw">
-                    <input type="password" value="password"><a href="#" class="updatebtn_s">修改密碼</a>
+                    <input type="password" id="memPsw" minlength="4" maxlength="16" placeholder="請輸入4-16碼英文、數字" disabled><a class="updatebtn_s" id="showPsw">修改密碼</a>
+                </div>
+            </div>
+            <div class="clickToShow">
+                <label for="nowPsw">現在密碼</label>
+                <div class="mempw">
+                    <input type="password" id="nowPsw" minlength="4" maxlength="16" placeholder="請輸入現在密碼" required>
+                </div>
+            </div>
+            <div class="clickToShow">
+                <label for="newPsw">新密碼</label>
+                <div class="mempw">
+                    <input type="password" id="newPsw" minlength="4" maxlength="16" placeholder="請輸入4-16碼英文、數字" required>
+                </div>
+            </div>
+            <div class="clickToShow">
+                <label for="checkPsw">確認密碼</label>
+                <div class="mempw">
+                    <input type="password" id="checkPsw" minlength="4" maxlength="16" placeholder="請再次輸入新密碼" required>
                 </div>
             </div>
             <div>
-                <label for="">紅利點數</label>
-                <span>999</span>
+                <label>紅利點數</label>
+                <span id="memPoint"></span>
             </div>
         </div>
         <div class="right">
-            <label for="">會員圖片</label>
+            <label>會員圖片</label>
             <div>
-                <img src="http://fakeimg.pl/150x150" alt="">
+                <div id="memPic"></div>
                 <label class="uploadimgbtn">
-                    <input id="upload_img" style="display:none;" type="file">
+                    <input id="upload_img" style="display:none;" type="file" accept="image/*">
                     <i class="fa fa-photo"></i> 更換照片
                 </label>
             </div>
@@ -45,8 +59,7 @@
     </div>
     <div class="submitbtn">
         @@include('../layout/btn_gray.html',{
-            "innerText": "更新會員資料",
-            "connect": " href='#'"
+            "innerText": "更新會員資料"
         })
     </div>
 </section>

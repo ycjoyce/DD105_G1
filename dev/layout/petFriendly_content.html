@@ -1,29 +1,116 @@
+<div class="row" style="margin-bottom:20px">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">寵物友善空間新增</div>
+      <div class="card-body newTable">
+        <p class="pWidth">
+          <label for="friendlyNo">店家編號</label>
+          <input type="text" name="friendlyNo" id="friendlyNo" placeholder="ex. 類別編號(1)+地區編號(01)+流水號(001)">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyName">店家名稱</label>
+          <input type="text" name="friendlyName" id="friendlyName" placeholder="ex. 浪愛回家">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyTypeNo">類別編號</label>
+          <select name="friendlyTypeNo" id="friendlyTypeNo">
+            <option value="1">寵物友善餐廳</option>
+            <option value="2">寵物友善住宿</option>
+            <option value="3">寵物友善景點</option>
+          </select>
+        </p>
+        <p class="pWidth">
+          <label for="friendlyLocNo">地區編號</label>
+          <select name="friendlyLocNo" id="friendlyLocNo">
+            <option value="1">士林區</option>
+            <option value="2">大同區</option>
+            <option value="3">大安區</option>
+            <option value="4">中山區</option>
+            <option value="5">中正區</option>
+            <option value="6">內湖區</option>
+            <option value="7">文山區</option>
+            <option value="8">北投區</option>
+            <option value="9">松山區</option>
+            <option value="10">信義區</option>
+            <option value="11">南港區</option>
+            <option value="12">萬華區</option>
+          </select>
+        </p>
+        <p class="pWidth">
+          <label for="friendlyTel">店家電話</label>
+          <input type="text" name="friendlyTel" id="friendlyTel" placeholder="ex. 2345-6789">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyAdd">店家地點</label>
+          <input type="text" name="friendlyAdd" id="friendlyAdd" placeholder="ex. 桃園市中壢區中大路300號">
+          <input type="hidden" name="friendlyAddress" id="friendlyAddress">
+          <input type="hidden" name="friendlylat" id="friendlylat">
+          <input type="hidden" name="friendlylng" id="friendlylng">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_1">友善物種</label>
+          <input type="text" name="friendlyIntro_1" id="friendlyIntro_1" placeholder="ex. 犬(大/中/小型)、貓">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_2">入內規定</label>
+          <input type="text" name="friendlyIntro_2" id="friendlyIntro_2" placeholder="ex. 可落地、需著禮貌帶/生理褲">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_3">周邊服務</label>
+          <input type="text" name="friendlyIntro_3" id="friendlyIntro_3" placeholder="ex. 提供寵物餐、提供寵物專用餐具">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyIntro_4">環境服務</label>
+          <input type="text" name="friendlyIntro_4" id="friendlyIntro_4" placeholder="ex. 協助清潔便溺物">
+        </p>
+        <p class="pWidth">
+          <label for="friendlyPic">店家照片</label>
+          <input type="file" name="friendlyPic" id="friendlyPic" placeholder="ex. 編號_(檔案格式)">
+        </p>
+        <div class="pWidth"></div>
+        <div class="forbtn">
+          <button type="button" class="btn btn-warning" id="newfriendlybtn">新增</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <!-- <div class="card-header">Card title</div> -->
-            <div class="card-body">
-              <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
-              <table class="table table-responsive-sm table-sm">
-                <thead>
-                  <tr>
-                    <th>店家編號</th>
-                    <th>地區編號</th>
-                    <th>類別編號</th>
-                    <th>店家名稱</th>
-                    <th>店家簡介</th>
-                    <th>店家圖片</th>
-                    <th>總分</th>
-                    <th>評分總次數</th>
-                    <th>平均</th>
-                    <th>店家上下架狀態</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">友善空間上下架</div>
+      <div class="card-body">
+        <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
+        <table class="table table-responsive-sm table-sm">
+          <thead>
+            <tr>
+              <th>店家編號</th>
+              <!-- <th>類別編號</th> -->
+              <!-- <th>地區編號</th> -->
+              <th>店家名稱</th>
+              <!-- <th>店家電話</th> -->
+              <th class="smallnone">店家地址</th>
+              <!-- <th>緯度</th> -->
+              <!-- <th>經度</th> -->
+              <!-- <th>友善物種</th> -->
+              <!-- <th>入內規定</th> -->
+              <!-- <th>周邊服務</th> -->
+              <!-- <th>環境服務</th> -->
+              <!-- <th>店家圖片</th> -->
+              <!-- <th>上下架狀態</th> -->
+              <th>店家上下架管理</th>
+            </tr>
+          </thead>
+          <tbody id="friendlyinfo">
+            <!-- <tr>
                     <td>Carwyn Fachtna</td>
                     <td>2012/01/01</td>
                     <td>Member</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -36,8 +123,8 @@
                         <span class="switch-slider"></span>
                     </label>
                     </td>
-                  </tr>
-                  <tr>
+                  </tr> -->
+            <!-- <tr>
                     <td>Nehemiah Tatius</td>
                     <td>2012/02/01</td>
                     <td>Staff</td>
@@ -87,12 +174,10 @@
                         <span class="switch-slider"></span>
                     </label>
                     </td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-            </div>
-          </div>
-        </div>
+                  </tr> -->
+          </tbody>
+        </table>
       </div>
+    </div>
+  </div>
+</div>

@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
+
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>浪愛回家後台</title>
   <!-- Icons-->
-  <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
- <!-- top_header -->
- <header class="app-header navbar">
+  <div id="app">
+    <!-- top_header -->
+    <header class="app-header navbar">
     <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -55,7 +57,7 @@
           <i class="icon-location-pin"></i>
         </a>
       </li> -->
-      <li class="nav-item mr-3 adminName">Sara 您好</li>
+      <li class="nav-item mr-3 adminName"></li>
 
       <li class="nav-item mr-3 dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -111,10 +113,10 @@
       <span class="navbar-toggler-icon"></span>
     </button> -->
   </header>
-  <div class="app-body">
-    <div class="sidebar">
-      <!-- sidebar menu-->
-      <nav class="sidebar-nav">
+    <div class="app-body">
+      <div class="sidebar">
+        <!-- sidebar menu-->
+        <nav class="sidebar-nav">
   <ul class="nav">
     <!-- <li class="nav-item">
         <a class="nav-link" href="index.html">
@@ -143,17 +145,17 @@
         <i class="nav-icon icon-drop"></i>GPS地圖管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="petFriendly.html">寵物友善空間管理</a>
+          <a class="nav-link" href="petFriendly.html">↪ 寵物友善空間管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="petFriendlyScore.html">寵物友善空間評論管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="base/carousel.html">寵物友善空間收藏管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="lostPetReport.html">寵物遺失回報管理</a>
-        </li>
+        </li> -->
         
         <!-- <li class="nav-item">
             <a class="nav-link" href="base/forms.html">
@@ -211,7 +213,7 @@
       <ul class="nav-dropdown-items">
         <li class="nav-item">
           <a class="nav-link" href="fundRaising.html">
-            <i class="nav-icon icon-cursor"></i> 募款專案管理</a>
+            <i class="nav-icon icon-cursor"></i>↪ 募款專案管理</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="buttons/button-group.html">
@@ -236,22 +238,22 @@
         <!-- <li class="nav-item">
           <a class="nav-link" href="icons/coreui-icons.html">客製化項圈管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="customizedColor.html">客製化顏色管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="icons/font-awesome.html">客製化字型管理</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="customizedTag.html">客製化吊牌管理</a>
+          <a class="nav-link" href="customizedTag.html">↪ 客製化吊牌管理</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="orderRecord.html">客製化訂單紀錄管理</a>
+          <a class="nav-link" href="orderRecord.html">↪ 客製化訂單紀錄管理</a>
         </li>
 
       </ul>
     </li>
-    <li class="nav-item nav-dropdown">
+    <!-- <li class="nav-item nav-dropdown">
       <a class="nav-link nav-dropdown-toggle" href="#">貼文區管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
@@ -283,8 +285,8 @@
         <li class="nav-item">
           <a class="nav-link" href="galleryCommentReport.html">照片牆留言檢舉管理</a>
         </li>
-      </ul>
-    </li>
+      </ul> 
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" href="NewsAndActivity.html">活動/新聞/宣導管理</a>
     </li>
@@ -295,31 +297,31 @@
       <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon icon-pie-chart"></i>會員管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="memInfo.html" target="_top">會員資料管理</a>
+          <a class="nav-link" href="memInfo.html" target="_top">↪ 會員資料管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="blacklist.html" target="_top">黑名單管理</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="messageManage.html" target="_top">私信資料管理</a>
-        </li>
+        </li> -->
       </ul>
     </li>
   </ul>
 </nav>
-      <!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button> -->
-    </div>
-    <main class="main">
-      <!-- Breadcrumb-->
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">首頁</li>
-        <li class="breadcrumb-item">
-          <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
-        </li>
-        <!-- <li class="breadcrumb-item active">Dashboard</li> -->
-        <!-- Breadcrumb Menu-->
-        <li class="breadcrumb-menu d-md-down-none">
-          <!-- <div class="btn-group" role="group" aria-label="Button group">
+        <!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button> -->
+      </div>
+      <main class="main">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">首頁</li>
+          <li class="breadcrumb-item">
+            <a href="NewsAndActivity.html">活動/新聞/宣導管理</a>
+          </li>
+          <!-- <li class="breadcrumb-item active">Dashboard</li> -->
+          <!-- Breadcrumb Menu-->
+          <li class="breadcrumb-menu d-md-down-none">
+            <!-- <div class="btn-group" role="group" aria-label="Button group">
             <a class="btn" href="#">
               <i class="icon-speech"></i>
             </a>
@@ -328,12 +330,12 @@
             <a class="btn" href="#">
               <i class="icon-settings"></i>  Settings</a>
           </div> -->
-        </li>
-      </ol>
-      <div class="container-fluid">
-   
-       <!-- 中間內容 -->
-       <div class="row">
+          </li>
+        </ol>
+        <div class="container-fluid">
+          <!-- 中間內容 -->
+
+          <div class="row">
     <div class="col-md-12">
         <div class="accordion" id="accordionExample">
             <div class="card">
@@ -350,57 +352,62 @@
                     <div class="card-body">
                         <div class="row">
                             <iframe id="id_iframe" name="id_iframe" style="display:none;"></iframe>
-                            <form action="./phps/post.php" method="POST" enctype="multipart/form-data"
-                                class="col-xl-12 upact" target="id_iframe">
+                            <form action="./php/add-activity.php" method="post" enctype="multipart/form-data" class="col-xl-12 upact"
+                                target="id_iframe" id="actForm">
                                 <input type="text" name="post" value="updata_activity" style="display: none;"
                                     v-if="update == true">
                                 <input type="text" name="post" value="add_activity" style="display: none;"
                                     v-if="update == false">
 
                                 <div class="col-xl-6 updata_act_mom" style="vertical-align: middle">
-                                    <label class="col-xl-12 updata_act"
-                                        :style="{backgroundImage: 'url('+upact_infos.activity_img+')'}" for="upimg">
+                                    <label class="col-xl-12 updata_act" for="upimg"
+                                        :style="{backgroundImage:'url('+upInfors.activity_img+')'}">
                                         <input type="file" name="act_img" id="upimg" style="display: none;"
-                                            @change="up_img">
-                                        <img src="./img/back/upload.png" class="uploadimg"
-                                            v-if="upact_infos.activity_img == ''">
-                                        <!-- <img :src=upact_infos.activity_img class="act_img" v-else> -->
-                                        <div class="img_name">{{ upact_infos.activity_g }}</div>
+                                         @change="up_img">
+                                        <img src="./img/upload-zone.png" class="uploadimg"
+                                            v-if="upInfors.activity_img == ''">
+                                        <!-- <img :src=upInfors.activity_img class="act_img" v-else> -->
+                                        <div class="img_name" >{{ upInfors.activity_g }}</div>
                                     </label>
-                                </div>
+                                </div> 
                                 <div class="col-xl-6">
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_num"> 活動/新聞/宣導編號</label>
                                         <input type="number" class="form-control" id="activity_num" name="activity_num"
-                                            v-model="upact_infos.activity_num" v-if="update == false">
-
+                                            min="0" step="1" v-model="upInfors.activity_num" v-if="update == false">
+                                        <input type="number" class="form-control" id="activity_num" name="activity_num"
+                                            min="0" step="1" v-model="upInfors.activity_num" v-if="update == true"
+                                            readonly>
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
                                         <label for="activity_name"> 活動/新聞/宣導名稱</label>
                                         <input type="text" class="form-control" id="activity_name" name="activity_name"
-                                            v-model="upact_infos.activity_name">
+                                            v-model="upInfors.activity_name">
                                     </div>
                                     <div class="form-group" style="display: inline-block; width: 49%;">
-                                        <label for="activity_start"> 活動/新聞/宣導類型</label>
-                                        <select name="" id="">
-                                            <option value="">活動</option>
-                                            <option value="">新聞</option>
-                                            <option value="">宣導</option>
+                                        <label for="activity_type"> 活動/新聞/宣導類型</label>
+                                        <select name="activity_type" id="activity_type"
+                                            v-model="upInfors.activity_type">
+                                            <option value="活動">活動</option>
+                                            <option value="新聞">新聞</option>
+                                            <option value="宣導">宣導</option>
                                         </select>
                                     </div>
                                     <!-- <div class="form-group" style="display: inline-block; width: 49%;">
-                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
-                        <input type="date" class="form-control" id="activity_fin" name="activity_fin"
-                          v-model="upact_infos.activity_fin">
-                      </div> -->
+                                        <label for="activity_fin"> 活動/新聞/宣導結束時間</label>
+                                        <input type="date" class="form-control" id="activity_fin" name="activity_fin">
+                                    </div> -->
                                     <div class="form-group" style="display: inline-block; width: 100%">
                                         <label for="activity_Introduction"> 活動/新聞/宣導內容介紹</label>
                                         <textarea type="date" class="form-control" id="activity_Introduction" rows="8"
-                                            name="activity_Introduction" style="resize: none"
-                                            v-model="upact_infos.activity_Introduction"></textarea>
+                                            name="activity_Introduction" v-model="upInfors.activity_Introduction"
+                                            style="resize: none"></textarea>
                                     </div>
+
                                     <button type="submit" class="btn btn-primary submitbtn" style="display:block"
-                                        @click="send_act" v-if="!update">Submit</button>
+                                        @click="send_act" v-if="!update">上傳</button>
+                                    <button type="submit" class="btn btn-primary submitbtn" style="display:block"
+                                        @click="update_act" v-else>更新</button>
                                 </div>
                             </form>
                         </div>
@@ -421,26 +428,22 @@
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th scope="col"> 活動/新聞/宣導編號</th>
-                                    <th scope="col"> 活動/新聞/宣導名稱</th>
-                                    <th scope="col"> 活動/新聞/宣導開始時間</th>
-                                    <th scope="col"> 活動/新聞/宣導結束時間</th>
-                                    <th scope="col"> 活動/新聞/宣導內容介紹</th>
-                                    <th scope="col">設定</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導編號</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導名稱</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導類型</th>
+                                    <th scope="col" style="text-align: center;"> 活動/新聞/宣導內容介紹</th>
+                                    <th scope="col" style="text-align: center;">設定</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in activity_substr">
-                                    <th scope="row">{{ item.activity_no }}</th>
-                                    <td>{{ item.activity_name }}</td>
-                                    <td>{{ item.activity_str }}</td>
-                                    <td>{{ item.activity_fin }}</td>
-                                    <td>
-                                        <div class="limit">{{ item.activity_con }}</div>
-                                    </td>
-                                    <td>
-                                        <a href="#" @click.prevent="get_edit(item.activity_no);update = true">
-                                            編輯</a> / <a href="#" @click.prevent="get_delete(item.activity_no)">下架</a>
+                                <tr v-for="item in activity">
+                                    <th scope="row" style="text-align: center;">{{ item.inforNo}}</th>
+                                    <td style="text-align: center;">{{ item.inforName }}</td>
+                                    <td style="text-align: center;">{{ item.inforType }}</td>
+                                    <td style="text-align: center;">{{ item.inforContent }}</td>
+                                    <td style="text-align: center;">
+                                        <a href="#" @click.prevent="get_edit(item.inforNo);update = true">
+                                            編輯</a> / <a href="#" @click.prevent="get_delete(item.inforNo)">下架</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -452,321 +455,13 @@
     </div>
 </div>
 </div>
-       <!-- end -->
-      </div>
-    </main>
-    <aside class="aside-menu">
-      <ul class="nav nav-tabs" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">
-            <i class="icon-list"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#messages" role="tab">
-            <i class="icon-speech"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#settings" role="tab">
-            <i class="icon-settings"></i>
-          </a>
-        </li>
-      </ul>
-      <!-- Tab panes-->
-      <div class="tab-content">
-        <div class="tab-pane active" id="timeline" role="tabpanel">
-          <div class="list-group list-group-accent">
-            <div
-              class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">
-              Today</div>
-            <div class="list-group-item list-group-item-accent-warning list-group-item-divider">
-              <div class="avatar float-right">
-                <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-              </div>
-              <div>Meeting with
-                <strong>Lucas</strong>
-              </div>
-              <small class="text-muted mr-3">
-                <i class="icon-calendar"></i>  1 - 3pm</small>
-              <small class="text-muted">
-                <i class="icon-location-pin"></i>  Palo Alto, CA</small>
-            </div>
-            <div class="list-group-item list-group-item-accent-info">
-              <div class="avatar float-right">
-                <img class="img-avatar" src="img/avatars/4.jpg" alt="admin@bootstrapmaster.com">
-              </div>
-              <div>Skype with
-                <strong>Megan</strong>
-              </div>
-              <small class="text-muted mr-3">
-                <i class="icon-calendar"></i>  4 - 5pm</small>
-              <small class="text-muted">
-                <i class="icon-social-skype"></i>  On-line</small>
-            </div>
-            <div
-              class="list-group-item list-group-item-accent-secondary bg-light text-center font-weight-bold text-muted text-uppercase small">
-              Tomorrow</div>
-            <div class="list-group-item list-group-item-accent-danger list-group-item-divider">
-              <div>New UI Project -
-                <strong>deadline</strong>
-              </div>
-              <small class="text-muted mr-3">
-                <i class="icon-calendar"></i>  10 - 11pm</small>
-              <small class="text-muted">
-                <i class="icon-home"></i>  creativeLabs HQ</small>
-              <div class="avatars-stack mt-2">
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/2.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/3.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/4.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/5.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/6.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-              </div>
-            </div>
-            <div class="list-group-item list-group-item-accent-success list-group-item-divider">
-              <div>
-                <strong>#10 Startups.Garden</strong> Meetup</div>
-              <small class="text-muted mr-3">
-                <i class="icon-calendar"></i>  1 - 3pm</small>
-              <small class="text-muted">
-                <i class="icon-location-pin"></i>  Palo Alto, CA</small>
-            </div>
-            <div class="list-group-item list-group-item-accent-primary list-group-item-divider">
-              <div>
-                <strong>Team meeting</strong>
-              </div>
-              <small class="text-muted mr-3">
-                <i class="icon-calendar"></i>  4 - 6pm</small>
-              <small class="text-muted">
-                <i class="icon-home"></i>  creativeLabs HQ</small>
-              <div class="avatars-stack mt-2">
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/2.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/3.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/4.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/5.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/6.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-                <div class="avatar avatar-xs">
-                  <img class="img-avatar" src="img/avatars/8.jpg" alt="admin@bootstrapmaster.com">
-                </div>
-              </div>
-            </div>
-          </div>
+
+          <!-- end -->
         </div>
-        <div class="tab-pane p-3" id="messages" role="tabpanel">
-          <div class="message">
-            <div class="py-3 pb-5 mr-3 float-left">
-              <div class="avatar">
-                <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-                <span class="avatar-status badge-success"></span>
-              </div>
-            </div>
-            <div>
-              <small class="text-muted">Lukasz Holeczek</small>
-              <small class="text-muted float-right mt-1">1:52 PM</small>
-            </div>
-            <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-            <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt...</small>
-          </div>
-          <hr>
-          <div class="message">
-            <div class="py-3 pb-5 mr-3 float-left">
-              <div class="avatar">
-                <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-                <span class="avatar-status badge-success"></span>
-              </div>
-            </div>
-            <div>
-              <small class="text-muted">Lukasz Holeczek</small>
-              <small class="text-muted float-right mt-1">1:52 PM</small>
-            </div>
-            <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-            <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt...</small>
-          </div>
-          <hr>
-          <div class="message">
-            <div class="py-3 pb-5 mr-3 float-left">
-              <div class="avatar">
-                <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-                <span class="avatar-status badge-success"></span>
-              </div>
-            </div>
-            <div>
-              <small class="text-muted">Lukasz Holeczek</small>
-              <small class="text-muted float-right mt-1">1:52 PM</small>
-            </div>
-            <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-            <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt...</small>
-          </div>
-          <hr>
-          <div class="message">
-            <div class="py-3 pb-5 mr-3 float-left">
-              <div class="avatar">
-                <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-                <span class="avatar-status badge-success"></span>
-              </div>
-            </div>
-            <div>
-              <small class="text-muted">Lukasz Holeczek</small>
-              <small class="text-muted float-right mt-1">1:52 PM</small>
-            </div>
-            <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-            <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt...</small>
-          </div>
-          <hr>
-          <div class="message">
-            <div class="py-3 pb-5 mr-3 float-left">
-              <div class="avatar">
-                <img class="img-avatar" src="img/avatars/7.jpg" alt="admin@bootstrapmaster.com">
-                <span class="avatar-status badge-success"></span>
-              </div>
-            </div>
-            <div>
-              <small class="text-muted">Lukasz Holeczek</small>
-              <small class="text-muted float-right mt-1">1:52 PM</small>
-            </div>
-            <div class="text-truncate font-weight-bold">Lorem ipsum dolor sit amet</div>
-            <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt...</small>
-          </div>
-        </div>
-        <div class="tab-pane p-3" id="settings" role="tabpanel">
-          <h6>Settings</h6>
-          <div class="aside-options">
-            <div class="clearfix mt-4">
-              <small>
-                <b>Option 1</b>
-              </small>
-              <label class="switch switch-label switch-pill switch-success switch-sm float-right">
-                <input class="switch-input" type="checkbox" checked="">
-                <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
-              </label>
-            </div>
-            <div>
-              <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</small>
-            </div>
-          </div>
-          <div class="aside-options">
-            <div class="clearfix mt-3">
-              <small>
-                <b>Option 2</b>
-              </small>
-              <label class="switch switch-label switch-pill switch-success switch-sm float-right">
-                <input class="switch-input" type="checkbox">
-                <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
-              </label>
-            </div>
-            <div>
-              <small class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</small>
-            </div>
-          </div>
-          <div class="aside-options">
-            <div class="clearfix mt-3">
-              <small>
-                <b>Option 3</b>
-              </small>
-              <label class="switch switch-label switch-pill switch-success switch-sm float-right">
-                <input class="switch-input" type="checkbox">
-                <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
-              </label>
-            </div>
-          </div>
-          <div class="aside-options">
-            <div class="clearfix mt-3">
-              <small>
-                <b>Option 4</b>
-              </small>
-              <label class="switch switch-label switch-pill switch-success switch-sm float-right">
-                <input class="switch-input" type="checkbox" checked="">
-                <span class="switch-slider" data-checked="On" data-unchecked="Off"></span>
-              </label>
-            </div>
-          </div>
-          <hr>
-          <h6>System Utilization</h6>
-          <div class="text-uppercase mb-1 mt-4">
-            <small>
-              <b>CPU Usage</b>
-            </small>
-          </div>
-          <div class="progress progress-xs">
-            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-              aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">348 Processes. 1/4 Cores.</small>
-          <div class="text-uppercase mb-1 mt-2">
-            <small>
-              <b>Memory Usage</b>
-            </small>
-          </div>
-          <div class="progress progress-xs">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 70%" aria-valuenow="70"
-              aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">11444GB/16384MB</small>
-          <div class="text-uppercase mb-1 mt-2">
-            <small>
-              <b>SSD 1 Usage</b>
-            </small>
-          </div>
-          <div class="progress progress-xs">
-            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95"
-              aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">243GB/256GB</small>
-          <div class="text-uppercase mb-1 mt-2">
-            <small>
-              <b>SSD 2 Usage</b>
-            </small>
-          </div>
-          <div class="progress progress-xs">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 10%" aria-valuenow="10"
-              aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-          <small class="text-muted">25GB/256GB</small>
-        </div>
-      </div>
-    </aside>
-  </div>
-  <footer>
-    <div class="page_top" id="page_top">
-        <span class="titleFont smalltext">PAGE TOP</span>
+      </main>
     </div>
-    <p class="titleFont smalltext">
-        © 2020 Bring Love Home
-    </p>
-</footer>
-
-<script src="./js/page_top.js"></script>
-
+  </div>
+  
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -774,5 +469,135 @@
   <script src="./js/pace.min.js"></script>
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
+  <script src="./js/backend-managerName.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js"></script>
+  <script src="./js/axios.min.js"></script>
+  <script>
+    var back = new Vue({
+      el: "#app",
+      data: {
+        activity: [], // 活動上下架
+        update: false,
+        upInfors: {
+          activity_img: '',
+          activity_num: '',
+          activity_name: '',
+          activity_type: '',
+          activity_Introduction: '',
+          activity_g: '',
+        }
+      },
+      methods: {
+
+        clean_form() { //清除表單資料 
+
+          document.getElementById('actForm').reset();
+        },
+
+        get_activity() { //取得目前有建立的活動資訊
+          var vm = this;
+          axios.post('./php/NewsAndActivity.php').then(function (res) {
+            console.log(res.data);
+            vm.activity = res.data;
+            // console.log(vm.activity);
+          }).catch(err => { console.log(err) })
+        },
+        up_img() {
+          var vm = this;
+          var upimg = document.getElementById('upimg').files[0];//抓上傳的圖片
+          console.log(upimg);
+          vm.upInfors.activity_g = upimg.name; //圖片檔名
+          var readFile = new FileReader();
+          readFile.readAsDataURL(upimg); //將抓取的圖片編碼成data URL
+          readFile.addEventListener('load', function () {
+            vm.upInfors.activity_img = readFile.result;
+          })
+        },
+        send_act() {
+          var vm = this;
+          if (vm.upInfors.activity_img == '') {
+            alert('請上傳圖片');
+          } else if (vm.upInfors.activity_num == '') {
+            alert('編號不能為空');
+          } else if (vm.upInfors.activity_name == '') {
+            alert('名稱不能為空');
+          } else if (vm.upInfors.activity_type == '') {
+            alert('請選擇一種類型');
+          } else if (vm.upInfors.activity_Introduction == '') {
+            alert('內容不能為空');
+          } else {
+            setTimeout(function () {
+              alert('上傳成功!')
+              vm.clean_form();
+              vm.get_activity();
+
+              var collapseOne = document.getElementById('collapseOne');
+              var collapseTwo = document.getElementById('collapseTwo');
+              collapseOne.className = "collapse";
+              collapseTwo.className = "collapse show";
+
+            }, 1000)
+          }
+
+        },
+
+        update_act() {
+
+          var vm = this;
+          setTimeout(function () {
+            alert('更新成功!')
+            vm.clean_form();
+            vm.get_activity();
+
+            var collapseOne = document.getElementById('collapseOne');
+            var collapseTwo = document.getElementById('collapseTwo');
+            collapseOne.className = "collapse";
+            collapseTwo.className = "collapse show";
+
+          }, 1000)
+        },
+
+        get_edit(no) {
+          var vm = this;
+          axios.get('./php/update_activity.php?id=' + no).then(function (res) {
+            console.log(res.data);
+            vm.upInfors.activity_img = `./img/${res.data.inforPic}`;
+            vm.upInfors.activity_num = res.data.inforNo;
+            vm.upInfors.activity_name = res.data.inforName;
+            vm.upInfors.activity_type = res.data.inforType;
+            vm.upInfors.activity_Introduction = res.data.inforContent;
+            vm.upInfors.activity_g = res.data.inforPic;
+
+            var collapseOne = document.getElementById('collapseOne');
+            var collapseTwo = document.getElementById('collapseTwo');
+            collapseOne.className = "collapse show";
+            collapseTwo.className = "collapse";
+          }).catch(err => {
+            console.log(err)
+          })
+        },
+
+        get_delete(no) {
+          var ans = confirm('確定要刪除嗎?');
+          var vm = this;
+          vm.clean_form();
+          if (ans) {
+            axios.get('./php/delete_activity.php?id=' + no).then(res => {
+              alert("刪除成功!");
+              vm.get_activity();
+            })
+          }
+        }
+
+      },
+      mounted() {
+        this.get_activity();
+      },
+
+
+
+    })
+  </script>
 </body>
+
 </html>

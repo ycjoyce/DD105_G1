@@ -2,12 +2,15 @@
 var map;
 // 紀錄從遠端撈下來的資料
 var data;
-//記錄目前載入的 marker
+// 記錄目前載入的 marker
 var markers = [];
-//記錄當前點擊 google window
+// 記錄當前點擊 google window
 var currentInfoWindow = "";
 
-//Custom style
+// 輸入地址找經緯度
+var geocoder;
+
+// Custom style
 var styleCustom = [
   {
     featureType: "administrative.land_parcel",
@@ -51,7 +54,11 @@ var styleCustom = [
   }
 ];
 
-//Gmaps style
+// googlemap取得當下位置
+var geolocation =
+  "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk";
+
+// Gmaps style
 var styleBasic = [
   { featureType: "all", elementType: "all", stylers: [{ visibility: "off" }] },
   {
@@ -103,9 +110,9 @@ var styleBasic = [
 // var customType = new google.maps.StyledMapType(styleCustom, { name: "Custom" });
 // var basicType = new google.maps.StyledMapType(styleBasic, { name: "Basic" });
 
-//Latitude/longitude preset
-const lat = 25.046771,
-  lng = 121.535064;
+// Latitude/longitude preset
+const lat = 24.9102204,
+  lng = 121.3862414;
 
 const $center = document.getElementById("center");
 
@@ -115,12 +122,13 @@ $(function() {
 
 /*** Gmaps initialize ***/
 function initialize() {
-  //獲取設備當前的位置
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  // 獲取設備當前的位置
+  centerMarker();
+  // navigator.geolocation.watchPosition(geoSuccess, geoError);
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
     center: { lat: lat, lng: lng },
-    zoom: 12,
+    zoom: 10,
     styles: styleCustom,
     mapTypeControl: false,
     zoomControl: false,
@@ -131,70 +139,29 @@ function initialize() {
     draggable: true
   });
 
-  //取得遠端資料並渲染
-  getData();
+  // 取得遠端資料並渲染
+  getLost();
 
-  //Zoom control
+  // Zoom control
   zoomControl();
 
-  // Change this depending on the name of your PHP or XML file
-  // downloadUrl('../../php/map_googleMap.php', function(data) {
-  //   var xml = data.responseXML;
-  //   var markers = xml.documentElement.getElementsByTagName('marker');
-  //   Array.prototype.forEach.call(markers, function(markerElem) {
-  //     var friendlyNo = markerElem.getAttribute('friendlyNo');
-  //     var friendlyName = markerElem.getAttribute('friendlyName');
-  //     var friendlyAddress = markerElem.getAttribute('friendlyAddress');
-  //     var friendlyTypeNo = markerElem.getAttribute('friendlyTypeNo');
-  //     var point = new google.maps.LatLng(
-  //         parseFloat(markerElem.getAttribute('friendlylat')),
-  //         parseFloat(markerElem.getAttribute('friendlylng')));
-
-  //     var infowincontent = document.createElement('div');
-  //     var strong = document.createElement('strong');
-  //     strong.textContent = friendlyName
-  //     infowincontent.appendChild(strong);
-  //     infowincontent.appendChild(document.createElement('br'));
-
-  //     var text = document.createElement('text');
-  //     text.textContent = friendlyAddress
-  //     infowincontent.appendChild(text);
-  //     var icon = customLabel[friendlyTypeNo] || {};
-  //     var marker = new google.maps.Marker({
-  //       map: map,
-  //       position: point,
-  //       label: icon.label
-  //     });
-  //     marker.addListener('click', function() {
-  //       infoWindow.setContent(infowincontent);
-  //       infoWindow.open(map, marker);
-  //     });
-  //   });
-  // });
-
-  //Draw overlay
-  // var overlay = new google.maps.OverlayView();
-  // overlay.draw = function() {};
-  // overlay.setMap(map);
-
-  //Gmap skin
+  // Gmap skin
   // map.mapTypes.set("Custom", customType);
   // map.mapTypes.set("Basic", basicType);
-
-  //Add custom markers
-  // setMarkers();
 }
 
-function geoSuccess(pos) {
-  var crd = pos.coords;
-  //Add center marker
-  centerMarker(crd.latitude, crd.longitude);
-}
+// HTML 5 getCurrentPosition================================================
+// function geoSuccess(pos) {
+//   var crd = pos.coords;
+//   //Add center marker
+//   centerMarker(crd.latitude, crd.longitude);
+// }
 
-function geoError(err) {
-  $center.style.display = "none";
-  console.warn("ERROR(" + err.code + "): " + err.message);
-}
+// function geoError(err) {
+//   $center.style.display = "none";
+//   console.warn("ERROR(" + err.code + "): " + err.message);
+// }
+// ================================================HTML 5 getCurrentPosition
 
 /*** Center marker ***/
 function centerMarker(latitude, longitude) {
@@ -211,13 +178,32 @@ function centerMarker(latitude, longitude) {
     position: new google.maps.LatLng(latitude, longitude)
   });
   marker.setMap();
+
+  //click event
+  xhr = new XMLHttpRequest();
+  xhr.open("POST", geolocation);
+  xhr.onload = function() {
+    var response = JSON.parse(this.responseText);
+    console.log(response);
+    // console.log(response.location.lat);
+    google.maps.event.addDomListener(center, "click", function() {
+      map.setZoom(12);
+      map.setCenter(
+        new google.maps.LatLng(response.location.lat, response.location.lng)
+      );
+    });
+  };
+  xhr.send();
+
+  // HTML 5 getCurrentPosition================================================
+  //   //click event
+  // google.maps.event.addDomListener(center, "click", function() {
+  // map.setZoom(11);
+  // map.setCenter(new google.maps.LatLng(latitude, longitude));
+  // });
+  // ================================================HTML 5 getCurrentPosition
 }
-//   //click event
-//   google.maps.event.addDomListener(center, "click", function() {
-//     map.setZoom(15);
-//     map.setCenter(new google.maps.LatLng(latitude, longitude));
-//   });
-// }
+
 /*** Zoom control ***/
 function zoomControl() {
   var zoomIn = document.getElementById("zoomIn");
@@ -238,128 +224,170 @@ function zoomControl() {
   });
 }
 
-function getData() {
+// ======================================輸入地址=============================================//
+
+/// 輸入地址
+document.getElementById("lostPetRpLoc").onchange = getAddress;
+var geocoder = new google.maps.Geocoder();
+function getAddress() {
+  // alert("測試");
+  var address = document.getElementById("lostPetRpLoc").value;
+  geocoder.geocode({ address: address }, function(results, status) {
+    if (status == "OK") {
+      console.log(
+        `${
+          results[0].formatted_address
+        } | ${results[0].geometry.location.lat()} | ${results[0].geometry.location.lng()}`
+      );
+      document.getElementById("lostPetRpLocAdd").value =
+        results[0].formatted_address;
+      document.getElementById(
+        "lostPetRpLoclat"
+      ).value = results[0].geometry.location.lat();
+      document.getElementById(
+        "lostPetRpLoclng"
+      ).value = results[0].geometry.location.lng();
+    } else {
+      console.log(status);
+    }
+  });
+}
+
+// ======================================寵物遺失=============================================//
+
+/*** 寵物遺失載入地標 ***/
+function getLost() {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
   var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_googleMap.php");
+  xhr.open("get", "./php/map_GMgetLostRp.php");
   xhr.send(null);
   xhr.onload = function() {
     var data = JSON.parse(xhr.responseText);
     // alert(str)
     console.log(data);
-    console.log(
-      "Test: data[0] = ",
-      data[0].friendlylat,
-      data[0].friendlylng,
-      data[0].friendlyName
-    );
     for (var i = 0; data.length > i; i++) {
-      loadData(
-        data[i].friendlylat,
-        data[i].friendlylng,
-        data[i].friendlyName,
-        data[i].friendlyTel,
-        data[i].friendlyAddress,
-        data[i].friendlyIntro,
-        data[i].friendlyPic
+      loadLostData(
+        data[i].lostPetRpNo,
+        data[i].lostPetRpLoclat,
+        data[i].lostPetRpLoclng,
+        data[i].lostPetRpName,
+        data[i].lostPetRpImg,
+        data[i].lostPetRpLDate,
+        data[i].lostPetRpLoc,
+        data[i].lostPetRpType,
+        data[i].lostPetRpCh,
+        data[i].lostPetRpLocAdd,
+        data[i].memName,
+        data[i].memPic
       );
     }
   };
 }
 
-// 變更地區，並進行監聽
-var area = document.querySelector("#fr_area");
-area.addEventListener("change", changeArea);
-function changeArea() {
-  alert("切換地區!");
-  var locNo = area.value;
-  // alert(locNo);
-  // 清除資料
-  for (i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-  infoWindows = [];
+//連結私信功能==================================
+let petLostOwner = "";
+function mapMsg(id) {
+  if (member.memId) {
+    $.ajax({
+      url: "./php/checkNotSelf.php",
+      type: "POST",
+      data: { lostNo: id.substr(4) },
+      success(data) {
+        if (member.memNo.trim() == data.trim()) {
+          alert("此寵物主人為您本人");
+        } else {
+          petLostOwner = data;
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_googleMap.php");
-  xhr.send(null);
-  xhr.onload = function() {
-    var data = JSON.parse(xhr.responseText);
-    for (var i = 0; data.length > i; i++) {
-      if (data[i].friendlyLocNo == locNo) {
-        loadData(
-          data[i].friendlylat,
-          data[i].friendlylng,
-          data[i].friendlyName,
-          data[i].friendlyTel,
-          data[i].friendlyAddress,
-          data[i].friendlyIntro,
-          data[i].friendlyPic
-        );
+          $.ajax({
+            url: "./php/checkBlackMsg.php",
+            type: "POST",
+            data: { petLostOwner: petLostOwner },
+            success(data) {
+              if (data.indexOf("success") == -1) {
+                alert(
+                  "已將此帳號設為黑名單，請先至會員中心解除黑名單，才能夠傳送私信"
+                );
+              } else {
+                $.ajax({
+                  url: "./php/mapMsg.php",
+                  type: "POST",
+                  data: { lostNo: id.substr(4) },
+                  success(data) {
+                    if (data.indexOf("error") == -1) {
+                      sessionStorage.setItem("now-on", petLostOwner.trim());
+                      location.href = "./message.html";
+                    } else {
+                      alert("操作失敗");
+                    }
+                  },
+                  error(data) {
+                    alert(data);
+                  }
+                });
+              }
+            },
+            error(data) {
+              alert(data);
+            }
+          });
+        }
+      },
+      error(data) {
+        alert(data);
       }
-    }
-  };
+    });
+  } else {
+    alert("請先登入");
+  }
 }
 
-// 變更類型，並進行監聽
-var rest = document.getElementById("fr_rest");
-var stay = document.getElementById("fr_stay");
-var point = document.getElementById("fr_point");
-rest.addEventListener("click", changeType);
-stay.addEventListener("click", changeType);
-point.addEventListener("click", changeType);
-function changeType(e) {
-  // console.log(e.target);
-  alert("篩選類型!");
-  var typeNo = e.target.value;
-  alert(typeNo);
-  // 清除資料
-  for (i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-  infoWindows = [];
+//=============================================
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("get", "./php/map_googleMap.php");
-  xhr.send(null);
-  xhr.onload = function() {
-    var data = JSON.parse(xhr.responseText);
-    for (var i = 0; data.length > i; i++) {
-      if (data[i].friendlyTypeNo == typeNo) {
-        loadData(
-          data[i].friendlylat,
-          data[i].friendlylng,
-          data[i].friendlyName,
-          data[i].friendlyTel,
-          data[i].friendlyAddress,
-          data[i].friendlyIntro,
-          data[i].friendlyPic
-        );
-      }
-    }
-  };
-}
-
-// //infowindow
-function loadData(lat, lng, title, tel, add, intro, pic) {
+/*** 讀取寵物遺失地標 ***/
+function loadLostData(
+  rpNo,
+  lat,
+  lng,
+  title,
+  pic,
+  date,
+  loc,
+  type,
+  character,
+  add,
+  memName,
+  memPic
+) {
   var contentString = `
-    <div class="friendContent">
-    <img src="./img/map_friendly/${pic}" alt="">
-      <p class="titleFont">店名：${title}</p>
-      <p>電話：${tel}</p>
-      <p>地址：${add}</p>
-      <p>介紹：${intro}</p>      
+    <div class="lostContent">
+    <img src="./img/lostrp/${pic}" alt="">
+      <ul>
+        <li>寵物名稱：${title}</li>
+        <li>寵物遺失日期：${date}</li>
+        <li>寵物遺失地點：${loc}</li>
+        <li>寵物類型：${type}</li>
+        <li>寵物特徵：${character}</li>
+        <li><a title:"我要私信主人" id="msg_${rpNo}" onclick="mapMsg('msg_${rpNo}')"><img src="./img/icon_private_message.svg"> 主人：<img class="mapMemPic" src="./img/memImg/${memPic}"> ${memName}</a></li>
+      </ul>
     </div>
   `;
-
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
   var marker = new google.maps.Marker({
     position: { lat: parseFloat(lat), lng: parseFloat(lng) },
     title: title,
-    map: map
+    map: map,
+    // animation: google.maps.Animation.BOUNCE,
+    animation: google.maps.Animation.DROP,
+    icon: {
+      url: `./img/mapMarker_lost.png`,
+      scaledSize: new google.maps.Size(40, 40)
+    }
   });
   marker.addListener("click", function() {
     if (currentInfoWindow != "") {
@@ -372,95 +400,571 @@ function loadData(lat, lng, title, tel, add, intro, pic) {
   markers.push(marker);
 }
 
-/*** Custom marker event ***/
-// var markerData = [
-//   { id: 1, name: "松山文創園區", x: "25.0440459", y: "121.5578874" },
-//   { id: 2, name: "台北車站", x: "25.0475419", y: "121.5139815" },
-//   { id: 3, name: "台北小巨蛋", x: "25.051659", y: "121.5496839" },
-//   { id: 4, name: "捷運中山國小站", x: "25.0627672", y: "121.523779" }
-// ];
-// var markers = [],
-//   oldMarker = "",
-//   infowindows = [];
+// 變更地區，並進行監聽
+var dist = document.querySelector("#lost_area");
+dist.addEventListener("change", changeDist);
+function changeDist() {
+  var distVal = dist.value;
+  // alert(distVal);
+  // 清除資料
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
 
-// function setMarkers() {
-//   $.each(markerData, function(i, el) {
-//     //Set marker
-//     var marker = new google.maps.Marker({
-//       map: map,
-//       draggable: false,
-//       animation: google.maps.Animation.DROP, //google.maps.Animation.DROP
-//       icon: {
-//         url: "https://img.icons8.com/material-rounded/48/b93939/marker.png",
-//         size: new google.maps.Size(48, 48), //icon px
-//         origin: new google.maps.Point(0, 0), //icon ori pos
-//         anchor: new google.maps.Point(24, 24) //icon center
-//       },
-//       zIndex: 2,
-//       position: new google.maps.LatLng(el.x, el.y)
-//     });
-//     markers[el.id] = marker;
+  var xhr = new XMLHttpRequest();
+  xhr.open("get", "./php/map_GMgetLostRp.php");
+  xhr.send(null);
+  xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
+    for (var i = 0; data.length > i; i++) {
+      if (data[i].lostPetRpLocAdd.indexOf(distVal) != -1) {
+        loadLostData(
+          data[i].lostPetRpNo,
+          data[i].lostPetRpLoclat,
+          data[i].lostPetRpLoclng,
+          data[i].lostPetRpName,
+          data[i].lostPetRpImg,
+          data[i].lostPetRpLDate,
+          data[i].lostPetRpLoc,
+          data[i].lostPetRpType,
+          data[i].lostPetRpCh,
+          data[i].lostPetRpLocAdd,
+          data[i].memName,
+          data[i].memPic
+        );
+      }
+    }
+  };
+}
 
-//     //Set infowindow
-//     var info = '<div id="infoBox"><div><h6> ' + el.name + "</h6></div></div>";
-//     var infowindow = new google.maps.InfoWindow({
-//       pixelOffset: new google.maps.Size(0, -18),
-//       content: info
-//     });
-//     infowindows[el.id] = infowindow;
+// ======================================友善空間=============================================//
+/*** 友善空間載入地標 ***/
+function getFriendly() {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
+  var xhr = new XMLHttpRequest();
+  xhr.open("get", "./php/map_GMgetFriendly.php");
+  xhr.send(null);
+  xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
+    // alert(str)
+    console.log(data);
+    for (var i = 0; data.length > i; i++) {
+      loadfriendlyData(
+        data[i].friendlyNo,
+        data[i].friendlylat,
+        data[i].friendlylng,
+        data[i].friendlyName,
+        data[i].friendlyPic,
+        data[i].friendlyTel,
+        data[i].friendlyAddress,
+        data[i].friendlyIntro_1,
+        data[i].friendlyIntro_2,
+        data[i].friendlyIntro_3,
+        data[i].friendlyIntro_4,
+        data[i].friendlyTypeNo,
+        data[i].friendlyTypeName
+      );
+    }
+  };
+}
 
-//     //Markers click event
-//     google.maps.event.addListener(markers[el.id], "click", function() {
-//       //Infobox show/hide
-//       if (infowindow) infowindow.close();
+// 變更寵物友善地區及類別
+let search_area;
+let search_type;
 
-//       //Marker on/off
-//       if (oldMarker == "") {
-//         markerOn(el.id);
-//       } else {
-//         if (oldMarker != el.id) {
-//           markerOff(oldMarker);
-//           markerOn(el.id);
-//         }
-//       }
-//     });
-//   });
-// }
+function changeMarker() {
+  // alert("切換");
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
 
-// function markerOff(old) {
-//   infowindows[old].close(map, markers[old]);
-//   markers[old].setAnimation(null);
-//   markers[old].setIcon(
-//     "https://img.icons8.com/material-rounded/48/b93939/marker.png"
-//   );
-//   markers[old].setZIndex(1);
-// }
+  var xhr = new XMLHttpRequest();
+  xhr.open("get", "./php/map_GMgetFriendly.php");
+  xhr.send(null);
+  xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
+    for (var i = 0; data.length > i; i++) {
+      if (search_area) {
+        if (search_type) {
+          if (
+            data[i].friendlyTypeNo == search_type[0] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[1] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[2] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        } else {
+          if (data[i].friendlyLocNo == search_area) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        }
+      }
+      if (search_type) {
+        if (search_area) {
+          if (
+            data[i].friendlyTypeNo == search_type[0] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[1] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (
+            data[i].friendlyTypeNo == search_type[2] &&
+            data[i].friendlyLocNo == search_area
+          ) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        } else {
+          if (data[i].friendlyTypeNo == search_type[0]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == search_type[1]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == search_type[2]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        }
+      }
+    }
+    
+    // }
+  };
+}
+window.addEventListener("load", function() {
+  let area = document.querySelector("#fr_area");
+  area.onchange = function(e) {
+    $(".map_filter_friendly h3 label").css("fontWeight", "600");
+    $(".map_filter_friendly h3 label img").css("opacity", "1");
+    $("#favoH3 label").css("fontWeight", "400");
+    $("#favoH3 label img").css("opacity", "0");
+    search_area = e.target.value;
+    // alert(search_area);
+    changeMarker();
+  };
 
-// function markerOn(now) {
-//   map.setCenter(markers[now].getPosition());
-//   infowindows[now].open(map, markers[now]);
-//   markers[now].setAnimation(google.maps.Animation.BOUNCE);
-//   markers[now].setIcon(
-//     "https://img.icons8.com/material-rounded/48/d04a4a/marker.png"
-//   );
-//   markers[now].setZIndex(10);
-//   oldMarker = now;
-// }
+  let type = document.getElementsByName("friendtypes");
+  for (let i = 0; i < type.length; i++) {
+    type[i].onchange = function(e) {
+      $(".map_filter_friendly h3 label").css("fontWeight", "600");
+      $(".map_filter_friendly h3 label img").css("opacity", "1");
+      $("#favoH3 label").css("fontWeight", "400");
+      $("#favoH3 label img").css("opacity", "0");
+      var type = document.getElementsByName("friendtypes");
+      let arrA = [];
+      //檢查全部的checkbox有誰被勾選
+      for (var i = 0; i < type.length; i++) {
+        if (type[i].checked == true) {
+          //有勾選就去看他的值
+          console.log(type[i].value);
 
-// function downloadUrl(url, callback) {
-//   var request = window.ActiveXObject ?
-//       new ActiveXObject('Microsoft.XMLHTTP') :
-//       new XMLHttpRequest;
+          //假設撈出來的資料是以下的arr陣列
+          var arr = new Array(1, 2, 3);
+          //假設在陣列找不到
+          if (arr.indexOf(parseInt(type[i].value)) != -1) {
+            //顯示資料們
+            arrA.push(type[i].value);
+          }
+        }
+      }
+      search_type = arrA;
+      // alert(search_type);
+      changeMarker();
+    };
+  }
+});
 
-//   request.onreadystatechange = function() {
-//     if (request.readyState == 4) {
-//       request.onreadystatechange = doNothing;
-//       callback(request, request.status);
-//     }
-//   };
+/*** 讀取友善空間地標 ***/
+function loadfriendlyData(
+  no,
+  lat,
+  lng,
+  title,
+  pic,
+  tel,
+  add,
+  intro1,
+  intro2,
+  intro3,
+  intro4,
+  typeno,
+  typename
+) {
+  var contentString = `
+    <div class="friendContent">
+    <img src="./img/map_friendly/${pic}">
+      <ul>
+        <li>店名：${title}</li>
+        <li>電話：${tel}</li>
+        <li>地址：${add}</li>
+        <li>友善物種：${intro1}</li>
+        <li>入內規定：${intro2}</li>      
+        <li>周邊服務：${intro3}</li>      
+        <li>環境服務：${intro4}</li>
+      </ul>
+      <hr>
+      <img src="./img/mapMarker_${typeno}.png" class="cardContentIcon" PSN="A"><span>${typename}</span>
+      <input type="checkbox" fav="${no}" name="addfriendlyFav" class="addfriendlyFav" onchange="addFav()">
+    </div>
+  `;
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  var marker = new google.maps.Marker({
+    position: { lat: parseFloat(lat), lng: parseFloat(lng) },
+    title: title,
+    map: map,
+    // animation: google.maps.Animation.BOUNCE,
+    animation: google.maps.Animation.DROP,
+    icon: {
+      url: `./img/mapMarker_${typeno}.png`,
+      scaledSize: new google.maps.Size(40, 40)
+    }
+  });
+  marker.addListener("click", function() {
+    if (currentInfoWindow != "") {
+      currentInfoWindow.close();
+      currentInfoWindow = "";
+    }
+    infowindow.open(map, marker);
+    currentInfoWindow = infowindow;
+  });
+  markers.push(marker);
+}
 
-//   request.open('GET', url, true);
-//   request.send(null);
-// }
+// ======================================新增最愛=============================================//
 
-// function doNothing() {}
+// 新增我的最愛
+function addFav() {
+  // alert("先判斷");
+  // 先判斷有沒有登入
+  var xhr = new XMLHttpRequest();
+  var url = "./php/checkMem.php";
+  xhr.open("GET", url, true);
+  xhr.send(null);
+  xhr.onload = function(e) {
+    if (xhr.status == 200) {
+      member = JSON.parse(xhr.responseText);
+      if (!member.memName) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert("請先登入");
+        return;
+      } else {
+        // console.log($(".addfriendlyFav").attr("fav"));
+        var fav = $(".addfriendlyFav").attr("fav");
+        if ($(".addfriendlyFav").prop("checked") == true) {
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favAdd.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("新增到最愛");
+                console.log(fav + "新增到最愛");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "./php/map_favRemove.php",
+            data: { friendlyNo: fav },
+            success: function(data) {
+              if (data.indexOf("ok") != -1) {
+                alert("已從最愛移除");
+                console.log(fav + "從最愛移除");
+              } else {
+                alert("新增失敗");
+              }
+            },
+            error: function(xhr) {
+              alert(xhr.Message);
+            }
+          });
+        }
+      }
+    }
+  };
+}
+
+// 我的最愛更換類別
+let favorite_type;
+
+function showFav() {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+  infoWindows = [];
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("get", "./php/map_favShow.php");
+  xhr.send(null);
+  xhr.onload = function() {
+    var data = JSON.parse(xhr.responseText);
+    console.log(data);
+    if (data == false) {
+      alert("目前沒有最愛的友善空間喔!");
+    } else {
+      for (var i = 0; data.length > i; i++) {
+        if (favorite_type) {
+          if (data[i].friendlyTypeNo == favorite_type[0]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == favorite_type[1]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+          if (data[i].friendlyTypeNo == favorite_type[2]) {
+            loadfriendlyData(
+              data[i].friendlyNo,
+              data[i].friendlylat,
+              data[i].friendlylng,
+              data[i].friendlyName,
+              data[i].friendlyPic,
+              data[i].friendlyTel,
+              data[i].friendlyAddress,
+              data[i].friendlyIntro_1,
+              data[i].friendlyIntro_2,
+              data[i].friendlyIntro_3,
+              data[i].friendlyIntro_4,
+              data[i].friendlyTypeNo,
+              data[i].friendlyTypeName
+            );
+          }
+        }
+      }
+    }
+  };
+}
+
+// 讀取我的最愛點選
+window.addEventListener("load", function() {
+  let fatype = document.getElementsByName("favoritetypes");
+  for (let i = 0; i < fatype.length; i++) {
+    fatype[i].onchange = function(e) {
+      $("#favoH3 label").css("fontWeight", "600");
+      $("#favoH3 label img").css("opacity", "1");
+      $(".map_filter_friendly h3 label").css("fontWeight", "400");
+      $(".map_filter_friendly h3 label img").css("opacity", "0");
+      document.getElementById("favoH3").style.color = "red";
+      var type = document.getElementsByName("favoritetypes");
+      let arrB = [];
+      //檢查全部的checkbox有誰被勾選
+      for (var i = 0; i < type.length; i++) {
+        if (type[i].checked == true) {
+          //有勾選就去看他的值
+          console.log(type[i].value);
+
+          //假設撈出來的資料是以下的arr陣列
+          var arr = new Array(1, 2, 3);
+          //假設在陣列找不到
+          if (arr.indexOf(parseInt(type[i].value)) != -1) {
+            //顯示資料們
+            arrB.push(type[i].value);
+          }
+        }
+      }
+      favorite_type = arrB;
+      // alert(favorite_type);
+      showFav();
+    };
+  }
+});

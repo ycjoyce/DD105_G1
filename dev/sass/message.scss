@@ -119,6 +119,59 @@ section{
             }
         }
     }
+    #showImgAlert{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        background-color: #24242481;
+        display: none;
+        div{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            img{
+                max-width: 90vw;
+                max-height: 50vh;
+            }
+            button{
+                position: absolute;
+                left: -15px;
+                top: -15px;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                background-color: $lightgray;
+                background-image: url("../img/close.svg");
+                background-position: center center;
+                background-size: 40%;
+                background-repeat: no-repeat;
+                border: none;
+                outline: none;
+                box-shadow: 0 0 5px #555;
+            }
+            a{
+                position: absolute;
+                right: -25px;
+                bottom: -25px;
+                width: 50px;
+                height: 50px;
+                border-radius: 100%;
+                background-color: #fff;
+                box-shadow: 0 0 5px #555;
+                border: none;
+                outline: none;
+                background-image: url(../img/download.png);
+                background-size: 60%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+        }
+        
+    }
     #imgAlert{
         height: 100%;
         width: 100%;
@@ -199,6 +252,7 @@ section{
                     background-color: rgb(238, 245, 233);
                 }
                 div.img{
+                    background-color:#fff;
                     width: 55px;
                     height: 55px;
                     border-radius: 100%;
@@ -293,11 +347,12 @@ section{
                     div{
                         margin: 10px auto;
                         width: 190px;
-                        // &:hover{
-                        //     img{
-                        //         transform: rotate(10deg);
-                        //     }
-                        // }
+                        @include rwd(mini){
+                            width: 210px;
+                        }
+                        @include rwd(ss){
+                            width: 210px;
+                        }
                         img{
                             transition: all 0.5s;
                             display: inline-block;
@@ -331,6 +386,9 @@ section{
         @include rwd(ss){
             display:none;
         }
+        @include rwd(mini){
+            display:none;
+        }
         @include scrollbar('ul');
 
         ul{
@@ -348,6 +406,15 @@ section{
                     top: 45px;
                     color: rgb(246, 246, 246);
                     display: none;
+                    cursor: pointer;
+                    @include rwd(ss){
+                        width: 110px;
+                        text-align: center;
+                    }
+                    @include rwd(mini){
+                        width: 110px;
+                        text-align: center;
+                    }
                     &.on{
                         display: block;
                     }
@@ -411,6 +478,9 @@ section{
                 @include rwd(ss){
                     display:inline-block;
                 }
+                @include rwd(mini){
+                    display:inline-block;
+                }
             }
             li{
                 display:flex;
@@ -419,12 +489,16 @@ section{
                 float: left;
                 width: 80%;
                 div.img{
+                    background-color:#fff;
                     width: 55px;
                     height: 55px;
                     border-radius: 100%;
                     overflow: hidden;
                     flex-shrink: 0;
                     margin-right: 20px;
+                    @include rwd(mini){
+                        display: none;
+                    }
                     img{
                         display: inline-block;
                         height: 100%;
@@ -442,6 +516,9 @@ section{
                     @include rwd(ss){
                         display: none;
                     }
+                    @include rwd(mini){
+                        display: none;
+                    }
                 }
                 div.text{
                     background-color: #e4e8eb;
@@ -454,6 +531,10 @@ section{
                         margin-left: 10px;
                     }
                     @include rwd(ss){
+                        padding: 15px 30px 15px 25px;
+                        margin-left: 10px;
+                    }
+                    @include rwd(mini){
                         padding: 15px 30px 15px 25px;
                         margin-left: 10px;
                     }
@@ -479,6 +560,13 @@ section{
                             top: 0px;
                             display: block;
                         }
+                        @include rwd(mini){
+                            top: 0px;
+                            display: block;
+                        }
+                    }
+                    img{
+                        cursor: pointer;
                     }
                     span{
                         color: $lightgray;
@@ -531,6 +619,7 @@ section{
             display: flex;
             background-color: #fff;
             label[for="upload"]{
+                cursor: pointer;
                 display: inline-block;
                 height: 100%;
                 width:50px;
@@ -599,5 +688,10 @@ section{
 // ss (min-width: 414px)
 @include rwd(ss) {
     @include grid(ss, 12);
+
+}
+
+@include rwd(mini) {
+    @include grid(mini, 12);
 
 }

@@ -48,9 +48,9 @@ function showBlacklist(){
                     container.insertBefore(divCard,container.firstChild);
         
                     var divImg= document.createElement("div");
-                    var img= document.createElement("img");
-                    img.src= `./img/memImg/${res[i].memPic}`;
-                    divImg.appendChild(img);
+                    // var img= document.createElement("img");
+                    divImg.style.backgroundImage= `url(./img/memImg/${res[i].memPic})`;
+                    // divImg.appendChild(img);
                     divCard.appendChild(divImg);
     
                     var span= document.createElement("span");

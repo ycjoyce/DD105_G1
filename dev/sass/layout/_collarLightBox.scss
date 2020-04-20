@@ -21,10 +21,10 @@
 .dialog__overlay {
     position: fixed;
     z-index: 10;
-    background: rgba(55, 58, 71, 0.9);
+    background: rgba(0, 0, 0, 0.6);
     opacity: 0;
-    -webkit-transition: opacity 0.3s;
-    transition: opacity 0.3s;
+    -webkit-transition: opacity 0.2s;
+    transition: opacity 0.2s;
     -webkit-backface-visibility: hidden;
 }
 
@@ -35,16 +35,250 @@
 
 .dialog__content {
     // border: 1px solid red;
-    max-width: 1200px;
+    max-width: 400px;
     width: 90%;
-    height: 500px;
-    background: rgba(255, 255, 255, 0.609);
-    padding: 4em;
+    height: 600px;
+    background: rgba(255, 255, 255, 1);
+    padding: 10px;
     text-align: center;
     position: relative;
     z-index: 11;
     opacity: 0;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #collarDetail {
+        // border: 1px solid red;
+        width: 400px;
+        display: flex;
+        margin-top: 30px;
+        #testImg {
+            // border: 1px solid red;
+            min-width: 220px;
+            margin-left: 20px;
+            height: 138.5px;
+        }
+        #orderTotal {
+            // border: 1px solid blue;
+            width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            @include RWD(ss) {
+                width: 130px;
+            }
+            #orderQTY {
+                margin-left: 20px;
+                font-size: 1rem;
+                &::before {
+                    content: "購買數量 : ";
+                }
+                @include RWD(ss) {
+                    margin-left: 10px;
+                }
+            }
+            #orderPrice {
+                margin-left: 20px;
+                font-size: 1rem;
+                &::before {
+                    content: "總金額 : $";
+                }
+                @include RWD(ss) {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+    #orderDetail {
+        // border: 1px solid red;
+        width: 100%;
+        height: 240px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        .orderList {
+            margin-left: 40px;
+            font-size: 1rem;
+        }
+        #orderDate {
+            &::before {
+                content: "訂購日期 : ";
+            }
+        }
+        #orderName {
+            &::before {
+                content: "收件人姓名 : ";
+            }
+        }
+        #orderPhone {
+            &::before {
+                content: "收件人電話 : ";
+            }
+        }
+        #orderAddress {
+            &::before {
+                content: "收件人地址 : ";
+            }
+        }
+    }
+    .credit-card-box {
+        width: 240px;
+        height: 150px;
+        margin: 0px 0px 40px 0px;
+        perspective: 1000px;
+        position: relative;
+        // overflow: hidden;
+        &:hover .flip,
+        &.hover .flip {
+            transform: rotateY(180deg);
+        }
+        .front,
+        .back {
+            // border: 1px solid red;
+            width: 240px;
+            height: 150px;
+            border-radius: 15px;
+            // -webkit-backface-visibility: visible;
+            // -webkit-backface-visibility: hidden;
+            // backface-visibility: hidden;
+            backface-visibility: visible;
+            background: linear-gradient(135deg, #7cbfc2, #00d369);
+            //   background-image: url(../img/bg-01.png);
+            //   background-size : cover;
+            position: absolute;
+            color: #fff;
+            font-family: Inconsolata;
+            top: 0;
+            left: 0;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background-image: url("../img/dogsleep.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                opacity: 0.05;
+            }
+        }
+        .flip {
+            transition: 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+            transition: transform 1s;
+        }
+        .logo {
+            position: absolute;
+            top: 5.4px;
+            right: 12px;
+            width: 36px;
+            svg {
+                width: 100%;
+                height: auto;
+                fill: #fff;
+            }
+        }
+        .front {
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
+        .back {
+            transform: rotateY(180deg);
+            .logo {
+                top: 111px;
+            }
+        }
+        .chip {
+            position: absolute;
+            width: 36px;
+            height: 27px;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, hsl(269, 54%, 87%) 0%, hsl(200, 64%, 89%) 44%, hsl(18, 55%, 94%) 100%);
+            border-radius: 8px;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border: 2.4px solid hsla(0, 0, 50, 0.1);
+                width: 80%;
+                height: 70%;
+                border-radius: 3px;
+            }
+        }
+        .strip {
+            background: linear-gradient(135deg, hsl(0, 0, 25%), hsl(0, 0, 10%));
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            top: 18px;
+            left: 0;
+        }
+        .number {
+            position: absolute;
+            margin: 0 auto;
+            top: 61.8px;
+            left: 11.4px;
+            font-size: 0.9rem;
+            color: white;
+        }
+        label {
+            font-size: 6px;
+            letter-spacing: 1px;
+            text-shadow: none;
+            text-transform: uppercase;
+            font-weight: normal;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .card-holder,
+        .card-expiration-date {
+            position: absolute;
+            margin: 0 auto;
+            top: 108px;
+            left: 11.4px;
+            font-size: 13.2px;
+            div {
+                font-size: 0.5rem;
+                color: white;
+            }
+        }
+        .card-expiration-date {
+            text-align: right;
+            left: auto;
+            right: 12px;
+        }
+        .ccv {
+            height: 21.6px;
+            background: #fff;
+            width: 90%;
+            border-radius: 3px;
+            top: 48%;
+            left: 0;
+            right: 0;
+            position: absolute;
+            margin: 0 auto;
+            color: #000;
+            text-align: right;
+            padding: 1%;
+            label {
+                font-size: 0.5rem;
+                margin: -25px 0 8.4px;
+                color: #fff;
+            }
+        }
+    }
 }
 
 .dialog--open .dialog__content {
@@ -54,27 +288,25 @@
 
 /* Content */
 
-.dialog h2 {
-    margin: 0;
-    font-weight: 400;
-    font-size: 2em;
-    padding: 0 0 2em;
-    margin: 0;
-}
-
-.dialog__overlay {
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-}
-
+// .dialog h2 {
+//     margin: 0;
+//     font-weight: 400;
+//     font-size: 2em;
+//     padding: 0 0 2em;
+//     margin: 0;
+// }
+// .dialog__overlay {
+//     -webkit-transition-duration: 0.2s;
+//     transition-duration: 0.2s;
+// }
 .dialog__content {
     overflow: hidden;
 }
 
 .dialog.dialog--open .dialog__content,
 .dialog.dialog--close .dialog__content {
-    -webkit-animation-duration: 0.4s;
-    animation-duration: 0.4s;
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
     -webkit-animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
     -webkit-animation-fill-mode: forwards;
@@ -93,7 +325,7 @@
     animation-name: anim-close;
 }
 
-.dialog.dialog--open h2,
+.dialog.dialog--open h3,
 .dialog.dialog--open button {
     -webkit-animation: anim-elem 0.4s both;
     animation: anim-elem 0.4s both;
@@ -103,7 +335,7 @@
     animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
-.dialog.dialog--open h2 {
+.dialog.dialog--open h3 {
     -webkit-animation-delay: 0.15s;
     animation-delay: 0.15s;
 }
@@ -189,12 +421,12 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    transition: all 0.2s ease-in-out;
+    top: 15px;
+    right: 15px;
+    transition: all 0.5s ease-in-out;
     &:hover {
         transform: rotate(180deg);
     }

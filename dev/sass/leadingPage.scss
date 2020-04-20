@@ -1,0 +1,562 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,900");
+@import "layout/font";
+@import "layout/rwd";
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+  background-color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* LOADER */
+.loader {
+  background-color: #ffffff;
+  position: fixed;
+  display: block;
+  width: 100%;
+  width: 100vw;
+  height: 100%;
+  height: 100vh;
+  z-index: 999;
+  overflow: hidden;
+  transition: all 0.35s ease-in-out;
+}
+.loader .lds-ripple {
+  position: absolute;
+  display: block;
+  width: 64px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loader .lds-ripple div {
+  position: absolute;
+  /* border: 4px solid #B3001B; */
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.loader .lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+.loader.is-loaded {
+  opacity: 0;
+  visibility: hidden;
+  z-index: -99;
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 28px;
+    left: 28px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: -1px;
+    left: -1px;
+    width: 58px;
+    height: 58px;
+    opacity: 0;
+  }
+}
+/* HEADER */
+.header-inner {
+  padding: 16px 1.5%;
+}
+@media screen and (max-width: 768px) {
+  header .header-inner {
+    padding: 16px 16px 0;
+  }
+}
+@media screen and (max-width: 640px) {
+  header .header-inner {
+    padding: 16px 16px 0 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  header .header-inner .logo a {
+    line-height: 24px;
+  }
+}
+header .header-inner .logo a:hover {
+  color: rgba(36, 36, 36, 0.45);
+}
+header .header-inner .logo a span {
+  font-weight: 700;
+}
+header .header-inner .header-headline {
+  position: absolute;
+  display: block;
+  width: 180px;
+  height: auto;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  header .header-inner .header-headline {
+    display: none;
+  }
+}
+header .header-inner .header-headline p {
+  text-transform: lowercase;
+  margin: 0;
+  line-height: 20px;
+  font-weight: 600;
+  transition: all 0.35s ease-in-out;
+}
+
+header .header-inner nav li {
+  position: relative;
+  display: inline;
+  margin-left: 16px;
+}
+@media screen and (max-width: 360px) {
+  header .header-inner nav li {
+    margin-left: 8px;
+  }
+}
+header .header-inner nav li a {
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  font-size: 13px;
+  color: #000000;
+  text-decoration: none;
+  line-height: 44px;
+  transition: all 0.35s ease-in-out;
+}
+@media screen and (max-width: 360px) {
+  header .header-inner nav li a {
+    font-size: 11px;
+    line-height: 24px;
+  }
+}
+header .header-inner nav li a span {
+  position: relative;
+  z-index: 2;
+}
+header .header-inner nav li a:hover {
+  color: rgba(0, 0, 0, 0.45);
+}
+header.active-header {
+  background-color: transparent;
+}
+header.active-header .logo a {
+  color: #ffffff;
+}
+header.active-header .header-headline p {
+  color: #ffffff;
+}
+header.active-header nav li a {
+  color: #ffffff;
+}
+
+/* MAIN */
+#light{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(../img/light.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  z-index:5;
+  opacity: 0.1;
+  mix-blend-mode: lighten;
+  transition: all 0.5s;
+  &.click{
+    display: none;
+  }
+}
+main {
+  position: relative;
+  display: block;
+  z-index: 1;
+  /* background-color: #b3001b; */
+  /* padding-top: 30px; */
+  padding-bottom: 75px;
+  background-image: url(../img/background.jpg);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+main.coidea-fullpage section.wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
+  cursor: pointer;
+}
+main.coidea-fullpage section.wrapper .bg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 80vh;
+  margin-top: 10vh;
+}
+@media screen and (max-width: 640px) {
+  main.coidea-fullpage section.wrapper .bg {
+    height: 45vh;
+    margin-top: 22vh;
+  }
+}
+main.coidea-fullpage section.wrapper .bg .bcg {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 50vw;
+  @include rwd (lg){
+    max-width: 60vw;
+  }
+  @include rwd (md){
+    max-width: 70vw;
+  }
+  @include rwd (sm){
+    max-width: 80vw;
+  }
+  @include rwd (ss){
+    max-width: 80vw;
+  }
+  @include rwd (mini){
+    max-width: 80vw;
+  }
+  height: 100%;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 0;
+  visibility: hidden;
+  video{
+    width: 100%;
+    min-height: 100%;
+    &.click{
+      width: auto;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      min-width: 100vw;
+      min-height: 100vh;
+    }
+  }
+}
+// @media screen and (max-width: 640px) {
+//   main.coidea-fullpage section.wrapper .bg .bcg {
+//     max-width: 320px;
+//   }
+// }
+// @media screen and (max-width: 480px) {
+//   main.coidea-fullpage section.wrapper .bg .bcg {
+//     max-width: 120px;
+//   }
+// }
+main.coidea-fullpage section.wrapper .bg .el {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+main.coidea-fullpage section.wrapper .bg .el .content {
+  mix-blend-mode: color-burn;
+  position: absolute;
+  display: block;
+  width: 200%;
+  top: 50%;
+  left: -50%;
+  text-align: center;
+  transform: translateY(-50%);
+}
+main.coidea-fullpage section.wrapper .bg .el .content span {
+  /* font-size: 40vw; */
+  letter-spacing: 0;
+  font-weight: 600;
+  /* font-kerning: normal;
+  color: #B3001B; */
+  font: 3rem "Candelia";
+  color: #665e5e;
+  transition: all 0.5s;
+}
+main.coidea-fullpage section.wrapper .bg .el .content .description {
+  position: relative;
+  display: block;
+  width: 100%;
+  width: calc(100% - 32px);
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 16px;
+  height: 0px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  // margin-top: 64px;
+  /* overflow: hidden; */
+  // @include rwd(ss){
+  //   margin-top: 37px;
+  //     transform: matrix(1, 0, 0, 1, 0, 102) !important;
+  // }
+  @include rwd(mini){
+    margin-top: 37px;
+      transform: matrix(1, 0, 0, 1, 0, 102) !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  main.coidea-fullpage section.wrapper .bg .el .content .description {
+    max-width: 374px;
+    max-height: 180px;
+  }
+}
+@media screen and (max-width: 640px) {
+  // main.coidea-fullpage section.wrapper .bg .el .content .description {
+  //   margin-top: 37px;
+  //   transform: matrix(1, 0, 0, 1, 0, 102) !important;
+  // }
+  .title {
+    padding-bottom: 16%;
+  }
+  .circle {
+    width: 140px;
+    height: 140px;
+  }
+}
+main.coidea-fullpage section.wrapper .bg .el .content .description p {
+  color: #b3001b !important;
+  font-size: 18px;
+  font-weight: 400;
+}
+@media screen and (max-width: 768px) {
+  main.coidea-fullpage section.wrapper .bg .el .content .description p {
+    font-size: 16px;
+  }
+}
+main.coidea-fullpage section.wrapper .bg .el .content.active {
+  mix-blend-mode: normal;
+}
+
+main.coidea-fullpage section.wrapper .bg .el .content.active div.title span span{
+  color: rgba(229, 245, 242, 0.746);
+}
+
+span.active {
+  mix-blend-mode: color-burn;
+}
+/* FOOTER */
+footer {
+  position: fixed;
+  display: block;
+  width: 220px;
+  z-index: 100;
+  left: 50%;
+  margin-left: -110px;
+  bottom: 16px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+}
+@media screen and (max-width: 640px) {
+  footer {
+    bottom: 64px;
+  }
+}
+footer nav.anchor-nav a {
+  background-color: #b3001b;
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 18px;
+  border: 2px solid #b3001b;
+  transition: all 0.7s ease-in-out;
+  margin: 4px;
+}
+footer nav.anchor-nav a.active {
+  background-color: transparent;
+}
+footer .contact-us {
+  position: relative;
+  display: block;
+  width: 180px;
+  height: auto;
+  float: right;
+}
+footer.active-footer {
+  opacity: 1;
+  visibility: visible;
+
+  /* border:  5px solid red; */
+  /* width: 100%; */
+}
+
+article {
+  height: 500px;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.circle {
+  width: 145px;
+  height: 145px;
+  /* border: 1px solid red; */
+  border-radius: 50%;
+  background-color: rgba(220, 241, 194, 0.7);
+  display: inline-block;
+  mix-blend-mode: normal;
+  line-height: 145px;
+  animation: cir 5s linear infinite alternate;
+  transition: 0.6s linear;
+}
+
+.circle:hover {
+  background-color: rgba(143, 185, 92, 0.9);
+}
+
+@keyframes cir {
+  from {
+    margin-top: 40px;
+  }
+  to {
+    margin-top: 90px;
+  }
+}
+
+.circle h1 {
+  margin: 0 auto;
+  color: rgb(255, 255, 255);
+  font-size: 1.3rem;
+  font-family: 'DM Serif Text','Noto Serif TC' ;
+  letter-spacing: 5px;
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  main.coidea-fullpage section.wrapper .bg .el .content span {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media screen and (min-width: 475px) and (max-width: 575px) {
+  main.coidea-fullpage section.wrapper .bg .el .content span {
+    font-size: 2rem !important;
+  }
+}
+
+@media screen and (max-width: 474px) {
+  main.coidea-fullpage section.wrapper .bg .el .content span {
+    font-size: 1.5rem !important;
+  }
+}
+
+// .doggif {
+//   width: 13%;
+//   position: absolute;
+//   top: 110%;
+//   right: 83%;
+//   animation: run 3s linear 1s backwards;
+// }
+// @keyframes run{
+//   from{right: 110%;}
+//   to{right: 83%;}
+// }
+// .dialog-border-bottom {
+//   border: 4px solid #353535;
+//   border-radius: 15px;
+//   height: 10%;
+//   position: relative;
+//   padding: 10px;
+//   width: 100px;
+//   margin-left: 7%;
+//   animation: text_border  1.9s linear 4s infinite backwards;
+// }
+
+// @keyframes text_border{
+//   from{opacity: 0;}
+//   to{opacity: 100%;}
+// }
+// .dialog-border-bottom:before {
+//   border-color: #353535 transparent transparent;
+//   border-style: solid solid solid;
+//   border-width: 10px 10px 10px 10px;
+//   bottom: -20px;
+//   content: "";
+//   height: 0px;
+//   left: 70px;
+//   position: absolute;
+//   width: 0px;
+// }
+.dialog-border-bottom{
+  @include rwd(sm){
+    margin-top: 50px;
+  }
+}
+.dialog-border-bottom span {
+  letter-spacing: 0.2rem;
+  font-size: 1rem;
+  color: rgb(53, 53, 53);
+  animation: colorchange 8s linear infinite;
+}
+@keyframes colorchange {
+  0% {
+    color: rgb(53, 53, 53);
+  }
+  25% {
+    color: rgb(194, 57, 98);
+  }
+  50% {
+    color: rgb(238, 220, 58);
+  }
+  100% {
+    color: rgb(53, 53, 53);
+  }
+}
+
+@media screen and (max-width: 474px) {
+  main.coidea-fullpage section.wrapper .bg .el .content {
+    bottom: -104%;
+  }
+  .doggif{
+    width: 17%;
+  }
+  .dialog-border-bottom{
+
+    padding: 3px;
+    margin-left: 6px;
+  }
+
+  .dialog-border-bottom span{
+    font-size: 15px;
+}
+}
+
+@include rwd(mini) {
+	@include grid(mini, 12);
+}

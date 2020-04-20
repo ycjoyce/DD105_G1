@@ -74,17 +74,94 @@
 //使用方式 ----- @include scrollbar(要套用的物件);
 //例如 ----- @include scrollbar('div.top');
 
+//=======================================================
+
 @import 'layout/rwd';
-//使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
+
 
 //=======================================================
 
 @import 'layout/rwd2';
 //使用方式 -----.div1{//電腦版 @include pc-width{padding:20px;]
 
+//電腦  960↑
+// @mixin pc-width() {
+//     @media all and (min-width: $pc-media) {
+//                  @content;
+//            }
+//       }
+  //平板 959~768
+//    @mixin pad-width() {
+//   @media all and (min-width:$pad-media) and (max-width: $pcs-media) {
+//                   @content;
+//             }
+//   }
+  //小平板 767~375
+//    @mixin small-pad-width() {
+//           @media all and (min-width: $phone-media) and (max-width:$pads-media) {
+//                   @content;
+//             }
+//    }
+  //手機 374↓
+//    @mixin phone-width() {
+//           @media all and (max-width: $phones-media) {
+//                   @content;
+//             }
+//    }
+
 //=======================================================
 
-.col-12.topimg{
+
+//顏色定義區(橘/灰/深橘)
+$color_orange: #FA8B00;
+$color_grey: #f3f3f1;
+$color_dark_orange: rgb(144, 187, 115);
+$color_yellow: #FFE18D;
+$color_dark_yellow: #FFDA71;
+$color_dark_grey: #4F4C4B;
+
+//尺寸定義區 
+$size_title: 25px;
+$size_para: 15px;
+$size_bookbtn: 42px;
+$size_icon: 22px;
+$size_raiser: 55px;
+
+//尺寸
+$width_class: 260px;
+$height_toppart: 160px;
+$height_bottompart: 184px;
+$height_progressbar: 10px;
+$height_pricerow: 22px;
+$height_bottomorange: 5px;
+
+//尺寸(課程框框的padding)
+$padding_class: 15px;
+
+//格線系統
+@import 'layout/grid';
+//12欄
+//class="col-1" 寬度為總寬度的 1/12
+//class="col-6" 寬度為總寬度的 6/12
+//以此類推(col-1 ~ col-12)
+
+
+
+//=======================================================
+
+*{
+    // border: 1px solid skyblue;
+    position: relative;
+    color: #555;
+    // letter-spacing: 1px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+//===================banner==============================
+.col-10.topimg{
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -92,7 +169,7 @@
     .topimg{
         img{
             display: block;
-            width: 90%;
+            width: 100%;
             margin: 0 auto;
             // filter: brightness(.7);
         }
@@ -107,7 +184,7 @@
             animation: 5000ms greenbubbleAnimation infinite;
 
             @keyframes greenbubbleAnimation {
-                0% { transform:translateY(20px);}
+                0% { transform:translateY(40px);}
                 50% {transform:translateY(70px);}
                 100% {transform:translateY(20px);}
 
@@ -118,21 +195,19 @@
                 display: block;
 
             }
-            
-            
-
+        
     }
 
     .bluebubble{
 
         position: absolute;
         top: 10%;
-        right: -5%;
-            animation: 9000ms bluebubbleAnimation infinite;
+        right: 5%;
+        animation: 5000ms bluebubbleAnimation infinite;
 
             @keyframes bluebubbleAnimation {
                 0% { transform:translateY(20px);}
-                50% {transform:translateY(50px);}
+                50% {transform:translateY(80px);}
                 100% {transform:translateY(20px);}
 
             }
@@ -152,7 +227,7 @@
 
         position: absolute;
         bottom: 15%;
-        left: 10%;
+        // left: -5%;
             animation: 9000ms littleyellowbubbleAnimation infinite;
 
             @keyframes littleyellowbubbleAnimation {
@@ -163,29 +238,19 @@
             }
             
             img{
-                width: 100%;
+                width: 50%;
                 display: block;
 
-            }
-            
-            
+            }     
 
     }
 
-    // h1.first{
-    //     position: absolute;
-    //     top: 17%;
-    //     left: 7%;
 
-    //     color: #555555;
-    //     writing-mode: vertical-rl;
-    //     background-color: white;
-    //     // box-shadow: 3px 3px 10px #cfcfcfcf;
-     
-
-    // }
 }
 
+//=======================================================
+
+//===================發起募款步驟==============================
 .col-12.step{
     display: flex;
     .col-8.stepcontent{
@@ -198,8 +263,6 @@
                 color: #555555;
             }
 
-
-
             p{
                 text-align: center;
                 color: #555555;
@@ -209,9 +272,6 @@
             p:nth-child(1){
                 margin-top: 3%;
             }
-
-            
-
             
         }
         .col-12.steps{
@@ -221,6 +281,8 @@
             .first_step,.second_step,.third_step,.forth_step,.complete{
                 width: 100%;
                 height: 200px;
+                align-items: center;
+                justify-content: center;
                 // border: 1px solid seagreen;
                 margin: 1%;
                 
@@ -238,6 +300,7 @@
                 h2{
                     text-align: center;
                     color: #76912E;
+                    // border: 1px solid salmon;
                 }
 
                 p{
@@ -251,11 +314,12 @@
             }
 
             .first_step{
-                background-image: url(../img/G.png);
-                background-size: contain;
+                background-image: url(../img/donation/big_green_bubble.png);
+                background-size: cover;
                 background-repeat: no-repeat;
                 animation: 4000ms greenbubbleAnimation infinite;
                 animation-delay:1s;
+                max-width: 200px;
 
                 @keyframes greenbubbleAnimation {
                     0% { transform:translateY(0px);}
@@ -268,11 +332,12 @@
             }
 
             .second_step{
-                background-image: url(../img/B.png);
+                background-image: url(../img/donation/big_bule_bubble.png);
                 background-size: contain;
                 background-repeat: no-repeat;
                 animation: 6000ms bluebubbleAnimation infinite;
                 animation-delay:3s;
+                max-width: 200px;
 
                 @keyframes bluebubbleAnimation {
                     0% { transform:translateY(2px);}
@@ -288,14 +353,15 @@
             }
 
             .third_step{
-                background-image: url(../img/C.png);
+                background-image: url(../img/donation/big_orange_bubble.png);
                 background-size: contain;
                 background-repeat: no-repeat;
                 animation: 8000ms yellowbubbleAnimation infinite;
                 animation-delay:1s;
+                max-width: 200px;
 
                 @keyframes yellowbubbleAnimation {
-                    0% { transform:translateY(0px);}
+                    0% { transform:translateY(0px);} 
                     50% {transform:translateY(7px);}
                     100% {transform:translateY(0px);}
 
@@ -308,11 +374,12 @@
             }
 
             .forth_step{
-                background-image: url(../img/E.png);
+                background-image: url(../img/donation/big_pink_bubble.png);
                 background-size: contain;
                 background-repeat: no-repeat;
                 animation: 5000ms pinkbubbleAnimation infinite;
                 animation-delay:2s;
+                max-width: 200px;
 
                 @keyframes pinkbubbleAnimation {
                     0% { transform:translateY(0px);}
@@ -346,283 +413,539 @@
                 }
             }
 
-            .complete{
-                width: 100%;
-                background-image: url(../img/G.png);
-                background-size: contain;
-                background-repeat: no-repeat;
-                position: relative;
-                animation: 4000ms greenbubbleAnimation infinite;
-                animation-delay:1s;
+            // .complete{
+            //     width: 100%;
+            //     background-image: url(../img/donation/big_green_bubble.png);
+            //     background-size: contain;
+            //     background-repeat: no-repeat;
+            //     position: relative;
+            //     animation: 4000ms greenbubbleAnimation infinite;
+            //     animation-delay:1s;
 
-                @keyframes greenbubbleAnimation {
-                    0% { transform:translateY(0px);}
-                    50% {transform:translateY(3px);}
-                    100% {transform:translateY(0px);}
+            //     @keyframes greenbubbleAnimation {
+            //         0% { transform:translateY(0px);}
+            //         50% {transform:translateY(3px);}
+            //         100% {transform:translateY(0px);}
 
-                }
+            //     }
                
                 
                 
-                h3{
-                    color: #76912E;
-                    line-height: 180px;
-                    text-align: center;
+            //     h3{
+            //         color: #76912E;
+            //         line-height: 180px;
+            //         text-align: center;
                 
-                }
+            //     }
 
-                .sparkle{
-                    position: absolute;
-                    top: -3%;
-                    left: 50%;
-                    img{
-                        display: block;
-                        width: 100%;
+            //     .sparkle{
+            //         position: absolute;
+            //         top: -3%;
+            //         left: 50%;
+            //         img{
+            //             display: block;
+            //             width: 100%;
                         
-                    }
-                }
+            //         }
+            //     }
 
                 
 
                 
-            }
+            // }
 
         }
     }
 }
-
-.col-12.form{
-    display: flex;
-    margin-top: 5%;
-    background-image: url(../img/body_bg.png);
-    .col-8.form_content{
-        margin: 0 auto;
-        margin-top: 5%;
-        background-color: white;
-        margin-bottom: 5%;
-        position: relative;
-        .irasuto{
-            // left: 80%;
-            top:-5%;
-            right: -5%;
-            position: absolute;
-
-            img{
-                width: 100%;
-                display: block;
-                // border: 1px solid salmon;
-
-            }
-        }
-
-        form{
-
-            margin-top: 5%;
-            
+//=======================================================
 
 
-            .name,.email,.startdate,.enddate,.projectname,.goal,.coverphoto,.otherphoto1,.otherphoto2,.otherphoto3,.otherphoto4,.otherphoto5,.projectcontent{
-                display: flex;
-                flex-direction: column;
-                margin-bottom: 4%;
+//===================發起募款表單==============================
+
+
+input,textarea{
+    width: 99%;
+}
+
+h2{
+    background-image: url(./img/donation/big_green_bubble.png);
+    background-size: cover;
+}
+
+label{
+    // background: linear-gradient(transparent 70%, #a7fff8 70%);
     
-                label,input,textarea{
-                    font-size: 16px;
-                    margin-left: 5%;
-                    color: #555555;
-                }
-    
-                label{
-                    margin-bottom: 1%;
-                }
-    
-                input{
-                    width: 50%;
-                    border: 1px solid #ccc;
-                    padding: 6px;
-                    color: #555555;
-                }
-    
-                input#name,input#startdate,input#enddate,input#goal{
-                    width: 30%;
-                }
-    
-                textarea{
-                    // width: 80%;
-                    margin-right: 5%;
-                    resize: none;
-                    border: 1px solid #ccc;
-                }
-    
-    
-            }
-    
-            .coverphoto,.otherphoto1{
-                position: relative;
-                display: inline-block;
-                // background: #D0EEFF;
-                border: 1px solid #ccc;
-                // padding: 4px 12px;
-                overflow: hidden;
-                text-decoration: none;
-                text-indent: 0;
-                line-height: 20px;
-                width: 150px;
-                padding: 6px;
-                margin-left: 5%;
-                
-    
-                input#coverphoto {
-                    position: absolute;
-                    font-size: 100px;
-                    right: 0;
-                    top: 0;
-                    opacity: 0;
-                    cursor: pointer;
-                }
-                
-            }
-    
-            .rule{
-                div{
-                    // border: 1px solid salmon;
-                    display: flex;
-                    flex-direction: column;
-                    margin-left: 5%;
-                    // width: 30%;
-    
-                    label{
-                        margin-top: 1%;
-                        font-size: 16px;
-                        color: #555555;
-                    }
-                    input{
-                        margin-right: 1%;
-                        color: #555555;
-    
-                        p{
-                            margin-left: 0;
-                            // border: 1px solid salmon;
-                            color: #555555;
-                        }
-                        
-                    }
-                }
-    
-                p{
-    
-                    margin-top: 1%;
-                    font-size: 16px;
-                    margin-left: 5%;
-                    color: #555555;
-    
-                }
-            }
+}
 
-            @include scrollbar('div.contract');
+.articletitlebox{
+    
+    // border: 1px solid saddlebrown;
+    height: 40px;
+    margin-top: 20px;
+    h3{
+        display: inline-block;
+    }
+}
 
-            .contract{
-                margin-top: 5%;
-                border: 1px solid #ccc;
-                margin-left: 5%;
-                margin-right: 5%;
-                height: 450px;
-                overflow-y: scroll;
-                margin-bottom: 5%;
-                background-color: rgba(238, 236, 236, 0.178);
-    
-                h4{
-                    text-align: center;
-                    margin: 4%;
-                    color: #555555;
-                }
-    
-                p{
-                    margin-bottom: 3%;
-                    margin-left: 5%;
-                    margin-right: 5%;
-                    color: #555555;
-                }
-    
-                p.title{
-                    font-weight: bold;
-                    font-size: 16px;
-                    margin-bottom: 2%;
-    
-                }
-    
-            }
+.select {
+    position: relative;
+    width: 100%;
+    height: 33px;
+    color: #555555;
+    outline: none!important;
+    border: 1px solid hsla(0, 0, 0, 0.3);
+    font-size: 1em;
+    margin: 12px 0px;
+    background-color: #fff;
+   
+
+    &::after {
+      content: '';
+      border-top: 8px solid #222;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      position: absolute;
+      z-index: 2;
+      top: 14px;
+      right: 10px;
+      pointer-events: none;
+    }
+
+    select {
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      appearance:none;
+      position: absolute;
+      padding: 0;
+      border: none;
+      width: 100%;
+      outline: none!important;
+      top: -12px;
+      left: 6px;
+      background: none;
+
+      :-moz-focusring {
+        color: transparent;
+       
+      }
+
+    }
+}
 
 
-            .frommebutton{
+textarea.shortcontent{
+    height: 80px;
+}
 
-                // border: 1px solid salmon;
-                text-align: center;
-                margin-bottom: 5%;
-                button{
-                    width: 200px;
-                    height: 60px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    letter-spacing: 4px;
-                    border: 1px solid #76912E;
-                    background-color: #76912E;
-                    color: white;
-                   
-                }
-            }
+textarea{
+    height: 150px;
+}
 
-            .bigpinkbubble{
+.formbox{
+    background-image: url(../img/donation/skybg.png);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30px;
 
-                position: absolute;
-                left: -10%;
-                bottom: -5%;
-                animation: 10000ms bigpinkbubbleAnimation infinite;
-                animation-delay:1s;
+}
 
-                @keyframes bigpinkbubbleAnimation {
-                    0% { transform:translateY(20px);}
-                    50% {transform:translateY(50px);}
-                    100% {transform:translateY(20px);}
+form{
+    width: 100%;
+    margin: 100px auto;
+    background-color: rgba(255,255,255,0.7);
 
-                }
-
-                img{
-                    display: block;
-                    width: 60%;
-                }
-
-            }
-
-            .orangebubble{
-
-                position: absolute;
-                left: 2%;
-                bottom: 2%;
-                animation: 8000ms orangebubbleAnimation infinite;
-                animation-delay:1s;
-                z-index: 5;
-
-                @keyframes orangebubbleAnimation {
-                    0% { transform:translateY(10px);}
-                    50% {transform:translateY(40px);}
-                    100% {transform:translateY(10px);}
-
-                }
-
-                img{
-                    display: block;
-                    width: 100%;
-                }
-
-            }
-        }
-
+    .stepone{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
         
+    }
+}
 
+#app{
+    padding: 30px;
+    margin-top: -30px;
+   
+    .cardfill{
+        width: 50%;
+        margin-top: 30px;
+        div.title,div.name,.coverimg,div.fundGoal{
+            margin-top: 30px;
+        }
+     
+        span{
+            position: absolute;
+            top: 0;
+            right: 0;
+            
+        }
+        input,textarea{
+            margin: 12px 0px;
+            font-size: 1em;
+            border: 1px solid #bbb;
+        }
+        textarea{
+            height: 70px;
+        }
+
+        input{
+            height: 30px;  
+        }
+        .coverimgbox{
+            margin: 50px 0px;
+
+        }
+        .coverimg {
+            position: relative;
+            display: inline-block;
+            border: 1px solid #bbb;
+            padding: 10px 12px;
+            margin: 0;
+            overflow: hidden;
+            text-decoration: none;
+            line-height: 20px;
+            cursor: pointer;
+            transition: .3s;
+
+            i{
+                margin-right: 10px;
+                transition: .3s;
+            }
+        }
+        .coverimg input {
+            position: absolute;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .coverimg:hover {
+            border-color: #76912E;
+            color: #76912E;
+            text-decoration: none;
+
+            i{
+                color: #76912E;
+            }
+        }
+        p{
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            color: #bbb;
+            display: inline-block;
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin: 0;
+        }
+    }
+}
+
+.preview{
+    width: 100%;
+    height: 100%;
+    border: 0px;
+}
+
+
+#app2{
+    width: 50%;
+    margin-top: 40px;
+    box-sizing: border-box;
+    padding-left: 40px;
+}
+
+
+.donationcardbox{
+    width: 260px;
+    background-color: white;
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+    color: $color_dark_grey;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 auto;
+    
+  
+    
+    &:hover{
+    //   .heartbtn{
+    //     bottom: 10px;
+    //   }
+      .donationpic{
+        transform: scale(1.13);
+      }
+      .bottom .valuebar{
+        width: 100%;
+      }
+    }
+    
+    .raiser{
+      width: $size_raiser;
+      height: $size_raiser;
+      position: absolute;
+      left: $padding_class;
+      top: -$size_raiser/2;
+      border-radius: 50%;
+      background-size: cover;
+      border: solid 2px white;
+      z-index: 5;
+    }
+    
+  
+  }
+  
+  .top{
+    height: $height_toppart;
+    overflow: hidden;
+    .tag{
+      transform: translateX(95px) translateY(20px) rotate(45deg);
+      width: 100%;
+      text-align: center;
+      padding: 5px 0px;
+      background-color: $color_dark_orange;
+      color: white;
+      font-weight: 700;
+      box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+    }
+    
+    .donationpic{   
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-size: cover;
+      border-radius: 5px 5px 0px 0px;
+      transition: .3s;
+      
+    }
+    
+    .heartbtn{
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      position: absolute;
+      left: $padding_class;
+      bottom: -50px;
+      background-color: #EE7785;
+      box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: .3s;
+      
+      &:hover{
+        background-color: white;
+        i{
+          color: #EE7785;
+          
+        }
+        
+      }
+      
+      i{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        font-size: $size_icon;
+        color: white;
+        
+      } 
+  
+    }
+    
+  
+  }
+  
+  .bottom{
+    height: $height_bottompart;
+    padding: $padding_class;
+    
+    .donationtitle,.donationname{
+      letter-spacing: 2.5px;
+      margin-top: 0;
+        
+    }
+    
+    .texts{
+      font-size: $size_para;
+      letter-spacing: 1px;
+      margin-top: 5px;
+        .orange{
+          padding-left: 5px;
+          color: $color_dark_orange;
+          }
+    }
+    
+    .statusrow{
+      margin-bottom: 10px;
+      .lastday{
+        position: absolute;
+        top: 0;
+        right: 0;
+  
+      }
+      
+    }
+    
+    .progressbar{
+      
+      height: 10px;
+      margin-bottom: 10px;
+      background-color: darken($color_grey,6);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .goal{
+      
+      text-align:center;
+      
+  
+    }
+    
+    .orangebar{
+      
+      height: 5px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: $color_dark_orange;
+      border-radius: 0px 0px 5px 5px;
+  
+    }
+  }
+
+.steponebtn{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    #step1{
+        width: 150px;
+        height: 40px;
+        border: 1px solid #647926;
+        cursor: pointer;
+        color: #647926;
+        text-align: center;
+        line-height: 40px;
     
     }
 }
+
+
+
+.detailbox{
+    width: 90%;
+    margin: 0 auto;
+    display: none;
+
+    div.firstarticlerow,div.secondarticlerow,div.thirdarticlerow{
+        margin-top: 25px;
+
+        span{
+            position: absolute;
+            right: 0;
+            
+        }
+    }
+
+    textarea{
+        height: 100px;
+        margin-top: 10px;
+    }
+
+    
+    .imgboxrow{
+        margin-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        .imgbox,.imgbox1,.imgbox2{
+            width: 31%;     
+        }
+
+        label#img_upload,label#img_upload2,label#img_upload3{
+            width: 100%;
+            min-height: 180px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            text-align: center;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            &:hover{
+                span{
+                    border-color: #76912E;
+                    color: #76912E;
+                    text-decoration: none;
+                }
+                i{
+                    color: #76912E;
+                }
+    
+            }
+            input{
+                display: none;
+                }
+            span{
+                text-align: center;
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                transform: translate(-50%,50%);
+                // border: 1px solid #bbb;
+                padding: 10px 12px;
+                transition: .3s;
+                    i{
+                        margin-right: 10px;
+                        transition: .3s;
+                    }
+                 
+                }          
+        
+        }
+
+    }
+    
+
+    .gosubmit{
+        margin-top: 60px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .steptwobtn{
+            text-align: center;
+            display: inline-block;
+            margin-right: 30px;
+            #step2{
+                width: 150px;
+                height: 40px;
+                border: 1px solid #647926;
+                cursor: pointer;
+                color: #647926;
+                text-align: center;
+                line-height: 40px;
+            
+            }
+        }
+        
+        button[type=submit].su{
+            background-color: transparent;
+            border: 0px;
+            cursor: pointer;
+            margin-left: 30px;
+            &:focus{
+                outline: none;
+            }
+          }
+    }
+
+}
+
+//=======================================================
+
 
 
 // rwd
@@ -634,7 +957,7 @@
     @include pad-width{
 
         .col-8.stepcontent{
-            width: 90%;
+            width: 70%;
 
             .col-12.steps{
 
@@ -661,14 +984,13 @@
 
 }
 
-.col-12.form{
-
-    padding-bottom: 15%;
+#raisedonationform{
 
     @include pad-width{
+        width: 90%;;
 
         .col-8.form_content{
-            width: 85%;
+            width: 100%;
         }
 
 
@@ -679,49 +1001,372 @@
 
 
 //rwd 767~375px==============================
+.col-10.topimg{
 
-.col-12.step{
 
     @include small-pad-width{
-        display: none;
-    }
+        width: 100%;
 
-}
-
-
-.col-12.form{
-
-    padding-bottom: 15%;
-    margin-top: 15%;
-
-    @include small-pad-width{
-
-        .col-8.form_content{
-            width: 85%;
-
-            .irasuto{
-                width: 30%;
-            }
-
-
-            form{
-                .name,.email,.startdate,.enddate,.projectname,.goal{
-                    input#name,input#email,input#startdate,input#enddate,input#projectname,input#goal{
-                        width: 90%;
-                    }
-                }
-
-                .rule{
-                    p{
-                        margin-right: 5%;
-                    }
-                }
-            }
+        .greenbubble{
+            right: -40%;
+        }
+        .bluebubble{
+            right: -10%;
+            width: 30%;
+            top: 40%;
+        }
+        .littleyellowbubble{
+            bottom: 25%;
+            width: 36%;
+            top: 40%;
         }
 
 
     }
 
+
 }
 
- 
+
+.col-12.step{
+
+    @include small-pad-width{
+
+        .col-8.stepcontent {
+            width: 90%;
+            .col-12.title{
+
+                h2{
+                    font-size: 24px;
+                }
+
+            }
+           
+
+            .col-12.steps{
+                display: none;
+    
+            }
+        }
+
+        
+        
+
+        
+    }
+
+}
+
+.formbox{
+
+    @include small-pad-width{
+        margin-top: 0px;
+
+        form.col-8{
+            width: 90%;
+            margin: 50 auto;
+
+            #app{
+                padding: 0px;
+                padding-bottom: 30px;
+                .stepone{
+                    display: flex;
+                    flex-direction: column;
+                    .cardfill{
+                        width: 90%;
+                        margin-top: 0px;
+                        .coverimgbox{
+                            display: flex;
+                            flex-direction: column;
+                            .coverimg{
+                                display: block;
+                                text-align: center;
+                            }
+                            p{
+                                position: static;
+                                margin-top: 10px;
+                            }
+        
+                        }
+                    }
+                    
+                    #app2{
+                        width: 100%;
+                        padding-left: 0;
+                        margin-top: 0px;
+                        margin-bottom: 10px;
+                        h3{
+                            font-size: 20px;
+                        }
+                    }
+                }
+
+                .detailbox{
+                        h3{
+                            font-size: 20px;
+                        }
+
+                        .imgboxrow{
+                            flex-direction: column;
+                            margin-top: 0px;
+        
+                            .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                                width: 100%;
+                            }
+                        }
+                        .gosubmit{
+                            flex-direction: column;
+                            margin-top: 20px;
+        
+                            .steptwobtn{
+                                margin-right: 0px;;
+                                margin-bottom: 20px;
+                            }
+                            button[type=submit].su{
+                                margin-left: 0px;
+                            }
+                        }
+        
+                    }
+            }
+        }
+    }
+
+}
+
+.form{
+
+    @include small-pad-width{
+            margin: 50 auto;
+
+        }
+    
+
+}
+
+
+
+//rwd 374px==============================
+.col-10.topimg{
+
+
+    @include phone-width{
+        width: 100%;
+
+        .greenbubble{
+            right: -40%;
+        }
+        .bluebubble{
+            right: -10%;
+            width: 30%;
+            top: 40%;
+        }
+        .littleyellowbubble{
+            bottom: 25%;
+            width: 36%;
+            top: 40%;
+        }
+
+
+    }
+
+
+}
+
+
+.col-12.step{
+
+    @include phone-width{
+
+        .col-8.stepcontent {
+            width: 90%;
+            .col-12.title{
+
+                h2{
+                    font-size: 24px;
+                }
+
+            }
+           
+
+            .col-12.steps{
+                display: none;
+    
+            }
+        }
+
+        
+        
+
+        
+    }
+
+}
+
+.formbox{
+
+    @include phone-width{
+        margin-top: 0px;
+
+        form.col-8{
+            width: 90%;
+            margin: 50 auto;
+
+            #app{
+                padding: 0px;
+                padding-bottom: 30px;
+                .stepone{
+                    display: flex;
+                    flex-direction: column;
+                    .cardfill{
+                        width: 90%;
+                        margin-top: 0px;
+                        .coverimgbox{
+                            display: flex;
+                            flex-direction: column;
+                            .coverimg{
+                                display: block;
+                                text-align: center;
+                            }
+                            p{
+                                position: static;
+                                margin-top: 10px;
+                            }
+        
+                        }
+                    }
+                    
+                    #app2{
+                        width: 100%;
+                        padding-left: 0;
+                        margin-top: 0px;
+                        margin-bottom: 10px;
+                        h3{
+                            font-size: 20px;
+                        }
+                    }
+                }
+
+                .detailbox{
+                        h3{
+                            font-size: 20px;
+                        }
+
+                        .imgboxrow{
+                            flex-direction: column;
+                            margin-top: 0px;
+        
+                            .imgbox,.imgbox1,.imgbox2,.imgbox3{
+                                width: 100%;
+                            }
+                        }
+                        .gosubmit{
+                            flex-direction: column;
+                            margin-top: 20px;
+        
+                            .steptwobtn{
+                                margin-right: 0px;;
+                                margin-bottom: 20px;
+                            }
+                            button[type=submit].su{
+                                margin-left: 0px;
+                            }
+                        }
+        
+                    }
+            }
+        }
+    }
+
+}
+
+.form{
+
+    @include phone-width{
+            margin: 50 auto;
+
+        }
+    
+
+}
+
+
+
+
+// .col-12.step{
+
+//     @include phone-width{
+//         display: none;
+//     }
+
+// }
+
+
+// #raisedonationform{
+
+//     @include phone-width{
+
+
+//             .stepone{
+//                 display: flex;
+//                 flex-direction: column;
+
+//                 .cardfill{
+//                     width: 100%;
+//                 }
+
+//                 .coverimgbox{
+//                     display: flex;
+//                     flex-direction: column;
+//                     .coverimg{
+//                         display: block;
+//                         text-align: center;
+//                     }
+//                     p{
+//                         position: static;
+//                         margin-top: 10px;
+//                     }
+                    
+//                 }
+//                 #app2{
+//                     width: 100%;
+//                     padding-left: 0;
+//                     margin-top: 0px;
+//                     margin-bottom: 10px;
+//                 }
+                
+//             }
+
+//             .detailbox{
+
+//                 .imgboxrow{
+//                     flex-direction: column;
+
+//                     .imgbox,.imgbox1,.imgbox2,.imgbox3{
+//                         width: 100%;
+//                     }
+//                 }
+//                 .gosubmit{
+//                     flex-direction: column;
+//                     margin-top: 20px;
+
+//                     .steptwobtn{
+//                         margin-right: 0px;;
+//                         margin-bottom: 20px;
+//                     }
+//                     button[type=submit].su{
+//                         margin-left: 0px;
+//                     }
+//                 }
+
+//             }
+
+
+
+
+//     }
+
+// }
+
+
+

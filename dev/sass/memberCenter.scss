@@ -1,5 +1,6 @@
 // 基本設定
 @import "layout/wrapper";
+@import "layout/rwd";
 @import "layout/grid";
 @import "layout/font";
 @import "layout/color";
@@ -15,6 +16,7 @@
 // @include scrollbar("aside");
 @include scrollbar("div#tabs-container2");
 @include scrollbar("#tabs-container1");
+
 .section {
   width: 100%;
   // min-height: 100vh;
@@ -46,7 +48,7 @@
     width: 350px;
     transition: left 0.5s;
     top: 10px;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     h2 {
       margin-top: 17px;
     }
@@ -85,11 +87,12 @@
       height: 40px;
       border-radius: 100%;
       border: none;
-      background-image: url(../img/icon_plus.png);
-      background-size: cover;
+      background-image: url(../img/icon_member_edit.png);
+      background-size: 51px;
       background-repeat: no-repeat;
-      background-position: right center;
-      background-color: darkgreen;
+      background-position: center 40%;
+      background-color: rgb(116, 175, 91);
+      border: 1px solid rgb(116, 175, 91);
       padding: 0;
       position: absolute;
       right: -45px;
@@ -168,6 +171,54 @@
 
 // ===============================================================
 // 右邊視窗基本設定
+
+#showPsw {
+  cursor: pointer;
+  @include rwd(lg) {
+    margin: 10px 0 15px 0;
+  }
+  @include rwd(md) {
+    margin: 10px 0 15px 0;
+  }
+  @include rwd(sm) {
+    margin: 10px 0 15px 0;
+  }
+  @include rwd(ss) {
+    margin: 10px 0 15px 0;
+  }
+  @include rwd(mini) {
+    margin: 10px 0 15px 0;
+  }
+}
+
+label.uploadimgbtn {
+  @include rwd(lg) {
+    position: absolute;
+    bottom: 40px;
+    margin-left: 15px;
+  }
+  @include rwd(md) {
+    position: absolute;
+    bottom: 40px;
+    margin-left: 15px;
+  }
+  @include rwd(sm) {
+    position: absolute;
+    bottom: 40px;
+    margin-left: 15px;
+  }
+  @include rwd(ss) {
+    position: absolute;
+    bottom: 40px;
+    margin-left: 15px;
+  }
+  @include rwd(mini) {
+    position: absolute;
+    bottom: 40px;
+    margin-left: 15px;
+  }
+}
+
 .tab-content {
   section {
     padding: 35px;
@@ -214,6 +265,9 @@
       margin-top: 50px;
       text-align: center;
       font-family: "DM Serif Text", "Noto Serif TC";
+      a {
+        cursor: pointer;
+      }
     }
     .updatebtn {
       display: inline-block;
@@ -224,8 +278,8 @@
       margin: 5px;
       font-family: "DM Serif Text", "Noto Serif TC";
       transition: all 0.5s;
-      &:hover{
-        border:  1px solid $gray !important;
+      &:hover {
+        border: 1px solid $gray !important;
         background-color: #fff;
         color: $gray;
       }
@@ -311,8 +365,37 @@
   }
 }
 @media (max-width: 767px) {
-  section{
-    height: auto;
+  .container {
+    aside {
+      position: fixed;
+      left: -230px;
+      height: calc(100vh - 75px - 120px);
+      width: 220px;
+      background-color: rgba(255, 255, 255, 0.95);
+      top: 75px;
+      z-index: 2;
+      h2 {
+        font-size: 1.5rem;
+      }
+      .tabs {
+        width: 100%;
+        li {
+          padding: 6px 15px;
+          text-align: center;
+          width: 100%;
+        }
+      }
+      button {
+        display: inline-block;
+      }
+    }
+    aside#tabs-container1.-showFilter {
+      left: 0px;
+    }
+    #tabs-container2 {
+      width: 100%;
+      height: calc(100vh - 75px - 120px);
+    }
   }
 }
 
@@ -351,7 +434,331 @@
   }
 }
 
+// 寵物遺失開始
+.lostrptable {
+  tr {
+    height: 75px;
+  }
+  td {
+    height: 75px;
+  }
+  img {
+    max-width: 50px;
+  }
+}
+#rpbtn {
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+#lostform_cus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(55, 58, 71, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  #lostclose {
+    position: fixed;
+    top: 0;
+    left: 0;
+    // z-index: 1001;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  #lostform {
+    position: relative;
+    max-width: 480px;
+    min-width: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    background-image: url(../img/paper/ricepaper2.png);
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.3);
+    // z-index: 1002;
+    p {
+      margin: 18px 0;
+    }
+    fieldset {
+      border: none;
+      padding: 30px 50px;
+      transition: all 0.5s;
+      background-color: rgba(255, 255, 255, 0.211);
+      border-radius: 10px;
+      h3 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      div {
+        text-align: center;
+      }
+      img {
+        max-width: 100px;
+      }
+      #imageShow {
+        display: inline-block;
+        overflow: hidden;
+        width: calc(100% - 155px);
+        height: 150px;
+        background-size: cover;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-image: url(../img/map_icon_upload.gif);
+        border-radius: 10px;
+        overflow: hidden;
+        pointer-events: none;
+        background-color: white;
+      }
+      .imageText {
+        display: inline-block;
+        text-align: center;
+        width: calc(100% - 155px);
+        height: 30px;
+        // border: 1px solid red;
+        position: absolute;
+        left: 155px;
+        top: 78%;
+        transition: 1s;
+        color: $gray;
+        text-shadow: 1px 1px 10px white;
+        opacity: 0;
+        font-weight: 600;
+      }
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      line-height: 28px;
+      vertical-align: top;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+    input,
+    select,
+    .uploadimg_btn {
+      width: calc(100% - 155px);
+      height: 28px;
+      line-height: 28px;
+      vertical-align: top;
+      font-family: "Noto Sans TC", sans-serif;
+      color: $gray;
+      font-weight: 400;
+      letter-spacing: 0.05rem;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 5px;
+      padding: 4px 5px;
+      cursor: pointer;
+    }
+
+    input:hover,
+    select:hover,
+    option:hover {
+      box-shadow: 2px 2px 3px rgba(160, 160, 160, 0.6);
+      transform: translate(-1px, -1px);
+    }
+
+    input:focus,
+    select:focus,
+    option:focus {
+      outline: none;
+      box-shadow: 2px 2px 3px rgba(160, 160, 160, 0.6);
+    }
+    p:last-child {
+      text-align: center;
+      margin: 30px 0 10px;
+    }
+    .uploadimgbtn_brfore {
+      position: relative;
+    }
+    .uploadimg_btn {
+      width: calc(100% - 155px);
+      color: transparent;
+      display: inline-block;
+      touch-action: manipulation;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s;
+      height: 150px;
+      position: absolute;
+      left: 155px;
+      top: 0;
+      // color: #fff;
+      // background-color: $gray;
+      // display: inline-block;
+      // text-align: center;
+      // touch-action: manipulation;
+      // cursor: pointer;
+      // user-select: none;
+      // margin-bottom: 30px;
+      // transition: all 0.3s;
+      // width: calc(100% - 155px);
+    }
+    .uploadimg_btn:hover {
+      box-shadow: 2px 2px 4px $lightgray;
+      transform: translate(1px, 1px);
+    }
+    .uploadimg_btn:hover ~ .imageText {
+      opacity: 1;
+    }
+  }
+  #lightBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #lostform_cus {
+    #lostform {
+      p {
+        margin: 12px 0;
+      }
+      input,
+      select {
+        width: 100%;
+      }
+      .uploadimg_btn {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      label {
+        margin-bottom: 5px;
+      }
+      fieldset {
+        text-align: left;
+        padding: 25px 50px;
+        h3 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      }
+      div {
+        text-align: center;
+      }
+      .uploadimgbtn_after {
+        margin-top: -20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  #lostform_cus {
+    #lostform {
+      max-width: 375px;
+      label {
+        font-size: 1rem;
+      }
+      fieldset {
+        padding: 15px 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  #lostform_cus {
+    #lostform {
+      max-width: 350px;
+      label {
+        margin-bottom: 0;
+      }
+      p {
+        margin: 3px 0;
+      }
+      fieldset {
+        padding: 25px 30px 20px;
+        h3 {
+          margin-bottom: 15px;
+        }
+        #imageShow {
+          display: none;
+        }
+        .imageText {
+          display: none;
+        }
+        .uploadimgbtn_brfore {
+          padding-bottom: 40px;
+        }
+        .uploadimg_btn {
+          margin-bottom: 15px;
+          height: 28px;
+          line-height: 28px;
+          vertical-align: top;
+          font-family: "Noto Sans TC", sans-serif;
+          font-weight: 400;
+          letter-spacing: 0.05rem;
+          font-size: 0.95rem;
+          color: #fff;
+          background-color: $gray;
+          text-align: center;
+          margin-bottom: 30px;
+          top: 30px;
+          left: 0;
+          padding: 0;
+        }
+      }
+
+      input[type="date"] {
+        width: 290px;
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  #lostform_cus {
+    #lostform {
+      max-width: 300px;
+      input[type="date"] {
+        width: 250px;
+      }
+      .uploadimg_btn {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+// 我的寵物遺失回報
+.lostPetRp_icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: bottom;
+  margin-right: 3px;
+}
+
+// 寵物遺失結束
+
 // 會員資訊
+div.clickToShow {
+  display: none;
+  &.show {
+    display: block;
+  }
+  input {
+    width: 180px;
+  }
+}
 .memInfo {
   .note {
     border-radius: 10px;
@@ -387,6 +794,7 @@
     .right {
       width: 160px;
       text-align: center;
+      position: relative;
       > div {
         margin-bottom: 30px;
       }
@@ -395,12 +803,18 @@
         width: 100%;
         font-weight: 600;
       }
-      img {
+      #memPic {
+        display: inline-block;
+        overflow: hidden;
         margin: 10px auto;
         width: 150px;
         height: 150px;
         border: 1px solid $lightgray;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
       }
+
       .uploadimgbtn {
         width: auto;
         color: #fff;
@@ -482,93 +896,123 @@
     }
   }
 }
-
-// 我的寵物遺失回報
-.lostPetRp_icon {
-  width: 18px;
-  height: 18px;
-  vertical-align: bottom;
-  margin-right: 3px;
+@media (max-width: 415px) {
+  .tab-content section table tr,
+  .tab-content section table th,
+  .tab-content section table td {
+    padding: 2px 5px;
+  }
+  .tab-content section {
+    .lostrptable {
+      .updatebtn_s {
+        width: 60px;
+      }
+    }
+  }
 }
 
 // 管理黑名單
 @import "layout/rwd";
 
-  section.blacklistTable {
-    .blacklist_content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-content: space-between;
-      // &::after{
-      //   content: '';
-      //   flex: auto;
-      // }
-      div.withoutBlack{
-        width: 400px;
-        position: relative;
-        padding-top: 150px;
-        margin: 0 auto;
-        div{
-          width: 150px;
-          height: 130px;
-          position: absolute;
-          top: 0;
-          right: 50px;
-          img.bubble{
-            width: 100%;
-          }
-          p{
-            text-align: center;
-            display: inline-block;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-            color: $gray;
-          }
+section.blacklistTable {
+  .blacklist_content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    // &::after{
+    //   content: '';
+    //   flex: auto;
+    // }
+    div.withoutBlack {
+      width: 400px;
+      max-width: 100%;
+      position: relative;
+      padding-top: 150px;
+      margin: 0 auto;
+      div {
+        width: 150px;
+        height: 130px;
+        position: absolute;
+        top: 0;
+        right: 50px;
+        img.bubble {
+          width: 100%;
         }
-        img.cat{
-          width: 40%;
-          display: block;
-          margin: 0 auto;
+        p {
+          text-align: center;
+          display: inline-block;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          color: $gray;
         }
       }
-      div.card {
-        margin: 0 0 20px;
-        display: flex;
-        padding: 20px 3%;
-        background-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
-        width: 48%;
-         div {
-          width: 50px;
-          min-width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          display: inline-block;
-          margin-right: 10%;
-          overflow: hidden;
-          img {
-            max-width: 50px;
-            max-height: 50px;
-          }
-        }
-        span {
-          align-self: center;
-        }
-        .BLbtn {
-          margin-left: auto;
-          align-self: center;
-          border: 1px solid transparent;
-          outline: none;
-          
-        }
+      img.cat {
+        width: 40%;
+        display: block;
+        margin: 0 auto;
       }
     }
+    div.card {
+      margin: 0 0 20px;
+      display: flex;
+      padding: 20px 3%;
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+      width: 100%;
+      @include rwd(xl) {
+        width: 48%;
+      }
+      div {
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: inline-block;
+        // position: absolute;
+        left: 50%;
+        top: 50%;
+        // transform: translate(-50%, -50%);
+        color: $gray;
+      }
+    }
+    img.cat {
+      width: 40%;
+      display: block;
+      margin: 0 auto;
+    }
   }
-
-
+  div.card {
+    margin: 0 0 20px;
+    display: flex;
+    padding: 20px 3%;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 50px rgba(128, 128, 128, 0.1);
+    width: 48%;
+    div {
+      width: 50px;
+      min-width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 10%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    span {
+      align-self: center;
+    }
+    .BLbtn {
+      margin-left: auto;
+      align-self: center;
+      border: 1px solid transparent;
+      outline: none;
+    }
+  }
+}
 
 @media (max-width: 1200px) {
   .tab-content {
@@ -595,4 +1039,8 @@
       }
     }
   }
+}
+
+@include rwd(mini) {
+  @include grid(mini, 12);
 }

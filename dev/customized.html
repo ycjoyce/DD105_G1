@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> @@include('./layout/head.html',{ "title":
-    "浪愛回家 ｜ 客製化項圈" })
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> @@include('./layout/head.html',{ "title": "浪愛回家 ｜ 客製化項圈" })
     <link rel="stylesheet" href="./css/customized.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <!-- <link rel="stylesheet" href="./css/dialog.css"> -->
@@ -16,71 +16,65 @@
     <script src="./js/sweet-alert.js"></script>
     <script src="./js/customizedTabsEvent.js"></script>
     <script src="./js/customized.js"></script>
+    <script src="./js/mobileDoubleClick.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Coming+Soon&display=swap" rel="stylesheet">
 
 
 </head>
 
 <body>
-    <div id="memberPoint">
-        會員點數 :
-        <span id="showPoint"></span>
-        點
+    <div style="display: none; position: fixed; right: 100px; top: 150px; z-index: 100;">
+        解鎖吊牌:
+        <span id="memTagNo"></span>
     </div>
-    <script>
-
-    </script>
+    <div style="display: none; position: fixed; right: 100px; top: 200px; z-index: 100;">
+        全部吊牌:
+        <span id="lockTagNo"></span>
+    </div>
+    <div style="display: none; position: fixed; right: 100px; top: 200px; z-index: 100;">
+        今天年月日:
+        <span id="todayDate"></span>
+    </div>
+    <!-- <div style="display: block; position: fixed; right: 100px; top: 350px; z-index: 100;">
+        解鎖狀態:
+        <span id="status"></span>
+    </div> -->
 
     @@include('./layout/header.html')
-
-
     <section class="section" id="section">
         <div class="content">
             <div id="signInFirstBlock">
-                @@include('./layout/btn_darkgreen.html',{
-                "innerText": "請先登入",
-                "connect": " href='login.html'"
-                })
+                @@include('./layout/btn_darkgreen.html',{ "innerText": "請先登入", "connect": " href='login.html'" })
             </div>
-            <!-- <script>
-                let hamburger = document.getElementsByClassName('hamburger')[0];
-                let signInFirstBlock = document.getElementById('signInFirstBlock');
-
-                if(hamburger.previousSibling.lastChild.classList.contains("memZone") == true){
-                    signInFirstBlock.style.display= "none";
-                }else{
-                    signInFirstBlock.style.display= "flex";
-                }
-            </script> -->
             <script>
-                function getPoint() {
-                    var memberPoint = document.getElementById('memberPoint');
-                    var signInFirstBlock = document.getElementById('signInFirstBlock');
-                    var xhr = new XMLHttpRequest();
-                    var url = "php/checkMem.php";
-                    xhr.open("GET", url, true);
-                    xhr.send(null);
-                    xhr.onload = function () {
-                        if (xhr.status == 200) {
-                            member = JSON.parse(xhr.responseText);
-                            if (member.memId) {
-                                var memPoints = member.memPoint;
-                                memberPoint.style.display = "block";
-                                document.getElementById('showPoint').innerText = memPoints;
-                                signInFirstBlock.style.display = "none";
+                window.addEventListener('load', function() {
+                    function getPoint() {
+                        var memberPoint = document.getElementById('memberPoint');
+                        var signInFirstBlock = document.getElementById('signInFirstBlock');
+                        var xhr = new XMLHttpRequest();
+                        var url = "php/checkMem.php";
+                        xhr.open("GET", url, true);
+                        xhr.send(null);
+                        xhr.onload = function() {
+                            if (xhr.status == 200) {
+                                member = JSON.parse(xhr.responseText);
+                                if (member.memId == null) {
+                                    memberPoint.style.display = "none";
+                                    signInFirstBlock.style.display = "flex";
+                                }
                             }
                         }
                     }
-                }
-                getPoint();
-
-                
-                
+                    getPoint();
+                })
             </script>
             <!-- 客製化content,含預覽區以及編輯區 -->
-            <div class="preview_area" id="preview_area" style="background-color: rgba(255, 185, 185, 0.3)">
+            <div class="preview_area" id="preview_area" style="background-color: rgba(255, 185, 185, 0.4)">
                 <!-- 預覽區 -->
-                <canvas id="canvas2" style="border: 0px solid blue;"></canvas>
                 <canvas id="canvas" style="border: 0px solid red;"></canvas>
+                <canvas id="canvas2" style="border: 0px solid blue;"></canvas>
+
+                <img src="" alt="" id="tagImg2" style="display: none;">
                 <!-- <script>
                     var fullQuality = canvas.toDataURL("image/png", 1.0);
                     console.log(fullQuality);
@@ -94,7 +88,35 @@
                     <input type="checkbox" id="chkbox" />
                     <label for="chkbox"></label>
                 </div> -->
+                <div id="memberPoint">
+                    紅利點數 :
+                    <span id="showPoint"></span> 點
+                </div>
             </div>
+            <script>
+                function saveImage() {
+                    var canvas = document.getElementById('canvas');
+                    var dataURL = canvas.toDataURL("image/png");
+                    document.getElementById("testImg").src = dataURL;
+                    // var xhr = new XMLHttpRequest();
+                    // var url = "php/canvasBase64.php";
+                    // xhr.open("POST", url, true);
+                    // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    // xhr.send("image=" + canvas.toDataURL("image/png"));
+                    // xhr.onload = function() {
+                    //     if (xhr.status == 200) {
+                    //         if (xhr.responseText == "error") {
+                    //             alert("Error");
+                    //         } else {
+                    //             alert("Succesfully uploaded");
+                    //         }
+                    //     } else {
+                    //         console.log(this.responseText);
+                    //         alert(xhr.status);
+                    //     }
+                    // }
+                }
+            </script>
             <div class="edit_area" id="edit_area">
                 <!-- 編輯區 -->
                 <div id="stepTab">
@@ -108,10 +130,7 @@
                             <div class="fakeCircles fakeCircle3"></div>
                             <div class="fakeCircles fakeCircle4"></div>
                         </li>
-                        <div class="tabLine1">
-
-                        </div>
-
+                        <div class="tabLine1"></div>
                         <li class="tab-link tabClose" data-tab="tab-2" id="bigTab2" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">02</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
@@ -121,10 +140,7 @@
                             <div class="fakeCircles fakeCircle7"></div>
                             <div class="fakeCircles fakeCircle8"></div>
                         </li>
-                        <div class="tabLine2">
-
-                        </div>
-
+                        <div class="tabLine2"></div>
                         <li class="tab-link tabClose" data-tab="tab-3" id="bigTab3" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">03</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
@@ -134,10 +150,7 @@
                             <div class="fakeCircles fakeCircle11"></div>
                             <div class="fakeCircles fakeCircle12"></div>
                         </li>
-                        <div class="tabLine3">
-
-                        </div>
-
+                        <div class="tabLine3"></div>
                         <li class="tab-link tabClose" data-tab="tab-4" id="bigTab4" style="pointer-events: none;">
                             <span class="stepNum tabSpanClose">04</span>
                             <span class="stepTitle tabSpanClose">STEP</span>
@@ -162,257 +175,339 @@
                         </li> -->
                     </ul>
                     <div id="tabsContent">
-                        <div id="tab-1" class="tab-content current">
+                        <div id="tab-1" class="tab-content current" style="background-color: #fff9e4;">
                             <div class="collarImagesContainer" style="padding: 0px;">
-                                <div class="collarImagesBoxs"
-                                    style="background-color: rgba(255, 185, 185, 0.4); border: 0px solid #7e9c23;"
-                                    id="collarImage1"><img src="./img/customized_collar/collarImages/1collar_FFB9B9.png"
-                                        class="collarImages imageApplying"><img
-                                        src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow shadowApplying"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 128, 0.4);"
-                                    id="collarImage2"><img src="./img/customized_collar/collarImages/2collar_FF8080.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(198, 36, 36, 0.4);"
-                                    id="collarImage3"><img src="./img/customized_collar/collarImages/3collar_C62424.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 181, 106, 0.4);"
-                                    id="collarImage4"><img src="./img/customized_collar/collarImages/4collar_FFB46A.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 0, 0.4);"
-                                    id="collarImage5"><img src="./img/customized_collar/collarImages/5collar_FF7E00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(239, 248, 112, 0.4);"
-                                    id="collarImage6"><img src="./img/customized_collar/collarImages/6collar_F0F870.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(238, 255, 0, 0.4);"
-                                    id="collarImage7"><img src="./img/customized_collar/collarImages/7collar_F0FF00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(158, 255, 109, 0.4);"
-                                    id="collarImage8"><img src="./img/customized_collar/collarImages/8collar_9DFF6D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(120, 255, 53, 0.4);"
-                                    id="collarImage9"><img src="./img/customized_collar/collarImages/9collar_77FF35.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 0, 0.4);"
-                                    id="collarImage10"><img
-                                        src="./img/customized_collar/collarImages/10collar_01FF00.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(14, 140, 14, 0.4);"
-                                    id="collarImage11"><img
-                                        src="./img/customized_collar/collarImages/11collar_0F8C0E.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(13, 134, 110, 0.4);"
-                                    id="collarImage12_1"><img
-                                        src="./img/customized_collar/collarImages/12collar_0D866D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(25, 57, 24,0.4);"
-                                    id="collarImage12_2"><img
-                                        src="./img/customized_collar/collarImages/12collar_255724.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(160, 255, 209, 0.4);"
-                                    id="collarImage13"><img
-                                        src="./img/customized_collar/collarImages/13collar_A0FFD1.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(110, 248, 181, 0.4);"
-                                    id="collarImage14"><img
-                                        src="./img/customized_collar/collarImages/14collar_6EF8B5.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 204, 0.4);"
-                                    id="collarImage15"><img
-                                        src="./img/customized_collar/collarImages/15collar_00FFCA.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(5, 238, 255, 0.4);"
-                                    id="collarImage16"><img
-                                        src="./img/customized_collar/collarImages/16collar_05EDFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(27, 110, 116, 0.4);"
-                                    id="collarImage17"><img
-                                        src="./img/customized_collar/collarImages/17collar_1B6E74.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(0, 140, 255, 0.4);"
-                                    id="collarImage18"><img
-                                        src="./img/customized_collar/collarImages/18collar_008DFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(15, 69, 114, 0.4);"
-                                    id="collarImage19"><img
-                                        src="./img/customized_collar/collarImages/19collar_0F4672.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(248, 120, 255, 0.4);"
-                                    id="collarImage20"><img
-                                        src="./img/customized_collar/collarImages/20collar_F878FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(191, 164, 255, 0.4);"
-                                    id="collarImage21"><img
-                                        src="./img/customized_collar/collarImages/21collar_BFA4FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(128, 74, 255, 0.4);"
-                                    id="collarImage22"><img
-                                        src="./img/customized_collar/collarImages/22collar_7F4AFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(78, 2, 255, 0.4);"
-                                    id="collarImage23"><img
-                                        src="./img/customized_collar/collarImages/23collar_4C02FF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(50, 40, 75, 0.4);"
-                                    id="collarImage24"><img
-                                        src="./img/customized_collar/collarImages/24collar_32284B.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);"
-                                    id="collarImage25"><img
-                                        src="./img/customized_collar/collarImages/25collar_FFFFFF.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);"
-                                    id="collarImage26"><img
-                                        src="./img/customized_collar/collarImages/26collar_A2A2A2.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
-                                <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);"
-                                    id="collarImage27"><img
-                                        src="./img/customized_collar/collarImages/27collar_3D3D3D.png"
-                                        class="collarImages"><img src="./img/customized_collar/collar_shadow.png"
-                                        class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 185, 185, 0.4); border: 0px solid #7e9c23;" id="collarImage1"><img src="./img/customized_collar/collarImages/1collar_FFB9B9.png" class="collarImages imageApplying"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow shadowApplying"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 128, 0.4);" id="collarImage2"><img src="./img/customized_collar/collarImages/2collar_FF8080.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(198, 36, 36, 0.4);" id="collarImage3"><img src="./img/customized_collar/collarImages/3collar_C62424.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 181, 106, 0.4);" id="collarImage4"><img src="./img/customized_collar/collarImages/4collar_FFB46A.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 128, 0, 0.4);" id="collarImage5"><img src="./img/customized_collar/collarImages/5collar_FF7E00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(239, 248, 112, 0.4);" id="collarImage6"><img src="./img/customized_collar/collarImages/6collar_F0F870.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(238, 255, 0, 0.4);" id="collarImage7"><img src="./img/customized_collar/collarImages/7collar_F0FF00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(158, 255, 109, 0.4);" id="collarImage8"><img src="./img/customized_collar/collarImages/8collar_9DFF6D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(120, 255, 53, 0.4);" id="collarImage9"><img src="./img/customized_collar/collarImages/9collar_77FF35.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 0, 0.4);" id="collarImage10"><img src="./img/customized_collar/collarImages/10collar_01FF00.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(14, 140, 14, 0.4);" id="collarImage11"><img src="./img/customized_collar/collarImages/11collar_0F8C0E.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(13, 134, 110, 0.4);" id="collarImage12_1"><img src="./img/customized_collar/collarImages/12collar_0D866D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(25, 57, 24,0.4);" id="collarImage12_2"><img src="./img/customized_collar/collarImages/12collar_255724.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(160, 255, 209, 0.4);" id="collarImage13"><img src="./img/customized_collar/collarImages/13collar_A0FFD1.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(110, 248, 181, 0.4);" id="collarImage14"><img src="./img/customized_collar/collarImages/14collar_6EF8B5.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 255, 204, 0.4);" id="collarImage15"><img src="./img/customized_collar/collarImages/15collar_00FFCA.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(5, 238, 255, 0.4);" id="collarImage16"><img src="./img/customized_collar/collarImages/16collar_05EDFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(27, 110, 116, 0.4);" id="collarImage17"><img src="./img/customized_collar/collarImages/17collar_1B6E74.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(0, 140, 255, 0.4);" id="collarImage18"><img src="./img/customized_collar/collarImages/18collar_008DFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(15, 69, 114, 0.4);" id="collarImage19"><img src="./img/customized_collar/collarImages/19collar_0F4672.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(248, 120, 255, 0.4);" id="collarImage20"><img src="./img/customized_collar/collarImages/20collar_F878FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(191, 164, 255, 0.4);" id="collarImage21"><img src="./img/customized_collar/collarImages/21collar_BFA4FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(128, 74, 255, 0.4);" id="collarImage22"><img src="./img/customized_collar/collarImages/22collar_7F4AFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(78, 2, 255, 0.4);" id="collarImage23"><img src="./img/customized_collar/collarImages/23collar_4C02FF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(50, 40, 75, 0.4);" id="collarImage24"><img src="./img/customized_collar/collarImages/24collar_32284B.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(255, 255, 255, 0.4);" id="collarImage25"><img src="./img/customized_collar/collarImages/25collar_FFFFFF.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(162, 162, 162, 0.4);" id="collarImage26"><img src="./img/customized_collar/collarImages/26collar_A2A2A2.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
+                                <div class="collarImagesBoxs" style="background-color: rgba(61, 61, 61, 0.4);" id="collarImage27"><img src="./img/customized_collar/collarImages/27collar_3D3D3D.png" class="collarImages"><img src="./img/customized_collar/collar_shadow.png" class="collarShadow"></div>
                             </div>
                             <div class="stepBtn">
-                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2"
-                                    style="width: 100%;">下一步</button>
+                                <button class="stepNextBtn" id="step1NextBtn" data-tab="tab-2" style="width: 100%;">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-2" class="tab-content">
+                        <div id="tab-2" class="tab-content tab2_content" style="background-color: #fff9e4;">
                             <div id="collarTagSlider">
                                 <div id="collarTagWrap">
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/boneTag.png" alt="" class="tagImages"
-                                            style="filter: brightness(1);">
-                                        <div class="lockPoint" style="visibility: visible; opacity: 1;">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus" id="unlock1" style="visibility: visible; opacity: 1;">
-                                            <button class="unlock">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/circleTag.png" alt=""
-                                            class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus" id="unlock2">
-                                            <button class="unlock">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/cloverTag.png" alt=""
-                                            class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus" id="unlock3">
-                                            <button class="unlock">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/fishTag_2.png" alt=""
-                                            class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock4">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/footprintTag.png" alt=""
-                                            class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock5">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/heartTag.png" alt=""
-                                            class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock6">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/spadesTag_2.png" alt=""
-                                            class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock7">解鎖</button>
-                                        </div>
-                                    </div>
-                                    <div class="tagItems">
-                                        <img src="./img/customized_collar/tag_png/starTag.png" alt="" class="tagImages">
-                                        <div class="lockPoint">
-                                            <span>所需點數&nbsp;:</span>
-                                            <span>&nbsp;300</span>
-                                        </div>
-                                        <div class="lockStatus">
-                                            <button class="unlock" id="unlock8">解鎖</button>
-                                        </div>
-                                    </div>
+
                                 </div>
+                                <button class="sliderBtns" id="sliderBtnLeft" disabled><i class="fas fa-chevron-left"></i></button>
+                                <button class="sliderBtns" id="sliderBtnRight"><i class="fas fa-chevron-right"></i></button>
                             </div>
+                            <script>
+                                function updateMemPoint(sendNewPoint) {
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/updateMemPoint.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memPoint=${sendNewPoint}`;
+                                    xhr.send(data_info);
+                                }
+
+
+                                function lockTagNo() {
+                                    let tagItems = document.getElementsByClassName('tagItems');
+                                    let lockPoint = document.getElementsByClassName('lockPoint');
+                                    let lockStatus = document.getElementsByClassName('lockStatus');
+                                    let status = document.getElementsByClassName('status');
+                                    for (i = 0; i < newArray.length; i++) {
+                                        for (j = 0; j < lockPoint.length; j++) {
+                                            if (lockPoint[j].getAttribute('tagNo') == newArray[i]) {
+                                                // console.log(lockPoint[j].getAttribute('tagNo'));
+                                                // lockPoint[j].style.display = "none";
+                                                lockPoint[j].innerHTML =
+                                                    `
+                                                        <span class="tagStatus" style="font-size:18px; line-height:57px;">已解鎖</span>
+                                                    `;
+                                                lockStatus[j].style.display = "none";
+                                                status[j].innerText = "已解鎖";
+                                            }
+                                        }
+                                    }
+                                }
+
+                                lockTag = document.getElementById('memTagNo').innerText;
+                                allTagNo = document.getElementById('lockTagNo').innerText.split(",");
+                                allTagNo.shift();
+
+                                function showTag() {
+                                    $.ajax({
+                                        url: "php/getTagInfo.php",
+                                        type: "post",
+                                        dataType: "json",
+                                        success: function(data) {
+                                            let msg = "";
+                                            for (i = 0; i < data.length; i++) {
+                                                msg +=
+                                                    `<div class="tagItems" tagNo="${data[i].tagNo}">
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc1}" alt="" class="tagImages" id="tagImages${i + 1}" psn="${i}">
+                                                        <div class="lockPoint" id="lockPoint${i + 1}" tagNo="${data[i].tagNo}">
+                                                            <span>所需點數&nbsp;:</span>
+                                                            <span>&nbsp;${data[i].tagPoint}</span>
+                                                        </div>
+                                                        <div class="lockStatus" id="unlock${i + 1}" tagNo="${data[i].tagNo}">
+                                                            <button class="unlock" point="${data[i].tagPoint}">解鎖</button>
+                                                        </div>
+                                                        <div>
+                                                            <span class="status" style="display:none">未解鎖</span>
+                                                        </div>
+                                                    </div>`
+                                                allTagNo.push(data[i].tagNo);
+                                            }
+                                            allTagNoStr = allTagNo.toString();
+                                            document.getElementById('lockTagNo').innerText = allTagNoStr;
+                                            $("#collarTagWrap").append(msg);
+                                            $(document).ready(function() {
+                                                let curIndex = 0;
+                                                let collarTagWrap = document.getElementById('collarTagWrap');
+                                                let sliderBtnLeft = document.getElementById('sliderBtnLeft');
+                                                let sliderBtnRight = document.getElementById('sliderBtnRight');
+                                                tagItems = document.getElementsByClassName('tagItems');
+                                                let tagTotal = document.getElementById('tagTotal');
+                                                // nowTag = document.getElementById('nowTag');
+                                                let tagImages = document.getElementsByClassName('tagImages');
+                                                let lockPoint = document.getElementsByClassName('lockPoint');
+                                                let lockStatus = document.getElementsByClassName('lockStatus');
+                                                let todayDate = document.getElementById('todayDate');
+                                                let orderDate = document.getElementById('orderDate');
+                                                let tab2_content = document.getElementsByClassName('tab2_content')[0];
+
+                                                let today = new Date();
+                                                todayDate.innerText = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+                                                orderDate.innerText = `${todayDate.innerText}`;
+
+                                                $('#tagTotal span:last-child').text(tagItems.length);
+                                                // alert("當前顯示器寬度" + $(window).width() + "px");
+                                                // alert("輪播圖數量" + tagItems.length);
+                                                $('#collarTagWrap').css('width', tagItems.length * 600);
+                                                if ($(window).width() < 600) {
+                                                    $('.tagItems').css('width', $(window).width());
+                                                } else {
+                                                    $('.tagItems').css('width', 600);
+                                                }
+                                                // alert("單一屏寬" + $('.tagItems').css('width'));
+                                                // alert("輪播全部寬" + $('#collarTagWrap').css('width'));
+                                                window.addEventListener('resize', function() {
+                                                    let tagNum = document.getElementsByClassName('tagItems').length;
+                                                    if ($(window).width() < 600) {
+                                                        $('.tagItems').css('width', $(window).width());
+                                                        $('#collarTagWrap').css('left', -$(window).width() * (parseInt($('#nowTag').text()) - 1));
+                                                    } else {
+                                                        $('.tagItems').css('width', 600);
+                                                        $('#collarTagWrap').css('left', -600 * (parseInt($('#nowTag').text()) - 1));
+                                                    }
+                                                });
+
+                                                tagImages[0].style.transform = "scale(2.5)";
+
+                                                sliderBtnLeft.style.opacity = "0";
+                                                sliderBtnRight.style.cursor = "pointer";
+                                                sliderBtnLeft.addEventListener('click', function() {
+                                                    let abc = parseInt($('#nowTag').text());
+                                                    abc -= 1;
+                                                    $('#nowTag').text(abc);
+
+                                                    sliderBtnRight.style.opacity = "1";
+                                                    sliderBtnRight.style.cursor = "pointer";
+                                                    sliderBtnRight.style.visibility = "visible";
+                                                    let tagWidth = parseFloat($('.tagItems').css('width'));
+                                                    // alert(tagWidth);
+                                                    curIndex--;
+                                                    collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+                                                    sliderBtnRight.disabled = false;
+                                                    if (parseFloat(collarTagWrap.style.left) == 0) {
+                                                        sliderBtnLeft.disabled = true;
+                                                        sliderBtnLeft.style.opacity = "0";
+                                                        sliderBtnLeft.style.cursor = "default";
+                                                        sliderBtnLeft.style.visibility = "hidden";
+                                                    }
+                                                    let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+                                                    // alert(offset);
+                                                    tagImages[offset].style.transform = "scale(1)";
+                                                    tagImages[offset - 1].style.transform = "scale(2.5)";
+                                                    tagImages[offset].style.filter = "brightness(0.7)";
+                                                    tagImages[offset - 1].style.filter = "brightness(1)";
+                                                    lockPoint[offset].style.visibility = "hidden";
+                                                    lockPoint[offset - 1].style.visibility = "visible";
+                                                    lockPoint[offset].style.opacity = "0";
+                                                    lockPoint[offset - 1].style.opacity = "1";
+                                                    lockStatus[offset].style.visibility = "hidden";
+                                                    lockStatus[offset - 1].style.visibility = "visible";
+                                                    lockStatus[offset].style.opacity = "0";
+                                                    lockStatus[offset - 1].style.opacity = "1";
+                                                    // nowTag.innerText = offset + 1;
+                                                });
+
+                                                sliderBtnRight.addEventListener('click', function() {
+                                                    let abc = parseInt($('#nowTag').text());
+                                                    abc += 1;
+                                                    $('#nowTag').text(abc);
+
+                                                    sliderBtnLeft.style.opacity = "1";
+                                                    sliderBtnLeft.style.cursor = "pointer";
+                                                    sliderBtnLeft.style.visibility = "visible";
+                                                    let tagWidth = parseFloat($('.tagItems').css('width'));
+
+                                                    curIndex++;
+                                                    collarTagWrap.style.left = -tagWidth * curIndex + 'px';
+                                                    sliderBtnLeft.disabled = false;
+                                                    if (parseFloat(collarTagWrap.style.left) == (tagImages.length - 1) * -tagWidth) {
+                                                        sliderBtnRight.disabled = true;
+                                                        sliderBtnRight.style.opacity = "0";
+                                                        sliderBtnRight.style.cursor = "default";
+                                                        sliderBtnRight.style.visibility = "hidden";
+                                                    }
+                                                    let offset = (parseFloat(collarTagWrap.style.left) / -tagWidth) + 1;
+                                                    // alert(offset);
+                                                    tagImages[offset - 2].style.transform = "scale(1)";
+                                                    tagImages[offset - 1].style.transform = "scale(2.5)";
+                                                    tagImages[offset - 2].style.filter = "brightness(0.7)";
+                                                    tagImages[offset - 1].style.filter = "brightness(1)";
+                                                    lockPoint[offset - 2].style.visibility = "hidden";
+                                                    lockPoint[offset - 1].style.visibility = "visible";
+                                                    lockPoint[offset - 2].style.opacity = "0";
+                                                    lockPoint[offset - 1].style.opacity = "1";
+                                                    lockStatus[offset - 2].style.visibility = "hidden";
+                                                    lockStatus[offset - 1].style.visibility = "visible";
+                                                    lockStatus[offset - 2].style.opacity = "0";
+                                                    lockStatus[offset - 1].style.opacity = "1";
+                                                    // nowTag.innerText = offset + 1;
+                                                });
+                                                newArray = document.getElementById('memTagNo').innerText.split(",");
+
+                                                $('.unlock').click(function() {
+                                                    let point = parseInt($(this).attr('point'));
+                                                    let nowPoint = parseInt(member.memPoint);
+                                                    let result = confirm(`確定要解鎖此吊牌嗎?\n\n將立即扣除會員點數 ${point} 點`);
+                                                    if (result) {
+                                                        if (nowPoint >= point) {
+                                                            nowPoint = nowPoint - point;
+                                                            member.memPoint = nowPoint;
+                                                            updateMemPoint(nowPoint);
+                                                            document.getElementById('showPoint').innerText = nowPoint;
+                                                            swal("兌換成功!", "", "success");
+                                                            newArray.push($(this).parent().parent().attr('tagNo'));
+                                                            tagStr = newArray.toString();
+                                                            if (tagStr.charAt(0) == ",") {
+                                                                tagStr = tagStr.substr(1);
+                                                            }
+                                                            updateMemTagNo(tagStr);
+                                                            document.getElementById('memTagNo').innerText = tagStr;
+                                                            member.memTagNo = document.getElementById('memTagNo').innerText;
+                                                            lockTagNo();
+                                                        } else {
+                                                            alert(`會員點數不足,還差 ${point - nowPoint} 點\n\n可以去討論區發起貼文或是募款區發起募款賺取點數哦`);
+                                                        }
+                                                    } else {
+                                                        return;
+                                                    }
+                                                })
+                                            });
+
+                                        }
+                                    })
+
+                                }
+                                showTag();
+
+                                // $(document).ready(function() {
+                                //     var arr = new Array();
+                                //     alert(typeof(arr));
+                                //     $('.unlock').click(function() {
+                                //         arr.push($(this).parent().parent().attr('tagNo'));
+                                //         console.log(arr);
+                                //         alert(arr);
+                                //     })
+                                // })
+
+
+                                function updateMemTagNo(sendMemTagNo) {
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/updateMemTagNo.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    var data_info = `memTagNo=${sendMemTagNo}`;
+                                    xhr.send(data_info);
+                                }
+
+                                window.addEventListener('load', function() {
+                                    var xhr = new XMLHttpRequest();
+                                    var url = "php/getMemPoint.php";
+                                    xhr.open("POST", url, true);
+                                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                    xhr.send();
+
+                                    xhr.onload = function() {
+                                        newStr = JSON.parse(this.responseText)[0].memPoint; //取回點數值
+                                        document.getElementById('showPoint').innerText = newStr; //把點數值放進span裡
+                                        member.memPoint = document.getElementById('showPoint').innerText; //session裡的member.memPoint資料更新
+                                    };
+
+
+
+
+                                    function getMemTagNo() {
+                                        var xhr = new XMLHttpRequest();
+                                        var url = "php/getMemTagNo.php";
+                                        xhr.open("POST", url, true);
+                                        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                                        xhr.send();
+                                        xhr.onload = function() {
+                                            let newTagStr = JSON.parse(this.responseText)[0].memTagNo; //取回會員解鎖過的吊牌編號
+                                            document.getElementById('memTagNo').innerText = newTagStr; //把吊牌編號寫進隱藏欄位
+                                            newArray = document.getElementById('memTagNo').innerText.split(","); //newArray = 隱藏欄位字串轉陣列
+                                            member.memTagNo = document.getElementById('memTagNo').innerText; //session裡的member.memTagNo資料更新
+                                            // console.log("已解鎖過的吊牌編號 : ", document.getElementById('memTagNo').innerText);
+                                            // console.log("資料庫有的吊牌編號 : ", document.getElementById('lockTagNo').innerText);
+
+                                            lockTagNo();
+                                        }
+                                    }
+                                    getMemTagNo();
+                                });
+                            </script>
                             <div class="changePage sliderBtns">
-                                <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button>
-                                <div id="tagTotal">
+                                <!-- <button class="to_left" style="cursor: pointer;" id="sliderBtnLeft" disabled></button> -->
+                                <div id="tagTotal" style="visibility: hidden;">
                                     <span class="titleFont" style="font-size: 20px;" id="nowTag">1</span>
                                     <span class="titleFont" style="font-size: 20px;">/</span>
                                     <span class="titleFont" style="font-size: 20px;"></span>
                                 </div>
-                                <button class="to_right" style="cursor: pointer;" id="sliderBtnRight"></button>
+                                <!-- <button class="to_right" style="cursor: pointer;" id="sliderBtnRight"></button> -->
                             </div>
                             <div class="stepBtn">
-                                <button class="stepBackBtn" id="step2BackBtn">上一步</button>
+                                <!-- <button class="stepBackBtn" id="step2BackBtn">上一步</button> -->
                                 <button class="stepNextBtn" id="step2NextBtn">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-3" class="tab-content">
+                        <div id="tab-3" class="tab-content tab3_content" style="background-color: #fff9e4;">
                             <div class="addText">
                                 <div id="textStyle">
-                                    <h4 style="margin: 0px 20px 0px 10px;">選擇文字風格： </h4>
+                                    <span class="collarTextTitles">選擇文字風格： </span>
                                     <!-- <input type="radio" name="textStyle" id="textStyle1" checked>
                                     <label for="textStyle1" id="showStyle1">文字雕刻</label> -->
                                     <input type="radio" name="textStyle" id="textStyle2">
@@ -421,29 +516,37 @@
                                     <label for="textStyle3" id="showStyle3">一般文字</label>
                                 </div>
                                 <div id="textColor">
-                                    <h4 style="margin: 0px 20px 0px 10px;">選擇文字顏色： </h4>
+                                    <span class="collarTextTitles">選擇文字顏色： </span>
                                     <div class="color-picker" id="colorPicker"></div>
                                 </div>
                                 <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
                                 <script>
                                 </script>
                                 <div id="textFontFamily">
-                                    <h4 style="margin: 0px 20px 0px 10px;">選擇文字字型： </h4>
+                                    <span class="collarTextTitles">選擇文字字型： </span>
                                     <select name="" id="fontFamilySelect">
-                                        <option value="default" selected disabled>請選擇字型</option>
-                                        <option value="Pacifico">Pacifico</option>
-                                        <option value="VT323">VT323</option>
-                                        <option value="Quicksand">Quicksand</option>
-                                        <option value="Inconsolata">Inconsolata</option>
+                                        <option class="fontFamilys" value="default" selected disabled>請選擇字型</option>
+                                        <option class="fontFamilys" value="DFKai-sb" style="font-family:DFKai-sb;">標楷體</option>
+                                        <option class="fontFamilys" value="Microsoft JhengHei" style="font-family:Microsoft JhengHei;">微軟正黑體</option>
+                                        <option class="fontFamilys" value="Arial" style="font-family: Arial;">Arial</option>
+                                        <option class="fontFamilys" value="Pacifico" style="font-family: Pacifico;">Pacifico</option>
+                                        <option class="fontFamilys" value="Coming Soon" style="font-family: Coming Soon;">Coming Soon</option>
+                                        <option class="fontFamilys" value="Quicksand" style="font-family: Quicksand;">Quicksand</option>
+                                        <option class="fontFamilys" value="Inconsolata" style="font-family:Inconsolata">Inconsolata</option>
                                     </select>
                                 </div>
                                 <div id="textContent">
-                                    <h4 style="margin: 0px 20px 0px 10px;">輸入文字內容： </h4>
+                                    <span class="collarTextTitles">輸入文字內容： </span>
                                     <input type="text" name="" id="textContent1" placeholder="請輸入文字">
+                                    <div id="addTextBtn">
+                                        <img src="./img/customized_collar/plusText.png" class="plusTextImg">
+                                    </div>
+                                    <div id="delTextBtn">
+                                        <img src="./img/customized_collar/deleteTextBtn.png" class="delTextImg">
+                                    </div>
                                 </div>
-                                <div>
-                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;"
-                                        id="addTextBtn">
+                                <!-- <div>
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="addTextBtn">
                                         <span class="titleFont">
                                             新增文字
                                         </span>
@@ -452,8 +555,7 @@
                                         <div class="border"></div>
                                         <div class="border"></div>
                                     </a>
-                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;"
-                                        id="delTextBtn">
+                                    <a class="btn darkgreen nav__link" @@connect style="cursor: pointer;" id="delTextBtn">
                                         <span class="titleFont">
                                             刪除文字
                                         </span>
@@ -462,13 +564,13 @@
                                         <div class="border"></div>
                                         <div class="border"></div>
                                     </a>
-                                </div>
+                                </div> -->
                                 <!-- <script>
                                     var dataURL = canvas.toDataURL();
                                     console.log(dataURL);
                                 </script> -->
-                                <a href="#" download="dl.png" onclick="this.href=canvas.toDataURL();">下載</a>
-                                <button id="base64Btn">轉base64</button>
+                                <!-- <a href="#" download="dl.png" onclick="this.href=canvas.toDataURL();">下載</a> -->
+                                <!-- <button id="base64Btn">轉base64</button> -->
                                 <!-- <script>
                                     function convertbase64() {
                                         var canvasbase64 = canvas.toDataURL();
@@ -477,29 +579,167 @@
                                 </script> -->
                             </div>
                             <div class="stepBtn">
-                                <button class="stepBackBtn" id="step3BackBtn">上一步</button>
+                                <!-- <button class="stepBackBtn" id="step3BackBtn">上一步</button> -->
                                 <button class="stepNextBtn" id="step3NextBtn">下一步</button>
                             </div>
                         </div>
-                        <div id="tab-4" class="tab-content">
+                        <div id="tab-4" class="tab-content" style="background-color: #fff9e4;">
                             <!-- <div data-dialog="somedialog" class="trigger" id="purchaseBtn">
                                 <button id="purchaseBtn_1">
                                 立即購買
                             </button>
                             </div> -->
-                            step4
-                            <div id="">
+                            <div id="orderContent">
+                                <div class="checkout">
+                                    <form action="" id="orderForm">
+                                        <div class="purchaseContent">
+                                            <span style="color: white; font-size: 1rem; margin-left: 20px;">購買數量</span>
+                                            <div id="purchaseCount">
+                                                <input class="countBtn" id="minusCountBtn" type="button" value="-">
+                                                <span id="collarCount" style="text-align: center; border: 0px solid red; width: 20px; color: white;">1</span>
+                                                <input class="countBtn" id="plusCountBtn" type="button" value="+">
+                                            </div>
+                                            <span id="totalPrice" style="border: 0px solid red; width: 60px; color: white;">300</span>
+                                        </div>
+                                        <div style="display: flex;">
+                                            <fieldset class="orderDetails" style="width: 50%;">
+                                                <label for="" class="orderDetailsLabel">收件人姓名</label>
+                                                <input type="text" placeholder="請輸入姓名" name="" id="orderNameInput" class="orderDetailsInput" style="width: 90%;">
+                                            </fieldset>
+                                            <fieldset class="orderDetails" style="width: 50%;">
+                                                <label for="" class="orderDetailsLabel" style="margin-left: 18px;">收件人電話</label>
+                                                <input type="text" placeholder="請輸入電話" name="" id="orderPhoneInput" class="orderDetailsInput" style="width: 90%; margin-left: 18px;">
+                                            </fieldset>
+                                        </div>
+                                        <fieldset class="orderDetails" style="width: 100%;">
+                                            <label for="" class="orderDetailsLabel">收件人地址</label>
+                                            <input type="text" placeholder="請輸入地址" name="" id="orderAddressInput" class="orderDetailsInput" style="width: 100%; margin-bottom: 40px;">
+                                        </fieldset>
+                                    </form>
 
-                            </div>
-                            <div id="">
-
-                            </div>
-                            <div class="stepBtn">
-                                <button class="stepBackBtn" id="step4BackBtn">上一步</button>
+                                    <div class="credit-card-box">
+                                        <div class="flip">
+                                            <div class="front">
+                                                <div class="chip"></div>
+                                                <div class="logo">
+                                                    <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style="enable-background:new 0 0 47.834 47.834;">
+                                                        <g>
+                                                            <g>
+                                                                <path d="M44.688,16.814h-3.004c-0.933,0-1.627,0.254-2.037,1.184l-5.773,13.074h4.083c0,0,0.666-1.758,0.817-2.143
+                                                       c0.447,0,4.414,0.006,4.979,0.006c0.116,0.498,0.474,2.137,0.474,2.137h3.607L44.688,16.814z M39.893,26.01
+                                                       c0.32-0.819,1.549-3.987,1.549-3.987c-0.021,0.039,0.317-0.825,0.518-1.362l0.262,1.23c0,0,0.745,3.406,0.901,4.119H39.893z
+                                                       M34.146,26.404c-0.028,2.963-2.684,4.875-6.771,4.875c-1.743-0.018-3.422-0.361-4.332-0.76l0.547-3.193l0.501,0.228
+                                                       c1.277,0.532,2.104,0.747,3.661,0.747c1.117,0,2.313-0.438,2.325-1.393c0.007-0.625-0.501-1.07-2.016-1.77
+                                                       c-1.476-0.683-3.43-1.827-3.405-3.876c0.021-2.773,2.729-4.708,6.571-4.708c1.506,0,2.713,0.31,3.483,0.599l-0.526,3.092
+                                                       l-0.351-0.165c-0.716-0.288-1.638-0.566-2.91-0.546c-1.522,0-2.228,0.634-2.228,1.227c-0.008,0.668,0.824,1.108,2.184,1.77
+                                                       C33.126,23.546,34.163,24.783,34.146,26.404z M0,16.962l0.05-0.286h6.028c0.813,0.031,1.468,0.29,1.694,1.159l1.311,6.304
+                                                       C7.795,20.842,4.691,18.099,0,16.962z M17.581,16.812l-6.123,14.239l-4.114,0.007L3.862,19.161
+                                                       c2.503,1.602,4.635,4.144,5.386,5.914l0.406,1.469l3.808-9.729L17.581,16.812L17.581,16.812z M19.153,16.8h3.89L20.61,31.066
+                                                       h-3.888L19.153,16.8z" />
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="number"></div>
+                                                <div class="card-holder">
+                                                    <label></label>
+                                                    <div></div>
+                                                </div>
+                                                <div class="card-expiration-date">
+                                                    <label>VALID THRU</label>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                            <div class="back">
+                                                <div class="strip"></div>
+                                                <div class="logo">
+                                                    <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style="enable-background:new 0 0 47.834 47.834;">
+                                                        <g>
+                                                            <g>
+                                                                <path d="M44.688,16.814h-3.004c-0.933,0-1.627,0.254-2.037,1.184l-5.773,13.074h4.083c0,0,0.666-1.758,0.817-2.143
+                                                       c0.447,0,4.414,0.006,4.979,0.006c0.116,0.498,0.474,2.137,0.474,2.137h3.607L44.688,16.814z M39.893,26.01
+                                                       c0.32-0.819,1.549-3.987,1.549-3.987c-0.021,0.039,0.317-0.825,0.518-1.362l0.262,1.23c0,0,0.745,3.406,0.901,4.119H39.893z
+                                                       M34.146,26.404c-0.028,2.963-2.684,4.875-6.771,4.875c-1.743-0.018-3.422-0.361-4.332-0.76l0.547-3.193l0.501,0.228
+                                                       c1.277,0.532,2.104,0.747,3.661,0.747c1.117,0,2.313-0.438,2.325-1.393c0.007-0.625-0.501-1.07-2.016-1.77
+                                                       c-1.476-0.683-3.43-1.827-3.405-3.876c0.021-2.773,2.729-4.708,6.571-4.708c1.506,0,2.713,0.31,3.483,0.599l-0.526,3.092
+                                                       l-0.351-0.165c-0.716-0.288-1.638-0.566-2.91-0.546c-1.522,0-2.228,0.634-2.228,1.227c-0.008,0.668,0.824,1.108,2.184,1.77
+                                                       C33.126,23.546,34.163,24.783,34.146,26.404z M0,16.962l0.05-0.286h6.028c0.813,0.031,1.468,0.29,1.694,1.159l1.311,6.304
+                                                       C7.795,20.842,4.691,18.099,0,16.962z M17.581,16.812l-6.123,14.239l-4.114,0.007L3.862,19.161
+                                                       c2.503,1.602,4.635,4.144,5.386,5.914l0.406,1.469l3.808-9.729L17.581,16.812L17.581,16.812z M19.153,16.8h3.89L20.61,31.066
+                                                       h-3.888L19.153,16.8z" />
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="ccv">
+                                                    <label>CVC</label>
+                                                    <div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- creditcard結束 -->
+                                    <form class="form" autocomplete="off" novalidate>
+                                        <fieldset>
+                                            <label for="card-number">卡號</label>
+                                            <input type="num" id="card-number" class="input-cart-number" maxlength="4" />
+                                            <input type="num" id="card-number-1" class="input-cart-number" maxlength="4" />
+                                            <input type="num" id="card-number-2" class="input-cart-number" maxlength="4" />
+                                            <input type="num" id="card-number-3" class="input-cart-number" maxlength="4" />
+                                        </fieldset>
+                                        <fieldset>
+                                            <label for="card-holder">姓名(英文字母)</label>
+                                            <input type="text" id="card-holder" />
+                                        </fieldset>
+                                        <fieldset class="fieldset-expiration">
+                                            <label for="card-expiration-month">VALID THRU</label>
+                                            <div class="select">
+                                                <select id="card-expiration-month">
+                                                    <option></option>
+                                                    <option>01</option>
+                                                    <option>02</option>
+                                                    <option>03</option>
+                                                    <option>04</option>
+                                                    <option>05</option>
+                                                    <option>06</option>
+                                                    <option>07</option>
+                                                    <option>08</option>
+                                                    <option>09</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+                                                </select>
+                                            </div>
+                                            <div class="select">
+                                                <select id="card-expiration-year">
+                                                    <option></option>
+                                                    <option>2020</option>
+                                                    <option>2021</option>
+                                                    <option>2022</option>
+                                                    <option>2023</option>
+                                                    <option>2024</option>
+                                                    <option>2025</option>
+                                                    <option>2026</option>
+                                                    <option>2027</option>
+                                                    <option>2028</option>
+                                                    <option>2029</option>
+                                                    <option>2030</option>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset class="fieldset-ccv">
+                                            <label for="card-ccv">CVC</label>
+                                            <input type="text" id="card-ccv" maxlength="3" />
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="stepBtn trigger" id="buyBtn" style="position: unset;">
+                                    <input class="stepBackBtn" id="step4BackBtn" data-dialog="somedialog" onclick="saveImage()" type="button" value="立即購買">
+                                    <!-- <button class="stepBackBtn" id="step4BackBtn" data-dialog="somedialog" onclick="saveImage()">立即購買</button> -->
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- container -->
                 <script>
@@ -524,24 +764,86 @@
     <div id="somedialog" class="dialog">
         <div class="dialog__overlay"></div>
         <div class="dialog__content">
-            <h2 style="color: white;">立即購買</h2>
+            <h3 style="color: #313131; margin-top: 20px;">確認明細</h3>
+            <div id="collarDetail">
+                <img src="" id="testImg">
+                <div id="orderTotal">
+                    <span id="orderQTY"></span>
+                    <span id="orderPrice"></span>
+                </div>
+            </div>
+            <div id="orderDetail">
+                <span class="orderList" id="orderDate"></span>
+                <span class="orderList" id="orderName"></span>
+                <span class="orderList" id="orderPhone"></span>
+                <span class="orderList" id="orderAddress"></span>
+            </div>
+
+            <a class="btn darkgreen nav__link" @@connect style="cursor: pointer; position: absolute; bottom: 20px;" id="orderBtn">
+                <span class="titleFont">送出訂單</span>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+            </a>
             <div>
                 <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
             </div>
         </div>
     </div>
+    <script>
+        $('#orderBtn').click(function() {
+            var sendOrderDate = document.getElementById('orderDate').innerText;
+            var sendOrderName = document.getElementById('orderName').innerText;
+            var sendOrderPhone = document.getElementById('orderPhone').innerText;
+            var sendOrderAddress = document.getElementById('orderAddress').innerText;
+            var sendOrderQty = document.getElementById('orderQTY').innerText;
+            var sendOrderPrice = document.getElementById('orderPrice').innerText;
+            if ($('#orderNameInput').val() == "") {
+                alert("請先輸入收件人姓名");
+                return;
+            } else if ($('#orderPhoneInput').val() == "") {
+                alert("請先輸入收件人電話");
+                return;
+            } else if ($('#orderAddressInput').val() == "") {
+                alert("請先輸入收件人地址");
+                return;
+            } else if ($('#card-number').val() == "" || $('#card-number-1').val() == "" || $('#card-number-2').val() == "" || $('#card-number-3').val() == "" || $('#card-holder').val() == "" || $('#card-expiration-month').val() == "" || $('#card-expiration-year').val() == "" || $('#card-ccv').val() == "") {
+                alert("信用卡資料不完整");
+                return;
+            } else {
+                var xhr = new XMLHttpRequest();
+                var url = "php/addOrderList.php";
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                var data_info = `orderDate=${sendOrderDate}&orderName=${sendOrderName}&orderPhone=${sendOrderPhone}&orderAddress=${sendOrderAddress}&orderQty=${sendOrderQty}&orderPrice=${sendOrderPrice}&image=${canvas.toDataURL("image/png")}`;
+                xhr.send(data_info);
+
+                xhr.onload = function() {
+                    if (xhr.status == 200) {
+                        alert("訂單已成功送出,訂單紀錄能在會員中心進行查看!");
+                        window.location.reload();
+                    } else {
+                        alert("錯誤");
+                    }
+                }
+            }
+        });
+    </script>
     <script src="./js/classie.js"></script>
     <script src="./js/dialogFx.js"></script>
     <script>
-        (function () {
-            var dlgtrigger = document.querySelector('[data-dialog]'),
-                somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
-                dlg = new DialogFx(somedialog);
-            dlgtrigger.addEventListener('click', dlg.toggle.bind(dlg));
+        var dlgtrigger = document.querySelector('[data-dialog]'),
+            somedialog = document.getElementById(dlgtrigger.getAttribute('data-dialog')),
+            dlg = new DialogFx(somedialog);
+        step4BackBtn.addEventListener('click', dlg.toggle.bind(dlg));
+        // $('#step4BackBtn').click(dlg.toggle.bind(dlg));
+        (function() {
+
         })();
     </script>
-
     <script src="./js/signInOut.js"></script>
+    <script src="./js/card.js"></script>
 
 </body>
 

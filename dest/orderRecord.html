@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>浪愛回家後台</title>
   <!-- Icons-->
-  <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
 </head>
@@ -55,7 +55,7 @@
           <i class="icon-location-pin"></i>
         </a>
       </li> -->
-      <li class="nav-item mr-3 adminName">Sara 您好</li>
+      <li class="nav-item mr-3 adminName"></li>
 
       <li class="nav-item mr-3 dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -143,17 +143,17 @@
         <i class="nav-icon icon-drop"></i>GPS地圖管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="petFriendly.html">寵物友善空間管理</a>
+          <a class="nav-link" href="petFriendly.html">↪ 寵物友善空間管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="petFriendlyScore.html">寵物友善空間評論管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="base/carousel.html">寵物友善空間收藏管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="lostPetReport.html">寵物遺失回報管理</a>
-        </li>
+        </li> -->
         
         <!-- <li class="nav-item">
             <a class="nav-link" href="base/forms.html">
@@ -211,7 +211,7 @@
       <ul class="nav-dropdown-items">
         <li class="nav-item">
           <a class="nav-link" href="fundRaising.html">
-            <i class="nav-icon icon-cursor"></i> 募款專案管理</a>
+            <i class="nav-icon icon-cursor"></i>↪ 募款專案管理</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="buttons/button-group.html">
@@ -236,22 +236,22 @@
         <!-- <li class="nav-item">
           <a class="nav-link" href="icons/coreui-icons.html">客製化項圈管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="customizedColor.html">客製化顏色管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="icons/font-awesome.html">客製化字型管理</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="customizedTag.html">客製化吊牌管理</a>
+          <a class="nav-link" href="customizedTag.html">↪ 客製化吊牌管理</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="orderRecord.html">客製化訂單紀錄管理</a>
+          <a class="nav-link" href="orderRecord.html">↪ 客製化訂單紀錄管理</a>
         </li>
 
       </ul>
     </li>
-    <li class="nav-item nav-dropdown">
+    <!-- <li class="nav-item nav-dropdown">
       <a class="nav-link nav-dropdown-toggle" href="#">貼文區管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
@@ -283,8 +283,8 @@
         <li class="nav-item">
           <a class="nav-link" href="galleryCommentReport.html">照片牆留言檢舉管理</a>
         </li>
-      </ul>
-    </li>
+      </ul> 
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" href="NewsAndActivity.html">活動/新聞/宣導管理</a>
     </li>
@@ -295,14 +295,14 @@
       <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon icon-pie-chart"></i>會員管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="memInfo.html" target="_top">會員資料管理</a>
+          <a class="nav-link" href="memInfo.html" target="_top">↪ 會員資料管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="blacklist.html" target="_top">黑名單管理</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="messageManage.html" target="_top">私信資料管理</a>
-        </li>
+        </li> -->
       </ul>
     </li>
   </ul>
@@ -334,59 +334,190 @@
       <div class="container-fluid">
    
        <!-- 中間內容 -->
-       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
+       <style>
+    #allOrderList tr {
+        /* border: 1px solid red; */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+    
+    #allOrderList tr td {
+        line-height: 120px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
             <!-- <div class="card-header">Card title</div> -->
             <div class="card-body">
-              <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
-              <table class="table table-responsive-sm table-sm">
-                <thead>
-                  <tr>
-                    <th>訂單編號</th>
-                    <th>商品圖案</th>
-                    <th>商品數量</th>
-                    <th>訂單金額</th>
-                    <th>訂單狀態</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Carwyn Fachtna</td>
-                    <td>2012/01/01</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Nehemiah Tatius</td>
-                    <td>2012/02/01</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Ebbe Gemariah</td>
-                    <td>2012/02/01</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Eustorgios Amulius</td>
-                    <td>2012/03/01</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
-
-
+                <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
+                <table class="table table-responsive-sm table-sm">
+                    <thead>
+                        <tr>
+                            <th>訂單編號</th>
+                            <th>商品圖案</th>
+                            <th>購買日期</th>
+                            <th>收件人姓名</th>
+                            <th>收件人電話</th>
+                            <th>收件人地址</th>
+                            <th>購買數量</th>
+                            <th>訂單金額</th>
+                            <th>訂單狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allOrderList">
+                    </tbody>
+                </table>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        function getOrderList() {
+            $.ajax({
+                url: "php/getOrderList.php",
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    msg = "";
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].orderStatus == 0) {
+                            msg +=
+                                `
+                                  <tr>
+                                    <td>${data[i].orderNo}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="150"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td>${data[i].orderQty}</td>
+                                    <td>${data[i].orderPrice}</td>
+                                    <td>
+                                        <form action="">
+                                            <select class="orderSelects" name="" id="" style="width: 100px;" orderNo="${data[i].orderNo}">
+                                              <option value="0" selected>待出貨</option>
+                                              <option value="1">已出貨</option>
+                                              <option value="2">待收貨</option>
+                                              <option value="3">已取貨</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                              `;
+                        } else if (data[i].orderStatus == 1) {
+                            msg +=
+                                `
+                                  <tr>
+                                    <td>${data[i].orderNo}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="150"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td>${data[i].orderQty}</td>
+                                    <td>${data[i].orderPrice}</td>
+                                    <td>
+                                        <form action="">
+                                            <select class="orderSelects" name="" id="" style="width: 100px;" orderNo="${data[i].orderNo}">
+                                              <option value="0">待出貨</option>
+                                              <option value="1" selected>已出貨</option>
+                                              <option value="2">待收貨</option>
+                                              <option value="3">已取貨</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                              `;
+                        } else if (data[i].orderStatus == 2) {
+                            msg +=
+                                `
+                                  <tr>
+                                    <td>${data[i].orderNo}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="150"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td>${data[i].orderQty}</td>
+                                    <td>${data[i].orderPrice}</td>
+                                    <td>
+                                        <form action="">
+                                            <select class="orderSelects" name="" id="" style="width: 100px;" orderNo="${data[i].orderNo}">
+                                              <option value="0">待出貨</option>
+                                              <option value="1">已出貨</option>
+                                              <option value="2" selected>待收貨</option>
+                                              <option value="3">已取貨</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                              `;
+                        } else {
+                            msg +=
+                                `
+                                  <tr>
+                                    <td>${data[i].orderNo}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="150"></td>
+                                    <td>${data[i].orderDate}</td>
+                                    <td>${data[i].orderName}</td>
+                                    <td>${data[i].orderPhone}</td>
+                                    <td>${data[i].orderAddress}</td>
+                                    <td>${data[i].orderQty}</td>
+                                    <td>${data[i].orderPrice}</td>
+                                    <td>
+                                        <form action="">
+                                            <select class="orderSelects" name="" id="" style="width: 100px;" orderNo="${data[i].orderNo}">
+                                              <option value="0">待出貨</option>
+                                              <option value="1">已出貨</option>
+                                              <option value="2">待收貨</option>
+                                              <option value="3" selected>已取貨</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                              `;
+                        }
+                    }
+                    $(document).ready(function() {
+                        $('.orderSelects').change(function() {
+                            updateOrderRecord($(this).attr('orderNo'), $(this).val());
+                            if ($(this).val() == "0") {
+                                alert(`訂單狀態更新成功,狀態已變為待出貨`);
+                            } else if ($(this).val() == "1") {
+                                alert("訂單狀態更新成功,狀態已變為已出貨");
+                            } else if ($(this).val() == "2") {
+                                alert("訂單狀態更新成功,狀態已變為待收貨");
+                            } else {
+                                alert("訂單狀態更新成功,狀態已變為已取貨");
+                            }
+
+                        })
+                    })
+                    $('#allOrderList').append(msg);
+                }
+            })
+        }
+        getOrderList();
+    })
+
+    function updateOrderRecord(sendOrderNo, newOrderStatus) {
+        var xhr = new XMLHttpRequest();
+        var url = "./php/updateOrderRecord.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `orderStatus=${newOrderStatus}&orderNo=${sendOrderNo}`;
+        xhr.send(data_info);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {}
+        }
+    }
+</script>
        <!-- end -->
       </div>
     </main>
@@ -691,17 +822,7 @@
       </div>
     </aside>
   </div>
-  <footer>
-    <div class="page_top" id="page_top">
-        <span class="titleFont smalltext">PAGE TOP</span>
-    </div>
-    <p class="titleFont smalltext">
-        © 2020 Bring Love Home
-    </p>
-</footer>
-
-<script src="./js/page_top.js"></script>
-
+  
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -709,5 +830,6 @@
   <script src="./js/pace.min.js"></script>
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
+  <script src="./js/backend-managerName.js"></script>
 </body>
 </html>

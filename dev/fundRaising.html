@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>浪愛回家後台</title>
   <!-- Icons-->
-  <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
 </head>
@@ -353,7 +353,7 @@
       </div>
     </aside>
   </div>
-  @@include('layout/footer.html')
+  
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -361,5 +361,90 @@
   <script src="./js/pace.min.js"></script>
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
+  <script src="./js/backend-managerName.js"></script>
+
+  <script>
+
+    $(document).ready(function(){
+      //把募款專案全部撈出來
+      getdonationproject();
+
+      function getdonationproject(){
+        $.ajax({
+          url:'./php/getdonationproject.php',
+          type:'GET',
+          dataType:"json",
+          success: function(data){
+            let html = "";
+            for(var i = 0; i < data.length; i++){
+              if(data[i].fundStatus == 1){
+                html += `<tr>
+                  <td>${data[i].fundNo}</td>
+                  <td>${data[i].fundTitle}</td>
+                  <td>${data[i].memNo}</td>
+                  <td>${data[i].fundStartDate}</td>
+                  <td>${data[i].fundEndDate}</td>
+                  <td>${data[i].fundGoal}</td>
+                  <td>${data[i].fundNowAmount}</td>
+                  <td>
+                      <label class="switch switch-3d switch-success">
+                        <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" checked psn="${data[i].fundNo}">
+                        <span class="switch-slider"></span>
+                      </label>
+                  </td>
+                </tr>`
+              }else{
+                html += `<tr>
+                  <td>${data[i].fundNo}</td>
+                  <td>${data[i].fundTitle}</td>
+                  <td>${data[i].memNo}</td>
+                  <td>${data[i].fundStartDate}</td>
+                  <td>${data[i].fundEndDate}</td>
+                  <td>${data[i].fundGoal}</td>
+                  <td>${data[i].fundNowAmount}</td>
+                  <td>
+                      <label class="switch switch-3d switch-success">
+                        <input onclick="changeStatus()" class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);" psn="${data[i].fundNo}">
+                        <span class="switch-slider"></span>
+                      </label>
+                  </td>
+                </tr>`
+                }; 
+              }
+              $("#donationproject").append(html);
+
+              changeStatus();
+            },
+            error: function(xhr){
+              alert (xhr.Message);
+            }
+          });
+        }
+        function changeStatus(){
+          $(".switch-input").click(function(){
+            var psn = $(this).attr("psn");
+            //alert(no)
+            $.ajax({
+              url: './php/donationproject_change.php',
+              type: 'POST',
+              data: {fundNo: psn},
+              success(data){
+                if(data.indexOf("erro") != -1){
+                  alert("修改失敗");
+                }
+              },
+              error(data){
+                alert(data);
+              },
+            });
+          })
+        };
+    });
+
+
+
+  </script>
+ 
+
 </body>
 </html>

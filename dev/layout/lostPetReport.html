@@ -1,61 +1,107 @@
 <section class="memTable">
     <h3>我的寵物遺失回報</h3>
     <div class="memTable_content">
-        <table>
-            <tr>
-                <th class="titleFont">編號</th>
-                <th class="titleFont">刊登日期</th>
-                <th class="titleFont memRWD_992">遺失地點</th>
-                <th class="titleFont memRWD_992">遺失時間</th>
-                <th class="titleFont">寵物名稱</th>
-                <th class="titleFont memRWD_992">寵物類型</th>
-                <!-- <th class="titleFont">寵物特徵</th> -->
-                <th class="titleFont memRWD_992">案件狀態</th>
-                <th class="titleFont memRWD_992">寵物圖片</th>
-                <th class="titleFont"></th>
-            </tr>
-            <tr>
-                <td>03</td>
-                <td>2019-12-25</td>
-                <td class="memRWD_992"><a href="map.html">
-                    <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
-                </a></td>
-                <td class="memRWD_992">2019-12-25</td>
-                <td>小白</td>
-                <td class="memRWD_992">柴犬</td>
-                <!-- <td>藍色項圈，吊牌有名字，不怕生愛撒嬌</td> -->
-                <td class="memRWD_992">未找到，結案</td>
-                <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
-                <td><a href="#" class="updatebtn_s">編輯</a><a href="#" class="updatebtn_s">結案</a></td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td>2019-10-01</td>
-                <td class="memRWD_992"><a href="map.html">
-                    <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
-                </a></td>
-                <td class="memRWD_992">2019-10-01</td>
-                <td>小白</td>
-                <td class="memRWD_992">柴犬</td>
-                <!-- <td>藍色項圈，吊牌有名字，不怕生愛撒嬌</td> -->
-                <td class="memRWD_992">已找到</td>
-                <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
-                <td><a href="#" class="updatebtn_s">編輯</a><a href="#" class="updatebtn_s">結案</a></td>
-            </tr>
-            <tr>
-                <td>01</td>
-                <td>2019-04-01</td>
-                <td class="memRWD_992"><a href="map.html">
-                    <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
-                </a></td>
-                <td class="memRWD_992">2019-04-01</td>
-                <td>多多</td>
-                <td class="memRWD_992">短毛貓</td>
-                <!-- <td>橘色項圈，吊牌有名字，怕人</td> -->
-                <td class="memRWD_992">已找到</td>
-                <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
-                <td><a href="#" class="updatebtn_s">編輯</a><a href="#" class="updatebtn_s">結案</a></td>
-            </tr>
+        <table class="lostrptable">
+            <thead">
+                <tr>
+                    <th class="titleFont">編號</th>
+                    <th class="titleFont memRWD_992">刊登日期</th>
+                    <th class="titleFont memRWD_992">遺失地點</th>
+                    <th class="titleFont memRWD_992">遺失時間</th>
+                    <th class="titleFont">寵物名稱</th>
+                    <th class="titleFont memRWD_992">寵物類型</th>
+                    <!-- <th class="titleFont">寵物特徵</th> -->
+                    <th class="titleFont memRWD_992">案件狀態</th>
+                    <th class="titleFont memRWD_992_img">寵物圖片</th>
+                    <th class="titleFont"></th>
+                </tr>
+                </thead>
+                <tbody class="lostrptabletbody">
+                    <!-- <tr>
+                        <td>03</td>
+                        <td>2019-12-25</td>
+                        <td class="memRWD_992"><a href="map.html">
+                                <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
+                            </a></td>
+                        <td class="memRWD_992">2019-12-25</td>
+                        <td>小白</td>
+                        <td class="memRWD_992">柴犬</td>
+                        <td class="memRWD_992">未找到，結案</td>
+                        <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
+                        <td></td>
+                    </tr>-->
+                </tbody>
         </table>
     </div>
 </section>
+
+
+<!-- 寵物遺失申請燈箱 -->
+<div id="lostform_cus">
+    <div id="lostclose">
+        <!-- <div class="lostform_cus">
+        <div class="lostform" title="寵物遺失地點">
+        <form method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <h3>寵物遺失地點登記</h3>
+                <p>
+                    <label for="lostPetRpLoc">寵物遺失地點</label>
+                    <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                    <input type="hidden" id="memNo" name="memNo" value="">
+                    <input type="hidden" id="memName" name="memName" value="">
+                    <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
+                    <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
+                    <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
+                </p>
+                <p>
+                    <label for="lostPetRpLDate">寵物遺失時間</label>
+                    <input type="date" name="lostPetRpLDate" id="lostPetRpLDate">
+                </p>
+                <p>
+                    <label for="lostPetRpName">寵物名稱</label>
+                    <input type="text" name="lostPetRpName" id="lostPetRpName">
+                </p>
+                <p>
+                    <label for="lostPetRpType">寵物類型</label>
+                    <input type="text" name="lostPetRpType" id="lostPetRpType">
+                </p>
+                <p>
+                    <label for="lostPetRpCh">寵物特徵</label>
+                    <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                </p>
+                <p>
+                    <label for="lostPetRpStat">案件狀態</label>
+                    <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
+                        <option value="" disabled>-- 請選擇狀態 --</option>
+                        <option value="0">進行中</option>
+                        <option value="1">已找到</option>
+                        <option value="2">未找到，已結案</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="">上傳寵物照片</label>
+                    <label class="uploadimg_btn">
+                        <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                            accept="image/*">
+                        <i class="fa fa-photo"></i> 上傳圖片
+                    </label>
+                </p>
+                <div>
+                    <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
+                            送出資料
+                        </span>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="lightBtn">
+            <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
+        </div>
+    </div>    
+    </div> -->
+    </div>
+</div>

@@ -38,8 +38,7 @@ $.fn.parallax = function(resistance, mouse) {
   });
 };
 
-$(document).mousemove(function(e) {
-  // $(".parallax1").parallax(-30, e);
+document.addEventListener("mousemove",function(e){
   $(".parallax2").parallax(10, e);
   $(".parallax3").parallax(20, e);
   $(".parallax4").parallax(30, e);
@@ -53,6 +52,23 @@ $(document).mousemove(function(e) {
   $(".collarDeco6").parallax(30, e);
   $(".collarDeco7").parallax(10, e);
   $(".collarDeco8").parallax(5, e);
-  // $(".paw1").parallax(10, e);
-  // $(".paw2").parallax(5, e);
-  });
+});
+
+// $(document).mousemove(function(e) {
+//   // $(".parallax1").parallax(-30, e);
+//   $(".parallax2").parallax(10, e);
+//   $(".parallax3").parallax(20, e);
+//   $(".parallax4").parallax(30, e);
+//   $(".parallax5").parallax(20, e);
+//   $(".parallax6").parallax(20, e);
+//   $(".collarDeco1").parallax(20, e);
+//   $(".collarDeco2").parallax(10, e);
+//   $(".collarDeco3").parallax(30, e);
+//   $(".collarDeco4").parallax(10, e);
+//   $(".collarDeco5").parallax(20, e);
+//   $(".collarDeco6").parallax(30, e);
+//   $(".collarDeco7").parallax(10, e);
+//   $(".collarDeco8").parallax(5, e);
+//   // $(".paw1").parallax(10, e);
+//   // $(".paw2").parallax(5, e);
+//   });

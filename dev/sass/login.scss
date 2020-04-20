@@ -39,6 +39,9 @@ section{
         @include rwd(ss){
             width: 100%;
         }
+        @include rwd(mini){
+            width: 100%;
+        }
         div.title{
             position: absolute;
             display: flex;
@@ -83,6 +86,10 @@ section{
                 padding:30px;
                 width: 75%;
             }
+            @include rwd(mini){
+                padding:30px;
+                width: 80%;
+            }
             h2{
                 position: absolute;
                 right: 0;
@@ -96,6 +103,9 @@ section{
                 opacity: 0.5;
                 @include rwd(ss){
                     left: -50px;
+                }
+                @include rwd(mini){
+                    left: -25px;
                 }
             }
             label{
@@ -140,8 +150,19 @@ section{
                         transition: all 0.5s;
                         text-decoration: none;
                         position:relative;
+                        cursor: pointer;
                         @include rwd(ss){
                             margin-right: 10px;
+                            display: block;
+                        }
+                        @include rwd(mini){
+                            margin-right: 10px;
+                            display: block;
+                        }
+                        &:last-child{
+                            @include rwd(mini){
+                                margin-top: 10px;
+                            }
                         }
                         &::after{
                             content: '';
@@ -172,7 +193,11 @@ section{
                     background-color: $gray;
                     color: #fff;
                     transition: all 0.5s ease-in-out;
+                    cursor: pointer;
                     @include rwd(ss){
+                        width: 80px;
+                    }
+                    @include rwd(mini){
                         width: 80px;
                     }
                     &:hover{
@@ -222,6 +247,9 @@ section{
         @include rwd(ss){
             display: none;
         }
+        @include rwd(mini){
+            display: none;
+        }
         div.title{
             display: flex;
             max-width: 100%;
@@ -258,6 +286,10 @@ section{
             @include rwd(ss){
                 width: 90%;
             }
+            @include rwd(mini){
+                width: 90%;
+                padding: 30px;
+            }
             @include rwd(sm){
                 width: 70%;
             }
@@ -267,6 +299,9 @@ section{
                 bottom: 180px;
                 color: rgb(26, 26, 26);
                 @include rwd(ss){
+                    display:none;
+                }
+                @include rwd(mini){
                     display:none;
                 }
                 @include rwd(sm){
@@ -284,6 +319,9 @@ section{
                 opacity: 0.6;
                 color: rgb(26, 26, 26);
                 @include rwd(ss){
+                    display:none;
+                }
+                @include rwd(mini){
                     display:none;
                 }
                 @include rwd(sm){
@@ -340,6 +378,7 @@ section{
                     transition: all 0.5s;
                     text-decoration: none;
                     position:relative;
+                    cursor: pointer;
                     &::after{
                         content: '';
                         display: inline-block;
@@ -368,7 +407,11 @@ section{
                     background-color: $gray;
                     color: #fff;
                     transition: all 0.5s ease-in-out;
+                    cursor: pointer;
                     @include rwd(ss){
+                        width: 80px;
+                    }
+                    @include rwd(mini){
                         width: 80px;
                     }
                     &:hover{
@@ -434,4 +477,8 @@ section{
 // ss (min-width: 414px)
 @include rwd(ss) {
     @include grid(ss, 12);
+}
+
+@include rwd(mini) {
+	@include grid(mini, 12);
 }

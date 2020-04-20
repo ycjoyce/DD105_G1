@@ -11,47 +11,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <link rel="stylesheet" href="./css/memberCenter.css">
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmC2UCZ2pK2NvUYa9rsdKvbLUkTYBH9Vk"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.js'></script>
+    <script>
+    window.addEventListener("load",function(){
+        getMemInfo();
+    });
+    </script>
+    
+
 </head>
 
 <body>
     <header class="header-navigation" id="header">
         <nav class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-            <div class="col-xl-8 col-lg-9 col-md-11 col-sm-12 container">
+            <div class="container col-xl-8 col-lg-9 col-md-11 col-sm-12">
                 <h1>
-                    <a href="./index.html">
+                    <a href="./main.html">
                         <img src="./img/logo-wide.png" alt="logo">
                     </a>
                 </h1>
                 <ul class="col-xl-9 col-lg-9 col-md-9">
-                    <li><a href="./login.html">浪浪在哪裡</a></li>
-                    <li><a href="">愛心助浪浪</a></li>
-                    <li><a href="./customized.html">客製化項圈</a></li>
-                    <li><a href="./post_article_region.html">毛孩交流區</a></li>
-                    <li><a href="./aboutus.html">關於我們</a></li>
-                    <li class="rwd"><a href="./memberCenter.html">會員中心</a></li>
-                    <li class="rwd"><a href="./message.html">我的信箱</a></li>
-                    <li class="rwd"><a href="./index.html">登出</a></li>
-                    <li class="memZone">
-                        <div>
-                            <div class="memPic"></div>
-                            <div class="message">
-                                <span class="unread">2</span>
-                            </div>
-                        </div>
-                        <ul class="memZone">
-                            <li><a href="./memberCenter.html">會員中心</a></li>
-                            <li><a href="./index.html">登出</a></li>
-                        </ul>
-                    </li>
+                    <li><a id="navMap" href="./map.html">浪浪在哪裡</a></li>
+                    <li><a id="navDonate" href="./donation.html">愛心助浪浪</a></li>
+                    <li><a id="navCus" href="./customized.html">客製化項圈</a></li> 
+                    <li><a id="navPost" href="./post_article_region.html">毛孩交流區</a></li>
+                    <li><a id="navAbout" href="./aboutus.html">關於我們</a></li>
+                    <li><a id="navLogin" class="login" href="./login.html">登入 / 註冊</a></li>
                 </ul>
                 <button class="hamburger hamburger--spring" type="button">
                     <span class="hamburger-box">
-                        <span class="hamburger-inner"></span>
+                      <span class="hamburger-inner"></span> 
                     </span>
                 </button>
             </div>
         </nav>
     </header>
+    
 
 
 
@@ -64,10 +61,10 @@
                     <li class="tab-link current" data-tab="tab-1">會員資訊</li>
                     <li class="tab-link" data-tab="tab-2">我的寵物遺失回報</li>
                     <li class="tab-link" data-tab="tab-3">募款專區</li>
-                    <li class="tab-link" data-tab="tab-4">貼文專區</li>
-                    <li class="tab-link" data-tab="tab-5">照片牆專區</li>
+                    <!-- <li class="tab-link" data-tab="tab-4">貼文專區</li> -->
+                    <!-- <li class="tab-link" data-tab="tab-5">照片牆專區</li> -->
                     <li class="tab-link" data-tab="tab-6">我的訂單</li>
-                    <li class="tab-link" data-tab="tab-7">我的收藏</li>
+                    <!-- <li class="tab-link" data-tab="tab-7">我的收藏</li> -->
                     <li class="tab-link" data-tab="tab-8">管理黑名單</li>
                 </ul>
                 <button id="filterBtn"></button>
@@ -160,6 +157,7 @@
                 <div id="tab-2" class="tab-content">
                     <!-- 我的寵物遺失回報 -->
                     <section class="memTable">
+<<<<<<< HEAD
                         <h3>我的寵物遺失回報</h3>
                         <div class="memTable_content">
                             <table>
@@ -223,10 +221,119 @@
                             </table>
                         </div>
                     </section>
+=======
+    <h3>我的寵物遺失回報</h3>
+    <div class="memTable_content">
+        <table class="lostrptable">
+            <thead">
+                <tr>
+                    <th class="titleFont">編號</th>
+                    <th class="titleFont memRWD_992">刊登日期</th>
+                    <th class="titleFont memRWD_992">遺失地點</th>
+                    <th class="titleFont memRWD_992">遺失時間</th>
+                    <th class="titleFont">寵物名稱</th>
+                    <th class="titleFont memRWD_992">寵物類型</th>
+                    <!-- <th class="titleFont">寵物特徵</th> -->
+                    <th class="titleFont memRWD_992">案件狀態</th>
+                    <th class="titleFont memRWD_992_img">寵物圖片</th>
+                    <th class="titleFont"></th>
+                </tr>
+                </thead>
+                <tbody class="lostrptabletbody">
+                    <!-- <tr>
+                        <td>03</td>
+                        <td>2019-12-25</td>
+                        <td class="memRWD_992"><a href="map.html">
+                                <img src="./img/friendly_icon_darkgreen.png" class="lostPetRp_icon">桃園市中壢區
+                            </a></td>
+                        <td class="memRWD_992">2019-12-25</td>
+                        <td>小白</td>
+                        <td class="memRWD_992">柴犬</td>
+                        <td class="memRWD_992">未找到，結案</td>
+                        <td class="memRWD_992"><img src="https://picsum.photos/80/110"></td>
+                        <td></td>
+                    </tr>-->
+                </tbody>
+        </table>
+    </div>
+</section>
+
+
+<!-- 寵物遺失申請燈箱 -->
+<div id="lostform_cus">
+    <div id="lostclose">
+        <!-- <div class="lostform_cus">
+        <div class="lostform" title="寵物遺失地點">
+        <form method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <h3>寵物遺失地點登記</h3>
+                <p>
+                    <label for="lostPetRpLoc">寵物遺失地點</label>
+                    <input type="text" name="lostPetRpLoc" id="lostPetRpLoc">
+                    <input type="hidden" id="memNo" name="memNo" value="">
+                    <input type="hidden" id="memName" name="memName" value="">
+                    <input type="hidden" id="lostPetRpLocAdd" name="lostPetRpLocAdd" value="">
+                    <input type="hidden" id="lostPetRpLoclat" name="lostPetRpLoclat" value="">
+                    <input type="hidden" id="lostPetRpLoclng" name="lostPetRpLoclng" value="">
+                </p>
+                <p>
+                    <label for="lostPetRpLDate">寵物遺失時間</label>
+                    <input type="date" name="lostPetRpLDate" id="lostPetRpLDate">
+                </p>
+                <p>
+                    <label for="lostPetRpName">寵物名稱</label>
+                    <input type="text" name="lostPetRpName" id="lostPetRpName">
+                </p>
+                <p>
+                    <label for="lostPetRpType">寵物類型</label>
+                    <input type="text" name="lostPetRpType" id="lostPetRpType">
+                </p>
+                <p>
+                    <label for="lostPetRpCh">寵物特徵</label>
+                    <input type="text" name="lostPetRpCh" id="lostPetRpCh">
+                </p>
+                <p>
+                    <label for="lostPetRpStat">案件狀態</label>
+                    <select name="lostPetRpStat" id="lostPetRpStat" class="smalltext">
+                        <option value="" disabled>-- 請選擇狀態 --</option>
+                        <option value="0">進行中</option>
+                        <option value="1">已找到</option>
+                        <option value="2">未找到，已結案</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="">上傳寵物照片</label>
+                    <label class="uploadimg_btn">
+                        <input type="file" id="lostPetRpImg" style="display:none;" name="lostPetRpImg" multiple
+                            accept="image/*">
+                        <i class="fa fa-photo"></i> 上傳圖片
+                    </label>
+                </p>
+                <div>
+                    <button id="rpbtn" class="btn darkgreen nav__link"><span class="titleFont">
+                            送出資料
+                        </span>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                        <div class="border"></div>
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+        <div class="lightBtn">
+            <img src="./img/lightBoxClose.png" class="action" data-dialog-close>
+        </div>
+    </div>    
+    </div> -->
+    </div>
+</div>
+>>>>>>> develop
                 </div>
                 <div id="tab-3" class="tab-content">
                     <!-- 募款專區 -->
                     <ul class="small-tabs">
+<<<<<<< HEAD
                         <li class="small-tab-link current" data-tab="small-tab-1">我發起的募款</li>
                         <li class="small-tab-link" data-tab="small-tab-2">我參與的募款</li>
                     </ul>
@@ -365,13 +472,149 @@
                             </section>
                         </div>
                     </div>
+=======
+    <li class="small-tab-link current" data-tab="small-tab-1">我發起的募款</li>
+    <li class="small-tab-link" data-tab="small-tab-2">我參與的募款</li>
+</ul>
+<div class="small-tab-contents">
+    <div id="small-tab-1" class="small-tab-content current">
+        <section class="memTable">
+            <h3>我發起的募款</h3>
+            <div class="memTable_content" id="app2">
+                <table>
+                    <tr>
+                        <th class="titleFont">編號</th>
+                        <th class="titleFont">專案圖片</th>
+                        <th class="titleFont">專案名稱</th>
+                        <th class="titleFont memRWD_992">專案發起日期</th>
+                        <th class="titleFont memRWD_992">專案結束日期</th>
+                        <th class="titleFont memRWD_992">目標金額</th>
+                        <th class="titleFont memRWD_992">目前金額</th>
+                        <!-- <th></th> -->
+                    </tr>
+                    <tr v-for="rado in radonationdatas">
+                        <td>{{rado.fundNo}}</td>
+                        <td style="width: 20%;"><img v-bind:src="'./img/donation/projectImg/'+ rado.fundImg" style="width: 100%; display: block;"> </td>
+                        <td>{{rado.fundTitle}} {{rado.fundName}}</td>
+                        <td class="memRWD_992">{{rado.fundStartDate}}</td>
+                        <td class="memRWD_992">{{rado.fundEndDate}}</td>
+                        <td class="memRWD_992">NT${{rado.fundGoal}}</td>
+                        <td class="memRWD_992">NT${{rado.fundNowAmount}}</td>
+                        <!-- <td><a href="#" class="updatebtn_s titleFont">編輯</a></td> -->
+                    </tr>
+                    <!-- <tr>
+                        <td>34</td>
+                        <td><img src="https://picsum.photos/80/110"></td>
+                        <td>對每個人都笑開懷的天真浪浪小黃</td>
+                        <td class="memRWD_992">2020-02-01</td>
+                        <td class="memRWD_992">2020-04-30</td>
+                        <td class="memRWD_992">$10000</td>
+                        <td class="memRWD_992">$7000</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td><a href="#" class="updatebtn_s titleFont">修改</a></td>
+                    </tr> -->
+                    <!-- <tr>
+                        <td>33</td>
+                        <td><img src="https://picsum.photos/80/110"></td>
+                        <td>棲息處遭破壞，短尾的可愛小橘</td>
+                        <td class="memRWD_992">2020-02-01</td>
+                        <td class="memRWD_992">2020-04-30</td>
+                        <td class="memRWD_992">$8000</td>
+                        <td class="memRWD_992">$2000</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td><a href="#" class="updatebtn_s titleFont">修改</a></td>
+                    </tr> -->
+                    <!-- <tr>
+                        <td>33</td>
+                        <td><img src="https://picsum.photos/80/110"></td>
+                        <td>短小害怕受傷的魯肉在床底下才會安心</td>
+                        <td class="memRWD_992">2020-02-01</td>
+                        <td class="memRWD_992">2020-04-30</td>
+                        <td class="memRWD_992">$135000</td>
+                        <td class="memRWD_992">$4500</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td><a href="#" class="updatebtn_s titleFont">修改</a></td>
+                    </tr> -->
+                </table>                
+            </div>
+        </section>
+    </div>
+    <div id="small-tab-2" class="small-tab-content">
+        <section class="memTable">
+            <h3>我參與的募款</h3>
+            <div class="memTable_content" id="app">
+                <table>
+                    <tr>
+                        <th class="titleFont">編號</th>
+                        <th class="titleFont">專案圖片</th>
+                        <th class="titleFont">專案名稱</th>
+                        <th class="titleFont memRWD_992">專案發起日期</th>
+                        <th class="titleFont memRWD_992">專案結束日期</th>
+                        <th class="titleFont memRWD_992">目標金額</th>
+                        <!-- <th class="titleFont memRWD_992">專案狀態</th> -->
+                        <th class="titleFont memRWD_992">捐款日期</th>
+                        <th class="titleFont">捐款金額</th>
+                    </tr>
+                    <tr v-for="atdo in atdonationdatas">
+                        <td>{{atdo.fundNo}}</td>
+                        <td style="width: 20%;"><img v-bind:src="'./img/donation/projectImg/'+ atdo.fundImg" style="width: 100%; display: block;"> </td>
+                        <td>{{atdo.fundTitle}} {{atdo.fundName}}</td>
+                        <td class="memRWD_992">{{atdo.fundStartDate}}</td>
+                        <td class="memRWD_992">{{atdo.fundEndDate}}</td>
+                        <td class="memRWD_992">NT${{atdo.fundGoal}}</td>
+                        <td class="memRWD_992">{{atdo.atFundDate}}</td>
+                        <td>NT${{atdo.fundNowAmount}}</td>
+                    </tr>
+                    <!-- <tr>
+                        <td>03</td>
+                        <td><img src="https://picsum.photos/80/110"></td>
+                        <td>對每個人都笑開懷的天真浪浪小黃</td>
+                        <td class="memRWD_992">2020-02-01</td>
+                        <td class="memRWD_992">2020-04-30</td>
+                        <td class="memRWD_992">$10000</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td class="memRWD_992">2020-02-20</td>
+                        <td>$700</td>
+                    </tr> -->
+                    <!-- <tr>
+                        <td>02</td>
+                        <td><img src="https://picsum.photos/80/110"></td>
+                        <td>棲息處遭破壞，短尾的可愛小橘</td>
+                        <td class="memRWD_992">2020-02-01</td>
+                        <td class="memRWD_992">2020-04-30</td>
+                        <td class="memRWD_992">$8000</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td class="memRWD_992">2020-02-20</td>
+                        <td>$200</td>
+                    </tr> -->
+                    <!-- <tr>
+                        <td>01</td>
+                        <td><img src="https://picsum.photos/80/110"></td>
+                        <td>短小害怕受傷的魯肉在床底下才會安心</td>
+                        <td class="memRWD_992">2020-02-01</td>
+                        <td class="memRWD_992">2020-04-30</td>
+                        <td class="memRWD_992">$135000</td>
+                        <td class="memRWD_992">進行中</td>
+                        <td class="memRWD_992">2020-02-20</td>
+                        <td>$500</td>
+                    </tr> -->
+                </table>                
+            </div>
+        </section>
+    </div>
+</div>
+>>>>>>> develop
 
 
 
 
                 </div>
-                <div id="tab-4" class="tab-content">
+                <!-- <div id="tab-4" class="tab-content"> -->
                     <!-- 貼文專區 -->
+<<<<<<< HEAD
                     <ul class="small-tabs">
                         <li class="small-tab-link current" data-tab="small-tab-3">我的貼文</li>
                         <li class="small-tab-link" data-tab="small-tab-4">貼文留言</li>
@@ -621,9 +864,125 @@
                             </table>
                         </div>
                     </section>
+=======
+                    
+                <!-- </div> -->
+                <!-- <div id="tab-5" class="tab-content"> -->
+                    <!-- 照片牆專區 -->
+                    
+                <!-- </div> -->
+                <div id="tab-6" class="tab-content">
+                    <!-- 我的訂單 -->
+                    <section class="memTable">
+    <h3>我的訂單</h3>
+    <div class="memTable_content">
+        <table id="memOrderList">
+            <tr>
+                <th class="titleFont">訂單編號</th>
+                <th class="titleFont">商品圖案</th>
+                <th class="titleFont memRWD_992">購買日期</th>
+                <th class="titleFont memRWD_992">收件人姓名</th>
+                <th class="titleFont memRWD_992">收件人電話</th>
+                <th class="titleFont memRWD_992">收件人地址</th>
+                <th class="titleFont memRWD_992">商品數量</th>
+                <th class="titleFont memRWD_992">訂單金額</th>
+                <th class="titleFont">訂單狀態</th>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<script>
+    window.addEventListener('load', function() {
+        function memOrderList() {
+            var memNo = member.memNo;
+            var formData = new FormData();
+            formData.append("memNo", memNo);
+            $.ajax({
+                url: "php/memOrderList.php",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                type: "post",
+                dataType: "json",
+                success: function(data) {
+                    msg = "";
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].orderStatus == 0) {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td class="orderStatus">待出貨</td>
+                                </tr>
+                            `;
+                        } else if (data[i].orderStatus == 1) {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td orderStatus">已出貨</td>
+                                </tr>
+                            `;
+                        } else if (data[i].orderStatus == 2) {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td orderStatus">待收貨</td>
+                                </tr>
+                            `;
+                        } else {
+                            msg +=
+                                `
+                                <tr>
+                                    <td>${i+1}</td>
+                                    <td><img src="./img/customized_collar/orderRecord/${data[i].orderPic}.png" width="200" class="tagZoomImgs"></td>
+                                    <td class="memRWD_992">${data[i].orderDate}</td>
+                                    <td class="memRWD_992">${data[i].orderName}</td>
+                                    <td class="memRWD_992">${data[i].orderPhone}</td>
+                                    <td class="memRWD_992">${data[i].orderAddress}</td>
+                                    <td class="memRWD_992">${data[i].orderQty}</td>
+                                    <td class="memRWD_992">${data[i].orderPrice}</td>
+                                    <td orderStatus">已取貨</td>
+                                </tr>
+                            `;
+                        }
+                    }
+                    $('#memOrderList').append(msg);
+                }
+            })
+        }
+        memOrderList();
+    })
+</script>
+>>>>>>> develop
                 </div>
-                <div id="tab-7" class="tab-content">
+                <!-- <div id="tab-7" class="tab-content"> -->
                     <!-- 我的收藏 -->
+<<<<<<< HEAD
                     <ul class="small-tabs">
                         <li class="small-tab-link current" data-tab="small-tab-7">募款收藏</li>
                         <li class="small-tab-link" data-tab="small-tab-8">貼文收藏</li>
@@ -734,6 +1093,10 @@
                         </div>
                     </div>
                 </div>
+=======
+                    
+                <!-- </div> -->
+>>>>>>> develop
                 <div id="tab-8" class="tab-content">
                     <!-- 管理黑名單 -->
                     <section class="blacklistTable">
@@ -748,18 +1111,26 @@
         <!-- container -->
     </section>
     <footer>
-        <p class="titleFont smalltext">
-            © 2020 Bring Love Home
-        </p>
-    </footer>
+    <div class="page_top" id="page_top">
+        <span class="titleFont smalltext">PAGE TOP</span>
+    </div>
+    <p class="titleFont smalltext">
+        © 2020 Bring Love Home
+    </p>
+</footer>
+
+<script src="./js/page_top.js"></script>
+
 
 
     <script src="./js/hamburger.js"></script>
     <!-- <script src="./js/header_slide.js"></script> -->
+    <script src="./js/page_top.js"></script>
     <script src="./js/signInOut.js"></script>
     <script src="./js/blacklistTable.js"></script>
-    <!-- Login -->
-    <script src="./js/signInOut.js"></script>
+    <script src="./js/memInfoTable.js"></script>
+    <!-- 寵物遺失回報 -->
+    <script src="./js/map_mc_lostrp.js"></script>
     <script>
 
         //section高度
@@ -802,11 +1173,9 @@
 
 
         // 會員中心子選單,按鈕點擊滑出
-
         var winWidth = $(window).width();
-        var winHeight = $(window).height();
 
-        if (winWidth < 414) {
+        if (winWidth < 767) {
             $(document).ready(function () {
                 $('#filterBtn').click(function () {
                     $(this).parent('#tabs-container1').toggleClass('-showFilter');
@@ -814,17 +1183,11 @@
 
             });
         }
-        // let filterBtn = document.getElementById("filterBtn");
-        // let tabsContainer1 = document.getElementsByClassName("tabs-container1");
-        // window.addEventListener("load",function(){
-        //     //瓷片按鈕點擊滑出
-        //     filterBtn.onclick = function(){
-        //         tabsContainer1[0].classList.toggle("-showFilter")
-        //     }
-        // })
+
 
 
     </script>
+<<<<<<< HEAD
     <!-- 這是修改密碼的 圖片 點擊可切換顯示、隱藏密碼 start 3/26修改 -->
     <script>
          
@@ -844,6 +1207,10 @@
     </script>
     <!-- 這是修改密碼的 圖片 點擊可切換顯示、隱藏密碼 end 3/26 修改-->
 
+=======
+    <script src="./js/memberdonation.js"></script>
+    
+>>>>>>> develop
 </body>
 
 </html>

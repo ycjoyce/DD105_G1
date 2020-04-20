@@ -12,11 +12,74 @@
 @import 'layout/rwd';
 @import 'layout/cursor';
 @import 'layout/animation';
+@import url('https://fonts.googleapis.com/css?family=East+Sea+Dokdo&display=swap');
+
+// 地圖section
+@import 'layout/indexMap'; 
 
 @include header(fixed);
 
 body{
-    overflow-x: hidden !important;
+    width: 100vw;
+    overflow: hidden;
+    overflow-y: scroll;
+    // overflow-x: hidden !important;
+}
+#loading{
+    position: absolute;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background-color: $lightgreen;
+    opacity: 1;
+    transition: all 0.5s;
+    div.img{
+        width: 100px;
+        height: 220px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        background-position: right center;
+        background-size: 80px;
+        background-repeat: no-repeat;
+    }
+    #loadingText{
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        span{
+            span{
+                span{
+                    font-family: 'East Sea Dokdo', cursive;
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+    
+}
+#theText span{
+    font: 40px 'Candelia';
+    color: #5d5c5c;
+    @include rwd(lg){
+        font: 30px 'Candelia';
+    }
+    @include rwd(md){
+        font: 30px 'Candelia';
+    }
+    @include rwd(sm){
+        font: 30px 'Candelia';
+    }
+    @include rwd(ss){
+        font: 20px 'Candelia';
+    }
+    @include rwd(mini){
+        font: 20px 'Candelia';
+    }
 }
 
 section.intro{
@@ -41,6 +104,10 @@ section.intro{
             left: 30px;
             top: 50%;
         }
+        @include rwd(mini){
+            left: 30px;
+            top: 60%;
+        }
         h1{
             font-size: 40px;
             color: rgb(100, 100, 100);
@@ -56,9 +123,12 @@ section.intro{
             @include rwd(ss){
                 font-size: 20px;
             }
+            @include rwd(mini){
+                font-size: 20px;
+            }
         }
         div{
-            img{
+            img.text{
                 height: 80px;
                 display:block;
                 margin-bottom: 20px;
@@ -74,6 +144,82 @@ section.intro{
                 @include rwd(ss){
                     height: 50px;
                     margin-bottom: 10px;
+                }
+                @include rwd(mini){
+                    height: 50px;
+                    margin-bottom: 10px;
+                }
+            }
+            div{
+                position: relative;
+                margin-top: 20px;
+                img.dog_gif{
+                    position: absolute;
+                    left: 0;
+                    top: -40px;
+                    width: 80px;
+                    z-index: 4;
+                    @include rwd(ss){
+                        // top: 100px;
+                        display: none;
+                    }
+                    @include rwd(mini){
+                        // top: 100px;
+                        display: none;
+                    }
+                }
+                img.house{
+                    position: absolute;
+                    left: 370px;
+                    top: -40px;
+                    width: 50px;
+                    z-index: 3;
+                    @include rwd(lg){
+                        left: 270px;
+                    }
+                    @include rwd(md){
+                        left: 270px;
+                    }
+                    @include rwd(sm){
+                        left: 220px;
+                    }
+                    @include rwd(ss){
+                        // left: 80vw;
+                        // top: 100px;
+                        display: none;
+                    }
+                    @include rwd(mini){
+                        // left: 80vw;
+                        // top: 100px;
+                        display: none;
+                    }
+                }
+                img.heart{
+                    position: absolute;
+                    left: 385px;
+                    // top: -70px;
+                    top: -20px;
+                    width: 20px;
+                    z-index: 2;
+                    @include rwd(lg){
+                        left: 285px;
+                    }
+                    @include rwd(md){
+                        left: 285px;
+                    }
+                    @include rwd(sm){
+                        left: 235px;
+                    }
+                    @include rwd(ss){
+                        // left: 80vw;
+                        // top: 120px;
+                        display: none;
+                    }
+                    @include rwd(mini){
+                        // left: 80vw;
+                        // top: 120px;
+                        display: none;
+                    }
                 }
             }
         }
@@ -98,6 +244,10 @@ section.intro{
             margin: 5vh 0 15vh 0;
             height: 70vh;
         }
+        @include rwd(mini){
+            margin: 5vh 0 15vh 0;
+            height: 70vh;
+        }
         div{
             width: 100%;
             height: 100%;
@@ -109,6 +259,18 @@ section.intro{
             background-size: cover;
             -webkit-transform: scale(1.1);
                     transform: scale(1.1);
+            img.bubble{
+                width: 18vw;
+                position:absolute;
+                top: -18vw;
+
+            }
+            #bubble2{
+                width: 12vw;
+            }
+            #bubble3{
+                width: 15vw;
+            }
         }
     }
     div.scroll{
@@ -133,6 +295,11 @@ section.intro{
             bottom: 5vh;
         }
         @include rwd(ss){
+            left: 100%;
+            transform: translateX(-90%);
+            bottom: 4vh;
+        }
+        @include rwd(mini){
             left: 100%;
             transform: translateX(-90%);
             bottom: 4vh;
@@ -175,9 +342,17 @@ section.intro{
         @include rwd(ss){
             height: 50%;
         }
+        @include rwd(mini){
+            height: 50%;
+        }
         img{
             position: absolute;
-            
+            @include rwd(ss){
+                display: none;
+            }
+            @include rwd(mini){
+                display: none;
+            }
             &:first-child{
                 width: 200px;
                 left: -50px;
@@ -241,6 +416,11 @@ section.about{
             position: relative;
             z-index: 2;
         }
+        @include rwd(mini){
+            margin: 0 0 0 30px;
+            position: relative;
+            z-index: 2;
+        }
     }
     div.aboutCard{
         border-radius: 10px 0 0 10px;
@@ -260,6 +440,10 @@ section.about{
                 float: none;
                 margin: 0 auto;
              }
+             @include rwd(mini){
+                float: none;
+                margin: 0 auto;
+             }
             div.about{
                 width: 80%;
                 height: 70%;
@@ -273,6 +457,9 @@ section.about{
                 @include rwd(ss){
                     width: 60%;
                 }
+                @include rwd(mini){
+                    width: 60%;
+                }
                 h2{
                     margin-bottom: 50px;
                     @include rwd(md){
@@ -284,6 +471,9 @@ section.about{
                     @include rwd(ss){
                         white-space: nowrap;
                     }
+                    @include rwd(mini){
+                        white-space: nowrap;
+                    }
                     img{
                         height: 45px;
                         display: inline-block;
@@ -293,11 +483,17 @@ section.about{
                         @include rwd(ss){
                             margin-right: 10px;
                         }
+                        @include rwd(mini){
+                            display: none;
+                        }
                     }
                 }
                 .btn.gray{
                     margin-top: 70px;
                     @include rwd(ss){
+                        margin-top: 50px;
+                    }
+                    @include rwd(mini){
                         margin-top: 50px;
                     }
                 }
@@ -312,6 +508,9 @@ section.about{
                 display: none;
             }
             @include rwd(ss){
+                display: none;
+            }
+            @include rwd(mini){
                 display: none;
             }
             video{
@@ -335,6 +534,9 @@ section.about{
                 display: none;
             }
             @include rwd(ss){
+                display: none;
+            }
+            @include rwd(mini){
                 display: none;
             }
             &.left{
@@ -373,7 +575,11 @@ section.about{
                     font-size: 2.5rem;
                 }
                 @include rwd(ss){
-                    font-size: 2rem;
+                    font-size: 1.5rem;
+                    white-space: nowrap;
+                }
+                @include rwd(mini){
+                    font-size: 1.5rem;
                     white-space: nowrap;
                 }
             }
@@ -411,6 +617,7 @@ section.about{
                 transition: all 0.5s ease;
                 margin-right: 10px;
                 box-shadow: 0 0 5px #ccd inset;
+                cursor: pointer;
                 &.on{
                     position: relative;
                     &::after{
@@ -470,16 +677,60 @@ section.where{
         height: 500px;
         position: relative;
     }
+    
+  
+    #mapCardBtn{
+        &.hide{
+            left: 100%;
+            top: 35%;
+            transform: translate(calc(-100% - 20px),-50%);
+        }
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        background-color: $darkgreen;
+        border: none;
+        outline: none;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        top: 35%;
+        transition: all 0.5s;
+        color: rgb(237, 251, 229);
+        display: none;
+        @include rwd(ss){
+            display: block;
+        }
+        @include rwd(mini){
+            display: block;
+        }
+        img{
+            transition: all 0.5s;
+            width: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-53%);
+            &.rotate{
+                transform: translate(-50%,-53%) rotate(180deg);
+            }
+        }
+    }
     div.card{
+        transition: all 0.5s;
+        &.hide{
+            display: none;
+        }
         float:right;
         position: relative;
         top: -200px;
-        z-index: 2;
+        z-index: 4;
         background: #fff;
         border-radius: 10px 0 0 10px;
         box-shadow: #999 0px 0px 5px;
         padding: 30px 80px 30px 60px;
-        position: relative;
+        max-width: 100%;
+        display: block;
         @include rwd(lg){
             padding: 30px 50px 30px 30px;
             top: -230px;
@@ -495,7 +746,14 @@ section.where{
         @include rwd(ss){
             padding:25px;
             top: -230px;
+            width: 100%;
         }
+        @include rwd(mini){
+            padding:25px;
+            top: -230px;
+            width: 100%;
+        }
+        
         h3{
             position: relative;
             a{
@@ -513,40 +771,137 @@ section.where{
                 position: relative;
                 right: -10px;
                 top: -10px;
+                opacity: 1;
+                transition: opacity 0.5s;
+                @include rwd(ss){
+                    display: none;
+                }
+                @include rwd(mini){
+                    display: none;
+                }
             }
             &.active{
                 &::before{
                     content: '';
                     display: inline-block;
-                    background-color: $lightgreen;
-                    height: 1px;
+                    background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                    height: 100%;
                     position: absolute;
                     bottom: 0;
                     left: 0;
                     width: 0%;
-                    animation: widthChange 1s;
+                    animation: widthChange 0.5s ease-in-out;
+                }
+                &::after{
+                    opacity: 0;
                 }
             }
         }
         p{
             margin: 20px 0 30px 0;
+            transition: all 0.5s;
+            position: relative;
+            &.active{
+                &::before{
+                    content: '';
+                    display: inline-block;
+                    background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                    height: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0%;
+                    animation: widthChange 0.5s ease-in-out;
+                }
+            }
         }
-        img{
+        div.trigger{
             display: inline-block;
-            position: absolute;
-            width: 200px;
-            bottom: 20px;
-            right: 20px;
-            opacity: 0.2;
+            .btn.darkgreen{
+                width:150px;
+                filter: hue-rotate(0);
+                transition: all 0.5s;
+                &.active{
+                    filter: hue-rotate(90deg);
+                }
+                &.lostPet{
+                    background-color: #ff5050;
+                    .border:nth-of-type(1){
+                        top:0;
+                        left:0;
+                        width:0;
+                        height:0;
+                        border-top:1px solid #ff5050;
+                    }
+                    .border:nth-of-type(2){
+                        top:0;
+                        right:0;
+                        width:0;
+                        height:0;
+                        border-right:1px solid #ff5050;
+                    }
+                    .border:nth-of-type(3){
+                        bottom:0;
+                        right:0;
+                        width:0;
+                        height:0;
+                        border-bottom:1px solid #ff5050;
+                    }
+                    .border:nth-of-type(4){
+                        bottom:0;
+                        left:0;
+                        width:0;
+                        height:0;
+                        border-left:1px solid #ff5050;
+                    }
+                    &:hover{
+                        background-color: #fff;
+                        span{
+                            color: #ff5050;
+                        }
+                        .border:nth-of-type(1){
+                            width:100%;
+                        }
+                        .border:nth-of-type(2){
+                            height:100%;
+                        }
+                        .border:nth-of-type(3){
+                            width:100%;
+                        }
+                        .border:nth-of-type(4){
+                            height:100%;
+                        }
+                    }
+                }
+            }
         }
-        .btn.darkgreen{
-            width:150px;
-        }
+        
         @include changePage(){
             float: right;
             position: relative;
             bottom: -15px;
             margin-left: 50px;
+        }
+        div.changePage{
+            @include rwd(ss){
+                margin-left: 0;
+            }
+            @include rwd(mini){
+                margin-left: 0;
+            }
+            button{
+                transform: translateY(0);
+                transition: all 0.5s ease;
+                &.active{
+                    transform: translateY(3px);
+                }
+                @include rwd(ss){
+                    width: 40px;
+                }
+                @include rwd(mini){
+                    width: 40px;
+                }
+            }
         }
     }
     div.readMore{
@@ -554,6 +909,9 @@ section.where{
         background-image: url(../img/paper/paper_gray.png);
         position: relative;
         @include rwd(ss){
+            width: 100%;
+        }
+        @include rwd(mini){
             width: 100%;
         }
         img.cat{
@@ -564,7 +922,10 @@ section.where{
                 left: -70px;
             }
             @include rwd(ss){
-                left: -180px;
+                display: none;
+            }
+            @include rwd(mini){
+                display: none;
             }
         }
         .btn.gray{
@@ -594,6 +955,9 @@ section.donation{
     @include rwd(ss){
         padding-bottom: 0;
     }
+    @include rwd(mini){
+        padding-bottom: 0;
+    }
     h3.enSpecialFont{
         font-size: 3rem;
         color: rgba(11, 100, 33, 0.123);
@@ -621,6 +985,13 @@ section.donation{
             top: 30px;
             left: 30px;
         }
+        @include rwd(mini){
+            font-size: 2.5rem;
+            z-index: 2;
+            color: rgba(228, 235, 230, 0.075);
+            top: 30px;
+            left: 30px;
+        }
     }
     div.rightSide{
         position: absolute;
@@ -636,6 +1007,10 @@ section.donation{
             float: right;
         }
         @include rwd(ss){
+            position: relative;
+            float: right;
+        }
+        @include rwd(mini){
             position: relative;
             float: right;
         }
@@ -659,6 +1034,11 @@ section.donation{
                 top: 120px;
             }
             @include rwd(ss){
+                left: 20px;
+                top: 120px;
+                width: 90%;
+            }
+            @include rwd(mini){
                 left: 20px;
                 top: 120px;
                 width: 90%;
@@ -688,6 +1068,11 @@ section.donation{
                     right: 10px;
                 }
                 @include rwd(ss){
+                    position: absolute;
+                    top: 220px;
+                    right: 10px;
+                }
+                @include rwd(mini){
                     position: absolute;
                     top: 220px;
                     right: 10px;
@@ -732,6 +1117,10 @@ section.donation{
                 margin: 0 auto;
                 padding-top: 0;
             }
+            @include rwd(mini){
+                margin: 0 auto;
+                padding-top: 0;
+            }
             div.img{
                 border-radius: 10px;
                 height: 600px;
@@ -742,14 +1131,17 @@ section.donation{
                 @include rwd(ss){
                     border-radius: 10px 0 0 10px;
                 }
+                @include rwd(mini){
+                    border-radius: 10px 0 0 10px;
+                }
                 img{
                     display: inline-block;
-                    min-height: 100%;
+                    height: 100%;
                     min-width: 100%;
                     position: relative;
                     left: 50%;
                     transform: translateX(-50%) scale(1.3);
-                    filter: brightness(0.3);
+                    filter: brightness(0.5);
                     animation: imgAnimate 12s ease infinite alternate;
                 }
             }
@@ -776,6 +1168,7 @@ section.donation{
                 position: relative;
                 float:right;
                 top: -150px;
+                max-width: 500px;
                 @include fatherHeight();
                 @include rwd(lg){
                     padding: 20px 30px 20px 30px;
@@ -793,14 +1186,46 @@ section.donation{
                     padding: 20px 20px 20px 30px;
                     border-radius: 10px 0 0 10px;
                 }
+                @include rwd(mini){
+                    padding: 20px 20px 20px 30px;
+                    border-radius: 10px 0 0 10px;
+                }
                 span.projectNum{
                     float:left;
                     position: relative;
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 span.date{
                     float:right;
+                    position: relative;
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 h4{
+                    position: relative;
                     a{
                         display: block;
                         clear: both;
@@ -812,13 +1237,34 @@ section.donation{
                         -webkit-line-clamp: 2;
                         overflow: hidden;
                     }
+                    &.active{
+                        &::before{
+                            content: '';
+                            display: inline-block;
+                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                            height: 100%;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0%;
+                            animation: widthChange 0.5s ease-in-out;
+                        }
+                    }
                 }
                 .btn.darkgreen{
                     position: relative;
                     top: 5px;
-                    width: 150px;
+                    width: 120px;
+                    filter: hue-rotate(0);
+                    transition: all 0.5s;
                     @include rwd(ss){
                         width: 100px;
+                    }
+                    @include rwd(mini){
+                        display: none;
+                    }
+                    &.active{
+                        filter: hue-rotate(90deg);
                     }
                 }
                 div.showNum{
@@ -829,9 +1275,15 @@ section.donation{
                     @include rwd(ss){
                         width: 150px;
                     }
+                    @include rwd(mini){
+                        width: 100%;
+                    }
                     div.cur{
                         position: relative;
                         right: -10px;
+                        @include rwd(mini){
+                            right: 0px;
+                        }
                         span{
                             display:block;
                             &.peoNum{
@@ -840,6 +1292,20 @@ section.donation{
                                     font-size: 1.3rem;
                                     color: $darkgreen;
                                     display: inline-block;
+                                    position: relative;
+                                    &.active{
+                                        &::before{
+                                            content: '';
+                                            display: inline-block;
+                                            background: linear-gradient(to left bottom, #9fe989, #a9e0b1df);
+                                            height: 100%;
+                                            position: absolute;
+                                            bottom: 0;
+                                            left: 0;
+                                            width: 0%;
+                                            animation: widthChange 0.5s ease-in-out;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -847,10 +1313,14 @@ section.donation{
                     div.dogAnimate{
                         position: relative;
                         top: -12px;
+                        overflow: hidden;
                         @include rwd(sm){
                             top: -8px;
                         }
                         @include rwd(ss){
+                            top: -5px;
+                        }
+                        @include rwd(mini){
                             top: -5px;
                         }
                         span{
@@ -858,6 +1328,24 @@ section.donation{
                             top: 50%;
                             left: 50%;
                             transform: translate(calc(-50% + 5px),calc(-50% - 5px));
+                            z-index: 3;
+                        }
+                        img{
+                            width: 100%;
+                            position: relative;
+                            z-index: 2;
+                        }
+                        #wave{
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            left: 50%;
+                            // bottom: -80%;
+                            z-index: 1;
+                            transform: translateX(-40%);
+                            background: linear-gradient(127deg, rgba(187, 196, 62, 0.8), rgba(188, 197, 60, 0) 70.71%),
+                                        linear-gradient(217deg, rgba(126, 228, 79, 0.8), rgba(117, 216, 71, 0) 70.71%);
+                            animation: blobRadius 3s ease infinite, blobBackground 15s ease infinite;
                         }
                     }
                 }
@@ -871,6 +1359,18 @@ section.donation{
                 }
                 @include rwd(ss){
                     right: 20px;
+                }
+                @include rwd(mini){
+                    right: 20px;
+                }
+            }
+            div.changePage{
+                button{
+                    transform: translateY(0);
+                    transition: all 0.5s ease;
+                    &.active{
+                        transform: translateY(3px);
+                    }
                 }
             }
             div.progress_bar{
@@ -908,6 +1408,9 @@ section.donation{
             display:none;
         }
         @include rwd(ss){
+            display:none;
+        }
+        @include rwd(mini){
             display:none;
         }
         div.card{
@@ -963,6 +1466,7 @@ section.donation{
                 padding: 30px 15px;
                 h4{
                     a{
+                        min-height: 60px;
                         margin: 5px 0 20px 0;
                         text-decoration: none;
                         font-size: 1.3rem;
@@ -981,13 +1485,14 @@ section.donation{
                     span.now{
                         display: block;
                         position:relative;
-                        right: -20px;
+                        text-align: right;
                     }
                     a.goal{
                         display: block;
                         position: relative;
                         color: $darkgreen;
                         position: relative;
+                        text-align: right;
                         text-decoration: none;
                         &::after{
                             content: '';
@@ -1024,6 +1529,9 @@ section.collar{
         @include rwd(ss){
             height: 350px;
         }
+        @include rwd(mini){
+            height: 350px;
+        }
         h3.enSpecialFont{
             font-size: 5rem;
             color: rgba(100, 61, 11, 0.055);
@@ -1040,9 +1548,14 @@ section.collar{
                 top: 150px;
             }
             @include rwd(ss){
-                font-size: 5rem;
-                right: 30px;
-                top: 150px;
+                font-size: 3rem;
+                right: 0px;
+                top: 100px;
+            }
+            @include rwd(mini){
+                font-size: 3rem;
+                right: 0px;
+                top: 0px;
             }
         }
         div.title{
@@ -1066,12 +1579,19 @@ section.collar{
                 padding-left: 30px;
                 transform: translateY(-130%);
             }
+            @include rwd(mini){
+                padding-left: 30px;
+                transform: translateY(-130%);
+            }
             h2{
                 margin-bottom: 30px;
                 @include rwd(sm){
                     margin-bottom: 20px;
                 }
                 @include rwd(ss){
+                    margin-bottom: 20px;
+                }
+                @include rwd(mini){
                     margin-bottom: 20px;
                 }
             }
@@ -1092,6 +1612,10 @@ section.collar{
             }
             @include rwd(ss){
                 transform: translateY(-330%);
+                width: 190px;
+            }
+            @include rwd(mini){
+                transform: translateY(20%);
                 width: 190px;
             }
         }
@@ -1124,7 +1648,7 @@ section.collar{
         }
     }
     div.middle{
-        background-image: url(../img/paper/paper_1.png);
+        background-image: url(../img/paper/paper_0.png);
         height: 150px;
         position: relative;
         img{
@@ -1147,6 +1671,9 @@ section.collar{
             @include rwd(ss){
                 width: 75%;
             }
+            @include rwd(mini){
+                width: 75%;
+            }
         }
         div.left{
             padding-left: 110px;
@@ -1164,6 +1691,9 @@ section.collar{
                 padding-left: 30px;
             }
             @include rwd(ss){
+                padding-left: 30px;
+            }
+            @include rwd(mini){
                 padding-left: 30px;
             }
             span{
@@ -1190,6 +1720,9 @@ section.collar{
                         @include rwd(ss){
                             display:none;
                         }
+                        @include rwd(mini){
+                            display:none;
+                        }
                     }
                 }
                 &:nth-child(2){
@@ -1200,6 +1733,9 @@ section.collar{
                         right: -20px;
                     }
                     @include rwd(ss){
+                        right: -20px;
+                    }
+                    @include rwd(mini){
                         right: -20px;
                     }
                 }
@@ -1232,6 +1768,10 @@ section.collar{
                 margin-right: 30px;
                 top: -20px;
             }
+            @include rwd(mini){
+                margin-right: 30px;
+                top: -20px;
+            }
             &:hover{
                 &::after{
                     transform: translateX(5px) scaleX(1.3);
@@ -1252,6 +1792,10 @@ section.collar{
                     left: 50px;
                 }
                 @include rwd(ss){
+                    display:block;
+                    left: 50px;
+                }
+                @include rwd(mini){
                     display:block;
                     left: 50px;
                 }
@@ -1291,15 +1835,22 @@ section.collar{
             overflow-x: scroll;
             overflow-y: hidden;
         }
+        @include rwd(mini){
+            overflow-x: scroll;
+            overflow-y: hidden;
+        }
         div.option{
             width: calc(100% / 7);
             height: 150px;
             flex-shrink: 0;
             @include rwd(sm){
-                width: 100px;
+                min-width: 100px;
             }
             @include rwd(ss){
-                width: 100px;
+                min-width: 100px;
+            }
+            @include rwd(mini){
+                min-width: 100px;
             }
             div{
                 display: inline-block;
@@ -1331,7 +1882,8 @@ section.collar{
                 }
                 img{
                     display: inline-block;
-                    width: 80%;
+                    width: 70%;
+                    max-width: 150px;
                     position: relative;
                     top: 50%;
                     left: 50%;
@@ -1378,6 +1930,9 @@ section.forum{
     @include rwd(ss){
         padding-bottom: 80px;
     }
+    @include rwd(mini){
+        padding-bottom: 80px;
+    }
     div.title{
         display: flex;
         justify-content: space-between;
@@ -1397,6 +1952,11 @@ section.forum{
             flex-direction: column;
             align-items: flex-start;
         }
+        @include rwd(mini){
+            padding-top: 150px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         h3.enSpecialFont{
             font-size: 5rem;
             color: rgba(255, 255, 255, 0.5);
@@ -1410,6 +1970,11 @@ section.forum{
                 left: 10px;
             }
             @include rwd(ss){
+                left: 10px;
+            }
+            @include rwd(mini){
+                bottom: -80px;
+                font-size: 4rem;
                 left: 10px;
             }
         }
@@ -1428,6 +1993,10 @@ section.forum{
                 margin-left: 30px;
                 margin-bottom: 10px;
             }
+            @include rwd(mini){
+                margin-left: 30px;
+                margin-bottom: 10px;
+            }
         }
         p{
             margin-right: 110px;
@@ -1438,9 +2007,27 @@ section.forum{
                 margin-left: 30px;
             }
             @include rwd(ss){
-                margin-left: 30px;
-                position: relative;
-                z-index: 2;
+                display:none;
+            }
+            @include rwd(mini){
+                display:none;
+            }
+            &.hide{
+                display:none;
+                @include rwd(ss){
+                    display: inline-block;
+                    width: 270px;
+                    margin-right: 0;
+                    margin-left: 40px;
+                    z-index: 2;
+                }
+                @include rwd(mini){
+                    display: inline-block;
+                    width: 270px;
+                    margin-right: 0;
+                    margin-left: 40px;
+                    z-index: 2;
+                }
             }
         }
         @include changePage();
@@ -1457,6 +2044,9 @@ section.forum{
             @include rwd(ss){
                 right: 30px;
             }
+            @include rwd(mini){
+                right: 30px;
+            }
         }
     }
     @include scrollbar('div.cards');
@@ -1464,6 +2054,9 @@ section.forum{
         overflow-x: scroll;
         padding: 90px 30px 50px 30px;
         display: flex;
+        @include rwd(mini){
+            padding: 50px 30px 50px 30px;
+        }
         div.card{
             @include card();
             flex-direction: row;
@@ -1477,6 +2070,11 @@ section.forum{
                 margin-right: 30px;
             }
             @include rwd(ss){
+                width: 250px;
+                height: 350px;
+                margin-right: 30px;
+            }
+            @include rwd(mini){
                 width: 250px;
                 height: 350px;
                 margin-right: 30px;
@@ -1496,6 +2094,9 @@ section.forum{
                 @include rwd(ss){
                     height: 55%;
                 }
+                @include rwd(mini){
+                    height: 55%;
+                }
                 img{
                     height: 100%;
                     position: relative;
@@ -1511,6 +2112,10 @@ section.forum{
                     h4{
                         margin-bottom: 10px;
                         text-decoration: none;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
                     }
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
@@ -1527,6 +2132,9 @@ section.forum{
         position: relative;
         z-index:2;
         @include rwd(ss){
+            margin-top: 50px;
+        }
+        @include rwd(mini){
             margin-top: 50px;
         }
     }
@@ -1586,4 +2194,8 @@ section.forum{
     // *{
     //     border: 1px solid red;
     // }
+}
+
+@include rwd(mini) {
+	@include grid(mini, 12);
 }

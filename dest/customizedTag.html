@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>浪愛回家後台</title>
   <!-- Icons-->
-  <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+  <!-- <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
   <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
   <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+  <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"> -->
   <!-- Main styles for this application-->
   <link href="css/adminManage.css" rel="stylesheet">
 </head>
@@ -55,7 +55,7 @@
           <i class="icon-location-pin"></i>
         </a>
       </li> -->
-      <li class="nav-item mr-3 adminName">Sara 您好</li>
+      <li class="nav-item mr-3 adminName"></li>
 
       <li class="nav-item mr-3 dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -143,17 +143,17 @@
         <i class="nav-icon icon-drop"></i>GPS地圖管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="petFriendly.html">寵物友善空間管理</a>
+          <a class="nav-link" href="petFriendly.html">↪ 寵物友善空間管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="petFriendlyScore.html">寵物友善空間評論管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="base/carousel.html">寵物友善空間收藏管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="lostPetReport.html">寵物遺失回報管理</a>
-        </li>
+        </li> -->
         
         <!-- <li class="nav-item">
             <a class="nav-link" href="base/forms.html">
@@ -211,7 +211,7 @@
       <ul class="nav-dropdown-items">
         <li class="nav-item">
           <a class="nav-link" href="fundRaising.html">
-            <i class="nav-icon icon-cursor"></i> 募款專案管理</a>
+            <i class="nav-icon icon-cursor"></i>↪ 募款專案管理</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="buttons/button-group.html">
@@ -236,22 +236,22 @@
         <!-- <li class="nav-item">
           <a class="nav-link" href="icons/coreui-icons.html">客製化項圈管理</a>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="customizedColor.html">客製化顏色管理</a>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <a class="nav-link" href="icons/font-awesome.html">客製化字型管理</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="customizedTag.html">客製化吊牌管理</a>
+          <a class="nav-link" href="customizedTag.html">↪ 客製化吊牌管理</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="orderRecord.html">客製化訂單紀錄管理</a>
+          <a class="nav-link" href="orderRecord.html">↪ 客製化訂單紀錄管理</a>
         </li>
 
       </ul>
     </li>
-    <li class="nav-item nav-dropdown">
+    <!-- <li class="nav-item nav-dropdown">
       <a class="nav-link nav-dropdown-toggle" href="#">貼文區管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
@@ -283,8 +283,8 @@
         <li class="nav-item">
           <a class="nav-link" href="galleryCommentReport.html">照片牆留言檢舉管理</a>
         </li>
-      </ul>
-    </li>
+      </ul> 
+    </li> -->
     <li class="nav-item">
       <a class="nav-link" href="NewsAndActivity.html">活動/新聞/宣導管理</a>
     </li>
@@ -295,14 +295,14 @@
       <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon icon-pie-chart"></i>會員管理</a>
       <ul class="nav-dropdown-items">
         <li class="nav-item">
-          <a class="nav-link" href="memInfo.html" target="_top">會員資料管理</a>
+          <a class="nav-link" href="memInfo.html" target="_top">↪ 會員資料管理</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="blacklist.html" target="_top">黑名單管理</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="messageManage.html" target="_top">私信資料管理</a>
-        </li>
+        </li> -->
       </ul>
     </li>
   </ul>
@@ -334,79 +334,374 @@
       <div class="container-fluid">
    
        <!-- 中間內容 -->
-       <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <!-- <div class="card-header">Card title</div> -->
+       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<style>
+    .table tr {
+        /* border: 1px solid red; */
+        border-top: 1px solid #c8ced3;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .table tr th {
+        /* border: 1px solid blue; */
+        /* padding: 0px; */
+        min-width: 110px;
+    }
+    
+    .table tr td {
+        /* border: 1px solid green; */
+        display: flex;
+        align-items: center;
+        justify-self: flex-end;
+        padding: 0px;
+    }
+    
+    input[type="file"] {
+        width: 180px;
+        margin-left: 30px;
+    }
+    
+    .table tr:nth-child(2) td img {
+        padding: 10px 0px;
+    }
+    
+    @media screen and (max-width:575px) {
+        .table tr:nth-child(2) td {
+            flex-direction: column;
+        }
+        .table tr:nth-child(3) td {
+            flex-direction: column;
+        }
+    }
+</style>
+<div class="row equipsRow" id="tagContent">
+    <div class="col-xl-6 col-md-12">
+        <div class="card" style="margin: 10px;">
+            <div class="card-header">新增吊牌</div>
             <div class="card-body">
-              <!-- <button class="btn btn-block btn-outline-primary" type="button">Primary</button> -->
-              <table class="table table-responsive-sm table-sm">
-                <thead>
-                  <tr>
-                    <th>吊牌圖樣編號</th>
-                    <th>吊牌圖樣名稱</th>
-                    <th>吊牌圖樣來源</th>
-                    <th>解鎖所需點數</th>
-                    <th>吊牌圖案狀態</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Carwyn Fachtna</td>
-                    <td>2012/01/01</td>
-                    <td><input type="file"></td>
-                    <td></td>
-                    <td>
-                        <label class="switch switch-3d switch-success">
-                            <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                            <span class="switch-slider"></span>
-                        </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Nehemiah Tatius</td>
-                    <td>2012/02/01</td>
-                    <td><input type="file"></td>
-                    <td></td>
-                    <td>
-                        <label class="switch switch-3d switch-success">
-                            <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                            <span class="switch-slider"></span>
-                        </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Ebbe Gemariah</td>
-                    <td>2012/02/01</td>
-                    <td><input type="file"></td>
-                    <td></td>
-                    <td>
-                        <label class="switch switch-3d switch-success">
-                            <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                            <span class="switch-slider"></span>
-                        </label>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Eustorgios Amulius</td>
-                    <td>2012/03/01</td>
-                    <td><input type="file"></td>
-                    <td></td>
-                    <td>
-                        <label class="switch switch-3d switch-success">
-                            <input class="switch-input question_status modified" type="checkbox" name="question_status" value="1" style="border: 1px solid rgb(204, 204, 204);">
-                            <span class="switch-slider"></span>
-                        </label>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <table class="table">
+                        <tr>
+                            <th>吊牌名稱</th>
+                            <td>
+                                <input type="text" name="tagName" id="tagName" maxlength="15">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>輪播預覽圖</th>
+                            <td>
+                                <img src="" id="tagImage1" style="max-width: 100px;">
+                                <input type="file" name="tagSrc1" id="tagSrc1">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>客製化預覽圖</th>
+                            <td>
+                                <img src="" id="tagImage2" style="max-width: 100px;">
+                                <input type="file" name="tagSrc2" id="tagSrc2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>吊牌所需點數</th>
+                            <td>
+                                <input type="text" name="tagPoint" id="tagPoint" maxlength="15">
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                            <button class="btn btn-pill btn-block btn-primary confirmInsert" type="button" id="addTagBtn">新增吊牌</button>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                            <button class="btn btn-pill btn-block btn-secondary cancelClear" type="reset">清除</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+<script>
+    function doFirst() {
+        document.getElementById('tagSrc1').onchange = fileChange1;
+        document.getElementById('tagSrc2').onchange = fileChange2;
+    }
+
+    function fileChange1() {
+        let fileA = document.getElementById('tagSrc1').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(fileA);
+        readFile.addEventListener('load', function() {
+            imageData = document.getElementById('tagImage1');
+            imageData.src = this.result;
+        })
+    }
+
+    function fileChange2() {
+        let fileB = document.getElementById('tagSrc2').files[0];
+        let readFile = new FileReader();
+        readFile.readAsDataURL(fileB);
+        readFile.addEventListener('load', function() {
+            imageData = document.getElementById('tagImage2');
+            imageData.src = this.result;
+        })
+    }
+    window.addEventListener('load', doFirst);
+</script>
+
+<script>
+    function addTag() {
+        var formData = new FormData();
+        var tagName = document.getElementById('tagName');
+        var tagSrc1 = document.getElementById("tagSrc1");
+        var tagSrc2 = document.getElementById("tagSrc2");
+        var tagPoint = document.getElementById('tagPoint');
+        formData.append("tagName", tagName.value);
+        formData.append("tagSrc1", tagSrc1.files[0]);
+        formData.append("tagSrc2", tagSrc2.files[0]);
+        formData.append("tagPoint", tagPoint.value);
+        $.ajax({
+            url: "php/addTagInfo.php",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            type: 'post',
+            success: function() {
+                // window.location.reload();\
+                // getTagInfo();
+            }
+        })
+    }
+</script>
+
+<script>
+    function getTagInfo() {
+        $.ajax({
+            url: "php/getTagInfo.php",
+            type: "post",
+            dataType: "json",
+            success: function(data) {
+                msg = "";
+                for (i = 0; i < data.length; i++) {
+                    if (data[i].tagStatus == 1) {
+                        msg += `
+                            <div class="col-xl-6 col-md-12" tagabc="abc">
+                                <div class="card" style="margin: 10px;">
+                                    <div class="card-header" tagNo="${i + 1}">吊牌${i + 1}號</div>
+                                    <div class="card-body">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>吊牌名稱</th>
+                                                    <td>
+                                                        <input type="text" name="tagName" id="tagName${data[i].tagNo}" value="${data[i].tagName}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>輪播預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
+                                                        <!--<input type="file" name="tagSrc1" id="">
+                                                        <input type="text" name="tagSrc1_old" value="${data[i].tagSrc1}">-->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>客製化預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc2}" style="max-width: 100px;">
+                                                        <!--<input type="file" name="tagSrc2" id="">-->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>吊牌所需點數</th>
+                                                    <td>
+                                                        <input type="text" name="tagPoint" id="tagPoint${data[i].tagNo}" value="${data[i].tagPoint}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>上下架狀態</th>
+                                                    <td>
+                                                        <label class="switch switch-3d switch-success">
+                                                        <input class="switch-input equipStatus tagSwitch" type="checkbox" tagNo="${data[i].tagNo}" status="0" checked>
+                                                        <span class="switch-slider"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-primary updateTagBtn" type="button" value="確認修改">
+                                                </div>
+                                                <div class=" col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="button" value="刪除吊牌">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else if (data[i].tagStatus == 0) {
+                        msg += `
+                            <div class="col-xl-6 col-md-12" tagabc="abc">
+                                <div class="card" style="margin: 10px;">
+                                    <div class="card-header" tagNo="${i + 1}">吊牌${i + 1}號</div>
+                                    <div class="card-body">
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>吊牌名稱</th>
+                                                    <td>
+                                                        <input type="text" name="tagName" id="tagName${data[i].tagNo}" value="${data[i].tagName}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>輪播預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc1}" style="max-width: 100px;">
+                                                        <!--<input type="file" name="tagSrc1" id="">
+                                                        <input type="text" name="tagSrc1_old" value="${data[i].tagSrc1}">-->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>客製化預覽圖</th>
+                                                    <td>
+                                                        <img src="./img/customized_collar/new1/${data[i].tagSrc2}" style="max-width: 100px;">
+                                                        <!--<input type="file" name="tagSrc2" id="">-->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>吊牌所需點數</th>
+                                                    <td>
+                                                        <input type="text" name="tagPoint" id="tagPoint${data[i].tagNo}" value="${data[i].tagPoint}">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>上下架狀態</th>
+                                                    <td>
+                                                        <label class="switch switch-3d switch-success">
+                                                        <input class="switch-input equipStatus tagSwitch" type="checkbox" tagNo="${data[i].tagNo}" status="1">
+                                                        <span class="switch-slider"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-primary updateTagBtn" type="button" value="確認修改">
+                                                </div>
+                                                <div class=" col-6 col-sm-6 col-md-6 col-xl mb-3 mb-xl-0">
+                                                    <input class="tagNo${data[i].tagNo} btn btn-pill btn-block btn-secondary delTagBtn" type="button" value="刪除吊牌">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+                // $("#tagContent").empty();
+                $("#tagContent").append(msg);
+            }
+        })
+    }
+    getTagInfo();
+    $(document).ready(function() {
+        $('#addTagBtn').click(function() {
+            if (tagName.value == "") {
+                alert("請先設定吊牌姓名");
+                return;
+            } else if (tagSrc1.value == "" || tagSrc2.value == "") {
+                alert("請先上傳吊牌圖片");
+                return;
+            } else if (tagPoint.value == "") {
+                alert("請先設定吊牌點數");
+                return;
+            } else {
+                addTag();
+                alert("新增成功");
+                window.location.reload();
+                // $("#tagContent").append();
+            }
+        })
+    })
+
+    function delTag(sendTagNo) {
+        var xhr = new XMLHttpRequest();
+        var url = "./php/delTagInfo.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `tagNo=${sendTagNo}`;
+        xhr.send(data_info);
+    }
+    $(document).ready(function() {
+        $('.delTagBtn').click(function() {
+            let result = confirm("確定要刪除嗎?");
+            if (result) {
+                delTag(this.classList[0].substr(5));
+                alert("刪除成功");
+                $(this).parent().parent().parent().parent().parent().parent().remove();
+            } else {
+                return;
+            }
+        })
+    })
+
+    function updateTag(sendTagNo) {
+        var xhr = new XMLHttpRequest();
+        var url = "php/updateTagInfo.php";
+        var updateTagName = document.getElementById(`tagName${sendTagNo}`).value;
+        var updateTagPoint = document.getElementById(`tagPoint${sendTagNo}`).value;
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `tagNo=${sendTagNo}&tagName=${updateTagName}&tagPoint=${updateTagPoint}`;
+        xhr.send(data_info);
+        // console.log(data_info);
+    }
+    $(document).ready(function() {
+        $('.updateTagBtn').click(function() {
+            let result = confirm("確定要更新資料嗎?");
+            if (result) {
+                updateTag(this.classList[0].substr(5));
+                alert("更新成功");
+            } else {
+                return;
+            }
+        })
+    });
+
+
+
+    function updateTagRecord(sendTagNo, newTagStatus) {
+        var xhr = new XMLHttpRequest();
+        var url = "./php/updateTagStatus.php";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data_info = `tagNo=${sendTagNo}&tagStatus=${newTagStatus}`;
+        xhr.send(data_info);
+
+        xhr.onload = function() {
+            if (xhr.status == 200) {}
+        }
+    }
+
+    $(document).ready(function() {
+        $('.tagSwitch').change(function() {
+            updateTagRecord($(this).attr("tagNo"), $(this).attr("status"))
+            if ($(this).attr("status") == 1) {
+                $(this).attr("status", "0");
+                alert("吊牌狀態更新成功 , 吊牌已成功上架");
+            } else {
+                $(this).attr("status", "1");
+                alert("吊牌狀態更新成功 , 吊牌已成功下架");
+            }
+        })
+    });
+</script>
        <!-- end -->
       </div>
     </main>
@@ -711,17 +1006,7 @@
       </div>
     </aside>
   </div>
-  <footer>
-    <div class="page_top" id="page_top">
-        <span class="titleFont smalltext">PAGE TOP</span>
-    </div>
-    <p class="titleFont smalltext">
-        © 2020 Bring Love Home
-    </p>
-</footer>
-
-<script src="./js/page_top.js"></script>
-
+ 
   <!-- CoreUI and necessary plugins-->
   <script src="./js/jquery.min.js"></script>
   <script src="./js/popper.min.js"></script>
@@ -729,5 +1014,6 @@
   <script src="./js/pace.min.js"></script>
   <script src="./js/perfect-scrollbar.min.js"></script>
   <script src="./js/coreui.min.js"></script>
+  <script src="./js/backend-managerName.js"></script>
 </body>
 </html>

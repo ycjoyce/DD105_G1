@@ -90,7 +90,7 @@
       display: flex;
       align-items: stretch;
       overflow: hidden;
-      padding-bottom: 30px;
+      padding-bottom: 5px;
     }
 
     .ui-article {
@@ -204,6 +204,9 @@
 
     .ui-article[data-active] {
       transform: translateX(0%);
+      @media (max-width: 414px) {
+        margin-bottom: 30px;
+      }
     }
     .ui-article[data-active]:before {
       opacity: 0;

@@ -1,0 +1,312 @@
+.col-12.box {
+  position        : fixed;
+  top             : 0%;
+  width           : 100%;
+  height          : 100%;
+  background-color: rgba(0, 0, 0, 0.425);
+  overflow        : hidden;
+  // z-index      : -1;
+  opacity         : 1;
+  transition      : opacity .5s;
+  .content {
+    background-color: white;
+    width           : 100%;
+    max-width       : 1000px;
+    padding         : 10px;
+    position        : absolute;
+    border-radius   : 10px;
+    top             : 50%;
+    left            : 50%;
+    transform       : translate(-50%, -50%);
+    border          : 1px solid salmon;
+    /*--------------------
+Buttons
+--------------------*/
+    .btn {
+      margin: 20px 0;
+      .cancel {
+        width     : 150px;
+        height    : 40px;
+        border    : 1px solid #647926;
+        text-align: center;
+        cursor    : pointer;
+        color     : #647926;
+        float     : right;
+        margin    : 20px 0;
+        outline   : none;
+      }
+    }
+    /*--------------------
+  Form
+  --------------------*/
+    .form {
+      fieldset {
+        border  : none;
+        padding : 0;
+        padding : 10px 0;
+        position: relative;
+        clear   : both;
+        &.fieldset-expiration {
+          float: left;
+          width: 60%;
+          & .select {
+            width       : 84px;
+            margin-right: 12px;
+            float       : left;
+          }
+        }
+        &.fieldset-ccv {
+          clear: none;
+          float: right;
+          width: 86px;
+        }
+        label {
+          display       : block;
+          text-transform: uppercase;
+          color         : #555555;
+          margin-bottom : 5px;
+          font-weight   : bold;
+        }
+        input,
+        .select {
+          width        : 100%;
+          height       : 38px;
+          color        : #555555;
+          padding      : 10px;
+          border-radius: 2px;
+          outline      : none !important;
+          border       : 1px solid hsla(0, 0, 0, 0.3);
+          &.input-cart-number {
+            width       : 82px;
+            display     : inline-block;
+            margin-right: 8px;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+        .select {
+          position: relative;
+          &::after {
+            content       : '';
+            border-top    : 8px solid #222;
+            border-left   : 4px solid transparent;
+            border-right  : 4px solid transparent;
+            position      : absolute;
+            z-index       : 2;
+            top           : 14px;
+            right         : 10px;
+            pointer-events: none;
+          }
+          select {
+            -webkit-appearance: none;
+            -moz-appearance   : none;
+            appearance        : none;
+            position          : absolute;
+            padding           : 0;
+            border            : none;
+            width             : 100%;
+            outline           : none !important;
+            top               : 6px;
+            left              : 6px;
+            background        : none;
+
+            :-moz-focusring {
+              color: transparent;
+
+            }
+          }
+        }
+      }
+    }
+    /*--------------------
+  Checkout
+  --------------------*/
+    .checkout {
+      display        : flex;
+      flex-direction : row;
+      justify-content: space-around;
+      margin-top     : 3%;
+    }
+
+    /*--------------------
+  Credit Card
+  --------------------*/
+    .credit-card-box {
+      width     : 400px;
+      height    : 280px;
+      margin-top: 5%;
+
+      &:hover .flip,
+      &.hover .flip {
+        transform: rotateY(180deg);
+      }
+      .front,
+      .back {
+        width                : 400px;
+        height               : 250px;
+        border-radius        : 15px;
+        backface-visibility  : hidden;
+        background           : linear-gradient(135deg, #7cbfc2, #16888b);
+        //   background-image: url(../img/bg-01.png);
+        //   background-size : cover;
+        position             : absolute;
+        color                : #fff;
+        font-family          : Inconsolata;
+        top                  : 0;
+        left                 : 0;
+        &::before {
+          content          : '';
+          position         : absolute;
+          width            : 100%;
+          height           : 100%;
+          top              : 0;
+          left             : 0;
+          background-image : url('../img/dogsleep.png');
+          background-size  : cover;
+          background-repeat: no-repeat;
+          opacity          : .05;
+        }
+      }
+      .flip {
+        transition     : 0.6s;
+        transform-style: preserve-3d;
+        position       : relative;
+      }
+      .logo {
+        position: absolute;
+        top     : 9px;
+        right   : 20px;
+        width   : 60px;
+        svg {
+          width : 100%;
+          height: auto;
+          fill  : #fff;
+        }
+      }
+      .front {
+        z-index  : 2;
+        transform: rotateY(0deg);
+      }
+      .back {
+        transform: rotateY(180deg);
+        .logo {
+          top: 185px;
+        }
+      }
+      .chip {
+        position  : absolute;
+        width     : 60px;
+        height    : 45px;
+        top       : 20px;
+        left      : 20px;
+        background: linear-gradient(135deg, hsl(269, 54%, 87%) 0%, hsl(200, 64%, 89%) 44%, hsl(18, 55%, 94%) 100%);
+        ;
+        border-radius: 8px;
+        &::before {
+          content      : '';
+          position     : absolute;
+          top          : 0;
+          bottom       : 0;
+          left         : 0;
+          right        : 0;
+          margin       : auto;
+          border       : 4px solid hsla(0, 0, 50, .1);
+          width        : 80%;
+          height       : 70%;
+          border-radius: 5px;
+        }
+      }
+      .strip {
+        background: linear-gradient(135deg, hsl(0, 0, 25%), hsl(0, 0, 10%));
+        position  : absolute;
+        width     : 100%;
+        height    : 50px;
+        top       : 30px;
+        left      : 0;
+      }
+      .number {
+        position : absolute;
+        margin   : 0 auto;
+        top      : 103px;
+        left     : 19px;
+        font-size: 1.5rem;
+        color    : white;
+      }
+      label {
+        font-size     : 10px;
+        letter-spacing: 1px;
+        text-shadow   : none;
+        text-transform: uppercase;
+        font-weight   : normal;
+        opacity       : 0.5;
+        display       : block;
+        margin-bottom : 3px;
+      }
+      .card-holder,
+      .card-expiration-date {
+        position : absolute;
+        margin   : 0 auto;
+        top      : 180px;
+        left     : 19px;
+        font-size: 22px;
+        div {
+          color: white;
+        }
+      }
+      .card-expiration-date {
+        text-align: right;
+        left      : auto;
+        right     : 20px;
+      }
+      .ccv {
+        height       : 36px;
+        background   : #fff;
+        width        : 90%;
+        border-radius: 3px;
+        top          : 43%;
+        left         : 0;
+        right        : 0;
+        position     : absolute;
+        margin       : 0 auto;
+        color        : #000;
+        text-align   : right;
+        padding      : 1%;
+
+        label {
+          margin: -25px 0 14px;
+          color : #fff;
+        }
+      }
+    }
+    .the-most {
+      position : fixed;
+      z-index  : 1;
+      bottom   : 0;
+      left     : 0;
+      width    : 50vw;
+      max-width: 200px;
+      padding  : 10px;
+
+      img {
+        max-width: 100%;
+      }
+    }
+    .close {
+
+      position        : absolute;
+      top             : 1%;
+      right           : 1%;
+      background-color: transparent;
+      border          : 0px;
+      cursor          : pointer;
+      outline         : none;
+
+      i {
+        color  : #ccc;
+        padding: 5%;
+      }
+    }
+  }
+}
